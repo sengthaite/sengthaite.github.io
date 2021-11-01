@@ -1,0 +1,36 @@
+---
+---
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: " en" }}">
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+{%- include head.html -%}
+
+<body>
+
+    <div class="search-result-page">
+        <div class="footer-title">
+            {%- if site.title -%}
+            {{ site.title | escape }}
+            {%- endif -%}
+        </div>
+        <input class="search-box" type="search" name="" id="search-input" placeholder="What are you looking for?">
+        <ol>
+            <div id="results-container"></div>
+        </ol>
+
+    </div>
+
+</body>
+
+<script>
+
+    SimpleJekyllSearch({
+        searchInput: document.getElementById('search-input'),
+        resultsContainer: document.getElementById('results-container'),
+        json: '../search.json'
+    })
+</script>
+
+</html>

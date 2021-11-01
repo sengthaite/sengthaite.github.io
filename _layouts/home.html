@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: " en" }}">
+
+{%- include head.html -%}
+
+<body>
+
+  {%- assign default_paths = site.pages | map: "path" -%}
+  {%- assign page_paths = site.header_pages | default: default_paths -%}
+
+  <main class="page-content" aria-label="Content">
+    <div class="wrapper">
+
+      <div class="home">
+
+        {%- if site.posts.size > 0 -%}
+        {%- for category in site.categories -%}
+        {%- capture category_name -%}{{category | first}}{%- endcapture -%}
+        <div class="category-list">{{category_name | upcase }}</div>
+        {%- for post in site.categories[category_name] -%}
+        <div class="post-summary">
+          {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+          <div class="post-meta">{{ post.date | date: date_format }}</div>
+          <a href="{{ post.url | relative_url }}" class="post-link">{{ post.title | escape }}</a>
+        </div>
+        {%- endfor -%}
+        {%- endfor -%}
+        {%- endif -%}
+
+      </div>
+    </div>
+  </main>
+
+  {%- include home-footer.html -%}
+
+</body>
+
+</html>

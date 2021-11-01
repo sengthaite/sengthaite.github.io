@@ -1,0 +1,53 @@
+<footer class="site-footer">
+  <data class="u-url" href="{{ " /" | relative_url }}"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+
+      <div class="footer-col footer-col-1">
+        <div class="footer-title">
+          {%- if site.title -%}
+          {{ site.title | escape }}
+          {%- endif -%}
+        </div>
+        <div class="footer-description">
+          {%- if site.description -%}
+          {{ site.description | escape }}
+          {%- endif -%}
+        </div>
+      </div>
+
+      <div class="footer-col footer-col-1">
+        <input class="search-box-home" type="text" name="" placeholder="What are you looking for?">
+      </div>
+
+      {%- if page_paths -%}
+      <div class="trigger footer-col footer-col-2">
+        <div class="nav-route">
+          {%- for path in page_paths -%}
+          {%- assign my_page = site.pages | where: "path", path | first -%}
+          {%- if my_page.title -%}
+          <a class="nav-item" href="{{ my_page.url | relative_url }}">{{ my_page.title | escape }}</a>
+          {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
+      {%- endif -%}
+
+    </div>
+
+  </div>
+
+</footer>
+
+<script>
+
+  let searchBox = document.querySelector('.search-box-home')
+
+  searchBox.addEventListener('focus', (event) => {
+    searchBox.blur();
+    window.location.href = window.location.origin + "/search_result/";
+  })
+
+</script>
