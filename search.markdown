@@ -1,4 +1,4 @@
 ---
-layout: search_result
+layout: search
 permalink: /search/
 ---
