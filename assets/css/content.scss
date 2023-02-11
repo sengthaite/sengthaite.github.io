@@ -1,0 +1,45 @@
+---
+---
+
+@import "base";
+
+*::-webkit-scrollbar {
+    display: none;
+}
+
+body {
+  font-family: Fira Code, Verdana, sans-serif;
+  margin: 0;
+  color: var(--color-text);
+  background-color: var(--color-background);
+}
+
+pre > code {
+  font-family: Fira Code, Verdana, sans-serif;
+}
+
+.container {
+  margin: auto;
+  max-width: 80vw;
+}
+
+table, th, td {
+  border: 1px solid var(--color-border);
+  border-collapse: collapse;
+  padding: 10px;
+}
+
+blockquote {
+  margin: 0;
+}
+
+blockquote p {
+  padding: 20px;
+  background-color: var(--color-background-quote);
+}
+
+a {
+  font-size: 14px;
+  text-decoration: none;
+  color: var(--color-link);
+}

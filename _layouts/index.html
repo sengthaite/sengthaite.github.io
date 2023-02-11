@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>home</title>
+    <link rel="stylesheet" href="/assets/css/index.css" />
+    <script src="/assets/js/horizontal-scroll.js"></script>
+  </head>
+  <body>
+    <div id="nav">
+      <nav>
+        <img src="/assets/icons/logo.png" alt="logo" />
+        <div>MY NOTES</div>
+      </nav>
+      <label class="switch">
+        <input type="checkbox" name="theme" />
+        <span class="slider round"></span>
+      </label>
+    </div>
+    <div id="container">
+      {% for tag in site.tags %}
+      <div class="tag">
+        <div class="tag-title">{{tag[0] | replace: "," ,"" | upcase}}</div>
+        <div class="tag-content">
+          {% for post in tag[1] %}
+          <div class="post-link">
+            <a href="{{ post.url }}">
+              <div class="post">
+                <div class="post-title">
+                  {{post.date | date: '%m-%d-%Y'}}・{{post.duration}}
+                </div>
+                <div>{{ post.title }}</div>
+              </div>
+            </a>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </body>
+  <script>
+    let checkbox = document.querySelector("input[name=theme]")
+
+    document.getElementsByClassName("switch")[0].style.display = "block"
+
+    const THEME = "sengthaite.theme"
+    const DARK_THEME = "dark"
+    const DEFAULT_THEME = "light"
+
+    const theme = localStorage.getItem(THEME) ?? DEFAULT_THEME
+
+    localStorage.setItem(THEME, theme)
+
+    document.documentElement.setAttribute("data-theme", theme)
+
+    checkbox.checked = theme != DEFAULT_THEME
+
+    checkbox.addEventListener("change", (cb) => {
+      document.documentElement.setAttribute(
+        "data-theme",
+        cb.target.checked ? DARK_THEME : DEFAULT_THEME
+      )
+      localStorage.setItem(THEME, cb.target.checked ? DARK_THEME : DEFAULT_THEME)
+    })
+  </script>
+</html>
