@@ -33,3 +33,7 @@ tags: general
 25. Write a translator program to translate swift in Khmer to swift in English.
 26. Write a UI like development in CLI.
 27. Cross-compiling the swift program to different architecture.
+
+#### Git source code management
+
+1. Push a project to different servers.
