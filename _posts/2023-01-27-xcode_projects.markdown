@@ -12,3 +12,15 @@ tags: xcode_projects
 4. A video and audio player m4a, mp3, mp4, mov.
 5. A QR and Barcode scanner and reader.
 6. A map view with current location and show current location with personal profile.
+7. Ebook readerer: pdf, epub, chm, DjVu, Doc, Docx
+8. Latex renderer
+9. Image viewer and editor
+10. A music player with equalizer
+11. A dynamic restaurant menu with ordering function and auto generate KHQR Payment
+12. A simple browser with inspect functionality
+13. An AI text to voice in Khmer
+14. A note taking with voice to text and custom commands that support Khmer language
+15. Document converter from plain text file to pdf and vice versa
+16. A khmer calendar iOS application
+17. An email client
+18. Scientific calculator
