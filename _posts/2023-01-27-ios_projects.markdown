@@ -1,10 +1,11 @@
 ---
-title: Basic Xcode Projects
+title: iOS Projects
 layout: content
 duration: 10mn
-tags: xcode_projects
+tags: ios_projects
 ---
-# Xcode Projects
+
+# iOS Projects
 
 1. A clock with second, minute, and hour moving based on provided date time.
 2. A excel like program allow add a new row or column, create table with defined row and column.
