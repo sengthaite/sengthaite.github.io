@@ -2,7 +2,7 @@
 title: Android Studio Features
 layout: content
 duration: 10mn
-tags: kotlin
+tags: android_projects
 --- 
 
 ## New features

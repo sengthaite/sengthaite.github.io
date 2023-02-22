@@ -2,7 +2,7 @@
 title: Android Developer Roadmap
 layout: content
 duration: 5mn
-tags: kotlin
+tags: android_projects
 ---
 
 # Android Developer Roadmap
