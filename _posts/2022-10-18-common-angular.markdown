@@ -2,7 +2,7 @@
 title: Common Angular
 layout: content
 duration: 10mn
-theme-color: DC0434
+tags: angular
 ---
 
 # Common Angular

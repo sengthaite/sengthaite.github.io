@@ -2,7 +2,7 @@
 title: iOS Developer Roadmap
 layout: content
 duration: 5mn
-tags: swift
+tags: ios
 ---
 
 # iOS Developer Roadmap

@@ -2,7 +2,7 @@
 title: SOLID Principle
 layout: content
 duration: 1h
-tags: swift
+tags: general
 ---
 
 # SOLID Principles
