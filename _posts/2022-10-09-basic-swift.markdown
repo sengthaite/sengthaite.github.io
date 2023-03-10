@@ -369,11 +369,11 @@ let someNames = names[..<2]
 
 > **Autoclosure** : a closure that's automatically created to wrap an expression that's being passed as an argument to a function.
 
-<h2 id="optional">Optional</h2>
+<h2 id="optional">VIII. Optional</h2>
 
 > **Optional Chaining** : a process for querying and calling properties, methods, and subscripts on an optional that might currently be nil.
 
-<h2 id="error-handling">Error Handling</h2>
+<h2 id="error-handling">IX. Error Handling</h2>
 
 > **Error handling** : the process of responding to and recovering from error conditions in your program.
 
@@ -394,7 +394,7 @@ do {
 
 > **defer** : execute a set of statements just before code execution leaves the current block of code.
 
-<h2 id="assertion-and-precondition">Assertion and Precondition</h2>
+<h2 id="assertion-and-precondition">X. Assertion and Precondition</h2>
 
 > **Assertions and preconditions** : checks that happen at runtime. You used them to make sure an essential condition is satisfied before executing any further code.
 
