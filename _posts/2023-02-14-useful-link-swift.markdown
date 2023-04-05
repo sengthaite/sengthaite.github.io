@@ -73,6 +73,7 @@ tags: ios
 * [SwiftLint](https://github.com/realm/SwiftLint) : A tool to enforce Swift style and conventions.
 * [periphery](https://github.com/peripheryapp/periphery) : A tool to identify unused code in Swift projects.
 * [PMD](https://pmd.github.io/pmd/pmd_userdocs_cpd.html#why-should-you-care-about-duplicates) : Copy/Paste Detector (CPD) tool to find duplicate code
+* [FengNiao](https://github.com/onevcat/FengNiao) : simple command-line util to delete unused image resource files from your Xcode project
 
 ### Course
 -----------
