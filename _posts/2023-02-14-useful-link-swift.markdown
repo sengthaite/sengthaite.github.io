@@ -61,11 +61,18 @@ tags: ios
 * [DLog](https://github.com/ikhvorost/DLog.git) : development logger for Swift that supports emoji and colored text output, format and privacy options, pipelines, filtering, scopes, intervals, stack backtrace and more
 * [LocalConsole](https://github.com/duraidabdul/LocalConsole.git) : a convenient PiP-style console that can display items in the same way print() will in Xcode
 * [KeychainAccess](https://github.com/kishikawakatsumi/KeychainAccess.git) : simple Swift wrapper for Keychain that works on iOS and OS X. Makes using Keychain APIs extremely easy and much more palatable to use in Swift.
-* [GraphQL](https://graphql.org/code/#swift-objective-c)
+* [GraphQL](https://graphql.org/code/#swift-objective-c) : GraphQL for swift and objective-c
 
 ### System Audio Resource
 -------------------------
 [AudioServices](https://iphonedev.wiki/index.php/AudioServices)
+
+### Tools
+---------
+
+* [SwiftLint](https://github.com/realm/SwiftLint) : A tool to enforce Swift style and conventions.
+* [periphery](https://github.com/peripheryapp/periphery) : A tool to identify unused code in Swift projects.
+* [PMD](https://pmd.github.io/pmd/pmd_userdocs_cpd.html#why-should-you-care-about-duplicates) : Copy/Paste Detector (CPD) tool to find duplicate code
 
 ### Course
 -----------
