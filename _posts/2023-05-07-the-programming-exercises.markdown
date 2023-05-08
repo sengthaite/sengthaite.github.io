@@ -88,7 +88,7 @@ tags: clang
 
 * Write a function **expand(s1, s2)** that expands shorthand notations like **a-z** in the string **s1** into the equivalent complete list **abc...xyz** in **s2**. Allow for letters of either case and digits, and be prepared to handle cases like **a-b-c** and **a-z0-9** and **-a-z**. Arrange that a leading or trailing - is taken literally.
 
-* In a two's complement number representation, our version of itoa does not handle the largest negative number, that is, the value of **n** equal to **-(2^(wordsize-1))**. Explain why not. Modify it to print that value correctly, regardless of the machine on which it runs.
+* In a two's complement number representation, our version of itoa does not handle the largest negative number, that is, the value of **n** equal to **-(2<sup>wordsize-1</sup>)**. Explain why not. Modify it to print that value correctly, regardless of the machine on which it runs.
 
 * Write the function **itob(n, s, b)** that converts that integer **n** into **a** base **b** character representation in the string **s**. In particular, **itob(n, s, 16)** formats **n** as a hexadecimal integer in **s**.
 
@@ -146,7 +146,7 @@ tags: clang
 
 * Rewrite the routines **day_of_year** and **month_day** with pointers instead of indexing.
 
-* Write the program **expr**, which evaluates a *reverse Polish expression* from the command line, where each operator or operand is a separate argument. For example <b>expr 2 3 4 + *</b> evaluates *2 x (3 + 4)*.
+* Write the program **expr**, which evaluates a *reverse Polish expression* from the command line, where each operator or operand is a separate argument. For example expr 2 3 4 + * evaluates *2 x (3 + 4)*.
 
 * Modify the programs **entab** and **detab** (written as exercises in Chapter 1) to accept a list of tab stops as arguments. Use the default tab settings if there are no arguments.
 
