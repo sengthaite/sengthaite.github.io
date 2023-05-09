@@ -29,10 +29,10 @@ tags: swift
 
 ### IV. Software design patterns
 
-Singleton
-MVC
-Delegation pattern
-Builder pattern (result builder pattern)
+* Singleton
+* MVC
+* Delegation pattern
+* Builder pattern (result builder pattern)
 
 ### V. Swift Features:
 
