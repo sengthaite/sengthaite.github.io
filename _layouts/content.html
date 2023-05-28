@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#fafafa">
     <link
       rel="stylesheet"
       href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github.min.css"
@@ -28,6 +29,7 @@
     const theme = localStorage.getItem(THEME) ?? "light"
 
     document.documentElement.setAttribute("data-theme", theme)
+    document.querySelector('meta[name="theme-color"]').setAttribute("content", theme == "light" ? "#fafafa" : "#272727");
 
     let darkTheme = document.getElementById("dark-theme")
     let lightTheme = document.getElementById("light-theme")
@@ -35,9 +37,11 @@
     if (theme == "dark") {
       darkTheme.removeAttribute("disabled")
       lightTheme.setAttribute("disabled", "disabled")
+      document.querySelector('meta[name="theme-color"]').setAttribute("content", "#272727");
     } else {
       darkTheme.setAttribute("disabled", "disabled")
       lightTheme.removeAttribute("disabled")
+      document.querySelector('meta[name="theme-color"]').setAttribute("content", "#fafafa");
     }
     
   </script>

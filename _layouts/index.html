@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#fafafa">
     <title>home</title>
     <link rel="stylesheet" href="/assets/css/index.css" />
     <script src="/assets/js/horizontal-scroll.js"></script>
@@ -55,6 +56,7 @@
     localStorage.setItem(THEME, theme)
 
     document.documentElement.setAttribute("data-theme", theme)
+    document.querySelector('meta[name="theme-color"]').setAttribute("content", theme == DEFAULT_THEME ? "#fafafa" : "#272727");
 
     checkbox.checked = theme != DEFAULT_THEME
 
@@ -63,6 +65,7 @@
         "data-theme",
         cb.target.checked ? DARK_THEME : DEFAULT_THEME
       )
+      document.querySelector('meta[name="theme-color"]').setAttribute("content", cb.target.checked ? "#272727" : "#fafafa");
       localStorage.setItem(THEME, cb.target.checked ? DARK_THEME : DEFAULT_THEME)
     })
   </script>
