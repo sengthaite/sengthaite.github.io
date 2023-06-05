@@ -46,7 +46,7 @@ func fibonacci()-> Double {
 
 <br />
 
-### Multi Line Comment (/_ Multi-line comment _/)
+### Multi Line Comment (/* Multi-line comment */)
 
 ```swift
 /*
