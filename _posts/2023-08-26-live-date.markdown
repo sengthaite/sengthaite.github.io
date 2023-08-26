@@ -1,0 +1,11 @@
+---
+title: Live date
+layout: content
+duration: 1mn
+tags: tools
+js-src: /assets/js/live-date.js
+---
+
+# Live Date
+
+<span id="day"></span><span id="time"></span>
