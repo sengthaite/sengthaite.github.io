@@ -8,4 +8,4 @@ js-src: /assets/js/live-date.js
 
 # Live Date
 
-<span id="day"></span><span id="time"></span>
+<span id="day"></span> <span id="time"></span>
