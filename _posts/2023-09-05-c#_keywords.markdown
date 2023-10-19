@@ -5,7 +5,7 @@ duration: 1mn
 tags: C#
 ---
 
-# Key Terms of C# and .NET
+# Key Terms of C# and .NET and Microservices
 
 * CLRs
 * BCLs
@@ -281,3 +281,13 @@ tags: C#
 * SPAs (Single Page Applications)
 * ADO.NET (ActiveX Data Object)
 * Positional Parameter
+* Stateless services
+* Stateful services
+* Polyglot persistence
+* Catalog business microservices
+* Event sourcing pattern
+* Outbox pattern
+* Mediator pattern
+* Observer pattern
+* Repository pattern
+* Decorator pattern
