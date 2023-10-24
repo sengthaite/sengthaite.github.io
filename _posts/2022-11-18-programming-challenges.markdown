@@ -37,3 +37,19 @@ tags: general
 #### Git source code management
 
 1. Push a project to different servers.
+
+#### Useful Programming Concepts
+
+1. Virtual List (finite and infinite scrolling effect)
+2. Dialog Presenting Effects
+3. Navigation System
+4. Formatting and beautifying common data structures: json, xml
+5. Form compose and form validation
+6. Input animations
+7. Sticky header, footer, specified rows, specified columns in table display
+8. Gesture recognizers: tap, drag, multiple clicks, simulataneous recognizers, keyboard shortcuts
+9. Layout System (landscape and portriat)
+10. Themes (light and dark)
+11. State Management
+12. Reactive Programming
+13. Scheduling Task
