@@ -1,7 +1,7 @@
 ---
 title: សុភាសិតខ្មែរ
 layout: content
-duration: 5mn
+duration: 1mn
 tags: សុភាសិតខ្មែរ
 ---
 

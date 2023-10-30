@@ -1,7 +1,7 @@
 ---
 title: Reverse Engineering Roadmap
 layout: content
-duration: 5mn
+duration: 2mn
 tags: reverse_engineering
 ---
 

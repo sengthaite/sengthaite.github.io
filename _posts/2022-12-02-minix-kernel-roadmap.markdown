@@ -1,7 +1,7 @@
 ---
 title: OS Developer Roadmap
 layout: content
-duration: 5mn
+duration: 1mn
 tags: os_dev
 ---
 

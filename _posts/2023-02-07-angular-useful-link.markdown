@@ -1,7 +1,7 @@
 ---
 title: Some useful urls for Angular project
 layout: content
-duration: 2mn
+duration: 1mn
 tags: angular
 ---
 

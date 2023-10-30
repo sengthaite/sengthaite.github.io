@@ -10,8 +10,10 @@ window.calReadingTime = ev => {
 
     let textLength = ev.value.split(" ").length;
     if (textLength > 0 && wordsPerMinute > 0) {
-        let value = textLength / wordsPerMinute;
+        let value = Math.ceil(textLength * 10 / wordsPerMinute) / 10;
         result = `${value} ${value > 1 ? "minutes" : "minute"}`;
+    } else {
+        result = `0 minute`
     }
     document.getElementById("readingTime").innerText = result;
 };

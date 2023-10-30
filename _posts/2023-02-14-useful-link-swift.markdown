@@ -1,7 +1,7 @@
 ---
 title: iOS Development Resource
 layout: content
-duration: 2mn
+duration: 4mn
 tags: ios
 ---
 

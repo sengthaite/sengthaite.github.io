@@ -1,7 +1,7 @@
 ---
 title: Programming Challenges
 layout: content
-duration: 25mn
+duration: 11mn
 tags: general
 ---
 ### Programming Challenges

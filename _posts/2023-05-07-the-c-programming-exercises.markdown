@@ -1,7 +1,7 @@
 ---
 title: The C Programming Language Exercises
 layout: content
-duration: 10mn
+duration: 17mn
 tags: clang
 --- 
 

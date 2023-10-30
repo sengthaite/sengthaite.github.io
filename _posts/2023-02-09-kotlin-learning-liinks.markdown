@@ -1,7 +1,7 @@
 ---
 title: Kotlin Resource Links
 layout: content
-duration: 10mn
+duration: 1mn
 tags: kotlin
 --- 
 

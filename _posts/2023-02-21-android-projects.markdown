@@ -1,7 +1,7 @@
 ---
 title: Android Projects
 layout: content
-duration: 10mn
+duration: 1mn
 tags: android_projects
 ---
 

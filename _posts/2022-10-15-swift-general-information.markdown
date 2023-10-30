@@ -1,7 +1,7 @@
 ---
 title: Swift General Information
 layout: content
-duration: 5mn
+duration: 1.5mn
 tags: swift
 ---
 

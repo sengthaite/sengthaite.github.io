@@ -1,7 +1,7 @@
 ---
 title: C# and .NET Key Terms
 layout: content
-duration: 1mn
+duration: 3mn
 tags: C#
 ---
 

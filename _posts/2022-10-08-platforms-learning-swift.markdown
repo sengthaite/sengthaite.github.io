@@ -1,7 +1,7 @@
 ---
 title: Platforms Learning Swift
 layout: content
-duration: 15mn
+duration: 1mn
 tags: swift
 ---
 
