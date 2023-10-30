@@ -2,7 +2,7 @@
 title: Android Projects
 layout: content
 duration: 1mn
-tags: android_projects
+tags: android
 ---
 
 # Android Project Ideas

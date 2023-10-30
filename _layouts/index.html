@@ -21,9 +21,10 @@
       </label>
     </div>
     <div id="container">
-      {% for tag in site.tags %}
+      {% assign sorted_tag = site.tags | sort %}
+      {% for tag in sorted_tag %}
       <div class="tag">
-        <div class="tag-title">{{tag[0] | replace: "," ,"" | upcase}}</div>
+        <div class="tag-title">{{tag[0] | replace: "_" ," " | upcase}} <small>({{tag[1] | size}})</small></div>
         <div class="tag-content">
           {% for post in tag[1] %}
           <div class="post-link">

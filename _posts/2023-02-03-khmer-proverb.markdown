@@ -2,7 +2,7 @@
 title: សុភាសិតខ្មែរ
 layout: content
 duration: 1mn
-tags: សុភាសិតខ្មែរ
+tags: general
 ---
 
 # សុភាសិតខ្មែរ

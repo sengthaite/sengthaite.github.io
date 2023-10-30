@@ -2,7 +2,7 @@
 title: iOS Projects
 layout: content
 duration: 1mn
-tags: ios_projects
+tags: ios
 ---
 
 # iOS Projects
