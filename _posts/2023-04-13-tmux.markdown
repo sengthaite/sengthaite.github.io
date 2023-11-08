@@ -1,8 +1,8 @@
 ---
 title: tmux
 layout: content
-duration: 1mn
-tags: cli_related
+duration: 2mn
+tags: general
 ---
 
 # tmux : terminal multiplexer

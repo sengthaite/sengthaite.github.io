@@ -1,7 +1,7 @@
 ---
 title: Base url angular
 layout: content
-duration: 5mn
+duration: 2mn
 tags: angular
 ---
 

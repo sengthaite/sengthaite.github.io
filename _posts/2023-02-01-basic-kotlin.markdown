@@ -1,7 +1,7 @@
 ---
 title: My Note Kotlin
 layout: content
-duration: 30mn
+duration: 36mn
 tags: kotlin
 --- 
 

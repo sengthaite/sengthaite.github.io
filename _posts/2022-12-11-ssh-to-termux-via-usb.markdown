@@ -1,7 +1,7 @@
 ---
 title: SSH to Termux Android via USB Guide
 layout: content
-duration: 25mn
+duration: 2mn
 tags: termux
 ---
 

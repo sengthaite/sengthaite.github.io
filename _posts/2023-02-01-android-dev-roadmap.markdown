@@ -1,8 +1,8 @@
 ---
 title: Android Developer Roadmap
 layout: content
-duration: 5mn
-tags: android_projects
+duration: 1mn
+tags: android
 ---
 
 # Android Developer Roadmap

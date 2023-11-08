@@ -1,8 +1,8 @@
 ---
 title: Questions related to Android Development
 layout: content
-duration: 10mn
-tags: android_projects
+duration: 1mn
+tags: android
 ---
 
 # Questions related to Android Development

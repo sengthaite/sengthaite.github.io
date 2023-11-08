@@ -1,49 +1,157 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#fafafa">
-    <link
-      rel="stylesheet"
-      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github.min.css"
-      id="light-theme"
-    />
-    <link
-      rel="stylesheet"
-      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css"
-      id="dark-theme"
-    />
-    <link rel="stylesheet" href="/assets/css/content.css" />
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
-    <script src="{{page.js-src}}"></script>
-  </head>
-  <body>
-    <div class="container">{{ content }}</div>
-  </body>
-  <script>
-    hljs.highlightAll()
 
-    const THEME = "sengthaite.theme"
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#fafafa">
+  <link rel="stylesheet" href="/assets/highlight/styles/github.min.css" id="light-theme" />
+  <link rel="stylesheet" href="/assets/highlight/styles/github-dark.min.css" id="dark-theme" />
+  <link rel="stylesheet" href="/assets/css/content.css" />
+  <script src="/assets/highlight/highlight.min.js"></script>
+  <script src="{{page.js-src}}"></script>
+</head>
 
-    const theme = localStorage.getItem(THEME) ?? "light"
+<body>
+  <div class="container">
+    <nav class="table-of-contents">
+      <h2>Contents</h2>
+    </nav>
+    <article class="article">
+      <div>{{ content }}</div>
+    </article>
+  </div>
+</body>
+<script>
+  hljs.highlightAll()
 
-    document.documentElement.setAttribute("data-theme", theme)
-    document.querySelector('meta[name="theme-color"]').setAttribute("content", theme == "light" ? "#fafafa" : "#272727");
+  const THEME = "sengthaite.theme"
 
-    let darkTheme = document.getElementById("dark-theme")
-    let lightTheme = document.getElementById("light-theme")
+  const theme = localStorage.getItem(THEME) ?? "light"
 
-    if (theme == "dark") {
-      darkTheme.removeAttribute("disabled")
-      lightTheme.setAttribute("disabled", "disabled")
-      document.querySelector('meta[name="theme-color"]').setAttribute("content", "#272727");
-    } else {
-      darkTheme.setAttribute("disabled", "disabled")
-      lightTheme.removeAttribute("disabled")
-      document.querySelector('meta[name="theme-color"]').setAttribute("content", "#fafafa");
+  document.documentElement.setAttribute("data-theme", theme)
+  document.querySelector('meta[name="theme-color"]').setAttribute("content", theme == "light" ? "#fafafa" : "#272727");
+
+  let darkTheme = document.getElementById("dark-theme")
+  let lightTheme = document.getElementById("light-theme")
+
+  if (theme == "dark") {
+    darkTheme.removeAttribute("disabled")
+    lightTheme.setAttribute("disabled", "disabled")
+    document.querySelector('meta[name="theme-color"]').setAttribute("content", "#272727");
+  } else {
+    darkTheme.setAttribute("disabled", "disabled")
+    lightTheme.removeAttribute("disabled")
+    document.querySelector('meta[name="theme-color"]').setAttribute("content", "#fafafa");
+  }
+
+  /*
+    Demo for this article:
+    http://blustemy.io/creating-a-table-of-contents-in-javascript/
+*/
+
+  class TableOfContents {
+    /*
+        The parameters from and to must be Element objects in the DOM.
+    */
+    constructor({ from, to }) {
+      this.fromElement = from;
+      this.toElement = to;
+      // Get all the ordered headings.
+      this.headingElements = this.fromElement.querySelectorAll("h1, h2, h3, h4, h5, h6");
+      this.tocElement = document.createElement("div");
     }
-    
-  </script>
+
+    /*
+        Get the most important heading level.
+        For example if the article has only <h2>, <h3> and <h4> tags
+        this method will return 2.
+    */
+    getMostImportantHeadingLevel() {
+      let mostImportantHeadingLevel = 6; // <h6> heading level
+      for (let i = 0; i < this.headingElements.length; i++) {
+        let headingLevel = TableOfContents.getHeadingLevel(this.headingElements[i]);
+        mostImportantHeadingLevel = (headingLevel < mostImportantHeadingLevel) ?
+          headingLevel : mostImportantHeadingLevel;
+      }
+      return mostImportantHeadingLevel;
+    }
+
+    /*
+        Generate a unique id string for the heading from its text content.
+    */
+    static generateId(headingElement) {
+      return headingElement.textContent.replace(/\s+/g, "_");
+    }
+
+    /*
+        Convert <h1> to 1 … <h6> to 6.
+    */
+    static getHeadingLevel(headingElement) {
+      switch (headingElement.tagName.toLowerCase()) {
+        case "h1": return 1;
+        case "h2": return 2;
+        case "h3": return 3;
+        case "h4": return 4;
+        case "h5": return 5;
+        case "h6": return 6;
+        default: return 1;
+      }
+    }
+
+    generateToc() {
+      let currentLevel = this.getMostImportantHeadingLevel() - 1,
+        currentElement = this.tocElement;
+
+      for (let i = 0; i < this.headingElements.length; i++) {
+        let headingElement = this.headingElements[i],
+          headingLevel = TableOfContents.getHeadingLevel(headingElement),
+          headingLevelDifference = headingLevel - currentLevel,
+          linkElement = document.createElement("a");
+
+        if (!headingElement.id) {
+          headingElement.id = TableOfContents.generateId(headingElement);
+        }
+        linkElement.href = `#${headingElement.id}`;
+        linkElement.textContent = headingElement.textContent;
+
+        if (headingLevelDifference > 0) {
+          // Go down the DOM by adding list elements.
+          for (let j = 0; j < headingLevelDifference; j++) {
+            let listElement = document.createElement("ol"),
+              listItemElement = document.createElement("li");
+            listElement.appendChild(listItemElement);
+            currentElement.appendChild(listElement);
+            currentElement = listItemElement;
+          }
+          currentElement.appendChild(linkElement);
+        } else {
+          // Go up the DOM.
+          for (let j = 0; j < -headingLevelDifference; j++) {
+            currentElement = currentElement.parentNode.parentNode;
+          }
+          let listItemElement = document.createElement("li");
+          listItemElement.appendChild(linkElement);
+          currentElement.parentNode.appendChild(listItemElement);
+          currentElement = listItemElement;
+        }
+
+        currentLevel = headingLevel;
+      }
+
+      this.toElement.appendChild(this.tocElement.firstChild);
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", () =>
+    new TableOfContents({
+      from: document.querySelector(".article"),
+      to: document.querySelector(".table-of-contents")
+    }).generateToc()
+  );
+
+
+</script>
+
 </html>

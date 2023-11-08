@@ -1,7 +1,7 @@
 ---
 title: Basic Swift Programming Language
 layout: content
-duration: 15mn
+duration: 14mn
 tags: swift
 ---
 

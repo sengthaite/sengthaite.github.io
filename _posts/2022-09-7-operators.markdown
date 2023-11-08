@@ -1,7 +1,7 @@
 ---
 title: Operators
 layout: content
-duration: 1h
+duration: 22mn
 tags: swift
 ---
 

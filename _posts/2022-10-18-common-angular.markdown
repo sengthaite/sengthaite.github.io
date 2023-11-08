@@ -1,7 +1,7 @@
 ---
 title: Common Angular
 layout: content
-duration: 10mn
+duration: 3mn
 tags: angular
 ---
 

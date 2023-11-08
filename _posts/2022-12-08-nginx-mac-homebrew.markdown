@@ -1,8 +1,8 @@
 ---
 title: Nginx on Mac with Homebrew
 layout: content
-duration: 15mn
-tags: nginx
+duration: 5mn
+tags: general
 ---
 
 # Nginx on Mac with Homebrew

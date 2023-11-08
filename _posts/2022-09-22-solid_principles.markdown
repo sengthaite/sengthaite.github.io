@@ -1,7 +1,7 @@
 ---
 title: SOLID Principle
 layout: content
-duration: 1h
+duration: 5mn
 tags: general
 ---
 

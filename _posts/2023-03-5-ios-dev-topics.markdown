@@ -1,7 +1,7 @@
 ---
 title: iOS Development Related Topics
 layout: content
-duration: 2mn
+duration: 1mn
 tags: ios
 ---
 

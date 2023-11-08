@@ -1,19 +1,17 @@
 ---
 title: Swift General Information
 layout: content
-duration: 5mn
+duration: 1.5mn
 tags: swift
 ---
 
 # Swift General Information
 
-<br />
-
-### I. Definition
+## Definition
 
 > **Swift** is general-purpose programming language built using *modern approach to safety*, *performance*, and *software design patterns*.
 
-### II. Modern approach to safety:
+## Modern approach to safety:
 
 + Variables are always initialized before use
 + Arrays and integers are checked for overflow
@@ -22,19 +20,19 @@ tags: swift
 + Swift object can never be nil. Provide the optional operator to handle nil *(?).* It is check in compile time so code is much cleaner and safer in runtime.
 + Always in-progress expressive programming language to bring the modern features developer expected.
 
-### III. Performance:
+## Performance:
 
 + Intended as a replacement for C-based language (C, C++, and Objective-C)
 + Performance must be predictable and consistent, not just fast in short bursts that require clean-up later.
 
-### IV. Software design patterns
+## Software design patterns
 
 * Singleton
 * MVC
 * Delegation pattern
 * Builder pattern (result builder pattern)
 
-### V. Swift Features:
+## Swift Features:
 
 - type inference
 - modules eliminate headers and provide namespaces
@@ -50,19 +48,19 @@ tags: swift
 - built-in error handling
 - advanced control flow: do, guard, defer, and repeat
 
-### VI. Swift is an open source project since **03rd December 2015**
+## Swift is an open source project since **03rd December 2015**
 
-### VII. Goals:
+## Goals:
 
 Best available languages uses ranging from systems programming, mobile and desktop apps, to cloud services.
 
-### VIII. Supported platforms:
+## Supported platforms:
 
 - Apple platforms: iOS, macOS, watchOS, and tvOS
 - Linux and android
 - Windows
 
-### IX. Related
+## Related
 
 - Cocoa and Cocoa Touch development environment
 - Xcode
@@ -73,5 +71,3 @@ Best available languages uses ranging from systems programming, mobile and deskt
 - Swift toolchain
 - SourceKit-LSP
 - Core libraries
-
-<br />
