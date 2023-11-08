@@ -30,7 +30,7 @@
             <a href="{{ post.url }}">
               <div class="post">
                 <div class="post-title">
-                  {{post.date | date: '%m-%d-%Y'}}・{{post.duration}}
+                  {{post.date | date_to_string}}・{{post.duration}}
                 </div>
                 <div>{{ post.title }}</div>
               </div>
