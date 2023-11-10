@@ -51,12 +51,14 @@ a {
 }
 
 .table-of-contents {
-  display: 0 0 auto;
   margin-top: 1em;
   padding: 0 1em;
   background: #f2f2f2;
   border: 1px solid #ddd;
   font-size: 0.8em;
+  min-width: 25em;
+  max-width: 25em;
+  width: 25em;
 }
 
 .table-of-contents ol {
