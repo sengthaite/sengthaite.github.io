@@ -62,6 +62,12 @@ a {
   width: 25em;
 }
 
+@media screen and (max-width: 1000px) {
+  .table-of-contents {
+      display: none !important;
+  }
+}
+
 .table-of-contents ol {
   list-style: none;
   padding: 0;
