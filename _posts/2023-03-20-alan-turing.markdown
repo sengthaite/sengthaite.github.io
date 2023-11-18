@@ -2,7 +2,7 @@
 title: Alan Turing
 layout: content
 duration: 1mn
-tags: any_topics
+tags: general
 ---
 
 # Alan Turing (អាឡាន់ធឺរីង)

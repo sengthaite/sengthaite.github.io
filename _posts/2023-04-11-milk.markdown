@@ -2,7 +2,7 @@
 title: ទឹកដោះគោ
 layout: content
 duration: 1mn
-tags: any_topics
+tags: general
 ---
 
 # ទឹកដោះគោ

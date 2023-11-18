@@ -2,7 +2,7 @@
 title: UN Sustainable Development
 layout: content
 duration: 1mn
-tags: any_topics
+tags: general
 ---
 
 # UN Sustainable Development Goals (17)

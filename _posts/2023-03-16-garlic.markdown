@@ -2,7 +2,7 @@
 title: ខ្ទឹមស
 layout: content
 duration: 1mn
-tags: any_topics
+tags: general
 ---
 
 # ខ្ទឹមស

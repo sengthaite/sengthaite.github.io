@@ -2,7 +2,7 @@
 title: ទឹកស៊ីអ៊ីវ
 layout: content
 duration: 1mn
-tags: any_topics
+tags: general
 ---
 
 # ទឹកស៊ីអ៊ីវ
