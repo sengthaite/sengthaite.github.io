@@ -2,7 +2,7 @@
 title: Wikimedia Foundation
 layout: content
 duration: 1mn
-tags: any_topics
+tags: general
 ---
 
 # អង្គភាព Wikimedia (WMF)

@@ -2,7 +2,7 @@
 title: Find any phone number in Cambodia
 layout: content
 duration: 1mn
-tags: any_topics
+tags: general
 ---
 
 # Find any phone number in Cambodia

@@ -2,7 +2,7 @@
 title: ផ្លែចេក
 layout: content
 duration: 1mn
-tags: any_topics
+tags: general
 ---
 
 # ផ្លែចេក
