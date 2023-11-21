@@ -8,7 +8,6 @@ tags: clang
 # The C Programming Language Exercises
 
 ## 1. A Tutorial Introduction (24)
-==================================
 
 * Run the **"hello, world" program** on your system. Experiment with leaving out parts of the program, to see what error messages you get.
 
@@ -57,7 +56,6 @@ tags: clang
 * Write a program to check a C program for rudimentary synctax errors like **unbalanced parentheses**, **brackets**, and **braces**. Don't forget about **quotes**, both single and double, **escape sequences**, and **comments**. (This program is hard if you do it in full generality.)
 
 ## 2. Types, Operators, and Expressions (10)
-============================================
 
 * Write a program to *determine the ranges of **char**, **short**, **int**, and **long variables**, both **signed** and **unsigned**,* by printing appropriate values from standard headers and by direct computation. Harder if you compute them: determine the ranges of the various floating-point types.
 
@@ -80,7 +78,6 @@ tags: clang
 * Rewrite the function lower, which converts upper case letters to lower case, with a conditional expression instead of if-else.
 
 ## 3. Control Flow (6)
-======================
 
 * Our binary search makes two tests inside the loop, when one would suffice (at the price of more test outside). Write a version with only one test inside the loop and measure the difference in run-time.
 
@@ -95,7 +92,6 @@ tags: clang
 * Write a version of **itoa** that  accepts three arguments instead of two. The third argument is a minimum field width; the converted number must be padded with blanks on the left if necessary to make it wide enough.
 
 ## 4. Functions and Program Structure (14)
-==========================================
 
 * Write the function **strrindex(s, t)**, which returns the position of the rightmost occurrence of **t** in **s**, or -1 if there is none.
 
@@ -126,7 +122,6 @@ tags: clang
 * Define a macro **swap(t, x, y)** that interchanges two arguments of type **t**. (Block structure will help.)
 
 ## 5. Pointers and Array (20)
-=============================
 
 * As written, **getint** treats a + or - not followed by a digit as a valid representation of zero. Fix it to push such a character back on the input.
 
@@ -169,7 +164,6 @@ tags: clang
 * Expand **dcl** to handle declarations with function argument types, qualifiers like **const**, and so on.
 
 ## 6. Structures (6)
-====================
 
 * Our version of **getword** does not properly handle **underscores**, **string constants**, **comments**, or **preprocessor control lines**. Write a better version.
 
@@ -184,7 +178,6 @@ tags: clang
 * Implement a simple version of the **#define processor** (i.e., no arguments) suitable for use with C programs, based on the routines of this section. You may also find **getch** and **ungetch** helpful.
 
 ## 7. Input and Output (9)
-==========================
 
 * Write a program that converts upper case to lower or lower case to upper, depending on the name it is invoked with, as found in argv[0].
 
@@ -205,7 +198,6 @@ tags: clang
 * Functions like **isupper** can be implemented to save space or to save time. Explore both possibilities.
 
 ## 8. The UNIX System Interface (8)
-===================================
 
 * Rewrite the program **cat** from Chapter 7 using read, write, open and close instead of their standard library equivalents. Perform experiments to determine the relative speeds of the two vesions.
 
