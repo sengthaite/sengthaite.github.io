@@ -5,8 +5,6 @@ duration: 1mn
 tags: general
 ---
 
-# ទឹកដោះគោ
-
 [Milk Harvard](https://www.hsph.harvard.edu/nutritionsource/milk/)
 [Estrogen](https://www.ncbi.nlm.nih.gov/books/NBK538260/#:~:text=Estrogen%20is%20a%20steroid%20hormone,managing%20symptoms%20associated%20with%20menopause.)
 [Progestogen](https://en.wikipedia.org/wiki/Progestogen_(medication))

@@ -5,8 +5,6 @@ duration: 5mn
 tags: general
 ---
 
-# Nginx on Mac with Homebrew
-
 |#|Topic|Description|
 |-|-----|-----------|
 |1|[Nginx installation](#nginx-installation)|Guide on how to install nginx|

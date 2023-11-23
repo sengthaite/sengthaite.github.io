@@ -5,7 +5,5 @@ duration: 1mn
 tags: android
 ---
 
-# Questions related to Android Development
-
 1. Who started android? When?
 2. Describe default android project structure that runs.

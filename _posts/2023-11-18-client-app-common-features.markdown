@@ -5,8 +5,6 @@ duration: 1mn
 tags: general
 ---
 
-# Client Application Common Features
-
 1. User Authentication and Authorization
     - Secure login and registration process
     - Password recovery/reset options

@@ -5,8 +5,6 @@ duration: 1mn
 tags: ios
 ---
 
-# iOS Projects
-
 1. A clock with second, minute, and hour moving based on provided date time.
 2. A excel like program allow add a new row or column, create table with defined row and column.
 3. A mail client program to list all emails after log in.

@@ -5,8 +5,6 @@ duration: 1mn
 tags: os_dev
 ---
 
-# Minix 3 Developer Roadmap
-
 **Official Document Link**: [minix3-dev](https://wiki.minix3.org/doku.php?id=developersguide:start)
 
 ### Beginners

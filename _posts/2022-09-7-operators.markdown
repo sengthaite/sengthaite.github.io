@@ -5,8 +5,6 @@ duration: 22mn
 tags: swift
 ---
 
-# Operator
-
 An **operator** is *a special symbol or phrase which is used to **check**, **change**, or **combine values***.
 
 <br />

@@ -1,11 +1,10 @@
 ---
-title: tmux
+title: tmux (terminal multiplexer)
 layout: content
 duration: 2mn
 tags: general
 ---
 
-# tmux : terminal multiplexer
 
 [tmux cheatsheet](https://tmuxcheatsheet.com/)
 

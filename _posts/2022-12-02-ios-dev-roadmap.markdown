@@ -5,8 +5,6 @@ duration: 3mn
 tags: ios
 ---
 
-# iOS Developer Roadmap
-
 |#|Topic|Description|
 |--|-----|-----------|
 |1|The Swift Programming Language|Swift is a powerful and intuitive programming language for iOS, iPadOS, macOS, tvOS, and watchOS.|

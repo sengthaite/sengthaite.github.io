@@ -1,13 +1,11 @@
 $white: #fafafa;
 $black: #272727;
-$border: rgba(
-  $color: #000000,
-  $alpha: 0.1,
-);
-$borderDark: rgba(
-  $color: #fafafa,
-  $alpha: 0.1,
-);
+$border: rgba($color: #000000,
+    $alpha: 0.1,
+  );
+$borderDark: rgba($color: #fafafa,
+    $alpha: 0.1,
+  );
 $link: #042086;
 $linkDark: #51a4c0;
 $tagBackgroundWrapper: #f0f0f0;
@@ -18,6 +16,12 @@ $postBackground: #fafafa;
 $postBackgroundDark: #2a2a2a;
 $quoteBackground: #fff;
 $quoteDarkBackground: #0d1117;
+$tocBackground: #f2f2f2;
+$tocBackgroundDark: #4d4d4d;
+$headerBackground: #dcdcdc;
+$headerBackgroundDark: #000;
+$footerBackground: #dcdcdc;
+$footerBackgroundDark: #000;
 
 html {
   --color-text: #{$black};
@@ -28,6 +32,8 @@ html {
   --color-background-tag: #{$tagBackground};
   --color-background-post: #{$postBackground};
   --color-background-quote: #{$quoteBackground};
+  --color-background-toc: #{$tocBackground};
+  --color-background-header: #{$headerBackground};
 }
 
 html[data-theme="dark"] {
@@ -39,14 +45,14 @@ html[data-theme="dark"] {
   --color-background-tag: #{$tagBackgroundDark};
   --color-background-post: #{$postBackgroundDark};
   --color-background-quote: #{$quoteDarkBackground};
+  --color-background-toc: #{$tocBackgroundDark};
+  --color-background-header: #{$headerBackgroundDark};
 }
 
 @font-face {
   font-family: "Fira Code";
-  src: url("/assets/font/Fira_Code_v6.2/woff2/FiraCode-VF.woff2")
-      format("woff2") tech("variations"),
-    url("/assets/font/Fira_Code_v6.2/woff2/FiraCode-VF.woff2")
-      format("woff2-variations");
+  src: url("/assets/font/Fira_Code_v6.2/woff2/FiraCode-VF.woff2") format("woff2") tech("variations"),
+    url("/assets/font/Fira_Code_v6.2/woff2/FiraCode-VF.woff2") format("woff2-variations");
   font-weight: 100 1000;
   font-stretch: 25% 151%;
 }

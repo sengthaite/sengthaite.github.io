@@ -5,10 +5,6 @@ duration: 3mn
 tags: angular
 ---
 
-# Common Angular
-
-<br >
-
 ### Installation
 
 - Install [nodejs](https://nodejs.org/en/download/) with **npm** 

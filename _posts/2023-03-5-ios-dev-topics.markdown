@@ -5,8 +5,6 @@ duration: 1mn
 tags: ios
 ---
 
-# iOS Development Related Topics
-
 |#|Topics|Desription|
 |-|------|----------|
 |1|List of tools|Tools to help iOS development process, e.g. json serialization, debugging, code template, auto generation (language, ...), CI/CD|

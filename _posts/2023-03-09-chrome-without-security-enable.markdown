@@ -5,8 +5,6 @@ duration: 1mn
 tags: general
 ---
 
-# Open Chrome with Security Disabled for testing in Mac
-
 1. Search for **Terminal** application with spotlight *command + space*, then search and open the application
 
 2. Open the Chrome app

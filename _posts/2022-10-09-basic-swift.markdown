@@ -5,9 +5,6 @@ duration: 14mn
 tags: swift
 ---
 
-# Basic Swift Programming Language
-
-<br />
 
 ### Table of Content
 

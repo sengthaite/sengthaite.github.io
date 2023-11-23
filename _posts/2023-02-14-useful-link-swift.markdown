@@ -5,13 +5,11 @@ duration: 4mn
 tags: ios
 ---
 
-# iOS Development Resources
-============================
 ## Apple Resources
 ------------------
 [Human Interface Guidelines](https://developer.apple.com/design/human-interface-guidelines/guidelines/overview/)
 
-### Packages
+## Packages
 -------------
 [Awesome Swift](https://github.com/matteocrippa/awesome-swift)
 

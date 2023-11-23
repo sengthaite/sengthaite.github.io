@@ -5,8 +5,6 @@ duration: 2mn
 tags: reverse_engineering
 ---
 
-# Reverse Engineering Roadmap
-
 |#|Content|Description|
 |-|-------|-----------|
 |1|Assembly Programming Language|Any low-level programming language with a very strong correspondence between the instructions in the language and the architecture's machine code instructions|

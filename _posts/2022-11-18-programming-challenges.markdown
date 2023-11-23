@@ -4,7 +4,6 @@ layout: content
 duration: 11mn
 tags: general
 ---
-### Programming Challenges
 
 #### The Swift Programming Language
 1. Convert color (red, green, blue, alpha) to hex number.

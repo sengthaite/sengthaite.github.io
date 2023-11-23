@@ -5,8 +5,6 @@ duration: 1.5mn
 tags: swift
 ---
 
-# Swift General Information
-
 ## Definition
 
 > **Swift** is general-purpose programming language built using *modern approach to safety*, *performance*, and *software design patterns*.

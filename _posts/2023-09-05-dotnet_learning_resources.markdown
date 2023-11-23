@@ -5,7 +5,6 @@ duration: 1mn
 tags: C#
 ---
 
-# C# and .NET Resources
 
 1. [.NET Documentation](https://learn.microsoft.com/en-us/dotnet/)
 2. [C# freeCodeCamp](https://www.freecodecamp.org/learn/foundational-c-sharp-with-microsoft/)

@@ -5,8 +5,6 @@ duration: 1mn
 tags: swift
 ---
 
-# Plaforms for Programming Swift
-
 ## Source code
 
 [Swift Github](https://github.com/apple/swift)

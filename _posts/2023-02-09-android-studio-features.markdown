@@ -5,8 +5,6 @@ duration: 1mn
 tags: android
 --- 
 
-## New features
-
 1. Multipreview API
 2. Wear OS Pairing Assistent
 

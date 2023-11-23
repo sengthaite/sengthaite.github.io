@@ -5,8 +5,6 @@ duration: 5mn
 tags: general
 ---
 
-# SOLID Principles
-
 > **SOLID** is a mnemonic acronym for 5 design principles intended to make OOP designs more understandable, flexible, and maintainable. (_Design Principles and Design Patterns_ of Robert C. Martin)
 
 > <pre>

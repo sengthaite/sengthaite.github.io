@@ -5,8 +5,6 @@ duration: 1mn
 tags: android
 ---
 
-# Android Developer Roadmap
-
 |#|Topic|Description|
 |--|-----|-----------|
 |1 |Languages|Start fundamental programmming languages Kotlin, Java, or C++|

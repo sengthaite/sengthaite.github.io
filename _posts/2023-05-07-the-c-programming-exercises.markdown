@@ -5,8 +5,6 @@ duration: 17mn
 tags: clang
 --- 
 
-# The C Programming Language Exercises
-
 ## 1. A Tutorial Introduction (24)
 
 * Run the **"hello, world" program** on your system. Experiment with leaving out parts of the program, to see what error messages you get.

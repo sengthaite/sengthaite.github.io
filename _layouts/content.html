@@ -14,6 +14,9 @@
 </head>
 
 <body>
+  <div class="header">
+    {{ page.title }}
+  </div>
   <div class="container">
     <nav class="table-of-contents">
       <h2>Contents</h2>
@@ -24,6 +27,7 @@
   </div>
 </body>
 <script>
+  let isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
   hljs.highlightAll()
 
   const THEME = "sengthaite.theme"
@@ -104,6 +108,10 @@
       let currentLevel = this.getMostImportantHeadingLevel() - 1,
         currentElement = this.tocElement;
 
+      // if (!this.headingElements.length) {
+      //   this.toElement.style.display = "none"
+      // }
+
       for (let i = 0; i < this.headingElements.length; i++) {
         let headingElement = this.headingElements[i],
           headingLevel = TableOfContents.getHeadingLevel(headingElement),
@@ -144,11 +152,17 @@
     }
   }
 
-  document.addEventListener("DOMContentLoaded", () =>
+  document.addEventListener("DOMContentLoaded", () => {
     new TableOfContents({
       from: document.querySelector(".article"),
       to: document.querySelector(".table-of-contents")
     }).generateToc()
+
+    let headerRect = document.querySelector('.header').getBoundingClientRect()
+    let container = document.querySelector('.article')
+    container.style.height = `${window.innerHeight - headerRect.height - 20}px`
+    console.log(container.style.height, bodyRect.height, headerRect.height)
+  }
   );
 
 

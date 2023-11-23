@@ -5,8 +5,6 @@ duration: 3mn
 tags: C#
 ---
 
-# Key Terms of C# and .NET and Microservices
-
 * CLRs
 * BCLs
 * Access Modifiers

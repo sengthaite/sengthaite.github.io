@@ -5,8 +5,6 @@ duration: 2mn
 tags: angular
 ---
 
-# Guide to change base url hosting angular app with nginx
-
 ## Problem
 > When building angular app for hosting with the following command.
 

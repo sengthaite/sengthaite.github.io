@@ -5,8 +5,6 @@ duration: 36mn
 tags: kotlin
 --- 
 
-# My Note Kotlin
-
 ## Default imports package
 
 1. kotlin.*

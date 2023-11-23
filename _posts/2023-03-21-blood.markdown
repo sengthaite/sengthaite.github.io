@@ -5,8 +5,6 @@ duration: 1mn
 tags: general
 ---
 
-# ឈាម
-
 [hematology](https://www.hematology.org/education/patients/blood-basics#:~:text=Blood%20is%20a%20specialized%20body,to%20prevent%20excess%20blood%20loss)
 
 ឈាម គឺជាសារធាតុរាវដ៏ពិសេសក្នុងខ្លួន ដែលមានធាតុផ្សំសំខាន់ៗចំនួនបួន ដូចជា៖ ផ្លាស្មា (plasma), កោសិកាឈាមក្រហម, កោសិកាឈាមស, និង ប្លាកែត (platelet)។ វាមានតួនាទីជាច្រើនខុសៗគ្នា៖

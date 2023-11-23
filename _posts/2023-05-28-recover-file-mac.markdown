@@ -1,11 +1,9 @@
 ---
-title: Restore a file in Mac OS
+title: Restore a file's content in Mac OS
 layout: content
 duration: 1mn
 tags: general
 ---
-
-# Restore file to previous content when accidentally modified it
 
 1. Open the modified file
 2. On menu bar clicked on **File**

@@ -1,11 +1,9 @@
 ---
-title: UN Sustainable Development
+title: UN Sustainable Development Goals (17)
 layout: content
 duration: 1mn
 tags: general
 ---
-
-# UN Sustainable Development Goals (17)
 
 [SDGs](https://sdgs.un.org/goals)
 
