@@ -18,10 +18,14 @@ $quoteBackground: #fff;
 $quoteDarkBackground: #0d1117;
 $tocBackground: #f2f2f2;
 $tocBackgroundDark: #4d4d4d;
-$headerBackground: #dcdcdc;
+$headerBackground: #692525;
 $headerBackgroundDark: #000;
 $footerBackground: #dcdcdc;
 $footerBackgroundDark: #000;
+$tabBackground: #eaeaea;
+$tabBackgroundDark: #424242;
+$tabActiveBackground: #dedede;
+$tabActiveBackgroundDark: #5b5b5b;
 
 html {
   --color-text: #{$black};
@@ -34,6 +38,8 @@ html {
   --color-background-quote: #{$quoteBackground};
   --color-background-toc: #{$tocBackground};
   --color-background-header: #{$headerBackground};
+  --color-background-tab: #{$tabBackground};
+  --color-active-tab: #{$tabActiveBackground};
 }
 
 html[data-theme="dark"] {
@@ -47,6 +53,8 @@ html[data-theme="dark"] {
   --color-background-quote: #{$quoteDarkBackground};
   --color-background-toc: #{$tocBackgroundDark};
   --color-background-header: #{$headerBackgroundDark};
+  --color-background-tab: #{$tabBackgroundDark};
+  --color-active-tab: #{$tabActiveBackgroundDark};
 }
 
 @font-face {
@@ -55,4 +63,26 @@ html[data-theme="dark"] {
     url("/assets/font/Fira_Code_v6.2/woff2/FiraCode-VF.woff2") format("woff2-variations");
   font-weight: 100 1000;
   font-stretch: 25% 151%;
+}
+
+@mixin baseStyle {
+  *::-webkit-scrollbar {
+    display: none;
+  }
+
+  * {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  body {
+    font-family: Fira Code, Verdana, sans-serif;
+    margin: 0;
+    background-color: var(--color-background);
+    scroll-behavior: smooth;
+  }
 }

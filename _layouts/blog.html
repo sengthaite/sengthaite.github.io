@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#fafafa">
+    <title>blog</title>
+    <link rel="stylesheet" href="/assets/css/blog.css" />
+    <script src="/assets/js/horizontal-scroll.js"></script>
+    <script src="/assets/js/theme.js"></script>
+  </head>
+  <body>
+    <div id="container">
+      {% assign sorted_tag = site.tags | sort %}
+      {% for tag in sorted_tag %}
+      <div class="tag">
+        <div class="tag-title">{{tag[0] | replace: "_" ," " | upcase}} <small>({{tag[1] | size}})</small></div>
+        <div class="tag-content">
+          {% for post in tag[1] %}
+          <div class="post-link">
+            <a href="{{ post.url }}" target="_blank">
+              <div class="post">
+                <div class="post-title">
+                  {{post.date | date_to_string}}・{{post.duration}}
+                </div>
+                <div>{{ post.title }}</div>
+              </div>
+            </a>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </body>
+</html>

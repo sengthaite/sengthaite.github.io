@@ -1,74 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#fafafa">
-    <title>home</title>
-    <link rel="stylesheet" href="/assets/css/index.css" />
-    <script src="/assets/js/horizontal-scroll.js"></script>
-  </head>
-  <body>
-    <div id="nav">
-      <nav>
-        <img src="/assets/icons/logo.png" alt="logo" />
-        <div>MY NOTES</div>
-      </nav>
-      <label class="switch">
-        <input type="checkbox" name="theme" />
-        <span class="slider round"></span>
-      </label>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#fafafa">
+  <title>home</title>
+  <link rel="stylesheet" href="/assets/font-awesome-4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/assets/css/index.css" />
+  <script src="/assets/js/theme.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <div class="head">
+      <div id="nav">
+        <nav>
+          <img src="/assets/icons/logo.png" alt="logo" />
+          <div>MY NOTES</div>
+        </nav>
+        <label class="switch">
+          <input type="checkbox" name="theme" />
+          <span class="slider round"></span>
+        </label>
+      </div>
     </div>
-    <div id="container">
-      {% assign sorted_tag = site.tags | sort %}
-      {% for tag in sorted_tag %}
-      <div class="tag">
-        <div class="tag-title">{{tag[0] | replace: "_" ," " | upcase}} <small>({{tag[1] | size}})</small></div>
-        <div class="tag-content">
-          {% for post in tag[1] %}
-          <div class="post-link">
-            <a href="{{ post.url }}">
-              <div class="post">
-                <div class="post-title">
-                  {{post.date | date_to_string}}・{{post.duration}}
-                </div>
-                <div>{{ post.title }}</div>
-              </div>
-            </a>
+
+    <div id="content"></div>
+
+
+    <div class="foot">
+      <div class="tab-bar">
+        <div class="tab-nav-container">
+          <div class="tab active link">
+            <i class="fa fa-home"></i>
+            <p>Blog</p>
           </div>
-          {% endfor %}
+          <div class="tab link">
+            <i class="fa fa-heart"></i>
+            <p>Project</p>
+          </div>
+          <div class="tab link">
+            <i class="fa fa-user"></i>
+            <p>Profile</p>
+          </div>
         </div>
       </div>
-      {% endfor %}
     </div>
-  </body>
-  <script>
-    let isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
-    let checkbox = document.querySelector("input[name=theme]")
 
-    document.getElementsByClassName("switch")[0].style.display = "block"
+  </div>
+</body>
 
-    const THEME = "sengthaite.theme"
-    const DARK_THEME = "dark"
-    const DEFAULT_THEME = "light"
+<script>
+  let contentElement = document.getElementById("content")
+  contentElement.innerHTML = '<object type="text/html" class="tab-content" data="blog.html" ></object>';
 
-    const theme = localStorage.getItem(THEME) ?? DEFAULT_THEME
+  const tabs = document.querySelectorAll('.tab');
 
-    localStorage.setItem(THEME, theme)
+  tabs.forEach(clickedTab => {
+    clickedTab.addEventListener('click', () => {
+      tabs.forEach(tab => {
+        tab.classList.remove('active');
+      });
+      clickedTab.classList.add('active');
+    });
+  });
 
+
+  let checkbox = document.querySelector("input[name=theme]")
+  document.getElementsByClassName("switch")[0].style.display = "block"
+
+  const DARK_THEME = "dark"
+  const DEFAULT_THEME = "light"
+
+  checkbox.checked = theme != DEFAULT_THEME
+
+  function updateMetaName(theme) {
+    let contentDocument = contentElement.firstChild.contentDocument.documentElement;
+    if (!contentDocument) return
+    contentDocument.setAttribute("data-theme", theme)
+    let metaTag = contentDocument.querySelector('meta[name="theme-color"]')
+    if (metaTag) metaTag.setAttribute('content', theme == DARK_THEME ? "#272727" : "#fafafa")
+  }
+
+  checkbox.addEventListener("change", (cb) => {
+    let theme = cb.target.checked ? DARK_THEME : DEFAULT_THEME
     document.documentElement.setAttribute("data-theme", theme)
-    document.querySelector('meta[name="theme-color"]').setAttribute("content", theme == DEFAULT_THEME ? "#fafafa" : "#272727");
+    document.querySelector('meta[name="theme-color"]').setAttribute("content", theme == DARK_THEME ? "#272727" : "#fafafa")
+    localStorage.setItem(THEME, cb.target.checked ? DARK_THEME : DEFAULT_THEME)
+    setTimeout(updateMetaName(cb.target.checked ? DARK_THEME : DEFAULT_THEME), 100)
+  })
 
-    checkbox.checked = theme != DEFAULT_THEME
+</script>
 
-    checkbox.addEventListener("change", (cb) => {
-      document.documentElement.setAttribute(
-        "data-theme",
-        cb.target.checked ? DARK_THEME : DEFAULT_THEME
-      )
-      document.querySelector('meta[name="theme-color"]').setAttribute("content", cb.target.checked ? "#272727" : "#fafafa");
-      localStorage.setItem(THEME, cb.target.checked ? DARK_THEME : DEFAULT_THEME)
-    })
-  </script>
 </html>

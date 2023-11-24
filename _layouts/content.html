@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="/assets/highlight/styles/github.min.css" id="light-theme" />
   <link rel="stylesheet" href="/assets/highlight/styles/github-dark.min.css" id="dark-theme" />
   <link rel="stylesheet" href="/assets/css/content.css" />
+  <script src="/assets/js/theme.js"></script>
   <script src="/assets/highlight/highlight.min.js"></script>
   <script src="{{page.js-src}}"></script>
 </head>
@@ -29,33 +30,8 @@
   </div>
 </body>
 <script>
-  let isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+
   hljs.highlightAll()
-
-  const THEME = "sengthaite.theme"
-
-  const theme = localStorage.getItem(THEME) ?? "light"
-
-  document.documentElement.setAttribute("data-theme", theme)
-  document.querySelector('meta[name="theme-color"]').setAttribute("content", theme == "light" ? "#fafafa" : "#272727");
-
-  let darkTheme = document.getElementById("dark-theme")
-  let lightTheme = document.getElementById("light-theme")
-
-  if (theme == "dark") {
-    darkTheme.removeAttribute("disabled")
-    lightTheme.setAttribute("disabled", "disabled")
-    document.querySelector('meta[name="theme-color"]').setAttribute("content", "#272727");
-  } else {
-    darkTheme.setAttribute("disabled", "disabled")
-    lightTheme.removeAttribute("disabled")
-    document.querySelector('meta[name="theme-color"]').setAttribute("content", "#fafafa");
-  }
-
-  /*
-    Demo for this article:
-    http://blustemy.io/creating-a-table-of-contents-in-javascript/
-*/
 
   class TableOfContents {
     /*
