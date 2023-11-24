@@ -18,9 +18,11 @@
     {{ page.title }}
   </div>
   <div class="container">
-    <nav class="table-of-contents">
-      <h2>Contents</h2>
-    </nav>
+    <div>
+      <nav class="table-of-contents">
+        <h2>Contents</h2>
+      </nav>
+    </div>
     <article class="article">
       <div>{{ content }}</div>
     </article>
@@ -108,9 +110,10 @@
       let currentLevel = this.getMostImportantHeadingLevel() - 1,
         currentElement = this.tocElement;
 
-      // if (!this.headingElements.length) {
-      //   this.toElement.style.display = "none"
-      // }
+      if (!this.headingElements.length) {
+        this.toElement.style.display = "none"
+        return
+      }
 
       for (let i = 0; i < this.headingElements.length; i++) {
         let headingElement = this.headingElements[i],
@@ -161,7 +164,6 @@
     let headerRect = document.querySelector('.header').getBoundingClientRect()
     let container = document.querySelector('.article')
     container.style.height = `${window.innerHeight - headerRect.height - 20}px`
-    console.log(container.style.height, bodyRect.height, headerRect.height)
   }
   );
 
