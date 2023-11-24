@@ -6,7 +6,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#fafafa">
-  <title>home</title>
+  <title>blog</title>
+  <link rel="shortcut icon" href="/assets/icons/logo.png" type="image/x-icon">
   <link rel="stylesheet" href="/assets/font-awesome-4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="/assets/css/index.css" />
   <script src="/assets/js/theme.js"></script>
@@ -18,7 +19,7 @@
       <div id="nav">
         <nav>
           <img src="/assets/icons/logo.png" alt="logo" />
-          <div>MY NOTES</div>
+          <div>Sengthai</div>
         </nav>
         <label class="switch">
           <input type="checkbox" name="theme" />
@@ -27,23 +28,27 @@
       </div>
     </div>
 
-    <div id="content"></div>
+    <div id="content">
+      <div id="content-blog" class="content"></div>
+      <div id="content-project" class="content hidden"></div>
+      <div id="content-tool" class="content hidden"></div>
+    </div>
 
 
     <div class="foot">
       <div class="tab-bar">
         <div class="tab-nav-container">
-          <div class="tab active link">
-            <i class="fa fa-home"></i>
+          <div id="blog" class="tab active link">
+            <i class="fa fa-graduation-cap"></i>
             <p>Blog</p>
           </div>
-          <div class="tab link">
-            <i class="fa fa-heart"></i>
+          <div id="project" class="tab link">
+            <i class="fa fa-connectdevelop"></i>
             <p>Project</p>
           </div>
-          <div class="tab link">
-            <i class="fa fa-user"></i>
-            <p>Profile</p>
+          <div id="tool" class="tab link">
+            <i class="fa fa-wrench"></i>
+            <p>Tools</p>
           </div>
         </div>
       </div>
@@ -53,37 +58,50 @@
 </body>
 
 <script>
-  let contentElement = document.getElementById("content")
-  contentElement.innerHTML = '<object type="text/html" class="tab-content" data="blog.html" ></object>';
-
-  const tabs = document.querySelectorAll('.tab');
-
-  tabs.forEach(clickedTab => {
-    clickedTab.addEventListener('click', () => {
-      tabs.forEach(tab => {
-        tab.classList.remove('active');
-      });
-      clickedTab.classList.add('active');
-    });
-  });
-
-
-  let checkbox = document.querySelector("input[name=theme]")
-  document.getElementsByClassName("switch")[0].style.display = "block"
-
-  const DARK_THEME = "dark"
-  const DEFAULT_THEME = "light"
-
-  checkbox.checked = theme != DEFAULT_THEME
-
-  function updateMetaName(theme) {
-    let contentDocument = contentElement.firstChild.contentDocument.documentElement;
-    if (!contentDocument) return
-    contentDocument.setAttribute("data-theme", theme)
-    let metaTag = contentDocument.querySelector('meta[name="theme-color"]')
-    if (metaTag) metaTag.setAttribute('content', theme == DARK_THEME ? "#272727" : "#fafafa")
+  /// Switch tab bar
+  let contentElements = {
+    "blog": "blog.html",
+    "project": "project.html",
+    "tool": "tool.html"
   }
 
+  function switchContent(clickedTab) {
+    const clickedTabContent = document.getElementById(`content-${clickedTab.id}`)
+    if (!clickedTabContent) return
+    clickedTabContent.classList.remove('hidden')
+    if (!clickedTabContent.innerHTML && contentElements[clickedTab.id]) {
+      clickedTabContent.innerHTML = `<object type="text/html" class="tab-content" data="${contentElements[clickedTab.id]}" ></object>`
+    }
+  }
+  const tabs = document.querySelectorAll('.tab');
+  const tabsContent = document.querySelectorAll('.content')
+  const activeTab = Array.from(tabs).find(each => each.classList.contains('active'))
+  if (activeTab) switchContent(activeTab)
+  tabs.forEach(clickedTab =>
+    clickedTab.addEventListener('click', () => {
+      tabs.forEach(tab => tab.classList.remove('active'));
+      tabsContent.forEach(content => content.classList.add('hidden'))
+      clickedTab.classList.add('active')
+      switchContent(clickedTab)
+    })
+  );
+
+  /// Handle light and dark theme
+  let checkbox = document.querySelector("input[name=theme]")
+  document.getElementsByClassName("switch")[0].style.display = "block"
+  const DARK_THEME = "dark"
+  const DEFAULT_THEME = "light"
+  checkbox.checked = theme != DEFAULT_THEME
+  function updateMetaName(theme) {
+    tabsContent.forEach(contentElement => {
+      if (!contentElement.firstChild) return
+      let contentDocument = contentElement.firstChild.contentDocument.documentElement;
+      if (!contentDocument) return
+      contentDocument.setAttribute("data-theme", theme)
+      let metaTag = contentDocument.querySelector('meta[name="theme-color"]')
+      if (metaTag) metaTag.setAttribute('content', theme == DARK_THEME ? "#272727" : "#fafafa")
+    })
+  }
   checkbox.addEventListener("change", (cb) => {
     let theme = cb.target.checked ? DARK_THEME : DEFAULT_THEME
     document.documentElement.setAttribute("data-theme", theme)

@@ -19,7 +19,7 @@
         <div class="tag-content">
           {% for post in tag[1] %}
           <div class="post-link">
-            <a href="{{ post.url }}" target="_blank">
+            <a href="{{ post.url }}">
               <div class="post">
                 <div class="post-title">
                   {{post.date | date_to_string}}・{{post.duration}}
