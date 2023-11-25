@@ -1,17 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#fafafa">
-    <title>tss</title>
-    <link rel="stylesheet" href="/assets/css/tts.css" />
-    <script src="/assets/js/theme.js"></script>
-  </head>
-  <body>
-    <div id="container">
-        {{content}}
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#fafafa">
+  <title>tss</title>
+  <link rel="stylesheet" href="/assets/font-awesome-4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/assets/css/tts.css" />
+  <script src="/assets/js/theme.js"></script>
+</head>
+
+<body>
+  <div id="container">
+    <div class="actions">
+      <div class="action-button">
+        <i class="fa fa-play"></i>
+        <p>Speak</p>
+      </div>
     </div>
-  </body>
+    <div class="content" contenteditable="true">Hello, World!</div>
+  </div>
+  <script>
+    const speakButton = document.querySelector(".action-button")
+    speakButton.addEventListener("click", () => {
+      let content = document.querySelector(".content").textContent
+      if (!content) return
+      let synth = window.speechSynthesis
+      let voices = synth.getVoices()
+      let utterance = new SpeechSynthesisUtterance(content)
+      synth.speak(utterance);
+    })
+  </script>
+</body>
+
 </html>

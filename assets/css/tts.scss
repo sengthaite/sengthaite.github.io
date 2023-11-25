@@ -1,7 +1,28 @@
---- 
+---
 --- 
 
 @import "base";
 
 @include baseStyle;
 
+#container {
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    height: 90vh;
+
+    .content {
+        border-radius: 1em;
+        border-color: var(--color-border);
+        background-color: var(--color-background-tab);
+        padding: 1em;
+        color: var(--color-text);
+        margin-left: 1em;
+        margin-right: 1em;
+        margin-top: 2em;
+        flex: 1;
+    }
+
+}

@@ -69,7 +69,7 @@ input:checked+.slider:before {
   width: 1.3em;
   left: 4px;
   bottom: 4px;
-  background-color: white;
+  background-color: var(--color-background);
   -webkit-transition: .4s;
   transition: .4s;
 }
@@ -135,7 +135,6 @@ input:checked+.slider:before {
   justify-content: center;
   padding: 0 20px;
   margin: 0 10px;
-  transition: background 0.4 linear;
 }
 
 .tab i {

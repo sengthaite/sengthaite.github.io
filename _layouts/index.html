@@ -69,7 +69,8 @@
     const clickedTabContent = document.getElementById(`content-${clickedTab.id}`)
     if (!clickedTabContent) return
     clickedTabContent.classList.remove('hidden')
-    if (!clickedTabContent.innerHTML && contentElements[clickedTab.id]) {
+    if (contentElements[clickedTab.id]) {
+      clickedTabContent.innerHTML = ''
       clickedTabContent.innerHTML = `<object type="text/html" class="tab-content" data="${contentElements[clickedTab.id]}" ></object>`
     }
   }

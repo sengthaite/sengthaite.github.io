@@ -7,7 +7,7 @@ $borderDark: rgba($color: #fafafa,
     $alpha: 0.1,
   );
 $link: #042086;
-$linkDark: #51a4c0;
+$linkDark: #32ff58;
 $tagBackgroundWrapper: #f0f0f0;
 $tagBackgroundWrapperDark: #303030;
 $tagBackground: #dddddd;
@@ -84,5 +84,36 @@ html[data-theme="dark"] {
     margin: 0;
     background-color: var(--color-background);
     scroll-behavior: smooth;
+
+    a {
+      text-decoration: none;
+    }
   }
+}
+
+.action-button {
+  color: var(--color-text);
+  background: var(--color-background-tag);
+  border-radius: 0.5em;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1em;
+  margin: 0 1em;
+  width: fit-content;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15), 0 3px 6px rgba(0, 0, 0, 0.18);
+
+  .fa {
+    margin-right: 1em;
+  }
+
+  p {
+    margin-right: 0.8em;
+    font-weight: 500;
+  }
+}
+
+.action-button:hover {
+  color: var(--color-link);
 }
