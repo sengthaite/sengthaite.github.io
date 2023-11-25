@@ -9,4 +9,29 @@
     margin-left: 20px;
     margin-right: 20px;
     margin-top: 10px;
+
+    .programs {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+
+        .program-item {
+            background-color: var(--color-background);
+            color: var(--color-text);
+            font-weight: 500;
+            font-size: medium;
+            text-align: center;
+            border-radius: 1em;
+            
+            img {
+                border-radius: 1em;
+            }
+        }
+
+        .program-item:hover {
+            color: var(--color-link);
+            cursor: pointer;
+        }
+    }
 }

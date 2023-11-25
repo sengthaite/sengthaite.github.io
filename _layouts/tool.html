@@ -1,17 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#fafafa">
-    <title>tool</title>
-    <link rel="stylesheet" href="/assets/css/tool.css" />
-    <script src="/assets/js/theme.js"></script>
-  </head>
-  <body>
-    <div id="container">
-      Tool page is under development.
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#fafafa">
+  <title>tool</title>
+  <link rel="stylesheet" href="/assets/css/tool.css" />
+  <script src="/assets/js/theme.js"></script>
+</head>
+
+<body>
+  <div id="container">
+    <div class="programs">
+      {% for tool in site.tools %}
+      <a href="{{tool.url}}">
+        <div class="program-item">
+          <img src="{{tool.icon}}" alt="logo" />
+          <div>{{tool.title}}</div>
+        </div>
+      </a>
+      {% endfor %}
     </div>
-  </body>
+  </div>
+</body>
+
 </html>
