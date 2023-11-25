@@ -117,3 +117,8 @@ html[data-theme="dark"] {
 .action-button:hover {
   color: var(--color-link);
 }
+
+[contenteditable] {
+  -webkit-user-select: text;
+  user-select: text;
+}
