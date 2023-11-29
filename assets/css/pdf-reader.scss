@@ -12,17 +12,4 @@
     display: flex;
     flex-direction: column;
     height: 90vh;
-
-    .text {
-        color: var(--color-text);
-        margin: 1em 0;
-    }
-
-    input {
-        color: var(--color-link);
-    }
-
-    #pdf-content {
-        height: 80vh;
-    }
 }

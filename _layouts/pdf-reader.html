@@ -9,43 +9,13 @@
   <title>pdf reader</title>
   <link rel="stylesheet" href="/assets/css/pdf-reader.css" />
   <script src="/assets/js/theme.js"></script>
-  <script src="/assets/js/pdfobject.min.js"></script>
 </head>
 
 <body>
   <div id="container">
-    <span class="text">Select pdf file to view</span>
-    <input id="input" type="file" name="pdf-file" accept="application/pdf">
-    <div class="text">
-      <label for="fileSize">Total size:</label>
-      <output id="fileSize">0</output>
-    </div>
-    <div id="pdf-content"></div>
+    {% include viewer.html %}
   </div>
   </div>
 </body>
-
-<script>
-  const inputElement = document.getElementById("input");
-  inputElement.addEventListener("change", handleFiles, false);
-  function handleFiles() {
-    const file = this.files[0]
-    const numberOfBytes = file.size
-    const units = ["B", "KiB", "MiB", "GiB", "TiB", "PiB", "EiB", "ZiB", "YiB",
-    ];
-    const exponent = Math.min(
-      Math.floor(Math.log(numberOfBytes) / Math.log(1024)),
-      units.length - 1,
-    );
-    const approx = numberOfBytes / 1024 ** exponent;
-    const output =
-      exponent === 0
-        ? `${numberOfBytes} bytes`
-        : `${approx.toFixed(3)} ${units[exponent]
-        } (${numberOfBytes} bytes)`;
-    document.getElementById("fileSize").textContent = output;
-    PDFObject.embed(URL.createObjectURL(file), "#pdf-content")
-  }
-</script>
 
 </html>

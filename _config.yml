@@ -9,7 +9,6 @@ collections:
     output: true
     permalink: /tool/:name
 
-
 plugins:
   - jekyll-feed
 
