@@ -8,14 +8,24 @@
   <meta name="theme-color" content="#fafafa">
   <title>pdf reader</title>
   <link rel="stylesheet" href="/assets/css/pdf-reader.css" />
+  <link rel="stylesheet" href="/assets/font-awesome-4.7.0/css/font-awesome.min.css">
   <script src="/assets/js/theme.js"></script>
 </head>
 
 <body>
   <div id="container">
+    <div class="button" id="choose-pdf">
+      <i class="fa fa-file-pdf-o"></i>
+      <p>Select PDF</p>
+    </div>
     {% include viewer.html %}
   </div>
   </div>
+  <script>
+    document.getElementById("choose-pdf").addEventListener("click", ()=> {
+      document.getElementById("fileInput").click()
+    })
+  </script>
 </body>
 
 </html>
