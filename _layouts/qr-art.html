@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#fafafa">
+    <title>qr art</title>
+    <link rel="stylesheet" href="/assets/css/qr-art.css" />
+    <link rel="stylesheet" href="/assets/font-awesome-4.7.0/css/font-awesome.min.css">
+    <script src="/assets/js/lodash.min.js"></script>
+    <script src="/assets/js/qr/qart.min.js"></script>
+    <script src="/assets/js/theme.js"></script>
+</head>
+
+<body>
+    <div id="container">
+        <img id="image" hidden>
+        <div class="qr-input">
+            <input type="text" placeholder="text/url" class="qr-text">
+            <input type="file" name="image" class="qr-image">
+        </div>
+        <a id="qr-result">
+            <div id="qart"></div>
+        </a>
+    </div>
+    </div>
+    <script>
+        const qrText = document.querySelector(".qr-text")
+        const qrImage = document.querySelector(".qr-image")
+
+        function getImagePath(file, callback) {
+            var reader = new FileReader();
+            reader.readAsDataURL(qrImage.files[0]);
+            reader.onload = function (e) {
+                var regex = /data:(.*);base64,(.*)/gm;
+                var parts = regex.exec(reader.result);
+                imagePath = parts[0];
+                document.getElementById("image").src = imagePath
+                callback(imagePath)
+            }
+        }
+
+        function makeQArt() {
+            let filter = 'color';
+            let version = 10;
+            let bg = "#fafafa";
+            let fillType = 'scale_to_fit';
+            let size = "300";
+            let imageLink = document.getElementById("qr-result")
+            const Qart = (imagePath) => {
+                new QArt({
+                    value: qrText.value,
+                    imagePath: imagePath,
+                    filter: filter,
+                    version: version,
+                    background: bg,
+                    size: size,
+                    fillType: fillType
+                }).make((canvas) => {
+                    let qart = document.getElementById('qart')
+                    while (qart.firstChild) {
+                        qart.firstChild.remove()
+                    }
+                    qart.appendChild(canvas)
+                    imageLink.setAttribute("download", "qr-result.png")
+                    imageLink.setAttribute("href", canvas.toDataURL("image/png").replace("image/png", "image/octet-stream"))
+                })
+
+            }
+            qrImage.files[0] ? getImagePath(qrImage.files[0], Qart) : Qart('')
+        }
+
+        const debounceGenQR = _.debounce(makeQArt, 250);
+        qrText.addEventListener("keyup", debounceGenQR)
+        qrImage.addEventListener("change", makeQArt)
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,15 @@
+--- 
+--- 
+
+@import "base";
+
+@include baseStyle;
+
+#container {
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 20px);
+}
