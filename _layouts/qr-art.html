@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="/assets/font-awesome-4.7.0/css/font-awesome.min.css">
     <script src="/assets/js/lodash.min.js"></script>
     <script src="/assets/js/qr/qart.min.js"></script>
+    <script src="/assets/js/qr/qr-code.js"></script>
     <script src="/assets/js/theme.js"></script>
 </head>
 
@@ -24,9 +25,13 @@
         <a id="qr-result">
             <div id="qart"></div>
         </a>
+
+        <a id="qr-result1"></a>
     </div>
     </div>
     <script>
+        /// Qart qr generation
+        //////////////////////
         const qrText = document.querySelector(".qr-text")
         const qrImage = document.querySelector(".qr-image")
 
@@ -42,34 +47,82 @@
             }
         }
 
-        function makeQArt() {
+        const Qart = (imagePath) => {
             let filter = 'color';
             let version = 10;
             let bg = "#fafafa";
             let fillType = 'scale_to_fit';
-            let size = "300";
+            let size = "200";
             let imageLink = document.getElementById("qr-result")
-            const Qart = (imagePath) => {
-                new QArt({
-                    value: qrText.value,
-                    imagePath: imagePath,
-                    filter: filter,
-                    version: version,
-                    background: bg,
-                    size: size,
-                    fillType: fillType
-                }).make((canvas) => {
-                    let qart = document.getElementById('qart')
-                    while (qart.firstChild) {
-                        qart.firstChild.remove()
-                    }
-                    qart.appendChild(canvas)
-                    imageLink.setAttribute("download", "qr-result.png")
-                    imageLink.setAttribute("href", canvas.toDataURL("image/png").replace("image/png", "image/octet-stream"))
-                })
+            new QArt({
+                value: qrText.value,
+                imagePath: imagePath,
+                filter: filter,
+                version: version,
+                background: bg,
+                size: size,
+                fillType: fillType
+            }).make((canvas) => {
+                let qart = document.getElementById('qart')
+                while (qart.firstChild) {
+                    qart.firstChild.remove()
+                }
+                canvas.style.backgroundColor = "white"
+                qart.appendChild(canvas)
+                imageLink.setAttribute("download", "qr-result.png")
+                imageLink.setAttribute("href", canvas.toDataURL("image/png").replace("image/png", "image/octet-stream"))
+            })
+        }
 
-            }
-            qrImage.files[0] ? getImagePath(qrImage.files[0], Qart) : Qart('')
+
+        const QrCode = (imagePath) => {
+            let imageLink = document.getElementById("qr-result1")
+            let elem = `<qr-code id="qr-code" contents="${qrText.value}" module-color="#000" position-ring-color="#000" position-center-color="#000">
+                <img id="qr-code-image" src="${imagePath}" slot="icon" />
+            </qr-code>`
+            document.getElementById("qr-result1").innerHTML = elem
+            document.getElementById("qr-code-image").hidden = !imagePath
+
+            const observerConfig = { attributes: true, childList: true, subtree: true };
+            const elementLoadedCallback = function (mutationsList, observer) {
+                for (const mutation of mutationsList) {
+                    if (mutation.type === 'childList') {
+                        console.log('A child node has been added or removed.');
+                    } else if (mutation.type === 'attributes') {
+                        let svg = mutation.target.shadowRoot.querySelector("svg")
+                        const svgData = new XMLSerializer().serializeToString(svg)
+                        const svgDataBase64 = btoa(unescape(encodeURIComponent(svgData)))
+                        const svgDataUrl = `data:image/svg+xml;charset=utf-8;base64,${svgDataBase64}`
+                        const image = new Image()
+                        image.addEventListener('load', () => {
+                            const width = mutation.target.clientWidth
+                            const height = mutation.target.clientHeight
+                            var canvas = document.createElement("canvas")
+                            var ctx = canvas.getContext("2d")
+                            canvas.setAttribute('width', width)
+                            canvas.setAttribute('height', height)
+                            ctx.fillStyle = "white"
+                            ctx.fillRect(0,0,canvas.width, canvas.height)
+                            ctx.drawImage(image, 0, 0, width, height)
+                            imageLink.setAttribute("download", "qr-result1.png")
+                            imageLink.setAttribute("href", canvas.toDataURL("image/png").replace("image/png", "image/octet-stream"))
+                        })
+                        image.src = svgDataUrl
+
+                    } else if (mutation.type == 'subtree') {
+                        console.log(mutation.type)
+                    }
+                }
+            };
+
+            const observer = new MutationObserver(elementLoadedCallback)
+            observer.observe(document.querySelector("qr-code"), observerConfig)
+        }
+
+        function makeQArt() {
+            var file = qrImage.files[0]
+            file ? getImagePath(file, Qart) : Qart('')
+            file ? getImagePath(file, QrCode) : QrCode('')
         }
 
         const debounceGenQR = _.debounce(makeQArt, 250);
