@@ -15,3 +15,4 @@ tags: cli_tools
 4. ld
 5. lld
 6. otool
+7. lipo
