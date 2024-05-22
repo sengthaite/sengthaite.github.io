@@ -10,7 +10,8 @@ class AppData {
 
   Future<bool> initData() async {
     if (model != null) return true;
-    String content = await rootBundle.loadString('autogen_meta/data.json');
+    String content =
+        await rootBundle.loadString('assets/autogen_meta/data.json');
     model = appModelFromJson(content);
     return true;
   }

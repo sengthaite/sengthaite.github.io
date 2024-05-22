@@ -18,4 +18,4 @@ all:
 	clean autogen build_runner
 
 deploy:
-	flutter pub global run peanut --extra-args --base-href=/sengthaite.github.io/
+	flutter pub global run peanut --extra-args --base-href=/
