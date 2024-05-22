@@ -1,0 +1,71 @@
+---
+title: Swift General Information
+layout: content
+duration: 1.5mn
+tags: swift
+---
+
+## Definition
+
+> **Swift** is general-purpose programming language built using *modern approach to safety*, *performance*, and *software design patterns*.
+
+## Modern approach to safety:
+
++ Variables are always initialized before use
++ Arrays and integers are checked for overflow
++ Memory is managed automatically
++ Easy to understand syntax. e.g. var (variable) or let (constant)
++ Swift object can never be nil. Provide the optional operator to handle nil *(?).* It is check in compile time so code is much cleaner and safer in runtime.
++ Always in-progress expressive programming language to bring the modern features developer expected.
+
+## Performance:
+
++ Intended as a replacement for C-based language (C, C++, and Objective-C)
++ Performance must be predictable and consistent, not just fast in short bursts that require clean-up later.
+
+## Software design patterns
+
+* Singleton
+* MVC
+* Delegation pattern
+* Builder pattern (result builder pattern)
+
+## Swift Features:
+
+- type inference
+- modules eliminate headers and provide namespaces
+- automatic memory management
+- no need semi-colons
+- named parameter
+- closure unified with function pointers
+- tuples and multiple return values
+- generics 
+- fast and concise iteration over a range or collection
+- structs that support methods, extensions, and protocols
+- functional programming patterns. e.g. map and filter
+- built-in error handling
+- advanced control flow: do, guard, defer, and repeat
+
+## Swift is an open source project since **03rd December 2015**
+
+## Goals:
+
+Best available languages uses ranging from systems programming, mobile and desktop apps, to cloud services.
+
+## Supported platforms:
+
+- Apple platforms: iOS, macOS, watchOS, and tvOS
+- Linux and android
+- Windows
+
+## Related
+
+- Cocoa and Cocoa Touch development environment
+- Xcode
+- Code completion
+- Objective-C runtime
+- Swift compiler
+- Swift REPL (Read-Eval-Print-Loop) and debugger (LLDB)
+- Swift toolchain
+- SourceKit-LSP
+- Core libraries

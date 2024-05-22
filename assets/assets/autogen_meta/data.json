@@ -1,0 +1,692 @@
+{
+    "author": "Te Sengthai",
+    "created_date": "2024-05-22T23:08:35.197343",
+    "data": [
+        {
+            "created_date": "2024-05-22T22:29:38.357836",
+            "files": [
+                {
+                    "access_date": "2024-05-22T22:27:48.257641",
+                    "change_date": "2024-05-22T22:27:47.105909",
+                    "exerpt": "",
+                    "full_path": "assets/contents/android/2023-02-01-android-dev-roadmap.markdown",
+                    "index": 0,
+                    "modified_date": "2024-05-22T22:27:47.105664",
+                    "name": "2023-02-01-android-dev-roadmap.markdown",
+                    "title": "Android Developer Roadmap"
+                },
+                {
+                    "access_date": "2024-05-22T22:29:38.836718",
+                    "change_date": "2024-05-22T22:29:38.348697",
+                    "exerpt": "",
+                    "full_path": "assets/contents/android/2023-02-01-basic-kotlin.markdown",
+                    "index": 1,
+                    "modified_date": "2024-05-22T22:29:38.348426",
+                    "name": "2023-02-01-basic-kotlin.markdown",
+                    "title": "My Note Kotlin"
+                },
+                {
+                    "access_date": "2024-05-22T22:27:48.256177",
+                    "change_date": "2024-05-22T22:27:47.112057",
+                    "exerpt": "",
+                    "full_path": "assets/contents/android/2023-02-09-android-studio-features.markdown",
+                    "index": 2,
+                    "modified_date": "2024-05-22T22:27:47.111851",
+                    "name": "2023-02-09-android-studio-features.markdown",
+                    "title": "Android Studio Features"
+                },
+                {
+                    "access_date": "2024-05-22T22:29:38.839700",
+                    "change_date": "2024-05-22T22:29:38.358264",
+                    "exerpt": "",
+                    "full_path": "assets/contents/android/2023-02-09-kotlin-learning-links.markdown",
+                    "index": 3,
+                    "modified_date": "2024-05-22T22:29:38.358017",
+                    "name": "2023-02-09-kotlin-learning-links.markdown",
+                    "title": "Kotlin Resource Links"
+                },
+                {
+                    "access_date": "2024-05-22T22:27:48.257019",
+                    "change_date": "2024-05-22T22:27:47.126550",
+                    "exerpt": "",
+                    "full_path": "assets/contents/android/2023-02-21-android-projects.markdown",
+                    "index": 4,
+                    "modified_date": "2024-05-22T22:27:47.126347",
+                    "name": "2023-02-21-android-projects.markdown",
+                    "title": "Android Projects Ideas"
+                },
+                {
+                    "access_date": "2024-05-22T22:27:48.172230",
+                    "change_date": "2024-05-22T22:27:47.138844",
+                    "exerpt": "",
+                    "full_path": "assets/contents/android/2023-02-22-android-questions.markdown",
+                    "index": 5,
+                    "modified_date": "2024-05-22T22:27:47.138678",
+                    "name": "2023-02-22-android-questions.markdown",
+                    "title": "Questions related to Android Development"
+                }
+            ],
+            "icon": "android.png",
+            "index": 0,
+            "name": "android",
+            "path": "assets/contents/android"
+        },
+        {
+            "created_date": "2024-05-22T22:28:18.900574",
+            "files": [
+                {
+                    "access_date": "2024-05-22T22:28:19.470074",
+                    "change_date": "2024-05-22T22:28:18.889906",
+                    "exerpt": "",
+                    "full_path": "assets/contents/angular/2022-10-18-common-angular.markdown",
+                    "index": 0,
+                    "modified_date": "2024-05-22T22:28:18.889769",
+                    "name": "2022-10-18-common-angular.markdown",
+                    "title": "Common Angular"
+                },
+                {
+                    "access_date": "2024-05-22T22:28:19.468010",
+                    "change_date": "2024-05-22T22:28:18.895903",
+                    "exerpt": "",
+                    "full_path": "assets/contents/angular/2022-12-08-angular-base-url.markdown",
+                    "index": 1,
+                    "modified_date": "2024-05-22T22:28:18.895773",
+                    "name": "2022-12-08-angular-base-url.markdown",
+                    "title": "Base url angular"
+                },
+                {
+                    "access_date": "2024-05-22T22:28:19.468497",
+                    "change_date": "2024-05-22T22:28:18.900881",
+                    "exerpt": "",
+                    "full_path": "assets/contents/angular/2023-02-07-angular-useful-link.markdown",
+                    "index": 2,
+                    "modified_date": "2024-05-22T22:28:18.900739",
+                    "name": "2023-02-07-angular-useful-link.markdown",
+                    "title": "Some useful urls for Angular project"
+                }
+            ],
+            "icon": "angular.png",
+            "index": 1,
+            "name": "angular",
+            "path": "assets/contents/angular"
+        },
+        {
+            "created_date": "2024-05-22T22:28:26.185941",
+            "files": [
+                {
+                    "access_date": "2024-05-22T22:28:27.440440",
+                    "change_date": "2024-05-22T22:28:26.169461",
+                    "exerpt": "",
+                    "full_path": "assets/contents/c#/2023-09-05-c#_keywords.markdown",
+                    "index": 0,
+                    "modified_date": "2024-05-22T22:28:26.169274",
+                    "name": "2023-09-05-c#_keywords.markdown",
+                    "title": "C# and .NET Key Terms"
+                },
+                {
+                    "access_date": "2024-05-22T22:28:26.963342",
+                    "change_date": "2024-05-22T22:28:26.177287",
+                    "exerpt": "",
+                    "full_path": "assets/contents/c#/2023-09-05-dotnet_learning_resources.markdown",
+                    "index": 1,
+                    "modified_date": "2024-05-22T22:28:26.177057",
+                    "name": "2023-09-05-dotnet_learning_resources.markdown",
+                    "title": "C# and .NET Resources"
+                },
+                {
+                    "access_date": "2024-05-22T22:28:26.962321",
+                    "change_date": "2024-05-22T22:28:26.186192",
+                    "exerpt": "",
+                    "full_path": "assets/contents/c#/2023-09-06-dotnet-webapi.markdown",
+                    "index": 2,
+                    "modified_date": "2024-05-22T22:28:26.186060",
+                    "name": "2023-09-06-dotnet-webapi.markdown",
+                    "title": ".NET with Entity Framework"
+                }
+            ],
+            "icon": "c#.png",
+            "index": 2,
+            "name": "c#",
+            "path": "assets/contents/c#"
+        },
+        {
+            "created_date": "2024-05-22T22:28:49.410770",
+            "files": [
+                {
+                    "access_date": "2024-05-22T22:28:50.042690",
+                    "change_date": "2024-05-22T22:28:49.406070",
+                    "exerpt": "",
+                    "full_path": "assets/contents/database/2023-02-10-database-useful-link.markdown",
+                    "index": 0,
+                    "modified_date": "2024-05-22T22:28:49.405876",
+                    "name": "2023-02-10-database-useful-link.markdown",
+                    "title": "Some useful urls for learning database management"
+                },
+                {
+                    "access_date": "2024-05-22T22:28:50.042862",
+                    "change_date": "2024-05-22T22:28:49.411085",
+                    "exerpt": "",
+                    "full_path": "assets/contents/database/2023-10-19-sql-fundamental.markdown",
+                    "index": 1,
+                    "modified_date": "2024-05-22T22:28:49.410882",
+                    "name": "2023-10-19-sql-fundamental.markdown",
+                    "title": "SQL Basic"
+                }
+            ],
+            "icon": "database.png",
+            "index": 3,
+            "name": "database",
+            "path": "assets/contents/database"
+        },
+        {
+            "created_date": "2024-05-22T22:29:21.641944",
+            "files": [
+                {
+                    "access_date": "2024-05-22T22:29:21.590832",
+                    "change_date": "2024-05-22T22:29:21.479835",
+                    "exerpt": "",
+                    "full_path": "assets/contents/general/2022-09-22-solid_principles.markdown",
+                    "index": 0,
+                    "modified_date": "2024-05-22T22:29:21.479697",
+                    "name": "2022-09-22-solid_principles.markdown",
+                    "title": "SOLID Principle"
+                },
+                {
+                    "access_date": "2024-05-22T22:29:21.610212",
+                    "change_date": "2024-05-22T22:29:21.487175",
+                    "exerpt": "",
+                    "full_path": "assets/contents/general/2022-11-18-programming-challenges.markdown",
+                    "index": 1,
+                    "modified_date": "2024-05-22T22:29:21.486979",
+                    "name": "2022-11-18-programming-challenges.markdown",
+                    "title": "Programming Challenges"
+                },
+                {
+                    "access_date": "2024-05-22T22:29:21.710602",
+                    "change_date": "2024-05-22T22:29:21.492144",
+                    "exerpt": "",
+                    "full_path": "assets/contents/general/2022-12-08-nginx-mac-homebrew.markdown",
+                    "index": 2,
+                    "modified_date": "2024-05-22T22:29:21.491962",
+                    "name": "2022-12-08-nginx-mac-homebrew.markdown",
+                    "title": "Nginx on Mac with Homebrew"
+                },
+                {
+                    "access_date": "2024-05-22T22:29:21.710240",
+                    "change_date": "2024-05-22T22:29:21.497025",
+                    "exerpt": "",
+                    "full_path": "assets/contents/general/2023-02-03-khmer-proverb.markdown",
+                    "index": 3,
+                    "modified_date": "2024-05-22T22:29:21.496834",
+                    "name": "2023-02-03-khmer-proverb.markdown",
+                    "title": "សុភាសិតខ្មែរ"
+                },
+                {
+                    "access_date": "2024-05-22T22:29:21.629404",
+                    "change_date": "2024-05-22T22:29:21.501422",
+                    "exerpt": "",
+                    "full_path": "assets/contents/general/2023-02-27-common-regex.markdown",
+                    "index": 4,
+                    "modified_date": "2024-05-22T22:29:21.501275",
+                    "name": "2023-02-27-common-regex.markdown",
+                    "title": "Common regular expressions"
+                },
+                {
+                    "access_date": "2024-05-22T22:29:21.709953",
+                    "change_date": "2024-05-22T22:29:21.508746",
+                    "exerpt": "",
+                    "full_path": "assets/contents/general/2023-03-09-chrome-without-security-enable.markdown",
+                    "index": 5,
+                    "modified_date": "2024-05-22T22:29:21.508577",
+                    "name": "2023-03-09-chrome-without-security-enable.markdown",
+                    "title": "Open Chrome in Mac with security disabled for testing"
+                },
+                {
+                    "access_date": "2024-05-22T22:29:21.722635",
+                    "change_date": "2024-05-22T22:29:21.513318",
+                    "exerpt": "",
+                    "full_path": "assets/contents/general/2023-03-13-tea.markdown",
+                    "index": 6,
+                    "modified_date": "2024-05-22T22:29:21.513188",
+                    "name": "2023-03-13-tea.markdown",
+                    "title": "ការទទួលទានទឹកតែ"
+                },
+                {
+                    "access_date": "2024-05-22T22:29:21.722631",
+                    "change_date": "2024-05-22T22:29:21.517446",
+                    "exerpt": "",
+                    "full_path": "assets/contents/general/2023-03-14-khmer-keyboard-in-mac.markdown",
+                    "index": 7,
+                    "modified_date": "2024-05-22T22:29:21.517296",
+                    "name": "2023-03-14-khmer-keyboard-in-mac.markdown",
+                    "title": "Khmer Keyboard in Mac"
+                },
+                {
+                    "access_date": "2024-05-22T22:29:21.681830",
+                    "change_date": "2024-05-22T22:29:21.523822",
+                    "exerpt": "",
+                    "full_path": "assets/contents/general/2023-03-14-pho.markdown",
+                    "index": 8,
+                    "modified_date": "2024-05-22T22:29:21.523639",
+                    "name": "2023-03-14-pho.markdown",
+                    "title": "ហ្វឺ"
+                },
+                {
+                    "access_date": "2024-05-22T22:29:21.753627",
+                    "change_date": "2024-05-22T22:29:21.528630",
+                    "exerpt": "",
+                    "full_path": "assets/contents/general/2023-03-15-coffee.markdown",
+                    "index": 9,
+                    "modified_date": "2024-05-22T22:29:21.528481",
+                    "name": "2023-03-15-coffee.markdown",
+                    "title": "កាហ្វេ"
+                },
+                {
+                    "access_date": "2024-05-22T22:29:21.683752",
+                    "change_date": "2024-05-22T22:29:21.533656",
+                    "exerpt": "",
+                    "full_path": "assets/contents/general/2023-03-16-garlic.markdown",
+                    "index": 10,
+                    "modified_date": "2024-05-22T22:29:21.533533",
+                    "name": "2023-03-16-garlic.markdown",
+                    "title": "ខ្ទឹមស"
+                },
+                {
+                    "access_date": "2024-05-22T22:29:21.770118",
+                    "change_date": "2024-05-22T22:29:21.541496",
+                    "exerpt": "",
+                    "full_path": "assets/contents/general/2023-03-17-soy-source.markdown",
+                    "index": 11,
+                    "modified_date": "2024-05-22T22:29:21.541375",
+                    "name": "2023-03-17-soy-source.markdown",
+                    "title": "ទឹកស៊ីអ៊ីវ"
+                },
+                {
+                    "access_date": "2024-05-22T22:29:22.874004",
+                    "change_date": "2024-05-22T22:29:21.546328",
+                    "exerpt": "",
+                    "full_path": "assets/contents/general/2023-03-18-citrus.markdown",
+                    "index": 12,
+                    "modified_date": "2024-05-22T22:29:21.546186",
+                    "name": "2023-03-18-citrus.markdown",
+                    "title": "ក្រូច"
+                },
+                {
+                    "access_date": "2024-05-22T22:29:22.879824",
+                    "change_date": "2024-05-22T22:29:21.550369",
+                    "exerpt": "",
+                    "full_path": "assets/contents/general/2023-03-19-wikimedia-foundation.markdown",
+                    "index": 13,
+                    "modified_date": "2024-05-22T22:29:21.550250",
+                    "name": "2023-03-19-wikimedia-foundation.markdown",
+                    "title": "Wikimedia Foundation"
+                },
+                {
+                    "access_date": "2024-05-22T22:29:22.865425",
+                    "change_date": "2024-05-22T22:29:21.557665",
+                    "exerpt": "",
+                    "full_path": "assets/contents/general/2023-03-20-alan-turing.markdown",
+                    "index": 14,
+                    "modified_date": "2024-05-22T22:29:21.557499",
+                    "name": "2023-03-20-alan-turing.markdown",
+                    "title": "Alan Turing (អាឡាន់ធឺរីង)"
+                },
+                {
+                    "access_date": "2024-05-22T22:29:22.911727",
+                    "change_date": "2024-05-22T22:29:21.561664",
+                    "exerpt": "",
+                    "full_path": "assets/contents/general/2023-03-21-blood.markdown",
+                    "index": 15,
+                    "modified_date": "2024-05-22T22:29:21.561517",
+                    "name": "2023-03-21-blood.markdown",
+                    "title": "ឈាម"
+                },
+                {
+                    "access_date": "2024-05-22T22:29:22.871529",
+                    "change_date": "2024-05-22T22:29:21.565385",
+                    "exerpt": "",
+                    "full_path": "assets/contents/general/2023-03-22-avocado.markdown",
+                    "index": 16,
+                    "modified_date": "2024-05-22T22:29:21.565265",
+                    "name": "2023-03-22-avocado.markdown",
+                    "title": "ផ្លែបឺរ"
+                },
+                {
+                    "access_date": "2024-05-22T22:29:22.850936",
+                    "change_date": "2024-05-22T22:29:21.569221",
+                    "exerpt": "",
+                    "full_path": "assets/contents/general/2023-03-23-sustainable-development-goals.markdown",
+                    "index": 17,
+                    "modified_date": "2024-05-22T22:29:21.569028",
+                    "name": "2023-03-23-sustainable-development-goals.markdown",
+                    "title": "UN Sustainable Development Goals (17)"
+                },
+                {
+                    "access_date": "2024-05-22T22:29:22.866923",
+                    "change_date": "2024-05-22T22:29:21.575318",
+                    "exerpt": "",
+                    "full_path": "assets/contents/general/2023-03-31-money.markdown",
+                    "index": 18,
+                    "modified_date": "2024-05-22T22:29:21.575137",
+                    "name": "2023-03-31-money.markdown",
+                    "title": "លុយ"
+                },
+                {
+                    "access_date": "2024-05-22T22:29:22.864338",
+                    "change_date": "2024-05-22T22:29:21.579196",
+                    "exerpt": "",
+                    "full_path": "assets/contents/general/2023-04-11-find-phone-number-cambodia.markdown",
+                    "index": 19,
+                    "modified_date": "2024-05-22T22:29:21.579075",
+                    "name": "2023-04-11-find-phone-number-cambodia.markdown",
+                    "title": "Find any phone number in Cambodia"
+                },
+                {
+                    "access_date": "2024-05-22T22:29:22.863228",
+                    "change_date": "2024-05-22T22:29:21.585549",
+                    "exerpt": "",
+                    "full_path": "assets/contents/general/2023-04-11-milk.markdown",
+                    "index": 20,
+                    "modified_date": "2024-05-22T22:29:21.585303",
+                    "name": "2023-04-11-milk.markdown",
+                    "title": "ទឹកដោះគោ"
+                },
+                {
+                    "access_date": "2024-05-22T22:29:22.843095",
+                    "change_date": "2024-05-22T22:29:21.593749",
+                    "exerpt": "",
+                    "full_path": "assets/contents/general/2023-04-13-tmux.markdown",
+                    "index": 21,
+                    "modified_date": "2024-05-22T22:29:21.593551",
+                    "name": "2023-04-13-tmux.markdown",
+                    "title": "tmux (terminal multiplexer)"
+                },
+                {
+                    "access_date": "2024-05-22T22:29:22.867439",
+                    "change_date": "2024-05-22T22:29:21.598932",
+                    "exerpt": "",
+                    "full_path": "assets/contents/general/2023-04-25-banana.markdown",
+                    "index": 22,
+                    "modified_date": "2024-05-22T22:29:21.598745",
+                    "name": "2023-04-25-banana.markdown",
+                    "title": "ផ្លែចេក"
+                },
+                {
+                    "access_date": "2024-05-22T22:29:22.849370",
+                    "change_date": "2024-05-22T22:29:21.604281",
+                    "exerpt": "",
+                    "full_path": "assets/contents/general/2023-05-28-recover-file-mac.markdown",
+                    "index": 23,
+                    "modified_date": "2024-05-22T22:29:21.604052",
+                    "name": "2023-05-28-recover-file-mac.markdown",
+                    "title": "Restore a file's content in Mac OS"
+                },
+                {
+                    "access_date": "2024-05-22T22:29:22.864740",
+                    "change_date": "2024-05-22T22:29:21.611151",
+                    "exerpt": "",
+                    "full_path": "assets/contents/general/2023-06-06-some-quotes.markdown",
+                    "index": 24,
+                    "modified_date": "2024-05-22T22:29:21.610937",
+                    "name": "2023-06-06-some-quotes.markdown",
+                    "title": "Some Quotes"
+                },
+                {
+                    "access_date": "2024-05-22T22:29:22.849929",
+                    "change_date": "2024-05-22T22:29:21.617009",
+                    "exerpt": "",
+                    "full_path": "assets/contents/general/2023-06-16-coconut.markdown",
+                    "index": 25,
+                    "modified_date": "2024-05-22T22:29:21.616775",
+                    "name": "2023-06-16-coconut.markdown",
+                    "title": "ផ្លែដូង"
+                },
+                {
+                    "access_date": "2024-05-22T22:29:22.834708",
+                    "change_date": "2024-05-22T22:29:21.632028",
+                    "exerpt": "",
+                    "full_path": "assets/contents/general/2023-11-18-client-app-common-features.markdown",
+                    "index": 26,
+                    "modified_date": "2024-05-22T22:29:21.631701",
+                    "name": "2023-11-18-client-app-common-features.markdown",
+                    "title": "Client Application Common Features"
+                },
+                {
+                    "access_date": "2024-05-22T22:29:22.864807",
+                    "change_date": "2024-05-22T22:29:21.642351",
+                    "exerpt": "",
+                    "full_path": "assets/contents/general/2024-02-16-durian.markdown",
+                    "index": 27,
+                    "modified_date": "2024-05-22T22:29:21.642113",
+                    "name": "2024-02-16-durian.markdown",
+                    "title": "ទុរេន"
+                }
+            ],
+            "icon": "general.png",
+            "index": 4,
+            "name": "general",
+            "path": "assets/contents/general"
+        },
+        {
+            "created_date": "2024-05-22T22:31:26.083474",
+            "files": [
+                {
+                    "access_date": "2024-05-22T22:29:32.358097",
+                    "change_date": "2024-05-22T22:29:31.667478",
+                    "exerpt": "",
+                    "full_path": "assets/contents/ios/2022-12-02-ios-dev-roadmap.markdown",
+                    "index": 0,
+                    "modified_date": "2024-05-22T22:29:31.667306",
+                    "name": "2022-12-02-ios-dev-roadmap.markdown",
+                    "title": "iOS Developer Roadmap"
+                },
+                {
+                    "access_date": "2024-05-22T22:29:32.354536",
+                    "change_date": "2024-05-22T22:29:31.672153",
+                    "exerpt": "",
+                    "full_path": "assets/contents/ios/2023-01-27-ios_projects.markdown",
+                    "index": 1,
+                    "modified_date": "2024-05-22T22:29:31.671997",
+                    "name": "2023-01-27-ios_projects.markdown",
+                    "title": "iOS Projects"
+                },
+                {
+                    "access_date": "2024-05-22T22:29:32.351664",
+                    "change_date": "2024-05-22T22:29:31.682623",
+                    "exerpt": "",
+                    "full_path": "assets/contents/ios/2023-03-5-ios-dev-topics.markdown",
+                    "index": 2,
+                    "modified_date": "2024-05-22T22:29:31.682497",
+                    "name": "2023-03-5-ios-dev-topics.markdown",
+                    "title": "iOS Development Related Topics"
+                },
+                {
+                    "access_date": "2024-05-22T22:29:32.352335",
+                    "change_date": "2024-05-22T22:29:31.686471",
+                    "exerpt": "",
+                    "full_path": "assets/contents/ios/2023-12-06-list-ios-app-bundleid.markdown",
+                    "index": 3,
+                    "modified_date": "2024-05-22T22:29:31.686344",
+                    "name": "2023-12-06-list-ios-app-bundleid.markdown",
+                    "title": "Iphone list installed app bundle ID using MacOS"
+                }
+            ],
+            "icon": "ios.png",
+            "index": 5,
+            "name": "ios",
+            "path": "assets/contents/ios"
+        },
+        {
+            "created_date": "2024-05-18T15:07:11.392797",
+            "files": [],
+            "icon": "kotlin.png",
+            "index": 6,
+            "name": "kotlin",
+            "path": "assets/contents/kotlin"
+        },
+        {
+            "created_date": "2024-05-22T22:28:38.245666",
+            "files": [
+                {
+                    "access_date": "2024-05-22T22:28:39.297311",
+                    "change_date": "2024-05-22T22:28:38.246154",
+                    "exerpt": "",
+                    "full_path": "assets/contents/llvm/2023-05-07-the-c-programming-exercises.markdown",
+                    "index": 0,
+                    "modified_date": "2024-05-22T22:28:38.245821",
+                    "name": "2023-05-07-the-c-programming-exercises.markdown",
+                    "title": "The C Programming Language Exercises"
+                }
+            ],
+            "icon": "llvm.png",
+            "index": 7,
+            "name": "llvm",
+            "path": "assets/contents/llvm"
+        },
+        {
+            "created_date": "2024-05-18T15:07:11.393021",
+            "files": [],
+            "icon": "maths.png",
+            "index": 8,
+            "name": "maths",
+            "path": "assets/contents/maths"
+        },
+        {
+            "created_date": "2024-05-22T22:29:44.914880",
+            "files": [
+                {
+                    "access_date": "2024-05-22T22:29:45.679617",
+                    "change_date": "2024-05-22T22:29:44.915188",
+                    "exerpt": "",
+                    "full_path": "assets/contents/os/2022-12-02-minix-kernel-roadmap.markdown",
+                    "index": 0,
+                    "modified_date": "2024-05-22T22:29:44.915011",
+                    "name": "2022-12-02-minix-kernel-roadmap.markdown",
+                    "title": "OS Developer Roadmap"
+                }
+            ],
+            "icon": "os.png",
+            "index": 9,
+            "name": "os",
+            "path": "assets/contents/os"
+        },
+        {
+            "created_date": "2024-05-22T22:29:52.661326",
+            "files": [
+                {
+                    "access_date": "2024-05-22T22:29:53.779978",
+                    "change_date": "2024-05-22T22:29:52.661848",
+                    "exerpt": "",
+                    "full_path": "assets/contents/reverse_engineer/2022-12-04-reverse-engineer-roadmap.markdown",
+                    "index": 0,
+                    "modified_date": "2024-05-22T22:29:52.661508",
+                    "name": "2022-12-04-reverse-engineer-roadmap.markdown",
+                    "title": "Reverse Engineering Roadmap"
+                }
+            ],
+            "icon": "reverse_engineer.png",
+            "index": 10,
+            "name": "reverse_engineer",
+            "path": "assets/contents/reverse_engineer"
+        },
+        {
+            "created_date": "2024-05-22T22:31:26.083473",
+            "files": [
+                {
+                    "access_date": "2024-05-22T22:31:18.717213",
+                    "change_date": "2024-05-22T22:31:17.884470",
+                    "exerpt": "",
+                    "full_path": "assets/contents/swift/2022-09-7-operators.markdown",
+                    "index": 0,
+                    "modified_date": "2024-05-22T22:29:59.404839",
+                    "name": "2022-09-7-operators.markdown",
+                    "title": "Operators"
+                },
+                {
+                    "access_date": "2024-05-22T22:31:22.591111",
+                    "change_date": "2024-05-22T22:31:21.554396",
+                    "exerpt": "",
+                    "full_path": "assets/contents/swift/2022-10-08-platforms-learning-swift.markdown",
+                    "index": 1,
+                    "modified_date": "2024-05-22T22:29:59.411402",
+                    "name": "2022-10-08-platforms-learning-swift.markdown",
+                    "title": "Platforms Learning Swift"
+                },
+                {
+                    "access_date": "2024-05-22T22:31:11.433187",
+                    "change_date": "2024-05-22T22:31:10.365696",
+                    "exerpt": "",
+                    "full_path": "assets/contents/swift/2022-10-09-basic-swift.markdown",
+                    "index": 2,
+                    "modified_date": "2024-05-22T22:29:59.417338",
+                    "name": "2022-10-09-basic-swift.markdown",
+                    "title": "Basic Swift Programming Language"
+                },
+                {
+                    "access_date": "2024-05-22T22:31:11.529379",
+                    "change_date": "2024-05-22T22:31:10.281624",
+                    "exerpt": "",
+                    "full_path": "assets/contents/swift/2022-10-15-swift-general-information.markdown",
+                    "index": 3,
+                    "modified_date": "2024-05-22T22:29:59.429952",
+                    "name": "2022-10-15-swift-general-information.markdown",
+                    "title": "Swift General Information"
+                },
+                {
+                    "access_date": "2024-05-22T22:31:27.115991",
+                    "change_date": "2024-05-22T22:31:26.083473",
+                    "exerpt": "",
+                    "full_path": "assets/contents/swift/2023-02-14-useful-link-swift.markdown",
+                    "index": 4,
+                    "modified_date": "2024-05-22T22:29:31.676382",
+                    "name": "2023-02-14-useful-link-swift.markdown",
+                    "title": "iOS Development Resource"
+                }
+            ],
+            "icon": "swift.png",
+            "index": 11,
+            "name": "swift",
+            "path": "assets/contents/swift"
+        },
+        {
+            "created_date": "2024-05-22T22:30:07.549446",
+            "files": [
+                {
+                    "access_date": "2024-05-22T22:30:08.496960",
+                    "change_date": "2024-05-22T22:30:07.549843",
+                    "exerpt": "",
+                    "full_path": "assets/contents/termux/2022-12-11-ssh-to-termux-via-usb.markdown",
+                    "index": 0,
+                    "modified_date": "2024-05-22T22:30:07.549596",
+                    "name": "2022-12-11-ssh-to-termux-via-usb.markdown",
+                    "title": "SSH to Termux Android via USB Guide"
+                }
+            ],
+            "icon": "termux.png",
+            "index": 12,
+            "name": "termux",
+            "path": "assets/contents/termux"
+        },
+        {
+            "created_date": "2024-05-22T22:29:06.513523",
+            "files": [
+                {
+                    "access_date": "2024-05-22T22:29:07.446341",
+                    "change_date": "2024-05-22T22:29:06.513837",
+                    "exerpt": "",
+                    "full_path": "assets/contents/tools/2024-02-11-developer-cli-tools.markdown",
+                    "index": 0,
+                    "modified_date": "2024-05-22T22:29:06.513661",
+                    "name": "2024-02-11-developer-cli-tools.markdown",
+                    "title": "Developer CLI Tools"
+                }
+            ],
+            "icon": "tools.png",
+            "index": 13,
+            "name": "tools",
+            "path": "assets/contents/tools"
+        }
+    ],
+    "type": "dashboard",
+    "version": "v1.0.0"
+}

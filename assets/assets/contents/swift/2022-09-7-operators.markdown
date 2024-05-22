@@ -1,0 +1,932 @@
+---
+title: Operators
+layout: content
+duration: 22mn
+tags: swift
+---
+
+An **operator** is *a special symbol or phrase which is used to **check**, **change**, or **combine values***.
+
+<br />
+
+### Categories of Operators
+---
+
+1. [Assignment Operator](#assignment-operator)
+2. [Arithmetic Operators](#arithmetic-operators)
+3. [Compound Assignment Operators](#compound-assignment)
+4. [Comparison Operators](#comparison-operators)
+5. [Identity Operators](#identity_operators)
+6. [Tinary Conditional Operator](#tinary-conditional)
+7. [Nil-Coalesing Operator](#nil-coalesing)
+8. [Range Operators](#range-operators)
+9. [Logical Operators](#logical-operators)
+10. [Overflow Operators](#overflow-operators)
+11. [Bitwise Operators](#bitwise-operators)
+
+<br />
+
+### Operator Precedence and Associativity
+---
+
+[Operator Declarations](#operator_declarations)
+   - Prefix
+   - Postfix
+   - Infix
+     - [Precedence Group Declarations](#precedence_group)
+       - DefaultPrecedence
+       - BitwiseShiftPrecedence
+       - MultiplicationPrecedence
+       - AdditionPrecedence
+       - RangeFormationPrecedence
+       - CastingPrecedence
+       - NilCoalescingPrecedence
+       - ComparisonPrecedence
+       - LogicalConjunctionPrecedence
+       - LogicalDisjunctionPrecedence
+       - TernaryPrecedence
+       - AssignmentPrecedence
+
+<br />
+
+### Operator Methods
+---
+
+* [Prefix and Postfix Operators](#prefix_postfix)
+* [Compound Assignment Operators](#compound_assignment)
+* [Equivalence Operators](#equivalence)
+
+<br />
+
+### Custom Operators
+---
+
+* [Custom Operators](#custom_operator)
+* [Precedence for Custom Infix Operators](#precedence_custom_infix)
+
+<br />
+
+### Result Builders
+---
+
+* [resultBuilder](#result_builder)
+
+<br />
+
+<h1>Categories of Operators</h1>
+<h2 id="assignment-operator">Assignment Operator</h2>
+
+> =
+
+* *Initializing value*
+
+   ```swift
+   let constantValue: Int = 10
+   let (x, y) = (0.2, 5)
+   ```
+* *Updating value*
+
+   ```swift
+   var variableValue: Int = 10
+   variableValue = 2
+
+   var (x, y) = (1, 0)
+   y = 0
+   ```
+> Assignment operator does not return value.
+
+<br />
+
+<h2 id="arithmetic-operators">Arithmetic Operators</h2>
+
+> <pre><b>+</b>   : Addition
+> <b>-</b>   : Subtraction
+> <b>*</b>   : Multiplication
+> <b>/</b>   : Division
+> <b>%</b>   : Remainder</pre>
+
+* *Unary Operator*
+
+   ```swift
+   let minusTwo = -2
+   let plusOne = +1
+   ```
+* *Binary Operator*
+
+   ```swift
+   let resultAddition = 3 + 6    // equal 9
+   let resultSubtraction = 1 - 2    // equal -1
+   let resultMultiplication = 3 * 0.5     // equal 1.5
+   let resultDivision = 5 / 2    // equal 2.5
+   let resultRemainder = 9 % 4      // equal 1
+   let resultNegativeRemainder = -9 % 4      // equal -1
+   ```
+> Unary operator is prepended directly before its value, without any whitespace
+
+<br />
+
+<h2 id="compound-assignment">Compound Assignment Operators</h2>
+
+> Compound assignment is the combination of assignment (=) with another operation.
+
+   ```swift
+   var salary: Double = 200
+   salary += 150     // salary = salary + 150
+
+   let tax = 0.1     // 10% of salary
+   var taxValue = salary
+   taxValue *= tax
+
+   salary -= taxValue // the salary left
+   print("Salary left: \(salary)")
+   ```
+
+   <br />
+
+   ```swift
+   var pizzaPiece: Int = 7
+   let eachPeopleSlices: Int = 2 // tuesday
+   pizzaPiece %= eachPeopleSlices // the slice of pizza left is 1 after served to maximum 3 people
+   print("Number of slices left: \(pizzaPiece)")
+   ```
+
+> Compound assignment operator does not return a value. So (==) is not the compound assignment. It is the equal comparison operator.
+
+<br />
+
+<h2 id="comparison-operators">Comparison Operators</h2>
+
+> Each of comparison operator return a Boolean value.
+
+   ```swift
+   1 == 1      // true
+   1 != 1      // false
+   1 > 2       // false
+   1 < 2       // true
+   1 >= 1      // true
+   1 <= 2      // true
+
+   (1, 1) > (2, 0)      // false
+   (1, "ab") > (1, "")     // true "a" > 
+   (1, "ab") > (1, "ac")      // false "b" < "c"
+   (0, 1, 2, 3, 4, 5, 6, 7) > (0, 1, 2, 3, 4, 5, 6, 7)      // error tuple items more than 6
+   (0, 1, 2, 3, 4, 5) > (0, 1, 2, 3, 4, 5)      // false
+   ```
+
+> Avoid combining multiple instances of the ternary conditional operator into one compound statement.
+
+> The swift standard library includes tuple comparison operators for tuple with fewer than 7 elements.
+
+<br />
+
+<h2 id="identity_operators">Identity Operators</h2>
+
+> <pre><b>===</b>    : Identical to
+> <b>!==</b>    : Not identical to 
+> </pre>
+
+> *Identical to* means that two constants or variables of class type refer to exactly *the same class instance*. 
+
+> *Equal to* means that two instances are considered *equal or equivalent in value*, for some appropriate meaning of equal, as defined by the type’s designer.
+
+   ```swift
+   class Person {
+      var name: String
+      var age: Int?
+
+      init(name: String = "Anonymous", age: Int? = nil) {
+         self.name = name
+         self.age = age
+      }
+   }
+   let john = Person(name: "John")
+   let marry = Person(name: "Marry")
+   let johnReference = john
+
+   if john === johnReference {
+      print("The same John")
+   }
+
+   if john !== marry {
+      print("John is not identical to Marry")
+   }
+
+   ```
+
+<br />
+
+<h2 id="tinary-conditional">Tinary Conditional Operator</h2>
+
+* *Ternary Operator*
+
+   ```swift
+   let age: Int = 18
+   let canVote: Bool = (age >= 18) ? true : false     // equal true
+   /*
+   means:
+      let canVote: Bool
+      if (age >= 18) {
+         canVote = true
+      } else {
+         canVote = false
+      }
+   */
+   ```
+
+<br />
+
+<h2 id="nil-coalesing">Nil-Coalesing Operator</h2>
+
+> *The nil-coalesing operator* (a ?? b) unwraps an optional *a* if it contains a value, or returns a default value *b* if a is nil. It is shorthand for: a != nil ? a! : b
+
+   ```swift
+   var score: Double?
+   let scoreValue = score ?? 10.0
+   print("Score: \(scoreValue)")
+   ```
+
+> If the value of a is non-nil, the value of b isn’t evaluated. This is known as *short-circuit evaluation*.
+
+<br />
+
+<h2 id="range-operators">Range Operators</h2>
+
+* *Closed Range Operator*
+
+   > *(a...b)* a range that runs from *a* to *b* includes the value *a* and *b*. The value *a* must not be greater than *b*.
+
+   ```swift
+   for index in 1...3 {
+      print("index: \(index)")
+   }
+   ```
+
+* *Half-Open Range Operator*
+
+   > *(a..<b)* a range that runs from *a* to *b*, but doesn't include b. The value *a* must not be greater than *b*.
+
+   ```swift
+   let fruits = ["Orange", "Apple", "Banana"]
+   for index in 0..<fruits.count {
+      print("Fruit: \(fruits[index])")
+   }
+   ```
+
+* *One-Sided Ranges*
+
+   > A one-sided range: a value only one side
+
+   ```swift
+   let animals = ["ant", "butterfly", "elephant", "fly", "tiger"]
+   print("animals[...2]")
+   for animal in animals[...2] {
+      print("Animal \(animal)")
+   }
+   print("================================")
+   print("animals[..<2]")
+   for animal in animals[..<2] {
+      print("Animal \(animal)")
+   }
+   print("================================")
+   print("animals[1...]")
+   for animal in animals[1...] {
+      print("Animal \(animal)")
+   }
+   print("================================")
+   ```
+
+<br />
+
+<h2 id="logical-operators">Logical Operators</h2>
+
+> *Logical Operators* modify or combine the Boolean logic values *true* and *false*.
+
+> <pre><b>!a</b>     : Logical NOT
+> <b>a && b</b> : Logical AND
+> <b>a || b</b> : Logical OR
+> </pre>
+
+* *Logical **NOT***
+
+   |  NOT   |        |
+   | :---:  | :---:  |
+   |*true*  | false  |
+   |*false* | true   |
+
+   > <pre>
+   > <b>!true</b> = false
+   > <b>!false</b> = true
+   > </pre>
+
+   ```swift
+   // Logical NOT
+   let allowedAccess: Bool = false
+   if  !allowedAccess {
+      print("ACCESS DENIED)
+   }
+   ```
+
+ * *Logical **AND***
+
+   |       | AND |       |     |
+   |-------|-----|-------|:---:|
+   |*true* |     |*true* |true |
+   |*true* |     |*false*|false|
+   |*false*|     |*true* |false|
+   |*false*|     |*false*|false|
+
+   > <pre>
+   > <b>true && true</b> = true
+   > <b>true && false</b> = false
+   > <b>false && true</b> = false
+   > <b>false && false</b> = false
+   > </pre>
+
+   ```swift
+   // Logical AND
+   let passwordMatched: Bool = true
+   let enableLoggedIn: Bool = true
+   if passwordMatched && enableLoggedIn {
+      print("Welcome!")
+   }
+   ```
+
+* *Logical **OR***
+
+   |       | OR  |       |     |
+   |-------|-----|-------|:---:|
+   |*true* |     |*true* |true |
+   |*true* |     |*false*|true |
+   |*false*|     |*true* |true |
+   |*false*|     |*false*|false|
+
+   > <pre>
+   > <b>true || true</b> = true
+   > <b>true || false</b> = true
+   > <b>false || true</b> = true
+   > <b>false || false</b> = false
+   > </pre>
+
+   ```swift
+   // Logical OR
+   let hasDoorKey = false
+   let knowsOverridePassword = true
+   if hasDoorKey || knowsOverridePassword {
+      print("Welcome!")
+   } else {
+      print("ACCESS DENIED")
+   }
+   ```
+   <br />
+
+   ```swift
+   // Combining Logical Operators
+   let enteredDoorCode: Bool = true
+   let passedRetinaScan: Bool = true
+   let hasDoorKey = false
+   let knowsOverridePassword = true
+   if enteredDoorCode && passedRetinaScan || hasDoorKey || knowsOverridePassword {
+      print("Welcome!")
+   } else {
+      print("ACCESS DENIED")
+   }
+   ```
+
+   <br />
+
+   ```swift
+   // Explicit Parentheses
+   let enteredDoorCode: Bool = true
+   let passedRetinaScan: Bool = true
+   let hasDoorKey = false
+   let knowsOverridePassword = true
+   if (enteredDoorCode && passedRetinaScan) || hasDoorKey || knowsOverridePassword {
+      print("Welcome!")
+   } else {
+      print("ACCESS DENIED")
+   }
+   ```
+
+<br />
+
+<h2 id="overflow-operators">Overflow Operators</h2>
+
+   > *Overflow operators* that opt in to the overflow behavior for integer calculations.
+   > <pre>
+   > <b>&+</b>    : Overflow addition
+   > <b>&-</b>    : Overflow subtraction
+   > <b>&*</b>    : Overflow multiplication
+   > </pre>
+
+   ```swift
+   // Overflow addition
+   var unsignedMaxInt = UInt8.max
+   unsignedMaxInt = unsignedMaxInt &+ 1
+   print("unsignedMaxInt: ", unsignedMaxInt)
+   ```
+
+   <br />
+
+   ```swift
+   // Overflow subtraction
+   var signedMinInt = Int8.min
+   signedMinInt = signedMinInt &- 1
+   print("signedMinInt: ", signedMinInt)
+   ```
+
+   <br />
+
+   ```swift
+   // Overflow multiplication
+   var unsignedMaxInt: UInt8 = 128
+   unsignedMaxInt = unsignedMaxInt &* 2
+   print("unsignedMaxInt: ", unsignedMaxInt)
+   ```
+
+> Read More : https://en.wikipedia.org/wiki/Integer_overflow
+
+<br />
+
+<h2 id="bitwise-operators">Bitwise Operators</h2>
+
+   *Bitwise operators* enable you to manipulate the individual raw data bits within a data structure.
+   > <pre>
+   > 1. Often used in low-level programming such as <b>graphics programming</b>, and <b>device driver creation</b>.
+   > 2. Useful when working with <i>raw data from external sources</i> such as <b>communications protocol packet assembly, and decoding</b>.
+   > </pre>
+
+   > <pre>
+   > <b>~</b>     : Bitwise NOT
+   > <b>&</b>     : Bitwise AND
+   > <b>|</b>     : Bitwise OR
+   > <b>^</b>     : Bitwise XOR (exclusive OR)
+   > <b><<</b>    : Bitwise Left Shift
+   > <b>>></b>    : Bitwise Right Shift
+   > </pre>
+
+* *Bitwise **NOT***
+
+   > Invert all bits in a number.
+   > <pre>
+   > 0 -> 1
+   > 0 -> 1
+   > 0 -> 1
+   > 0 -> 1
+   > 1 -> 0
+   > 1 -> 0
+   > 1 -> 0
+   > 1 -> 0
+   > </pre>
+
+   ```swift
+   // Bitwise NOT
+   let initialBits: UInt8 = 0b00001111
+   let invertedBits = ~initialBits
+   print("Initial Bits: \(String(initialBits, radix: 2))")
+   print("Inverted Bits: \(String(invertedBits, radix: 2))")
+   ```
+
+* *Bitwise **AND***
+
+   > Bit are set to 1 only if the bits are equal to 1 in both input.
+   > <pre>
+   > 0 & 0 -> 0
+   > 0 & 0 -> 0
+   > 0 & 0 -> 0
+   > 0 & 0 -> 0
+   > 1 & 1 -> 1
+   > 1 & 1 -> 1
+   > 1 & 0 -> 0
+   > 1 & 0 -> 0
+   > </pre>
+
+   ```swift
+   let inputA: UInt8 = 0b00001111
+   let inputB: UInt8 = 0b00001100
+   let bitwiseAndResult = inputA & inputB
+   print("bitwiseAndResult: \(String(bitwiseAndResult, radix: 2))")
+   ```
+
+* *Bitwise **OR***
+
+   > Bit are set to 1 if the bits are equal to 1 in either input number.
+   > <pre>
+   > 0 & 0 -> 0
+   > 0 & 0 -> 0
+   > 0 & 1 -> 1
+   > 0 & 1 -> 1
+   > 1 & 1 -> 1
+   > 1 & 1 -> 1
+   > 1 & 0 -> 1
+   > 1 & 0 -> 1
+   > </pre>
+
+   ```swift
+   let inputA: UInt8 = 0b00001111
+   let inputB: UInt8 = 0b00111100
+   let bitwiseOrResult = inputA | inputB
+   print("bitwiseOrResult: \(String(bitwiseOrResult, radix: 2))")
+   ```
+
+* *Bitwise **XOR***
+
+   > The bits are set to 1 only when both input are different.
+   > <pre>
+   > 0 & 0 -> 0
+   > 1 & 1 -> 0
+   > 0 & 1 -> 1
+   > 0 & 1 -> 1
+   > 1 & 1 -> 0
+   > 1 & 1 -> 0
+   > 1 & 0 -> 1
+   > 1 & 0 -> 1
+   > </pre>
+
+   ```swift
+   let inputA: UInt8 = 0b01001111
+   let inputB: UInt8 = 0b01111100
+   let bitwiseXorResult = inputA ^ inputB
+   print("bitwiseXorResult: \(String(bitwiseXorResult, radix: 2))")
+   ```
+
+* *Bitwise **Left / Right** Shift*
+
+   > <pre>
+   > The <i>bit-shifting behavior</i> for unsigned integers is as follows:
+   > 
+   > 1. Existing bits are moved to the left or right by the requested number of places.
+   > 
+   > 2. Any bits that are moved beyond the bounds of the integer’s storage are discarded.
+   > 
+   > 3. Zeros are inserted in the spaces left behind after the original bits are moved to the left or right.
+   > 
+   > This approach is known as a logical shift.
+   > </pre>
+
+   ```swift
+   let shiftBits: UInt8 = 4   // 00000100
+   let rightShift = shiftBits >> 2 // 00000001
+   let leftShift = shiftBits << 4  // 01000000
+   print("rightShift: \(String(rightShift, radix: 2))")
+   print("leftShift: \(String(leftShift, radix: 2))")
+   ```
+
+   > <pre>
+   > The bit-shifting behavior for signed integers is more complex than unsigned intergers because of the way they are represented in binary. Example: Int8 00000001 (the first bit "0" is <i><b>sign bit</b></i> and the rest are <i><b>value bits</b></i>)
+   > 1. <b>Sign bit</b> : 0 (positive), 1 (negative)
+   > 2. Negative numbers are stored by subtracting their absolute value from 2 to the power of n, where n is the number of value bits.
+   > </pre>
+
+   ```swift
+   let signedFour: Int8 = 4      // [0]0000100
+   let negativeSignFour: Int8 = -4     //[1]1111100 means 0b1111100 - 0b1111111 = 124 - 128 = -4
+   ```
+
+   > The encoding for negative number is called <i><b>two's complement representation</b></i>. It has several advantages.
+   > <pre>
+   > 1. Can add -1 and -4, simply by performing a standard binary addition of all eight bits including the sign bit. And discard anything that doesn't fit in the eight bits.
+   > 2. The two’s complement representation also lets you shift the bits of negative numbers to the left and right like positive numbers, and still end up doubling them for every shift you make to the left, or halving them for every shift you make to the right.
+   > </pre>
+
+> *Arithmetic shift* ensures that signed integers have the same sign after they’re shifted to the right.
+
+> Read More: https://en.wikipedia.org/wiki/Two%27s_complement
+
+<br />
+
+<h1>Operator Precedence and Associativity</h1>
+<h2 id="operator_declarations">Operator Declarations</h2>
+
+   > <pre>1. <i>Operator precedence</i> give some operators higher priority than others.
+   > 2. <i>Operator associativity</i> defined how operators of the same precedence are grouped together
+   > </pre>
+
+   ```swift
+   // precedence
+   let result = 2 + 3 % 4 * 5 // result 17
+   // % and * have the same precedence, consider their associativity by adding implicit parenthesis => 2 + ((3 % 5) * 5)
+   ```
+
+### **Prefix Operator**
+
+   |  Operator  |  Description          |
+   |:----------:|:-------------:        |
+   | **!**      | Logical NOT           |
+   | **.!**     | Pointwise logical NOT |
+   | **~**      | Bitwise NOT           |
+   | **+**      | Unary plus            |
+   | **-**      | Unary minus           |
+   | **..<**    | Half-open range       |
+   | **...**    | Closed range          |
+
+### **Postfix Operator**
+
+   |  Operator  |  Description          |
+   |:----------:|:-------------:        |
+   | **...**    | Range                 |
+
+<h3 id="precedence_group">Precedence Group Declarations</h3>
+
+### **Infix Operator**
+
+#### BitwiseShiftPrecedence (not associative)
+
+   |  Operator  |  Description          |
+   |:----------:|:-------------:        |
+   | **<<**    | Bitwise left shift     |
+   | **>>**    | Bitwise right shift    |
+   | **&<<**    | Bitwise left shift, ignoring overflow |
+   | **&>>**    | Bitwise right shift, ignoring overflow |
+
+#### MultiplicationPrecedence (left associative)
+
+   |  Operator  |  Description           |
+   |:----------:|:-------------:         |
+   | **\***     | Multiply               |
+   | **/**      | Divide                 |
+   | **%**      | Remainder              |
+   | **&**      | Bitwise AND            |
+   | **&***     | Multiply with overflow |
+
+#### AdditionPrecedence (left associative)
+
+   |  Operator  |  Description           |
+   |:----------:|:-------------:         |
+   | **+**      | Add                    |
+   | **-**      | Subtract               |
+   | **\`**     | \`                     |
+   | **^**      | Bitwise XOR            |
+   | **&+***    | Add with overflow      |
+   | **&-***    | Subtract with overflow |
+
+#### RangeFormationPrecedence (not associative)
+
+   |  Operator  |  Description          |
+   |:----------:|:-------------:        |
+   | **..<**    | Half-open range       |
+   | **..<**    | Closed range          |
+
+#### CastingPrecedence (left associative)
+
+   |  Operator          |  Description          |
+   |:----------:        |:-------------:        |
+   | **is**             | Type check            |
+   | **as, as?, as!**   | Type cast             |
+
+#### NilCoalescingPrecedence (right associative)
+
+   |  Operator  |  Description          |
+   |:----------:|:-------------:        |
+   | **??**     | Nil coalescing        |
+
+#### ComparisonPrecedence (not associative)
+
+   |  Operator  |  Description                    |
+   |:----------:|:-------------:                  |
+   | **<**      | Less than                       |
+   | **<=**     | Less than or equal              |
+   | **>**      | Greater than                    |
+   | **>=**     | Greater than or equal           |
+   | **==***    | Equal                           |
+   | **!=***    | Not equal                       |
+   | **===***   | Identical                       |
+   | **!==***   | Not identical                   |
+   | **~=***    | Pattern match                   |
+   | **.<***    | Pointwise less than             |
+   | **.<=***   | Pointwise less than or equal    |
+   | **.>**     | Pointwise greater than          |
+   | **.>=***   | Pointwise greater than or equal |
+   | **.==***   | Pointwise equal                 |
+   | **.!=***   | Pointwise not equal             |
+
+#### LogicalConjunctionPrecedence (left associative)
+
+   |  Operator  |  Description          |
+   |:----------:|:-------------:        |
+   | **&&**     | Logical AND           |
+   | **.&**     | Pointwise bitwise AND |
+
+#### LogicalDisjunctionPrecedence (left associative)
+
+   |  Operator  |  Description          |
+   |:----------:|:-------------:        |
+   | **\`**     |                       |
+   | **\`.**    | \`                    |
+   | **.^**     | Pointwise bitwise XOR |
+
+#### TernaryPrecedence (right associative)
+
+   |  Operator  |  Description          |
+   |:----------:|:-------------:        |
+   | **?``:**   | Ternary conditional   |
+
+#### AssignmentPrecedence (right associative)
+
+   |  Operator  |  Description          |
+   |:----------:|:-------------:        |
+   | **=**      | Assign   |
+   | **\*=**    | Multiply and assign   |
+   | **/=**     | Divide and assign     |
+   | **%=**     | Remainder and assign  |
+   | **+=**     | Add and assign        |
+   | **-=**     | Subtract and assign   |
+   | **<<=**    | Left bit shift and assign   |
+   | **>>=**    | Right bit shift and assign  |
+   | **&=**     | Bitwise AND and assign      |
+   | **\`**     | =`                     |
+   | **^=**     | Bitwise XOR and assign |
+   | **&*=**    | Multiply with overflow and assign  |
+   | **&+=**    | Add with overflow and assign       |
+   | **&-=**    | Subtract with overflow and assign  |
+   | **&<<=**   | Left bit shift ignoring overflow and assign |
+   | **&>>=**   | Right bit shift ignoring overflow and assign |
+   | **.&=**   | Pointwise bitwise AND and assign    |
+   | **\`.**   | =`                      |
+   | **.^=**   | Pointwise bitwise XOR and assign    |
+
+<br />
+
+<h1>Operator Methods</h1>
+
+   > Classes or structures can provide their implementations of existing operators (Overloading operator).
+
+   ```swift
+   struct Point {
+      var x: Double, y: Double
+   }
+
+   extension Point {
+      // type method (+ is infix operator : binary operator)
+      static func + (_ firstPoint: Point, _ secondPoint: Point)-> Point {
+         Point(x: firstPoint.x + secondPoint.x, y: firstPoint.y + secondPoint.y)
+      }
+   }
+
+   var pointA = Point(x: 10, y: 2)
+   let pointB = Point(x: -5, y: 7)
+   let newPoint = pointA + pointB
+   print("New Point: ", newPoint)
+
+   ```
+
+<br />
+
+<h2 id="prefix_postfix">Prefix and Postfix Operators</h2>
+
+   > Classes and structures can also provide the implementations of the standard unary operator.
+
+   ```swift
+   extension Point {
+      // prefix
+      static prefix func -(_ point: Point)-> Point {
+         Point(x: -point.x, y: -point.y)
+      }
+
+      // postfix
+      static postfix func --(_ point: inout Point) {
+         point.x -= 1
+         point.y -= 1
+      }
+   }
+
+   let negativePoint = -pointA
+   print("Negative Point: ", negativePoint)
+   pointA--
+   print("Minus One: ", pointA)
+
+   ```
+
+<br />
+
+<h2 id="compound_assignment">Compound Assignment Operators</h2>
+
+   > Compound assignment operators combine assignment (=) with another operator.
+
+   ```swift
+   extension Point {
+      // compound assignment
+      static func +=(_ initialPoint: inout Point, additionalPoint: Point) {
+         initialPoint = initialPoint + additionalPoint
+      }
+   }
+   let initialPoint = Point(x: 2, y: 5)
+   let anotherPoint = Point(x: 6, y: 9)
+   initialPoint += anotherPoint
+   print("Initial Point: ", initialPoint)
+
+   ```
+
+<br />
+
+<h2 id="equivalence">Equivalence Operators</h2>
+
+   > By default, custom classes or structures do not have an implement of the equal operator (==) and not equal operator (!=). Conform to the swift standard library's *Equatable* protocol.
+
+   > <pre>
+   > There are two ways to implement the <b>==</b> operator:
+   > 1. Ask Swift to synthesize an implementation (<a href="https://docs.swift.org/swift-book/LanguageGuide/Protocols.html#ID627">Adopting a Protocol Using a Synthesized Implementation</a>)
+   > 2. Implement it yourself
+   > </pre>
+
+   ```swift
+   extension Point {
+      static func == (_ leftPoint: Point, _ rightPoint: Point)-> Bool {
+         (leftPoint.x == rightPoint.x) && (leftPoint.y == rightPoint.y)
+      }
+   }
+
+   let point1 = Point(x: 1, y: 0)
+   let point2 = Point(x: 1, y: 0)
+   print("Point 1 equal to Point 2: ", point1 == point2)
+
+   ```
+
+<br />
+
+<h1 id="custom_operator">Custom Operators</h1>
+
+   > New operators are declared at a global level using *operator* keyword, and are marked with the *prefix*, *infix*, and *postfix* modifiers. Example: prefix operator +++
+
+   ```swift
+   prefix operator +++
+   extension Point {
+      static prefix func +++(_ point: inout Point)-> Point {
+         point += point
+         return point
+      }
+   }
+   var incrementPointItself = Point(x: 3, y: -9)
+   let _ = +++incrementPointItself // print Point(x: 6.0, y: -18.0)
+   print("After increment itself: ", incrementPointItself)
+   ```
+
+<br />
+
+<h2 id="precedence_custom_infix">Precedence for Custom Infix Operators</h2>
+
+   > A custom infix operator that isn’t explicitly placed into a precedence group is given a default precedence group with a precedence immediately higher than the precedence of the ternary conditional operator.
+
+   ```swift
+   infix operator +-: AdditionPrecedence
+   extension Vector2D {
+      static func +- (left: Vector2D, right: Vector2D) -> Vector2D {
+         return Vector2D(x: left.x + right.x, y: left.y - right.y)
+      }
+   }
+   let firstVector = Vector2D(x: 1.0, y: 2.0)
+   let secondVector = Vector2D(x: 3.0, y: 4.0)
+   let plusMinusVector = firstVector +- secondVector
+   // plusMinusVector is a Vector2D instance with values of (4.0, -2.0)
+   ```
+
+<br />
+
+<h1 id="result_builder">Result Builders</h1>
+
+   > **A result builder** is a type you define that adds syntax for creating nested data, like a list or tree, in a nature, declarative way.
+
+   ```swift
+   protocol Drawable {
+      func draw() -> String
+   }
+
+   struct Line: Drawable {
+      var elements: [Drawable]
+      func draw() -> String {
+         return elements.map { $0.draw() }.joined(separator: "")
+      }
+   }
+
+   struct Text: Drawable {
+      var content: String
+      init(_ content: String) { self.content = content }
+      func draw() -> String { return content }
+   }
+
+   struct Space: Drawable {
+      func draw() -> String { return " " }
+   }
+
+   struct Stars: Drawable {
+      var length: Int
+      func draw() -> String { return String(repeating: "*", count: length) }
+   }
+
+   struct AllCaps: Drawable {
+      var content: Drawable
+      func draw() -> String { return content.draw().uppercased() }
+   }
+
+   let name: String? = "Sengthai"
+   let manualDrawing = Line(elements: [
+      Stars(length: 3),
+      Text("Hello"),
+      Space(),
+      AllCaps(content: Text((name ?? "World") + "!")),
+      Stars(length: 2),
+      ])
+   print(manualDrawing.draw())
+   // Prints "***Hello Sengthai!**"
+   ```
+
+<a href="#" class="float">TOP</a>

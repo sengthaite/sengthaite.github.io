@@ -1,0 +1,160 @@
+---
+title: Nginx on Mac with Homebrew
+layout: content
+duration: 5mn
+tags: general
+---
+
+|#|Topic|Description|
+|-|-----|-----------|
+|1|[Nginx installation](#nginx-installation)|Guide on how to install nginx|
+|2|[Common commands](#nginx-common-commands)|Useful command to properly work with nginx|
+|3|[Enable php with fastcgi](#nginx-fastcgi)|Steps to enable php with fastcgi|
+|4|[phpmyadmin on nginx](#nginx-phpmyadmin)|Steps to install phpmyadmin to work with nginx|
+
+**Note**: Make sure [homebrew](https://brew.sh/) is installed.
+
+> nginx version: nginx/1.23.3
+
+<h2 id="nginx-installation">Nginx installation</h2>
+
+```sh
+brew install nginx
+```
+
+<h2 id="nginx-common-commands">Common commands</h2>
+
+```sh
+# start nginx service
+brew services start nginx
+```
+
+```sh
+# stop nginx service
+brew services stop nginx
+```
+
+```sh
+# restart nginx service
+brew services restart nginx
+```
+
+```sh
+# check if nginx service is running
+brew services list | grep nginx
+```
+
+```sh
+# test nginx.conf file and show config file path
+nginx -t
+```
+
+```sh
+# sample configuration
+worker_processes  1;
+
+events {
+    worker_connections  1024;
+}
+
+
+http {
+    include       mime.types;
+    default_type  application/octet-stream;
+
+    sendfile        on;
+
+    keepalive_timeout  65;
+
+    server {
+        listen       80;
+        server_name  localhost;
+
+        location / {
+            root   html;
+            index  index.html index.htm;
+        }
+
+        # redirect server error pages to the static page /50x.html
+        #
+        error_page   500 502 503 504  /50x.html;
+        location = /50x.html {
+            root   html;
+        }
+    }
+    include servers/*;
+}
+```
+
+<h2 id="nginx-fastcgi">Enable php with fastcgi</h2>
+
+```sh
+brew install php
+brew install fastcgi
+
+# check php-fpm version
+php-fpm -v
+```
+
+<h2 id="nginx-phpmyadmin">phpmyadmin on nginx</h2>
+
+```sh
+# make sure mysql or mariadb is installed and its service is running or phpmyadmin not working
+brew install phpmyadmin
+```
+
+```sh
+# configure phpmyadmin to be served on port 8080
+worker_processes  1;
+
+events {
+    worker_connections  1024;
+}
+
+
+http {
+    include       mime.types;
+    default_type  application/octet-stream;
+
+    sendfile        on;
+
+    keepalive_timeout  65;
+
+    # phpmyadmin server
+    #
+    server {
+        listen 8080;
+        server_name localhost;
+        root /opt/homebrew/share/phpmyadmin;
+
+        location / {
+            index index.php index.html index.htm;
+            try_files $uri $uri/ =404;
+        }
+
+        location ~ \.php$ {
+            fastcgi_pass 127.0.0.1:9000;
+            fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+            include fastcgi_params;
+        }
+    }
+
+    server {
+        listen       80;
+        server_name  localhost;
+
+        location / {
+            root   html;
+            index  index.html index.htm;
+        }
+
+        # redirect server error pages to the static page /50x.html
+        #
+        error_page   500 502 503 504  /50x.html;
+        location = /50x.html {
+            root   html;
+        }
+    }
+    include servers/*;
+}
+```
