@@ -81153,7 +81153,7 @@ s=1
 break}o=A
 n=B.cs
 s=3
-return A.W($.uP().U0("autogen_meta/data.json"),$async$yX)
+return A.W($.uP().U0("assets/autogen_meta/data.json"),$async$yX)
 case 3:p.a=o.ayL(n.fi(b))
 q=!0
 s=1
