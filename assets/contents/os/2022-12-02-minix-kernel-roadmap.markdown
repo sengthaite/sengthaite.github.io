@@ -1,0 +1,38 @@
+---
+title: OS Developer Roadmap
+layout: content
+duration: 1mn
+tags: os_dev
+---
+
+**Official Document Link**: [minix3-dev](https://wiki.minix3.org/doku.php?id=developersguide:start)
+
+### Beginners
+
+|#|Content|
+|-|-------|
+|1|Cross-compiling Minix 3|
+|2|Compiling Minix 3|
+|3|Overview of Minix 3 architecture|
+|4|Programming in Minix 3|
+|5|Testing|
+|6|Coding Style|
+
+### Tutorials
+
+|#|Content|
+|-|-------|
+|1|Device Driver Programming|
+|2|Debugging tips - Serial out, GDB|
+|3|Adding a new Kernel Call|
+|4|Performance measurement|
+
+### Reference document
+
+|#|Content|
+|1|Micro-kernel|
+|2|Drivers|
+|3|Servers|
+|4|Userland|
+|5|Machine-dependent|
+|6|Miscellaneous|

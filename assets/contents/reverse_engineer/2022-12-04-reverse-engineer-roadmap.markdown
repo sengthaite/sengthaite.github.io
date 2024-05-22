@@ -1,0 +1,17 @@
+---
+title: Reverse Engineering Roadmap
+layout: content
+duration: 2mn
+tags: reverse_engineering
+---
+
+|#|Content|Description|
+|-|-------|-----------|
+|1|Assembly Programming Language|Any low-level programming language with a very strong correspondence between the instructions in the language and the architecture's machine code instructions|
+|2|Executable Format|An executable or binary, causes a computer "to perform indicated tasks according to encoded instructions", as opposed to a data file that must be interpreted (parsed) by a program to be meaningful|
+|3|Reverse Engineering Tools|IDA · Nudge4j · OllyDbg · Valgrind · Dex2jar · Androguard.|
+|4|Debugger|A computer program used to test and debug other programs (the "target" program). The main use of a debugger is to run the target program under controlled conditions that permit the programmer to track its execution and monitor changes in computer resources that may indicate malfunctioning code.|
+|5|Resource Collection|Collection of links and documents to learn and practice reverse engineering|
+|6|Vulnerability Exploitation|An exploit is a code that takes advantage of a software vulnerability or security flaw. It is written either by security researchers as a proof-of-concept threat or by malicious actors for use in their operations. When used, exploits allow an intruder to remotely access a network and gain elevated privileges, or move deeper into the network.|
+|7|Packing and Obfuscation|Obfuscated programs are ones whose execution the malware author has attempted to hide. Packed programs are a subset of obfuscated programs in which the malicious program is compressed and cannot be analyzed. Both techniques will severely limit your attempts to statically analyze the malware.|
+|8|CTFs|Capture the Flag Competition|
