@@ -1,0 +1,289 @@
+---
+title: C# and .NET Key Terms
+exerpt: Collections of keywords related to C# and .NET
+---
+
+* CLRs
+* BCLs
+* Access Modifiers
+* Interface
+* Enum
+* Generic
+* Delegate
+* Event
+* Lambda expression
+* Exception
+* Tuple
+* Record
+* Pattern
+* Attribute
+* Caller Info Attribute
+* Dynamic Binding
+* Operator Overloading
+* Unsafe Code and Pointers
+* Proprocessor Directives
+* Application Layers
+* Console
+* Environment
+* Process
+* AppContext
+* ICollection and IList
+* Array Enumeration
+* Array Length and Rank
+* Array Searching
+* Array Sorting
+* Array Reversing Element
+* Array Copying
+* Array Converting and Resizing
+* List
+* Queue
+* Stack
+* Sets
+* BitArray
+* HashSet and SortedSet
+* Dictionary
+* Customizable Collections and Proxies
+* Immutable Collections
+* IEqualityComparer
+* EqualityComparer
+* IComparer
+* Comparer
+* StringComparer
+* IStructuralEquatable
+* IStructuralComparable
+* LINQ
+* Fluent Syntax
+* Query Syntax
+* Mixed-Syntax Queries
+* Captured Variables
+* Deferred Execution
+* Chaining Decorator
+* Subquery
+* Composition Strategies
+* Progressive Query Building
+* Wrapping Query
+* Project Strategies
+* Anonymous Type
+* The let keyword
+* Interpreted Query
+* Local Query
+* Combining Interpreted and Local Query
+* AsEnumerable
+* EF Core
+* DbContext
+* Object Tracking
+* Change Tracking
+* Navigation Properties
+* Delegates vs Expression Trees
+* LINQ Filtering
+* LINQ Projecting
+* LINQ Joining 
+* LINQ Ordering
+* LINQ Grouping
+* LINQ Set
+* LINQ Conversion
+* LINQ Aggregation Methods
+* LINQ Elements
+* LINQ Quantifiers
+* LINQ Generation Methods
+* LINQ to XML
+* JSON
+* IDisposable
+* Garbage Collection
+* Finalizers
+* Managed Memory Leaks
+* Weak Reference
+* TraceListener
+* Flushing and Closing Listeners
+* Debugger
+* Process
+* Thread
+* StackTrace
+* StackFrame
+* Window Event Logs
+* Performance Counters
+* Stopwatch
+* Thread Blocking
+* Thread Local vs Shared State
+* Passing Data to Thread
+* Exception Handling
+* Background and Foreground Threads
+* Thread Priority
+* Signaling
+* Synchronization Context
+* The Thread Pool
+* Concurrency
+* Asynchrony
+* Task
+* Task Continuation
+* TaskCompletionSource
+* Task Delay
+* Task Combinator
+* Asynchronous Locking
+* Asynchronous Function
+* Asynchronous Pattern
+* Obsolete Pattern
+* Asynchronous Programming Model
+* Event-Based Asynchronous Pattern
+* BackgroundWorker
+* UWP
+* Stream Architecture
+* Stream Reading and Writing
+* Stream Seeking
+* Stream Closing and Flushing
+* Stream Timeouts
+* Stream Thread Safety
+* FileStream
+* MemoryStream
+* PipeStream
+* BufferedStream
+* Stream Adapters
+* Text Adapters
+* Binary Adapters
+* Compression Streams
+* Gzip File Compression
+* File
+* Directory
+* Volume Information
+* OS Security
+* Memory-Mapped Files
+* View Accessors
+* Network Architecture
+* Address and Port
+* URIs
+* HttpClient
+* HttpServer
+* DNS
+* Mail and SmtpClient
+* TCP
+* POP3 Mail with TCP
+* Assembly
+* Assembly Signing
+* Assembly Name
+* Authenticode Signing
+* Resource and Satellite Assemblies
+* Assembly Load Contexts
+* Directly Embedding Resources
+* The Assembly Manifest
+* Reflecting and Activating Type
+* Base Type
+* Interface
+* Generic Types
+* Delegates for Performance
+* AttributeUsage
+* DynamicMethod
+* The Evaluation Stack
+* Passing Arguments to a Dynamic Method
+* Branching
+* The Reflection.Emit.Object Model
+* Uncreated Closed Generics
+* Circular Dependencies
+* Writing Disassembler
+* Dynamic Member Overload Resolution
+* Visitor Pattern
+* DynamicObject
+* ExpandoObject
+* Cryptography
+* Hashing
+* Symmetric Encryption
+* Digital Signing
+* Synchronization
+* Exclusive Locking
+* Locking and Thread Safety
+* Locking and Atomicity
+* Nested Locking
+* Deadlocks
+* Mutex
+* Nonexclusive Locking
+* Semaphore
+* AutoResetEvent
+* ManualResetEvent
+* CountdownEvent
+* Cross-Process EventWaitHandle
+* WaitAny
+* Barrier Class
+* Lazy Initialization
+* Thread-Local Storage
+* PeriodicTimer
+* Multithreaded Timers
+* Single-Threaded Timers
+* PFX
+* PLINQ
+* Parallelism Cancellation
+* Optimizing PLINQ
+* Task Parallelism
+* AggregateException
+* Concurrent Collections
+* BlockingCollection
+* Native DLLs
+* Type and Parameter Marshaling
+* Callbacks from Unmanaged Code
+* Simulating a C Union
+* Shared Memory
+* COM Interoperability
+* Indexer
+* Dynamic Binding
+* Registry-Free COM
+* Regular Expression
+* Quantifiers
+* Zero-Width Assertions
+* Groups
+* APM (Asynchronous Programming Model)
+* AVL tree
+* BMP (Basic Multilingual Plane)
+* Banker's rounding
+* BrotliStream
+* BufferedStream
+* Downcasting
+* CCW (COM-Callable Wrapper)
+* CA (Certificate Authority)
+* Cartesian product
+* ASP.NET (Active Server Pages Network Enabled Technologies)
+* PaaS (Platform as a Service)
+* SaaS (Software as a Service)
+* IaaS (Infrustructure as a Service)
+* RDBMS (Relational Database Management System)
+* CNCF (Cloud Native Computing Foundation)
+* Twelve-Factor App
+* Microservice
+* Cloud Optimized App
+* Hyper-V isolation
+* REST (Representational State Transfer)
+* gRPC (General purpose Remote Procedure Call)
+* SOAP (Simple Object Access Protocol)
+* BC (Bounded Context Pattern)
+* DDD (Domain Driven Design)
+* AMQP (Advanced Message Queuing Protocol)
+* GraphQL
+* CQRS (Command and Query Responsibility Segregation)
+* Cold data in central database
+* BFF (Backend for Frontend) Pattern
+* Gateway Routing Pattern
+* Gateway Aggregation Pattern
+* Ocelot
+* Messaging Patterns
+* Service-Oriented Composition
+* CAP (Consistency, Availability, Partition Tolerance) theorem
+* ACID (Atomicity, Consistency, Isolation, and Durability) vs BASE (Basically Available, Soft state, Eventual consistency) : The Shifting pH of Database Transaction Processing
+* Concurrency approaches (Optimistic, Pessimistic)
+* DTOs (Data Transfer Objects) called ViewModels
+* IoC (Inversion of Control) container
+* SOLID (Single responsibility, Open/Closed, Liskov substitution, Interface segregation, Dependency inversion) Principle
+* Mediator pattern
+* AOP (Aspect Oriented Programming)
+* DoS (Denial of Service)
+* watchdogs
+* SSO (Single Sign On)
+* SPAs (Single Page Applications)
+* ADO.NET (ActiveX Data Object)
+* Positional Parameter
+* Stateless services
+* Stateful services
+* Polyglot persistence
+* Catalog business microservices
+* Event sourcing pattern
+* Outbox pattern
+* Mediator pattern
+* Observer pattern
+* Repository pattern
+* Decorator pattern

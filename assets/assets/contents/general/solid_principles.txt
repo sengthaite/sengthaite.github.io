@@ -1,0 +1,59 @@
+---
+title: SOLID Principle
+exerpt: SOLID is a mnemonic acronym for 5 design principles intended to make OOP designs more understandable, flexible, and maintainable
+---
+
+> **SOLID** is a mnemonic acronym for 5 design principles intended to make OOP designs more understandable, flexible, and maintainable. (_Design Principles and Design Patterns_ of Robert C. Martin)
+
+> <pre>
+> S     : Single-responsibility principle
+> O     : Open-closed principle
+> L     : Liskov substitution principle
+> I     : Interface segregation principle
+> D     : Dependency inversion principle
+> </pre>
+
+**<u>Single Responsibility Priciple</u>**
+
+> There should never be more than one reason for a class to change. In other words, every class should have only one responsibility.
+
+**<u>Open Closed Principles</u>**
+
+> Software entities should be open for _extension_, but closed for _modification_.
+
+**<u>Liskov Substitution Principle</u>**
+
+> Functions that use pointers or references to base classes must be able to use objects of derived classes without knowing it.
+
+**<u>Interface Segregation Principle</u>**
+
+> Clients should not be forced to depend upon interfaces that they do not use.
+
+**<u>Dependency Inversion Principle</u>**
+
+> Depend upon abstraction, not concretions.
+
+## **Symptoms of Rotting Design**
+
+There are 4 primary symptoms:
+
+- **Rigidity** : The tendency for software to be difficult to change, even in simple ways. What begins as a simple two day change to one module grows into a multi-week marathon of change in module after module as the engineers chase the thread of the change through the application.
+- **Fragility** : The tendency of the software to break in many places every time it is changed. Often the breakage occurs in areas that have no conceptual relationship with the area that was changed. Software with this issue is impossible to maintain. Every fix makes it worse, introducing more problems than are solved. Distruct reigns, and credibiility is lost.
+- **Immobility** : The inability to reuse software from other projects or from parts of the same project. It often happens that one engineer will discover that he needs a module that is similar to one that another engineer wrote. However, it also often happens that the module in question has too much baggage that it depends upon. After much work, the engineers discover that the work and risk required to separate the desirable parts of the software from the undersirable parts are too great to tolerate. And so the software is simply rewritten instead of reused.
+- **Viscosity** :
+  - Viscosity of the design
+  - Viscosity of the environment
+    When faced with a change, engineers usually find more than one way to make the change. Some of the ways preserve the design, others do not (hacks). When the design preserving methods are harder to employ than the hacks, then the viscosity of the design is high. Viscosity of the environment comes about when the development environment is slow and inefficient.
+
+## Causes of the Rot
+
+- **Changing Requirements**
+
+The requirements have been changing in ways that the initial design did not anticipate. Often these changes need to be made quickly, and may be made by engineers who are not familiar with the original design philosophy. So, though the change to the design works, it somehow violates the original design. Bit by bit, as the changes continue to pour in, these violations accumulate until malignancy sets in.
+However, we cannot blame the drifting of the requirements for the degradation of the design. We, as software engineers, know full well that requirements change. Indeed, most of us realize that the requirements document is the most volatile document in the project. If our designs are failing due to the constant rain of changing requirements, it is our designs that are at fault. We must somehow find a way to make our designs resilient to such changes and protect them from rotting.
+
+- **Dependency Management**
+
+Changes that introduce new and unplanned for dependencies. Each of the four symptoms mentioned above is either directly, or indirectly caused by improper dependencies between the modules of the software. It is the dependency architecture that is degrading, and with it the ability of the software to be maintained.
+
+In order to forestall the degradation of the dependency architecture, the dependencies between modules in an application must be managed. This management consists of the creation of dependency firewalls.
