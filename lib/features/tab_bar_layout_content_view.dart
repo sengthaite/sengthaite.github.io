@@ -23,10 +23,16 @@ class TabBarLayoutContentView extends TabBarLayoutView {
     if (path == null) return null;
     if (path.trim().isEmpty) return null;
     var content = await rootBundle.loadString(path);
-    return parseFrontmatter(
-      content: content,
-      frontmatterBuilder: (map) => AppModelFrontmatter.fromJson(map),
-    );
+    try {
+      return parseFrontmatter(
+        content: content,
+        frontmatterBuilder: (map) => AppModelFrontmatter.fromJson(map),
+      );
+    } catch (error) {
+      return Future(
+        () => Document(frontmatter: const AppModelFrontmatter(), body: content),
+      );
+    }
   }
 
   CategoryTabItemModel _mapTabItem(FileElement data) {
