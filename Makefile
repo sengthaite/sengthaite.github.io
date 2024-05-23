@@ -14,8 +14,7 @@ check:
 add_assets:
 	asset_manager add
  
-all: 
-	clean autogen build_runner
+all: clean autogen build_runner
 
 deploy:
 	flutter pub global run peanut --extra-args --base-href=/
