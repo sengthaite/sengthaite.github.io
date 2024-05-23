@@ -95,14 +95,16 @@ class TabBarLayoutViewState extends State<TabBarLayoutView> {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         TabBarLayoutNavigationView(
-          defaultText: "Content",
+          defaultText: "content",
           defaultTextClick: () => clearAllItems(),
           navigationTitleItems: navigationTitleItems,
         ),
         layoutWidget(
           child: navigationTitleItems.isNotEmpty
               ? navigationTitleItems.last.widget
-              : categoriesWidget,
+              : SingleChildScrollView(
+                  child: categoriesWidget,
+                ),
         ),
         const Padding(
           padding: EdgeInsets.symmetric(vertical: 12),

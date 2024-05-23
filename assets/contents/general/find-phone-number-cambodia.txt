@@ -1,0 +1,9 @@
+---
+title: Find any phone number in Cambodia
+exerpt: Dial the following code in keypad
+---
+
+Dial the following code in keypad:
+```sh
+*99#
+```

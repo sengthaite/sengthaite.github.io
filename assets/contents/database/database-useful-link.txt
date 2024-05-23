@@ -1,0 +1,6 @@
+---
+title: Some useful urls for learning database management
+exerpt: Read more know more about database
+---
+
+1. [mariadb documentation](https://mariadb.com/kb/en/documentation/)

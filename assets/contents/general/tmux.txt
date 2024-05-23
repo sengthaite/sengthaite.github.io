@@ -1,0 +1,143 @@
+---
+title: tmux (terminal multiplexer)
+exerpt: Getting to know terminal multiplexer and its usecases
+---
+
+
+[tmux cheatsheet](https://tmuxcheatsheet.com/)
+
+## Session
+
+```sh
+# start a new session
+tmux
+```
+
+```sh
+# start a new session with name
+tmux new -s my_session_name
+```
+
+```sh
+# list sessions
+tmux list-sessions
+# or ctrl + b then s
+```
+
+```sh
+# move to previous session
+# ctr + b then (
+```
+
+```sh
+# move to next session
+# ctr + b then )
+```
+
+```sh
+# kill all sessions
+tmux kill-session -a
+# kill all sessions but not specified session
+tmux kill-session -a -t my_session_name
+```
+
+```sh
+# kill specified session
+tmux kill-session -t my_session_name
+```
+
+## Window
+
+```sh
+# start new session with name and new window with name
+tmux new -s my_session_name -n my_window_name
+```
+
+```sh
+# create new window
+# ctrl + b then c
+```
+
+```sh
+# close current window
+# ctrl + b then &
+```
+
+```sh
+# list windows
+# ctrl + b then w
+```
+
+```sh
+# previous window
+# ctrl + b then p
+```
+
+```sh
+# next window
+# ctrl + b then n
+```
+
+```sh
+# go to window by index
+# ctrl + b then 0...9
+```
+
+```sh
+# go to last active window
+# ctrl + b then l
+```
+
+## Panes
+
+```sh
+# split pane with horizontal layout
+# ctrl + b then %
+```
+
+```sh
+# split pane with vertical layout
+# ctrl + b then "
+```
+
+```sh
+# move current pane left
+# ctrl + b then {
+```
+
+```sh
+# move current pane right
+# ctrl + b then }
+```
+
+```sh
+# switch to pane with direction
+# ctrl + b then arrow_key (up, down, left, right)
+```
+
+```sh
+# show pane number
+# ctrl + b then q
+```
+
+```sh
+# select pane by number
+# ctrl + b then q then 0...9
+```
+
+```sh
+# close current pane
+# ctrl + b then x
+```
+
+## Help
+
+```sh
+# list key bindings
+# ctrl + b then ?
+```
+
+```sh
+# show general info
+tmux info
+```

@@ -27,10 +27,14 @@ class TabBarDetailView extends StatelessWidget {
               icon: Icon(MdiIcons.arrowLeft),
             ),
             const Spacer(),
-            Text(title,
-                textAlign: TextAlign.center,
-                style:
-                    const TextStyle(fontSize: 24, fontWeight: FontWeight.w500)),
+            Text(
+              softWrap: false,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              title,
+              textAlign: TextAlign.center,
+              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
+            ),
             const Spacer()
           ],
         ),
@@ -41,14 +45,16 @@ class TabBarDetailView extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(8),
                 child: Wrap(
-                  alignment: WrapAlignment.center,
+                  alignment: WrapAlignment.start,
                   spacing: 12,
                   runSpacing: 12,
                   children: items!
-                      .map((e) => InkWell(
-                            onTap: e.onTap,
-                            child: CategoryTabItemView(item: e),
-                          ))
+                      .map(
+                        (e) => InkWell(
+                          onTap: e.onTap,
+                          child: CategoryTabItemView(item: e),
+                        ),
+                      )
                       .toList(),
                 ),
               ),
@@ -92,34 +98,44 @@ class CategoryTabItemView extends StatelessWidget {
                   blurRadius: 4,
                   offset: const Offset(0, 4))
             ]),
-        child: Padding(
-          padding: const EdgeInsets.all(12.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                item.title,
-                style: const TextStyle(
-                  color: Colors.blueAccent,
-                  fontSize: 18,
-                  fontWeight: FontWeight.w400,
+        child: SizedBox(
+          height: 100,
+          child: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                FittedBox(
+                  child: Text(
+                    item.title,
+                    style: const TextStyle(
+                      color: Colors.blueAccent,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
                 ),
-              ),
-              const SizedBox(
-                height: 9,
-              ),
-              RichText(
-                  maxLines: 3,
-                  overflow: TextOverflow.ellipsis,
-                  text: TextSpan(
+                const SizedBox(
+                  height: 9,
+                ),
+                Flexible(
+                  child: RichText(
+                    softWrap: false,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    text: TextSpan(
                       text: "${item.date} | ",
                       style: TextStyle(color: Colors.black.withAlpha(70)),
                       children: [
                         TextSpan(
                           text: item.description,
                         ),
-                      ]))
-            ],
+                      ],
+                    ),
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),

@@ -1,0 +1,7 @@
+---
+title: Android Projects Ideas
+exerpt: Some interesting projects ideas to getting start with android app development
+---
+
+1. An application to manage contact with abilities to store, add, delete, update, and share contact via QR code.
+2. An application to find fomrat of given date.

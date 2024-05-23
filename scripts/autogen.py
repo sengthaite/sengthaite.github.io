@@ -12,7 +12,7 @@ IconPath = "assets/icons"
 def contentDirMarkdown(path):
     contentResult = sorted(
         filter(
-            lambda path: path.name.endswith(".md") or path.name.endswith(".markdown"),
+            lambda path: path.name.endswith(".txt"),
             os.scandir(path),
         ),
         key=lambda x: (x.is_file(), x.name),
@@ -90,7 +90,7 @@ dashboardData["data"] = list(
             "path": res.get("path"),
             "created_date": res.get("change_date"),
             "icon": res.get("name") + ".png",
-            "files": contentDirMarkdown(res.get("path")),
+            "files": contentDirMarkdown(res.get("path", "")),
         },
         contentResult,
     )

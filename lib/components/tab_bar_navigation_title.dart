@@ -23,12 +23,15 @@ class TabBarNavigationTitle {
     this.titleStyle = titleStyle;
   }
 
-  TextSpan get titleWidget => TextSpan(text: " < ", children: [
-        TextSpan(
-            text: title,
-            style: titleStyle,
-            recognizer: onTap != null
-                ? (TapGestureRecognizer()..onTap = () => onTap!(this))
-                : null)
-      ]);
+  TextSpan get titleWidget => TextSpan(
+        text: " < ",
+        children: [
+          TextSpan(
+              text: title,
+              style: titleStyle,
+              recognizer: onTap != null
+                  ? (TapGestureRecognizer()..onTap = () => onTap!(this))
+                  : null)
+        ],
+      );
 }

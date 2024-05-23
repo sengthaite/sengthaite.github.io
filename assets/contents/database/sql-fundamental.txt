@@ -1,0 +1,17 @@
+---
+title: SQL Basic
+exerpt: Basic knowledge with SQL
+---
+
+# Content
+
+|#|Topic|Description|
+|---|----|----------|
+|1|Getting Start|Overall topics about SQL|
+|2|SQL Commands|Purpose and usage of each SQL command|
+
+# Getting Start
+
+### Abbreviations
+
+1. **ODBC**: Open Database Connectivity

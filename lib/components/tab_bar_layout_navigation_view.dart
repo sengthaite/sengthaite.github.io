@@ -1,7 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:sengthaite_blog/components/tab_bar_navigation_title.dart';
-import 'package:sengthaite_blog/extensions/unique_ext.dart';
 
 class TabBarLayoutNavigationView extends StatefulWidget {
   const TabBarLayoutNavigationView({
@@ -28,7 +27,6 @@ class _TabBarLayoutNavigtionState extends State<TabBarLayoutNavigationView> {
     if (items.isEmpty) {
       return [];
     }
-    items = items.unique((e) => e.index);
     var lastIndex = items.length - 1;
     for (final (index, item) in items.indexed) {
       if (index == lastIndex) {
@@ -47,6 +45,9 @@ class _TabBarLayoutNavigtionState extends State<TabBarLayoutNavigationView> {
       child: Row(
         children: [
           RichText(
+            softWrap: false,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
             text: TextSpan(
                 text: widget.defaultText,
                 recognizer: widget.defaultTextClick != null

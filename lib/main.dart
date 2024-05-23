@@ -59,7 +59,7 @@ class _StateMainView extends State<MainView> {
                   padding: EdgeInsets.symmetric(
                       horizontal: screenSize.width > 1100
                           ? screenSize.width * 0.35
-                          : screenSize.width * 0.2),
+                          : screenSize.width * 0.15),
                   indicatorSize: TabBarIndicatorSize.label,
                   labelStyle: tabBarSelectedTitleStyle,
                   indicatorColor: Colors.blueAccent,
