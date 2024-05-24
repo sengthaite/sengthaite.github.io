@@ -44,17 +44,19 @@ class _TabBarLayoutNavigtionState extends State<TabBarLayoutNavigationView> {
       padding: const EdgeInsets.all(8.0),
       child: Row(
         children: [
-          RichText(
-            softWrap: false,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-            text: TextSpan(
-                text: widget.defaultText,
-                recognizer: widget.defaultTextClick != null
-                    ? (TapGestureRecognizer()
-                      ..onTap = () => widget.defaultTextClick!())
-                    : null,
-                children: getNavItemWidget()),
+          Flexible(
+            child: RichText(
+              softWrap: false,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              text: TextSpan(
+                  text: widget.defaultText,
+                  recognizer: widget.defaultTextClick != null
+                      ? (TapGestureRecognizer()
+                        ..onTap = () => widget.defaultTextClick!())
+                      : null,
+                  children: getNavItemWidget()),
+            ),
           ),
         ],
       ),

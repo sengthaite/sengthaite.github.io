@@ -49,17 +49,17 @@ class TabBarLayoutViewState extends State<TabBarLayoutView> {
   Function backOnClick(TabBarNavigationTitle item) => removeUntil(item);
 
   Widget get categoriesWidget => Wrap(
-        spacing: 20,
-        runSpacing: 20,
+        spacing: 10,
+        runSpacing: 10,
         children: widget.categories.map((e) {
           return categoryItem(item: e.itemTitle, itemIcon: e.itemWidget);
         }).toList(),
       );
 
-  Expanded layoutWidget({required Widget child}) {
+  Expanded layoutWidget({required Widget child, required EdgeInsets padding}) {
     return Expanded(
       child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
+        padding: padding,
         decoration: BoxDecoration(
           color: const Color.fromRGBO(252, 252, 252, 1),
           borderRadius: const BorderRadius.all(Radius.circular(12)),
@@ -91,29 +91,35 @@ class TabBarLayoutViewState extends State<TabBarLayoutView> {
   @override
   Widget build(BuildContext context) {
     _updateNavigationState();
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        TabBarLayoutNavigationView(
-          defaultText: "content",
-          defaultTextClick: () => clearAllItems(),
-          navigationTitleItems: navigationTitleItems,
-        ),
-        layoutWidget(
-          child: navigationTitleItems.isNotEmpty
-              ? navigationTitleItems.last.widget
-              : SingleChildScrollView(
-                  child: categoriesWidget,
-                ),
-        ),
-        const Padding(
-          padding: EdgeInsets.symmetric(vertical: 12),
-          child: Text(
-            "Since 2024 (v2.0.0)",
-            textAlign: TextAlign.center,
+    return OrientationBuilder(
+      builder: (context, orientation) => Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          TabBarLayoutNavigationView(
+            defaultText: "content",
+            defaultTextClick: () => clearAllItems(),
+            navigationTitleItems: navigationTitleItems,
           ),
-        )
-      ],
+          layoutWidget(
+              child: navigationTitleItems.isNotEmpty
+                  ? navigationTitleItems.last.widget
+                  : SingleChildScrollView(
+                      child: categoriesWidget,
+                    ),
+              padding: orientation == Orientation.landscape
+                  ? const EdgeInsets.symmetric(vertical: 16, horizontal: 20)
+                  : const EdgeInsets.all(8)),
+          const Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: 12,
+            ),
+            child: Text(
+              "Since 2024 (v2.0.0)",
+              textAlign: TextAlign.center,
+            ),
+          )
+        ],
+      ),
     );
   }
 }

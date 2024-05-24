@@ -29,14 +29,20 @@ class _StateMainView extends State<MainView> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-          scaffoldBackgroundColor: Colors.transparent,
-          appBarTheme: const AppBarTheme(backgroundColor: Colors.transparent)),
-      home: DefaultTabController(
-        animationDuration: Duration.zero,
-        length: 3,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
-          child: Scaffold(
+        scaffoldBackgroundColor: Colors.transparent,
+        useMaterial3: true,
+        appBarTheme: const AppBarTheme(backgroundColor: Colors.transparent),
+        primaryColor: Colors.white,
+      ),
+      home: OrientationBuilder(
+        builder: (context, orientation) => DefaultTabController(
+          animationDuration: Duration.zero,
+          length: 3,
+          child: Padding(
+            padding: Orientation.landscape == orientation
+                ? const EdgeInsets.symmetric(vertical: 12, horizontal: 24)
+                : const EdgeInsets.all(8),
+            child: Scaffold(
               appBar: AppBar(
                 toolbarHeight: 100,
                 title: Row(
@@ -46,9 +52,13 @@ class _StateMainView extends State<MainView> {
                     const SizedBox(
                       width: 20,
                     ),
-                    const Text(
-                      appTitle,
-                      style: pageTitleTextStyle,
+                    const Flexible(
+                      child: FittedBox(
+                        child: Text(
+                          appTitle,
+                          style: pageTitleTextStyle,
+                        ),
+                      ),
                     )
                   ],
                 ),
@@ -59,7 +69,7 @@ class _StateMainView extends State<MainView> {
                   padding: EdgeInsets.symmetric(
                       horizontal: screenSize.width > 1100
                           ? screenSize.width * 0.35
-                          : screenSize.width * 0.15),
+                          : 20),
                   indicatorSize: TabBarIndicatorSize.label,
                   labelStyle: tabBarSelectedTitleStyle,
                   indicatorColor: Colors.blueAccent,
@@ -73,12 +83,15 @@ class _StateMainView extends State<MainView> {
                 ),
               ),
               body: const TabBarView(
-                  physics: NeverScrollableScrollPhysics(),
-                  children: [
-                    TabBarLayoutContentView(),
-                    TabBarLayoutToolView(),
-                    TabBarLayoutProjectView(),
-                  ])),
+                physics: NeverScrollableScrollPhysics(),
+                children: [
+                  TabBarLayoutContentView(),
+                  TabBarLayoutToolView(),
+                  TabBarLayoutProjectView(),
+                ],
+              ),
+            ),
+          ),
         ),
       ),
     );

@@ -17,50 +17,52 @@ class TabBarDetailView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        Row(
-          children: [
-            IconButton(
-              onPressed: onBackPressed,
-              icon: Icon(MdiIcons.arrowLeft),
-            ),
-            const Spacer(),
-            Text(
-              softWrap: false,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              title,
-              textAlign: TextAlign.center,
-              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
-            ),
-            const Spacer()
-          ],
-        ),
-        if (widget != null) widget!,
-        if (items != null)
-          Expanded(
-            child: SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.all(8),
-                child: Wrap(
-                  alignment: WrapAlignment.start,
-                  spacing: 12,
-                  runSpacing: 12,
-                  children: items!
-                      .map(
-                        (e) => InkWell(
-                          onTap: e.onTap,
-                          child: CategoryTabItemView(item: e),
-                        ),
-                      )
-                      .toList(),
+    return OrientationBuilder(
+      builder: (context, orientation) => Column(
+        children: [
+          Row(
+            children: [
+              IconButton(
+                onPressed: onBackPressed,
+                icon: Icon(MdiIcons.arrowLeft),
+              ),
+              const Spacer(),
+              FittedBox(
+                child: Text(
+                  softWrap: true,
+                  title,
+                  style: const TextStyle(
+                      fontSize: 18, fontWeight: FontWeight.w500),
                 ),
               ),
-            ),
-          )
-      ],
+              const Spacer()
+            ],
+          ),
+          if (widget != null) widget!,
+          if (items != null)
+            Expanded(
+              child: SingleChildScrollView(
+                child: Padding(
+                    padding: const EdgeInsets.all(8),
+                    child: Wrap(
+                      alignment: orientation == Orientation.landscape
+                          ? WrapAlignment.start
+                          : WrapAlignment.center,
+                      spacing: 12,
+                      runSpacing: 12,
+                      children: items!
+                          .map(
+                            (e) => InkWell(
+                              onTap: e.onTap,
+                              child: CategoryTabItemView(item: e),
+                            ),
+                          )
+                          .toList(),
+                    )),
+              ),
+            )
+        ],
+      ),
     );
   }
 }
@@ -87,7 +89,7 @@ class CategoryTabItemView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      constraints: const BoxConstraints(maxWidth: 370),
+      constraints: const BoxConstraints(maxWidth: 450, minWidth: 450),
       child: Container(
         decoration: BoxDecoration(
             color: Colors.white,

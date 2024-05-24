@@ -13,8 +13,10 @@ class CategoryItemIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisSize: MainAxisSize.min,
       children: [
         Container(
+          width: 64,
           decoration: BoxDecoration(
             border: Border.all(
               color: Colors.black.withAlpha(50),
@@ -29,9 +31,17 @@ class CategoryItemIcon extends StatelessWidget {
         const SizedBox(
           height: 4,
         ),
-        Text(
-          title,
-          style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
+        Flexible(
+          child: SizedBox(
+            width: 64,
+            child: Text(
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              title,
+              textAlign: TextAlign.center,
+              style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
+            ),
+          ),
         )
       ],
     );
