@@ -28,6 +28,7 @@ exerpt: The minix3
 ### Reference document
 
 |#|Content|
+|-|--------|
 |1|Micro-kernel|
 |2|Drivers|
 |3|Servers|

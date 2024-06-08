@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-const pageTitleTextStyle = TextStyle(fontSize: 36, fontWeight: FontWeight.w500);
+const pageTitleTextStyle = TextStyle(fontSize: 20, fontWeight: FontWeight.w500);
 
 const tabBarSelectedTitleStyle =
     TextStyle(fontWeight: FontWeight.bold, color: Colors.blueAccent);

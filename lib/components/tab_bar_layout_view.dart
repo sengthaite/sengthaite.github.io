@@ -101,14 +101,15 @@ class TabBarLayoutViewState extends State<TabBarLayoutView> {
             navigationTitleItems: navigationTitleItems,
           ),
           layoutWidget(
-              child: navigationTitleItems.isNotEmpty
-                  ? navigationTitleItems.last.widget
-                  : SingleChildScrollView(
-                      child: categoriesWidget,
-                    ),
-              padding: orientation == Orientation.landscape
-                  ? const EdgeInsets.symmetric(vertical: 16, horizontal: 20)
-                  : const EdgeInsets.all(8)),
+            child: navigationTitleItems.isNotEmpty
+                ? navigationTitleItems.last.widget
+                : SingleChildScrollView(
+                    child: categoriesWidget,
+                  ),
+            padding: orientation == Orientation.landscape
+                ? const EdgeInsets.symmetric(vertical: 16, horizontal: 20)
+                : const EdgeInsets.all(8),
+          ),
           const Padding(
             padding: EdgeInsets.symmetric(
               vertical: 12,

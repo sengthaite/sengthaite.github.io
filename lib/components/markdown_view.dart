@@ -76,7 +76,7 @@ class MarkdownView extends StatelessWidget {
           color: colors.onSurfaceVariant,
         ),
         blockquoteDecoration: BoxDecoration(
-          color: colors.surfaceVariant,
+          color: colors.surfaceContainerHighest,
           borderRadius: BorderRadius.circular(4),
         ),
         code: const TextStyle(fontFamily: 'monospace'),

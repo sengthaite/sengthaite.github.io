@@ -30,7 +30,10 @@ class TabBarLayoutContentView extends TabBarLayoutView {
       );
     } catch (error) {
       return Future(
-        () => Document(frontmatter: const AppModelFrontmatter(), body: content),
+        () => Document(
+          frontmatter: const AppModelFrontmatter(),
+          body: content,
+        ),
       );
     }
   }

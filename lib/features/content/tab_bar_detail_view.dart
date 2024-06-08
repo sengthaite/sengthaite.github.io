@@ -19,6 +19,7 @@ class TabBarDetailView extends StatelessWidget {
   Widget build(BuildContext context) {
     return OrientationBuilder(
       builder: (context, orientation) => Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Row(
             children: [
@@ -26,16 +27,19 @@ class TabBarDetailView extends StatelessWidget {
                 onPressed: onBackPressed,
                 icon: Icon(MdiIcons.arrowLeft),
               ),
-              const Spacer(),
-              FittedBox(
+              const SizedBox(
+                width: 20,
+              ),
+              Expanded(
                 child: Text(
                   softWrap: true,
                   title,
                   style: const TextStyle(
-                      fontSize: 18, fontWeight: FontWeight.w500),
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
               ),
-              const Spacer()
             ],
           ),
           if (widget != null) widget!,

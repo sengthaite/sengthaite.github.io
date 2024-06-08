@@ -30,10 +30,14 @@ class _TabBarLayoutNavigtionState extends State<TabBarLayoutNavigationView> {
     var lastIndex = items.length - 1;
     for (final (index, item) in items.indexed) {
       if (index == lastIndex) {
-        item.setTitleStyle(const TextStyle(color: Colors.blue));
+        item.setTitleStyle(
+          const TextStyle(color: Colors.blue),
+        );
         break;
       }
-      item.setTitleStyle(const TextStyle(color: Colors.black));
+      item.setTitleStyle(
+        const TextStyle(color: Colors.grey),
+      );
     }
     return items.map((e) => e.titleWidget).toList();
   }
@@ -51,6 +55,7 @@ class _TabBarLayoutNavigtionState extends State<TabBarLayoutNavigationView> {
               overflow: TextOverflow.ellipsis,
               text: TextSpan(
                   text: widget.defaultText,
+                  style: const TextStyle(color: Colors.grey),
                   recognizer: widget.defaultTextClick != null
                       ? (TapGestureRecognizer()
                         ..onTap = () => widget.defaultTextClick!())

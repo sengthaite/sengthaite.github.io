@@ -52,25 +52,21 @@ class _StateMainView extends State<MainView> {
                     const SizedBox(
                       width: 20,
                     ),
-                    const Flexible(
-                      child: FittedBox(
-                        child: Text(
-                          appTitle,
-                          style: pageTitleTextStyle,
-                        ),
-                      ),
+                    const Text(
+                      appTitle,
+                      style: pageTitleTextStyle,
                     )
                   ],
                 ),
                 bottom: TabBar(
                   isScrollable: false,
                   physics: const NeverScrollableScrollPhysics(),
-                  overlayColor: MaterialStateProperty.all(Colors.transparent),
+                  overlayColor: WidgetStateProperty.all(Colors.transparent),
                   padding: EdgeInsets.symmetric(
                       horizontal: screenSize.width > 1100
                           ? screenSize.width * 0.35
                           : 20),
-                  indicatorSize: TabBarIndicatorSize.label,
+                  indicatorSize: TabBarIndicatorSize.tab,
                   labelStyle: tabBarSelectedTitleStyle,
                   indicatorColor: Colors.blueAccent,
                   unselectedLabelStyle: tabBarUnselectedTitleStyle,
