@@ -35,7 +35,7 @@ class CategoryItemIcon extends StatelessWidget {
           child: SizedBox(
             width: 64,
             child: Text(
-              maxLines: 1,
+              maxLines: 2,
               overflow: TextOverflow.ellipsis,
               title,
               textAlign: TextAlign.center,

@@ -96,7 +96,7 @@ class TabBarLayoutViewState extends State<TabBarLayoutView> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           TabBarLayoutNavigationView(
-            defaultText: "content",
+            defaultText: "Content",
             defaultTextClick: () => clearAllItems(),
             navigationTitleItems: navigationTitleItems,
           ),

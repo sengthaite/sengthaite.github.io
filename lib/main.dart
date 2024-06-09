@@ -44,7 +44,6 @@ class _StateMainView extends State<MainView> {
                 : const EdgeInsets.all(8),
             child: Scaffold(
               appBar: AppBar(
-                toolbarHeight: 100,
                 title: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -63,9 +62,9 @@ class _StateMainView extends State<MainView> {
                   physics: const NeverScrollableScrollPhysics(),
                   overlayColor: WidgetStateProperty.all(Colors.transparent),
                   padding: EdgeInsets.symmetric(
-                      horizontal: screenSize.width > 1100
-                          ? screenSize.width * 0.35
-                          : 20),
+                    horizontal:
+                        screenSize.width > 1100 ? screenSize.width * 0.35 : 20,
+                  ),
                   indicatorSize: TabBarIndicatorSize.tab,
                   labelStyle: tabBarSelectedTitleStyle,
                   indicatorColor: Colors.blueAccent,
