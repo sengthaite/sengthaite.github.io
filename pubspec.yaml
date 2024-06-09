@@ -50,7 +50,8 @@ flutter:
     - assets/contents/maths/
     - assets/contents/os/
     - assets/autogen_meta/
-    - assets/icons/
+    - assets/content_icons/
+    - assets/tool_icons/
 
   uses-material-design: true
 

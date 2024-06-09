@@ -6,7 +6,7 @@ import json
 from pathlib import Path
 
 ContentPath = "assets/contents"
-IconPath = "assets/icons"
+IconPath = "assets/content_icons"
 
 
 def contentDirMarkdown(path):
@@ -96,5 +96,5 @@ dashboardData["data"] = list(
     )
 )
 
-with open("assets/autogen_meta/data.json", "w") as out_file:
+with open("assets/autogen_meta/data_content.json", "w") as out_file:
     json.dump(dashboardData, out_file, sort_keys=True, indent=4, ensure_ascii=False)
