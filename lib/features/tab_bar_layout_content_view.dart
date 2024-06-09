@@ -1,7 +1,6 @@
 import 'package:cosmic_frontmatter/cosmic_frontmatter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:sengthaite_blog/app.model.dart';
 import 'package:sengthaite_blog/components/category_item_icon.dart';
 import 'package:sengthaite_blog/components/markdown_view.dart';
 import 'package:sengthaite_blog/components/tab_bar_layout_view.dart';
@@ -13,6 +12,7 @@ import 'package:sengthaite_blog/extensions/string_ext.dart';
 import 'package:sengthaite_blog/features/content/tab_bar_detail_view.dart';
 import 'package:sengthaite_blog/features/navigation/navigation.dart';
 import 'package:sengthaite_blog/generated/app_model_frontmatter.dart';
+import 'package:sengthaite_blog/models/app_model.dart';
 import 'package:sengthaite_blog/models/category_tab_item_model.dart';
 import 'package:sengthaite_blog/shared/app.data.dart';
 

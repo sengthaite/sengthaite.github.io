@@ -1,5 +1,5 @@
 import 'package:flutter/services.dart';
-import 'package:sengthaite_blog/app.model.dart';
+import 'package:sengthaite_blog/models/app_model.dart';
 
 class AppData {
   static final AppData _appData = AppData._();

@@ -1,6 +1,6 @@
 {
     "author": "Te Sengthai",
-    "created_date": "2024-06-08T21:30:46.483030",
+    "created_date": "2024-06-09T22:10:19.961966",
     "data": [
         {
             "created_date": "2024-05-23T22:13:39.020294",
@@ -525,7 +525,7 @@
             "created_date": "2024-05-23T22:15:18.679986",
             "files": [
                 {
-                    "access_date": "2024-06-08T21:30:32.626711",
+                    "access_date": "2024-06-08T22:22:55.914875",
                     "change_date": "2024-06-08T21:30:31.529841",
                     "exerpt": "The minix3",
                     "full_path": "assets/contents/os/minix-kernel-roadmap.txt",
@@ -573,12 +573,12 @@
                     "title": "Basic Swift Programming Language"
                 },
                 {
-                    "access_date": "2024-05-24T00:32:16.585270",
-                    "change_date": "2024-05-23T23:09:38.307064",
+                    "access_date": "2024-06-08T22:22:55.915432",
+                    "change_date": "2024-06-08T21:34:08.721136",
                     "exerpt": "Swift operators",
                     "full_path": "assets/contents/swift/operators.txt",
                     "index": 1,
-                    "modified_date": "2024-05-23T23:09:38.307064",
+                    "modified_date": "2024-06-08T21:34:08.721136",
                     "name": "operators.txt",
                     "title": "Operators"
                 },

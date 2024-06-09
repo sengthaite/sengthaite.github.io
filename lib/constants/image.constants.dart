@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:sengthaite_blog/constants/enum.constants.dart';
 
 enum AssetIcons {
   logo("logo.png"),
@@ -15,9 +16,14 @@ enum AssetIcons {
   reverseEngineer("reverse_engineer.png"),
   swift("swift.png"),
   termux("termux.png"),
-  tools("tools.png");
+  tools("tools.png"),
+  textEditor("text_editor.png", section: TabSection.tool);
 
-  const AssetIcons(this.imageName);
+  const AssetIcons(
+    this.imageName, {
+    // ignore: unused_element
+    this.section = TabSection.content,
+  });
 
   factory AssetIcons.fromImageName(String name) {
     switch (name.toLowerCase()) {
@@ -51,16 +57,32 @@ enum AssetIcons {
         return AssetIcons.termux;
       case "tools.png":
         return AssetIcons.tools;
+      case "text_editor.png":
+        return AssetIcons.textEditor;
       default:
         return AssetIcons.logo;
     }
   }
 
-  Image get image => Image.asset(
-        "assets/icons/$imageName",
-        width: 60,
-        height: 60,
-      );
+  Image get image {
+    var basePath = "assets/content_icons";
+    switch (section) {
+      case TabSection.tool:
+        basePath = "assets/tool_icons";
+        break;
+      case TabSection.project:
+        basePath = "assets/project_icons";
+        break;
+      default:
+        break;
+    }
+    return Image.asset(
+      "$basePath/$imageName",
+      width: 60,
+      height: 60,
+    );
+  }
 
   final String imageName;
+  final TabSection section;
 }
