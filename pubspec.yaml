@@ -38,8 +38,8 @@ flutter:
     - assets/
     - assets/contents/
     - assets/contents/database/
-    - assets/contents/tools/
-    - assets/contents/termux/
+    - assets/contents/tool/
+    - assets/contents/cli/
     - assets/contents/general/
     - assets/contents/c#/
     - assets/contents/llvm/
