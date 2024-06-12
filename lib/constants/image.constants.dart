@@ -1,22 +1,24 @@
 import 'package:flutter/widgets.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:path/path.dart' as path;
 import 'package:sengthaite_blog/constants/enum.constants.dart';
 
 enum AssetIcons {
-  logo("logo.png"),
-  android("android.png"),
-  angular("angular.png"),
-  csharp("c#.png"),
-  database("database.png"),
-  general("general.png"),
+  logo("logo.svg"),
+  android("android.svg"),
+  angular("angular.svg"),
+  csharp("c#.svg"),
+  database("database.svg"),
+  general("general.svg"),
   ios("ios.png"),
   kotlin("kotlin.png"),
   llvm("llvm.png"),
-  maths("maths.png"),
-  os("os.png"),
-  reverseEngineer("reverse_engineer.png"),
+  maths("maths.svg"),
+  os("os.svg"),
+  reverseEngineer("reverse_engineer.svg"),
   swift("swift.png"),
-  termux("termux.png"),
-  tools("tools.png"),
+  cli("cli.svg"),
+  tools("tool.svg"),
   textEditor("text_editor.png", section: TabSection.tool);
 
   const AssetIcons(
@@ -26,45 +28,46 @@ enum AssetIcons {
   });
 
   factory AssetIcons.fromImageName(String name) {
-    switch (name.toLowerCase()) {
-      case "logo.png":
+    String imageName = path.basenameWithoutExtension(name);
+    switch (imageName.toLowerCase()) {
+      case "logo":
         return AssetIcons.logo;
-      case "android.png":
+      case "android":
         return AssetIcons.android;
-      case "angular.png":
+      case "angular":
         return AssetIcons.angular;
-      case "c#.png":
+      case "c#":
         return AssetIcons.csharp;
-      case "database.png":
+      case "database":
         return AssetIcons.database;
-      case "general.png":
+      case "general":
         return AssetIcons.general;
-      case "ios.png":
+      case "ios":
         return AssetIcons.ios;
-      case "kotlin.png":
+      case "kotlin":
         return AssetIcons.kotlin;
-      case "llvm.png":
+      case "llvm":
         return AssetIcons.llvm;
-      case "maths.png":
+      case "maths":
         return AssetIcons.maths;
-      case "os.png":
+      case "os":
         return AssetIcons.os;
-      case "reverse_engineer.png":
+      case "reverse_engineer":
         return AssetIcons.reverseEngineer;
-      case "swift.png":
+      case "swift":
         return AssetIcons.swift;
-      case "termux.png":
-        return AssetIcons.termux;
-      case "tools.png":
+      case "cli":
+        return AssetIcons.cli;
+      case "tool":
         return AssetIcons.tools;
-      case "text_editor.png":
+      case "text_editor":
         return AssetIcons.textEditor;
       default:
         return AssetIcons.logo;
     }
   }
 
-  Image get image {
+  Widget get image {
     var basePath = "assets/content_icons";
     switch (section) {
       case TabSection.tool:
@@ -75,6 +78,13 @@ enum AssetIcons {
         break;
       default:
         break;
+    }
+    if (path.extension(imageName) == '.svg') {
+      return SvgPicture.asset(
+        "$basePath/$imageName",
+        width: 60,
+        height: 60,
+      );
     }
     return Image.asset(
       "$basePath/$imageName",

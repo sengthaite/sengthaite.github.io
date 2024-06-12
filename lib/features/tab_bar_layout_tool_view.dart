@@ -21,6 +21,8 @@ class TabBarLayoutToolView extends TabBarLayoutView {
         QuillToolbar.simple(
           configurations: QuillSimpleToolbarConfigurations(
             controller: controller,
+            toolbarIconAlignment: WrapAlignment.start,
+            toolbarIconCrossAlignment: WrapCrossAlignment.start,
             sharedConfigurations: const QuillSharedConfigurations(
               locale: Locale('en'),
             ),

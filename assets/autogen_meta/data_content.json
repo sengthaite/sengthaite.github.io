@@ -1,6 +1,6 @@
 {
     "author": "Te Sengthai",
-    "created_date": "2024-06-09T22:10:19.961966",
+    "created_date": "2024-06-12T22:44:29.320188",
     "data": [
         {
             "created_date": "2024-05-23T22:13:39.020294",
@@ -140,6 +140,25 @@
             "path": "assets/contents/c#"
         },
         {
+            "created_date": "2024-06-12T22:44:17.294156",
+            "files": [
+                {
+                    "access_date": "2024-05-24T00:32:16.585745",
+                    "change_date": "2024-05-23T23:11:27.871433",
+                    "exerpt": "Guide to ssh to termux android with assessible USB connection",
+                    "full_path": "assets/contents/cli/ssh-to-termux-via-usb.txt",
+                    "index": 0,
+                    "modified_date": "2024-05-23T23:11:27.871433",
+                    "name": "ssh-to-termux-via-usb.txt",
+                    "title": "SSH to Termux Android via USB Guide"
+                }
+            ],
+            "icon": "cli.png",
+            "index": 3,
+            "name": "cli",
+            "path": "assets/contents/cli"
+        },
+        {
             "created_date": "2024-05-23T22:14:33.004415",
             "files": [
                 {
@@ -164,7 +183,7 @@
                 }
             ],
             "icon": "database.png",
-            "index": 3,
+            "index": 4,
             "name": "database",
             "path": "assets/contents/database"
         },
@@ -433,7 +452,7 @@
                 }
             ],
             "icon": "general.png",
-            "index": 4,
+            "index": 5,
             "name": "general",
             "path": "assets/contents/general"
         },
@@ -482,7 +501,7 @@
                 }
             ],
             "icon": "ios.png",
-            "index": 5,
+            "index": 6,
             "name": "ios",
             "path": "assets/contents/ios"
         },
@@ -490,7 +509,7 @@
             "created_date": "2024-05-18T15:07:11.392797",
             "files": [],
             "icon": "kotlin.png",
-            "index": 6,
+            "index": 7,
             "name": "kotlin",
             "path": "assets/contents/kotlin"
         },
@@ -509,7 +528,7 @@
                 }
             ],
             "icon": "llvm.png",
-            "index": 7,
+            "index": 8,
             "name": "llvm",
             "path": "assets/contents/llvm"
         },
@@ -517,7 +536,7 @@
             "created_date": "2024-05-18T15:07:11.393021",
             "files": [],
             "icon": "maths.png",
-            "index": 8,
+            "index": 9,
             "name": "maths",
             "path": "assets/contents/maths"
         },
@@ -536,7 +555,7 @@
                 }
             ],
             "icon": "os.png",
-            "index": 9,
+            "index": 10,
             "name": "os",
             "path": "assets/contents/os"
         },
@@ -555,7 +574,7 @@
                 }
             ],
             "icon": "reverse_engineer.png",
-            "index": 10,
+            "index": 11,
             "name": "reverse_engineer",
             "path": "assets/contents/reverse_engineer"
         },
@@ -614,47 +633,28 @@
                 }
             ],
             "icon": "swift.png",
-            "index": 11,
+            "index": 12,
             "name": "swift",
             "path": "assets/contents/swift"
         },
         {
-            "created_date": "2024-05-23T22:16:04.326973",
-            "files": [
-                {
-                    "access_date": "2024-05-24T00:32:16.585745",
-                    "change_date": "2024-05-23T23:11:27.871433",
-                    "exerpt": "Guide to ssh to termux android with assessible USB connection",
-                    "full_path": "assets/contents/termux/ssh-to-termux-via-usb.txt",
-                    "index": 0,
-                    "modified_date": "2024-05-23T23:11:27.871433",
-                    "name": "ssh-to-termux-via-usb.txt",
-                    "title": "SSH to Termux Android via USB Guide"
-                }
-            ],
-            "icon": "termux.png",
-            "index": 12,
-            "name": "termux",
-            "path": "assets/contents/termux"
-        },
-        {
-            "created_date": "2024-05-23T22:16:13.522821",
+            "created_date": "2024-06-12T22:44:23.736818",
             "files": [
                 {
                     "access_date": "2024-05-24T00:32:16.585814",
                     "change_date": "2024-05-23T23:11:48.815864",
                     "exerpt": "Tools for advanced developers",
-                    "full_path": "assets/contents/tools/developer-cli-tools.txt",
+                    "full_path": "assets/contents/tool/developer-cli-tools.txt",
                     "index": 0,
                     "modified_date": "2024-05-23T23:11:48.815864",
                     "name": "developer-cli-tools.txt",
                     "title": "Developer CLI Tools"
                 }
             ],
-            "icon": "tools.png",
+            "icon": "tool.png",
             "index": 13,
-            "name": "tools",
-            "path": "assets/contents/tools"
+            "name": "tool",
+            "path": "assets/contents/tool"
         }
     ],
     "type": "dashboard",

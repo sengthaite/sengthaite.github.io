@@ -7,7 +7,7 @@ class CategoryItemIcon extends StatelessWidget {
     required this.title,
   });
 
-  final Image image;
+  final Widget image;
   final String title;
 
   @override
