@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:sengthaite_blog/constants/app.constants.dart';
 import 'package:sengthaite_blog/constants/image.constants.dart';
 import 'package:sengthaite_blog/constants/style.constants.dart';
@@ -23,6 +24,8 @@ class MainView extends StatefulWidget {
 class _StateMainView extends State<MainView> {
   List<Widget> widgets = [];
 
+  bool hideAppBar = false;
+
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
@@ -43,40 +46,44 @@ class _StateMainView extends State<MainView> {
                 ? const EdgeInsets.symmetric(vertical: 12, horizontal: 24)
                 : const EdgeInsets.all(8),
             child: Scaffold(
-              appBar: AppBar(
-                title: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    AssetIcons.logo.image,
-                    const SizedBox(
-                      width: 20,
+              appBar: hideAppBar
+                  ? null
+                  : AppBar(
+                      title: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          AssetIcons.logo.image,
+                          const SizedBox(
+                            width: 20,
+                          ),
+                          const Text(
+                            appTitle,
+                            style: pageTitleTextStyle,
+                          )
+                        ],
+                      ),
+                      bottom: TabBar(
+                        isScrollable: false,
+                        physics: const NeverScrollableScrollPhysics(),
+                        overlayColor:
+                            WidgetStateProperty.all(Colors.transparent),
+                        padding: EdgeInsets.symmetric(
+                          horizontal: screenSize.width > 1100
+                              ? screenSize.width * 0.35
+                              : 20,
+                        ),
+                        indicatorSize: TabBarIndicatorSize.tab,
+                        labelStyle: tabBarSelectedTitleStyle,
+                        indicatorColor: Colors.blueAccent,
+                        unselectedLabelStyle: tabBarUnselectedTitleStyle,
+                        dividerColor: Colors.transparent,
+                        tabs: const [
+                          Tab(text: tabTitleArticle),
+                          Tab(text: tabTitleTool),
+                          Tab(text: tabTitleProject)
+                        ],
+                      ),
                     ),
-                    const Text(
-                      appTitle,
-                      style: pageTitleTextStyle,
-                    )
-                  ],
-                ),
-                bottom: TabBar(
-                  isScrollable: false,
-                  physics: const NeverScrollableScrollPhysics(),
-                  overlayColor: WidgetStateProperty.all(Colors.transparent),
-                  padding: EdgeInsets.symmetric(
-                    horizontal:
-                        screenSize.width > 1100 ? screenSize.width * 0.35 : 20,
-                  ),
-                  indicatorSize: TabBarIndicatorSize.tab,
-                  labelStyle: tabBarSelectedTitleStyle,
-                  indicatorColor: Colors.blueAccent,
-                  unselectedLabelStyle: tabBarUnselectedTitleStyle,
-                  dividerColor: Colors.transparent,
-                  tabs: const [
-                    Tab(text: tabTitleArticle),
-                    Tab(text: tabTitleTool),
-                    Tab(text: tabTitleProject)
-                  ],
-                ),
-              ),
               body: const TabBarView(
                 physics: NeverScrollableScrollPhysics(),
                 children: [
@@ -84,6 +91,21 @@ class _StateMainView extends State<MainView> {
                   TabBarLayoutToolView(),
                   TabBarLayoutProjectView(),
                 ],
+              ),
+              floatingActionButton: FloatingActionButton.small(
+                backgroundColor: Colors.blue,
+                foregroundColor: Colors.blue,
+                hoverColor: Colors.lightBlue,
+                elevation: 1,
+                onPressed: () => {
+                  setState(() {
+                    hideAppBar = !hideAppBar;
+                  })
+                },
+                child: Icon(
+                  hideAppBar ? MdiIcons.arrowExpand : MdiIcons.arrowExpandAll,
+                  color: Colors.white,
+                ),
               ),
             ),
           ),
