@@ -89,7 +89,7 @@ dashboardData["data"] = list(
             "name": res.get("name"),
             "path": res.get("path"),
             "created_date": res.get("change_date"),
-            "icon": res.get("name") + ".png",
+            "icon": res.get("name") + ".svg",
             "files": contentDirMarkdown(res.get("path", "")),
         },
         contentResult,

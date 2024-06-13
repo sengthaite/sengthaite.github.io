@@ -37,6 +37,7 @@ flutter:
   assets:
     - assets/
     - assets/contents/
+    - assets/contents/biography/
     - assets/contents/database/
     - assets/contents/tool/
     - assets/contents/cli/

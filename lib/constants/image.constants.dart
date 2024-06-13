@@ -19,6 +19,7 @@ enum AssetIcons {
   swift("swift.png"),
   cli("cli.svg"),
   tools("tool.svg"),
+  biography("biography.svg"),
   textEditor("text_editor.png", section: TabSection.tool);
 
   const AssetIcons(
@@ -60,6 +61,8 @@ enum AssetIcons {
         return AssetIcons.cli;
       case "tool":
         return AssetIcons.tools;
+      case "biography":
+        return AssetIcons.biography;
       case "text_editor":
         return AssetIcons.textEditor;
       default:
