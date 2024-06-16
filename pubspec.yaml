@@ -41,6 +41,7 @@ flutter:
     - assets/contents/database/
     - assets/contents/tool/
     - assets/contents/cli/
+    - assets/contents/cambodia/
     - assets/contents/general/
     - assets/contents/c#/
     - assets/contents/llvm/

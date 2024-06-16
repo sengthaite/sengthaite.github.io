@@ -1,11 +1,11 @@
 {
-    "name": "sengthaite_blog",
-    "short_name": "sengthaite_blog",
+    "name": "Sengthaite Blog",
+    "short_name": "ste_blog",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "Learning new things",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

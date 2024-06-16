@@ -7,16 +7,17 @@ enum AssetIcons {
   logo("logo.svg"),
   android("android.svg"),
   angular("angular.svg"),
+  cambodia("cambodia.svg"),
   csharp("c#.svg"),
   database("database.svg"),
   general("general.svg"),
-  ios("ios.png"),
-  kotlin("kotlin.png"),
-  llvm("llvm.png"),
+  ios("ios.svg"),
+  kotlin("kotlin.svg"),
+  llvm("llvm.svg"),
   maths("maths.svg"),
   os("os.svg"),
   reverseEngineer("reverse_engineer.svg"),
-  swift("swift.png"),
+  swift("swift.svg"),
   cli("cli.svg"),
   tools("tool.svg"),
   biography("biography.svg"),
@@ -37,6 +38,8 @@ enum AssetIcons {
         return AssetIcons.android;
       case "angular":
         return AssetIcons.angular;
+      case "cambodia":
+        return AssetIcons.cambodia;
       case "c#":
         return AssetIcons.csharp;
       case "database":
