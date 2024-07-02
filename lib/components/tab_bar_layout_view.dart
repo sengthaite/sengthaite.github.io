@@ -102,7 +102,10 @@ class TabBarLayoutViewState extends State<TabBarLayoutView> {
           ),
           layoutWidget(
             child: navigationTitleItems.isNotEmpty
-                ? navigationTitleItems.last.widget
+                ? Stack(
+                    children:
+                        navigationTitleItems.map((e) => e.widget).toList(),
+                  )
                 : SingleChildScrollView(
                     child: categoriesWidget,
                   ),

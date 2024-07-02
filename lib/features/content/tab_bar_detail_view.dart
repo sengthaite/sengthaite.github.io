@@ -23,26 +23,29 @@ class TabBarDetailView extends StatelessWidget {
       builder: (context, orientation) => Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Row(
-            children: [
-              IconButton(
-                onPressed: onBackPressed,
-                icon: Icon(MdiIcons.arrowLeft),
-              ),
-              const SizedBox(
-                width: 20,
-              ),
-              Expanded(
-                child: Text(
-                  softWrap: true,
-                  title,
-                  style: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w500,
+          Container(
+            color: const Color.fromRGBO(252, 252, 252, 1),
+            child: Row(
+              children: [
+                IconButton(
+                  onPressed: onBackPressed,
+                  icon: Icon(MdiIcons.arrowLeft),
+                ),
+                const SizedBox(
+                  width: 20,
+                ),
+                Expanded(
+                  child: Text(
+                    softWrap: true,
+                    title,
+                    style: const TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
           if (widget != null) widget!,
           if (items != null)
