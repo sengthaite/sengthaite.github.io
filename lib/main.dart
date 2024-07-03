@@ -3,6 +3,7 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 import 'package:sengthaite_blog/constants/app.constants.dart';
 import 'package:sengthaite_blog/constants/image.constants.dart';
 import 'package:sengthaite_blog/constants/style.constants.dart';
+import 'package:sengthaite_blog/constants/theme.dart';
 import 'package:sengthaite_blog/features/tab_bar_layout_content_view.dart';
 import 'package:sengthaite_blog/features/tab_bar_layout_project_view.dart';
 import 'package:sengthaite_blog/features/tab_bar_layout_tool_view.dart';
@@ -22,9 +23,12 @@ class MainView extends StatefulWidget {
 }
 
 class _StateMainView extends State<MainView> {
-  List<Widget> widgets = [];
-
   bool hideAppBar = false;
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +40,7 @@ class _StateMainView extends State<MainView> {
         useMaterial3: true,
         appBarTheme: const AppBarTheme(backgroundColor: Colors.transparent),
         primaryColor: Colors.white,
+        colorScheme: MaterialTheme.lightScheme(),
       ),
       home: OrientationBuilder(
         builder: (context, orientation) => DefaultTabController(
@@ -74,11 +79,13 @@ class _StateMainView extends State<MainView> {
                         ),
                         indicatorSize: TabBarIndicatorSize.tab,
                         labelStyle: tabBarSelectedTitleStyle,
-                        indicatorColor: Colors.blueAccent,
+                        indicatorColor: colorBlue,
                         unselectedLabelStyle: tabBarUnselectedTitleStyle,
                         dividerColor: Colors.transparent,
                         tabs: const [
-                          Tab(text: tabTitleArticle),
+                          Tab(
+                            text: tabTitleArticle,
+                          ),
                           Tab(text: tabTitleTool),
                           Tab(text: tabTitleProject)
                         ],
@@ -93,8 +100,8 @@ class _StateMainView extends State<MainView> {
                 ],
               ),
               floatingActionButton: FloatingActionButton.small(
-                backgroundColor: Colors.blue,
-                foregroundColor: Colors.blue,
+                backgroundColor: colorBlue,
+                foregroundColor: colorBlue,
                 hoverColor: Colors.lightBlue,
                 elevation: 1,
                 onPressed: () => {

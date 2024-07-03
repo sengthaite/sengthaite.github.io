@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:markdown/markdown.dart' as md;
+import 'package:sengthaite_blog/constants/style.constants.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class MarkdownView extends StatelessWidget {
@@ -35,11 +36,11 @@ class MarkdownView extends StatelessWidget {
         textScaler: TextScaler.linear(textScaleFactor),
         p: textTheme.bodyLarge!.copyWith(
           fontSize: 16,
-          color: colors.onSurface.withOpacity(0.72),
+          color: colors.onSurface,
         ),
-        a: TextStyle(
-          decoration: TextDecoration.underline,
-          color: colors.onSurface.withOpacity(0.72),
+        a: const TextStyle(
+          // decoration: TextDecoration.underline,
+          color: colorBlue,
         ),
         h1: textTheme.displaySmall!.copyWith(
           fontSize: 25,
@@ -76,8 +77,8 @@ class MarkdownView extends StatelessWidget {
           color: colors.onSurfaceVariant,
         ),
         blockquoteDecoration: BoxDecoration(
-          color: colors.surfaceContainerHighest,
-          borderRadius: BorderRadius.circular(4),
+          color: colors.surfaceContainer,
+          borderRadius: BorderRadius.circular(2),
         ),
         code: const TextStyle(fontFamily: 'monospace'),
         tableHead: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
