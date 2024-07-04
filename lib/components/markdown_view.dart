@@ -39,8 +39,9 @@ class MarkdownView extends StatelessWidget {
           color: colors.onSurface,
         ),
         a: const TextStyle(
-          // decoration: TextDecoration.underline,
-          color: colorBlue,
+          color: colorLink,
+          decoration: TextDecoration.underline,
+          decorationColor: colorLink,
         ),
         h1: textTheme.displaySmall!.copyWith(
           fontSize: 25,
@@ -69,6 +70,10 @@ class MarkdownView extends StatelessWidget {
         listBullet: textTheme.bodyLarge!.copyWith(
           color: colors.onSurface,
         ),
+        code: textTheme.labelMedium!.copyWith(
+          fontSize: 16,
+          color: colors.onSurface,
+        ),
         em: const TextStyle(fontStyle: FontStyle.italic),
         strong: const TextStyle(fontWeight: FontWeight.bold),
         blockquote: TextStyle(
@@ -80,9 +85,14 @@ class MarkdownView extends StatelessWidget {
           color: colors.surfaceContainer,
           borderRadius: BorderRadius.circular(2),
         ),
-        code: const TextStyle(fontFamily: 'monospace'),
-        tableHead: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-        tableBody: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+        tableHead: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+        tableBody: const TextStyle(fontSize: 16, fontWeight: FontWeight.normal),
+        tableColumnWidth: const IntrinsicColumnWidth(),
+        tableHeadAlign: TextAlign.start,
+        tableBorder: TableBorder.all(
+            borderRadius: BorderRadius.circular(8),
+            color: Colors.grey,
+            width: 0.2),
         blockSpacing: 8,
         listIndent: 32,
         blockquotePadding: const EdgeInsets.all(8),
@@ -95,7 +105,7 @@ class MarkdownView extends StatelessWidget {
         codeblockPadding: const EdgeInsets.all(8),
         // codeblockDecoration: BoxDecoration(
         //   borderRadius: BorderRadius.circular(4),
-        //   color: colors.surfaceVariant,
+        //   color: colors.surfaceContainerHighest,
         // ),
         horizontalRuleDecoration: BoxDecoration(
           border: Border(

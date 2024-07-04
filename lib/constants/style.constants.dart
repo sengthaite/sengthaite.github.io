@@ -6,6 +6,7 @@ const colorBlue = Colors.blue;
 const colorContentBackground = Color(0xFFFCFCFC);
 const colorContentBorder = Color(0x14000000);
 const colorText = Color(0x99000000);
+const colorLink = Color(0xff0000ff);
 
 const tabBarSelectedTitleStyle =
     TextStyle(fontWeight: FontWeight.bold, color: colorBlue);

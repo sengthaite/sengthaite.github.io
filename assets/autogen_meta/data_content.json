@@ -1,6 +1,6 @@
 {
     "author": "Te Sengthai",
-    "created_date": "2024-06-16T23:58:12.242922",
+    "created_date": "2024-07-04T22:50:21.825911",
     "data": [
         {
             "created_date": "2024-05-23T22:13:39.020294",
@@ -162,12 +162,12 @@
             "created_date": "2024-06-16T23:35:24.277991",
             "files": [
                 {
-                    "access_date": "2024-06-16T23:51:24.436683",
-                    "change_date": "2024-06-16T23:51:22.982247",
+                    "access_date": "2024-06-18T14:56:19.598400",
+                    "change_date": "2024-06-17T00:02:55.566007",
                     "exerpt": "កម្ពុជាមាន២៤ខេត្តនិងរាជធានីមួយ",
                     "full_path": "assets/contents/cambodia/name_of_provinces_cambodia.txt",
                     "index": 0,
-                    "modified_date": "2024-06-16T23:51:22.982247",
+                    "modified_date": "2024-06-17T00:02:55.566007",
                     "name": "name_of_provinces_cambodia.txt",
                     "title": "ឈ្មោះនៃខេត្តទាំងអស់របស់ប្រទេសកម្ពុជា"
                 }
@@ -329,12 +329,12 @@
                     "title": "Common regular expressions"
                 },
                 {
-                    "access_date": "2024-05-24T00:32:16.583592",
-                    "change_date": "2024-05-23T23:29:59.740502",
+                    "access_date": "2024-07-04T22:47:09.654547",
+                    "change_date": "2024-07-04T22:47:08.563768",
                     "exerpt": "ផ្លែទុរេន គឺជាផ្លែឈឺហូបផ្លែមានជាច្រើនប្រភេទចំនួនប្រហែល៣០ប្រភេទដែលក្នុងនោះយ៉ាងតិច៩ប្រភេទមានផ្លែដែលអាចទទួលទានបាន",
                     "full_path": "assets/contents/general/durian.txt",
                     "index": 10,
-                    "modified_date": "2024-05-23T23:26:26.828808",
+                    "modified_date": "2024-07-04T22:47:08.563768",
                     "name": "durian.txt",
                     "title": "ទុរេន"
                 },
@@ -429,12 +429,12 @@
                     "title": "Restore a file's content in Mac OS"
                 },
                 {
-                    "access_date": "2024-05-24T00:32:16.584168",
-                    "change_date": "2024-05-23T23:04:16.530320",
+                    "access_date": "2024-07-04T22:50:06.608642",
+                    "change_date": "2024-07-04T22:50:06.101170",
                     "exerpt": "SOLID is a mnemonic acronym for 5 design principles intended to make OOP designs more understandable, flexible, and maintainable",
                     "full_path": "assets/contents/general/solid_principles.txt",
                     "index": 20,
-                    "modified_date": "2024-05-23T23:04:16.530320",
+                    "modified_date": "2024-07-04T22:50:06.101170",
                     "name": "solid_principles.txt",
                     "title": "SOLID Principle"
                 },
@@ -582,12 +582,12 @@
             "created_date": "2024-05-23T22:15:18.679986",
             "files": [
                 {
-                    "access_date": "2024-06-08T22:22:55.914875",
-                    "change_date": "2024-06-08T21:30:31.529841",
+                    "access_date": "2024-07-04T22:32:43.077015",
+                    "change_date": "2024-07-04T22:32:42.593304",
                     "exerpt": "The minix3",
                     "full_path": "assets/contents/os/minix-kernel-roadmap.txt",
                     "index": 0,
-                    "modified_date": "2024-06-08T21:30:31.529841",
+                    "modified_date": "2024-07-04T22:32:42.593304",
                     "name": "minix-kernel-roadmap.txt",
                     "title": "OS Developer Roadmap"
                 }
