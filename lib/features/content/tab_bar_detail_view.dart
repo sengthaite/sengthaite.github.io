@@ -24,12 +24,16 @@ class TabBarDetailView extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Container(
-            color: const Color.fromRGBO(252, 252, 252, 1),
+            color: Theme.of(context).cardColor,
             child: Row(
               children: [
                 IconButton(
+                  hoverColor: Theme.of(context).hoverColor,
                   onPressed: onBackPressed,
-                  icon: Icon(MdiIcons.arrowLeft),
+                  icon: Icon(
+                    MdiIcons.arrowLeft,
+                    color: Theme.of(context).primaryColorDark,
+                  ),
                 ),
                 const SizedBox(
                   width: 20,
@@ -47,7 +51,11 @@ class TabBarDetailView extends StatelessWidget {
               ],
             ),
           ),
-          if (widget != null) widget!,
+          if (widget != null)
+            Expanded(
+              child:
+                  Container(color: Theme.of(context).cardColor, child: widget!),
+            ),
           if (items != null)
             Expanded(
               child: SingleChildScrollView(

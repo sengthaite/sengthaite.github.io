@@ -18,15 +18,17 @@ class CategoryItemIcon extends StatelessWidget {
         Container(
           width: 64,
           decoration: BoxDecoration(
+            color: Theme.of(context).shadowColor.withAlpha(10),
             border: Border.all(
-              color: Colors.black.withAlpha(50),
-              width: 0.1,
+              color: Theme.of(context).hintColor.withAlpha(10),
+              width: 0.5,
             ),
-            borderRadius: const BorderRadius.all(
-              Radius.circular(8),
-            ),
+            borderRadius: const BorderRadius.all(Radius.circular(8)),
           ),
-          child: image,
+          child: ClipRRect(
+            borderRadius: const BorderRadius.all(Radius.circular(8)),
+            child: image,
+          ),
         ),
         const SizedBox(
           height: 4,

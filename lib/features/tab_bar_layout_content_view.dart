@@ -54,16 +54,11 @@ class TabBarLayoutContentView extends TabBarLayoutView {
                 index: data.index ?? 0,
                 widget: TabBarDetailView(
                   title: title,
-                  widget: Expanded(
-                    child: Container(
-                      color: const Color.fromRGBO(252, 252, 252, 1),
-                      child: SingleChildScrollView(
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: MarkdownView(
-                            markdown: document?.body ?? '',
-                          ),
-                        ),
+                  widget: SingleChildScrollView(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: MarkdownView(
+                        markdown: document?.body ?? '',
                       ),
                     ),
                   ),

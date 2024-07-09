@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:sengthaite_blog/components/tab_bar_layout_navigation_view.dart';
 import 'package:sengthaite_blog/components/tab_bar_navigation_title.dart';
 import 'package:sengthaite_blog/constants/enum.constants.dart';
-import 'package:sengthaite_blog/constants/style.constants.dart';
 import 'package:sengthaite_blog/features/navigation/navigation.dart';
 
 class TabBarLayoutViewItem {
@@ -52,6 +51,7 @@ class TabBarLayoutViewState extends State<TabBarLayoutView> {
   Widget get categoriesWidget => Wrap(
         spacing: 10,
         runSpacing: 10,
+        alignment: WrapAlignment.spaceEvenly,
         children: widget.categories.map((e) {
           return categoryItem(item: e.itemTitle, itemIcon: e.itemWidget);
         }).toList(),
@@ -62,11 +62,10 @@ class TabBarLayoutViewState extends State<TabBarLayoutView> {
       child: Container(
         padding: padding,
         decoration: BoxDecoration(
-          color: colorContentBackground,
           borderRadius: const BorderRadius.all(Radius.circular(12)),
           border: Border.all(
-            color: colorContentBorder,
-            width: 0.1,
+            color: Theme.of(context).highlightColor,
+            width: 1,
             style: BorderStyle.solid,
           ),
         ),
@@ -101,18 +100,23 @@ class TabBarLayoutViewState extends State<TabBarLayoutView> {
             defaultTextClick: () => clearAllItems(),
             navigationTitleItems: navigationTitleItems,
           ),
-          layoutWidget(
-            child: navigationTitleItems.isNotEmpty
-                ? Stack(
-                    children:
-                        navigationTitleItems.map((e) => e.widget).toList(),
-                  )
-                : SingleChildScrollView(
-                    child: categoriesWidget,
-                  ),
-            padding: orientation == Orientation.landscape
-                ? const EdgeInsets.symmetric(vertical: 16, horizontal: 20)
-                : const EdgeInsets.all(8),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: layoutWidget(
+                child: navigationTitleItems.isNotEmpty
+                    ? Stack(
+                        children:
+                            navigationTitleItems.map((e) => e.widget).toList(),
+                      )
+                    : SingleChildScrollView(
+                        child: categoriesWidget,
+                      ),
+                padding: orientation == Orientation.landscape
+                    ? const EdgeInsets.symmetric(vertical: 16, horizontal: 20)
+                    : const EdgeInsets.all(8),
+              ),
+            ),
           ),
           const Padding(
             padding: EdgeInsets.symmetric(
