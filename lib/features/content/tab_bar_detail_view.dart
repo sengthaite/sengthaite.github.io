@@ -9,12 +9,14 @@ class TabBarDetailView extends StatelessWidget {
     required this.title,
     this.items,
     this.widget,
+    this.widgetBuilder,
     this.onBackPressed,
   });
 
   final String title;
   final List<CategoryTabItemModel>? items;
   final Widget? widget;
+  final WidgetBuilder? widgetBuilder;
   final void Function()? onBackPressed;
 
   @override
@@ -54,7 +56,13 @@ class TabBarDetailView extends StatelessWidget {
           if (widget != null)
             Expanded(
               child:
-                  Container(color: Theme.of(context).cardColor, child: widget!),
+                  Container(color: Theme.of(context).cardColor, child: widget),
+            )
+          else if (widgetBuilder != null)
+            Expanded(
+              child: Builder(
+                builder: widgetBuilder!,
+              ),
             ),
           if (items != null)
             Expanded(

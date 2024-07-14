@@ -38,9 +38,9 @@ class MarkdownView extends StatelessWidget {
           color: colors.onSurface,
         ),
         a: TextStyle(
-          color: Theme.of(context).highlightColor,
+          color: Theme.of(context).primaryColorDark,
           decoration: TextDecoration.underline,
-          // decorationColor: colorLink,
+          decorationColor: Theme.of(context).primaryColorLight,
         ),
         h1: textTheme.displaySmall!.copyWith(
           fontSize: 25,

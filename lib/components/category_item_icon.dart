@@ -41,7 +41,7 @@ class CategoryItemIcon extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
               title,
               textAlign: TextAlign.center,
-              style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
+              style: const TextStyle(fontSize: 11, fontWeight: FontWeight.w400),
             ),
           ),
         )

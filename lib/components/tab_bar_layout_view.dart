@@ -100,23 +100,18 @@ class TabBarLayoutViewState extends State<TabBarLayoutView> {
             defaultTextClick: () => clearAllItems(),
             navigationTitleItems: navigationTitleItems,
           ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: layoutWidget(
-                child: navigationTitleItems.isNotEmpty
-                    ? Stack(
-                        children:
-                            navigationTitleItems.map((e) => e.widget).toList(),
-                      )
-                    : SingleChildScrollView(
-                        child: categoriesWidget,
-                      ),
-                padding: orientation == Orientation.landscape
-                    ? const EdgeInsets.symmetric(vertical: 16, horizontal: 20)
-                    : const EdgeInsets.all(8),
-              ),
-            ),
+          layoutWidget(
+            child: navigationTitleItems.isNotEmpty
+                ? Stack(
+                    children:
+                        navigationTitleItems.map((e) => e.widget).toList(),
+                  )
+                : SingleChildScrollView(
+                    child: categoriesWidget,
+                  ),
+            padding: orientation == Orientation.landscape
+                ? const EdgeInsets.symmetric(vertical: 16, horizontal: 20)
+                : const EdgeInsets.all(8),
           ),
           const Padding(
             padding: EdgeInsets.symmetric(
