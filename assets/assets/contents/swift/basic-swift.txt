@@ -17,18 +17,14 @@ exerpt: Swift contents
 - [Error Handling](#error-handling)
 - [Assertion and Precondition](#assertion-and-precondition)
 
-<br />
 
 Read Duration: **30mn**
 
-<br />
+## I. Comment
 
-<h2 id="comment">I. Comment</h2>
-
-> Why using comment? <br />
+> Why using comment? 
 > => It is used as a note or reminder. It is ignored by the Swift compiler.
 
-<br />
 
 ### Single Line Comment (// Single line comment)
 
@@ -39,7 +35,7 @@ func fibonacci()-> Double {
 }
 ```
 
-<br />
+
 
 ### Multi Line Comment (/* Multi-line comment */)
 
@@ -57,8 +53,6 @@ Steps:
 func makeFriedEggs() {
 }
 ```
-
-<br />
 
 ### Symbol Documentation (/// Documentation)
 
@@ -82,9 +76,7 @@ mutating public func eat(_ food: Food, quantity: Int) throws -> Int
 
 [Read More](https://developer.apple.com/documentation/xcode/writing-symbol-documentation-in-your-source-files)
 
-<br />
-
-<h2 id="literal">II. Literal</h2>
+## II. Literal
 
 > **Literal Value** is a value that appears directly in your source code.
 
@@ -102,9 +94,7 @@ let decimalInteger = 17
 let someNumber = 2_000_000.000_123 // same as 2000000.000123
 ```
 
-<br />
-
-<h2 id="basic-data-types">III. Basic Data Types</h2>
+## III. Basic Data Types
 
 - Int
 - Float
@@ -130,9 +120,7 @@ let someBool = 10 > 2
 
 > All of the basic data type is struct.
 
-<br />
-
-<h2 id="operator">IV. Operators</h2>
+## IV. Operators
 
 - Operator: a special symbol or phrase that you use to check, change, or combine values.
 - Some types of operator: **Assignment**, **Arithmetic**, **Comparison**, **Tinary**, **Nil-Coalesing**, **Logical**, **Range**
@@ -207,15 +195,13 @@ let names: [String] = ["John", "Marry", "Phillips", "Mark"]
 let someNames = names[..<2]
 ```
 
-<br />
-
-<h2 id="basic-data-structures">V. Basic Data Structures</h2>
+## V. Basic Data Structures
 
 - **Array**: store values of the same type in order
 - **Set**: store distinct values of the same type without defined ordering
 - **Dictionary**: store values with (key: value) pairs with keys of the same type and values of the same type and keys are unique.
 
-<h2 id="property">VI. Property</h2>
+## VI. Property
 
 - Property : associate values with a particular class, structure, or enumeration.
 - Stored Property : a constant or variable that’s stored as part of an instance of a particular class or structure
@@ -346,7 +332,7 @@ let someNames = names[..<2]
 
 ```
 
-<h2 id="closure">VII. Closure</h2>
+## VII. Closure
 
 > **Closure** : self-contained blocks of functionality that can be passed around and used in your code.
 
@@ -364,11 +350,11 @@ let someNames = names[..<2]
 
 > **Autoclosure** : a closure that's automatically created to wrap an expression that's being passed as an argument to a function.
 
-<h2 id="optional">VIII. Optional</h2>
+## VIII. Optional
 
 > **Optional Chaining** : a process for querying and calling properties, methods, and subscripts on an optional that might currently be nil.
 
-<h2 id="error-handling">IX. Error Handling</h2>
+## IX. Error Handling
 
 > **Error handling** : the process of responding to and recovering from error conditions in your program.
 
@@ -389,7 +375,7 @@ do {
 
 > **defer** : execute a set of statements just before code execution leaves the current block of code.
 
-<h2 id="assertion-and-precondition">X. Assertion and Precondition</h2>
+## X. Assertion and Precondition
 
 > **Assertions and preconditions** : checks that happen at runtime. You used them to make sure an essential condition is satisfied before executing any further code.
 
@@ -415,6 +401,6 @@ if age > 10 {
 
 ## Recap
 
-<br />
+
 
 ## Check understanding

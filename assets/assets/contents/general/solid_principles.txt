@@ -5,31 +5,30 @@ exerpt: SOLID is a mnemonic acronym for 5 design principles intended to make OOP
 
 > **SOLID** is a mnemonic acronym for 5 design principles intended to make OOP designs more understandable, flexible, and maintainable. (_Design Principles and Design Patterns_ of Robert C. Martin)
 
-> <pre>
+
 > S     : Single-responsibility principle
 > O     : Open-closed principle
 > L     : Liskov substitution principle
 > I     : Interface segregation principle
 > D     : Dependency inversion principle
-> </pre>
 
-**<u>Single Responsibility Priciple</u>**
+**Single Responsibility Priciple**
 
 > There should never be more than one reason for a class to change. In other words, every class should have only one responsibility.
 
-**<u>Open Closed Principles</u>**
+**Open Closed Principles**
 
 > Software entities should be open for _extension_, but closed for _modification_.
 
-**<u>Liskov Substitution Principle</u>**
+**Liskov Substitution Principle**
 
 > Functions that use pointers or references to base classes must be able to use objects of derived classes without knowing it.
 
-**<u>Interface Segregation Principle</u>**
+**Interface Segregation Principle**
 
 > Clients should not be forced to depend upon interfaces that they do not use.
 
-**<u>Dependency Inversion Principle</u>**
+**Dependency Inversion Principle**
 
 > Depend upon abstraction, not concretions.
 
