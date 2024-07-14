@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sengthaite_blog/constants/theme.dart';
 import 'package:sengthaite_blog/models/category_tab_item_model.dart';
 
 class CategoryTabItemView extends StatelessWidget {
@@ -15,11 +16,13 @@ class CategoryTabItemView extends StatelessWidget {
       constraints: const BoxConstraints(maxWidth: 450, minWidth: 450),
       child: Container(
         decoration: BoxDecoration(
-          color: Theme.of(context).dialogBackgroundColor,
+          color: MaterialTheme.colorScheme(context).surfaceContainer,
           borderRadius: const BorderRadius.all(Radius.circular(8)),
           boxShadow: [
             BoxShadow(
-              color: Theme.of(context).shadowColor.withAlpha(40),
+              color: MaterialTheme.colorScheme(context)
+                  .surfaceContainer
+                  .withAlpha(40),
               blurRadius: 2,
             )
           ],
@@ -50,6 +53,9 @@ class CategoryTabItemView extends StatelessWidget {
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     text: TextSpan(
+                      style: TextStyle(
+                        color: MaterialTheme.colorScheme(context).primary,
+                      ),
                       text: "${item.date} | ",
                       children: [
                         TextSpan(

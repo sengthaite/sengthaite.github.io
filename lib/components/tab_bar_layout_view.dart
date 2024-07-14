@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sengthaite_blog/components/tab_bar_layout_navigation_view.dart';
 import 'package:sengthaite_blog/components/tab_bar_navigation_title.dart';
 import 'package:sengthaite_blog/constants/enum.constants.dart';
+import 'package:sengthaite_blog/constants/theme.dart';
 import 'package:sengthaite_blog/features/navigation/navigation.dart';
 
 class TabBarLayoutViewItem {
@@ -57,19 +58,22 @@ class TabBarLayoutViewState extends State<TabBarLayoutView> {
         }).toList(),
       );
 
-  Expanded layoutWidget({required Widget child, required EdgeInsets padding}) {
+  Widget layoutWidget({required Widget child, required EdgeInsets padding}) {
     return Expanded(
-      child: Container(
-        padding: padding,
-        decoration: BoxDecoration(
-          borderRadius: const BorderRadius.all(Radius.circular(12)),
-          border: Border.all(
-            color: Theme.of(context).highlightColor,
-            width: 1,
-            style: BorderStyle.solid,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Container(
+          padding: padding,
+          decoration: BoxDecoration(
+            borderRadius: const BorderRadius.all(Radius.circular(12)),
+            border: Border.all(
+              color: MaterialTheme.colorScheme(context).surfaceContainer,
+              width: 1,
+              style: BorderStyle.solid,
+            ),
           ),
+          child: child,
         ),
-        child: child,
       ),
     );
   }

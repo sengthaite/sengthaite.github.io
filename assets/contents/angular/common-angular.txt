@@ -6,54 +6,53 @@ exerpt: Getting started with Angular
 ### Installation
 
 - Install [nodejs](https://nodejs.org/en/download/) with **npm** 
-    ```sh
-    node -v; npm -v # verify installation by checking version
-    ```
+
+```sh
+node -v; npm -v # verify installation by checking version
+```
 - Install **angular-cli**
+
 ```sh
 npm install -g @angular/cli
 ng v # verify angular-cli installation by checking version
 ```
 
-<br >
-
 ### Keywords
 
 - **npm** : node package manager
 
-<br >
-
 ### Useful Angular cli command
 
 1. New Project *new-project*
+
 ```sh
 ng new new-project
 ```
+
 2. Serve the application then open browser manually at [https://localhost:4200/](https://localhost:4200/)
+
 ```sh
 ng serve # or npm run start
 ```
+
 3. Serve the application then open browser automatically
+
 ```sh
 ng serve --open # or ng serve -o
 ```
+
 4. Run test
+
 ```sh
 ng test # or npm run test
 ```
-
-<br >
 
 ### Useful Resources
 
 1. [stackblitz](https://stackblitz.com/): help quickly testing or getting familiar with Angular
 2. [Change Prefix of Component](https://blogkashif.medium.com/change-prefix-of-component-in-angular-application-34c8d8a86dbf): when default prefix component is the subject to be changed
 
-<br >
-
 ### Getting Start with Angular
-
-<br >
 
 #### Component Lifecycles
 
@@ -80,8 +79,6 @@ ng test # or npm run test
 
 #### Built-in Angular Directives
 
-<br >
-
 ##### Attribute Directives
 
 + NgClass
@@ -95,6 +92,7 @@ ng test # or npm run test
 + NgSwitch
 
 **Example:**
+
 ```html
 <--! app.component.html -->
 

@@ -54,12 +54,10 @@ class TabBarLayoutContentView extends TabBarLayoutView {
                 index: data.index ?? 0,
                 widget: TabBarDetailView(
                   title: title,
-                  widget: SingleChildScrollView(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: MarkdownView(
-                        markdown: document?.body ?? '',
-                      ),
+                  widget: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: MarkdownView(
+                      markdown: document?.body ?? '',
                     ),
                   ),
                   onBackPressed: () =>

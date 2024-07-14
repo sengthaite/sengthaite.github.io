@@ -1,6 +1,6 @@
 {
     "author": "Te Sengthai",
-    "created_date": "2024-07-04T22:50:21.825911",
+    "created_date": "2024-07-14T15:55:37.000174",
     "data": [
         {
             "created_date": "2024-05-23T22:13:39.020294",
@@ -95,12 +95,12 @@
                     "title": "Some useful urls for Angular project"
                 },
                 {
-                    "access_date": "2024-05-24T00:32:16.582647",
-                    "change_date": "2024-05-23T22:43:21.213204",
+                    "access_date": "2024-07-14T15:02:02.337709",
+                    "change_date": "2024-07-14T15:02:00.890509",
                     "exerpt": "Getting started with Angular",
                     "full_path": "assets/contents/angular/common-angular.txt",
                     "index": 2,
-                    "modified_date": "2024-05-23T22:43:21.213204",
+                    "modified_date": "2024-07-14T15:02:00.890509",
                     "name": "common-angular.txt",
                     "title": "Common Angular"
                 }
@@ -329,7 +329,7 @@
                     "title": "Common regular expressions"
                 },
                 {
-                    "access_date": "2024-07-04T22:47:09.654547",
+                    "access_date": "2024-07-05T19:48:03.635011",
                     "change_date": "2024-07-04T22:47:08.563768",
                     "exerpt": "ផ្លែទុរេន គឺជាផ្លែឈឺហូបផ្លែមានជាច្រើនប្រភេទចំនួនប្រហែល៣០ប្រភេទដែលក្នុងនោះយ៉ាងតិច៩ប្រភេទមានផ្លែដែលអាចទទួលទានបាន",
                     "full_path": "assets/contents/general/durian.txt",
@@ -429,7 +429,7 @@
                     "title": "Restore a file's content in Mac OS"
                 },
                 {
-                    "access_date": "2024-07-04T22:50:06.608642",
+                    "access_date": "2024-07-05T19:48:03.650922",
                     "change_date": "2024-07-04T22:50:06.101170",
                     "exerpt": "SOLID is a mnemonic acronym for 5 design principles intended to make OOP designs more understandable, flexible, and maintainable",
                     "full_path": "assets/contents/general/solid_principles.txt",
@@ -582,7 +582,7 @@
             "created_date": "2024-05-23T22:15:18.679986",
             "files": [
                 {
-                    "access_date": "2024-07-04T22:32:43.077015",
+                    "access_date": "2024-07-05T19:48:02.493596",
                     "change_date": "2024-07-04T22:32:42.593304",
                     "exerpt": "The minix3",
                     "full_path": "assets/contents/os/minix-kernel-roadmap.txt",
@@ -620,12 +620,12 @@
             "created_date": "2024-05-23T22:15:58.302137",
             "files": [
                 {
-                    "access_date": "2024-05-24T00:32:16.585116",
-                    "change_date": "2024-05-23T23:08:04.895579",
+                    "access_date": "2024-07-14T15:28:18.138093",
+                    "change_date": "2024-07-14T15:28:16.887324",
                     "exerpt": "Swift contents",
                     "full_path": "assets/contents/swift/basic-swift.txt",
                     "index": 0,
-                    "modified_date": "2024-05-23T23:08:04.895579",
+                    "modified_date": "2024-07-14T15:28:16.887324",
                     "name": "basic-swift.txt",
                     "title": "Basic Swift Programming Language"
                 },

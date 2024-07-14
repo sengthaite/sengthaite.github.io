@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:sengthaite_blog/components/category_tab_item_view.dart';
+import 'package:sengthaite_blog/constants/theme.dart';
 import 'package:sengthaite_blog/models/category_tab_item_model.dart';
 
 class TabBarDetailView extends StatelessWidget {
@@ -21,20 +22,22 @@ class TabBarDetailView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return OrientationBuilder(
-      builder: (context, orientation) => Column(
+    return OrientationBuilder(builder: (context, orientation) {
+      var colorScheme = MaterialTheme.colorScheme(context);
+      return Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Container(
-            color: Theme.of(context).cardColor,
+            color: colorScheme.surface,
             child: Row(
               children: [
                 IconButton(
-                  hoverColor: Theme.of(context).hoverColor,
+                  color: colorScheme.onBackground,
+                  hoverColor: colorScheme.surfaceDim,
                   onPressed: onBackPressed,
                   icon: Icon(
                     MdiIcons.arrowLeft,
-                    color: Theme.of(context).primaryColorDark,
+                    color: colorScheme.primary,
                   ),
                 ),
                 const SizedBox(
@@ -87,7 +90,7 @@ class TabBarDetailView extends StatelessWidget {
               ),
             )
         ],
-      ),
-    );
+      );
+    });
   }
 }

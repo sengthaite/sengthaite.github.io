@@ -4,7 +4,6 @@ import 'package:sengthaite_blog/constants/app.constants.dart';
 import 'package:sengthaite_blog/constants/image.constants.dart';
 import 'package:sengthaite_blog/constants/style.constants.dart';
 import 'package:sengthaite_blog/constants/theme.dart';
-import 'package:sengthaite_blog/constants/util_theme.dart';
 import 'package:sengthaite_blog/features/tab_bar_layout_content_view.dart';
 import 'package:sengthaite_blog/features/tab_bar_layout_project_view.dart';
 import 'package:sengthaite_blog/features/tab_bar_layout_tool_view.dart';
@@ -34,9 +33,8 @@ class _StateMainView extends State<MainView> {
 
   @override
   Widget build(BuildContext context) {
-    TextTheme textTheme = createTextTheme(context, "Fira Code", "Fira Code");
     final screenSize = MediaQuery.of(context).size;
-    MaterialTheme theme = MaterialTheme(textTheme);
+    MaterialTheme theme = MaterialTheme();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: theme.light(),

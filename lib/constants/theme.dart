@@ -1,9 +1,16 @@
 import "package:flutter/material.dart";
+import "package:sengthaite_blog/constants/util_theme.dart";
 
 class MaterialTheme {
-  final TextTheme textTheme;
+  static TextTheme textTheme() {
+    return createTextTheme("Fira Code", "Fira Code");
+  }
 
-  const MaterialTheme(this.textTheme);
+  static bool isDark(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark;
+
+  static MaterialScheme colorScheme(BuildContext context) =>
+      isDark(context) ? darkScheme() : lightScheme();
 
   static MaterialScheme lightScheme() {
     return const MaterialScheme(
@@ -210,7 +217,7 @@ class MaterialTheme {
       onSurfaceVariant: Color(0xffd0c5b4),
       outline: Color(0xff999080),
       outlineVariant: Color(0xff4d4639),
-      shadow: Color(0xff000000),
+      shadow: Color(0xFFC4C4C4),
       scrim: Color(0xff000000),
       inverseSurface: Color(0xffebe1d4),
       inverseOnSurface: Color(0xff353027),
@@ -269,7 +276,7 @@ class MaterialTheme {
       onSurfaceVariant: Color(0xffd4c9b8),
       outline: Color(0xffaca291),
       outlineVariant: Color(0xff8b8273),
-      shadow: Color(0xff000000),
+      shadow: Color(0xFFC4C4C4),
       scrim: Color(0xff000000),
       inverseSurface: Color(0xffebe1d4),
       inverseOnSurface: Color(0xff2e2921),
@@ -328,7 +335,7 @@ class MaterialTheme {
       onSurfaceVariant: Color(0xfffffaf7),
       outline: Color(0xffd4c9b8),
       outlineVariant: Color(0xffd4c9b8),
-      shadow: Color(0xff000000),
+      shadow: Color(0xFFC4C4C4),
       scrim: Color(0xff000000),
       inverseSurface: Color(0xffebe1d4),
       inverseOnSurface: Color(0xff000000),
@@ -363,7 +370,7 @@ class MaterialTheme {
         useMaterial3: true,
         brightness: colorScheme.brightness,
         colorScheme: colorScheme,
-        textTheme: textTheme.apply(
+        textTheme: MaterialTheme.textTheme().apply(
           bodyColor: colorScheme.onSurface,
           displayColor: colorScheme.onSurface,
         ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sengthaite_blog/constants/theme.dart';
 
 class CategoryItemIcon extends StatelessWidget {
   const CategoryItemIcon({
@@ -18,9 +19,9 @@ class CategoryItemIcon extends StatelessWidget {
         Container(
           width: 64,
           decoration: BoxDecoration(
-            color: Theme.of(context).shadowColor.withAlpha(10),
+            color: MaterialTheme.colorScheme(context).surfaceContainer,
             border: Border.all(
-              color: Theme.of(context).hintColor.withAlpha(10),
+              color: MaterialTheme.colorScheme(context).outline,
               width: 0.5,
             ),
             borderRadius: const BorderRadius.all(Radius.circular(8)),

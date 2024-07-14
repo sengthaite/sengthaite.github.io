@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_markdown/flutter_markdown.dart';
-import 'package:markdown/markdown.dart' as md;
+import 'package:markdown_widget/config/all.dart';
+import 'package:markdown_widget/widget/blocks/all.dart';
+import 'package:markdown_widget/widget/markdown.dart';
+import 'package:sengthaite_blog/constants/theme.dart';
+import 'package:sengthaite_blog/shared/markdown_custom/custom_text_node.dart';
+import 'package:sengthaite_blog/shared/markdown_custom/latext.dart';
+import 'package:sengthaite_blog/shared/markdown_custom/video.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class MarkdownView extends StatelessWidget {
@@ -15,106 +20,25 @@ class MarkdownView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colors = Theme.of(context).colorScheme;
-    final textTheme = Theme.of(context).textTheme;
-    return MarkdownBody(
+    final config = MaterialTheme.isDark(context)
+        ? MarkdownConfig.darkConfig
+        : MarkdownConfig.defaultConfig;
+    return MarkdownWidget(
       data: markdown,
-      // selectable: true,
-      softLineBreak: true,
-      onTapLink: (text, link, _) {
-        final url = link ?? '/';
-        if (url.startsWith('http')) {
-          launchUrl(Uri.parse(url));
-        } else {}
-      },
-      extensionSet: md.ExtensionSet(
-        md.ExtensionSet.gitHubFlavored.blockSyntaxes,
-        [md.EmojiSyntax(), ...md.ExtensionSet.gitHubFlavored.inlineSyntaxes],
+      markdownGenerator: MarkdownGenerator(
+        generators: [latexGenerator, videoGeneratorWithTag],
+        inlineSyntaxList: [LatexSyntax()],
+        textGenerator: (node, config, visitor) =>
+            CustomTextNode(node.textContent, config, visitor),
       ),
-      styleSheet: MarkdownStyleSheet(
-        textScaler: TextScaler.linear(textScaleFactor),
-        p: textTheme.bodyLarge!.copyWith(
-          fontSize: 16,
-          color: colors.onSurface,
-        ),
-        a: TextStyle(
-          color: Theme.of(context).primaryColorDark,
-          decoration: TextDecoration.underline,
-          decorationColor: Theme.of(context).primaryColorLight,
-        ),
-        h1: textTheme.displaySmall!.copyWith(
-          fontSize: 25,
-          color: colors.onSurface,
-        ),
-        h2: textTheme.headlineLarge!.copyWith(
-          fontSize: 20,
-          color: colors.onSurface,
-        ),
-        h3: textTheme.headlineMedium!.copyWith(
-          fontSize: 18,
-          color: colors.onSurface,
-        ),
-        h4: textTheme.headlineSmall!.copyWith(
-          fontSize: 16,
-          color: colors.onSurface,
-        ),
-        h5: textTheme.titleLarge!.copyWith(
-          fontSize: 16,
-          color: colors.onSurface,
-        ),
-        h6: textTheme.titleMedium!.copyWith(
-          fontSize: 16,
-          color: colors.onSurface,
-        ),
-        listBullet: textTheme.bodyLarge!.copyWith(
-          color: colors.onSurface,
-        ),
-        code: textTheme.labelMedium!.copyWith(
-          fontSize: 16,
-          color: colors.onSurface,
-        ),
-        em: const TextStyle(fontStyle: FontStyle.italic),
-        strong: const TextStyle(fontWeight: FontWeight.bold),
-        blockquote: TextStyle(
-          fontStyle: FontStyle.italic,
-          fontWeight: FontWeight.w500,
-          color: colors.onSurfaceVariant,
-        ),
-        blockquoteDecoration: BoxDecoration(
-          color: colors.surfaceContainer,
-          borderRadius: BorderRadius.circular(2),
-        ),
-        tableHead: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-        tableBody: const TextStyle(fontSize: 16, fontWeight: FontWeight.normal),
-        tableColumnWidth: const IntrinsicColumnWidth(),
-        tableHeadAlign: TextAlign.start,
-        tableBorder: TableBorder.all(
-            borderRadius: BorderRadius.circular(8),
-            color: Colors.grey,
-            width: 0.2),
-        blockSpacing: 8,
-        listIndent: 32,
-        blockquotePadding: const EdgeInsets.all(8),
-        h1Padding: const EdgeInsets.symmetric(vertical: 8),
-        h2Padding: const EdgeInsets.symmetric(vertical: 8),
-        h3Padding: const EdgeInsets.symmetric(vertical: 8),
-        h4Padding: const EdgeInsets.symmetric(vertical: 8),
-        h5Padding: const EdgeInsets.symmetric(vertical: 8),
-        h6Padding: const EdgeInsets.symmetric(vertical: 8),
-        codeblockPadding: const EdgeInsets.all(8),
-        // codeblockDecoration: BoxDecoration(
-        //   borderRadius: BorderRadius.circular(4),
-        //   color: colors.surfaceContainerHighest,
-        // ),
-        horizontalRuleDecoration: BoxDecoration(
-          border: Border(
-            top: BorderSide(
-              color: colors.outline.withOpacity(0.4),
-              width: 1,
-            ),
-          ),
-        ),
-      ),
+      config: config.copy(configs: [
+        LinkConfig(onTap: (link) {
+          final url = link;
+          if (url.startsWith('http')) {
+            launchUrl(Uri.parse(url));
+          }
+        })
+      ]),
     );
   }
 }
