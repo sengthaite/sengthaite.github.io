@@ -34,37 +34,34 @@ class CategoryTabItemView extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                FittedBox(
-                  child: Text(
-                    item.title,
-                    maxLines: 2,
-                    style: const TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w400,
-                    ),
+                Text(
+                  item.title,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w400,
                   ),
                 ),
                 const SizedBox(
                   height: 9,
                 ),
-                Flexible(
-                  child: RichText(
-                    softWrap: false,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    text: TextSpan(
-                      style: TextStyle(
-                        color: MaterialTheme.colorScheme(context).primary,
-                      ),
-                      text: "${item.date} | ",
-                      children: [
-                        TextSpan(
-                          text: item.description,
-                        ),
-                      ],
+                RichText(
+                  softWrap: false,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  text: TextSpan(
+                    style: TextStyle(
+                      color: MaterialTheme.colorScheme(context).primary,
                     ),
+                    text: "${item.date} | ",
+                    children: [
+                      TextSpan(
+                        text: item.description,
+                      ),
+                    ],
                   ),
-                )
+                ),
               ],
             ),
           ),

@@ -1,6 +1,6 @@
 {
     "author": "Te Sengthai",
-    "created_date": "2024-07-14T15:55:37.000174",
+    "created_date": "2024-07-14T17:10:37.589935",
     "data": [
         {
             "created_date": "2024-05-23T22:13:39.020294",
@@ -95,7 +95,7 @@
                     "title": "Some useful urls for Angular project"
                 },
                 {
-                    "access_date": "2024-07-14T15:02:02.337709",
+                    "access_date": "2024-07-14T17:02:42.522580",
                     "change_date": "2024-07-14T15:02:00.890509",
                     "exerpt": "Getting started with Angular",
                     "full_path": "assets/contents/angular/common-angular.txt",
@@ -620,7 +620,7 @@
             "created_date": "2024-05-23T22:15:58.302137",
             "files": [
                 {
-                    "access_date": "2024-07-14T15:28:18.138093",
+                    "access_date": "2024-07-14T17:02:42.523275",
                     "change_date": "2024-07-14T15:28:16.887324",
                     "exerpt": "Swift contents",
                     "full_path": "assets/contents/swift/basic-swift.txt",
