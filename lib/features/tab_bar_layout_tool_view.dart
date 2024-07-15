@@ -14,7 +14,10 @@ import 'package:sengthaite_blog/models/tool_model.dart';
 import 'package:sengthaite_blog/shared/app.layout.dart';
 
 class TabBarLayoutToolView extends TabBarLayoutView {
-  const TabBarLayoutToolView({super.key}) : super(section: TabSection.tool);
+  const TabBarLayoutToolView({super.key, required this.hideBottomAppBar})
+      : super(section: TabSection.tool, hideBottomBar: hideBottomAppBar);
+
+  final bool hideBottomAppBar;
 
   List<ToolItemModel> toolList() {
     return [

@@ -12,17 +12,16 @@ class CategoryTabItemView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var colorScheme = MaterialTheme.colorScheme(context);
     return Container(
       constraints: const BoxConstraints(maxWidth: 450, minWidth: 450),
       child: Container(
         decoration: BoxDecoration(
-          color: MaterialTheme.colorScheme(context).surfaceContainer,
+          color: colorScheme.surfaceContainer,
           borderRadius: const BorderRadius.all(Radius.circular(8)),
           boxShadow: [
             BoxShadow(
-              color: MaterialTheme.colorScheme(context)
-                  .surfaceContainer
-                  .withAlpha(40),
+              color: colorScheme.surfaceContainer.withAlpha(40),
               blurRadius: 2,
             )
           ],
@@ -38,10 +37,9 @@ class CategoryTabItemView extends StatelessWidget {
                   item.title,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w400,
-                  ),
+                  style: MaterialTheme.textTheme().labelMedium?.copyWith(
+                        color: colorScheme.onSurface,
+                      ),
                 ),
                 const SizedBox(
                   height: 9,
@@ -51,13 +49,16 @@ class CategoryTabItemView extends StatelessWidget {
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   text: TextSpan(
-                    style: TextStyle(
-                      color: MaterialTheme.colorScheme(context).primary,
-                    ),
+                    style: MaterialTheme.textTheme().labelSmall?.copyWith(
+                          color: colorScheme.primary,
+                        ),
                     text: "${item.date} | ",
                     children: [
                       TextSpan(
                         text: item.description,
+                        style: MaterialTheme.textTheme().labelSmall?.copyWith(
+                              color: colorScheme.primary,
+                            ),
                       ),
                     ],
                   ),

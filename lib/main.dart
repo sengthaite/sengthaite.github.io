@@ -71,6 +71,7 @@ class _StateMainView extends State<MainView> {
                       ),
                       indicatorSize: TabBarIndicatorSize.tab,
                       dividerColor: Colors.transparent,
+                      onTap: (index) => FocusScope.of(context).unfocus(),
                       tabs: const [
                         Tab(
                           text: tabTitleArticle,
@@ -80,12 +81,12 @@ class _StateMainView extends State<MainView> {
                       ],
                     ),
                   ),
-            body: const TabBarView(
-              physics: NeverScrollableScrollPhysics(),
+            body: TabBarView(
+              physics: const NeverScrollableScrollPhysics(),
               children: [
-                TabBarLayoutContentView(),
-                TabBarLayoutToolView(),
-                TabBarLayoutProjectView(),
+                TabBarLayoutContentView(hideBottomAppBar: hideAppBar),
+                TabBarLayoutToolView(hideBottomAppBar: hideAppBar),
+                TabBarLayoutProjectView(hideBottomAppBar: hideAppBar),
               ],
             ),
             floatingActionButton: FloatingActionButton.small(

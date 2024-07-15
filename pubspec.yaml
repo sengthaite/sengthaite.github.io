@@ -42,22 +42,22 @@ flutter:
   assets:
     - assets/
     - assets/contents/
-    - assets/contents/biography/
-    - assets/contents/database/
-    - assets/contents/tool/
-    - assets/contents/cli/
-    - assets/contents/cambodia/
-    - assets/contents/general/
-    - assets/contents/c#/
-    - assets/contents/llvm/
-    - assets/contents/angular/
-    - assets/contents/kotlin/
-    - assets/contents/reverse_engineer/
-    - assets/contents/ios/
-    - assets/contents/swift/
-    - assets/contents/android/
-    - assets/contents/maths/
-    - assets/contents/os/
+    - assets/contents/Biography/
+    - assets/contents/Database/
+    - assets/contents/Tool/
+    - assets/contents/CLI/
+    - assets/contents/Cambodia/
+    - assets/contents/General/
+    - assets/contents/C#/
+    - assets/contents/LLVM/
+    - assets/contents/Angular/
+    - assets/contents/Kotlin/
+    - assets/contents/Reverse Engineer/
+    - assets/contents/iOS/
+    - assets/contents/Swift/
+    - assets/contents/Android/
+    - assets/contents/Maths/
+    - assets/contents/OS/
     - assets/autogen_meta/
     - assets/content_icons/
     - assets/tool_icons/

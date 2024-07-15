@@ -3,21 +3,6 @@ title: Basic Swift Programming Language
 exerpt: Swift contents
 ---
 
-
-### Table of Content
-
-- [Comment](#comment)
-- [Literal](#literal)
-- [Basic Data Types](#basic-data-types)
-- [Operator](#operator)
-- [Basic Data Structures](#basic-data-structures)
-- [Property](#property)
-- [Closure](#closure)
-- [Optional](#optional)
-- [Error Handling](#error-handling)
-- [Assertion and Precondition](#assertion-and-precondition)
-
-
 Read Duration: **30mn**
 
 ## I. Comment

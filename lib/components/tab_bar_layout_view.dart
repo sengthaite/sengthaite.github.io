@@ -16,9 +16,11 @@ class TabBarLayoutViewItem {
 }
 
 class TabBarLayoutView extends StatefulWidget {
-  const TabBarLayoutView({super.key, required this.section});
+  const TabBarLayoutView(
+      {super.key, required this.section, required this.hideBottomBar});
 
   final TabSection section;
+  final bool hideBottomBar;
 
   List<TabBarLayoutViewItem> get categories => [];
 
@@ -28,6 +30,8 @@ class TabBarLayoutView extends StatefulWidget {
 
 class TabBarLayoutViewState extends State<TabBarLayoutView> {
   final List<TabBarNavigationTitle> navigationTitleItems = [];
+
+  String _defaultContentTitle = "Content";
 
   removeUntil(TabBarNavigationTitle item) => setState(() =>
       navigationTitleItems.length = navigationTitleItems.indexOf(item) + 1);
@@ -82,12 +86,15 @@ class TabBarLayoutViewState extends State<TabBarLayoutView> {
     switch (widget.section) {
       case TabSection.content:
         Navigation().contentTabState = this;
+        _defaultContentTitle = "Content";
         break;
       case TabSection.tool:
         Navigation().toolTabState = this;
+        _defaultContentTitle = "Tool";
         break;
       case TabSection.project:
         Navigation().projectTabState = this;
+        _defaultContentTitle = "Project";
         break;
     }
   }
@@ -100,7 +107,7 @@ class TabBarLayoutViewState extends State<TabBarLayoutView> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           TabBarLayoutNavigationView(
-            defaultText: "Content",
+            defaultText: _defaultContentTitle,
             defaultTextClick: () => clearAllItems(),
             navigationTitleItems: navigationTitleItems,
           ),
@@ -117,15 +124,16 @@ class TabBarLayoutViewState extends State<TabBarLayoutView> {
                 ? const EdgeInsets.symmetric(vertical: 16, horizontal: 20)
                 : const EdgeInsets.all(8),
           ),
-          const Padding(
-            padding: EdgeInsets.symmetric(
-              vertical: 12,
-            ),
-            child: Text(
-              "Since 2024 (v2.0.0)",
-              textAlign: TextAlign.center,
-            ),
-          )
+          if (!widget.hideBottomBar)
+            const Padding(
+              padding: EdgeInsets.symmetric(
+                vertical: 12,
+              ),
+              child: Text(
+                "Since 2024 (v2.0.0)",
+                textAlign: TextAlign.center,
+              ),
+            )
         ],
       ),
     );
