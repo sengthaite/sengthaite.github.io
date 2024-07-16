@@ -48,8 +48,8 @@ class TabBarDetailView extends StatelessWidget {
                     softWrap: true,
                     title,
                     style: const TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w700,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),

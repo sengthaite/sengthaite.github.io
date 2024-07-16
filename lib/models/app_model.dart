@@ -95,6 +95,7 @@ class FileElement {
   final String? exerpt;
   final String? fullPath;
   final int? index;
+  final bool? hasToc;
   final DateTime? modifiedDate;
   final String? name;
   final String? title;
@@ -105,6 +106,7 @@ class FileElement {
     this.exerpt,
     this.fullPath,
     this.index,
+    this.hasToc,
     this.modifiedDate,
     this.name,
     this.title,
@@ -120,6 +122,7 @@ class FileElement {
         exerpt: json["exerpt"],
         fullPath: json["full_path"],
         index: json["index"],
+        hasToc: json["hasToc"],
         modifiedDate: json["modified_date"] == null
             ? null
             : DateTime.parse(json["modified_date"]),
@@ -133,6 +136,7 @@ class FileElement {
         "exerpt": exerpt,
         "full_path": fullPath,
         "index": index,
+        "hasToc": hasToc,
         "modified_date": modifiedDate?.toIso8601String(),
         "name": name,
         "title": title,

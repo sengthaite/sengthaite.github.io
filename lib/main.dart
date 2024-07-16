@@ -71,7 +71,6 @@ class _StateMainView extends State<MainView> {
                       ),
                       indicatorSize: TabBarIndicatorSize.tab,
                       dividerColor: Colors.transparent,
-                      onTap: (index) => FocusScope.of(context).unfocus(),
                       tabs: const [
                         Tab(
                           text: tabTitleArticle,

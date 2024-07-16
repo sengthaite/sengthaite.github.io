@@ -11,6 +11,7 @@ class MarkdownViewMobile extends StatelessWidget {
   const MarkdownViewMobile({
     super.key,
     required this.markdown,
+    required this.tocController,
     this.title,
     this.textScaleFactor = 1,
   });
@@ -18,47 +19,36 @@ class MarkdownViewMobile extends StatelessWidget {
   final String markdown;
   final double textScaleFactor;
   final String? title;
+  final TocController? tocController;
 
   @override
   Widget build(BuildContext context) {
     final config = MaterialTheme.isDark(context)
         ? MarkdownConfig.darkConfig
         : MarkdownConfig.defaultConfig;
-    final TocController controller = TocController();
-    List<Toc> tableOfContent = [
-      Toc(
-        node: HeadingNode(const H1Config(), WidgetVisitor()),
-        widgetIndex: 0,
-        selfIndex: 0,
-      ),
-    ];
-    controller.setTocList(tableOfContent);
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(title ?? ''),
+    return MarkdownWidget(
+      data: markdown,
+      tocController: tocController,
+      markdownGenerator: MarkdownGenerator(
+        generators: [
+          latexGenerator,
+          videoGeneratorWithTag,
+        ],
+        inlineSyntaxList: [
+          LatexSyntax(),
+        ],
+        textGenerator: (node, config, visitor) =>
+            CustomTextNode(node.textContent, config, visitor),
       ),
-      drawer: Drawer(
-        child: TocWidget(controller: controller),
-      ),
-      body: MarkdownWidget(
-        data: markdown,
-        tocController: controller,
-        markdownGenerator: MarkdownGenerator(
-          generators: [latexGenerator, videoGeneratorWithTag],
-          inlineSyntaxList: [LatexSyntax()],
-          textGenerator: (node, config, visitor) =>
-              CustomTextNode(node.textContent, config, visitor),
-        ),
-        config: config.copy(configs: [
-          LinkConfig(onTap: (link) {
-            final url = link;
-            if (url.startsWith('http')) {
-              launchUrl(Uri.parse(url));
-            }
-          })
-        ]),
-      ),
+      config: config.copy(configs: [
+        LinkConfig(onTap: (link) {
+          final url = link;
+          if (url.startsWith('http')) {
+            launchUrl(Uri.parse(url));
+          }
+        })
+      ]),
     );
   }
 }

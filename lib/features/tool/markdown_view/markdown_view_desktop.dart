@@ -11,55 +11,42 @@ class MarkdownViewDesktop extends StatelessWidget {
   const MarkdownViewDesktop({
     super.key,
     required this.markdown,
+    required this.tocController,
     this.textScaleFactor = 1,
   });
 
   final String markdown;
   final double textScaleFactor;
+  final TocController? tocController;
 
   @override
   Widget build(BuildContext context) {
     final config = MaterialTheme.isDark(context)
         ? MarkdownConfig.darkConfig
         : MarkdownConfig.defaultConfig;
-    final TocController controller = TocController();
-    List<Toc> tableOfContent = [
-      Toc(
-          node: HeadingNode(const H1Config(), WidgetVisitor()),
-          widgetIndex: 0,
-          selfIndex: 0),
-    ];
-    controller.setTocList(tableOfContent);
 
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Expanded(
-          flex: 3,
-          child: MarkdownWidget(
-            data: markdown,
-            tocController: controller,
-            markdownGenerator: MarkdownGenerator(
-              generators: [latexGenerator, videoGeneratorWithTag],
-              inlineSyntaxList: [LatexSyntax()],
-              textGenerator: (node, config, visitor) =>
-                  CustomTextNode(node.textContent, config, visitor),
-            ),
-            config: config.copy(configs: [
-              LinkConfig(onTap: (link) {
-                final url = link;
-                if (url.startsWith('http')) {
-                  launchUrl(Uri.parse(url));
-                }
-              })
-            ]),
-          ),
-        ),
-        Expanded(
-          child: TocWidget(controller: controller),
-        )
-      ],
+    return MarkdownWidget(
+      data: markdown,
+      tocController: tocController,
+      markdownGenerator: MarkdownGenerator(
+        generators: [
+          latexGenerator,
+          videoGeneratorWithTag,
+        ],
+        inlineSyntaxList: [
+          LatexSyntax(),
+        ],
+        textGenerator: (node, config, visitor) =>
+            CustomTextNode(node.textContent, config, visitor),
+      ),
+      config: config.copy(configs: [
+        LinkConfig(onTap: (link) {
+          final url = link;
+          if (url.startsWith('http')) {
+            launchUrl(Uri.parse(url));
+          }
+        })
+      ]),
     );
   }
 }

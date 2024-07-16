@@ -1,6 +1,9 @@
 import 'package:cosmic_frontmatter/cosmic_frontmatter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:markdown_widget/config/all.dart';
+import 'package:markdown_widget/widget/blocks/leaf/heading.dart';
+import 'package:markdown_widget/widget/widget_visitor.dart';
 import 'package:sengthaite_blog/components/category_item_icon.dart';
 import 'package:sengthaite_blog/components/tab_bar_layout_view.dart';
 import 'package:sengthaite_blog/components/tab_bar_navigation_title.dart';
@@ -52,6 +55,11 @@ class TabBarLayoutContentView extends TabBarLayoutView {
       description: data.exerpt ?? 'No description available.',
       onTap: () async {
         var document = await _getMarkdownFromPath(data.fullPath);
+        TocController? tocController = data.hasToc ?? false
+            ? (TocController()
+              ..setTocList(
+                  [Toc(node: HeadingNode(const H1Config(), WidgetVisitor()))]))
+            : null;
         Navigation().contentTabState?.addItem(
               TabBarNavigationTitle(
                 title: title,
@@ -65,9 +73,11 @@ class TabBarLayoutContentView extends TabBarLayoutView {
                         context: context,
                         defaultWidget: MarkdownViewDesktop(
                           markdown: document?.body ?? '',
+                          tocController: tocController,
                         ),
                         mobileWidget: MarkdownViewMobile(
                           markdown: document?.body ?? '',
+                          tocController: tocController,
                         ),
                       ),
                     ),
