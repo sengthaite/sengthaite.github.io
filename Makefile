@@ -4,6 +4,7 @@ autogen:
 
 clean:
 	rm -rf ./assets/autogen_meta
+	rm -rf ./build
 
 build_runner:
 	dart run build_runner build --delete-conflicting-outputs
@@ -16,5 +17,5 @@ add_assets:
  
 all: clean autogen build_runner
 
-deploy:
+deploy: clean all
 	flutter pub global run peanut --web-renderer=canvaskit --extra-args --base-href=/
