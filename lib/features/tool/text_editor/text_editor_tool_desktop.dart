@@ -10,20 +10,11 @@ class TextEditorToolDesktop extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        QuillToolbar.simple(
-          configurations: QuillSimpleToolbarConfigurations(
-            controller: controller,
-            toolbarIconAlignment: WrapAlignment.start,
-            toolbarIconCrossAlignment: WrapCrossAlignment.start,
-            sharedConfigurations: const QuillSharedConfigurations(
-              locale: Locale('en'),
-            ),
-          ),
-        ),
         Expanded(
           child: QuillEditor.basic(
             configurations: QuillEditorConfigurations(
               controller: controller,
+              autoFocus: true,
               minHeight: 300,
               sharedConfigurations: const QuillSharedConfigurations(
                 locale: Locale('en'),

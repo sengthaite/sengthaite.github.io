@@ -14,10 +14,12 @@ import 'package:sengthaite_blog/models/tool_model.dart';
 import 'package:sengthaite_blog/shared/app.layout.dart';
 
 class TabBarLayoutToolView extends TabBarLayoutView {
-  const TabBarLayoutToolView({super.key, required this.hideBottomAppBar})
+  TabBarLayoutToolView({super.key, required this.hideBottomAppBar})
       : super(section: TabSection.tool, hideBottomBar: hideBottomAppBar);
 
   final bool hideBottomAppBar;
+
+  final QuillController _controller = QuillController.basic();
 
   List<ToolItemModel> toolList() {
     return [
@@ -26,11 +28,8 @@ class TabBarLayoutToolView extends TabBarLayoutView {
         title: "Text editor",
         widgetBuilder: (context) => AppLayout(
           context: context,
-          defaultWidget: TextEditorToolDesktop(
-            controller: QuillController.basic(),
-          ),
-          mobileWidget:
-              TextEditorToolMobile(controller: QuillController.basic()),
+          defaultWidget: TextEditorToolDesktop(controller: _controller),
+          mobileWidget: TextEditorToolMobile(controller: _controller),
         ),
       ),
     ];
@@ -45,6 +44,35 @@ class TabBarLayoutToolView extends TabBarLayoutView {
         onTap: (e) => Navigation().toolTabState?.removeUntil(e),
         widget: TabBarDetailView(
           title: title.toTitle(),
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.extension),
+              onPressed: () {
+                var context = Navigation().tabBarDetailContext;
+                if (context == null) return;
+                showModalBottomSheet(
+                    context: context,
+                    showDragHandle: true,
+                    builder: (context) {
+                      return Padding(
+                        padding: const EdgeInsets.only(
+                            left: 4, right: 4, top: 4, bottom: 8),
+                        child: QuillToolbar.simple(
+                          configurations: QuillSimpleToolbarConfigurations(
+                            controller: _controller,
+                            toolbarIconAlignment: WrapAlignment.start,
+                            toolbarIconCrossAlignment: WrapCrossAlignment.start,
+                            sharedConfigurations:
+                                const QuillSharedConfigurations(
+                              locale: Locale('en'),
+                            ),
+                          ),
+                        ),
+                      );
+                    });
+              },
+            ),
+          ],
           widget: item.widgetBuilder != null
               ? Builder(builder: item.widgetBuilder!)
               : item.widget,

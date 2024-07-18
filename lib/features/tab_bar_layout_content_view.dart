@@ -66,6 +66,39 @@ class TabBarLayoutContentView extends TabBarLayoutView {
                 index: data.index ?? 0,
                 widget: TabBarDetailView(
                   title: title,
+                  endDrawer: data.hasToc ?? false
+                      ? Drawer(
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(8),
+                              bottomLeft: Radius.circular(8),
+                            ),
+                          ),
+                          child: Column(
+                            children: [
+                              const Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 4, vertical: 10),
+                                child: Text(
+                                  "Table of Content",
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 4,
+                              ),
+                              Expanded(
+                                child: TocWidget(
+                                  controller: tocController!,
+                                ),
+                              ),
+                            ],
+                          ),
+                        )
+                      : null,
                   widget: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Builder(
