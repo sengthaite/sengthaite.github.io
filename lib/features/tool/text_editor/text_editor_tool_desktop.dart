@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart';
 
 class TextEditorToolDesktop extends StatelessWidget {
-  const TextEditorToolDesktop({super.key, required this.controller});
+  const TextEditorToolDesktop({
+    super.key,
+    required this.controller,
+  });
 
   final QuillController controller;
 
@@ -14,7 +17,6 @@ class TextEditorToolDesktop extends StatelessWidget {
           child: QuillEditor.basic(
             configurations: QuillEditorConfigurations(
               controller: controller,
-              autoFocus: true,
               minHeight: 300,
               sharedConfigurations: const QuillSharedConfigurations(
                 locale: Locale('en'),

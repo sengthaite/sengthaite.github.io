@@ -33,6 +33,8 @@ class TabBarLayoutViewState extends State<TabBarLayoutView> {
 
   String _defaultContentTitle = "Content";
 
+  String _defaultEmptyContentTitle = "Empty Content";
+
   removeUntil(TabBarNavigationTitle item) => setState(() =>
       navigationTitleItems.length = navigationTitleItems.indexOf(item) + 1);
 
@@ -87,14 +89,17 @@ class TabBarLayoutViewState extends State<TabBarLayoutView> {
       case TabSection.content:
         Navigation().contentTabState = this;
         _defaultContentTitle = "Content";
+        _defaultEmptyContentTitle = "Empty Content";
         break;
       case TabSection.tool:
         Navigation().toolTabState = this;
         _defaultContentTitle = "Tool";
+        _defaultEmptyContentTitle = "Not available";
         break;
       case TabSection.project:
         Navigation().projectTabState = this;
         _defaultContentTitle = "Project";
+        _defaultEmptyContentTitle = "Not available";
         break;
     }
   }
@@ -117,9 +122,13 @@ class TabBarLayoutViewState extends State<TabBarLayoutView> {
                     children:
                         navigationTitleItems.map((e) => e.widget).toList(),
                   )
-                : SingleChildScrollView(
-                    child: categoriesWidget,
-                  ),
+                : ((widget.categories.isNotEmpty)
+                    ? SingleChildScrollView(
+                        child: categoriesWidget,
+                      )
+                    : Center(
+                        child: Text(_defaultEmptyContentTitle),
+                      )),
             padding: orientation == Orientation.landscape
                 ? const EdgeInsets.symmetric(vertical: 16, horizontal: 20)
                 : const EdgeInsets.all(8),

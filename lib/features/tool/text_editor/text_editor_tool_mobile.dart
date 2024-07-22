@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart';
 
 class TextEditorToolMobile extends StatelessWidget {
-  const TextEditorToolMobile({super.key, required this.controller});
+  const TextEditorToolMobile({
+    super.key,
+    required this.controller,
+  });
 
   final QuillController controller;
 
@@ -15,7 +18,6 @@ class TextEditorToolMobile extends StatelessWidget {
           child: QuillEditor.basic(
             configurations: QuillEditorConfigurations(
               controller: controller,
-              autoFocus: true,
               sharedConfigurations: const QuillSharedConfigurations(
                 locale: Locale('en'),
               ),

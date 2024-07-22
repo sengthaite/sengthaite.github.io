@@ -28,8 +28,12 @@ class TabBarLayoutToolView extends TabBarLayoutView {
         title: "Text editor",
         widgetBuilder: (context) => AppLayout(
           context: context,
-          defaultWidget: TextEditorToolDesktop(controller: _controller),
-          mobileWidget: TextEditorToolMobile(controller: _controller),
+          defaultWidget: TextEditorToolDesktop(
+            controller: _controller,
+          ),
+          mobileWidget: TextEditorToolMobile(
+            controller: _controller,
+          ),
         ),
       ),
     ];
