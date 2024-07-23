@@ -21,7 +21,8 @@ enum AssetIcons {
   cli("cli.svg"),
   tools("tool.svg"),
   biography("biography.svg"),
-  textEditor("text_editor.svg", section: TabSection.tool);
+  textEditor("text_editor.svg", section: TabSection.tool),
+  http("http.svg", section: TabSection.tool);
 
   const AssetIcons(
     this.imageName, {

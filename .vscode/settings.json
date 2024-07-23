@@ -1,3 +1,7 @@
 {
-  "dart.flutterSdkPath": ".fvm/versions/3.22.2"
+  "dart.sdkPath": ".fvm/flutter_sdk",
+  "dart.flutterSdkPath": ".fvm/versions/3.22.2",
+  "terminal.integrated.env.osx": {
+    "PATH": "$PATH:.fvm/versions/3.22.2/bin"
+  }
 }

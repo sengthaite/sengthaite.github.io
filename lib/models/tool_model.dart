@@ -4,6 +4,7 @@ class ToolItemModel {
   final String title;
   final int index;
   final Widget? widget;
+  final Widget? image;
   Widget Function(BuildContext)? widgetBuilder;
 
   ToolItemModel({
@@ -11,5 +12,6 @@ class ToolItemModel {
     required this.title,
     this.widget,
     this.widgetBuilder,
+    this.image,
   });
 }

@@ -8,6 +8,7 @@ import 'package:sengthaite_blog/constants/image.constants.dart';
 import 'package:sengthaite_blog/extensions/string_ext.dart';
 import 'package:sengthaite_blog/features/content/tab_bar_detail_view.dart';
 import 'package:sengthaite_blog/features/navigation/navigation.dart';
+import 'package:sengthaite_blog/features/tool/http/http_view_desktop.dart';
 import 'package:sengthaite_blog/features/tool/text_editor/text_editor_tool_desktop.dart';
 import 'package:sengthaite_blog/features/tool/text_editor/text_editor_tool_mobile.dart';
 import 'package:sengthaite_blog/models/tool_model.dart';
@@ -26,6 +27,7 @@ class TabBarLayoutToolView extends TabBarLayoutView {
       ToolItemModel(
         index: 0,
         title: "Text editor",
+        image: AssetIcons.textEditor.image,
         widgetBuilder: (context) => AppLayout(
           context: context,
           defaultWidget: TextEditorToolDesktop(
@@ -34,6 +36,16 @@ class TabBarLayoutToolView extends TabBarLayoutView {
           mobileWidget: TextEditorToolMobile(
             controller: _controller,
           ),
+        ),
+      ),
+      ToolItemModel(
+        index: 0,
+        title: "HTTP",
+        image: AssetIcons.http.image,
+        widgetBuilder: (context) => AppLayout(
+          context: context,
+          defaultWidget: HttpViewDesktop(),
+          mobileWidget: Container(),
         ),
       ),
     ];
@@ -84,7 +96,7 @@ class TabBarLayoutToolView extends TabBarLayoutView {
         ),
       ),
       itemWidget: CategoryItemIcon(
-        image: AssetIcons.textEditor.image,
+        image: item.image ?? AssetIcons.logo.image,
         title: title.toTitle(),
       ),
     );

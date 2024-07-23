@@ -1,6 +1,10 @@
-.PHONY: all check autogen rebuild build_runner deploy
+.PHONY: all check autogen rebuild build_runner deploy pip_install
+
 autogen:
-	python3.11 ./scripts/autogen.py
+	python ./scripts/autogen.py
+
+pip_install:
+	pip install -r ./scripts/requirements.txt
 
 clean:
 	rm -rf ./assets/autogen_meta
