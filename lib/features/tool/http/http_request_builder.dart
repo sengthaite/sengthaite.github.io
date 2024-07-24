@@ -2,11 +2,22 @@ import 'package:flutter/material.dart';
 
 class HttpRowData {
   bool isSelected;
+  bool allowDeletion;
   final String? key;
   final String? value;
+  final String? description;
 
-  HttpRowData(
-      {required this.isSelected, required this.key, required this.value});
+  TextEditingController keyController = TextEditingController();
+  TextEditingController valueController = TextEditingController();
+  TextEditingController descriptionController = TextEditingController();
+
+  HttpRowData({
+    this.allowDeletion = true,
+    this.isSelected = true,
+    this.key,
+    this.value,
+    this.description,
+  });
 }
 
 class HttpRequestBuilder {
@@ -18,6 +29,11 @@ class HttpRequestBuilder {
 
   List<HttpRowData> paramControllers = [];
   List<HttpRowData> headerControllers = [];
+
+  HttpRequestBuilder() {
+    paramControllers.add(HttpRowData(allowDeletion: false));
+    headerControllers.add(HttpRowData(allowDeletion: false));
+  }
 
   setParamSelectedRowAt(int index) {
     paramControllers[index].isSelected = true;

@@ -40,7 +40,9 @@ class HttpUtilView extends StatelessWidget {
             tabs: tabData.keys.map((e) => Tab(text: e)).toList(),
           ),
         ),
-        body: TabBarView(children: tabData.values.toList()),
+        body: TabBarView(
+            physics: const NeverScrollableScrollPhysics(),
+            children: tabData.values.toList()),
       ),
     );
   }
