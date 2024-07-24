@@ -2,10 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:sengthaite_blog/extensions/http_ext.dart';
 import 'package:sengthaite_blog/features/tool/http/http_request_builder.dart';
 
-class HttpViewDesktop extends StatelessWidget {
-  HttpViewDesktop({super.key});
+class HttpViewDesktop extends StatefulWidget {
+  const HttpViewDesktop({
+    super.key,
+    required this.requestBuilder,
+  });
 
-  final requestBuilder = HttpRequestBuilder();
+  final HttpRequestBuilder requestBuilder;
+
+  @override
+  State<HttpViewDesktop> createState() => _HttpViewDesktopState();
+}
+
+class _HttpViewDesktopState extends State<HttpViewDesktop> {
+  bool allowSubmitRequest = false;
 
   @override
   Widget build(BuildContext context) {
@@ -33,18 +43,20 @@ class HttpViewDesktop extends StatelessWidget {
                   SizedBox(
                     width: 400,
                     child: TextFormField(
-                      controller: requestBuilder.urlInputController,
+                      controller: widget.requestBuilder.urlInputController,
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
                         hintText: "URL",
                       ),
+                      onChanged: (value) =>
+                          setState(() => allowSubmitRequest = value.isNotEmpty),
                     ),
                   ),
                   const SizedBox(
                     width: 10,
                   ),
                   TextButton(
-                    onPressed: requestBuilder.urlInputController.text.isNotEmpty
+                    onPressed: allowSubmitRequest
                         ? () {
                             debugPrint("submit");
                           }
@@ -56,11 +68,7 @@ class HttpViewDesktop extends StatelessWidget {
                   ),
                 ],
               ),
-              Expanded(
-                child: Container(
-                  color: Colors.blue,
-                ),
-              )
+              Expanded(child: Container())
             ],
           ),
         ),

@@ -8,18 +8,21 @@
             "name": "sengthaite_blog",
             "request": "launch",
             "type": "dart",
+            "args": ["--target", "./lib/main.dart"]
         },
         {
             "name": "sengthaite_blog (profile mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile",
+            "args": ["--target", "./lib/main.dart"]
         },
         {
             "name": "sengthaite_blog (release mode)",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "release"
+            "flutterMode": "release",
+            "args": ["--target", "./lib/main.dart"]
         }
     ]
 }
