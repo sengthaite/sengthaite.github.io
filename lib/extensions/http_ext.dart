@@ -25,7 +25,7 @@ extension HttpRequestMethodTypeExtension on HttpRequestMethodType {
         'PATCH'
       ];
 
-  HttpRequestMethodType? methodByDisplay(String methodDisplay) {
+  static HttpRequestMethodType? methodByDisplay(String methodDisplay) {
     switch (methodDisplay) {
       case 'GET':
         return HttpRequestMethodType.get;

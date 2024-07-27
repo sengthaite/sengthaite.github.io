@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
+import 'package:sengthaite_blog/extensions/http_ext.dart';
 
 class HttpRowData {
   bool isSelected;
@@ -145,4 +147,56 @@ class HttpRequestBuilder {
 
   Map<String, String> get params => {};
   Map<String, String> get headers => {};
+
+  String? requestMethod;
+  String? responseBody;
+
+  bool get isValidUri =>
+      Uri.tryParse(urlInputController.text)?.hasAbsolutePath ?? false;
+
+  // bool get isSecureUri {
+  //   final uri = Uri.tryParse(urlInputController.text);
+  //   return uri != null && (uri.scheme == 'http' || uri.scheme == 'https');
+  // }
+
+  request() async {
+    HttpRequestMethodType? method =
+        HttpRequestMethodTypeExtension.methodByDisplay(
+            requestMethod ?? HttpRequestMethodTypeExtension.defaultHttpMethod);
+    if (method == null) {
+      throw Exception("Unknown request method");
+    }
+    try {
+      Uri? uri = Uri.tryParse(urlInputController.text);
+      if (!isValidUri || uri == null) {
+        throw Exception("Invalid uri request");
+      }
+      Response? response;
+      switch (method) {
+        case HttpRequestMethodType.get:
+          response = await get(uri);
+          break;
+        case HttpRequestMethodType.head:
+          response = await head(uri);
+          break;
+        case HttpRequestMethodType.post:
+          response = await post(uri);
+          break;
+        case HttpRequestMethodType.put:
+          response = await put(uri);
+          break;
+        case HttpRequestMethodType.delete:
+          response = await delete(uri);
+          break;
+        case HttpRequestMethodType.connect:
+        case HttpRequestMethodType.options:
+        case HttpRequestMethodType.trace:
+          break;
+        case HttpRequestMethodType.patch:
+          response = await patch(uri);
+          break;
+      }
+      responseBody = response?.body;
+    } catch (e) {}
+  }
 }

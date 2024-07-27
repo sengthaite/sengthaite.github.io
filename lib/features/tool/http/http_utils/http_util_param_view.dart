@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:sengthaite_blog/features/tool/http/http_request_builder.dart';
 
 class HttpUtilParamView extends StatefulWidget {
@@ -17,6 +18,10 @@ class _HttpUtilParamViewState extends State<HttpUtilParamView> {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
         child: Table(
+            defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+            columnWidths: const {
+              0: FixedColumnWidth(40),
+            },
             border: TableBorder.all(
               borderRadius: const BorderRadius.all(Radius.circular(4)),
             ),
@@ -31,16 +36,43 @@ class _HttpUtilParamViewState extends State<HttpUtilParamView> {
                     });
                   },
                 ),
-                const Text("Key",
-                    style:
-                        TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),
-                const Text("Value",
-                    style:
-                        TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),
-                const Text("Description",
-                    style:
-                        TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),
-                const SizedBox(width: 50),
+                const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Text("Key",
+                      textAlign: TextAlign.center,
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                ),
+                const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Text("Value",
+                      textAlign: TextAlign.center,
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                ),
+                const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Text("Description",
+                      textAlign: TextAlign.center,
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                ),
+                IconButton(
+                  splashColor: Colors.transparent,
+                  color: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  focusColor: Colors.transparent,
+                  hoverColor: Colors.transparent,
+                  onPressed: () {
+                    setState(() {
+                      widget.requestBuilder.addParam(HttpRowData());
+                    });
+                  },
+                  icon: Icon(
+                    MdiIcons.plus,
+                    color: Colors.green,
+                  ),
+                ),
               ]),
               ...List.generate(widget.requestBuilder.paramControllers.length,
                   (index) {
@@ -52,35 +84,64 @@ class _HttpUtilParamViewState extends State<HttpUtilParamView> {
                       onChanged: (value) => setState(() => widget.requestBuilder
                           .toggleParamRowSelectionAt(index)),
                     ),
-                    TextFormField(
-                      enableSuggestions: false,
-                      decoration: const InputDecoration(
-                        hintText: "Key",
-                        border: InputBorder.none,
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextFormField(
+                        enableSuggestions: false,
+                        maxLines: null,
+                        keyboardType: TextInputType.multiline,
+                        decoration: const InputDecoration(
+                          hintText: "Key",
+                          border: InputBorder.none,
+                        ),
+                        initialValue: dataRow.key,
+                        controller: dataRow.keyController,
                       ),
-                      initialValue: dataRow.key,
-                      controller: dataRow.keyController,
                     ),
-                    TextFormField(
-                      decoration: const InputDecoration(
-                        hintText: "Value",
-                        border: InputBorder.none,
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextFormField(
+                        enableSuggestions: false,
+                        maxLines: null,
+                        keyboardType: TextInputType.multiline,
+                        decoration: const InputDecoration(
+                          hintText: "Value",
+                          border: InputBorder.none,
+                        ),
+                        initialValue: dataRow.value,
+                        controller: dataRow.valueController,
                       ),
-                      initialValue: dataRow.value,
-                      controller: dataRow.valueController,
                     ),
-                    TextFormField(
-                      decoration: const InputDecoration(
-                        hintText: "Description",
-                        border: InputBorder.none,
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextFormField(
+                        enableSuggestions: false,
+                        maxLines: null,
+                        keyboardType: TextInputType.multiline,
+                        decoration: const InputDecoration(
+                          hintText: "Description",
+                          border: InputBorder.none,
+                        ),
+                        initialValue: dataRow.description,
+                        controller: dataRow.descriptionController,
                       ),
-                      initialValue: dataRow.description,
-                      controller: dataRow.descriptionController,
                     ),
                     dataRow.allowDeletion
                         ? IconButton(
-                            icon: const Icon(Icons.delete),
-                            onPressed: () => {},
+                            splashColor: Colors.transparent,
+                            color: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            focusColor: Colors.transparent,
+                            hoverColor: Colors.transparent,
+                            icon: const Icon(
+                              Icons.delete,
+                              color: Colors.red,
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                widget.requestBuilder.removeParamAt(index);
+                              });
+                            },
                           )
                         : const SizedBox(),
                   ],

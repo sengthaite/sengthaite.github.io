@@ -77,7 +77,7 @@ class TabBarLayoutToolView extends TabBarLayoutView {
         image: AssetIcons.http.image,
         actions: [
           IconButton(
-            icon: Icon(MdiIcons.function),
+            icon: Icon(MdiIcons.vectorCombine),
             onPressed: () {
               var context = Navigation().tabBarDetailContext;
               if (context == null) return;
@@ -88,7 +88,22 @@ class TabBarLayoutToolView extends TabBarLayoutView {
                     HttpUtilView(requestBuilder: _requestBuilder),
               );
             },
-          )
+          ),
+          PopupMenuButton(
+            itemBuilder: (context) {
+              return const [
+                PopupMenuItem(
+                  value: "import",
+                  child: Text("Import"),
+                ),
+                PopupMenuItem(
+                  value: "export",
+                  child: Text("Export"),
+                )
+              ];
+            },
+            onSelected: (value) {},
+          ),
         ],
         widgetBuilder: (context) => AppLayout(
           context: context,

@@ -29,13 +29,15 @@ class _HttpViewDesktopState extends State<HttpViewDesktop> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   DropdownMenu(
-                    initialSelection:
+                    initialSelection: widget.requestBuilder.requestMethod ??
                         HttpRequestMethodTypeExtension.defaultHttpMethod,
                     requestFocusOnTap: false,
                     dropdownMenuEntries: HttpRequestMethodTypeExtension
                         .listRequestMethods
                         .map((e) => DropdownMenuEntry(value: e, label: e))
                         .toList(),
+                    onSelected: (value) =>
+                        widget.requestBuilder.requestMethod = value,
                   ),
                   const SizedBox(
                     width: 10,
@@ -57,9 +59,7 @@ class _HttpViewDesktopState extends State<HttpViewDesktop> {
                   ),
                   TextButton(
                     onPressed: allowSubmitRequest
-                        ? () {
-                            debugPrint("submit");
-                          }
+                        ? () => widget.requestBuilder.request()
                         : null,
                     child: const Text(
                       "Submit",
@@ -68,7 +68,7 @@ class _HttpViewDesktopState extends State<HttpViewDesktop> {
                   ),
                 ],
               ),
-              Expanded(child: Container())
+              Expanded(child: Text(widget.requestBuilder.responseBody ?? ''))
             ],
           ),
         ),
