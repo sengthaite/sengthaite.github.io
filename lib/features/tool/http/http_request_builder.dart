@@ -22,7 +22,7 @@ class HttpRowData {
   });
 }
 
-class HttpRequestBuilder {
+class HttpRequestBuilder extends ChangeNotifier {
   final urlInputController = TextEditingController();
   final authInputController = TextEditingController();
 
@@ -174,29 +174,32 @@ class HttpRequestBuilder {
       Response? response;
       switch (method) {
         case HttpRequestMethodType.get:
-          response = await get(uri);
+          response = await get(uri, headers: headers);
           break;
         case HttpRequestMethodType.head:
-          response = await head(uri);
+          response = await head(uri, headers: headers);
           break;
         case HttpRequestMethodType.post:
-          response = await post(uri);
+          response = await post(uri, headers: headers);
           break;
         case HttpRequestMethodType.put:
-          response = await put(uri);
+          response = await put(uri, headers: headers);
           break;
         case HttpRequestMethodType.delete:
-          response = await delete(uri);
+          response = await delete(uri, headers: headers);
           break;
         case HttpRequestMethodType.connect:
         case HttpRequestMethodType.options:
         case HttpRequestMethodType.trace:
           break;
         case HttpRequestMethodType.patch:
-          response = await patch(uri);
+          response = await patch(uri, headers: headers);
           break;
       }
       responseBody = response?.body;
-    } catch (e) {}
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    notifyListeners();
   }
 }

@@ -110,7 +110,7 @@ class TabBarLayoutToolView extends TabBarLayoutView {
           defaultWidget: HttpViewDesktop(requestBuilder: _requestBuilder),
           mobileWidget: Container(),
         ),
-      ),
+      )
     ];
   }
 
