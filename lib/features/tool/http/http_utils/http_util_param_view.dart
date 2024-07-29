@@ -87,6 +87,7 @@ class _HttpUtilParamViewState extends State<HttpUtilParamView> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: TextFormField(
+                        style: const TextStyle(fontSize: 12),
                         enableSuggestions: false,
                         maxLines: null,
                         keyboardType: TextInputType.multiline,
@@ -101,6 +102,7 @@ class _HttpUtilParamViewState extends State<HttpUtilParamView> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: TextFormField(
+                        style: const TextStyle(fontSize: 12),
                         enableSuggestions: false,
                         maxLines: null,
                         keyboardType: TextInputType.multiline,
@@ -115,6 +117,7 @@ class _HttpUtilParamViewState extends State<HttpUtilParamView> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: TextFormField(
+                        style: const TextStyle(fontSize: 12),
                         enableSuggestions: false,
                         maxLines: null,
                         keyboardType: TextInputType.multiline,

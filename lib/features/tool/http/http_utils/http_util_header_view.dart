@@ -89,6 +89,7 @@ class _HttpUtilHeaderViewState extends State<HttpUtilHeaderView> {
                       child: TextFormField(
                         enableSuggestions: false,
                         maxLines: null,
+                        style: const TextStyle(fontSize: 12),
                         keyboardType: TextInputType.multiline,
                         decoration: const InputDecoration(
                           hintText: "Key",
@@ -101,6 +102,7 @@ class _HttpUtilHeaderViewState extends State<HttpUtilHeaderView> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: TextFormField(
+                        style: const TextStyle(fontSize: 12),
                         enableSuggestions: false,
                         maxLines: null,
                         keyboardType: TextInputType.multiline,
@@ -115,6 +117,7 @@ class _HttpUtilHeaderViewState extends State<HttpUtilHeaderView> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: TextFormField(
+                        style: const TextStyle(fontSize: 12),
                         enableSuggestions: false,
                         maxLines: null,
                         keyboardType: TextInputType.multiline,

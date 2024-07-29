@@ -6,7 +6,7 @@ class HttpRowData {
   bool isSelected;
   bool allowDeletion;
   final String? key;
-  final String? value;
+  final dynamic value;
   final String? description;
 
   TextEditingController keyController = TextEditingController();
@@ -147,8 +147,27 @@ class HttpRequestBuilder extends ChangeNotifier {
 
   removeHeaderAt(int index) => headerControllers.removeAt(index);
 
-  Map<String, String> get params => {};
-  Map<String, String> get headers => {};
+  Map<String, dynamic>? get params {
+    if (paramControllers.isEmpty) return null;
+    Map<String, dynamic> result = {};
+    for (var param in paramControllers) {
+      var key = param.key;
+      if (key == null || !param.isSelected) continue;
+      result[key] = param.value;
+    }
+    return result;
+  }
+
+  Map<String, dynamic>? get headers {
+    if (headerControllers.isEmpty) return null;
+    Map<String, dynamic> result = {};
+    for (var header in headerControllers) {
+      var key = header.key;
+      if (key == null || !header.isSelected) continue;
+      result[key] = header.value;
+    }
+    return result;
+  }
 
   String? requestMethod;
   Response? response;
