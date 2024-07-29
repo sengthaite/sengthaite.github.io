@@ -97,15 +97,40 @@ class _HttpViewDesktopState extends State<HttpViewDesktop> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text("List of Requests"),
+                const Text("List of Requests",
+                    style:
+                        TextStyle(fontSize: 18, fontWeight: FontWeight.w400)),
                 const SizedBox(
                   height: 24,
                 ),
-                Column(children: [
-                  Container(
-                    child: const Text("first request"),
-                  ),
-                ])
+                Row(
+                  children: [
+                    const Text(
+                      "POST",
+                      style: TextStyle(
+                        color: Colors.blue,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    const Text("first request"),
+                    PopupMenuButton(
+                      itemBuilder: (context) {
+                        return const [
+                          PopupMenuItem(
+                            value: "edit",
+                            child: Text("Edit"),
+                          ),
+                          PopupMenuItem(
+                            value: "delete",
+                            child: Text("Delete"),
+                          )
+                        ];
+                      },
+                      onSelected: (value) {},
+                    )
+                  ],
+                )
               ],
             ),
           ),
