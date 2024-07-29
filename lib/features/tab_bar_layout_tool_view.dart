@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:provider/provider.dart';
 import 'package:sengthaite_blog/components/category_item_icon.dart';
 import 'package:sengthaite_blog/components/tab_bar_layout_view.dart';
 import 'package:sengthaite_blog/components/tab_bar_navigation_title.dart';
@@ -105,10 +106,15 @@ class TabBarLayoutToolView extends TabBarLayoutView {
             onSelected: (value) {},
           ),
         ],
-        widgetBuilder: (context) => AppLayout(
-          context: context,
-          defaultWidget: HttpViewDesktop(requestBuilder: _requestBuilder),
-          mobileWidget: Container(),
+        widgetBuilder: (context) => MultiProvider(
+          providers: [
+            ChangeNotifierProvider(create: (_) => _requestBuilder),
+          ],
+          child: AppLayout(
+            context: context,
+            defaultWidget: HttpViewDesktop(requestBuilder: _requestBuilder),
+            mobileWidget: Container(),
+          ),
         ),
       )
     ];

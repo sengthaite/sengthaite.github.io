@@ -1,5 +1,5 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
 import 'package:sengthaite_blog/extensions/http_ext.dart';
 
 class HttpRowData {
@@ -25,7 +25,9 @@ class HttpRowData {
 class HttpRequestBuilder extends ChangeNotifier {
   final urlInputController = TextEditingController();
   final authInputController = TextEditingController();
+  final bodyInputController = TextEditingController();
 
+  bool isRequesting = false;
   bool? selectedAllParam = true;
   bool? selectedAllHeader = true;
 
@@ -149,15 +151,10 @@ class HttpRequestBuilder extends ChangeNotifier {
   Map<String, String> get headers => {};
 
   String? requestMethod;
-  String? responseBody;
+  Response? response;
 
   bool get isValidUri =>
       Uri.tryParse(urlInputController.text)?.hasAbsolutePath ?? false;
-
-  // bool get isSecureUri {
-  //   final uri = Uri.tryParse(urlInputController.text);
-  //   return uri != null && (uri.scheme == 'http' || uri.scheme == 'https');
-  // }
 
   request() async {
     HttpRequestMethodType? method =
@@ -166,40 +163,47 @@ class HttpRequestBuilder extends ChangeNotifier {
     if (method == null) {
       throw Exception("Unknown request method");
     }
+    var path = urlInputController.text;
+    var body = bodyInputController.text;
+    var dio = Dio(BaseOptions(headers: headers, queryParameters: params));
     try {
-      Uri? uri = Uri.tryParse(urlInputController.text);
+      Uri? uri = Uri.tryParse(path);
       if (!isValidUri || uri == null) {
         throw Exception("Invalid uri request");
       }
-      Response? response;
+      isRequesting = true;
+      notifyListeners();
+
       switch (method) {
         case HttpRequestMethodType.get:
-          response = await get(uri, headers: headers);
+          response = await dio.get(path, data: body);
           break;
         case HttpRequestMethodType.head:
-          response = await head(uri, headers: headers);
+          response = await dio.head(path, data: body);
           break;
         case HttpRequestMethodType.post:
-          response = await post(uri, headers: headers);
+          response = await dio.post(path, data: body);
           break;
         case HttpRequestMethodType.put:
-          response = await put(uri, headers: headers);
+          response = await dio.put(path, data: body);
           break;
         case HttpRequestMethodType.delete:
-          response = await delete(uri, headers: headers);
+          response = await dio.delete(path, data: body);
           break;
         case HttpRequestMethodType.connect:
         case HttpRequestMethodType.options:
         case HttpRequestMethodType.trace:
           break;
         case HttpRequestMethodType.patch:
-          response = await patch(uri, headers: headers);
+          response = await dio.patch(path, data: body);
           break;
       }
-      responseBody = response?.body;
     } catch (e) {
       debugPrint(e.toString());
+    } finally {
+      isRequesting = false;
     }
+
     notifyListeners();
   }
 }

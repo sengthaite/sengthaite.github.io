@@ -8,6 +8,16 @@ class HttpUtilBodyView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return TextFormField(
+      enableSuggestions: false,
+      maxLines: null,
+      autofocus: true,
+      keyboardType: TextInputType.multiline,
+      decoration: const InputDecoration(
+        hintText: "",
+        border: InputBorder.none,
+      ),
+      controller: requestBuilder.bodyInputController,
+    );
   }
 }
