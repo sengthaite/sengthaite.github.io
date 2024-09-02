@@ -195,7 +195,7 @@ class HttpRequestBuilder extends ChangeNotifier {
 
       switch (method) {
         case HttpRequestMethodType.get:
-          response = await dio.get(path, data: body);
+          response = await dio.get(path);
           break;
         case HttpRequestMethodType.head:
           response = await dio.head(path, data: body);

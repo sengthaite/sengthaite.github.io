@@ -108,11 +108,13 @@ class TabBarLayoutToolView extends TabBarLayoutView {
         ],
         widgetBuilder: (context) => MultiProvider(
           providers: [
-            ChangeNotifierProvider(create: (_) => _requestBuilder),
+            ChangeNotifierProvider(
+              create: (context) => _requestBuilder,
+            )
           ],
           child: AppLayout(
             context: context,
-            defaultWidget: HttpViewDesktop(requestBuilder: _requestBuilder),
+            defaultWidget: const HttpViewDesktop(),
             mobileWidget: Container(),
           ),
         ),

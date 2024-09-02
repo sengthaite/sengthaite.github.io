@@ -7,10 +7,10 @@ import 'package:sengthaite_blog/features/tool/http/http_request_builder.dart';
 class HttpViewDesktop extends StatefulWidget {
   const HttpViewDesktop({
     super.key,
-    required this.requestBuilder,
+    // required this.requestBuilder,
   });
 
-  final HttpRequestBuilder requestBuilder;
+  // final HttpRequestBuilder requestBuilder;
 
   @override
   State<HttpViewDesktop> createState() => _HttpViewDesktopState();
@@ -21,7 +21,7 @@ class _HttpViewDesktopState extends State<HttpViewDesktop> {
 
   @override
   Widget build(BuildContext context) {
-    final response = context.watch<HttpRequestBuilder>().response;
+    final requestBuilder = context.watch<HttpRequestBuilder>();
     return Row(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -34,15 +34,14 @@ class _HttpViewDesktopState extends State<HttpViewDesktop> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   DropdownMenu(
-                    initialSelection: widget.requestBuilder.requestMethod ??
+                    initialSelection: requestBuilder.requestMethod ??
                         HttpRequestMethodTypeExtension.defaultHttpMethod,
                     requestFocusOnTap: false,
                     dropdownMenuEntries: HttpRequestMethodTypeExtension
                         .listRequestMethods
                         .map((e) => DropdownMenuEntry(value: e, label: e))
                         .toList(),
-                    onSelected: (value) =>
-                        widget.requestBuilder.requestMethod = value,
+                    onSelected: (value) => requestBuilder.requestMethod = value,
                   ),
                   const SizedBox(
                     width: 10,
@@ -50,7 +49,7 @@ class _HttpViewDesktopState extends State<HttpViewDesktop> {
                   SizedBox(
                     width: 400,
                     child: TextFormField(
-                      controller: widget.requestBuilder.urlInputController,
+                      controller: requestBuilder.urlInputController,
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
                         hintText: "URL",
@@ -64,7 +63,7 @@ class _HttpViewDesktopState extends State<HttpViewDesktop> {
                   ),
                   TextButton(
                     onPressed: allowSubmitRequest
-                        ? () => widget.requestBuilder.request()
+                        ? () => requestBuilder.request()
                         : null,
                     child: const Text(
                       "Submit",
@@ -74,10 +73,11 @@ class _HttpViewDesktopState extends State<HttpViewDesktop> {
                 ],
               ),
               Expanded(
-                child: response != null && !widget.requestBuilder.isRequesting
-                    ? HttpResponseView(response: response)
+                child: requestBuilder.response != null &&
+                        !requestBuilder.isRequesting
+                    ? HttpResponseView(response: requestBuilder.response)
                     : Center(
-                        child: widget.requestBuilder.isRequesting
+                        child: requestBuilder.isRequesting
                             ? const CircularProgressIndicator()
                             : const Padding(
                                 padding: EdgeInsets.all(8.0),
