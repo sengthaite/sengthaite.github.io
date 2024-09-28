@@ -10,8 +10,10 @@ class Navigation {
   TabBarLayoutViewState? projectTabState;
   TabBarLayoutViewState? toolTabState;
 
-  BuildContext? context;
   BuildContext? tabBarDetailContext;
+  GlobalKey<NavigatorState> navigatorKey = GlobalKey();
+
+  BuildContext get context => navigatorKey.currentContext!;
 
   Navigation._();
 }

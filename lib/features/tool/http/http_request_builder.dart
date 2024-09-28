@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:sengthaite_blog/extensions/http_ext.dart';
+import 'package:sengthaite_blog/features/navigation/navigation.dart';
 
 class HttpRowData {
   bool isSelected;
@@ -188,7 +189,35 @@ class HttpRequestBuilder extends ChangeNotifier {
     try {
       Uri? uri = Uri.tryParse(path);
       if (!isValidUri || uri == null) {
-        throw Exception("Invalid uri request");
+        showDialog(
+            context: Navigation().context,
+            builder: (context) {
+              return AlertDialog(
+                icon: const Icon(Icons.error),
+                title: const Text("URL Error",
+                    style:
+                        TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),
+                content: RichText(
+                    text: TextSpan(children: [
+                  const TextSpan(
+                      text: "Invalid url: ", style: TextStyle(fontSize: 12)),
+                  TextSpan(
+                      text: path,
+                      style: const TextStyle(
+                          fontSize: 12, fontWeight: FontWeight.bold))
+                ])),
+                actions: [
+                  TextButton(
+                    onPressed: () {
+                      urlInputController.clear();
+                      Navigator.pop(context, 'OK');
+                    },
+                    child: const Text('OK'),
+                  ),
+                ],
+              );
+            });
+        return;
       }
       isRequesting = true;
       notifyListeners();

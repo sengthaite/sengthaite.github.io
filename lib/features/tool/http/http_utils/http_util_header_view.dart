@@ -21,6 +21,7 @@ class _HttpUtilHeaderViewState extends State<HttpUtilHeaderView> {
             defaultVerticalAlignment: TableCellVerticalAlignment.middle,
             columnWidths: const {
               0: FixedColumnWidth(40),
+              4: FixedColumnWidth(40),
             },
             border: TableBorder.all(
               borderRadius: const BorderRadius.all(Radius.circular(4)),
@@ -40,22 +41,19 @@ class _HttpUtilHeaderViewState extends State<HttpUtilHeaderView> {
                   padding: EdgeInsets.all(8.0),
                   child: Text("Key",
                       textAlign: TextAlign.center,
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                      style: TextStyle(fontWeight: FontWeight.bold)),
                 ),
                 const Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Text("Value",
                       textAlign: TextAlign.center,
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                      style: TextStyle(fontWeight: FontWeight.bold)),
                 ),
                 const Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Text("Description",
                       textAlign: TextAlign.center,
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                      style: TextStyle(fontWeight: FontWeight.bold)),
                 ),
                 IconButton(
                   splashColor: Colors.transparent,

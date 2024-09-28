@@ -13,6 +13,7 @@ import 'package:sengthaite_blog/features/navigation/navigation.dart';
 import 'package:sengthaite_blog/features/tool/http/http_request_builder.dart';
 import 'package:sengthaite_blog/features/tool/http/http_util_view.dart';
 import 'package:sengthaite_blog/features/tool/http/http_view_desktop.dart';
+import 'package:sengthaite_blog/features/tool/http/http_view_mobile.dart';
 import 'package:sengthaite_blog/features/tool/text_editor/text_editor_tool_desktop.dart';
 import 'package:sengthaite_blog/features/tool/text_editor/text_editor_tool_mobile.dart';
 import 'package:sengthaite_blog/models/tool_model.dart';
@@ -26,9 +27,8 @@ class TabBarLayoutToolView extends TabBarLayoutView {
 
   final QuillController _controller = QuillController.basic();
 
-  final HttpRequestBuilder _requestBuilder = HttpRequestBuilder();
-
   List<ToolItemModel> toolList() {
+    final HttpRequestBuilder requestBuilder = HttpRequestBuilder();
     return [
       ToolItemModel(
         index: 0,
@@ -86,7 +86,7 @@ class TabBarLayoutToolView extends TabBarLayoutView {
                 context: context,
                 showDragHandle: true,
                 builder: (context) =>
-                    HttpUtilView(requestBuilder: _requestBuilder),
+                    HttpUtilView(requestBuilder: requestBuilder),
               );
             },
           ),
@@ -109,13 +109,13 @@ class TabBarLayoutToolView extends TabBarLayoutView {
         widgetBuilder: (context) => MultiProvider(
           providers: [
             ChangeNotifierProvider(
-              create: (context) => _requestBuilder,
+              create: (context) => requestBuilder,
             )
           ],
           child: AppLayout(
             context: context,
             defaultWidget: const HttpViewDesktop(),
-            mobileWidget: Container(),
+            mobileWidget: const HttpViewMobile(),
           ),
         ),
       )

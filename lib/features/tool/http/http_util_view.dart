@@ -37,7 +37,13 @@ class HttpUtilView extends StatelessWidget {
           elevation: 0,
           automaticallyImplyLeading: false,
           bottom: TabBar(
-            tabs: tabData.keys.map((e) => Tab(text: e)).toList(),
+            tabs: tabData.keys
+                .map((e) => Tab(
+                        child: Text(
+                      e,
+                      style: const TextStyle(fontSize: 11),
+                    )))
+                .toList(),
           ),
         ),
         body: TabBarView(

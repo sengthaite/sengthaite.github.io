@@ -7,10 +7,7 @@ import 'package:sengthaite_blog/features/tool/http/http_request_builder.dart';
 class HttpViewDesktop extends StatefulWidget {
   const HttpViewDesktop({
     super.key,
-    // required this.requestBuilder,
   });
-
-  // final HttpRequestBuilder requestBuilder;
 
   @override
   State<HttpViewDesktop> createState() => _HttpViewDesktopState();
@@ -58,9 +55,7 @@ class _HttpViewDesktopState extends State<HttpViewDesktop> {
                           setState(() => allowSubmitRequest = value.isNotEmpty),
                     ),
                   ),
-                  const SizedBox(
-                    width: 10,
-                  ),
+                  const SizedBox(width: 10),
                   TextButton(
                     onPressed: allowSubmitRequest
                         ? () => requestBuilder.request()
@@ -88,9 +83,7 @@ class _HttpViewDesktopState extends State<HttpViewDesktop> {
             ],
           ),
         ),
-        const SizedBox(
-          width: 8,
-        ),
+        const SizedBox(width: 8),
         SizedBox(
           width: 200,
           child: SingleChildScrollView(

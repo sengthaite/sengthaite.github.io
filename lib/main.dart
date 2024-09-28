@@ -35,7 +35,6 @@ class _StateMainView extends State<MainView> {
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
-    Navigation().context = context;
     MaterialTheme theme = MaterialTheme();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -45,6 +44,7 @@ class _StateMainView extends State<MainView> {
       highContrastDarkTheme: theme.darkMediumContrast(),
       scrollBehavior:
           const MaterialScrollBehavior().copyWith(scrollbars: false),
+      navigatorKey: Navigation().navigatorKey,
       home: AppLayout(
         defaultWidget: DefaultTabController(
           animationDuration: Duration.zero,

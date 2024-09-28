@@ -9,5 +9,6 @@
   ],
   "terminal.integrated.env.osx": {
     "PATH": "$PATH:.fvm/versions/3.22.2/bin"
-  }
+  },
+  "makefile.configureOnOpen": false
 }

@@ -6,15 +6,16 @@ import 'package:sengthaite_blog/features/navigation/navigation.dart';
 import 'package:sengthaite_blog/models/category_tab_item_model.dart';
 
 class TabBarDetailView extends StatelessWidget {
-  const TabBarDetailView(
-      {super.key,
-      required this.title,
-      this.items,
-      this.widget,
-      this.widgetBuilder,
-      this.onBackPressed,
-      this.endDrawer,
-      this.actions});
+  const TabBarDetailView({
+    super.key,
+    required this.title,
+    this.items,
+    this.widget,
+    this.widgetBuilder,
+    this.onBackPressed,
+    this.endDrawer,
+    this.actions,
+  });
 
   final String title;
   final List<CategoryTabItemModel>? items;
