@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:sengthaite_blog/extensions/http_ext.dart';
-import 'package:sengthaite_blog/features/navigation/navigation.dart';
+import 'package:sengthaite_blog/shared/dialog/error_dialog.dart';
 
 class HttpRowData {
   bool isSelected;
@@ -152,22 +152,22 @@ class HttpRequestBuilder extends ChangeNotifier {
     if (paramControllers.isEmpty) return null;
     Map<String, dynamic> result = {};
     for (var param in paramControllers) {
-      var key = param.key;
-      if (key == null || !param.isSelected) continue;
-      result[key] = param.value;
+      var key = param.keyController.text;
+      if (key.trim().isEmpty || !param.isSelected) continue;
+      result[key] = param.valueController.text;
     }
     return result;
   }
 
-  Map<String, dynamic>? get headers {
+  Headers? get headers {
     if (headerControllers.isEmpty) return null;
-    Map<String, dynamic> result = {};
+    Map<String, List<String>> result = {};
     for (var header in headerControllers) {
-      var key = header.key;
-      if (key == null || !header.isSelected) continue;
-      result[key] = header.value;
+      var key = header.keyController.text;
+      if (key.trim().isEmpty || !header.isSelected) continue;
+      result[key] = header.valueController.text.split(',');
     }
-    return result;
+    return Headers.fromMap(result);
   }
 
   String? requestMethod;
@@ -177,45 +177,44 @@ class HttpRequestBuilder extends ChangeNotifier {
       Uri.tryParse(urlInputController.text)?.hasAbsolutePath ?? false;
 
   request() async {
-    HttpRequestMethodType? method =
-        HttpRequestMethodTypeExtension.methodByDisplay(
-            requestMethod ?? HttpRequestMethodTypeExtension.defaultHttpMethod);
-    if (method == null) {
-      throw Exception("Unknown request method");
-    }
-    var path = urlInputController.text;
-    var body = bodyInputController.text;
-    var dio = Dio(BaseOptions(headers: headers, queryParameters: params));
     try {
+      HttpRequestMethodType? method =
+          HttpRequestMethodTypeExtension.methodByDisplay(requestMethod ??
+              HttpRequestMethodTypeExtension.defaultHttpMethod);
+      if (method == null) {
+        throw Exception("Unknown request method");
+      }
+      var path = urlInputController.text;
+      var body = bodyInputController.text;
+      var dio = Dio(
+        BaseOptions(
+          headers: headers?.map,
+          queryParameters: params,
+          responseType: headers?.responseType,
+          contentType: headers?.value(Headers.contentTypeHeader),
+          receiveDataWhenStatusError: true,
+          followRedirects: true,
+          maxRedirects: 3,
+          persistentConnection: true,
+        ),
+      );
+
       Uri? uri = Uri.tryParse(path);
       if (!isValidUri || uri == null) {
-        showDialog(
-            context: Navigation().context,
-            builder: (context) {
-              return AlertDialog(
-                icon: const Icon(Icons.error),
-                title: const Text("URL Error",
-                    style:
-                        TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),
-                content: RichText(
-                    text: TextSpan(children: [
-                  const TextSpan(
-                      text: "Invalid url: ", style: TextStyle(fontSize: 12)),
-                  TextSpan(
-                      text: path,
-                      style: const TextStyle(
-                          fontSize: 12, fontWeight: FontWeight.bold))
-                ])),
-                actions: [
-                  TextButton(
-                    onPressed: () {
-                      urlInputController.clear();
-                      Navigator.pop(context, 'OK');
-                    },
-                    child: const Text('OK'),
-                  ),
-                ],
-              );
+        showErrorDialog(
+            title: const Text("URL Error",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),
+            content: RichText(
+                text: TextSpan(children: [
+              const TextSpan(
+                  text: "Invalid url: ", style: TextStyle(fontSize: 12)),
+              TextSpan(
+                  text: path,
+                  style: const TextStyle(
+                      fontSize: 12, fontWeight: FontWeight.bold))
+            ])),
+            onDismiss: () {
+              urlInputController.clear();
             });
         return;
       }
@@ -247,7 +246,11 @@ class HttpRequestBuilder extends ChangeNotifier {
           break;
       }
     } catch (e) {
-      debugPrint(e.toString());
+      showErrorDialog(
+        title: const Text("Network Error",
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),
+        content: Text(e.toString()),
+      );
     } finally {
       isRequesting = false;
     }

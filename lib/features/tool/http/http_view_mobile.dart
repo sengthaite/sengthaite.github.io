@@ -15,6 +15,9 @@ class HttpViewMobile extends StatefulWidget {
 
 class _HttpViewDesktopState extends State<HttpViewMobile> {
   bool allowSubmitRequest = false;
+  Color? methodColor = HttpRequestMethodTypeExtension.methodByDisplay(
+          HttpRequestMethodTypeExtension.defaultHttpMethod)
+      ?.color;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +37,10 @@ class _HttpViewDesktopState extends State<HttpViewMobile> {
                 children: [
                   DropdownMenu(
                     width: 100,
-                    textStyle: const TextStyle(fontSize: 14),
+                    textStyle: TextStyle(
+                        fontSize: 14,
+                        color: methodColor,
+                        fontWeight: FontWeight.bold),
                     initialSelection: requestBuilder.requestMethod ??
                         HttpRequestMethodTypeExtension.defaultHttpMethod,
                     requestFocusOnTap: false,
@@ -42,11 +48,21 @@ class _HttpViewDesktopState extends State<HttpViewMobile> {
                         .listRequestMethods
                         .map((e) => DropdownMenuEntry(value: e, label: e))
                         .toList(),
-                    onSelected: (value) => requestBuilder.requestMethod = value,
+                    onSelected: (value) {
+                      if (value == null) return;
+                      requestBuilder.requestMethod = value;
+                      setState(() {
+                        methodColor =
+                            HttpRequestMethodTypeExtension.methodByDisplay(
+                                    value)
+                                ?.color;
+                      });
+                    },
                   ),
                   const SizedBox(width: 10),
                   Expanded(
                     child: TextFormField(
+                      textInputAction: TextInputAction.done,
                       style: const TextStyle(fontSize: 14),
                       controller: requestBuilder.urlInputController,
                       decoration: const InputDecoration(
@@ -55,6 +71,9 @@ class _HttpViewDesktopState extends State<HttpViewMobile> {
                       ),
                       onChanged: (value) =>
                           setState(() => allowSubmitRequest = value.isNotEmpty),
+                      onFieldSubmitted: (value) {
+                        value.isNotEmpty ? requestBuilder.request() : null;
+                      },
                     ),
                   ),
                   const SizedBox(width: 10),

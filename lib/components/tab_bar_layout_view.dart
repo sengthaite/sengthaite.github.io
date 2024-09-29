@@ -28,7 +28,11 @@ class TabBarLayoutView extends StatefulWidget {
   State<StatefulWidget> createState() => TabBarLayoutViewState();
 }
 
-class TabBarLayoutViewState extends State<TabBarLayoutView> {
+class TabBarLayoutViewState extends State<TabBarLayoutView>
+    with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
+
   final List<TabBarNavigationTitle> navigationTitleItems = [];
 
   String _defaultContentTitle = "Content";
@@ -106,6 +110,7 @@ class TabBarLayoutViewState extends State<TabBarLayoutView> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     _updateNavigationState();
     return OrientationBuilder(
       builder: (context, orientation) => Column(

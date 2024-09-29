@@ -15,10 +15,14 @@ class HttpViewDesktop extends StatefulWidget {
 
 class _HttpViewDesktopState extends State<HttpViewDesktop> {
   bool allowSubmitRequest = false;
+  Color? methodColor = HttpRequestMethodTypeExtension.methodByDisplay(
+          HttpRequestMethodTypeExtension.defaultHttpMethod)
+      ?.color;
 
   @override
   Widget build(BuildContext context) {
     final requestBuilder = context.watch<HttpRequestBuilder>();
+    allowSubmitRequest = requestBuilder.urlInputController.text.isNotEmpty;
     return Row(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -31,6 +35,10 @@ class _HttpViewDesktopState extends State<HttpViewDesktop> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   DropdownMenu(
+                    textStyle: TextStyle(
+                        fontSize: 14,
+                        color: methodColor,
+                        fontWeight: FontWeight.bold),
                     initialSelection: requestBuilder.requestMethod ??
                         HttpRequestMethodTypeExtension.defaultHttpMethod,
                     requestFocusOnTap: false,
@@ -38,14 +46,22 @@ class _HttpViewDesktopState extends State<HttpViewDesktop> {
                         .listRequestMethods
                         .map((e) => DropdownMenuEntry(value: e, label: e))
                         .toList(),
-                    onSelected: (value) => requestBuilder.requestMethod = value,
+                    onSelected: (value) {
+                      if (value == null) return;
+                      requestBuilder.requestMethod = value;
+                      setState(() {
+                        methodColor =
+                            HttpRequestMethodTypeExtension.methodByDisplay(
+                                    value)
+                                ?.color;
+                      });
+                    },
                   ),
-                  const SizedBox(
-                    width: 10,
-                  ),
+                  const SizedBox(width: 10),
                   SizedBox(
                     width: 400,
                     child: TextFormField(
+                      textInputAction: TextInputAction.done,
                       controller: requestBuilder.urlInputController,
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
@@ -53,6 +69,8 @@ class _HttpViewDesktopState extends State<HttpViewDesktop> {
                       ),
                       onChanged: (value) =>
                           setState(() => allowSubmitRequest = value.isNotEmpty),
+                      onFieldSubmitted: (value) =>
+                          value.isNotEmpty ? requestBuilder.request() : null,
                     ),
                   ),
                   const SizedBox(width: 10),
@@ -84,7 +102,7 @@ class _HttpViewDesktopState extends State<HttpViewDesktop> {
           ),
         ),
         const SizedBox(width: 8),
-        SizedBox(
+        /*SizedBox(
           width: 200,
           child: SingleChildScrollView(
             child: Column(
@@ -127,7 +145,7 @@ class _HttpViewDesktopState extends State<HttpViewDesktop> {
               ],
             ),
           ),
-        )
+        )*/
       ],
     );
   }
