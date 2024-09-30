@@ -31,6 +31,7 @@ dependencies:
   dio: ^5.5.0+1
   flutter_code_editor: ^0.3.2
   universal_html: ^2.2.4
+  modal_bottom_sheet: ^3.0.0
 
 dev_dependencies:
   flutter_test:
@@ -55,7 +56,7 @@ flutter:
     - assets/contents/LLVM/
     - assets/contents/Angular/
     - assets/contents/Kotlin/
-    - assets/contents/Reverse Engineer/
+    - assets/contents/Reverse_Engineer/
     - assets/contents/iOS/
     - assets/contents/Swift/
     - assets/contents/Android/

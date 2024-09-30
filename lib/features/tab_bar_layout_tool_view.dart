@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:provider/provider.dart';
 import 'package:sengthaite_blog/components/category_item_icon.dart';
 import 'package:sengthaite_blog/components/tab_bar_layout_view.dart';
@@ -82,9 +83,9 @@ class TabBarLayoutToolView extends TabBarLayoutView {
             onPressed: () {
               var context = Navigation().tabBarDetailContext;
               if (context == null) return;
-              showModalBottomSheet(
+              showMaterialModalBottomSheet(
                 context: context,
-                showDragHandle: true,
+                useRootNavigator: true,
                 builder: (context) =>
                     HttpUtilView(requestBuilder: requestBuilder),
               );

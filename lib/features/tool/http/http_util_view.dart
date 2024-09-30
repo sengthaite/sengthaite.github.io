@@ -47,7 +47,6 @@ class HttpUtilView extends StatelessWidget {
           ),
         ),
         body: TabBarView(
-          physics: const NeverScrollableScrollPhysics(),
           children: tabData.values.toList(),
         ),
       ),

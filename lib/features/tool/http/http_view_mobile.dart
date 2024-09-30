@@ -76,16 +76,6 @@ class _HttpViewDesktopState extends State<HttpViewMobile> {
                       },
                     ),
                   ),
-                  const SizedBox(width: 10),
-                  TextButton(
-                    onPressed: allowSubmitRequest
-                        ? () => requestBuilder.request()
-                        : null,
-                    child: const Text(
-                      "Submit",
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                  ),
                 ],
               ),
               Expanded(
