@@ -36,9 +36,10 @@ class _HttpViewDesktopState extends State<HttpViewDesktop> {
                 children: [
                   DropdownMenu(
                     textStyle: TextStyle(
-                        fontSize: 14,
-                        color: methodColor,
-                        fontWeight: FontWeight.bold),
+                      fontSize: 14,
+                      color: methodColor,
+                      fontWeight: FontWeight.bold,
+                    ),
                     initialSelection: requestBuilder.requestMethod ??
                         HttpRequestMethodTypeExtension.defaultHttpMethod,
                     requestFocusOnTap: false,
@@ -101,51 +102,6 @@ class _HttpViewDesktopState extends State<HttpViewDesktop> {
             ],
           ),
         ),
-        const SizedBox(width: 8),
-        /*SizedBox(
-          width: 200,
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text("List of Requests",
-                    style:
-                        TextStyle(fontSize: 18, fontWeight: FontWeight.w400)),
-                const SizedBox(
-                  height: 24,
-                ),
-                Row(
-                  children: [
-                    const Text(
-                      "POST",
-                      style: TextStyle(
-                        color: Colors.blue,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    const SizedBox(width: 10),
-                    const Text("first request"),
-                    PopupMenuButton(
-                      itemBuilder: (context) {
-                        return const [
-                          PopupMenuItem(
-                            value: "edit",
-                            child: Text("Edit"),
-                          ),
-                          PopupMenuItem(
-                            value: "delete",
-                            child: Text("Delete"),
-                          )
-                        ];
-                      },
-                      onSelected: (value) {},
-                    )
-                  ],
-                )
-              ],
-            ),
-          ),
-        )*/
       ],
     );
   }

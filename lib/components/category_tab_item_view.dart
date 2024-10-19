@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sengthaite_blog/constants/theme.dart';
-import 'package:sengthaite_blog/models/category_tab_item_model.dart';
+import 'package:sengthaite_blog/generated/models/category_tab_item_model.dart';
 
 class CategoryTabItemView extends StatelessWidget {
   const CategoryTabItemView({

@@ -16,8 +16,11 @@ class TabBarLayoutViewItem {
 }
 
 class TabBarLayoutView extends StatefulWidget {
-  const TabBarLayoutView(
-      {super.key, required this.section, required this.hideBottomBar});
+  const TabBarLayoutView({
+    super.key,
+    required this.section,
+    required this.hideBottomBar,
+  });
 
   final TabSection section;
   final bool hideBottomBar;

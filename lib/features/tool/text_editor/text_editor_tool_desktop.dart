@@ -15,8 +15,8 @@ class TextEditorToolDesktop extends StatelessWidget {
       children: [
         Expanded(
           child: QuillEditor.basic(
+            controller: controller,
             configurations: QuillEditorConfigurations(
-              controller: controller,
               minHeight: 300,
               sharedConfigurations: const QuillSharedConfigurations(
                 locale: Locale('en'),

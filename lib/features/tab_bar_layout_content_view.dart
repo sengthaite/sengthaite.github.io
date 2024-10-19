@@ -16,8 +16,8 @@ import 'package:sengthaite_blog/features/navigation/navigation.dart';
 import 'package:sengthaite_blog/features/tool/markdown_view/markdown_view_desktop.dart';
 import 'package:sengthaite_blog/features/tool/markdown_view/markdown_view_mobile.dart';
 import 'package:sengthaite_blog/generated/app_model_frontmatter.dart';
-import 'package:sengthaite_blog/models/app_model.dart';
-import 'package:sengthaite_blog/models/category_tab_item_model.dart';
+import 'package:sengthaite_blog/generated/models/app_model.dart';
+import 'package:sengthaite_blog/generated/models/category_tab_item_model.dart';
 import 'package:sengthaite_blog/shared/app.data.dart';
 import 'package:sengthaite_blog/shared/app.layout.dart';
 

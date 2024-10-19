@@ -11,13 +11,14 @@ import 'package:sengthaite_blog/constants/image.constants.dart';
 import 'package:sengthaite_blog/extensions/string_ext.dart';
 import 'package:sengthaite_blog/features/content/tab_bar_detail_view.dart';
 import 'package:sengthaite_blog/features/navigation/navigation.dart';
+import 'package:sengthaite_blog/features/tool/camera/camera_view.dart';
 import 'package:sengthaite_blog/features/tool/http/http_request_builder.dart';
 import 'package:sengthaite_blog/features/tool/http/http_util_view.dart';
 import 'package:sengthaite_blog/features/tool/http/http_view_desktop.dart';
 import 'package:sengthaite_blog/features/tool/http/http_view_mobile.dart';
 import 'package:sengthaite_blog/features/tool/text_editor/text_editor_tool_desktop.dart';
 import 'package:sengthaite_blog/features/tool/text_editor/text_editor_tool_mobile.dart';
-import 'package:sengthaite_blog/models/tool_model.dart';
+import 'package:sengthaite_blog/generated/models/tool_model.dart';
 import 'package:sengthaite_blog/shared/app.layout.dart';
 
 class TabBarLayoutToolView extends TabBarLayoutView {
@@ -30,7 +31,17 @@ class TabBarLayoutToolView extends TabBarLayoutView {
 
   List<ToolItemModel> toolList() {
     final HttpRequestBuilder requestBuilder = HttpRequestBuilder();
+
     return [
+      ToolItemModel(
+        index: 0,
+        title: "Camera",
+        image: AssetIcons.camera.image,
+        widgetBuilder: (context) => AppLayout(
+          context: context,
+          defaultWidget: CameraView(),
+        ),
+      ),
       ToolItemModel(
         index: 0,
         title: "Text editor",
@@ -49,8 +60,8 @@ class TabBarLayoutToolView extends TabBarLayoutView {
                       padding: const EdgeInsets.only(
                           left: 4, right: 4, top: 4, bottom: 8),
                       child: QuillToolbar.simple(
+                        controller: _controller,
                         configurations: QuillSimpleToolbarConfigurations(
-                          controller: _controller,
                           toolbarIconAlignment: WrapAlignment.start,
                           toolbarIconCrossAlignment: WrapCrossAlignment.start,
                           sharedConfigurations: const QuillSharedConfigurations(
@@ -83,28 +94,13 @@ class TabBarLayoutToolView extends TabBarLayoutView {
             onPressed: () {
               var context = Navigation().tabBarDetailContext;
               if (context == null) return;
-              showMaterialModalBottomSheet(
+              showBarModalBottomSheet(
                 context: context,
                 useRootNavigator: true,
                 builder: (context) =>
                     HttpUtilView(requestBuilder: requestBuilder),
               );
             },
-          ),
-          PopupMenuButton(
-            itemBuilder: (context) {
-              return const [
-                PopupMenuItem(
-                  value: "import",
-                  child: Text("Import"),
-                ),
-                PopupMenuItem(
-                  value: "export",
-                  child: Text("Export"),
-                )
-              ];
-            },
-            onSelected: (value) {},
           ),
         ],
         widgetBuilder: (context) => MultiProvider(
@@ -133,9 +129,10 @@ class TabBarLayoutToolView extends TabBarLayoutView {
         widget: TabBarDetailView(
           title: title.toTitle(),
           actions: item.actions,
-          widget: item.widgetBuilder != null
-              ? Builder(builder: item.widgetBuilder!)
-              : item.widget,
+          widget: item.futureBuilder ??
+              (item.widgetBuilder != null
+                  ? Builder(builder: item.widgetBuilder!)
+                  : item.widget),
           onBackPressed: () => Navigation().toolTabState?.removeLast(),
         ),
       ),

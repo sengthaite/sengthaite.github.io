@@ -17,7 +17,7 @@ dependencies:
   freezed_annotation: ^2.4.1
   cosmic_frontmatter: ^1.0.3
   url_launcher: ^6.2.6
-  flutter_quill: ^9.3.21
+  flutter_quill: ^10.8.2
   flutter_svg: ^2.0.10+1
   path: ^1.9.0
   google_fonts: ^6.2.1
@@ -32,12 +32,14 @@ dependencies:
   flutter_code_editor: ^0.3.2
   universal_html: ^2.2.4
   modal_bottom_sheet: ^3.0.0
+  camera: ^0.11.0+2
+  path_provider: ^2.1.4
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  flutter_lints: ^3.0.2
+  flutter_lints: ^5.0.0
   build_runner: ^2.4.9
   json_serializable: ^6.8.0
   freezed: ^2.5.2

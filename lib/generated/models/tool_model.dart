@@ -7,12 +7,14 @@ class ToolItemModel {
   final Widget? image;
   final List<Widget>? actions;
   Widget Function(BuildContext)? widgetBuilder;
+  FutureBuilder<dynamic>? futureBuilder;
 
   ToolItemModel({
     required this.index,
     required this.title,
     this.widget,
     this.widgetBuilder,
+    this.futureBuilder,
     this.image,
     this.actions,
   });

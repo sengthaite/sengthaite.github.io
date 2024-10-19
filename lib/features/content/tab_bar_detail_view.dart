@@ -3,7 +3,7 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 import 'package:sengthaite_blog/components/category_tab_item_view.dart';
 import 'package:sengthaite_blog/constants/theme.dart';
 import 'package:sengthaite_blog/features/navigation/navigation.dart';
-import 'package:sengthaite_blog/models/category_tab_item_model.dart';
+import 'package:sengthaite_blog/generated/models/category_tab_item_model.dart';
 
 class TabBarDetailView extends StatelessWidget {
   const TabBarDetailView({
@@ -12,6 +12,7 @@ class TabBarDetailView extends StatelessWidget {
     this.items,
     this.widget,
     this.widgetBuilder,
+    this.futureBuilder,
     this.onBackPressed,
     this.endDrawer,
     this.actions,
@@ -21,6 +22,7 @@ class TabBarDetailView extends StatelessWidget {
   final List<CategoryTabItemModel>? items;
   final Widget? widget;
   final WidgetBuilder? widgetBuilder;
+  final FutureBuilder? futureBuilder;
   final void Function()? onBackPressed;
   final Widget? endDrawer;
   final List<Widget>? actions;
@@ -66,7 +68,9 @@ class TabBarDetailView extends StatelessWidget {
                 child: Builder(
                   builder: widgetBuilder!,
                 ),
-              ),
+              )
+            else if (futureBuilder != null)
+              Expanded(child: futureBuilder!),
             if (items != null)
               Expanded(
                 child: SingleChildScrollView(
