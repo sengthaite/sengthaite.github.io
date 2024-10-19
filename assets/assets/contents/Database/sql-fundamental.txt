@@ -7,8 +7,8 @@ exerpt: Basic knowledge with SQL
 
 |#|Topic|Description|
 |---|----|----------|
-|1|Getting Start|Overall topics about SQL|
-|2|SQL Commands|Purpose and usage of each SQL command|
+|1|**Getting Started**|Overall topics about SQL|
+|2|**SQL Commands**|Purpose and usage of each SQL command|
 
 # Getting Start
 

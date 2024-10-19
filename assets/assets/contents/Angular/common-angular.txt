@@ -52,7 +52,7 @@ ng test # or npm run test
 1. [stackblitz](https://stackblitz.com/): help quickly testing or getting familiar with Angular
 2. [Change Prefix of Component](https://blogkashif.medium.com/change-prefix-of-component-in-angular-application-34c8d8a86dbf): when default prefix component is the subject to be changed
 
-### Getting Start with Angular
+### Getting Started with Angular
 
 #### Component Lifecycles
 
