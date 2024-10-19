@@ -1,40 +1,40 @@
 {
     "author": "Te Sengthai",
-    "created_date": "2024-10-19T23:30:13.969372",
+    "created_date": "2024-10-20T02:09:06.151587",
     "data": [
         {
-            "created_date": "2024-07-15T23:54:47.114089",
+            "created_date": "2024-10-20T01:14:52.822628",
             "files": [
                 {
-                    "access_date": "2024-05-24T00:32:16.581924",
-                    "change_date": "2024-05-23T22:20:07.098798",
+                    "access_date": "2024-10-20T02:08:44.855458",
+                    "change_date": "2024-10-20T01:17:49.838155",
                     "exerpt": "Getting start with android learning topics",
                     "full_path": "assets/contents/Android/android-dev-roadmap.txt",
                     "hasToc": false,
                     "index": 0,
-                    "modified_date": "2024-05-23T22:20:07.098798",
+                    "modified_date": "2024-10-20T01:17:49.838155",
                     "name": "android-dev-roadmap.txt",
                     "title": "Android Developer Roadmap"
                 },
                 {
-                    "access_date": "2024-05-24T00:32:16.581982",
-                    "change_date": "2024-05-23T22:20:37.204005",
+                    "access_date": "2024-10-20T02:08:44.856353",
+                    "change_date": "2024-10-20T01:26:43.143319",
                     "exerpt": "Some interesting projects ideas to getting start with android app development",
                     "full_path": "assets/contents/Android/android-projects.txt",
                     "hasToc": false,
                     "index": 1,
-                    "modified_date": "2024-05-23T22:20:37.204005",
+                    "modified_date": "2024-10-20T01:26:43.143319",
                     "name": "android-projects.txt",
                     "title": "Android Projects Ideas"
                 },
                 {
-                    "access_date": "2024-05-24T00:32:16.582033",
-                    "change_date": "2024-05-23T22:21:28.251510",
+                    "access_date": "2024-10-20T02:08:44.857043",
+                    "change_date": "2024-10-20T01:36:00.506953",
                     "exerpt": "General questions that related to android devices, operating system, coding, history, and stories",
                     "full_path": "assets/contents/Android/android-questions.txt",
                     "hasToc": false,
                     "index": 2,
-                    "modified_date": "2024-05-23T22:21:28.251510",
+                    "modified_date": "2024-10-20T01:36:00.506953",
                     "name": "android-questions.txt",
                     "title": "Questions related to Android Development"
                 },
@@ -103,13 +103,13 @@
                     "title": "Some useful urls for Angular project"
                 },
                 {
-                    "access_date": "2024-07-14T17:02:42.522580",
-                    "change_date": "2024-07-14T15:02:00.890509",
+                    "access_date": "2024-10-20T02:08:44.858054",
+                    "change_date": "2024-10-20T01:43:05.072721",
                     "exerpt": "Getting started with Angular",
                     "full_path": "assets/contents/Angular/common-angular.txt",
                     "hasToc": true,
                     "index": 2,
-                    "modified_date": "2024-07-14T15:02:00.890509",
+                    "modified_date": "2024-10-20T01:43:05.072721",
                     "name": "common-angular.txt",
                     "title": "Common Angular"
                 }
@@ -123,13 +123,13 @@
             "created_date": "2024-07-15T23:54:40.924717",
             "files": [
                 {
-                    "access_date": "2024-06-13T23:19:46.596276",
-                    "change_date": "2024-06-13T23:18:08.730208",
+                    "access_date": "2024-10-20T02:08:44.858924",
+                    "change_date": "2024-10-20T01:43:05.049874",
                     "exerpt": "អ្នកប្រាជ្ញអក្សរសាស្រ្តខ្មែរ ដែលបន្សល់ស្នាដៃដូចជា ច្បាប់ប្រៀនប្រដៅ ដាស់តឿនដល់កូនខ្មែរ",
                     "full_path": "assets/contents/Biography/krom_ngoy.txt",
                     "hasToc": false,
                     "index": 0,
-                    "modified_date": "2024-06-13T23:18:08.730208",
+                    "modified_date": "2024-10-20T01:43:05.049874",
                     "name": "krom_ngoy.txt",
                     "title": "ក្រមង៉ុយ"
                 }
@@ -194,13 +194,13 @@
             "created_date": "2024-07-15T23:54:34.103776",
             "files": [
                 {
-                    "access_date": "2024-06-18T14:56:19.598400",
-                    "change_date": "2024-06-17T00:02:55.566007",
+                    "access_date": "2024-10-20T02:08:44.859950",
+                    "change_date": "2024-10-20T01:43:05.049169",
                     "exerpt": "កម្ពុជាមាន២៤ខេត្តនិងរាជធានីមួយ",
                     "full_path": "assets/contents/Cambodia/name_of_provinces_cambodia.txt",
                     "hasToc": false,
                     "index": 0,
-                    "modified_date": "2024-06-17T00:02:55.566007",
+                    "modified_date": "2024-10-20T01:43:05.049169",
                     "name": "name_of_provinces_cambodia.txt",
                     "title": "ឈ្មោះនៃខេត្តទាំងអស់របស់ប្រទេសកម្ពុជា"
                 }
@@ -225,13 +225,13 @@
                     "title": "Some useful urls for learning database management"
                 },
                 {
-                    "access_date": "2024-05-24T00:32:16.582955",
-                    "change_date": "2024-05-23T22:44:47.816205",
+                    "access_date": "2024-10-20T02:08:44.860805",
+                    "change_date": "2024-10-20T01:43:05.049111",
                     "exerpt": "Basic knowledge with SQL",
                     "full_path": "assets/contents/Database/sql-fundamental.txt",
                     "hasToc": true,
                     "index": 1,
-                    "modified_date": "2024-05-23T22:44:47.816205",
+                    "modified_date": "2024-10-20T01:43:05.049111",
                     "name": "sql-fundamental.txt",
                     "title": "SQL Basic"
                 }
@@ -245,24 +245,24 @@
             "created_date": "2024-07-15T23:54:24.570095",
             "files": [
                 {
-                    "access_date": "2024-05-24T00:32:16.583040",
-                    "change_date": "2024-05-23T22:45:09.925307",
+                    "access_date": "2024-10-20T02:08:44.861671",
+                    "change_date": "2024-10-20T01:45:51.976537",
                     "exerpt": "Alan Mathison Turing គឺជា គណិតវិទូ អ្នកវិទ្យាសាស្ត្រកុំព្យូទ័រ អ្នកសិក្សាទៅលើតក្កវិទ្យា អ្នកសិក្សាទៅលើការបំប្លែងព័ត៌មានសំងាត់ ទស្សនវិទូ និង អ្នកទ្រឹស្តីជីវវិទ្យា",
                     "full_path": "assets/contents/General/alan-turing.txt",
                     "hasToc": false,
                     "index": 0,
-                    "modified_date": "2024-05-23T22:45:09.925307",
+                    "modified_date": "2024-10-20T01:45:51.976537",
                     "name": "alan-turing.txt",
                     "title": "Alan Turing (អាឡាន់ធឺរីង)"
                 },
                 {
-                    "access_date": "2024-05-24T00:32:16.583098",
-                    "change_date": "2024-05-23T22:45:21.113456",
+                    "access_date": "2024-10-20T02:08:44.862330",
+                    "change_date": "2024-10-20T01:52:01.645985",
                     "exerpt": "បឺរជាផ្លែឈឺហូបផ្លែ ម៉្យាងដែលមានសាច់បៃតងខ្ចី និងមានសម្បកខ្មៅអ៊ុចៗ",
                     "full_path": "assets/contents/General/avocado.txt",
                     "hasToc": false,
                     "index": 1,
-                    "modified_date": "2024-05-23T22:45:21.113456",
+                    "modified_date": "2024-10-20T01:52:01.645985",
                     "name": "avocado.txt",
                     "title": "ផ្លែបឺរ"
                 },
@@ -333,13 +333,13 @@
                     "title": "ផ្លែដូង"
                 },
                 {
-                    "access_date": "2024-05-24T00:32:16.583491",
-                    "change_date": "2024-05-23T22:57:47.305538",
+                    "access_date": "2024-10-20T02:08:44.862935",
+                    "change_date": "2024-10-20T02:08:19.135822",
                     "exerpt": "កាហ្វេ ជាប្រភេទភេស្ជជៈមួយប្រភេទដែលលក់ដាច់បំផុតលើលោកក្នុងចំណោមភេសជ្ជៈដែលទទួលទានក្តៅៗ",
                     "full_path": "assets/contents/General/coffee.txt",
                     "hasToc": false,
                     "index": 8,
-                    "modified_date": "2024-05-23T22:57:47.305538",
+                    "modified_date": "2024-10-20T02:08:19.135822",
                     "name": "coffee.txt",
                     "title": "កាហ្វេ"
                 },
@@ -355,13 +355,13 @@
                     "title": "Common regular expressions"
                 },
                 {
-                    "access_date": "2024-07-05T19:48:03.635011",
-                    "change_date": "2024-07-04T22:47:08.563768",
+                    "access_date": "2024-10-20T02:08:44.863611",
+                    "change_date": "2024-10-20T02:08:19.135714",
                     "exerpt": "ផ្លែទុរេន គឺជាផ្លែឈឺហូបផ្លែមានជាច្រើនប្រភេទចំនួនប្រហែល៣០ប្រភេទដែលក្នុងនោះយ៉ាងតិច៩ប្រភេទមានផ្លែដែលអាចទទួលទានបាន",
                     "full_path": "assets/contents/General/durian.txt",
                     "hasToc": false,
                     "index": 10,
-                    "modified_date": "2024-07-04T22:47:08.563768",
+                    "modified_date": "2024-10-20T02:08:19.135714",
                     "name": "durian.txt",
                     "title": "ទុរេន"
                 },
