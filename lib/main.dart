@@ -1,6 +1,7 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:sengthaite_blog/constants/app.constants.dart';
 import 'package:sengthaite_blog/constants/image.constants.dart';
@@ -13,9 +14,13 @@ import 'package:sengthaite_blog/features/tab_bar_layout_tool_view.dart';
 import 'package:sengthaite_blog/shared/app.data.dart';
 import 'package:sengthaite_blog/shared/app.layout.dart';
 
+import 'shared/file/hivedir.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await AppData().initData();
+  Hive.registerAdapter(TempDirAdapter());
+  Hive.registerAdapter(TempFileAdapter());
   runApp(
     DevicePreview(
       enabled: !kReleaseMode,
