@@ -29,25 +29,25 @@ class HiveAPIDirService {
   }
 
   // update by index
-  Future<void> update(int index, TempDir dir) async {
+  Future<void> updateDirByIndex(int index, TempDir dir) async {
     var box = await _box;
     await box.putAt(index, dir);
   }
 
   // update by name
-  Future<void> updateByName(String name, TempDir dir) async {
+  Future<void> updateDirByName(String name, TempDir dir) async {
     var box = await _box;
     await box.put(name, dir);
   }
 
   // delete by index
-  Future<void> delete(int index) async {
+  Future<void> deleteDirByIndex(int index) async {
     var box = await _box;
     box.deleteAt(index);
   }
 
   // delete by name
-  Future<void> deleteByName(String name) async {
+  Future<void> deleteDirByName(String name) async {
     var box = await _box;
     box.delete(name);
   }

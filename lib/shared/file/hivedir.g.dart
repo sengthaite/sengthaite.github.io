@@ -21,8 +21,8 @@ class TempDirAdapter extends TypeAdapter<TempDir> {
       createdDate: fields[2] as DateTime?,
       dirname: fields[1] as String,
     )
-      ..dirs = (fields[3] as List).cast<TempDir>()
-      ..files = (fields[4] as List).cast<TempFile>();
+      ..dirs = (fields[3] as Map).cast<String, TempDir>()
+      ..files = (fields[4] as Map).cast<String, TempFile>();
   }
 
   @override

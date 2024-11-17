@@ -14,9 +14,23 @@ class TempDir {
   @HiveField(2)
   final DateTime createdDate;
   @HiveField(3)
-  List<TempDir> dirs = [];
+  Map<String, TempDir> dirs = {};
   @HiveField(4)
-  List<TempFile> files = [];
+  Map<String, TempFile> files = {};
+
+  List<TempFile> get fileList => files.values.toList();
+
+  List<TempDir> get dirList => dirs.values.toList();
+
+  Future<TempFile?> getFile(String filename) async => files[filename];
+
+  Future<void> setFileContent(String filename, Uint8List data) async =>
+      files[filename]?.fileContent = data;
+
+  Future<void> addNewFile(String filename) async =>
+      files[filename] = TempFile(filename: filename);
+
+  Future<void> removeFileName(String filename) async => files.remove(filename);
 
   TempDir({
     String? id,
