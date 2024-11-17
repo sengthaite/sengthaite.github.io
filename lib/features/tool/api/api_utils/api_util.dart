@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:sengthaite_blog/features/navigation/navigation.dart';
-import 'package:sengthaite_blog/features/tool/http/http_filename_dialog.dart';
+import 'package:sengthaite_blog/features/tool/api/api_filename_dialog.dart';
 
-class HttpUtil {
+class APIUtil {
   static void download(List<int> bytes) {
     showDialog<void>(
       context: Navigation().context,
       barrierDismissible: false, // user must tap button!
-      builder: (BuildContext context) => HttpFilenameDialogWidget(bytes: bytes),
+      builder: (BuildContext context) => APIFilenameDialogWidget(bytes: bytes),
     );
   }
 

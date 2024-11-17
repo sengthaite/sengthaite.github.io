@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:sengthaite_blog/extensions/http_ext.dart';
 import 'package:sengthaite_blog/shared/dialog/error_dialog.dart';
 
-class HttpRowData {
+class APIRowData {
   bool isSelected;
   bool allowDeletion;
   final String? key;
@@ -14,7 +14,7 @@ class HttpRowData {
   TextEditingController valueController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
 
-  HttpRowData({
+  APIRowData({
     this.allowDeletion = true,
     this.isSelected = true,
     this.key,
@@ -32,12 +32,12 @@ class HttpRequestBuilder extends ChangeNotifier {
   bool? selectedAllParam = true;
   bool? selectedAllHeader = true;
 
-  List<HttpRowData> paramControllers = [];
-  List<HttpRowData> headerControllers = [];
+  List<APIRowData> paramControllers = [];
+  List<APIRowData> headerControllers = [];
 
   HttpRequestBuilder() {
-    paramControllers.add(HttpRowData(allowDeletion: false));
-    headerControllers.add(HttpRowData(allowDeletion: false));
+    paramControllers.add(APIRowData(allowDeletion: false));
+    headerControllers.add(APIRowData(allowDeletion: false));
   }
 
   setParamSelectedRowAt(int index) {
@@ -90,7 +90,7 @@ class HttpRequestBuilder extends ChangeNotifier {
     }
   }
 
-  addParam(HttpRowData data) => paramControllers.add(data);
+  addParam(APIRowData data) => paramControllers.add(data);
 
   removeParamAt(int index) => paramControllers.removeAt(index);
 
@@ -144,7 +144,7 @@ class HttpRequestBuilder extends ChangeNotifier {
     }
   }
 
-  addHeader(HttpRowData data) => headerControllers.add(data);
+  addHeader(APIRowData data) => headerControllers.add(data);
 
   removeHeaderAt(int index) => headerControllers.removeAt(index);
 

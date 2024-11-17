@@ -2,18 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sengthaite_blog/components/http_response_view.dart';
 import 'package:sengthaite_blog/extensions/http_ext.dart';
-import 'package:sengthaite_blog/features/tool/http/http_request_builder.dart';
+import 'package:sengthaite_blog/features/tool/api/api_request_builder.dart';
 
-class HttpViewMobile extends StatefulWidget {
-  const HttpViewMobile({
+import 'api_file_manager_view.dart';
+
+class APIViewDesktop extends StatefulWidget {
+  const APIViewDesktop({
     super.key,
   });
 
   @override
-  State<HttpViewMobile> createState() => _HttpViewDesktopState();
+  State<APIViewDesktop> createState() => _APIViewDesktopState();
 }
 
-class _HttpViewDesktopState extends State<HttpViewMobile> {
+class _APIViewDesktopState extends State<APIViewDesktop> {
   bool allowSubmitRequest = false;
   Color? methodColor = HttpRequestMethodTypeExtension.methodByDisplay(
           HttpRequestMethodTypeExtension.defaultHttpMethod)
@@ -22,6 +24,7 @@ class _HttpViewDesktopState extends State<HttpViewMobile> {
   @override
   Widget build(BuildContext context) {
     final requestBuilder = context.watch<HttpRequestBuilder>();
+    allowSubmitRequest = requestBuilder.urlInputController.text.isNotEmpty;
     return Row(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -29,18 +32,16 @@ class _HttpViewDesktopState extends State<HttpViewMobile> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.min,
                 children: [
                   DropdownMenu(
-                    width: 100,
                     textStyle: TextStyle(
-                        fontSize: 14,
-                        color: methodColor,
-                        fontWeight: FontWeight.bold),
+                      fontSize: 14,
+                      color: methodColor,
+                      fontWeight: FontWeight.bold,
+                    ),
                     initialSelection: requestBuilder.requestMethod ??
                         HttpRequestMethodTypeExtension.defaultHttpMethod,
                     requestFocusOnTap: false,
@@ -60,10 +61,10 @@ class _HttpViewDesktopState extends State<HttpViewMobile> {
                     },
                   ),
                   const SizedBox(width: 10),
-                  Expanded(
+                  SizedBox(
+                    width: 400,
                     child: TextFormField(
                       textInputAction: TextInputAction.done,
-                      style: const TextStyle(fontSize: 14),
                       controller: requestBuilder.urlInputController,
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
@@ -71,9 +72,25 @@ class _HttpViewDesktopState extends State<HttpViewMobile> {
                       ),
                       onChanged: (value) =>
                           setState(() => allowSubmitRequest = value.isNotEmpty),
-                      onFieldSubmitted: (value) {
-                        value.isNotEmpty ? requestBuilder.request() : null;
-                      },
+                      onFieldSubmitted: (value) =>
+                          value.isNotEmpty ? requestBuilder.request() : null,
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  TextButton(
+                    onPressed: allowSubmitRequest
+                        ? () => requestBuilder.request()
+                        : null,
+                    child: const Text(
+                      "Submit",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: null,
+                    child: const Text(
+                      "Save",
+                      style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ),
                 ],
@@ -94,7 +111,7 @@ class _HttpViewDesktopState extends State<HttpViewMobile> {
             ],
           ),
         ),
-        const SizedBox(width: 8),
+        ApiFileManagerView()
       ],
     );
   }

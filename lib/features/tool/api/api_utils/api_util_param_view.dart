@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:sengthaite_blog/features/tool/http/http_request_builder.dart';
+import 'package:sengthaite_blog/features/tool/api/api_request_builder.dart';
 
-class HttpUtilParamView extends StatefulWidget {
-  const HttpUtilParamView({super.key, required this.requestBuilder});
+class APIUtilParamView extends StatefulWidget {
+  const APIUtilParamView({super.key, required this.requestBuilder});
 
   final HttpRequestBuilder requestBuilder;
 
   @override
-  State<HttpUtilParamView> createState() => _HttpUtilParamViewState();
+  State<APIUtilParamView> createState() => _APIUtilParamViewState();
 }
 
-class _HttpUtilParamViewState extends State<HttpUtilParamView> {
+class _APIUtilParamViewState extends State<APIUtilParamView> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -63,7 +63,7 @@ class _HttpUtilParamViewState extends State<HttpUtilParamView> {
                   hoverColor: Colors.transparent,
                   onPressed: () {
                     setState(() {
-                      widget.requestBuilder.addParam(HttpRowData());
+                      widget.requestBuilder.addParam(APIRowData());
                     });
                   },
                   icon: Icon(

@@ -3,19 +3,19 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:universal_html/html.dart' as html;
 
-class HttpFilenameDialogWidget extends StatefulWidget {
+class APIFilenameDialogWidget extends StatefulWidget {
   final List<int> bytes;
 
-  const HttpFilenameDialogWidget({
+  const APIFilenameDialogWidget({
     super.key,
     required this.bytes,
   });
   @override
-  State<HttpFilenameDialogWidget> createState() =>
-      _HttpFilenameDialogWidgetState();
+  State<APIFilenameDialogWidget> createState() =>
+      _APIFilenameDialogWidgetState();
 }
 
-class _HttpFilenameDialogWidgetState extends State<HttpFilenameDialogWidget> {
+class _APIFilenameDialogWidgetState extends State<APIFilenameDialogWidget> {
   String downloadName = '';
 
   void download() {

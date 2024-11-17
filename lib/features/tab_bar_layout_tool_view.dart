@@ -11,11 +11,11 @@ import 'package:sengthaite_blog/constants/image.constants.dart';
 import 'package:sengthaite_blog/extensions/string_ext.dart';
 import 'package:sengthaite_blog/features/content/tab_bar_detail_view.dart';
 import 'package:sengthaite_blog/features/navigation/navigation.dart';
+import 'package:sengthaite_blog/features/tool/api/api_request_builder.dart';
+import 'package:sengthaite_blog/features/tool/api/api_util_view.dart';
+import 'package:sengthaite_blog/features/tool/api/api_view_desktop.dart';
+import 'package:sengthaite_blog/features/tool/api/api_view_mobile.dart';
 import 'package:sengthaite_blog/features/tool/camera/camera_view.dart';
-import 'package:sengthaite_blog/features/tool/http/http_request_builder.dart';
-import 'package:sengthaite_blog/features/tool/http/http_util_view.dart';
-import 'package:sengthaite_blog/features/tool/http/http_view_desktop.dart';
-import 'package:sengthaite_blog/features/tool/http/http_view_mobile.dart';
 import 'package:sengthaite_blog/features/tool/text_editor/text_editor_tool_desktop.dart';
 import 'package:sengthaite_blog/features/tool/text_editor/text_editor_tool_mobile.dart';
 import 'package:sengthaite_blog/generated/models/tool_model.dart';
@@ -98,7 +98,7 @@ class TabBarLayoutToolView extends TabBarLayoutView {
                 context: context,
                 useRootNavigator: true,
                 builder: (context) =>
-                    HttpUtilView(requestBuilder: requestBuilder),
+                    APIUtilView(requestBuilder: requestBuilder),
               );
             },
           ),
@@ -111,8 +111,8 @@ class TabBarLayoutToolView extends TabBarLayoutView {
           ],
           child: AppLayout(
             context: context,
-            defaultWidget: const HttpViewDesktop(),
-            mobileWidget: const HttpViewMobile(),
+            defaultWidget: const APIViewDesktop(),
+            mobileWidget: const APIViewMobile(),
           ),
         ),
       )

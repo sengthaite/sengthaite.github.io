@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:sengthaite_blog/features/tool/http/http_request_builder.dart';
+import 'package:sengthaite_blog/features/tool/api/api_request_builder.dart';
 
-class HttpUtilBodyView extends StatelessWidget {
-  const HttpUtilBodyView({super.key, required this.requestBuilder});
+class APIUtilBodyView extends StatelessWidget {
+  const APIUtilBodyView({super.key, required this.requestBuilder});
 
   final HttpRequestBuilder requestBuilder;
 

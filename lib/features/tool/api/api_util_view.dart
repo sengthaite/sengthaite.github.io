@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:sengthaite_blog/features/tool/http/http_request_builder.dart';
-import 'package:sengthaite_blog/features/tool/http/http_utils/http_util_auth_view.dart';
-import 'package:sengthaite_blog/features/tool/http/http_utils/http_util_body_view.dart';
-import 'package:sengthaite_blog/features/tool/http/http_utils/http_util_header_view.dart';
-import 'package:sengthaite_blog/features/tool/http/http_utils/http_util_param_view.dart';
+import 'package:sengthaite_blog/features/tool/api/api_request_builder.dart';
+import 'package:sengthaite_blog/features/tool/api/api_utils/api_util_auth_view.dart';
+import 'package:sengthaite_blog/features/tool/api/api_utils/api_util_body_view.dart';
+import 'package:sengthaite_blog/features/tool/api/api_utils/api_util_header_view.dart';
+import 'package:sengthaite_blog/features/tool/api/api_utils/api_util_param_view.dart';
 import 'package:uuid/uuid.dart';
 
-class HttpSettingItem {
-  HttpSettingItem({
+class APISettingItem {
+  APISettingItem({
     required this.title,
     required this.item,
     this.isActive = false,
@@ -18,8 +18,8 @@ class HttpSettingItem {
   Widget item;
 }
 
-class HttpUtilView extends StatefulWidget {
-  const HttpUtilView({
+class APIUtilView extends StatefulWidget {
+  const APIUtilView({
     super.key,
     required this.requestBuilder,
   });
@@ -27,60 +27,59 @@ class HttpUtilView extends StatefulWidget {
   final HttpRequestBuilder requestBuilder;
 
   @override
-  State<HttpUtilView> createState() => _HttpUtilViewState();
+  State<APIUtilView> createState() => _APIUtilViewState();
 }
 
-class _HttpUtilViewState extends State<HttpUtilView> {
-  Map<String, HttpSettingItem> get getDrawerItems {
-    Map<String, HttpSettingItem> result = {};
+class _APIUtilViewState extends State<APIUtilView> {
+  Map<String, APISettingItem> get getDrawerItems {
+    Map<String, APISettingItem> result = {};
     for (var item in _drawerItemList) {
       result[item.id] = item;
     }
     return result;
   }
 
-  final List<HttpSettingItem> _drawerItemList = [
-    HttpSettingItem(
+  final List<APISettingItem> _drawerItemList = [
+    APISettingItem(
       title: "Request Builder",
       isActive: true,
       item: Text("Request builder"),
     ),
-    HttpSettingItem(
+    APISettingItem(
       title: "Encryption",
       item: Text("Encryption"),
     ),
-    HttpSettingItem(
+    APISettingItem(
       title: "Static Variables",
       item: Text("Static Variables"),
     ),
-    HttpSettingItem(
+    APISettingItem(
       title: "Dynamic Variables",
       item: Text("Dynamic Variables"),
     ),
-    HttpSettingItem(
+    APISettingItem(
       title: "Built-in Functions",
       item: Text("Built-in functions"),
     ),
-    HttpSettingItem(
+    APISettingItem(
       title: "Custom Functions (Dart)",
       item: Text("Custom functions"),
     ),
-    HttpSettingItem(
+    APISettingItem(
       title: "Logs",
       item: Text("Log"),
     ),
-    HttpSettingItem(
+    APISettingItem(
       title: "Test",
       item: Text("Test"),
     ),
   ];
 
   Map<String, Widget> get tabData => {
-        "Params": HttpUtilParamView(requestBuilder: widget.requestBuilder),
-        "Authorization":
-            HttpUtilAuthView(requestBuilder: widget.requestBuilder),
-        "Headers": HttpUtilHeaderView(requestBuilder: widget.requestBuilder),
-        "Body": HttpUtilBodyView(requestBuilder: widget.requestBuilder),
+        "Params": APIUtilParamView(requestBuilder: widget.requestBuilder),
+        "Authorization": APIUtilAuthView(requestBuilder: widget.requestBuilder),
+        "Headers": APIUtilHeaderView(requestBuilder: widget.requestBuilder),
+        "Body": APIUtilBodyView(requestBuilder: widget.requestBuilder),
       };
 
   String? activeItemId;

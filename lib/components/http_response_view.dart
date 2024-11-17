@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:sengthaite_blog/extensions/http_ext.dart';
-import 'package:sengthaite_blog/features/tool/http/http_utils/http_util.dart';
+import 'package:sengthaite_blog/features/tool/api/api_utils/api_util.dart';
 
 class HttpResponseView extends StatelessWidget {
   const HttpResponseView({super.key, required this.response});
@@ -68,7 +68,7 @@ class HttpResponseView extends StatelessWidget {
       case ResponseType.bytes:
         return TextButton(
           onPressed: () {
-            HttpUtil.download(response!.data);
+            APIUtil.download(response!.data);
           },
           child: const Text("Download"),
         );
@@ -76,7 +76,7 @@ class HttpResponseView extends StatelessWidget {
         Stream<int> fileStream = response!.data;
         return TextButton(
           onPressed: () {
-            HttpUtil.downloadStream(fileStream);
+            APIUtil.downloadStream(fileStream);
           },
           child: const Text("Download"),
         );

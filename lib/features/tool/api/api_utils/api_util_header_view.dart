@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:sengthaite_blog/features/tool/http/http_request_builder.dart';
+import 'package:sengthaite_blog/features/tool/api/api_request_builder.dart';
 
-class HttpUtilHeaderView extends StatefulWidget {
-  const HttpUtilHeaderView({super.key, required this.requestBuilder});
+class APIUtilHeaderView extends StatefulWidget {
+  const APIUtilHeaderView({super.key, required this.requestBuilder});
 
   final HttpRequestBuilder requestBuilder;
 
   @override
-  State<HttpUtilHeaderView> createState() => _HttpUtilHeaderViewState();
+  State<APIUtilHeaderView> createState() => _APIUtilHeaderViewState();
 }
 
-class _HttpUtilHeaderViewState extends State<HttpUtilHeaderView> {
+class _APIUtilHeaderViewState extends State<APIUtilHeaderView> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -63,7 +63,7 @@ class _HttpUtilHeaderViewState extends State<HttpUtilHeaderView> {
                   hoverColor: Colors.transparent,
                   onPressed: () {
                     setState(() {
-                      widget.requestBuilder.addHeader(HttpRowData());
+                      widget.requestBuilder.addHeader(APIRowData());
                     });
                   },
                   icon: Icon(
