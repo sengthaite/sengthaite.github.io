@@ -20,6 +20,7 @@ class _APIViewDesktopState extends State<APIViewDesktop> {
   Color? methodColor = HttpRequestMethodTypeExtension.methodByDisplay(
           HttpRequestMethodTypeExtension.defaultHttpMethod)
       ?.color;
+  String? labelText;
 
   @override
   Widget build(BuildContext context) {
@@ -66,9 +67,11 @@ class _APIViewDesktopState extends State<APIViewDesktop> {
                     child: TextFormField(
                       textInputAction: TextInputAction.done,
                       controller: requestBuilder.urlInputController,
-                      decoration: const InputDecoration(
+                      decoration: InputDecoration(
+                        floatingLabelBehavior: FloatingLabelBehavior.always,
                         border: OutlineInputBorder(),
                         hintText: "URL",
+                        labelText: labelText,
                       ),
                       onChanged: (value) =>
                           setState(() => allowSubmitRequest = value.isNotEmpty),
