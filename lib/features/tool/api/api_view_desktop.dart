@@ -114,7 +114,7 @@ class _APIViewDesktopState extends State<APIViewDesktop> {
             ],
           ),
         ),
-        ApiFileManagerView()
+        ApiFileManagerView(requestBuilder: requestBuilder)
       ],
     );
   }

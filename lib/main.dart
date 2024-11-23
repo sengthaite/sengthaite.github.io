@@ -1,5 +1,4 @@
 import 'package:device_preview/device_preview.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -23,7 +22,8 @@ void main() async {
   Hive.registerAdapter(TempFileAdapter());
   runApp(
     DevicePreview(
-      enabled: !kReleaseMode,
+      // enabled: !kReleaseMode,
+      enabled: false,
       builder: (context) => const MainView(),
     ),
   );
