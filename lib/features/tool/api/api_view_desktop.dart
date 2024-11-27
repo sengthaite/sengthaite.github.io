@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sengthaite_blog/components/http_response_view.dart';
 import 'package:sengthaite_blog/extensions/http_ext.dart';
+import 'package:sengthaite_blog/extensions/string_ext.dart';
 import 'package:sengthaite_blog/features/tool/api/api_request_builder.dart';
 
 import 'api_file_manager_view.dart';
@@ -74,9 +75,9 @@ class _APIViewDesktopState extends State<APIViewDesktop> {
                         labelText: labelText,
                       ),
                       onChanged: (value) =>
-                          setState(() => allowSubmitRequest = value.isNotEmpty),
+                          setState(() => allowSubmitRequest = value.isUrl),
                       onFieldSubmitted: (value) =>
-                          value.isNotEmpty ? requestBuilder.request() : null,
+                          allowSubmitRequest ? requestBuilder.request() : null,
                     ),
                   ),
                   const SizedBox(width: 10),
@@ -114,7 +115,7 @@ class _APIViewDesktopState extends State<APIViewDesktop> {
             ],
           ),
         ),
-        ApiFileManagerView(requestBuilder: requestBuilder)
+        ApiFileManagerView()
       ],
     );
   }

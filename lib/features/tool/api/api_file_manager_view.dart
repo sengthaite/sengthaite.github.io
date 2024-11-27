@@ -2,15 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:sengthaite_blog/constants/theme.dart';
 import 'package:sengthaite_blog/extensions/http_ext.dart';
+import 'package:sengthaite_blog/extensions/string_ext.dart';
 import 'package:sengthaite_blog/shared/file/hivedir.dart';
 import 'package:sengthaite_blog/shared/file/hivehelper.dart';
 
-import 'api_request_builder.dart';
-
 class ApiFileManagerView extends StatefulWidget {
-  const ApiFileManagerView({super.key, required this.requestBuilder});
-
-  final HttpRequestBuilder requestBuilder;
+  const ApiFileManagerView({super.key});
 
   @override
   State<ApiFileManagerView> createState() => _ApiFileManagerViewState();
@@ -19,11 +16,16 @@ class ApiFileManagerView extends StatefulWidget {
 class _ApiFileManagerViewState extends State<ApiFileManagerView> {
   final service = HiveAPIDirService();
   bool isEditing = false;
+  bool selectedAll = false;
+  Map<String, bool> selectedFilename = {};
   TempDir? defaultDir;
 
   _init() async {
     await service.init();
     defaultDir = await service.defaultDir;
+    defaultDir!.onFileListChange = () {
+      setState(() {});
+    };
   }
 
   @override
@@ -32,10 +34,10 @@ class _ApiFileManagerViewState extends State<ApiFileManagerView> {
     _init();
   }
 
-  get isEmpty => defaultDir?.dirList.isEmpty ?? true;
-
   @override
   Widget build(BuildContext context) {
+    var fileList = defaultDir?.fileList ?? [];
+    bool isEmpty = fileList.isEmpty;
     return Material(
       child: Container(
         constraints: BoxConstraints(maxWidth: 350),
@@ -71,31 +73,26 @@ class _ApiFileManagerViewState extends State<ApiFileManagerView> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      PopupMenuButton(
-                        // child: Text("Add"),
-                        icon: Icon(MdiIcons.plus),
-                        tooltip: "Add",
-                        itemBuilder: (BuildContext context) => [
-                          PopupMenuItem(
-                              value: "add_file",
-                              child: Text("New API"),
-                              onTap: () {
-                                showDialog(
-                                  context: context,
-                                  builder: (context) => APIFileCreationWidget(
-                                      requestBuilder: widget.requestBuilder),
-                                );
-                              }),
-                          PopupMenuItem(
-                            value: "add_dir",
-                            child: Text("New Dir"),
-                          ),
-                        ],
-                      ),
+                      IconButton(
+                          onPressed: () {
+                            showDialog(
+                              context: context,
+                              builder: (context) => APIFileCreationWidget(
+                                defaultDir: defaultDir,
+                              ),
+                            );
+                          },
+                          icon: Icon(MdiIcons.plus)),
                       TextButton(
-                        onPressed: () {
-                          setState(() => isEditing = !isEditing);
-                        },
+                        onPressed: fileList.isNotEmpty
+                            ? () {
+                                setState(() {
+                                  selectedAll = false;
+                                  selectedFilename.clear();
+                                  isEditing = !isEditing;
+                                });
+                              }
+                            : null,
                         child: Text(
                           isEditing ? "Cancel" : "Edit",
                           style: TextStyle(
@@ -111,24 +108,106 @@ class _ApiFileManagerViewState extends State<ApiFileManagerView> {
               ],
             ),
             Divider(),
-            SingleChildScrollView(
-              child: false
-                  ? EmptyDirWidget()
-                  : Column(
-                      children: List.generate(1, (index) {
-                        return Container(
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                              color: MaterialTheme.colorScheme(context).outline,
-                            ),
-                            color:
-                                MaterialTheme.colorScheme(context).background,
-                            borderRadius: BorderRadius.circular(4),
-                          ),
-                          child: APIFileWidget(),
-                        );
-                      }),
-                    ),
+            Row(
+              children: [
+                TextButton.icon(
+                  onPressed: isEditing && fileList.isNotEmpty
+                      ? () {
+                          setState(() {
+                            selectedAll = !selectedAll;
+                            if (!selectedAll) {
+                              selectedFilename.clear();
+                            } else {
+                              for (var file in fileList) {
+                                selectedFilename[file.filename] = true;
+                              }
+                            }
+                          });
+                        }
+                      : null,
+                  label: Text("Select all"),
+                  icon: Icon(MdiIcons.checkAll),
+                ),
+                TextButton.icon(
+                  onPressed: isEmpty
+                      ? null
+                      : () {
+                          setState(() async {
+                            selectedAll = false;
+                            selectedFilename.clear();
+                            await defaultDir?.clean();
+                          });
+                        },
+                  label: Text("Clear"),
+                  icon: Icon(MdiIcons.deleteEmpty),
+                )
+              ],
+            ),
+            Divider(),
+            Expanded(
+              child: SingleChildScrollView(
+                child: isEmpty
+                    ? EmptyDirWidget()
+                    : Column(
+                        children: [
+                          // ...List.generate(dirList.length, (index) {
+                          //   var eachDir = dirList[index];
+                          //   return Padding(
+                          //     padding: const EdgeInsets.only(top: 8),
+                          //     child: Container(
+                          //       decoration: BoxDecoration(
+                          //         border: Border.all(
+                          //           color: MaterialTheme.colorScheme(context)
+                          //               .outline,
+                          //         ),
+                          //         color: MaterialTheme.colorScheme(context)
+                          //             .background,
+                          //         borderRadius: BorderRadius.circular(4),
+                          //       ),
+                          //       child: DirectoryWidget(dir: eachDir),
+                          //     ),
+                          //   );
+                          // }),
+                          ...List.generate(fileList.length, (index) {
+                            var eachFile = fileList[index];
+                            return Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 8, horizontal: 12),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  if (isEditing)
+                                    Checkbox(
+                                      value:
+                                          selectedFilename[eachFile.filename] ??
+                                              false,
+                                      onChanged: (value) {
+                                        setState(() {
+                                          selectedFilename[eachFile.filename] =
+                                              value ?? false;
+                                          var selectedFileLength =
+                                              selectedFilename.keys
+                                                  .where(
+                                                      (e) =>
+                                                          selectedFilename[e] ??
+                                                          false)
+                                                  .length;
+                                          selectedAll = selectedFileLength ==
+                                                  fileList.length &&
+                                              selectedFilename.isNotEmpty;
+                                        });
+                                      },
+                                    ),
+                                  Expanded(
+                                      child: APIFileWidget(file: eachFile)),
+                                ],
+                              ),
+                            );
+                          }),
+                          SizedBox(height: 4),
+                        ],
+                      ),
+              ),
             )
           ],
         ),
@@ -138,9 +217,12 @@ class _ApiFileManagerViewState extends State<ApiFileManagerView> {
 }
 
 class APIFileCreationWidget extends StatefulWidget {
-  const APIFileCreationWidget({super.key, required this.requestBuilder});
+  const APIFileCreationWidget({
+    super.key,
+    required this.defaultDir,
+  });
 
-  final HttpRequestBuilder requestBuilder;
+  final TempDir? defaultDir;
 
   @override
   State<APIFileCreationWidget> createState() => _APIFileCreationWidgetState();
@@ -148,9 +230,17 @@ class APIFileCreationWidget extends StatefulWidget {
 
 class _APIFileCreationWidgetState extends State<APIFileCreationWidget> {
   TextEditingController fileNameController = TextEditingController();
+  TextEditingController urlInputController = TextEditingController();
+  String requestMethod = HttpRequestMethodTypeExtension.defaultHttpMethod;
   Color? methodColor = HttpRequestMethodTypeExtension.methodByDisplay(
           HttpRequestMethodTypeExtension.defaultHttpMethod)
       ?.color;
+  bool canSave = false;
+
+  checkCanSave() => setState(() {
+        var urlInputText = urlInputController.text;
+        canSave = fileNameController.text.isNotEmpty && urlInputText.isUrl;
+      });
 
   @override
   Widget build(BuildContext context) {
@@ -174,14 +264,16 @@ class _APIFileCreationWidgetState extends State<APIFileCreationWidget> {
             SizedBox(
               width: 485,
               child: TextFormField(
+                autofocus: true,
                 textInputAction: TextInputAction.done,
                 style: const TextStyle(fontSize: 14),
                 controller: fileNameController,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
-                  hintText: "Input name",
-                  labelText: "Input name",
+                  hintText: "Name",
+                  labelText: "Name",
                 ),
+                onChanged: (value) => checkCanSave(),
               ),
             ),
             SizedBox(height: 8),
@@ -192,8 +284,7 @@ class _APIFileCreationWidgetState extends State<APIFileCreationWidget> {
                       fontSize: 14,
                       color: methodColor,
                       fontWeight: FontWeight.bold),
-                  initialSelection: widget.requestBuilder.requestMethod ??
-                      HttpRequestMethodTypeExtension.defaultHttpMethod,
+                  initialSelection: requestMethod,
                   requestFocusOnTap: false,
                   dropdownMenuEntries:
                       HttpRequestMethodTypeExtension.listRequestMethods
@@ -203,7 +294,7 @@ class _APIFileCreationWidgetState extends State<APIFileCreationWidget> {
                           .toList(),
                   onSelected: (value) {
                     if (value == null) return;
-                    widget.requestBuilder.requestMethod = value;
+                    requestMethod = value;
                     setState(() {
                       methodColor =
                           HttpRequestMethodTypeExtension.methodByDisplay(value)
@@ -217,15 +308,13 @@ class _APIFileCreationWidgetState extends State<APIFileCreationWidget> {
                   child: TextFormField(
                     textInputAction: TextInputAction.done,
                     style: const TextStyle(fontSize: 14),
-                    controller: widget.requestBuilder.urlInputController,
+                    controller: urlInputController,
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       hintText: "URL",
                       labelText: "URL",
                     ),
-                    onFieldSubmitted: (value) {
-                      value.isNotEmpty ? widget.requestBuilder.request() : null;
-                    },
+                    onChanged: (value) => checkCanSave(),
                   ),
                 ),
               ],
@@ -245,12 +334,24 @@ class _APIFileCreationWidgetState extends State<APIFileCreationWidget> {
                   ),
                 ),
                 TextButton(
-                  onPressed: null,
+                  onPressed: !canSave
+                      ? null
+                      : () {
+                          setState(() {
+                            widget.defaultDir?.addNewFile(
+                              fileNameController.text,
+                              TempFile(
+                                url: urlInputController.text,
+                                requestMethod: requestMethod,
+                                filename: fileNameController.text,
+                              ),
+                            );
+                          });
+                          Navigator.of(context).pop();
+                        },
                   child: Text(
                     "Save",
-                    style: TextStyle(
-                        color: MaterialTheme.colorScheme(context).primary,
-                        fontWeight: FontWeight.w500),
+                    style: TextStyle(fontWeight: FontWeight.w500),
                   ),
                 ),
               ],
@@ -263,19 +364,25 @@ class _APIFileCreationWidgetState extends State<APIFileCreationWidget> {
 }
 
 class APIFileWidget extends StatelessWidget {
-  const APIFileWidget({super.key});
+  const APIFileWidget({
+    super.key,
+    required this.file,
+  });
+
+  final TempFile file;
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(children: [
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(color: MaterialTheme.colorScheme(context).outline),
+        color: MaterialTheme.colorScheme(context).background,
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Row(
+          children: [
             Icon(MdiIcons.api,
                 color: MaterialTheme.colorScheme(context).surfaceTint),
             SizedBox(width: 12),
@@ -284,17 +391,17 @@ class APIFileWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Text(
-                  "API",
+                  file.filename,
                   style: TextStyle(
                     color: MaterialTheme.colorScheme(context).inverseSurface,
-                    fontSize: 18,
+                    fontSize: 16,
                     fontWeight: FontWeight.bold,
                   ),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),
                 Text(
-                  "https://www.google.com",
+                  file.url,
                   style: TextStyle(
                     color: MaterialTheme.colorScheme(context).secondary,
                     fontSize: 14,
@@ -306,8 +413,16 @@ class APIFileWidget extends StatelessWidget {
               ],
             ),
             Spacer(),
-            TextButton(onPressed: null, child: Text("GET"))
-          ]),
+            TextButton(
+                onPressed: null,
+                child: Text(
+                  file.requestMethod.toUpperCase(),
+                  style: TextStyle(
+                      color: HttpRequestMethodTypeExtension.methodByDisplay(
+                              file.requestMethod)
+                          ?.color),
+                ))
+          ],
         ),
       ),
     );
@@ -317,7 +432,10 @@ class APIFileWidget extends StatelessWidget {
 class DirectoryWidget extends StatelessWidget {
   const DirectoryWidget({
     super.key,
+    required this.dir,
   });
+
+  final TempDir dir;
 
   @override
   Widget build(BuildContext context) {
@@ -331,7 +449,7 @@ class DirectoryWidget extends StatelessWidget {
             color: MaterialTheme.colorScheme(context).tertiary,
           ),
           SizedBox(width: 12),
-          Text("Dir"),
+          Text(dir.dirname),
         ]),
       ),
     );

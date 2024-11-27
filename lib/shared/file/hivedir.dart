@@ -27,14 +27,42 @@ class TempDir {
   Future<void> setFileContent(String filename, Uint8List data) async =>
       files[filename]?.fileContent = data;
 
-  Future<void> addNewFile(String filename) async =>
-      files[filename] = TempFile(filename: filename);
+  Future<void> addNewFile(String filename, TempFile file) async {
+    files[filename] = file;
+    if (onFileListChange != null) {
+      onFileListChange!();
+    }
+  }
 
-  Future<void> removeFileName(String filename) async => files.remove(filename);
+  Future<void> removeFileName(String filename) async {
+    files.remove(filename);
+    if (onFileListChange != null) {
+      onFileListChange!();
+    }
+  }
+
+  Future<void> removeFileNameByIndex(List<String> filenames) async {
+    for (var name in filenames) {
+      files.remove(name);
+    }
+    if (onFileListChange != null) {
+      onFileListChange!();
+    }
+  }
+
+  Future<void> clean() async {
+    files = {};
+    if (onFileListChange != null) {
+      onFileListChange!();
+    }
+  }
+
+  Function? onFileListChange;
 
   TempDir({
     String? id,
     DateTime? createdDate,
+    this.onFileListChange,
     required this.dirname,
   })  : id = id ?? const Uuid().v4(),
         createdDate = createdDate ?? DateTime.now();
@@ -51,9 +79,16 @@ class TempFile {
   @HiveField(3)
   Uint8List fileContent = Uint8List.fromList([]);
 
+  @HiveField(4)
+  final String url;
+  @HiveField(5)
+  final String requestMethod;
+
   TempFile({
     String? id,
     DateTime? createdDate,
+    required this.url,
+    required this.requestMethod,
     required this.filename,
   })  : id = id ?? const Uuid().v4(),
         createdDate = createdDate ?? DateTime.now();

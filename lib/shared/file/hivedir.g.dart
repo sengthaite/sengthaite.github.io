@@ -65,6 +65,8 @@ class TempFileAdapter extends TypeAdapter<TempFile> {
     return TempFile(
       id: fields[0] as String?,
       createdDate: fields[2] as DateTime?,
+      url: fields[4] as String,
+      requestMethod: fields[5] as String,
       filename: fields[1] as String,
     )..fileContent = fields[3] as Uint8List;
   }
@@ -72,7 +74,7 @@ class TempFileAdapter extends TypeAdapter<TempFile> {
   @override
   void write(BinaryWriter writer, TempFile obj) {
     writer
-      ..writeByte(4)
+      ..writeByte(6)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -80,7 +82,11 @@ class TempFileAdapter extends TypeAdapter<TempFile> {
       ..writeByte(2)
       ..write(obj.createdDate)
       ..writeByte(3)
-      ..write(obj.fileContent);
+      ..write(obj.fileContent)
+      ..writeByte(4)
+      ..write(obj.url)
+      ..writeByte(5)
+      ..write(obj.requestMethod);
   }
 
   @override

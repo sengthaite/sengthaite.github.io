@@ -10,7 +10,7 @@ class HiveAPIDirService {
 
   init() async {
     var allDirs = await getAllDirs();
-    if (allDirs.isEmpty) newDir(TempDir(dirname: "Default"));
+    if (allDirs.isEmpty) await newDir(TempDir(dirname: "Default"));
   }
 
   Future<TempDir?> findDir(String dirname) async {

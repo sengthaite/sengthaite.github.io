@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sengthaite_blog/components/http_response_view.dart';
 import 'package:sengthaite_blog/extensions/http_ext.dart';
+import 'package:sengthaite_blog/extensions/string_ext.dart';
 import 'package:sengthaite_blog/features/tool/api/api_request_builder.dart';
 
 class APIViewMobile extends StatefulWidget {
@@ -70,9 +71,9 @@ class _APIViewDesktopState extends State<APIViewMobile> {
                         hintText: "URL",
                       ),
                       onChanged: (value) =>
-                          setState(() => allowSubmitRequest = value.isNotEmpty),
+                          setState(() => allowSubmitRequest = value.isUrl),
                       onFieldSubmitted: (value) {
-                        value.isNotEmpty ? requestBuilder.request() : null;
+                        allowSubmitRequest ? requestBuilder.request() : null;
                       },
                     ),
                   ),
