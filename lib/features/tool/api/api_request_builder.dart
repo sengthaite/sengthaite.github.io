@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:sengthaite_blog/extensions/http_ext.dart';
 import 'package:sengthaite_blog/shared/dialog/error_dialog.dart';
+import 'package:sengthaite_blog/shared/file/hivedir.dart';
 
 class APIRowData {
   bool isSelected;
@@ -28,6 +29,10 @@ class HttpRequestBuilder extends ChangeNotifier {
   final authInputController = TextEditingController();
   final bodyInputController = TextEditingController();
 
+  Color? methodColor = HttpRequestMethodTypeExtension.methodByDisplay(
+          HttpRequestMethodTypeExtension.defaultHttpMethod)
+      ?.color;
+
   bool isRequesting = false;
   bool? selectedAllParam = true;
   bool? selectedAllHeader = true;
@@ -36,6 +41,33 @@ class HttpRequestBuilder extends ChangeNotifier {
   List<APIRowData> headerControllers = [];
 
   HttpRequestBuilder() {
+    paramControllers.add(APIRowData(allowDeletion: false));
+    headerControllers.add(APIRowData(allowDeletion: false));
+  }
+
+  set autopopulateData(TempFile api) {
+    urlInputController.text = api.url;
+    _requestMethod = api.requestMethod;
+    methodColor = HttpRequestMethodTypeExtension.methodByDisplay(
+            _requestMethod ?? HttpRequestMethodTypeExtension.defaultHttpMethod)
+        ?.color;
+    notifyListeners();
+  }
+
+  reset() {
+    urlInputController.clear();
+    authInputController.clear();
+    bodyInputController.clear();
+    isRequesting = false;
+    selectedAllParam = null;
+    selectedAllHeader = null;
+    paramControllers.clear();
+    headerControllers.clear();
+
+    methodColor = HttpRequestMethodTypeExtension.methodByDisplay(
+            HttpRequestMethodTypeExtension.defaultHttpMethod)
+        ?.color;
+
     paramControllers.add(APIRowData(allowDeletion: false));
     headerControllers.add(APIRowData(allowDeletion: false));
   }
@@ -170,8 +202,16 @@ class HttpRequestBuilder extends ChangeNotifier {
     return Headers.fromMap(result);
   }
 
-  String? requestMethod;
+  String? _requestMethod;
   Response? response;
+
+  get getRequestMethod => _requestMethod;
+
+  set setRequestMethod(String method) {
+    _requestMethod = method;
+    methodColor = HttpRequestMethodTypeExtension.methodByDisplay(method)?.color;
+    notifyListeners();
+  }
 
   bool get isValidUri =>
       Uri.tryParse(urlInputController.text)?.hasAbsolutePath ?? false;
@@ -179,7 +219,7 @@ class HttpRequestBuilder extends ChangeNotifier {
   request() async {
     try {
       HttpRequestMethodType? method =
-          HttpRequestMethodTypeExtension.methodByDisplay(requestMethod ??
+          HttpRequestMethodTypeExtension.methodByDisplay(_requestMethod ??
               HttpRequestMethodTypeExtension.defaultHttpMethod);
       if (method == null) {
         throw Exception("Unknown request method");

@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:hive/hive.dart';
@@ -78,6 +79,11 @@ class TempFile {
   final DateTime createdDate;
   @HiveField(3)
   Uint8List fileContent = Uint8List.fromList([]);
+
+  get getFileContentJson => jsonDecode(String.fromCharCodes(fileContent));
+
+  set newFileContent(String content) =>
+      fileContent = Uint8List.fromList(content.codeUnits);
 
   @HiveField(4)
   final String url;

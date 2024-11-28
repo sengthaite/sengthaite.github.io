@@ -42,7 +42,7 @@ class _APIViewDesktopState extends State<APIViewMobile> {
                         fontSize: 14,
                         color: methodColor,
                         fontWeight: FontWeight.bold),
-                    initialSelection: requestBuilder.requestMethod ??
+                    initialSelection: requestBuilder.getRequestMethod ??
                         HttpRequestMethodTypeExtension.defaultHttpMethod,
                     requestFocusOnTap: false,
                     dropdownMenuEntries: HttpRequestMethodTypeExtension
@@ -51,7 +51,7 @@ class _APIViewDesktopState extends State<APIViewMobile> {
                         .toList(),
                     onSelected: (value) {
                       if (value == null) return;
-                      requestBuilder.requestMethod = value;
+                      requestBuilder.setRequestMethod = value as String;
                       setState(() {
                         methodColor =
                             HttpRequestMethodTypeExtension.methodByDisplay(

@@ -21,6 +21,8 @@ import 'package:sengthaite_blog/features/tool/text_editor/text_editor_tool_mobil
 import 'package:sengthaite_blog/generated/models/tool_model.dart';
 import 'package:sengthaite_blog/shared/app.layout.dart';
 
+import 'tool/api/api_file_manager_view.dart';
+
 class TabBarLayoutToolView extends TabBarLayoutView {
   TabBarLayoutToolView({super.key, required this.hideBottomAppBar})
       : super(section: TabSection.tool, hideBottomBar: hideBottomAppBar);
@@ -111,7 +113,13 @@ class TabBarLayoutToolView extends TabBarLayoutView {
           ],
           child: AppLayout(
             context: context,
-            defaultWidget: const APIViewDesktop(),
+            defaultWidget: Row(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                const APIViewDesktop(),
+                ApiFileManagerView(requestBuilder: requestBuilder)
+              ],
+            ),
             mobileWidget: const APIViewMobile(),
           ),
         ),
