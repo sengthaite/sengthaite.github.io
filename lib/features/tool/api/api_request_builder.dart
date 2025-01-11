@@ -29,6 +29,8 @@ class HttpRequestBuilder extends ChangeNotifier {
   final authInputController = TextEditingController();
   final bodyInputController = TextEditingController();
 
+  var cancelToken = CancelToken();
+
   Color? methodColor = HttpRequestMethodTypeExtension.methodByDisplay(
           HttpRequestMethodTypeExtension.defaultHttpMethod)
       ?.color;
@@ -55,12 +57,14 @@ class HttpRequestBuilder extends ChangeNotifier {
   }
 
   reset() {
+    cancelToken.cancel("Request is canceled.");
     urlInputController.clear();
     authInputController.clear();
     bodyInputController.clear();
     isRequesting = false;
     selectedAllParam = null;
     selectedAllHeader = null;
+    response = null;
     paramControllers.clear();
     headerControllers.clear();
 
@@ -70,6 +74,9 @@ class HttpRequestBuilder extends ChangeNotifier {
 
     paramControllers.add(APIRowData(allowDeletion: false));
     headerControllers.add(APIRowData(allowDeletion: false));
+
+    notifyListeners();
+    cancelToken = CancelToken();
   }
 
   setParamSelectedRowAt(int index) {
@@ -213,8 +220,7 @@ class HttpRequestBuilder extends ChangeNotifier {
     notifyListeners();
   }
 
-  bool get isValidUri =>
-      Uri.tryParse(urlInputController.text)?.hasAbsolutePath ?? false;
+  bool get isValidUri => Uri.tryParse(urlInputController.text) != null;
 
   request() async {
     try {
@@ -263,26 +269,28 @@ class HttpRequestBuilder extends ChangeNotifier {
 
       switch (method) {
         case HttpRequestMethodType.get:
-          response = await dio.get(path);
+          response = await dio.get(path, cancelToken: cancelToken);
           break;
         case HttpRequestMethodType.head:
-          response = await dio.head(path, data: body);
+          response = await dio.head(path, data: body, cancelToken: cancelToken);
           break;
         case HttpRequestMethodType.post:
-          response = await dio.post(path, data: body);
+          response = await dio.post(path, data: body, cancelToken: cancelToken);
           break;
         case HttpRequestMethodType.put:
-          response = await dio.put(path, data: body);
+          response = await dio.put(path, data: body, cancelToken: cancelToken);
           break;
         case HttpRequestMethodType.delete:
-          response = await dio.delete(path, data: body);
+          response =
+              await dio.delete(path, data: body, cancelToken: cancelToken);
           break;
         case HttpRequestMethodType.connect:
         case HttpRequestMethodType.options:
         case HttpRequestMethodType.trace:
           break;
         case HttpRequestMethodType.patch:
-          response = await dio.patch(path, data: body);
+          response =
+              await dio.patch(path, data: body, cancelToken: cancelToken);
           break;
       }
     } catch (e) {

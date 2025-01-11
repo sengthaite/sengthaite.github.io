@@ -82,7 +82,10 @@ class _APIViewDesktopState extends State<APIViewMobile> {
               Expanded(
                 child: requestBuilder.response != null &&
                         !requestBuilder.isRequesting
-                    ? HttpResponseView(response: requestBuilder.response)
+                    ? HttpResponseView(
+                        response: requestBuilder.response,
+                        requestBuilder: requestBuilder,
+                      )
                     : Center(
                         child: requestBuilder.isRequesting
                             ? const CircularProgressIndicator()

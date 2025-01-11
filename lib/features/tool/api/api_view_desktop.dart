@@ -72,7 +72,7 @@ class _APIViewDesktopState extends State<APIViewDesktop> {
                 onPressed:
                     allowSubmitRequest ? () => requestBuilder.request() : null,
                 child: const Text(
-                  "Submit",
+                  "Request",
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),
@@ -88,7 +88,10 @@ class _APIViewDesktopState extends State<APIViewDesktop> {
           Expanded(
             child:
                 requestBuilder.response != null && !requestBuilder.isRequesting
-                    ? HttpResponseView(response: requestBuilder.response)
+                    ? HttpResponseView(
+                        response: requestBuilder.response,
+                        requestBuilder: requestBuilder,
+                      )
                     : Center(
                         child: requestBuilder.isRequesting
                             ? const CircularProgressIndicator()

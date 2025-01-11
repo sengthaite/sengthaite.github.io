@@ -1,14 +1,23 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:sengthaite_blog/extensions/http_ext.dart';
+import 'package:sengthaite_blog/features/tool/api/api_request_builder.dart';
 import 'package:sengthaite_blog/features/tool/api/api_utils/api_util.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HttpResponseView extends StatelessWidget {
-  const HttpResponseView({super.key, required this.response});
+  const HttpResponseView({
+    super.key,
+    required this.response,
+    required this.requestBuilder,
+  });
 
   final Response? response;
+  final HttpRequestBuilder requestBuilder;
 
   String beautifyJson(Map<String, dynamic> json, {bool withSeparator = false}) {
     try {
@@ -27,40 +36,52 @@ class HttpResponseView extends StatelessWidget {
     var contentType = response!.headers.value(Headers.contentTypeHeader);
     var isJson = contentType?.contains("application/json") ?? false;
     var isImage = contentType?.contains("image") ?? false;
+    var isHtml = contentType?.contains("html") ?? false;
     var responseContentType = response!.headers.responseContentType;
     var data = response?.data;
     if (data == null) {
       return const Text("Empty data");
     }
-    if (isJson) {
-      if (data is List) {
-        var dataLength = data.length;
-        var listText = List.generate(
-          dataLength,
-          (index) => TextSpan(
-            text: beautifyJson(
-              data[index],
-              withSeparator: dataLength - 1 > index,
-            ),
-          ),
-        );
-        return RichText(
-            text: TextSpan(children: [
-          const TextSpan(text: '[\n'),
-          ...listText,
-          const TextSpan(text: '\n]'),
-        ]));
-      } else {
-        return Text(beautifyJson(response?.data ?? ''));
-      }
+    if (isHtml || isJson || isImage) {
+      return InAppWebView(
+        initialUrlRequest: URLRequest(
+          allowsCellularAccess: true,
+          allowsConstrainedNetworkAccess: true,
+          allowsExpensiveNetworkAccess: true,
+          url: WebUri(requestBuilder.urlInputController.text),
+        ),
+        initialSettings: InAppWebViewSettings(
+          isInspectable: kDebugMode,
+          mediaPlaybackRequiresUserGesture: false,
+          allowsInlineMediaPlayback: true,
+          iframeAllow: "camera; microphone",
+          iframeAllowFullscreen: true,
+        ),
+        shouldOverrideUrlLoading: (controller, navigationAction) async {
+          var uri = navigationAction.request.url!;
+          if (![
+            "http",
+            "https",
+            "file",
+            "chrome",
+            "data",
+            "javascript",
+            "about"
+          ].contains(uri.scheme)) {
+            if (await canLaunchUrl(uri)) {
+              // Launch the App
+              await launchUrl(
+                uri,
+              );
+              // and cancel the request
+              return NavigationActionPolicy.CANCEL;
+            }
+          }
+          return NavigationActionPolicy.ALLOW;
+        },
+      );
     }
-    if (isImage) {
-      try {
-        return Image.memory(response!.data);
-      } catch (e) {
-        return const Icon(Icons.image_not_supported);
-      }
-    }
+
     switch (responseContentType) {
       case ResponseType.plain:
       case ResponseType.json:
@@ -85,6 +106,6 @@ class HttpResponseView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(child: contentViewer);
+    return contentViewer;
   }
 }

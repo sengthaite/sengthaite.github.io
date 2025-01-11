@@ -127,7 +127,7 @@ class _VideoWidgetState extends State<VideoWidget> {
         width: 80,
         height: 80,
         decoration: BoxDecoration(
-            shape: BoxShape.circle, color: Colors.grey.withOpacity(0.3)),
+            shape: BoxShape.circle, color: Colors.grey.withValues(alpha: 0.3)),
         child: IconButton(
           icon: Icon(
             isPlaying ? Icons.pause : Icons.play_arrow,

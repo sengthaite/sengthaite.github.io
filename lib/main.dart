@@ -62,6 +62,7 @@ class _StateMainView extends State<MainView> {
       home: AppLayout(
         defaultWidget: DefaultTabController(
           animationDuration: Duration.zero,
+          initialIndex: 1,
           length: 3,
           child: Scaffold(
             appBar: hideAppBar

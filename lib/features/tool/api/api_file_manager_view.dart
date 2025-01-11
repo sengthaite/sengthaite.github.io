@@ -168,6 +168,7 @@ class _ApiFileManagerViewState extends State<ApiFileManagerView> {
                                           selectedAll = false;
                                           selectedFilename.clear();
                                           defaultDir?.clean();
+                                          isEditing = false;
                                         });
                                         widget.requestBuilder.reset();
                                         Navigator.of(context).pop();
@@ -463,44 +464,46 @@ class APIFileWidget extends StatelessWidget {
                 Icon(MdiIcons.api,
                     color: MaterialTheme.colorScheme(context).surfaceTint),
                 SizedBox(width: 12),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
-                      file.filename,
-                      style: TextStyle(
-                        color:
-                            MaterialTheme.colorScheme(context).inverseSurface,
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    Text(
-                      file.url,
-                      style: TextStyle(
-                        color: MaterialTheme.colorScheme(context).secondary,
-                        fontSize: 14,
-                        fontWeight: FontWeight.normal,
-                      ),
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ],
-                ),
-                Spacer(),
-                TextButton(
-                    onPressed: null,
-                    child: Text(
-                      file.requestMethod.toUpperCase(),
-                      style: TextStyle(
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        file.filename,
+                        style: TextStyle(
+                          color:
+                              MaterialTheme.colorScheme(context).inverseSurface,
+                          fontSize: 16,
                           fontWeight: FontWeight.bold,
-                          color: HttpRequestMethodTypeExtension.methodByDisplay(
-                                  file.requestMethod)
-                              ?.color),
-                    ))
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      Text(
+                        file.url,
+                        style: TextStyle(
+                          color: MaterialTheme.colorScheme(context).secondary,
+                          fontSize: 14,
+                          fontWeight: FontWeight.normal,
+                        ),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ],
+                  ),
+                ),
+                TextButton(
+                  onPressed: null,
+                  child: Text(
+                    file.requestMethod.toUpperCase(),
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: HttpRequestMethodTypeExtension.methodByDisplay(
+                                file.requestMethod)
+                            ?.color),
+                  ),
+                )
               ],
             ),
           ),
