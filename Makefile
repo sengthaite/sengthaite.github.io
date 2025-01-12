@@ -22,4 +22,4 @@ add_assets:
 all: clean autogen build_runner
 
 deploy: clean all
-	flutter pub global run peanut --web-renderer=canvaskit --extra-args --base-href=/
+	flutter pub global run peanut --extra-args --base-href=/
