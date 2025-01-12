@@ -390,7 +390,7 @@ class _APIFileCreationWidgetState extends State<APIFileCreationWidget> {
               children: [
                 Spacer(),
                 TextButton(
-                  onPressed: Navigator.of(context).pop,
+                  onPressed: () => Navigator.of(context).pop(),
                   child: Text(
                     "Cancel",
                     style: TextStyle(
