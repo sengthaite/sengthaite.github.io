@@ -1,0 +1,169 @@
+---
+title: Common Angular
+exerpt: Getting started with Angular
+---
+
+### Installation
+
+- Install [nodejs](https://nodejs.org/en/download/) with **npm** 
+
+```sh
+node -v; npm -v # verify installation by checking version
+```
+- Install **angular-cli**
+
+```sh
+npm install -g @angular/cli
+ng v # verify angular-cli installation by checking version
+```
+
+### Keywords
+
+- **npm** : node package manager
+
+### Useful Angular cli command
+
+1. New Project *new-project*
+
+```sh
+ng new new-project
+```
+
+2. Serve the application then open browser manually at [https://localhost:4200/](https://localhost:4200/)
+
+```sh
+ng serve # or npm run start
+```
+
+3. Serve the application then open browser automatically
+
+```sh
+ng serve --open # or ng serve -o
+```
+
+4. Run test
+
+```sh
+ng test # or npm run test
+```
+
+### Useful Resources
+
+1. [stackblitz](https://stackblitz.com/): help quickly testing or getting familiar with Angular
+2. [Change Prefix of Component](https://blogkashif.medium.com/change-prefix-of-component-in-angular-application-34c8d8a86dbf): when default prefix component is the subject to be changed
+
+### Getting Started with Angular
+
+#### Component Lifecycles
+
+1. **ngOnChanges(changes: SimpleChanges)**
+    - Set or reset data bound input properties.
+    - Receive a **SimpleChanges** object of current and previous properties values.
+    - Call before *ngOnInit()*
+    - If no inputs or use it without providing any inputs, the framework will not call *ngOnInit*
+2. **ngOnInit()**
+    - Initialize the directive or component
+3. **ngDoCheck()**
+    - Detect and act upon changes that Angular can't or won't detect on its own
+    - Called immediately after **ngOnChanges()** on every change detection run, and immediately after **ngOnInit()** on the first run
+4. **ngAfterContentInit()**
+    - Called once after the first **ngDoCheck()**
+5. **ngAfterContentChecked()**
+    - Called after **ngAfterContentInit()** and every subsequent **ngDoCheck()**
+6. **ngAfterViewInit()**
+    - Called once after the first **ngAfterContentChecked()**
+7. **ngAfterViewChecked()**
+    - Called after the **ngAfterViewInit()** and every subsequent **ngAfterContentChecked()**
+8. **ngOnDestroy**
+    - Called immediately before Angular destroys the directive or component
+
+#### Built-in Angular Directives
+
+##### Attribute Directives
+
++ NgClass
++ NgStyle
++ NgModel
+
+##### Structural Directives
+
++ NgIf
++ NgFor
++ NgSwitch
+
+**Example:**
+
+```html
+<--! app.component.html -->
+
+<div [ngClass]="isRed ? 'red' : 'blue'">Some text</div> <br>
+
+<button (click)="toggleSpecial()"> Switch To {% raw %}{{ isRed ? "Blue" : "Red"}}{% endraw %}</button> <br>
+
+<div [ngStyle]="{color: isRed ? 'red' : 'blue'}">Another text</div> <br>
+
+<input [(ngModel)]="name">
+
+<h2>{{name}}</h2>
+
+<div *ngIf="isRed">Hello Red Man.</div> <br>
+
+<div *ngFor="let color of someColors; index as i">{{i}}).{{color}}</div> <br>
+
+<div [ngSwitch]="myType.type">
+  <div *ngSwitchCase="'black'">Black</div>
+  <div *ngSwitchCase="'blue'">Blue</div>
+  <div *ngSwitchCase="'green'">Blue</div>
+  <div *ngSwitchDefault>Default Color</div>
+</div>
+```
+```js
+/// app.component.ts
+
+import { Component, Input } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+
+  someColors = ["red", "green", "blue", "yellow", "gray"]
+
+  name: string = ""
+
+  isRed = true
+
+  myType = {
+    type: "black"
+  }
+
+  toggleSpecial() {
+    this.isRed = !this.isRed
+  }
+}
+```
+
+```js
+/// app.module.ts
+
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
+
+import { AppComponent } from './app.component';
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    FormsModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+```

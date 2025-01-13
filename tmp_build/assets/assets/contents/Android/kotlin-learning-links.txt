@@ -1,0 +1,8 @@
+---
+title: Kotlin Resource Links
+exerpt: Finding resources for getting your feet wet with kotlin is crucial and the link to the resources are priceless
+--- 
+
+1. [Difference between **Any**, **Unit**, and **Nothing**](https://agrawalsuneet.github.io/blogs/difference-between-any-unit-and-nothing-kotlin/)
+2. [Interface and abstract class](https://www.kodeco.com/25627013-interfaces-and-abstract-classes-in-kotlin-getting-started)
+3. [Kotlin Playground](https://play.kotlinlang.org/)

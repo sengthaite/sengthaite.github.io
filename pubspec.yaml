@@ -1,0 +1,91 @@
+name: sengthaite_blog
+description: "SENGTHAITE_BLOG"
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.3.4 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+  uuid: ^4.4.0
+  material_design_icons_flutter: ^7.0.7296
+  intl: ^0.19.0
+  json_annotation: ^4.9.0
+  freezed_annotation: ^2.4.1
+  cosmic_frontmatter: ^1.0.3
+  url_launcher: ^6.2.6
+  flutter_quill: ^10.8.2
+  flutter_svg: ^2.0.10+1
+  path: ^1.9.0
+  google_fonts: ^6.2.1
+  markdown_widget: ^2.3.2+6
+  video_player: ^2.9.1
+  latext: ^0.5.0
+  flutter_math_fork: ^0.7.2
+  markdown: ^7.2.2
+  html: ^0.15.4
+  provider: ^6.1.2
+  dio: ^5.5.0+1
+  flutter_code_editor: ^0.3.2
+  universal_html: ^2.2.4
+  modal_bottom_sheet: ^3.0.0
+  camera: ^0.11.0+2
+  path_provider: ^2.1.4
+  device_preview: ^1.2.0
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  flutter_inappwebview: ^6.1.5
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^5.0.0
+  hive_generator: ^2.0.1
+  build_runner: ^2.4.9
+  json_serializable: ^6.8.0
+  freezed: ^2.5.2
+
+flutter:
+  assets:
+    - assets/
+    - assets/contents/
+    - assets/contents/Biography/
+    - assets/contents/Database/
+    - assets/contents/Tool/
+    - assets/contents/CLI/
+    - assets/contents/Cambodia/
+    - assets/contents/General/
+    - assets/contents/C#/
+    - assets/contents/LLVM/
+    - assets/contents/Angular/
+    - assets/contents/Kotlin/
+    - assets/contents/Reverse_Engineer/
+    - assets/contents/iOS/
+    - assets/contents/Swift/
+    - assets/contents/Android/
+    - assets/contents/Maths/
+    - assets/contents/OS/
+    - assets/autogen_meta/
+    - assets/content_icons/
+    - assets/tool_icons/
+
+  fonts:
+    - family: FiraCode
+      fonts:
+        - asset: assets/fonts/FiraCode.ttf
+    - family: NotoSerifKhmer
+      fonts:
+        - asset: assets/fonts/NotoSerifKhmer.ttf
+
+  uses-material-design: true
+
+targets:
+  $default:
+    builders:
+      build_web_compilers|entrypoint:
+        options:
+          tree_shake: true

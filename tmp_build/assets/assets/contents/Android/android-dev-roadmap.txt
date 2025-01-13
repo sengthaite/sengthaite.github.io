@@ -1,0 +1,18 @@
+---
+title: Android Developer Roadmap
+exerpt: Getting start with android learning topics
+---
+
+|#|Topic|Description|
+|--|-----|-----------|
+|1 |**Languages**|Start fundamental programmming languages Kotlin, Java, or C++|
+|2|**Android Studio common features**|Getting familiar with common useful features of android studio|
+|3|**Basic Android OS knowledge**|Some basic knowledge with Android OS such as resource management, permission, multi-user, processes|
+|4|**Android Platform Architecture**|the linux kernel, Android runtime, native libraries, Java API, System apps|
+|5|**App manifest**|Package, Application ID|
+|6|**App components**|activities, intent, fragments, services, content providers, and broadcast receivers|
+|7|**App architecture**|App entry points, App navigation, App startup, Dependency injection, architecture components, design patterns, architecture, networking, image, storage, asynchronous, user-interface, compose UI|
+|8|**External services**|Google service, Firebase, Advertisement|
+|9|**Code analysis & Testing**|Debugging, Linter, Unit Testing, Benchmark|
+|10|**CI/CD**|Github action, Jenkins, Travis CI, Circle CI, Bitrise|
+|11|**QA & App Publishing**|Firebase app distribution, app administration, google play store|

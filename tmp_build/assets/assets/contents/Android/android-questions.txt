@@ -1,0 +1,14 @@
+---
+title: Questions related to Android Development
+exerpt: General questions that related to android devices, operating system, coding, history, and stories
+---
+
+1. Summary history of Android OS
+2. Tools or platforms that enable android app development, testing, debugging, fixing, integrating, and deployment
+3. What are pre-requisite knowledge before developing a new and completed application?
+4. What are pre-requisite knowledge before continue to develop an existing application?
+5. A few commonly used libraries for android app development.
+6. Beginner and advanced topics related to android app development.
+7. Android activity lifecycles
+8. What are criteria that defines the value of an android application
+9. Security concerns and recommendation for critical application like banking app.
