@@ -5,7 +5,7 @@ mkdir ./tmp_gitroot
 
 flutter build web --release --base-href=/ --output=./tmp_build
 
-git clone --shared --bare=./tmp_gitroot .
+git clone --shared --bare tmp_gitroot .
 git symbolic-ref HEAD refs/heads/gh-pages
 
 git add --all --verbose
