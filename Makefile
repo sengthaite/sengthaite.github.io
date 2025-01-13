@@ -22,4 +22,5 @@ add_assets:
 all: clean autogen build_runner
 
 deploy: clean all
-	flutter build web --base-href=/
+	flutter pub global run dependency_validator
+	flutter pub global run peanut --wasm --extra-args --base-href=/

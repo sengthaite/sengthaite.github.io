@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:universal_html/html.dart' as html;
+import 'package:web/web.dart' as html;
 
 class APIFilenameDialogWidget extends StatefulWidget {
   final List<int> bytes;
@@ -22,11 +22,9 @@ class _APIFilenameDialogWidgetState extends State<APIFilenameDialogWidget> {
     // Encode our file in base64
     final base64 = base64Encode(widget.bytes);
     // Create the link with the file
-    final anchor =
-        html.AnchorElement(href: 'data:application/octet-stream;base64,$base64')
-          ..target = 'blank';
+    final anchor = html.HTMLAnchorElement()..target = 'blank';
     // add the name
-    anchor.download = downloadName;
+    anchor.download = 'data:application/octet-stream;base64,$base64';
     // trigger download
     html.document.body?.append(anchor);
     anchor.click();
