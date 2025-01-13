@@ -3,7 +3,7 @@ const MANIFEST = 'flutter-app-manifest';
 const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 
-const RESOURCES = {"flutter_bootstrap.js": "ad2dd6dd377106ff2e1aea014a66cd92",
+const RESOURCES = {"flutter_bootstrap.js": "100d1000f0ee0d5a285feddb9333b35d",
 "version.json": "a07d8bd594cce6033c300d9d89d41de4",
 "index.html": "a109e9b6e4de36ad8ad5f30fa465bc7a",
 "/": "a109e9b6e4de36ad8ad5f30fa465bc7a",
@@ -120,7 +120,7 @@ const RESOURCES = {"flutter_bootstrap.js": "ad2dd6dd377106ff2e1aea014a66cd92",
 "assets/assets/contents/OS/minix-kernel-roadmap.txt": "168c6d12e7f8a29d76fd393759f86882",
 "assets/assets/contents/Cambodia/name_of_provinces_cambodia.txt": "bced0089510ea7f9b6cd65c746da0562",
 "assets/assets/contents/Tool/developer-cli-tools.txt": "34d6618a1b6f58c8717d53adbf61cf17",
-"assets/assets/autogen_meta/data_content.json": "6acaf373652f7c5cdef5f2528483369a",
+"assets/assets/autogen_meta/data_content.json": "8416355cd53c64c5f0e9b9c60161dedb",
 "assets/assets/fonts/NotoSerifKhmer.ttf": "7796ba409432fde641c3179b46b741bc",
 "assets/assets/fonts/FiraCode.ttf": "975eb23ba46d8164c8401e265af15fd7",
 "assets/assets/tool_icons/http.svg": "c51c16a6bd5185f37ccde7286a5bd1ad",
