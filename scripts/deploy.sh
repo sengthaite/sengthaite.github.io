@@ -1,9 +1,8 @@
 #!/bin/sh
 
-mkdir ./tmp_build
-mkdir ./tmp_gitroot
+mkdir ./.tmp_build
 
-flutter build web --release --base-href=/ --output=./tmp_build
+flutter build web --release --base-href=/ --output=./.tmp_build
 
 git clone --shared --bare git@github.com:sengthaite/sengthaite.github.io.git .
 git symbolic-ref HEAD refs/heads/gh-pages
@@ -13,6 +12,4 @@ git status --porcelain
 git commit -m "Build web"
 git push --verbose --progress git@github.com:sengthaite/sengthaite.github.io.git gh-pages
 # git push origin --set-upstream gh-pages
-
-# rm -rf ./tmp_build
-# rm -rf ./tmp_gitroot
+rm -rf ./.tmp_build
