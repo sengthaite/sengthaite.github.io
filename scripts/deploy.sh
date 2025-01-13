@@ -11,7 +11,7 @@ git symbolic-ref HEAD refs/heads/gh-pages
 git add --all --verbose
 git status --porcelain
 git commit -m "Build web"
-git push --verbose --progress tmp_gitroot gh-pages
+git push --verbose --progress git@github.com:sengthaite/sengthaite.github.io.git gh-pages
 # git push origin --set-upstream gh-pages
 
 # rm -rf ./tmp_build
