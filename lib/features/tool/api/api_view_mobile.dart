@@ -70,8 +70,9 @@ class _APIViewDesktopState extends State<APIViewMobile> {
                         border: OutlineInputBorder(),
                         hintText: "URL",
                       ),
-                      onChanged: (value) =>
-                          setState(() => allowSubmitRequest = value.isUrl),
+                      onChanged: (value) {
+                        setState(() => allowSubmitRequest = value.isUrl);
+                      },
                       onFieldSubmitted: (value) {
                         allowSubmitRequest ? requestBuilder.request() : null;
                       },

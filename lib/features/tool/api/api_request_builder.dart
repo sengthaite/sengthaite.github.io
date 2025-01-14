@@ -21,7 +21,11 @@ class APIRowData {
     this.key,
     this.value,
     this.description,
-  });
+  }) {
+    keyController.text = key ?? '';
+    valueController.text = value ?? '';
+    descriptionController.text = description ?? '';
+  }
 }
 
 class HttpRequestBuilder extends ChangeNotifier {
@@ -43,7 +47,6 @@ class HttpRequestBuilder extends ChangeNotifier {
   List<APIRowData> headerControllers = [];
 
   HttpRequestBuilder() {
-    paramControllers.add(APIRowData(allowDeletion: false));
     headerControllers.add(APIRowData(allowDeletion: false));
   }
 
@@ -56,23 +59,25 @@ class HttpRequestBuilder extends ChangeNotifier {
     notifyListeners();
   }
 
-  String buildUrlWithQueryParams(String url, Map<String, dynamic> queryParams) {
-    final uri = Uri.parse(url);
+  buildUrlWithQueryParams(int rowIndex, {String? key, String? value}) {
+    final uri = Uri.parse(urlInputController.text);
+    var updatedParams = {};
+    var updatedKey = key ?? paramControllers[rowIndex].key;
+    var updatedValue = value ?? paramControllers[rowIndex].value;
+    if (updatedKey != null) {
+      updatedParams[updatedKey] = updatedValue;
+    }
 
-    final fullUri = uri.replace(
-      queryParameters: {
-        ...uri.queryParameters,
-        ...queryParams,
-      },
-    );
+    final fullUri = uri
+        .replace(queryParameters: {...uri.queryParameters, ...updatedParams});
 
-    final parsedUrl = fullUri.toString();
+    var parsedUrl = fullUri.toString();
 
     if (parsedUrl[parsedUrl.length - 1] == '?') {
-      return parsedUrl.substring(0, parsedUrl.length - 1);
-    } else {
-      return parsedUrl;
+      parsedUrl = parsedUrl.substring(0, parsedUrl.length - 1);
     }
+
+    urlInputController.text = parsedUrl;
   }
 
   reset() {

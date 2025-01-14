@@ -16,6 +16,24 @@ class APIUtilParamView extends StatefulWidget {
 
 class _APIUtilParamViewState extends State<APIUtilParamView> {
   @override
+  void initState() {
+    var uri = Uri.tryParse(widget.requestBuilder.urlInputController.text);
+    if (uri == null) return;
+    var params = uri.queryParameters;
+    widget.requestBuilder.paramControllers.clear();
+    if (params.isEmpty) {
+      widget.requestBuilder.paramControllers
+          .add(APIRowData(allowDeletion: false));
+    } else {
+      params.forEach((key, value) {
+        var row = APIRowData(allowDeletion: false, key: key, value: value);
+        widget.requestBuilder.paramControllers.add(row);
+      });
+    }
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Padding(
@@ -96,8 +114,9 @@ class _APIUtilParamViewState extends State<APIUtilParamView> {
                           hintText: "Key",
                           border: InputBorder.none,
                         ),
-                        initialValue: dataRow.key,
                         controller: dataRow.keyController,
+                        onChanged: (text) => widget.requestBuilder
+                            .buildUrlWithQueryParams(index, key: text),
                       ),
                     ),
                     Padding(
@@ -111,8 +130,9 @@ class _APIUtilParamViewState extends State<APIUtilParamView> {
                           hintText: "Value",
                           border: InputBorder.none,
                         ),
-                        initialValue: dataRow.value,
                         controller: dataRow.valueController,
+                        onChanged: (value) => widget.requestBuilder
+                            .buildUrlWithQueryParams(index, value: value),
                       ),
                     ),
                     Padding(
@@ -126,7 +146,6 @@ class _APIUtilParamViewState extends State<APIUtilParamView> {
                           hintText: "Description",
                           border: InputBorder.none,
                         ),
-                        initialValue: dataRow.description,
                         controller: dataRow.descriptionController,
                       ),
                     ),
