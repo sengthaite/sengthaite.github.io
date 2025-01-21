@@ -1,13 +1,10 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:sengthaite_blog/extensions/http_ext.dart';
 import 'package:sengthaite_blog/features/tool/api/api_request_builder.dart';
 import 'package:sengthaite_blog/features/tool/api/api_utils/api_util.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class HttpResponseView extends StatelessWidget {
   const HttpResponseView({
@@ -42,44 +39,11 @@ class HttpResponseView extends StatelessWidget {
     if (data == null) {
       return const Text("Empty data");
     }
-    if (isHtml || isJson || isImage) {
-      return InAppWebView(
-        initialUrlRequest: URLRequest(
-          allowsCellularAccess: true,
-          allowsConstrainedNetworkAccess: true,
-          allowsExpensiveNetworkAccess: true,
-          url: WebUri(requestBuilder.urlInputController.text),
-        ),
-        initialSettings: InAppWebViewSettings(
-          isInspectable: kDebugMode,
-          mediaPlaybackRequiresUserGesture: false,
-          allowsInlineMediaPlayback: true,
-          iframeAllow: "camera; microphone",
-          iframeAllowFullscreen: true,
-        ),
-        shouldOverrideUrlLoading: (controller, navigationAction) async {
-          var uri = navigationAction.request.url!;
-          if (![
-            "http",
-            "https",
-            "file",
-            "chrome",
-            "data",
-            "javascript",
-            "about"
-          ].contains(uri.scheme)) {
-            if (await canLaunchUrl(uri)) {
-              // Launch the App
-              await launchUrl(
-                uri,
-              );
-              // and cancel the request
-              return NavigationActionPolicy.CANCEL;
-            }
-          }
-          return NavigationActionPolicy.ALLOW;
-        },
-      );
+    if (isImage) {
+      return Image.network(requestBuilder.urlInputController.text);
+    }
+    if (isHtml || isJson) {
+      return Text(data.toString());
     }
 
     switch (responseContentType) {

@@ -260,7 +260,7 @@ class HttpRequestBuilder extends ChangeNotifier {
         BaseOptions(
           headers: headers?.map,
           queryParameters: params,
-          responseType: headers?.responseType,
+          responseType: headers?.responseType ?? ResponseType.bytes,
           contentType: headers?.value(Headers.contentTypeHeader),
           receiveDataWhenStatusError: true,
           followRedirects: true,
