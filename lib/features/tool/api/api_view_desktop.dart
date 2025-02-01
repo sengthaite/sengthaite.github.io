@@ -61,8 +61,10 @@ class _APIViewDesktopState extends State<APIViewDesktop> {
                     hintText: "URL",
                     labelText: labelText,
                   ),
-                  onChanged: (value) =>
-                      setState(() => allowSubmitRequest = value.isUrl),
+                  onChanged: (value) => setState(() {
+                    allowSubmitRequest = value.isUrl;
+                    if (value.isEmpty) requestBuilder.reset();
+                  }),
                   onFieldSubmitted: (value) =>
                       allowSubmitRequest ? requestBuilder.request() : null,
                 ),

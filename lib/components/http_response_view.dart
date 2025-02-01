@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:sengthaite_blog/extensions/http_ext.dart';
 import 'package:sengthaite_blog/features/tool/api/api_request_builder.dart';
 import 'package:sengthaite_blog/features/tool/api/api_utils/api_util.dart';
@@ -40,10 +41,25 @@ class HttpResponseView extends StatelessWidget {
       return const Text("Empty data");
     }
     if (isImage) {
-      return Image.network(requestBuilder.urlInputController.text);
+      return Padding(
+        padding: EdgeInsets.all(8),
+        child: Image.network(requestBuilder.urlInputController.text),
+      );
     }
-    if (isHtml || isJson) {
-      return Text(data.toString());
+    if (isJson) {
+      try {
+        var formattedJson = JsonEncoder.withIndent('  ').convert(data);
+
+        return SingleChildScrollView(
+            child: Text(
+                formattedJson is List ? (formattedJson[0]) : formattedJson));
+      } catch (error) {
+        debugPrint(error.toString());
+        return Text("Invalid json");
+      }
+    }
+    if (isHtml) {
+      return SingleChildScrollView(child: Html(data: data.toString()));
     }
 
     switch (responseContentType) {

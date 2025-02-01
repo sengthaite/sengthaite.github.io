@@ -88,7 +88,6 @@ class HttpRequestBuilder extends ChangeNotifier {
     isRequesting = false;
     selectedAllParam = null;
     selectedAllHeader = null;
-    response = null;
     paramControllers.clear();
     headerControllers.clear();
 
@@ -98,6 +97,7 @@ class HttpRequestBuilder extends ChangeNotifier {
 
     paramControllers.add(APIRowData(allowDeletion: false));
     headerControllers.add(APIRowData(allowDeletion: false));
+    response = null;
 
     notifyListeners();
     cancelToken = CancelToken();
@@ -293,28 +293,32 @@ class HttpRequestBuilder extends ChangeNotifier {
 
       switch (method) {
         case HttpRequestMethodType.get:
-          response = await dio.get(path, cancelToken: cancelToken);
+          response = await dio.get(path,
+              queryParameters: params, cancelToken: cancelToken);
           break;
         case HttpRequestMethodType.head:
-          response = await dio.head(path, data: body, cancelToken: cancelToken);
+          response = await dio.head(path,
+              data: body, queryParameters: params, cancelToken: cancelToken);
           break;
         case HttpRequestMethodType.post:
-          response = await dio.post(path, data: body, cancelToken: cancelToken);
+          response = await dio.post(path,
+              data: body, queryParameters: params, cancelToken: cancelToken);
           break;
         case HttpRequestMethodType.put:
-          response = await dio.put(path, data: body, cancelToken: cancelToken);
+          response = await dio.put(path,
+              data: body, queryParameters: params, cancelToken: cancelToken);
           break;
         case HttpRequestMethodType.delete:
-          response =
-              await dio.delete(path, data: body, cancelToken: cancelToken);
+          response = await dio.delete(path,
+              data: body, queryParameters: params, cancelToken: cancelToken);
           break;
         case HttpRequestMethodType.connect:
         case HttpRequestMethodType.options:
         case HttpRequestMethodType.trace:
           break;
         case HttpRequestMethodType.patch:
-          response =
-              await dio.patch(path, data: body, cancelToken: cancelToken);
+          response = await dio.patch(path,
+              data: body, queryParameters: params, cancelToken: cancelToken);
           break;
       }
     } catch (e) {
