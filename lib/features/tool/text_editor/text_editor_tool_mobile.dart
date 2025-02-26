@@ -17,11 +17,7 @@ class TextEditorToolMobile extends StatelessWidget {
         Expanded(
           child: QuillEditor.basic(
             controller: controller,
-            configurations: QuillEditorConfigurations(
-              sharedConfigurations: const QuillSharedConfigurations(
-                locale: Locale('en'),
-              ),
-            ),
+            config: QuillEditorConfig(),
           ),
         )
       ],

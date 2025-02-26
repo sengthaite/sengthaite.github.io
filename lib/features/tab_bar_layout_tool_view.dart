@@ -61,14 +61,11 @@ class TabBarLayoutToolView extends TabBarLayoutView {
                     return Padding(
                       padding: const EdgeInsets.only(
                           left: 4, right: 4, top: 4, bottom: 8),
-                      child: QuillToolbar.simple(
+                      child: QuillSimpleToolbar(
                         controller: _controller,
-                        configurations: QuillSimpleToolbarConfigurations(
+                        config: QuillSimpleToolbarConfig(
                           toolbarIconAlignment: WrapAlignment.start,
                           toolbarIconCrossAlignment: WrapCrossAlignment.start,
-                          sharedConfigurations: const QuillSharedConfigurations(
-                            locale: Locale('en'),
-                          ),
                         ),
                       ),
                     );

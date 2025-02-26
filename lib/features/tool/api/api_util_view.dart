@@ -86,8 +86,8 @@ class _APIUtilViewState extends State<APIUtilView> {
 
   @override
   Widget build(BuildContext context) {
-    // var drawerItems = getDrawerItems;
-    // var drawerItemsList = drawerItems.entries.toList();
+    var drawerItems = getDrawerItems;
+    var drawerItemsList = drawerItems.entries.toList();
     return DefaultTabController(
       length: tabData.length,
       initialIndex: 0,
@@ -115,44 +115,44 @@ class _APIUtilViewState extends State<APIUtilView> {
         body: TabBarView(
           children: tabData.values.toList(),
         ),
-        // drawer: Drawer(
-        //   child: Column(
-        //     children: [
-        //       const DrawerHeader(
-        //         child: Text(
-        //           "Settings",
-        //           style: TextStyle(
-        //             fontSize: 18,
-        //             fontWeight: FontWeight.w400,
-        //           ),
-        //         ),
-        //       ),
-        //       ...List.generate(drawerItems.length, (index) {
-        //         var item = drawerItemsList[index];
+        drawer: Drawer(
+          child: Column(
+            children: [
+              const DrawerHeader(
+                child: Text(
+                  "Settings",
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              ),
+              ...List.generate(drawerItems.length, (index) {
+                var item = drawerItemsList[index];
 
-        //         if (item.value.isActive) {
-        //           activeItemId = item.value.id;
-        //         }
-        //         return ListTile(
-        //           title: Text(
-        //             item.value.title,
-        //             style: TextStyle(
-        //                 color: item.value.isActive ? Colors.blue : null),
-        //           ),
-        //           onTap: () {
-        //             if (activeItemId != null && activeItemId != item.value.id) {
-        //               setState(() {
-        //                 drawerItems[activeItemId]!.isActive = false;
-        //                 activeItemId = item.value.id;
-        //                 item.value.isActive = true;
-        //               });
-        //             }
-        //           },
-        //         );
-        //       }),
-        //     ],
-        //   ),
-        // ),
+                if (item.value.isActive) {
+                  activeItemId = item.value.id;
+                }
+                return ListTile(
+                  title: Text(
+                    item.value.title,
+                    style: TextStyle(
+                        color: item.value.isActive ? Colors.blue : null),
+                  ),
+                  onTap: () {
+                    if (activeItemId != null && activeItemId != item.value.id) {
+                      setState(() {
+                        drawerItems[activeItemId]!.isActive = false;
+                        activeItemId = item.value.id;
+                        item.value.isActive = true;
+                      });
+                    }
+                  },
+                );
+              }),
+            ],
+          ),
+        ),
       ),
     );
   }
