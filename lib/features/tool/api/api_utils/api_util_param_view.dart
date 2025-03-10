@@ -5,29 +5,27 @@ import 'package:sengthaite_blog/features/tool/api/api_request_builder.dart';
 class APIUtilParamView extends StatefulWidget {
   const APIUtilParamView({
     super.key,
-    required this.requestBuilder,
   });
-
-  final HttpRequestBuilder requestBuilder;
 
   @override
   State<APIUtilParamView> createState() => _APIUtilParamViewState();
 }
 
 class _APIUtilParamViewState extends State<APIUtilParamView> {
+  var requestBuilder = HttpRequestBuilder.getInstance();
+
   @override
   void initState() {
-    var uri = Uri.tryParse(widget.requestBuilder.urlInputController.text);
+    var uri = Uri.tryParse(requestBuilder.urlInputController.text);
     if (uri == null) return;
     var params = uri.queryParameters;
-    widget.requestBuilder.paramControllers.clear();
+    requestBuilder.paramControllers.clear();
     if (params.isEmpty) {
-      widget.requestBuilder.paramControllers
-          .add(APIRowData(allowDeletion: false));
+      requestBuilder.paramControllers.add(APIRowData(allowDeletion: false));
     } else {
       params.forEach((key, value) {
         var row = APIRowData(allowDeletion: false, key: key, value: value);
-        widget.requestBuilder.paramControllers.add(row);
+        requestBuilder.paramControllers.add(row);
       });
     }
     super.initState();
@@ -50,11 +48,11 @@ class _APIUtilParamViewState extends State<APIUtilParamView> {
             children: [
               TableRow(children: [
                 Checkbox(
-                  value: widget.requestBuilder.selectedAllParam,
+                  value: requestBuilder.selectedAllParam,
                   onChanged: (value) {
-                    widget.requestBuilder.toggleParamAllRow();
+                    requestBuilder.toggleParamAllRow();
                     setState(() {
-                      widget.requestBuilder.selectedAllParam = value;
+                      requestBuilder.selectedAllParam = value;
                     });
                   },
                 ),
@@ -84,7 +82,7 @@ class _APIUtilParamViewState extends State<APIUtilParamView> {
                   hoverColor: Colors.transparent,
                   onPressed: () {
                     setState(() {
-                      widget.requestBuilder.addParam(APIRowData());
+                      requestBuilder.addParam(APIRowData());
                     });
                   },
                   icon: Icon(
@@ -93,15 +91,14 @@ class _APIUtilParamViewState extends State<APIUtilParamView> {
                   ),
                 ),
               ]),
-              ...List.generate(widget.requestBuilder.paramControllers.length,
-                  (index) {
-                var dataRow = widget.requestBuilder.paramControllers[index];
+              ...List.generate(requestBuilder.paramControllers.length, (index) {
+                var dataRow = requestBuilder.paramControllers[index];
                 return TableRow(
                   children: [
                     Checkbox(
                       value: dataRow.isSelected,
-                      onChanged: (value) => setState(() => widget.requestBuilder
-                          .toggleParamRowSelectionAt(index)),
+                      onChanged: (value) => setState(() =>
+                          requestBuilder.toggleParamRowSelectionAt(index)),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -115,7 +112,7 @@ class _APIUtilParamViewState extends State<APIUtilParamView> {
                           border: InputBorder.none,
                         ),
                         controller: dataRow.keyController,
-                        onChanged: (text) => widget.requestBuilder
+                        onChanged: (text) => requestBuilder
                             .buildUrlWithQueryParams(index, key: text),
                       ),
                     ),
@@ -131,7 +128,7 @@ class _APIUtilParamViewState extends State<APIUtilParamView> {
                           border: InputBorder.none,
                         ),
                         controller: dataRow.valueController,
-                        onChanged: (value) => widget.requestBuilder
+                        onChanged: (value) => requestBuilder
                             .buildUrlWithQueryParams(index, value: value),
                       ),
                     ),
@@ -162,7 +159,7 @@ class _APIUtilParamViewState extends State<APIUtilParamView> {
                             ),
                             onPressed: () {
                               setState(() {
-                                widget.requestBuilder.removeParamAt(index);
+                                requestBuilder.removeParamAt(index);
                               });
                             },
                           )

@@ -32,7 +32,7 @@ class TabBarLayoutToolView extends TabBarLayoutView {
   final QuillController _controller = QuillController.basic();
 
   List<ToolItemModel> toolList() {
-    final HttpRequestBuilder requestBuilder = HttpRequestBuilder();
+    final HttpRequestBuilder requestBuilder = HttpRequestBuilder.getInstance();
 
     return [
       ToolItemModel(
@@ -96,8 +96,7 @@ class TabBarLayoutToolView extends TabBarLayoutView {
               showBarModalBottomSheet(
                 context: context,
                 useRootNavigator: true,
-                builder: (context) =>
-                    APIUtilView(requestBuilder: requestBuilder),
+                builder: (context) => APIUtilView(),
               );
             },
           ),

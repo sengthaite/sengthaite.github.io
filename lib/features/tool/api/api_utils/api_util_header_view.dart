@@ -3,15 +3,15 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 import 'package:sengthaite_blog/features/tool/api/api_request_builder.dart';
 
 class APIUtilHeaderView extends StatefulWidget {
-  const APIUtilHeaderView({super.key, required this.requestBuilder});
-
-  final HttpRequestBuilder requestBuilder;
+  const APIUtilHeaderView({super.key});
 
   @override
   State<APIUtilHeaderView> createState() => _APIUtilHeaderViewState();
 }
 
 class _APIUtilHeaderViewState extends State<APIUtilHeaderView> {
+  var requestBuilder = HttpRequestBuilder.getInstance();
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -29,11 +29,11 @@ class _APIUtilHeaderViewState extends State<APIUtilHeaderView> {
             children: [
               TableRow(children: [
                 Checkbox(
-                  value: widget.requestBuilder.selectedAllHeader,
+                  value: requestBuilder.selectedAllHeader,
                   onChanged: (value) {
-                    widget.requestBuilder.toggleHeaderAllRow();
+                    requestBuilder.toggleHeaderAllRow();
                     setState(() {
-                      widget.requestBuilder.selectedAllHeader = value;
+                      requestBuilder.selectedAllHeader = value;
                     });
                   },
                 ),
@@ -63,7 +63,7 @@ class _APIUtilHeaderViewState extends State<APIUtilHeaderView> {
                   hoverColor: Colors.transparent,
                   onPressed: () {
                     setState(() {
-                      widget.requestBuilder.addHeader(APIRowData());
+                      requestBuilder.addHeader(APIRowData());
                     });
                   },
                   icon: Icon(
@@ -72,15 +72,15 @@ class _APIUtilHeaderViewState extends State<APIUtilHeaderView> {
                   ),
                 ),
               ]),
-              ...List.generate(widget.requestBuilder.headerControllers.length,
+              ...List.generate(requestBuilder.headerControllers.length,
                   (index) {
-                var dataRow = widget.requestBuilder.headerControllers[index];
+                var dataRow = requestBuilder.headerControllers[index];
                 return TableRow(
                   children: [
                     Checkbox(
                       value: dataRow.isSelected,
-                      onChanged: (value) => setState(() => widget.requestBuilder
-                          .toggleHeaderRowSelectionAt(index)),
+                      onChanged: (value) => setState(() =>
+                          requestBuilder.toggleHeaderRowSelectionAt(index)),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -140,7 +140,7 @@ class _APIUtilHeaderViewState extends State<APIUtilHeaderView> {
                             ),
                             onPressed: () {
                               setState(() {
-                                widget.requestBuilder.removeHeaderAt(index);
+                                requestBuilder.removeHeaderAt(index);
                               });
                             },
                           )

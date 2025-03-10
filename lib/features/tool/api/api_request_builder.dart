@@ -46,8 +46,17 @@ class HttpRequestBuilder extends ChangeNotifier {
   List<APIRowData> paramControllers = [];
   List<APIRowData> headerControllers = [];
 
-  HttpRequestBuilder() {
+  static HttpRequestBuilder? _instance;
+
+  HttpRequestBuilder._() {
     headerControllers.add(APIRowData(allowDeletion: false));
+  }
+
+  removeInstance() => _instance = null;
+
+  factory HttpRequestBuilder.getInstance() {
+    _instance ??= HttpRequestBuilder._();
+    return _instance!;
   }
 
   set autopopulateData(TempFile api) {
@@ -225,6 +234,10 @@ class HttpRequestBuilder extends ChangeNotifier {
   Headers? get headers {
     if (headerControllers.isEmpty) return null;
     Map<String, List<String>> result = {};
+    var auth = authInputController.text;
+    if (auth.isNotEmpty) {
+      result["Authorization"] = [auth];
+    }
     for (var header in headerControllers) {
       var key = header.keyController.text;
       if (key.trim().isEmpty || !header.isSelected) continue;

@@ -21,10 +21,7 @@ class APISettingItem {
 class APIUtilView extends StatefulWidget {
   const APIUtilView({
     super.key,
-    required this.requestBuilder,
   });
-
-  final HttpRequestBuilder requestBuilder;
 
   @override
   State<APIUtilView> createState() => _APIUtilViewState();
@@ -76,13 +73,19 @@ class _APIUtilViewState extends State<APIUtilView> {
   ];
 
   Map<String, Widget> get tabData => {
-        "Params": APIUtilParamView(requestBuilder: widget.requestBuilder),
-        "Authorization": APIUtilAuthView(requestBuilder: widget.requestBuilder),
-        "Headers": APIUtilHeaderView(requestBuilder: widget.requestBuilder),
-        "Body": APIUtilBodyView(requestBuilder: widget.requestBuilder),
+        "Params": APIUtilParamView(),
+        "Authorization": APIUtilAuthView(),
+        "Headers": APIUtilHeaderView(),
+        "Body": APIUtilBodyView(),
       };
 
   String? activeItemId;
+
+  @override
+  void dispose() {
+    super.dispose();
+    HttpRequestBuilder.getInstance().removeInstance();
+  }
 
   @override
   Widget build(BuildContext context) {

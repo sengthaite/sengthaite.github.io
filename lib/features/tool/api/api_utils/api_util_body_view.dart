@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:sengthaite_blog/features/tool/api/api_request_builder.dart';
 
-class APIUtilBodyView extends StatelessWidget {
-  const APIUtilBodyView({super.key, required this.requestBuilder});
+class APIUtilBodyView extends StatefulWidget {
+  const APIUtilBodyView({super.key});
 
-  final HttpRequestBuilder requestBuilder;
+  @override
+  State<APIUtilBodyView> createState() => _APIUtilBodyViewState();
+}
+
+class _APIUtilBodyViewState extends State<APIUtilBodyView> {
+  var requestBuilder = HttpRequestBuilder.getInstance();
 
   @override
   Widget build(BuildContext context) {

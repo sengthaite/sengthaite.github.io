@@ -8,6 +8,7 @@ class ToolItemModel {
   final List<Widget>? actions;
   Widget Function(BuildContext)? widgetBuilder;
   FutureBuilder<dynamic>? futureBuilder;
+  Function? onDispose;
 
   ToolItemModel({
     required this.index,
@@ -17,5 +18,6 @@ class ToolItemModel {
     this.futureBuilder,
     this.image,
     this.actions,
+    this.onDispose,
   });
 }
