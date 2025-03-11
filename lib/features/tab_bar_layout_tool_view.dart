@@ -111,10 +111,7 @@ class TabBarLayoutToolView extends TabBarLayoutView {
             context: context,
             defaultWidget: Row(
               crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                const APIViewDesktop(),
-                ApiFileManagerView(requestBuilder: requestBuilder)
-              ],
+              children: [const APIViewDesktop(), ApiFileManagerView()],
             ),
             mobileWidget: const APIViewMobile(),
           ),

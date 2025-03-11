@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:sengthaite_blog/features/tool/api/api_request_builder.dart';
 import 'package:sengthaite_blog/features/tool/api/api_utils/api_util_auth_view.dart';
 import 'package:sengthaite_blog/features/tool/api/api_utils/api_util_body_view.dart';
 import 'package:sengthaite_blog/features/tool/api/api_utils/api_util_header_view.dart';
@@ -80,12 +79,6 @@ class _APIUtilViewState extends State<APIUtilView> {
       };
 
   String? activeItemId;
-
-  @override
-  void dispose() {
-    super.dispose();
-    HttpRequestBuilder.getInstance().removeInstance();
-  }
 
   @override
   Widget build(BuildContext context) {

@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:core';
 
 import 'package:flutter/material.dart';
@@ -12,21 +11,7 @@ class APIUtilAuthView extends StatefulWidget {
 }
 
 class _APIUtilAuthViewState extends State<APIUtilAuthView> {
-  final controller = TextEditingController();
-
-  final usernameController = TextEditingController();
-  final passwordController = TextEditingController();
   var requestBuilder = HttpRequestBuilder.getInstance();
-
-  String authType = "noAuth";
-
-  basicAuth() {
-    var username = usernameController.text;
-    var password = passwordController.text;
-    if (username.isEmpty && password.isEmpty) return;
-    var base64Credential = base64.encode(utf8.encode("$username:$password"));
-    requestBuilder.authInputController.text = "Basic $base64Credential";
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,25 +20,24 @@ class _APIUtilAuthViewState extends State<APIUtilAuthView> {
       child: Column(
         children: [
           DropdownMenu(
-            initialSelection: "noAuth",
-            controller: controller,
+            initialSelection: requestBuilder.authType,
             requestFocusOnTap: true,
             label: const Text('Auth Type'),
             onSelected: (String? value) {
               setState(() {
-                authType = value ?? "noAuth";
-                if (authType == authType) {
-                  usernameController.clear();
-                  passwordController.clear();
+                requestBuilder.authType = value ?? "noAuth";
+                if (value == "noAuth") {
+                  requestBuilder.clearAuth();
                 }
               });
             },
             dropdownMenuEntries: [
               DropdownMenuEntry(value: "noAuth", label: "No Auth"),
               DropdownMenuEntry(value: "basic", label: "Basic"),
+              DropdownMenuEntry(value: "bearer", label: "Bearer"),
             ],
           ),
-          if (authType == "basic")
+          if (requestBuilder.authType == "basic")
             SizedBox(
               width: 250,
               child: Column(children: [
@@ -65,8 +49,7 @@ class _APIUtilAuthViewState extends State<APIUtilAuthView> {
                         hintText: 'Username',
                         border: OutlineInputBorder(),
                         contentPadding: EdgeInsets.all(4)),
-                    controller: usernameController,
-                    onChanged: (username) => basicAuth(),
+                    controller: requestBuilder.usernameController,
                   ),
                 ),
                 SizedBox(height: 5),
@@ -77,10 +60,26 @@ class _APIUtilAuthViewState extends State<APIUtilAuthView> {
                         hintText: 'Password',
                         border: OutlineInputBorder(),
                         contentPadding: EdgeInsets.all(4)),
-                    controller: passwordController,
-                    onChanged: (password) => basicAuth(),
+                    controller: requestBuilder.passwordController,
                   ),
                 )
+              ]),
+            ),
+          if (requestBuilder.authType == "bearer")
+            SizedBox(
+              width: 250,
+              child: Column(children: [
+                SizedBox(height: 12),
+                Padding(
+                  padding: EdgeInsets.all(8),
+                  child: TextField(
+                    decoration: InputDecoration(
+                        hintText: 'Bearer Token',
+                        border: OutlineInputBorder(),
+                        contentPadding: EdgeInsets.all(4)),
+                    controller: requestBuilder.bearerController,
+                  ),
+                ),
               ]),
             )
         ],

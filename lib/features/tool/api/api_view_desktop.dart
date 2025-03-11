@@ -20,6 +20,12 @@ class _APIViewDesktopState extends State<APIViewDesktop> {
   String? labelText;
 
   @override
+  void dispose() {
+    super.dispose();
+    HttpRequestBuilder.getInstance().removeInstance();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final requestBuilder = context.watch<HttpRequestBuilder>();
     allowSubmitRequest = requestBuilder.urlInputController.text.isNotEmpty;

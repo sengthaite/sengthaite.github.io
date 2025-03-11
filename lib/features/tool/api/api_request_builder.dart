@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:sengthaite_blog/extensions/http_ext.dart';
@@ -30,8 +32,13 @@ class APIRowData {
 
 class HttpRequestBuilder extends ChangeNotifier {
   final urlInputController = TextEditingController();
-  final authInputController = TextEditingController();
   final bodyInputController = TextEditingController();
+
+  final usernameController = TextEditingController();
+  final passwordController = TextEditingController();
+  final bearerController = TextEditingController();
+
+  String authType = "noAuth";
 
   var cancelToken = CancelToken();
 
@@ -68,6 +75,22 @@ class HttpRequestBuilder extends ChangeNotifier {
     notifyListeners();
   }
 
+  clearAuth() {
+    usernameController.clear();
+    passwordController.clear();
+    bearerController.clear();
+  }
+
+  String? get basicAuth {
+    var username = usernameController.text;
+    var password = passwordController.text;
+    if (username.isEmpty && password.isEmpty) return null;
+    var base64Credential = base64.encode(utf8.encode("$username:$password"));
+    return "Basic $base64Credential";
+  }
+
+  String? get bearerAuth => "Bearer ${bearerController.text}";
+
   buildUrlWithQueryParams(int rowIndex, {String? key, String? value}) {
     final uri = Uri.parse(urlInputController.text);
     var updatedParams = {};
@@ -92,7 +115,6 @@ class HttpRequestBuilder extends ChangeNotifier {
   reset() {
     cancelToken.cancel("Request is canceled.");
     urlInputController.clear();
-    authInputController.clear();
     bodyInputController.clear();
     isRequesting = false;
     selectedAllParam = null;
@@ -234,7 +256,17 @@ class HttpRequestBuilder extends ChangeNotifier {
   Headers? get headers {
     if (headerControllers.isEmpty) return null;
     Map<String, List<String>> result = {};
-    var auth = authInputController.text;
+    String auth = '';
+    switch (authType) {
+      case 'basic':
+        auth = basicAuth ?? '';
+        break;
+      case 'bearer':
+        auth = bearerAuth ?? '';
+        break;
+      default:
+        break;
+    }
     if (auth.isNotEmpty) {
       result["Authorization"] = [auth];
     }

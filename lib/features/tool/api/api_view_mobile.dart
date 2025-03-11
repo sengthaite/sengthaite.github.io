@@ -21,6 +21,12 @@ class _APIViewDesktopState extends State<APIViewMobile> {
       ?.color;
 
   @override
+  void dispose() {
+    super.dispose();
+    HttpRequestBuilder.getInstance().removeInstance();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final requestBuilder = context.watch<HttpRequestBuilder>();
     return Row(

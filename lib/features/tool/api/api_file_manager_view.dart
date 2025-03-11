@@ -11,10 +11,7 @@ import 'api_request_builder.dart';
 class ApiFileManagerView extends StatefulWidget {
   const ApiFileManagerView({
     super.key,
-    required this.requestBuilder,
   });
-
-  final HttpRequestBuilder requestBuilder;
 
   @override
   State<ApiFileManagerView> createState() => _ApiFileManagerViewState();
@@ -170,7 +167,8 @@ class _ApiFileManagerViewState extends State<ApiFileManagerView> {
                                           defaultDir?.clean();
                                           isEditing = false;
                                         });
-                                        widget.requestBuilder.reset();
+                                        HttpRequestBuilder.getInstance()
+                                            .reset();
                                         Navigator.of(context).pop();
                                       },
                                       child: Text(
@@ -258,10 +256,11 @@ class _ApiFileManagerViewState extends State<ApiFileManagerView> {
 
                                             if (isDeselected) {
                                               selectedRow = null;
-                                              widget.requestBuilder.reset();
+                                              HttpRequestBuilder.getInstance()
+                                                  .reset();
                                             } else {
                                               selectedRow = rowWidget;
-                                              widget.requestBuilder
+                                              HttpRequestBuilder.getInstance()
                                                   .autopopulateData = eachFile;
                                             }
                                           })),
