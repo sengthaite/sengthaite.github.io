@@ -34,9 +34,14 @@ class HttpRequestBuilder extends ChangeNotifier {
   final urlInputController = TextEditingController();
   final bodyInputController = TextEditingController();
 
+  // basic auth type
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
+
+  // bearer auth type
   final bearerController = TextEditingController();
+
+  // json web token
 
   String authType = "noAuth";
 
@@ -132,6 +137,7 @@ class HttpRequestBuilder extends ChangeNotifier {
 
     notifyListeners();
     cancelToken = CancelToken();
+    clearAuth();
   }
 
   setParamSelectedRowAt(int index) {
