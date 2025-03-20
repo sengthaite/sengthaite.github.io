@@ -42,6 +42,7 @@ class HttpRequestBuilder extends ChangeNotifier {
   final bearerController = TextEditingController();
 
   // json web token
+  final jwtAlgorithm = TextEditingController();
 
   String authType = "noAuth";
 
