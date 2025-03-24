@@ -42,7 +42,11 @@ class HttpRequestBuilder extends ChangeNotifier {
   final bearerController = TextEditingController();
 
   // json web token
-  final jwtAlgorithm = TextEditingController();
+  final jwtAlgorithm = TextEditingController(text: "HS256");
+  final jwtSecret = TextEditingController();
+  bool isSecretBase64 = false;
+  final jwtPayload = TextEditingController();
+  final jwtPrivateKey = TextEditingController();
 
   String authType = "noAuth";
 
@@ -86,6 +90,9 @@ class HttpRequestBuilder extends ChangeNotifier {
     passwordController.clear();
     bearerController.clear();
   }
+
+  bool get isHashingAlgorithm =>
+      ["HS256", "HS384", "HS512"].contains(jwtAlgorithm.text);
 
   String? get basicAuth {
     var username = usernameController.text;
