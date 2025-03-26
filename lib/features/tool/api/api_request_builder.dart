@@ -1,8 +1,10 @@
 import 'dart:convert';
 
+import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:sengthaite_blog/extensions/http_ext.dart';
+import 'package:sengthaite_blog/features/tool/api/api_utils/api_util.dart';
 import 'package:sengthaite_blog/shared/dialog/error_dialog.dart';
 import 'package:sengthaite_blog/shared/file/hivedir.dart';
 
@@ -103,6 +105,80 @@ class HttpRequestBuilder extends ChangeNotifier {
   }
 
   String? get bearerAuth => "Bearer ${bearerController.text}";
+
+  String? get jwtBearerToken {
+    var jwt = JWT(jwtPayload.text);
+    JWTAlgorithm algorithm = JWTAlgorithm.HS256;
+    JWTKey key = SecretKey(jwtSecret.text, isBase64Encoded: isSecretBase64);
+    switch (jwtAlgorithm.text) {
+      case "HS256":
+        algorithm = JWTAlgorithm.HS256;
+        key = SecretKey(jwtSecret.text, isBase64Encoded: isSecretBase64);
+        break;
+      case "HS384":
+        algorithm = JWTAlgorithm.HS384;
+        key = SecretKey(jwtSecret.text, isBase64Encoded: isSecretBase64);
+        break;
+      case "HS512":
+        algorithm = JWTAlgorithm.HS512;
+        key = SecretKey(jwtSecret.text, isBase64Encoded: isSecretBase64);
+        break;
+      case "PS256":
+        algorithm = JWTAlgorithm.PS256;
+        key = RSAPrivateKey(jwtPrivateKey.text);
+        break;
+      case "PS384":
+        algorithm = JWTAlgorithm.PS384;
+        key = RSAPrivateKey(jwtPrivateKey.text);
+        break;
+      case "PS512":
+        algorithm = JWTAlgorithm.PS512;
+        key = RSAPrivateKey(jwtPrivateKey.text);
+        break;
+      case "RS256":
+        algorithm = JWTAlgorithm.RS256;
+        key = RSAPrivateKey(jwtPrivateKey.text);
+        break;
+      case "RS384":
+        algorithm = JWTAlgorithm.RS384;
+        key = RSAPrivateKey(jwtPrivateKey.text);
+        break;
+      case "RS512":
+        algorithm = JWTAlgorithm.RS512;
+        key = RSAPrivateKey(jwtPrivateKey.text);
+        break;
+      case "ES256":
+        algorithm = JWTAlgorithm.ES256;
+        key = ECPrivateKey(jwtPrivateKey.text);
+        break;
+      case "ES256K":
+        algorithm = JWTAlgorithm.ES256K;
+        key = ECPrivateKey(jwtPrivateKey.text);
+        break;
+      case "ES384":
+        algorithm = JWTAlgorithm.ES384;
+        key = ECPrivateKey(jwtPrivateKey.text);
+        break;
+      case "ES512":
+        algorithm = JWTAlgorithm.ES512;
+        key = ECPrivateKey(jwtPrivateKey.text);
+        break;
+      case "EdDSA":
+        algorithm = JWTAlgorithm.EdDSA;
+        key = EdDSAPrivateKey.fromPEM(jwtPrivateKey.text);
+        break;
+    }
+    try {
+      var token = jwt.sign(
+        key,
+        algorithm: algorithm,
+      );
+      return "Bearer $token";
+    } catch (error) {
+      APIUtil.showTextDialog(error.toString());
+      return null;
+    }
+  }
 
   buildUrlWithQueryParams(int rowIndex, {String? key, String? value}) {
     final uri = Uri.parse(urlInputController.text);
@@ -277,6 +353,9 @@ class HttpRequestBuilder extends ChangeNotifier {
         break;
       case 'bearer':
         auth = bearerAuth ?? '';
+        break;
+      case 'jsonwebtoken':
+        auth = jwtBearerToken ?? '';
         break;
       default:
         break;

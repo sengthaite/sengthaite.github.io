@@ -49,6 +49,7 @@ class _APIUtilAuthViewState extends State<APIUtilAuthView> {
     return Padding(
       padding: EdgeInsets.all(24),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           DropdownMenu(
             initialSelection: requestBuilder.authType,
@@ -135,10 +136,13 @@ class _APIUtilAuthViewState extends State<APIUtilAuthView> {
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: TextField(
+                            maxLines: 5,
+                            keyboardType: TextInputType.multiline,
                             decoration: InputDecoration(
-                                hintText: 'secret',
-                                border: OutlineInputBorder(),
-                                contentPadding: EdgeInsets.all(4)),
+                              hintText: 'secret',
+                              border: OutlineInputBorder(),
+                              contentPadding: EdgeInsets.all(4),
+                            ),
                             controller: requestBuilder.jwtSecret,
                           ),
                         ),
@@ -162,29 +166,30 @@ class _APIUtilAuthViewState extends State<APIUtilAuthView> {
                     child: Column(
                       children: [
                         TextButton(
-                            onPressed: () async {
-                              FilePickerResult? result =
-                                  await FilePicker.platform.pickFiles();
-                              if (result != null) {
-                                final fileContent = await result
-                                    .files.single.xFile
-                                    .readAsString();
-                                setState(() {
-                                  requestBuilder.jwtPrivateKey.text =
-                                      fileContent;
-                                });
-                              } else {
-                                // User canceled the picker
-                              }
-                            },
-                            child: Text("Select File")),
+                          onPressed: () async {
+                            FilePickerResult? result =
+                                await FilePicker.platform.pickFiles();
+                            if (result != null) {
+                              final fileContent = await result
+                                  .files.single.xFile
+                                  .readAsString();
+                              setState(() {
+                                requestBuilder.jwtPrivateKey.text = fileContent;
+                              });
+                            } else {
+                              // User canceled the picker
+                            }
+                          },
+                          child: Text("Select File"),
+                        ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: TextField(
                             decoration: InputDecoration(
-                                hintText: 'Private key',
-                                border: OutlineInputBorder(),
-                                contentPadding: EdgeInsets.all(4)),
+                              hintText: 'Private key',
+                              border: OutlineInputBorder(),
+                              contentPadding: EdgeInsets.all(4),
+                            ),
                             controller: requestBuilder.jwtPrivateKey,
                           ),
                         ),
