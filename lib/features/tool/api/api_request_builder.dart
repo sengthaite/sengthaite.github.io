@@ -32,6 +32,77 @@ class APIRowData {
   }
 }
 
+extension MapKeyValueReplacement on Map<String, List<String>> {
+  Map<String, String>? toMapWithVariables(Map<String, String>? replacements) {
+    if (isEmpty) return null;
+    var entries = this.entries;
+    Map<String, String> result = {};
+    for (var entry in entries) {
+      var key = entry.key;
+      result[key] =
+          entry.value.join(",").replaceTextStaticVariables(replacements);
+    }
+    return result;
+  }
+}
+
+extension ListAPIRowData on List<APIRowData> {
+  Map<String, String>? toMapWithVariables(Map<String, String>? replacements) {
+    if (isEmpty) return null;
+    Map<String, String> result = {};
+    for (var each in this) {
+      var key = each.keyController.text;
+      if (!each.isSelected) continue;
+      result[key] =
+          each.valueController.text.replaceTextStaticVariables(replacements);
+    }
+    return result;
+  }
+
+  Map<String, String>? get toMap {
+    if (isEmpty) return null;
+    Map<String, String> result = {};
+    for (var param in this) {
+      var key = param.keyController.text;
+      if (key.trim().isEmpty || !param.isSelected) continue;
+      result[key] = param.valueController.text;
+    }
+    return result;
+  }
+}
+
+extension APIRowDataVariables on String {
+  String replaceTextStaticVariables(Map<String, String>? replacements) {
+    if (replacements == null) return this;
+    // Regex to find text between double curly braces ({{text}})
+    final doubleBraceRegex = RegExp(r'\{\{([^}]+)\}\}');
+
+    // Regex to find text between escaped curly braces (\{text1\})
+    final escapedBraceRegex = RegExp(r'\\\{([^}]+)\\\}');
+
+    // First, handle the escaped curly braces to prevent them from being
+    // treated as regular double curly braces. We replace them with a
+    // temporary placeholder that is unlikely to appear in the input.
+    String tempString = replaceAllMapped(escapedBraceRegex, (match) {
+      return '__ESCAPED_BRACE_START__${match.group(1)}__ESCAPED_BRACE_END__';
+    });
+
+    // Now, handle the regular double curly braces
+    String replacedString =
+        tempString.replaceAllMapped(doubleBraceRegex, (match) {
+      final key = match.group(1);
+      return replacements.containsKey(key)
+          ? replacements[key]!
+          : match.group(0)!;
+    });
+
+    // Finally, revert the temporary placeholder for escaped curly braces
+    return replacedString
+        .replaceAll('__ESCAPED_BRACE_START__', '{')
+        .replaceAll('__ESCAPED_BRACE_END__', '}');
+  }
+}
+
 class HttpRequestBuilder extends ChangeNotifier {
   final urlInputController = TextEditingController();
   final bodyInputController = TextEditingController();
@@ -61,14 +132,19 @@ class HttpRequestBuilder extends ChangeNotifier {
   bool isRequesting = false;
   bool? selectedAllParam = true;
   bool? selectedAllHeader = true;
+  bool? selectedAllStaticVariables = true;
+  bool? selectedAllDynamicVaraibles = true;
 
   List<APIRowData> paramControllers = [];
   List<APIRowData> headerControllers = [];
+  List<APIRowData> staticVariableControllers = [];
+  List<APIRowData> dynamicVariableControllers = [];
 
   static HttpRequestBuilder? _instance;
 
   HttpRequestBuilder._() {
     headerControllers.add(APIRowData(allowDeletion: false));
+    staticVariableControllers.add(APIRowData(allowDeletion: false));
   }
 
   removeInstance() => _instance = null;
@@ -224,6 +300,7 @@ class HttpRequestBuilder extends ChangeNotifier {
     clearAuth();
   }
 
+  /// Params
   setParamSelectedRowAt(int index) {
     paramControllers[index].isSelected = true;
     var shouldSelectAllParam = true;
@@ -278,6 +355,7 @@ class HttpRequestBuilder extends ChangeNotifier {
 
   removeParamAt(int index) => paramControllers.removeAt(index);
 
+  /// Headers
   setHeaderSelectedRowAt(int index) {
     headerControllers[index].isSelected = true;
     var shouldSelectAllHeader = true;
@@ -332,16 +410,47 @@ class HttpRequestBuilder extends ChangeNotifier {
 
   removeHeaderAt(int index) => headerControllers.removeAt(index);
 
-  Map<String, dynamic>? get params {
-    if (paramControllers.isEmpty) return null;
-    Map<String, dynamic> result = {};
-    for (var param in paramControllers) {
-      var key = param.keyController.text;
-      if (key.trim().isEmpty || !param.isSelected) continue;
-      result[key] = param.valueController.text;
+  /// Static variables
+  selectStaticVariablesAllRow() {
+    selectedAllStaticVariables = true;
+    for (var row in staticVariableControllers) {
+      if (row.isSelected) continue;
+      row.isSelected = true;
     }
-    return result;
   }
+
+  deSelectStaticVariablesAllRow() {
+    selectedAllStaticVariables = false;
+    for (var row in staticVariableControllers) {
+      if (!row.isSelected) continue;
+      row.isSelected = false;
+    }
+  }
+
+  toggleStaticVariablesAllRow() {
+    if (selectedAllStaticVariables == null) return;
+    selectedAllStaticVariables!
+        ? deSelectStaticVariablesAllRow()
+        : selectStaticVariablesAllRow();
+  }
+
+  toggleStaticVariablesRowSelectionAt(int index) {
+    staticVariableControllers[index].isSelected =
+        !staticVariableControllers[index].isSelected;
+    var shouldSelectAllStaticVariables = true;
+    for (var row in staticVariableControllers) {
+      if (!row.isSelected) {
+        shouldSelectAllStaticVariables = false;
+        break;
+      }
+    }
+    selectedAllStaticVariables = shouldSelectAllStaticVariables;
+  }
+
+  addStaticVariables(APIRowData data) => staticVariableControllers.add(data);
+
+  removeStaticVariablesAt(int index) =>
+      staticVariableControllers.removeAt(index);
 
   Headers? get headers {
     if (headerControllers.isEmpty) return null;
@@ -392,12 +501,15 @@ class HttpRequestBuilder extends ChangeNotifier {
       if (method == null) {
         throw Exception("Unknown request method");
       }
-      var path = urlInputController.text;
-      var body = bodyInputController.text;
+      var replacements = staticVariableControllers.toMap;
+      var path =
+          urlInputController.text.replaceTextStaticVariables(replacements);
+      var body =
+          bodyInputController.text.replaceTextStaticVariables(replacements);
       var dio = Dio(
         BaseOptions(
-          headers: headers?.map,
-          queryParameters: params,
+          headers: headers?.map.toMapWithVariables(replacements),
+          queryParameters: paramControllers.toMapWithVariables(replacements),
           responseType: headers?.responseType ?? ResponseType.bytes,
           contentType: headers?.value(Headers.contentTypeHeader),
           receiveDataWhenStatusError: true,
@@ -428,6 +540,8 @@ class HttpRequestBuilder extends ChangeNotifier {
       }
       isRequesting = true;
       notifyListeners();
+
+      var params = paramControllers.toMapWithVariables(replacements);
 
       switch (method) {
         case HttpRequestMethodType.get:

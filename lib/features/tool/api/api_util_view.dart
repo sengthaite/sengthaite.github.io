@@ -3,18 +3,30 @@ import 'package:sengthaite_blog/features/tool/api/api_utils/api_util_auth_view.d
 import 'package:sengthaite_blog/features/tool/api/api_utils/api_util_body_view.dart';
 import 'package:sengthaite_blog/features/tool/api/api_utils/api_util_header_view.dart';
 import 'package:sengthaite_blog/features/tool/api/api_utils/api_util_param_view.dart';
-import 'package:uuid/uuid.dart';
+import 'package:sengthaite_blog/features/tool/api/api_variables/api_static_variables_view.dart';
 
 class APISettingItem {
   APISettingItem({
     required this.title,
     required this.item,
+    required this.code,
     this.isActive = false,
   });
-  String id = Uuid().v4();
+  SettingCode code;
   String title;
   bool isActive = false;
   Widget item;
+}
+
+enum SettingCode {
+  requestBuilder,
+  encryption,
+  staticVariable,
+  dynamicVariable,
+  buildInFunc,
+  customFunc,
+  log,
+  test
 }
 
 class APIUtilView extends StatefulWidget {
@@ -27,10 +39,10 @@ class APIUtilView extends StatefulWidget {
 }
 
 class _APIUtilViewState extends State<APIUtilView> {
-  Map<String, APISettingItem> get getDrawerItems {
-    Map<String, APISettingItem> result = {};
+  Map<SettingCode, APISettingItem> get getDrawerItems {
+    Map<SettingCode, APISettingItem> result = {};
     for (var item in _drawerItemList) {
-      result[item.id] = item;
+      result[item.code] = item;
     }
     return result;
   }
@@ -40,45 +52,75 @@ class _APIUtilViewState extends State<APIUtilView> {
       title: "Request Builder",
       isActive: true,
       item: Text("Request builder"),
+      code: SettingCode.requestBuilder,
     ),
     APISettingItem(
       title: "Encryption",
       item: Text("Encryption"),
+      code: SettingCode.encryption,
     ),
     APISettingItem(
       title: "Static Variables",
       item: Text("Static Variables"),
+      code: SettingCode.staticVariable,
     ),
     APISettingItem(
       title: "Dynamic Variables",
       item: Text("Dynamic Variables"),
+      code: SettingCode.dynamicVariable,
     ),
     APISettingItem(
       title: "Built-in Functions",
       item: Text("Built-in functions"),
+      code: SettingCode.buildInFunc,
     ),
     APISettingItem(
       title: "Custom Functions (Dart)",
       item: Text("Custom functions"),
+      code: SettingCode.customFunc,
     ),
     APISettingItem(
       title: "Logs",
       item: Text("Log"),
+      code: SettingCode.log,
     ),
     APISettingItem(
       title: "Test",
       item: Text("Test"),
+      code: SettingCode.test,
     ),
   ];
 
-  Map<String, Widget> get tabData => {
-        "Params": APIUtilParamView(),
-        "Authorization": APIUtilAuthView(),
-        "Headers": APIUtilHeaderView(),
-        "Body": APIUtilBodyView(),
-      };
+  Map<String, Widget> get tabData {
+    switch (activeItemCode) {
+      case SettingCode.requestBuilder:
+        return {
+          "Params": APIUtilParamView(),
+          "Authorization": APIUtilAuthView(),
+          "Headers": APIUtilHeaderView(),
+          "Body": APIUtilBodyView(),
+        };
+      case SettingCode.encryption:
+      case SettingCode.staticVariable:
+        return {
+          "Static Variables": APIStaticVariablesView(),
+        };
+      case SettingCode.dynamicVariable:
+      case SettingCode.buildInFunc:
+      case SettingCode.customFunc:
+      case SettingCode.log:
+      case SettingCode.test:
+      default:
+        return {
+          "Params": APIUtilParamView(),
+          "Authorization": APIUtilAuthView(),
+          "Headers": APIUtilHeaderView(),
+          "Body": APIUtilBodyView(),
+        };
+    }
+  }
 
-  String? activeItemId;
+  SettingCode? activeItemCode;
 
   @override
   Widget build(BuildContext context) {
@@ -127,7 +169,7 @@ class _APIUtilViewState extends State<APIUtilView> {
                 var item = drawerItemsList[index];
 
                 if (item.value.isActive) {
-                  activeItemId = item.value.id;
+                  activeItemCode = item.value.code;
                 }
                 return ListTile(
                   title: Text(
@@ -136,10 +178,11 @@ class _APIUtilViewState extends State<APIUtilView> {
                         color: item.value.isActive ? Colors.blue : null),
                   ),
                   onTap: () {
-                    if (activeItemId != null && activeItemId != item.value.id) {
+                    if (activeItemCode != null &&
+                        activeItemCode != item.value.code) {
                       setState(() {
-                        drawerItems[activeItemId]!.isActive = false;
-                        activeItemId = item.value.id;
+                        drawerItems[activeItemCode]!.isActive = false;
+                        activeItemCode = item.value.code;
                         item.value.isActive = true;
                       });
                     }
