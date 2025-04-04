@@ -7,7 +7,7 @@ import 'package:sengthaite_blog/extensions/http_ext.dart';
 import 'package:sengthaite_blog/features/tool/api/api_utils/api_util.dart';
 import 'package:sengthaite_blog/shared/dialog/error_dialog.dart';
 import 'package:sengthaite_blog/shared/file/hivedir.dart';
-import 'package:uuid/v8.dart';
+import 'package:uuid/v4.dart';
 
 class APIRowData {
   bool isSelected;
@@ -104,17 +104,117 @@ extension APIRowDataVariables on String {
   }
 }
 
+enum CustomFunctionType { encryption, js }
+
+class CustomFunction {
+  CustomFunctionType type;
+  Function functionDefinition;
+  CustomFunction({
+    required this.type,
+    required this.functionDefinition,
+  });
+
+  Map<String, dynamic> toJson() {
+    return {
+      "type": type.toString(),
+      "functionDefinition": functionDefinition.toString(),
+    };
+  }
+
+  fromJson(Map<String, String> json) {
+    type = CustomFunctionType.values
+        .firstWhere((e) => e.toString() == json["type"]);
+    // todo
+  }
+}
+
+class RequestData {
+  Map<String, String> headers = {};
+  Map<String, String> params = {};
+  Map<String, String> body = {};
+  Map<String, String> auth = {};
+
+  toJson() {
+    return {
+      "headers": headers,
+      "params": params,
+      "body": body,
+      "auth": auth,
+    };
+  }
+
+  fromJson(Map<String, dynamic> json) {
+    headers = Map<String, String>.from(json["headers"]);
+    params = Map<String, String>.from(json["params"]);
+    body = Map<String, String>.from(json["body"]);
+    auth = Map<String, String>.from(json["auth"]);
+  }
+}
+
 class HttpRestRequestDatum {
-  String uuid = UuidV8().generate();
+  String id = "request_${UuidV4().generate()}";
+  bool isSelected = false;
+  String method = "GET";
+  String url = "";
+  List<RequestData> requestData = [];
+  String selectedRequest = "";
+  String responsePath = "";
+  Map<String, String> variables = {};
+
+  HttpRestRequestDatum();
+
+  Map<String, dynamic> toJson() {
+    return {
+      id: id,
+      "isSelected": isSelected,
+      "method": method,
+      "url": url,
+      "requestData": requestData.map((e) => e.toJson()).toList(),
+      "selectedRequest": selectedRequest,
+      "responsePath": responsePath,
+      "variables": variables,
+    };
+  }
+
+  fromJson(Map<String, dynamic> json) {}
 }
 
 class HttpRestRequestData {
+  /// Import and Export zip file
   export() {}
   import() {}
 
+  String id = UuidV4().generate();
+  String version;
+  String author;
+  String createDate = DateTime.now().toIso8601String();
+  String modifiedDate = DateTime.now().toIso8601String();
   List<HttpRestRequestDatum> collection = [];
+  Map<String, dynamic> globalVariables = {};
 
-  HttpRestRequestData();
+  Function? onCollectionChanged;
+
+  HttpRestRequestData({
+    this.version = "1.0",
+    this.author = "",
+    this.onCollectionChanged,
+  });
+
+  itemAt(int index) => collection.elementAt(index);
+
+  add() {
+    collection.add(HttpRestRequestDatum());
+    if (onCollectionChanged != null) {
+      onCollectionChanged!();
+    }
+  }
+
+  remove(String id) {
+    collection.removeWhere((element) => element.id == id);
+    if (onCollectionChanged != null) {
+      onCollectionChanged!();
+    }
+  }
 }
 
 class HttpRequestBuilder extends ChangeNotifier {

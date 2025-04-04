@@ -9,14 +9,9 @@
         "{{key}}": "{{value}}"
     },
     "globalFunctions": {
-        "built-in": {
-            "uuid": "{{String}}"
-        },
-        "custom": {
-            "{{function_name}}": {
-                "type": "{{encryption, js}}",
-                "functionDefinition": "{{String | Object}}"
-            }
+        "{{function_name}}": {
+            "type": "{{encryption, js}}",
+            "functionDefinition": "{{String | Object}}"
         }
     },
     "collection": [
@@ -27,7 +22,6 @@
             "url": "{{String}}",
             "requestData": [
                 {
-                    "id": "{{request_uuid}}",
                     "params": {
                         "{{key}}": "{{value}}"
                     },
@@ -45,7 +39,7 @@
                     }
                 }
             ],
-            "request": "{{request_data_id}}",
+            "selectedRequest": "{{request_data_id}}",
             "responsePath": "",
             "variables": {
                 "{{key}}": "{{value}}"
