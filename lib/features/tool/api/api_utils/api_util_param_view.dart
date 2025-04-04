@@ -15,23 +15,6 @@ class _APIUtilParamViewState extends State<APIUtilParamView> {
   var requestBuilder = HttpRequestBuilder.getInstance();
 
   @override
-  void initState() {
-    var uri = Uri.tryParse(requestBuilder.urlInputController.text);
-    if (uri == null) return;
-    var params = uri.queryParameters;
-    requestBuilder.paramControllers.clear();
-    if (params.isEmpty) {
-      requestBuilder.paramControllers.add(APIRowData(allowDeletion: false));
-    } else {
-      params.forEach((key, value) {
-        var row = APIRowData(allowDeletion: false, key: key, value: value);
-        requestBuilder.paramControllers.add(row);
-      });
-    }
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Padding(

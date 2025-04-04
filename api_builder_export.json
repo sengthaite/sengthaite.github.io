@@ -1,0 +1,55 @@
+{
+    "name": "{{api_collection_name}}",
+    "version": "1.0",
+    "author": "{{author_name}}",
+    "description": "{{api_collection_description}}",
+    "createDate": "{{date_creation}}",
+    "modifiedDate": "{{date_modification}}",
+    "globalVariables": {
+        "{{key}}": "{{value}}"
+    },
+    "globalFunctions": {
+        "built-in": {
+            "uuid": "{{String}}"
+        },
+        "custom": {
+            "{{function_name}}": {
+                "type": "{{encryption, js}}",
+                "functionDefinition": "{{String | Object}}"
+            }
+        }
+    },
+    "collection": [
+        {
+            "id": "{{uuid}}",
+            "selected": true,
+            "method": "{{GET, HEAD, POST, PUT, DELETE, CONNECT, OPTIONS, TRACE, PATCH}}",
+            "url": "{{String}}",
+            "requestData": [
+                {
+                    "id": "{{request_uuid}}",
+                    "params": {
+                        "{{key}}": "{{value}}"
+                    },
+                    "auth": {
+                        "{{key}}": "{{value}}"
+                    },
+                    "headers": {
+                        "{{key}}": "{{value}}"
+                    },
+                    "body": {
+                        "type": "{{none, form-data, x-www-form-urlencoded, raw, binary}}",
+                        "rawType": "{{text, json, xml, html}}",
+                        "binaryPath": "{{some_file_path}}",
+                        "content": "{{some_string_content}}"
+                    }
+                }
+            ],
+            "request": "{{request_data_id}}",
+            "responsePath": "",
+            "variables": {
+                "{{key}}": "{{value}}"
+            }
+        }
+    ]
+}

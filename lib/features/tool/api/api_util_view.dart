@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sengthaite_blog/features/tool/api/api_encryption/api_encryption_view.dart';
 import 'package:sengthaite_blog/features/tool/api/api_utils/api_util_auth_view.dart';
 import 'package:sengthaite_blog/features/tool/api/api_utils/api_util_body_view.dart';
 import 'package:sengthaite_blog/features/tool/api/api_utils/api_util_header_view.dart';
@@ -101,6 +102,9 @@ class _APIUtilViewState extends State<APIUtilView> {
           "Body": APIUtilBodyView(),
         };
       case SettingCode.encryption:
+        return {
+          "Encryption Function": APIEncryptionView(),
+        };
       case SettingCode.staticVariable:
         return {
           "Static Variables": APIStaticVariablesView(),

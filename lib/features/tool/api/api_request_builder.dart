@@ -7,6 +7,7 @@ import 'package:sengthaite_blog/extensions/http_ext.dart';
 import 'package:sengthaite_blog/features/tool/api/api_utils/api_util.dart';
 import 'package:sengthaite_blog/shared/dialog/error_dialog.dart';
 import 'package:sengthaite_blog/shared/file/hivedir.dart';
+import 'package:uuid/v8.dart';
 
 class APIRowData {
   bool isSelected;
@@ -103,6 +104,19 @@ extension APIRowDataVariables on String {
   }
 }
 
+class HttpRestRequestDatum {
+  String uuid = UuidV8().generate();
+}
+
+class HttpRestRequestData {
+  export() {}
+  import() {}
+
+  List<HttpRestRequestDatum> collection = [];
+
+  HttpRestRequestData();
+}
+
 class HttpRequestBuilder extends ChangeNotifier {
   final urlInputController = TextEditingController();
   final bodyInputController = TextEditingController();
@@ -143,6 +157,7 @@ class HttpRequestBuilder extends ChangeNotifier {
   static HttpRequestBuilder? _instance;
 
   HttpRequestBuilder._() {
+    paramControllers.add(APIRowData(allowDeletion: false));
     headerControllers.add(APIRowData(allowDeletion: false));
     staticVariableControllers.add(APIRowData(allowDeletion: false));
   }
