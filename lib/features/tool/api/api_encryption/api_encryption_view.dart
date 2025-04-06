@@ -12,7 +12,7 @@ class APIEncryptionView extends StatefulWidget {
 }
 
 class _APIEncryptionViewState extends State<APIEncryptionView> {
-  var requestBuilder = HttpRequestBuilder.getInstance();
+  var currentRequest = HttpRequestBuilder.getInstance().selectedDatum;
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -32,11 +32,11 @@ class _APIEncryptionViewState extends State<APIEncryptionView> {
             children: [
               TableRow(children: [
                 Checkbox(
-                  value: requestBuilder.selectedAllStaticVariables,
+                  value: currentRequest?.selectedAllStaticVariables,
                   onChanged: (value) {
-                    requestBuilder.toggleStaticVariablesAllRow();
+                    currentRequest?.toggleStaticVariablesAllRow();
                     setState(() {
-                      requestBuilder.selectedAllStaticVariables = value;
+                      currentRequest?.selectedAllStaticVariables = value;
                     });
                   },
                 ),
@@ -66,7 +66,7 @@ class _APIEncryptionViewState extends State<APIEncryptionView> {
                   hoverColor: Colors.transparent,
                   onPressed: () {
                     setState(() {
-                      requestBuilder.addStaticVariables(APIRowData());
+                      currentRequest?.addStaticVariables(APIRowData());
                     });
                   },
                   icon: Icon(
@@ -75,16 +75,17 @@ class _APIEncryptionViewState extends State<APIEncryptionView> {
                   ),
                 ),
               ]),
-              ...List.generate(requestBuilder.staticVariableControllers.length,
+              ...List.generate(
+                  currentRequest?.staticVariableControllers.length ?? 0,
                   (index) {
-                var dataRow = requestBuilder.staticVariableControllers[index];
+                var dataRow = currentRequest?.staticVariableControllers[index];
                 return TableRow(
                   children: [
                     Checkbox(
-                      value: dataRow.isSelected,
+                      value: dataRow?.isSelected,
                       onChanged: (value) => setState(
-                        () => requestBuilder
-                            .toggleStaticVariablesRowSelectionAt(index),
+                        () => currentRequest
+                            ?.toggleStaticVariablesRowSelectionAt(index),
                       ),
                     ),
                     Padding(
@@ -98,7 +99,7 @@ class _APIEncryptionViewState extends State<APIEncryptionView> {
                           hintText: "Key",
                           border: InputBorder.none,
                         ),
-                        controller: dataRow.keyController,
+                        controller: dataRow?.keyController,
                       ),
                     ),
                     Padding(
@@ -112,7 +113,7 @@ class _APIEncryptionViewState extends State<APIEncryptionView> {
                           hintText: "Value",
                           border: InputBorder.none,
                         ),
-                        controller: dataRow.valueController,
+                        controller: dataRow?.valueController,
                       ),
                     ),
                     Padding(
@@ -126,10 +127,10 @@ class _APIEncryptionViewState extends State<APIEncryptionView> {
                           hintText: "Description",
                           border: InputBorder.none,
                         ),
-                        controller: dataRow.descriptionController,
+                        controller: dataRow?.descriptionController,
                       ),
                     ),
-                    dataRow.allowDeletion
+                    (dataRow?.allowDeletion ?? false)
                         ? IconButton(
                             splashColor: Colors.transparent,
                             color: Colors.transparent,
@@ -142,7 +143,7 @@ class _APIEncryptionViewState extends State<APIEncryptionView> {
                             ),
                             onPressed: () {
                               setState(() {
-                                requestBuilder.removeStaticVariablesAt(index);
+                                currentRequest?.removeStaticVariablesAt(index);
                               });
                             },
                           )

@@ -28,7 +28,8 @@ class _APIViewDesktopState extends State<APIViewDesktop> {
   @override
   Widget build(BuildContext context) {
     final requestBuilder = context.watch<HttpRequestBuilder>();
-    allowSubmitRequest = requestBuilder.urlInputController.text.isNotEmpty;
+    allowSubmitRequest =
+        requestBuilder.urlInputController?.text.isNotEmpty ?? false;
     return Expanded(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -52,7 +53,7 @@ class _APIViewDesktopState extends State<APIViewDesktop> {
                     .toList(),
                 onSelected: (value) {
                   if (value == null) return;
-                  requestBuilder.setRequestMethod = value as String;
+                  requestBuilder.setRequestMethod = value;
                 },
               ),
               const SizedBox(width: 10),

@@ -9,7 +9,7 @@ class APIUtilBodyView extends StatefulWidget {
 }
 
 class _APIUtilBodyViewState extends State<APIUtilBodyView> {
-  var requestBuilder = HttpRequestBuilder.getInstance();
+  var currentRequest = HttpRequestBuilder.getInstance().selectedDatum;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class _APIUtilBodyViewState extends State<APIUtilBodyView> {
           hintText: "",
           border: InputBorder.none,
         ),
-        controller: requestBuilder.bodyInputController,
+        controller: currentRequest?.bodyInputController,
       ),
     );
   }

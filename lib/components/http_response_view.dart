@@ -43,7 +43,7 @@ class HttpResponseView extends StatelessWidget {
     if (isImage) {
       return Padding(
         padding: EdgeInsets.all(8),
-        child: Image.network(requestBuilder.urlInputController.text),
+        child: Image.network(requestBuilder.urlInputController?.text ?? ""),
       );
     }
     if (isJson) {

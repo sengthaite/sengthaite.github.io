@@ -18,7 +18,7 @@ extension APIUtilList on Map<String, String> {
 }
 
 class _APIUtilAuthViewState extends State<APIUtilAuthView> {
-  var requestBuilder = HttpRequestBuilder.getInstance();
+  var currentRequest = HttpRequestBuilder.getInstance().selectedDatum;
 
   List<DropdownMenuEntry<String>> authTypes = {
     "No Auth": "noAuth",
@@ -52,20 +52,20 @@ class _APIUtilAuthViewState extends State<APIUtilAuthView> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           DropdownMenu(
-            initialSelection: requestBuilder.authType,
+            initialSelection: currentRequest?.authType,
             requestFocusOnTap: true,
             label: const Text('Auth Type'),
             onSelected: (String? value) {
               setState(() {
-                requestBuilder.authType = value ?? "noAuth";
+                currentRequest?.authType = value ?? "noAuth";
                 if (value == "noAuth") {
-                  requestBuilder.clearAuth();
+                  currentRequest?.clearAuth();
                 }
               });
             },
             dropdownMenuEntries: authTypes,
           ),
-          if (requestBuilder.authType == "basic")
+          if (currentRequest?.authType == "basic")
             SizedBox(
               width: 250,
               child: Column(children: [
@@ -77,7 +77,7 @@ class _APIUtilAuthViewState extends State<APIUtilAuthView> {
                         hintText: 'Username',
                         border: OutlineInputBorder(),
                         contentPadding: EdgeInsets.all(4)),
-                    controller: requestBuilder.usernameController,
+                    controller: currentRequest?.usernameController,
                   ),
                 ),
                 SizedBox(height: 5),
@@ -88,12 +88,12 @@ class _APIUtilAuthViewState extends State<APIUtilAuthView> {
                         hintText: 'Password',
                         border: OutlineInputBorder(),
                         contentPadding: EdgeInsets.all(4)),
-                    controller: requestBuilder.passwordController,
+                    controller: currentRequest?.passwordController,
                   ),
                 )
               ]),
             ),
-          if (requestBuilder.authType == "bearer")
+          if (currentRequest?.authType == "bearer")
             SizedBox(
               width: 250,
               child: Column(children: [
@@ -105,12 +105,12 @@ class _APIUtilAuthViewState extends State<APIUtilAuthView> {
                         hintText: 'Bearer Token',
                         border: OutlineInputBorder(),
                         contentPadding: EdgeInsets.all(4)),
-                    controller: requestBuilder.bearerController,
+                    controller: currentRequest?.bearerController,
                   ),
                 ),
               ]),
             ),
-          if (requestBuilder.authType == "jsonwebtoken")
+          if (currentRequest?.authType == "jsonwebtoken")
             SizedBox(
               width: 250,
               child: Column(children: [
@@ -118,17 +118,17 @@ class _APIUtilAuthViewState extends State<APIUtilAuthView> {
                 Padding(
                   padding: EdgeInsets.all(8),
                   child: DropdownMenu(
-                    initialSelection: requestBuilder.jwtAlgorithm.text,
+                    initialSelection: currentRequest?.jwtAlgorithm.text,
                     requestFocusOnTap: true,
                     label: const Text('Algorithm'),
                     dropdownMenuEntries: jwtAlgorithms,
                     onSelected: (value) => setState(() {
-                      requestBuilder.jwtAlgorithm.text = value ?? "HS256";
+                      currentRequest?.jwtAlgorithm.text = value ?? "HS256";
                     }),
                   ),
                 ),
                 SizedBox(height: 5),
-                if (requestBuilder.isHashingAlgorithm)
+                if (currentRequest?.isHashingAlgorithm ?? false)
                   SizedBox(
                     width: 250,
                     child: Column(
@@ -143,15 +143,15 @@ class _APIUtilAuthViewState extends State<APIUtilAuthView> {
                               border: OutlineInputBorder(),
                               contentPadding: EdgeInsets.all(4),
                             ),
-                            controller: requestBuilder.jwtSecret,
+                            controller: currentRequest?.jwtSecret,
                           ),
                         ),
                         Row(
                           children: [
                             Checkbox(
-                              value: requestBuilder.isSecretBase64,
+                              value: currentRequest?.isSecretBase64,
                               onChanged: (value) => setState(() {
-                                requestBuilder.isSecretBase64 = value ?? false;
+                                currentRequest?.isSecretBase64 = value ?? false;
                               }),
                             ),
                             Text("Secret Base64 encoded"),
@@ -160,7 +160,7 @@ class _APIUtilAuthViewState extends State<APIUtilAuthView> {
                       ],
                     ),
                   ),
-                if (!requestBuilder.isHashingAlgorithm)
+                if (!(currentRequest?.isHashingAlgorithm ?? true))
                   SizedBox(
                     width: 250,
                     child: Column(
@@ -174,7 +174,8 @@ class _APIUtilAuthViewState extends State<APIUtilAuthView> {
                                   .files.single.xFile
                                   .readAsString();
                               setState(() {
-                                requestBuilder.jwtPrivateKey.text = fileContent;
+                                currentRequest?.jwtPrivateKey.text =
+                                    fileContent;
                               });
                             } else {
                               // User canceled the picker
@@ -190,7 +191,7 @@ class _APIUtilAuthViewState extends State<APIUtilAuthView> {
                               border: OutlineInputBorder(),
                               contentPadding: EdgeInsets.all(4),
                             ),
-                            controller: requestBuilder.jwtPrivateKey,
+                            controller: currentRequest?.jwtPrivateKey,
                           ),
                         ),
                       ],
@@ -200,7 +201,7 @@ class _APIUtilAuthViewState extends State<APIUtilAuthView> {
                 Padding(
                     padding: EdgeInsets.all(8),
                     child: TextField(
-                      controller: requestBuilder.jwtPayload,
+                      controller: currentRequest?.jwtPayload,
                       decoration: InputDecoration(
                         hintText: 'Payload',
                         border: OutlineInputBorder(),

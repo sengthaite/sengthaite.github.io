@@ -151,7 +151,7 @@ class RequestData {
   }
 }
 
-class HttpRestRequestDatum {
+class HttpRestRequestDatum extends ChangeNotifier {
   String id = "request_${UuidV4().generate()}";
   bool isSelected = false;
   String method = "GET";
@@ -161,63 +161,12 @@ class HttpRestRequestDatum {
   String responsePath = "";
   Map<String, String> variables = {};
 
-  HttpRestRequestDatum();
-
-  Map<String, dynamic> toJson() {
-    return {
-      id: id,
-      "isSelected": isSelected,
-      "method": method,
-      "url": url,
-      "requestData": requestData.map((e) => e.toJson()).toList(),
-      "selectedRequest": selectedRequest,
-      "responsePath": responsePath,
-      "variables": variables,
-    };
+  HttpRestRequestDatum() {
+    paramControllers.add(APIRowData(allowDeletion: false));
+    headerControllers.add(APIRowData(allowDeletion: false));
+    staticVariableControllers.add(APIRowData(allowDeletion: false));
   }
 
-  fromJson(Map<String, dynamic> json) {}
-}
-
-class HttpRestRequestData {
-  /// Import and Export zip file
-  export() {}
-  import() {}
-
-  String id = UuidV4().generate();
-  String version;
-  String author;
-  String createDate = DateTime.now().toIso8601String();
-  String modifiedDate = DateTime.now().toIso8601String();
-  List<HttpRestRequestDatum> collection = [];
-  Map<String, dynamic> globalVariables = {};
-
-  Function? onCollectionChanged;
-
-  HttpRestRequestData({
-    this.version = "1.0",
-    this.author = "",
-    this.onCollectionChanged,
-  });
-
-  itemAt(int index) => collection.elementAt(index);
-
-  add() {
-    collection.add(HttpRestRequestDatum());
-    if (onCollectionChanged != null) {
-      onCollectionChanged!();
-    }
-  }
-
-  remove(String id) {
-    collection.removeWhere((element) => element.id == id);
-    if (onCollectionChanged != null) {
-      onCollectionChanged!();
-    }
-  }
-}
-
-class HttpRequestBuilder extends ChangeNotifier {
   final urlInputController = TextEditingController();
   final bodyInputController = TextEditingController();
 
@@ -253,21 +202,6 @@ class HttpRequestBuilder extends ChangeNotifier {
   List<APIRowData> headerControllers = [];
   List<APIRowData> staticVariableControllers = [];
   List<APIRowData> dynamicVariableControllers = [];
-
-  static HttpRequestBuilder? _instance;
-
-  HttpRequestBuilder._() {
-    paramControllers.add(APIRowData(allowDeletion: false));
-    headerControllers.add(APIRowData(allowDeletion: false));
-    staticVariableControllers.add(APIRowData(allowDeletion: false));
-  }
-
-  removeInstance() => _instance = null;
-
-  factory HttpRequestBuilder.getInstance() {
-    _instance ??= HttpRequestBuilder._();
-    return _instance!;
-  }
 
   set autopopulateData(TempFile api) {
     urlInputController.text = api.url;
@@ -699,5 +633,97 @@ class HttpRequestBuilder extends ChangeNotifier {
     }
 
     notifyListeners();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      id: id,
+      "isSelected": isSelected,
+      "method": method,
+      "url": url,
+      "requestData": requestData.map((e) => e.toJson()).toList(),
+      "selectedRequest": selectedRequest,
+      "responsePath": responsePath,
+      "variables": variables,
+    };
+  }
+
+  fromJson(Map<String, dynamic> json) {}
+}
+
+class HttpRestRequestData extends ChangeNotifier {
+  /// Import and Export zip file
+  export() {}
+  import() {}
+
+  String id = UuidV4().generate();
+  String version;
+  String author;
+  String createDate = DateTime.now().toIso8601String();
+  String modifiedDate = DateTime.now().toIso8601String();
+  List<HttpRestRequestDatum> collection = [];
+  Map<String, dynamic> globalVariables = {};
+
+  Function? onCollectionChanged;
+
+  HttpRestRequestData({
+    this.version = "1.0",
+    this.author = "",
+    this.onCollectionChanged,
+  });
+
+  itemAt(int index) => collection.elementAt(index);
+
+  add() {
+    collection.add(HttpRestRequestDatum());
+    if (onCollectionChanged != null) {
+      onCollectionChanged!();
+    }
+  }
+
+  remove(String id) {
+    collection.removeWhere((element) => element.id == id);
+    if (onCollectionChanged != null) {
+      onCollectionChanged!();
+    }
+  }
+}
+
+class HttpRequestBuilder extends ChangeNotifier {
+  static HttpRequestBuilder? _instance;
+
+  removeInstance() => _instance = null;
+
+  HttpRestRequestData data = HttpRestRequestData()..add();
+
+  HttpRestRequestDatum? selectedDatum;
+
+  reset() => selectedDatum?.reset();
+
+  set autopopulateData(TempFile file) => selectedDatum?.autopopulateData = file;
+
+  set setRequestMethod(String method) =>
+      selectedDatum?.setRequestMethod = method;
+
+  String? get getRequestMethod => selectedDatum?.getRequestMethod;
+
+  Color? get methodColor => selectedDatum?.methodColor;
+
+  TextEditingController? get urlInputController =>
+      selectedDatum?.urlInputController;
+
+  request() => selectedDatum?.request();
+
+  get response => selectedDatum?.response;
+
+  bool get isRequesting => selectedDatum?.isRequesting ?? false;
+
+  HttpRequestBuilder._() {
+    selectedDatum = data.collection.first;
+  }
+
+  factory HttpRequestBuilder.getInstance() {
+    _instance ??= HttpRequestBuilder._();
+    return _instance!;
   }
 }

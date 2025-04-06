@@ -10,7 +10,7 @@ class APIUtilHeaderView extends StatefulWidget {
 }
 
 class _APIUtilHeaderViewState extends State<APIUtilHeaderView> {
-  var requestBuilder = HttpRequestBuilder.getInstance();
+  var currentRequest = HttpRequestBuilder.getInstance().selectedDatum;
 
   @override
   Widget build(BuildContext context) {
@@ -29,11 +29,11 @@ class _APIUtilHeaderViewState extends State<APIUtilHeaderView> {
             children: [
               TableRow(children: [
                 Checkbox(
-                  value: requestBuilder.selectedAllHeader,
+                  value: currentRequest?.selectedAllHeader,
                   onChanged: (value) {
-                    requestBuilder.toggleHeaderAllRow();
+                    currentRequest?.toggleHeaderAllRow();
                     setState(() {
-                      requestBuilder.selectedAllHeader = value;
+                      currentRequest?.selectedAllHeader = value;
                     });
                   },
                 ),
@@ -63,7 +63,7 @@ class _APIUtilHeaderViewState extends State<APIUtilHeaderView> {
                   hoverColor: Colors.transparent,
                   onPressed: () {
                     setState(() {
-                      requestBuilder.addHeader(APIRowData());
+                      currentRequest?.addHeader(APIRowData());
                     });
                   },
                   icon: Icon(
@@ -72,15 +72,15 @@ class _APIUtilHeaderViewState extends State<APIUtilHeaderView> {
                   ),
                 ),
               ]),
-              ...List.generate(requestBuilder.headerControllers.length,
+              ...List.generate(currentRequest?.headerControllers.length ?? 0,
                   (index) {
-                var dataRow = requestBuilder.headerControllers[index];
+                var dataRow = currentRequest?.headerControllers[index];
                 return TableRow(
                   children: [
                     Checkbox(
-                      value: dataRow.isSelected,
+                      value: dataRow?.isSelected,
                       onChanged: (value) => setState(() =>
-                          requestBuilder.toggleHeaderRowSelectionAt(index)),
+                          currentRequest?.toggleHeaderRowSelectionAt(index)),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -93,8 +93,8 @@ class _APIUtilHeaderViewState extends State<APIUtilHeaderView> {
                           hintText: "Key",
                           border: InputBorder.none,
                         ),
-                        initialValue: dataRow.key,
-                        controller: dataRow.keyController,
+                        initialValue: dataRow?.key,
+                        controller: dataRow?.keyController,
                       ),
                     ),
                     Padding(
@@ -108,8 +108,8 @@ class _APIUtilHeaderViewState extends State<APIUtilHeaderView> {
                           hintText: "Value",
                           border: InputBorder.none,
                         ),
-                        initialValue: dataRow.value,
-                        controller: dataRow.valueController,
+                        initialValue: dataRow?.value,
+                        controller: dataRow?.valueController,
                       ),
                     ),
                     Padding(
@@ -123,11 +123,11 @@ class _APIUtilHeaderViewState extends State<APIUtilHeaderView> {
                           hintText: "Description",
                           border: InputBorder.none,
                         ),
-                        initialValue: dataRow.description,
-                        controller: dataRow.descriptionController,
+                        initialValue: dataRow?.description,
+                        controller: dataRow?.descriptionController,
                       ),
                     ),
-                    dataRow.allowDeletion
+                    (dataRow?.allowDeletion ?? false)
                         ? IconButton(
                             splashColor: Colors.transparent,
                             color: Colors.transparent,
@@ -140,7 +140,7 @@ class _APIUtilHeaderViewState extends State<APIUtilHeaderView> {
                             ),
                             onPressed: () {
                               setState(() {
-                                requestBuilder.removeHeaderAt(index);
+                                currentRequest?.removeHeaderAt(index);
                               });
                             },
                           )

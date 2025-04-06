@@ -12,7 +12,7 @@ class APIUtilParamView extends StatefulWidget {
 }
 
 class _APIUtilParamViewState extends State<APIUtilParamView> {
-  var requestBuilder = HttpRequestBuilder.getInstance();
+  var currentRequest = HttpRequestBuilder?.getInstance().selectedDatum;
 
   @override
   Widget build(BuildContext context) {
@@ -31,11 +31,11 @@ class _APIUtilParamViewState extends State<APIUtilParamView> {
             children: [
               TableRow(children: [
                 Checkbox(
-                  value: requestBuilder.selectedAllParam,
+                  value: currentRequest?.selectedAllParam,
                   onChanged: (value) {
-                    requestBuilder.toggleParamAllRow();
+                    currentRequest?.toggleParamAllRow();
                     setState(() {
-                      requestBuilder.selectedAllParam = value;
+                      currentRequest?.selectedAllParam = value;
                     });
                   },
                 ),
@@ -65,7 +65,7 @@ class _APIUtilParamViewState extends State<APIUtilParamView> {
                   hoverColor: Colors.transparent,
                   onPressed: () {
                     setState(() {
-                      requestBuilder.addParam(APIRowData());
+                      currentRequest?.addParam(APIRowData());
                     });
                   },
                   icon: Icon(
@@ -74,14 +74,15 @@ class _APIUtilParamViewState extends State<APIUtilParamView> {
                   ),
                 ),
               ]),
-              ...List.generate(requestBuilder.paramControllers.length, (index) {
-                var dataRow = requestBuilder.paramControllers[index];
+              ...List.generate(currentRequest?.paramControllers.length ?? 0,
+                  (index) {
+                var dataRow = currentRequest?.paramControllers[index];
                 return TableRow(
                   children: [
                     Checkbox(
-                      value: dataRow.isSelected,
+                      value: dataRow?.isSelected,
                       onChanged: (value) => setState(() =>
-                          requestBuilder.toggleParamRowSelectionAt(index)),
+                          currentRequest?.toggleParamRowSelectionAt(index)),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -94,9 +95,9 @@ class _APIUtilParamViewState extends State<APIUtilParamView> {
                           hintText: "Key",
                           border: InputBorder.none,
                         ),
-                        controller: dataRow.keyController,
-                        onChanged: (text) => requestBuilder
-                            .buildUrlWithQueryParams(index, key: text),
+                        controller: dataRow?.keyController,
+                        onChanged: (text) => currentRequest
+                            ?.buildUrlWithQueryParams(index, key: text),
                       ),
                     ),
                     Padding(
@@ -110,9 +111,9 @@ class _APIUtilParamViewState extends State<APIUtilParamView> {
                           hintText: "Value",
                           border: InputBorder.none,
                         ),
-                        controller: dataRow.valueController,
-                        onChanged: (value) => requestBuilder
-                            .buildUrlWithQueryParams(index, value: value),
+                        controller: dataRow?.valueController,
+                        onChanged: (value) => currentRequest
+                            ?.buildUrlWithQueryParams(index, value: value),
                       ),
                     ),
                     Padding(
@@ -126,10 +127,10 @@ class _APIUtilParamViewState extends State<APIUtilParamView> {
                           hintText: "Description",
                           border: InputBorder.none,
                         ),
-                        controller: dataRow.descriptionController,
+                        controller: dataRow?.descriptionController,
                       ),
                     ),
-                    dataRow.allowDeletion
+                    (dataRow?.allowDeletion ?? false)
                         ? IconButton(
                             splashColor: Colors.transparent,
                             color: Colors.transparent,
@@ -142,7 +143,7 @@ class _APIUtilParamViewState extends State<APIUtilParamView> {
                             ),
                             onPressed: () {
                               setState(() {
-                                requestBuilder.removeParamAt(index);
+                                currentRequest?.removeParamAt(index);
                               });
                             },
                           )

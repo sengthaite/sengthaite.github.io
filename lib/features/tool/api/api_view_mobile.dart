@@ -57,7 +57,7 @@ class _APIViewDesktopState extends State<APIViewMobile> {
                         .toList(),
                     onSelected: (value) {
                       if (value == null) return;
-                      requestBuilder.setRequestMethod = value as String;
+                      requestBuilder.setRequestMethod = value;
                       setState(() {
                         methodColor =
                             HttpRequestMethodTypeExtension.methodByDisplay(
