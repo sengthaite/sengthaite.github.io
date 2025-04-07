@@ -27,9 +27,8 @@ class _APIViewDesktopState extends State<APIViewDesktop> {
 
   @override
   Widget build(BuildContext context) {
-    final requestBuilder = context.watch<HttpRequestBuilder>();
-    allowSubmitRequest =
-        requestBuilder.urlInputController?.text.isNotEmpty ?? false;
+    final selectedData = context.watch<HttpRestRequestDatum>();
+    allowSubmitRequest = selectedData.urlInputController.text.isNotEmpty;
     return Expanded(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -41,10 +40,10 @@ class _APIViewDesktopState extends State<APIViewDesktop> {
               DropdownMenu(
                 textStyle: TextStyle(
                   fontSize: 14,
-                  color: requestBuilder.methodColor,
+                  color: selectedData.methodColor,
                   fontWeight: FontWeight.bold,
                 ),
-                initialSelection: requestBuilder.getRequestMethod ??
+                initialSelection: selectedData.getRequestMethod ??
                     HttpRequestMethodTypeExtension.defaultHttpMethod,
                 requestFocusOnTap: false,
                 dropdownMenuEntries: HttpRequestMethodTypeExtension
@@ -53,7 +52,7 @@ class _APIViewDesktopState extends State<APIViewDesktop> {
                     .toList(),
                 onSelected: (value) {
                   if (value == null) return;
-                  requestBuilder.setRequestMethod = value;
+                  selectedData.setRequestMethod = value as String;
                 },
               ),
               const SizedBox(width: 10),
@@ -61,7 +60,7 @@ class _APIViewDesktopState extends State<APIViewDesktop> {
                 width: 400,
                 child: TextFormField(
                   textInputAction: TextInputAction.done,
-                  controller: requestBuilder.urlInputController,
+                  controller: selectedData.urlInputController,
                   decoration: InputDecoration(
                     floatingLabelBehavior: FloatingLabelBehavior.always,
                     border: OutlineInputBorder(),
@@ -70,16 +69,16 @@ class _APIViewDesktopState extends State<APIViewDesktop> {
                   ),
                   onChanged: (value) => setState(() {
                     allowSubmitRequest = value.isUrl;
-                    if (value.isEmpty) requestBuilder.reset();
+                    if (value.isEmpty) selectedData.reset();
                   }),
                   onFieldSubmitted: (value) =>
-                      allowSubmitRequest ? requestBuilder.request() : null,
+                      allowSubmitRequest ? selectedData.request() : null,
                 ),
               ),
               const SizedBox(width: 10),
               TextButton(
                 onPressed:
-                    allowSubmitRequest ? () => requestBuilder.request() : null,
+                    allowSubmitRequest ? () => selectedData.request() : null,
                 child: const Text(
                   "Request",
                   style: TextStyle(fontWeight: FontWeight.bold),
@@ -95,20 +94,16 @@ class _APIViewDesktopState extends State<APIViewDesktop> {
             ],
           ),
           Expanded(
-            child:
-                requestBuilder.response != null && !requestBuilder.isRequesting
-                    ? HttpResponseView(
-                        response: requestBuilder.response,
-                        requestBuilder: requestBuilder,
-                      )
-                    : Center(
-                        child: requestBuilder.isRequesting
-                            ? const CircularProgressIndicator()
-                            : const Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Text("Empty response"),
-                              ),
-                      ),
+            child: selectedData.response != null && !(selectedData.isRequesting)
+                ? HttpResponseView(response: selectedData.response)
+                : Center(
+                    child: selectedData.isRequesting
+                        ? const CircularProgressIndicator()
+                        : const Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Text("Empty response"),
+                          ),
+                  ),
           )
         ],
       ),

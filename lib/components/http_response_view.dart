@@ -11,11 +11,9 @@ class HttpResponseView extends StatelessWidget {
   const HttpResponseView({
     super.key,
     required this.response,
-    required this.requestBuilder,
   });
 
   final Response? response;
-  final HttpRequestBuilder requestBuilder;
 
   String beautifyJson(Map<String, dynamic> json, {bool withSeparator = false}) {
     try {
@@ -43,7 +41,8 @@ class HttpResponseView extends StatelessWidget {
     if (isImage) {
       return Padding(
         padding: EdgeInsets.all(8),
-        child: Image.network(requestBuilder.urlInputController?.text ?? ""),
+        child: Image.network(
+            HttpRequestBuilder.getInstance().urlInputController?.text ?? ""),
       );
     }
     if (isJson) {

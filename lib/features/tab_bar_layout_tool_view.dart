@@ -100,18 +100,48 @@ class TabBarLayoutToolView extends TabBarLayoutView {
               );
             },
           ),
+          IconButton(
+            icon: Icon(MdiIcons.export),
+            onPressed: () {
+              var context = Navigation().tabBarDetailContext;
+              if (context == null) return;
+              showDialog(
+                context: context,
+                builder: (context) => AlertDialog(
+                  title: Text("Export"),
+                  content: TextField(
+                    decoration: InputDecoration(
+                      labelText: "Enter file name",
+                      hintText: "Enter file name",
+                      border: const OutlineInputBorder(),
+                      prefixIcon: const Icon(Icons.file_copy),
+                    ),
+                  ),
+                  actions: [
+                    TextButton(
+                        onPressed: () => Navigator.of(context).pop(),
+                        child: Text("Cancel")),
+                    TextButton(onPressed: () {}, child: Text("Confirm")),
+                  ],
+                ),
+              );
+            },
+          ),
         ],
         widgetBuilder: (context) => MultiProvider(
           providers: [
             ChangeNotifierProvider(
-              create: (context) => requestBuilder,
+              create: (context) => requestBuilder.selectedDatum,
             )
           ],
           child: AppLayout(
             context: context,
             defaultWidget: Row(
               crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [const APIViewDesktop(), ApiFileManagerView()],
+              children: [
+                const APIViewDesktop(),
+                ApiFileManagerView(),
+              ],
             ),
             mobileWidget: const APIViewMobile(),
           ),

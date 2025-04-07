@@ -156,7 +156,7 @@ class HttpRestRequestDatum extends ChangeNotifier {
   bool isSelected = false;
   String method = "GET";
   String url = "";
-  List<RequestData> requestData = [];
+  List<RequestData> requestData = [RequestData()];
   String selectedRequest = "";
   String responsePath = "";
   Map<String, String> variables = {};
@@ -713,8 +713,6 @@ class HttpRequestBuilder extends ChangeNotifier {
       selectedDatum?.urlInputController;
 
   request() => selectedDatum?.request();
-
-  get response => selectedDatum?.response;
 
   bool get isRequesting => selectedDatum?.isRequesting ?? false;
 

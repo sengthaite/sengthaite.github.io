@@ -28,7 +28,7 @@ class _APIViewDesktopState extends State<APIViewMobile> {
 
   @override
   Widget build(BuildContext context) {
-    final requestBuilder = context.watch<HttpRequestBuilder>();
+    final selectedData = context.watch<HttpRestRequestDatum>();
     return Row(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -48,7 +48,7 @@ class _APIViewDesktopState extends State<APIViewMobile> {
                         fontSize: 14,
                         color: methodColor,
                         fontWeight: FontWeight.bold),
-                    initialSelection: requestBuilder.getRequestMethod ??
+                    initialSelection: selectedData.getRequestMethod ??
                         HttpRequestMethodTypeExtension.defaultHttpMethod,
                     requestFocusOnTap: false,
                     dropdownMenuEntries: HttpRequestMethodTypeExtension
@@ -57,7 +57,7 @@ class _APIViewDesktopState extends State<APIViewMobile> {
                         .toList(),
                     onSelected: (value) {
                       if (value == null) return;
-                      requestBuilder.setRequestMethod = value;
+                      selectedData.setRequestMethod = value as String;
                       setState(() {
                         methodColor =
                             HttpRequestMethodTypeExtension.methodByDisplay(
@@ -71,7 +71,7 @@ class _APIViewDesktopState extends State<APIViewMobile> {
                     child: TextFormField(
                       textInputAction: TextInputAction.done,
                       style: const TextStyle(fontSize: 14),
-                      controller: requestBuilder.urlInputController,
+                      controller: selectedData.urlInputController,
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
                         hintText: "URL",
@@ -80,27 +80,24 @@ class _APIViewDesktopState extends State<APIViewMobile> {
                         setState(() => allowSubmitRequest = value.isUrl);
                       },
                       onFieldSubmitted: (value) {
-                        allowSubmitRequest ? requestBuilder.request() : null;
+                        allowSubmitRequest ? selectedData.request() : null;
                       },
                     ),
                   ),
                 ],
               ),
               Expanded(
-                child: requestBuilder.response != null &&
-                        !requestBuilder.isRequesting
-                    ? HttpResponseView(
-                        response: requestBuilder.response,
-                        requestBuilder: requestBuilder,
-                      )
-                    : Center(
-                        child: requestBuilder.isRequesting
-                            ? const CircularProgressIndicator()
-                            : const Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Text("Empty response"),
-                              ),
-                      ),
+                child:
+                    selectedData.response != null && !selectedData.isRequesting
+                        ? HttpResponseView(response: selectedData.response)
+                        : Center(
+                            child: selectedData.isRequesting
+                                ? const CircularProgressIndicator()
+                                : const Padding(
+                                    padding: EdgeInsets.all(8.0),
+                                    child: Text("Empty response"),
+                                  ),
+                          ),
               )
             ],
           ),
