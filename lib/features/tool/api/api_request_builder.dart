@@ -104,30 +104,6 @@ extension APIRowDataVariables on String {
   }
 }
 
-enum CustomFunctionType { encryption, js }
-
-class CustomFunction {
-  CustomFunctionType type;
-  Function functionDefinition;
-  CustomFunction({
-    required this.type,
-    required this.functionDefinition,
-  });
-
-  Map<String, dynamic> toJson() {
-    return {
-      "type": type.toString(),
-      "functionDefinition": functionDefinition.toString(),
-    };
-  }
-
-  fromJson(Map<String, String> json) {
-    type = CustomFunctionType.values
-        .firstWhere((e) => e.toString() == json["type"]);
-    // todo
-  }
-}
-
 class RequestData {
   Map<String, String> headers = {};
   Map<String, String> params = {};
@@ -649,6 +625,8 @@ class HttpRestRequestDatum extends ChangeNotifier {
   }
 
   fromJson(Map<String, dynamic> json) {}
+
+  // AES
 }
 
 class HttpRestRequestData extends ChangeNotifier {

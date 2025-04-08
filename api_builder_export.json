@@ -20,26 +20,23 @@
             "selected": true,
             "method": "{{GET, HEAD, POST, PUT, DELETE, CONNECT, OPTIONS, TRACE, PATCH}}",
             "url": "{{String}}",
-            "requestData": [
-                {
-                    "params": {
-                        "{{key}}": "{{value}}"
-                    },
-                    "auth": {
-                        "{{key}}": "{{value}}"
-                    },
-                    "headers": {
-                        "{{key}}": "{{value}}"
-                    },
-                    "body": {
-                        "type": "{{none, form-data, x-www-form-urlencoded, raw, binary}}",
-                        "rawType": "{{text, json, xml, html}}",
-                        "binaryPath": "{{some_file_path}}",
-                        "content": "{{some_string_content}}"
-                    }
+            "request": {
+                "params": {
+                    "{{key}}": "{{value}}"
+                },
+                "auth": {
+                    "{{key}}": "{{value}}"
+                },
+                "headers": {
+                    "{{key}}": "{{value}}"
+                },
+                "body": {
+                    "type": "{{none, form-data, x-www-form-urlencoded, raw, binary}}",
+                    "rawType": "{{text, json, xml, html}}",
+                    "binaryPath": "{{some_file_path}}",
+                    "content": "{{some_string_content}}"
                 }
-            ],
-            "selectedRequest": "{{request_data_id}}",
+            },
             "responsePath": "",
             "variables": {
                 "{{key}}": "{{value}}"
