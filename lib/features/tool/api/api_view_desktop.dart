@@ -84,13 +84,6 @@ class _APIViewDesktopState extends State<APIViewDesktop> {
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),
-              TextButton(
-                onPressed: null,
-                child: const Text(
-                  "Save",
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-              ),
             ],
           ),
           Expanded(

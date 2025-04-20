@@ -1,5 +1,6 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_quill/flutter_quill.dart';
 import 'package:hive/hive.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:sengthaite_blog/constants/app.constants.dart';
@@ -52,6 +53,9 @@ class _StateMainView extends State<MainView> {
       debugShowCheckedModeBanner: false,
       locale: DevicePreview.locale(context),
       builder: DevicePreview.appBuilder,
+      localizationsDelegates: const [
+        FlutterQuillLocalizations.delegate,
+      ],
       theme: theme.light(),
       darkTheme: theme.dark(),
       highContrastTheme: theme.lightMediumContrast(),
