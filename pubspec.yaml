@@ -41,6 +41,7 @@ dependencies:
   dart_jsonwebtoken: ^3.2.0
   file_picker: ^9.2.1
   pointycastle: ^4.0.0
+  asset_manager_cli: ^0.1.0-dev.0+2
 
 dev_dependencies:
   flutter_test:
@@ -53,38 +54,30 @@ dev_dependencies:
   freezed: ^2.5.2
 
 flutter:
+  uses-material-design: true
   assets:
     - assets/
+    - assets/content_icons/
     - assets/contents/
-    - assets/contents/Biography/
     - assets/contents/Database/
-    - assets/contents/Tool/
-    - assets/contents/CLI/
-    - assets/contents/Cambodia/
+    - assets/contents/Biography/
     - assets/contents/General/
     - assets/contents/C#/
     - assets/contents/LLVM/
     - assets/contents/Angular/
-    # - assets/contents/Kotlin/
+    - assets/contents/Kotlin/
+    - assets/contents/CLI/
     - assets/contents/Reverse_Engineer/
     - assets/contents/iOS/
     - assets/contents/Swift/
     - assets/contents/Android/
-    # - assets/contents/Maths/
+    - assets/contents/Maths/
     - assets/contents/OS/
+    - assets/contents/Cambodia/
+    - assets/contents/Tool/
+    - assets/project_icons/
     - assets/autogen_meta/
-    - assets/content_icons/
     - assets/tool_icons/
-
-  fonts:
-    - family: FiraCode
-      fonts:
-        - asset: assets/fonts/FiraCode.ttf
-    - family: NotoSerifKhmer
-      fonts:
-        - asset: assets/fonts/NotoSerifKhmer.ttf
-
-  uses-material-design: true
 
 targets:
   $default:

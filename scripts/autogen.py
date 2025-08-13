@@ -9,9 +9,10 @@ from pathlib import Path
 ContentPath = "assets/contents"
 IconPath = "assets/content_icons"
 
+
 def has_headings(markdown_text):
-  heading_pattern = r'^#{1,6}\s+'
-  return bool(re.search(heading_pattern, markdown_text, flags=re.MULTILINE))
+    heading_pattern = r"^#{1,6}\s+"
+    return bool(re.search(heading_pattern, markdown_text, flags=re.MULTILINE))
 
 
 def contentDirMarkdown(path):

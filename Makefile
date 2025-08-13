@@ -1,7 +1,7 @@
 .PHONY: all check autogen rebuild build_runner deploy pip_install
 
 autogen:
-	python ./scripts/autogen.py
+	python3 ./scripts/autogen.py
 
 pip_install:
 	pip install -r ./scripts/requirements.txt

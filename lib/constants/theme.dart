@@ -1,9 +1,34 @@
 import "package:flutter/material.dart";
-import "package:sengthaite_blog/constants/util_theme.dart";
+import "package:google_fonts/google_fonts.dart";
 
 class MaterialTheme {
   static TextTheme textTheme() {
-    return createTextTheme("Fira Code", "Fira Code");
+    return TextTheme(
+      bodyLarge: GoogleFonts.openSans(
+        fontSize: 16,
+        fontWeight: FontWeight.w400,
+      ),
+      bodyMedium: GoogleFonts.openSans(
+        fontSize: 14,
+        fontWeight: FontWeight.w400,
+      ),
+      bodySmall: GoogleFonts.openSans(
+        fontSize: 12,
+        fontWeight: FontWeight.w400,
+      ),
+      titleLarge: GoogleFonts.openSans(
+        fontSize: 20,
+        fontWeight: FontWeight.w600,
+      ),
+      titleMedium: GoogleFonts.openSans(
+        fontSize: 18,
+        fontWeight: FontWeight.w500,
+      ),
+      titleSmall: GoogleFonts.openSans(
+        fontSize: 16,
+        fontWeight: FontWeight.w500,
+      ),
+    );
   }
 
   static bool isDark(BuildContext context) =>
