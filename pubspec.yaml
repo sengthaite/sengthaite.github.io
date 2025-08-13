@@ -9,11 +9,9 @@ dependencies:
   flutter:
     sdk: flutter
 
-  # cupertino_icons: ^1.0.8
   uuid: ^4.4.0
   material_design_icons_flutter: ^7.0.7296
   intl: ^0.19.0
-  # json_annotation: ^4.9.0
   freezed_annotation: ^2.4.1
   cosmic_frontmatter: ^1.0.3
   url_launcher: ^6.2.6
@@ -41,7 +39,6 @@ dependencies:
   dart_jsonwebtoken: ^3.2.0
   file_picker: ^9.2.1
   pointycastle: ^4.0.0
-  asset_manager_cli: ^0.1.0-dev.0+2
 
 dev_dependencies:
   flutter_test:

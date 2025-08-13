@@ -38,14 +38,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.7.0"
-  asset_manager_cli:
-    dependency: "direct main"
-    description:
-      name: asset_manager_cli
-      sha256: "2f9b4962e4dc296f71fdae541a06a68ca4bb959167bb58d8b5f698fcab49fd4f"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.1.0-dev.0+2"
   async:
     dependency: transitive
     description:
@@ -738,14 +730,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.2+6"
-  mason_logger:
-    dependency: transitive
-    description:
-      name: mason_logger
-      sha256: f307bade8d2557a11e4e3d6a218093454038d877e5f72a60482c9bb5fe7a9bac
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.1.4"
   matcher:
     dependency: transitive
     description:
