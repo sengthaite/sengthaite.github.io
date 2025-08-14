@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:sengthaite_blog/components/category_tab_item_view.dart';
 import 'package:sengthaite_blog/constants/theme.dart';
-import 'package:sengthaite_blog/features/navigation/navigation.dart';
 import 'package:sengthaite_blog/generated/models/category_tab_item_model.dart';
 
 class TabBarDetailView extends StatelessWidget {
@@ -29,7 +28,6 @@ class TabBarDetailView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Navigation().tabBarDetailContext = context;
     return OrientationBuilder(builder: (context, orientation) {
       var colorScheme = MaterialTheme.colorScheme(context);
       return Scaffold(

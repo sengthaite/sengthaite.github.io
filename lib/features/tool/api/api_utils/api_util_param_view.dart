@@ -31,12 +31,10 @@ class _APIUtilParamViewState extends State<APIUtilParamView> {
             children: [
               TableRow(children: [
                 Checkbox(
-                  value: currentRequest?.selectedAllParam,
+                  value: currentRequest?.selectedAllParam ?? false,
                   onChanged: (value) {
                     currentRequest?.toggleParamAllRow();
-                    setState(() {
-                      currentRequest?.selectedAllParam = value;
-                    });
+                    setState(() => currentRequest?.selectedAllParam = value);
                   },
                 ),
                 const Padding(
@@ -63,11 +61,8 @@ class _APIUtilParamViewState extends State<APIUtilParamView> {
                   highlightColor: Colors.transparent,
                   focusColor: Colors.transparent,
                   hoverColor: Colors.transparent,
-                  onPressed: () {
-                    setState(() {
-                      currentRequest?.addParam(APIRowData());
-                    });
-                  },
+                  onPressed: () =>
+                      setState(() => currentRequest?.addParam(APIRowData())),
                   icon: Icon(
                     MdiIcons.plus,
                     color: Colors.green,
@@ -141,11 +136,8 @@ class _APIUtilParamViewState extends State<APIUtilParamView> {
                               Icons.delete,
                               color: Colors.red,
                             ),
-                            onPressed: () {
-                              setState(() {
-                                currentRequest?.removeParamAt(index);
-                              });
-                            },
+                            onPressed: () => setState(
+                                () => currentRequest?.removeParamAt(index)),
                           )
                         : const SizedBox(),
                   ],

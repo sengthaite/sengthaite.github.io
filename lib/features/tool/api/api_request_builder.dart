@@ -140,6 +140,7 @@ class HttpRestRequestDatum extends ChangeNotifier {
   HttpRestRequestDatum() {
     paramControllers.add(APIRowData(allowDeletion: false));
     headerControllers.add(APIRowData(allowDeletion: false));
+    cryptoControllers.add(APIRowData(allowDeletion: false));
     staticVariableControllers.add(APIRowData(allowDeletion: false));
   }
 
@@ -172,11 +173,14 @@ class HttpRestRequestDatum extends ChangeNotifier {
   bool? selectedAllParam = true;
   bool? selectedAllHeader = true;
   bool? selectedAllStaticVariables = true;
+  bool? selectedAllCrypto = true;
   bool? selectedAllDynamicVaraibles = true;
 
   List<APIRowData> paramControllers = [];
   List<APIRowData> headerControllers = [];
+  List<APIRowData> cryptoControllers = [];
   List<APIRowData> staticVariableControllers = [];
+
   List<APIRowData> dynamicVariableControllers = [];
 
   set autopopulateData(TempFile api) {
@@ -307,9 +311,11 @@ class HttpRestRequestDatum extends ChangeNotifier {
     urlInputController.clear();
     bodyInputController.clear();
     isRequesting = false;
-    selectedAllParam = null;
-    selectedAllHeader = null;
+    selectedAllParam = true;
+    selectedAllCrypto = true;
+    selectedAllHeader = true;
     paramControllers.clear();
+    cryptoControllers.clear();
     headerControllers.clear();
 
     methodColor = HttpRequestMethodTypeExtension.methodByDisplay(
@@ -317,6 +323,7 @@ class HttpRestRequestDatum extends ChangeNotifier {
         ?.color;
 
     paramControllers.add(APIRowData(allowDeletion: false));
+    cryptoControllers.add(APIRowData(allowDeletion: false));
     headerControllers.add(APIRowData(allowDeletion: false));
     response = null;
 
@@ -379,6 +386,61 @@ class HttpRestRequestDatum extends ChangeNotifier {
   addParam(APIRowData data) => paramControllers.add(data);
 
   removeParamAt(int index) => paramControllers.removeAt(index);
+
+  /// Crypto
+  setCryptoSelectedRowAt(int index) {
+    cryptoControllers[index].isSelected = true;
+    var shouldSelectAllCrypto = true;
+    for (var row in cryptoControllers) {
+      if (!row.isSelected) {
+        shouldSelectAllCrypto = false;
+        break;
+      }
+    }
+    selectedAllCrypto = shouldSelectAllCrypto;
+  }
+
+  setCryptoUnSelectedRowAt(int index) {
+    selectedAllCrypto = false;
+    cryptoControllers[index].isSelected = false;
+  }
+
+  toggleCryptoAllRow() {
+    if (selectedAllCrypto == null) return;
+    selectedAllCrypto! ? deSelectCryptoAllRow() : selectCryptoAllRow();
+  }
+
+  toggleCryptoRowSelectionAt(int index) {
+    cryptoControllers[index].isSelected = !cryptoControllers[index].isSelected;
+    var shouldSelectAllCrypto = true;
+    for (var row in cryptoControllers) {
+      if (!row.isSelected) {
+        shouldSelectAllCrypto = false;
+        break;
+      }
+    }
+    selectedAllCrypto = shouldSelectAllCrypto;
+  }
+
+  selectCryptoAllRow() {
+    selectedAllCrypto = true;
+    for (var row in cryptoControllers) {
+      if (row.isSelected) continue;
+      row.isSelected = true;
+    }
+  }
+
+  deSelectCryptoAllRow() {
+    selectedAllCrypto = false;
+    for (var row in cryptoControllers) {
+      if (!row.isSelected) continue;
+      row.isSelected = false;
+    }
+  }
+
+  addCrypto(APIRowData data) => cryptoControllers.add(data);
+
+  removeCryptoAt(int index) => cryptoControllers.removeAt(index);
 
   /// Headers
   setHeaderSelectedRowAt(int index) {

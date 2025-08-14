@@ -188,6 +188,7 @@ class _APIUtilViewState extends State<APIUtilView> {
                         drawerItems[activeItemCode]!.isActive = false;
                         activeItemCode = item.value.code;
                         item.value.isActive = true;
+                        Navigator.pop(context);
                       });
                     }
                   },

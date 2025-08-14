@@ -114,6 +114,7 @@ class TabBarLayoutViewState extends State<TabBarLayoutView>
   @override
   Widget build(BuildContext context) {
     super.build(context);
+    Navigation().tabBarDetailContext = context;
     _updateNavigationState();
     return OrientationBuilder(
       builder: (context, orientation) => Column(
