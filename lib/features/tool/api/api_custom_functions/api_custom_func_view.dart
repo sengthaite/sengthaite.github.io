@@ -1,161 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:sengthaite_blog/constants/enum.constants.dart';
+import 'package:sengthaite_blog/features/tool/api/api_encryption/api_encryption_view.dart';
 import 'package:sengthaite_blog/features/tool/api/api_request_builder.dart';
 
-class APICryptoSelectionView extends StatefulWidget {
-  final APIRowData dataRow;
-  const APICryptoSelectionView({
-    super.key,
-    required this.dataRow,
-  });
+class APICustomFuncView extends StatefulWidget {
+  const APICustomFuncView({super.key});
 
   @override
-  State<APICryptoSelectionView> createState() => _APICryptoSelectionViewState();
+  State<APICustomFuncView> createState() => _APICustomFuncViewState();
 }
 
-class _APICryptoSelectionViewState extends State<APICryptoSelectionView> {
-  int selectedCryptoTypeIndex = 0;
-
-  TextEditingController dataController = TextEditingController();
-  TextEditingController keyController = TextEditingController();
-  TextEditingController privateKeyController = TextEditingController();
-  TextEditingController ivController = TextEditingController();
-  TextEditingController nonceController = TextEditingController();
-  TextEditingController aadController = TextEditingController();
-  TextEditingController blockSizeController = TextEditingController();
-
-  List<Widget> get inputWidget {
-    CryptoType cryptoType = CryptoType.fromIndex(selectedCryptoTypeIndex);
-    switch (cryptoType) {
-      case CryptoType.aesCCMAEAD:
-      case CryptoType.aesChaCha20Poly1305AEAD:
-        return [
-          TextFormField(
-            controller: dataController,
-            decoration: const InputDecoration(hintText: "data"),
-          ),
-          TextFormField(
-            controller: keyController,
-            decoration: const InputDecoration(hintText: "Key"),
-          ),
-          TextFormField(
-            controller: nonceController,
-            decoration: const InputDecoration(hintText: "Nonce"),
-          ),
-          TextFormField(
-            controller: aadController,
-            decoration: const InputDecoration(
-                hintText: "AAD (Additional Authenticated Data)"),
-          ),
-        ];
-      case CryptoType.rsa:
-      case CryptoType.rsaOAEP:
-        return [
-          TextFormField(
-            controller: dataController,
-            decoration: const InputDecoration(hintText: "data"),
-          ),
-          TextFormField(
-            controller: keyController,
-            decoration: const InputDecoration(hintText: "Public Key"),
-          ),
-          TextFormField(
-            controller: privateKeyController,
-            decoration: const InputDecoration(hintText: "Private Key"),
-          )
-        ];
-      default:
-        return [
-          TextFormField(
-            controller: dataController,
-            decoration: const InputDecoration(hintText: "data"),
-          ),
-          TextFormField(
-            controller: keyController,
-            decoration: const InputDecoration(hintText: "Key"),
-          ),
-          TextFormField(
-            controller: ivController,
-            decoration: const InputDecoration(hintText: "IV"),
-          ),
-          if (cryptoType == CryptoType.aesOFB)
-            TextFormField(
-              controller: blockSizeController,
-              decoration: const InputDecoration(hintText: "Block Size"),
-            ),
-        ];
-    }
-  }
-
-  _reset() {
-    dataController.clear();
-    keyController.clear();
-    privateKeyController.clear();
-    ivController.clear();
-    nonceController.clear();
-    aadController.clear();
-    blockSizeController.clear();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: AlertDialog(
-          title: const Text("Add Crypto"),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Row(
-                children: [
-                  const Text("Crypto Type: "),
-                  const SizedBox(width: 8),
-                  DropdownButton<int>(
-                    value: selectedCryptoTypeIndex,
-                    items: List.generate(CryptoType.values.length, (value) {
-                      return DropdownMenuItem(
-                        value: value,
-                        child: Text(CryptoType.values[value].value),
-                      );
-                    }),
-                    onChanged: (value) {
-                      setState(() {
-                        if (selectedCryptoTypeIndex == value) return;
-                        _reset();
-                        selectedCryptoTypeIndex = value ?? 0;
-                      });
-                    },
-                  ),
-                ],
-              ),
-              ...inputWidget
-            ],
-          ),
-          actions: [
-            TextButton(
-                onPressed: () => Navigator.of(context).pop(),
-                child: Text("Cancel")),
-            TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: Text("Save"))
-          ],
-        ));
-  }
-}
-
-class APIEncryptionView extends StatefulWidget {
-  const APIEncryptionView({
-    super.key,
-  });
-
-  @override
-  State<APIEncryptionView> createState() => _APIEncryptionViewState();
-}
-
-class _APIEncryptionViewState extends State<APIEncryptionView> {
+class _APICustomFuncViewState extends State<APICustomFuncView> {
   var currentRequest = HttpRequestBuilder.getInstance().selectedDatum;
 
   @override

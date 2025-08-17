@@ -31,6 +31,21 @@ class APIRowData {
     valueController.text = value ?? '';
     descriptionController.text = description ?? '';
   }
+
+  APIRowData.fromJson(Map<String, dynamic> json)
+      : allowDeletion = json['allowDeletion'] ?? true,
+        isSelected = json['isSelected'] ?? true,
+        key = json['key'],
+        value = json['value'],
+        description = json['description'];
+
+  Map<String, dynamic> toJson() => {
+        'allowDeletion': allowDeletion,
+        'isSelected': isSelected,
+        'key': keyController.text,
+        'value': valueController.text,
+        'description': descriptionController.text,
+      };
 }
 
 extension MapKeyValueReplacement on Map<String, List<String>> {
@@ -174,13 +189,16 @@ class HttpRestRequestDatum extends ChangeNotifier {
   bool? selectedAllHeader = true;
   bool? selectedAllStaticVariables = true;
   bool? selectedAllCrypto = true;
+  bool? selectedAllBuiltInFunc = true;
+  bool? selectedAllCustomFunc = true;
   bool? selectedAllDynamicVaraibles = true;
 
   List<APIRowData> paramControllers = [];
   List<APIRowData> headerControllers = [];
   List<APIRowData> cryptoControllers = [];
+  List<APIRowData> builtInFuncControllers = [];
+  List<APIRowData> customFunctionControllers = [];
   List<APIRowData> staticVariableControllers = [];
-
   List<APIRowData> dynamicVariableControllers = [];
 
   set autopopulateData(TempFile api) {
@@ -316,6 +334,9 @@ class HttpRestRequestDatum extends ChangeNotifier {
     selectedAllHeader = true;
     paramControllers.clear();
     cryptoControllers.clear();
+    dynamicVariableControllers.clear();
+    staticVariableControllers.clear();
+    customFunctionControllers.clear();
     headerControllers.clear();
 
     methodColor = HttpRequestMethodTypeExtension.methodByDisplay(
@@ -325,6 +346,9 @@ class HttpRestRequestDatum extends ChangeNotifier {
     paramControllers.add(APIRowData(allowDeletion: false));
     cryptoControllers.add(APIRowData(allowDeletion: false));
     headerControllers.add(APIRowData(allowDeletion: false));
+    dynamicVariableControllers.add(APIRowData(allowDeletion: false));
+    staticVariableControllers.add(APIRowData(allowDeletion: false));
+    customFunctionControllers.add(APIRowData(allowDeletion: false));
     response = null;
 
     notifyListeners();
@@ -386,6 +410,64 @@ class HttpRestRequestDatum extends ChangeNotifier {
   addParam(APIRowData data) => paramControllers.add(data);
 
   removeParamAt(int index) => paramControllers.removeAt(index);
+
+  /// Custom Functions
+  setCustomFuncSelectedRowAt(int index) {
+    customFunctionControllers[index].isSelected = true;
+    var shouldSelectAll = true;
+    for (var row in customFunctionControllers) {
+      if (!row.isSelected) {
+        shouldSelectAll = false;
+        break;
+      }
+    }
+    selectedAllCustomFunc = shouldSelectAll;
+  }
+
+  setCustomFuncUnSelectedRowAt(int index) {
+    selectedAllCustomFunc = false;
+    customFunctionControllers[index].isSelected = false;
+  }
+
+  toggleCustomFuncAllRow() {
+    if (selectedAllCustomFunc == null) return;
+    selectedAllCustomFunc!
+        ? deSelectCustomFuncAllRow()
+        : selectCustomFuncAllRow();
+  }
+
+  toggleCustomFuncRowSelectionAt(int index) {
+    customFunctionControllers[index].isSelected =
+        !customFunctionControllers[index].isSelected;
+    var shouldSelectAll = true;
+    for (var row in customFunctionControllers) {
+      if (!row.isSelected) {
+        shouldSelectAll = false;
+        break;
+      }
+    }
+    selectedAllCustomFunc = shouldSelectAll;
+  }
+
+  selectCustomFuncAllRow() {
+    selectedAllCustomFunc = true;
+    for (var row in customFunctionControllers) {
+      if (row.isSelected) continue;
+      row.isSelected = true;
+    }
+  }
+
+  deSelectCustomFuncAllRow() {
+    selectedAllCustomFunc = false;
+    for (var row in customFunctionControllers) {
+      if (!row.isSelected) continue;
+      row.isSelected = false;
+    }
+  }
+
+  addCustomFunc(APIRowData data) => customFunctionControllers.add(data);
+
+  removeCustomFuncAt(int index) => customFunctionControllers.removeAt(index);
 
   /// Crypto
   setCryptoSelectedRowAt(int index) {
