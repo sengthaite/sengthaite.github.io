@@ -12,6 +12,7 @@ import 'package:uuid/v4.dart';
 class APIRowData {
   bool isSelected;
   bool allowDeletion;
+  String? function;
   final String? key;
   final dynamic value;
   final String? description;
@@ -26,6 +27,7 @@ class APIRowData {
     this.key,
     this.value,
     this.description,
+    this.function,
   }) {
     keyController.text = key ?? '';
     valueController.text = value ?? '';
@@ -37,7 +39,8 @@ class APIRowData {
         isSelected = json['isSelected'] ?? true,
         key = json['key'],
         value = json['value'],
-        description = json['description'];
+        description = json['description'],
+        function = json['function'];
 
   Map<String, dynamic> toJson() => {
         'allowDeletion': allowDeletion,
@@ -45,6 +48,7 @@ class APIRowData {
         'key': keyController.text,
         'value': valueController.text,
         'description': descriptionController.text,
+        'function': function,
       };
 }
 
@@ -154,6 +158,7 @@ class HttpRestRequestDatum extends ChangeNotifier {
 
   HttpRestRequestDatum() {
     paramControllers.add(APIRowData(allowDeletion: false));
+    functionControllers.add(APIRowData(allowDeletion: false));
     headerControllers.add(APIRowData(allowDeletion: false));
     cryptoControllers.add(APIRowData(allowDeletion: false));
     staticVariableControllers.add(APIRowData(allowDeletion: false));
@@ -189,15 +194,13 @@ class HttpRestRequestDatum extends ChangeNotifier {
   bool? selectedAllHeader = true;
   bool? selectedAllStaticVariables = true;
   bool? selectedAllCrypto = true;
-  bool? selectedAllBuiltInFunc = true;
-  bool? selectedAllCustomFunc = true;
+  bool? selectedAllFunc = true;
   bool? selectedAllDynamicVaraibles = true;
 
   List<APIRowData> paramControllers = [];
   List<APIRowData> headerControllers = [];
   List<APIRowData> cryptoControllers = [];
-  List<APIRowData> builtInFuncControllers = [];
-  List<APIRowData> customFunctionControllers = [];
+  List<APIRowData> functionControllers = [];
   List<APIRowData> staticVariableControllers = [];
   List<APIRowData> dynamicVariableControllers = [];
 
@@ -336,7 +339,7 @@ class HttpRestRequestDatum extends ChangeNotifier {
     cryptoControllers.clear();
     dynamicVariableControllers.clear();
     staticVariableControllers.clear();
-    customFunctionControllers.clear();
+    functionControllers.clear();
     headerControllers.clear();
 
     methodColor = HttpRequestMethodTypeExtension.methodByDisplay(
@@ -348,7 +351,7 @@ class HttpRestRequestDatum extends ChangeNotifier {
     headerControllers.add(APIRowData(allowDeletion: false));
     dynamicVariableControllers.add(APIRowData(allowDeletion: false));
     staticVariableControllers.add(APIRowData(allowDeletion: false));
-    customFunctionControllers.add(APIRowData(allowDeletion: false));
+    functionControllers.add(APIRowData(allowDeletion: false));
     response = null;
 
     notifyListeners();
@@ -411,63 +414,61 @@ class HttpRestRequestDatum extends ChangeNotifier {
 
   removeParamAt(int index) => paramControllers.removeAt(index);
 
-  /// Custom Functions
-  setCustomFuncSelectedRowAt(int index) {
-    customFunctionControllers[index].isSelected = true;
+  /// Functions
+  setFuncSelectedRowAt(int index) {
+    functionControllers[index].isSelected = true;
     var shouldSelectAll = true;
-    for (var row in customFunctionControllers) {
+    for (var row in functionControllers) {
       if (!row.isSelected) {
         shouldSelectAll = false;
         break;
       }
     }
-    selectedAllCustomFunc = shouldSelectAll;
+    selectedAllFunc = shouldSelectAll;
   }
 
-  setCustomFuncUnSelectedRowAt(int index) {
-    selectedAllCustomFunc = false;
-    customFunctionControllers[index].isSelected = false;
+  setFuncUnSelectedRowAt(int index) {
+    selectedAllFunc = false;
+    functionControllers[index].isSelected = false;
   }
 
-  toggleCustomFuncAllRow() {
-    if (selectedAllCustomFunc == null) return;
-    selectedAllCustomFunc!
-        ? deSelectCustomFuncAllRow()
-        : selectCustomFuncAllRow();
+  toggleFuncAllRow() {
+    if (selectedAllFunc == null) return;
+    selectedAllFunc! ? deSelectFuncAllRow() : selectFuncAllRow();
   }
 
-  toggleCustomFuncRowSelectionAt(int index) {
-    customFunctionControllers[index].isSelected =
-        !customFunctionControllers[index].isSelected;
+  toggleFuncRowSelectionAt(int index) {
+    functionControllers[index].isSelected =
+        !functionControllers[index].isSelected;
     var shouldSelectAll = true;
-    for (var row in customFunctionControllers) {
+    for (var row in functionControllers) {
       if (!row.isSelected) {
         shouldSelectAll = false;
         break;
       }
     }
-    selectedAllCustomFunc = shouldSelectAll;
+    selectedAllFunc = shouldSelectAll;
   }
 
-  selectCustomFuncAllRow() {
-    selectedAllCustomFunc = true;
-    for (var row in customFunctionControllers) {
+  selectFuncAllRow() {
+    selectedAllFunc = true;
+    for (var row in functionControllers) {
       if (row.isSelected) continue;
       row.isSelected = true;
     }
   }
 
-  deSelectCustomFuncAllRow() {
-    selectedAllCustomFunc = false;
-    for (var row in customFunctionControllers) {
+  deSelectFuncAllRow() {
+    selectedAllFunc = false;
+    for (var row in functionControllers) {
       if (!row.isSelected) continue;
       row.isSelected = false;
     }
   }
 
-  addCustomFunc(APIRowData data) => customFunctionControllers.add(data);
+  addFunc(APIRowData data) => functionControllers.add(data);
 
-  removeCustomFuncAt(int index) => customFunctionControllers.removeAt(index);
+  removeFuncAt(int index) => functionControllers.removeAt(index);
 
   /// Crypto
   setCryptoSelectedRowAt(int index) {
@@ -843,7 +844,7 @@ class HttpRequestBuilder extends ChangeNotifier {
   }
 
   factory HttpRequestBuilder.getInstance() {
-    _instance ??= HttpRequestBuilder._();
+    _instance = HttpRequestBuilder._();
     return _instance!;
   }
 }

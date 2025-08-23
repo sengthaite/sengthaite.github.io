@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:sengthaite_blog/features/tool/api/api_builtin_functions/api_builtin_func_view.dart';
-import 'package:sengthaite_blog/features/tool/api/api_custom_functions/api_custom_func_view.dart';
 import 'package:sengthaite_blog/features/tool/api/api_dynamic_variables/api_dynamic_variables_view.dart';
 import 'package:sengthaite_blog/features/tool/api/api_encryption/api_encryption_view.dart';
+import 'package:sengthaite_blog/features/tool/api/api_functions/api_func_view.dart';
 import 'package:sengthaite_blog/features/tool/api/api_log/api_log_view.dart';
 import 'package:sengthaite_blog/features/tool/api/api_utils/api_util_auth_view.dart';
 import 'package:sengthaite_blog/features/tool/api/api_utils/api_util_body_view.dart';
@@ -28,8 +27,7 @@ enum SettingCode {
   encryption,
   staticVariable,
   dynamicVariable,
-  buildInFunc,
-  customFunc,
+  func,
   log,
   test
 }
@@ -60,11 +58,6 @@ class _APIUtilViewState extends State<APIUtilView> {
       code: SettingCode.requestBuilder,
     ),
     APISettingItem(
-      title: "Encryption",
-      item: Text("Encryption"),
-      code: SettingCode.encryption,
-    ),
-    APISettingItem(
       title: "Static Variables",
       item: Text("Static Variables"),
       code: SettingCode.staticVariable,
@@ -75,14 +68,14 @@ class _APIUtilViewState extends State<APIUtilView> {
       code: SettingCode.dynamicVariable,
     ),
     APISettingItem(
-      title: "Built-in Functions",
-      item: Text("Built-in functions"),
-      code: SettingCode.buildInFunc,
+      title: "Functions",
+      item: Text("Functions"),
+      code: SettingCode.func,
     ),
     APISettingItem(
-      title: "Custom Functions (Dart)",
-      item: Text("Custom functions"),
-      code: SettingCode.customFunc,
+      title: "Encryption",
+      item: Text("Encryption"),
+      code: SettingCode.encryption,
     ),
     APISettingItem(
       title: "Logs",
@@ -105,10 +98,6 @@ class _APIUtilViewState extends State<APIUtilView> {
           "Headers": APIUtilHeaderView(),
           "Body": APIUtilBodyView(),
         };
-      case SettingCode.encryption:
-        return {
-          "Encryption Function": APIEncryptionView(),
-        };
       case SettingCode.staticVariable:
         return {
           "Static Variables": APIStaticVariablesView(),
@@ -117,14 +106,15 @@ class _APIUtilViewState extends State<APIUtilView> {
         return {
           "Dynamic Variables": APIDynamicVariableView(),
         };
-      case SettingCode.buildInFunc:
+      case SettingCode.func:
         return {
-          "Built-in Functions": APIBuiltInFuncView(),
+          "Functions": APIFuncView(),
         };
-      case SettingCode.customFunc:
+      case SettingCode.encryption:
         return {
-          "Custom Functions": APICustomFuncView(),
+          "Encryption Function": APIEncryptionView(),
         };
+
       case SettingCode.log:
         return {
           "API Logs": APILogView(),

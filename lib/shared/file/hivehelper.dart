@@ -9,6 +9,7 @@ class HiveAPIDirService {
   Future<TempDir?> get defaultDir async => await findDir("Default");
 
   init() async {
+    Hive.init(_boxName);
     var allDirs = await getAllDirs();
     if (allDirs.isEmpty) await newDir(TempDir(dirname: "Default"));
   }

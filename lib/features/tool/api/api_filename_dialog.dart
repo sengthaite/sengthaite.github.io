@@ -1,10 +1,10 @@
-import 'dart:convert';
+import 'dart:typed_data';
 
+import 'package:file_saver/file_saver.dart';
 import 'package:flutter/material.dart';
-import 'package:web/web.dart' as html;
 
 class APIFilenameDialogWidget extends StatefulWidget {
-  final List<int> bytes;
+  final Uint8List bytes;
 
   const APIFilenameDialogWidget({
     super.key,
@@ -18,18 +18,11 @@ class APIFilenameDialogWidget extends StatefulWidget {
 class _APIFilenameDialogWidgetState extends State<APIFilenameDialogWidget> {
   String downloadName = '';
 
-  void download() {
-    // Encode our file in base64
-    final base64 = base64Encode(widget.bytes);
-    // Create the link with the file
-    final anchor = html.HTMLAnchorElement()..target = 'blank';
-    // add the name
-    anchor.download = 'data:application/octet-stream;base64,$base64';
-    // trigger download
-    html.document.body?.append(anchor);
-    anchor.click();
-    anchor.remove();
-    Navigator.of(context).pop();
+  void download() async {
+    await FileSaver.instance.saveFile(
+      name: downloadName.isEmpty ? 'download' : downloadName,
+      bytes: widget.bytes,
+    );
   }
 
   @override
