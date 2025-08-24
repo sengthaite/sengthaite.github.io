@@ -7,6 +7,7 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 import 'package:sengthaite_blog/features/tool/api/api_functions/config/code_snippets.dart';
 import 'package:sengthaite_blog/features/tool/api/api_request_builder.dart';
 import 'package:sengthaite_blog/features/tool/api/api_util_table_data.dart';
+import 'package:sengthaite_blog/features/tool/api/api_variables/api_variable_helper.dart';
 
 class APIFuncView extends StatefulWidget {
   const APIFuncView({super.key});
@@ -16,11 +17,11 @@ class APIFuncView extends StatefulWidget {
 }
 
 class _APIFuncViewState extends State<APIFuncView> {
-  var currentRequest =
-      HttpRequestBuilder.getInstance().selectedDatum?.functionData;
+  final datum = HttpRequestBuilder.getInstance().selectedDatum;
 
   @override
   Widget build(BuildContext context) {
+    var currentRequest = datum?.functionData;
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
@@ -250,7 +251,8 @@ class _APIFuncViewResultState extends State<APIFuncViewResult> {
       return;
     }
     try {
-      var result = eval(data.function!, function: data.keyController.text);
+      final funcFinal = APIVarialbeHelper.replaceAllVariables(data.function!);
+      var result = eval(funcFinal, function: data.keyController.text);
       return result;
     } catch (e) {
       return "Error in executing function: ${e.toString()}";

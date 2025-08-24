@@ -26,16 +26,7 @@ class HttpRestRequestDatum extends ChangeNotifier {
     cryptoData.add(APIRowData(allowDeletion: false));
     functionData.add(APIRowData(allowDeletion: false));
     variableData.add(APIRowData(allowDeletion: false));
-    liveVariableData.add(
-      APIRowData(
-          allowDeletion: false,
-          keyReadOnly: true,
-          valueReadOnly: true,
-          descriptionReadOnly: true,
-          key: "RESPONSE",
-          value: response.toString(),
-          description: "Response from the server"),
-    );
+    liveVariableData.add(APIRowData(allowDeletion: false));
   }
 
   final urlInputController = TextEditingController();
@@ -217,17 +208,24 @@ class HttpRestRequestDatum extends ChangeNotifier {
             HttpRequestMethodTypeExtension.defaultHttpMethod)
         ?.color;
 
+    response = null;
+
     paramData.add(APIRowData(allowDeletion: false));
-    variableData.add(APIRowData(allowDeletion: false));
     liveVariableData.add(APIRowData(allowDeletion: false));
+    variableData.add(APIRowData(allowDeletion: false));
     functionData.add(APIRowData(allowDeletion: false));
     cryptoData.add(APIRowData(allowDeletion: false));
     headerData.add(APIRowData(allowDeletion: false));
-    response = null;
 
     notifyListeners();
     cancelToken = CancelToken();
     clearAuth();
+  }
+
+  Map<String, dynamic> get allVariables {
+    final variablesMap = variableData.controllers.toMap ?? {};
+    final liveVariablesMap = liveVariableData.controllers.toMap ?? {};
+    return {...variablesMap, ...liveVariablesMap};
   }
 
   Headers? get headers {
@@ -259,6 +257,8 @@ class HttpRestRequestDatum extends ChangeNotifier {
   }
 
   String? _requestMethod;
+
+  /// TODO: unexpect null
   Response? response;
 
   get getRequestMethod => _requestMethod;

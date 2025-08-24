@@ -41,7 +41,7 @@ class TakePictureScreenState extends State<CameraView> {
             _controller = CameraController(
               camera,
               // Define the resolution to use.
-              ResolutionPreset.medium,
+              ResolutionPreset.high,
             );
             var controllerInitialize = _controller.initialize();
             return FutureBuilder(

@@ -94,6 +94,7 @@ class _APILiveVariablesViewState extends State<APILiveVariablesView> {
                         style: const TextStyle(fontSize: 12),
                         enableSuggestions: false,
                         maxLines: null,
+                        readOnly: dataRow?.keyReadOnly ?? false,
                         keyboardType: TextInputType.multiline,
                         decoration: const InputDecoration(
                           hintText: "Key",
@@ -108,6 +109,7 @@ class _APILiveVariablesViewState extends State<APILiveVariablesView> {
                         style: const TextStyle(fontSize: 12),
                         enableSuggestions: false,
                         maxLines: null,
+                        readOnly: dataRow?.valueReadOnly ?? false,
                         keyboardType: TextInputType.multiline,
                         decoration: const InputDecoration(
                           hintText: "Value",

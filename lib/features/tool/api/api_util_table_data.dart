@@ -197,6 +197,8 @@ class ApiUtilTableData {
     }
   }
 
+  addList(List<APIRowData> data) => controllers.addAll(data);
+
   add(APIRowData data) => controllers.add(data);
 
   removeAt(int index) => controllers.removeAt(index);
