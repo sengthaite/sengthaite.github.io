@@ -4,147 +4,11 @@ import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:sengthaite_blog/extensions/http_ext.dart';
+import 'package:sengthaite_blog/features/tool/api/api_util_table_data.dart';
 import 'package:sengthaite_blog/features/tool/api/api_utils/api_util.dart';
 import 'package:sengthaite_blog/shared/dialog/error_dialog.dart';
 import 'package:sengthaite_blog/shared/file/hivedir.dart';
 import 'package:uuid/v4.dart';
-
-class APIRowData {
-  bool isSelected;
-  bool allowDeletion;
-  String? function;
-  final String? key;
-  final dynamic value;
-  final String? description;
-
-  TextEditingController keyController = TextEditingController();
-  TextEditingController valueController = TextEditingController();
-  TextEditingController descriptionController = TextEditingController();
-
-  APIRowData({
-    this.allowDeletion = true,
-    this.isSelected = true,
-    this.key,
-    this.value,
-    this.description,
-    this.function,
-  }) {
-    keyController.text = key ?? '';
-    valueController.text = value ?? '';
-    descriptionController.text = description ?? '';
-  }
-
-  APIRowData.fromJson(Map<String, dynamic> json)
-      : allowDeletion = json['allowDeletion'] ?? true,
-        isSelected = json['isSelected'] ?? true,
-        key = json['key'],
-        value = json['value'],
-        description = json['description'],
-        function = json['function'];
-
-  Map<String, dynamic> toJson() => {
-        'allowDeletion': allowDeletion,
-        'isSelected': isSelected,
-        'key': keyController.text,
-        'value': valueController.text,
-        'description': descriptionController.text,
-        'function': function,
-      };
-}
-
-extension MapKeyValueReplacement on Map<String, List<String>> {
-  Map<String, String>? toMapWithVariables(Map<String, String>? replacements) {
-    if (isEmpty) return null;
-    var entries = this.entries;
-    Map<String, String> result = {};
-    for (var entry in entries) {
-      var key = entry.key;
-      result[key] =
-          entry.value.join(",").replaceTextStaticVariables(replacements);
-    }
-    return result;
-  }
-}
-
-extension ListAPIRowData on List<APIRowData> {
-  Map<String, String>? toMapWithVariables(Map<String, String>? replacements) {
-    if (isEmpty) return null;
-    Map<String, String> result = {};
-    for (var each in this) {
-      var key = each.keyController.text;
-      if (!each.isSelected) continue;
-      result[key] =
-          each.valueController.text.replaceTextStaticVariables(replacements);
-    }
-    return result;
-  }
-
-  Map<String, String>? get toMap {
-    if (isEmpty) return null;
-    Map<String, String> result = {};
-    for (var param in this) {
-      var key = param.keyController.text;
-      if (key.trim().isEmpty || !param.isSelected) continue;
-      result[key] = param.valueController.text;
-    }
-    return result;
-  }
-}
-
-extension APIRowDataVariables on String {
-  String replaceTextStaticVariables(Map<String, String>? replacements) {
-    if (replacements == null) return this;
-    // Regex to find text between double curly braces ({{text}})
-    final doubleBraceRegex = RegExp(r'\{\{([^}]+)\}\}');
-
-    // Regex to find text between escaped curly braces (\{text1\})
-    final escapedBraceRegex = RegExp(r'\\\{([^}]+)\\\}');
-
-    // First, handle the escaped curly braces to prevent them from being
-    // treated as regular double curly braces. We replace them with a
-    // temporary placeholder that is unlikely to appear in the input.
-    String tempString = replaceAllMapped(escapedBraceRegex, (match) {
-      return '__ESCAPED_BRACE_START__${match.group(1)}__ESCAPED_BRACE_END__';
-    });
-
-    // Now, handle the regular double curly braces
-    String replacedString =
-        tempString.replaceAllMapped(doubleBraceRegex, (match) {
-      final key = match.group(1);
-      return replacements.containsKey(key)
-          ? replacements[key]!
-          : match.group(0)!;
-    });
-
-    // Finally, revert the temporary placeholder for escaped curly braces
-    return replacedString
-        .replaceAll('__ESCAPED_BRACE_START__', '{')
-        .replaceAll('__ESCAPED_BRACE_END__', '}');
-  }
-}
-
-class RequestData {
-  Map<String, String> headers = {};
-  Map<String, String> params = {};
-  Map<String, String> body = {};
-  Map<String, String> auth = {};
-
-  toJson() {
-    return {
-      "headers": headers,
-      "params": params,
-      "body": body,
-      "auth": auth,
-    };
-  }
-
-  fromJson(Map<String, dynamic> json) {
-    headers = Map<String, String>.from(json["headers"]);
-    params = Map<String, String>.from(json["params"]);
-    body = Map<String, String>.from(json["body"]);
-    auth = Map<String, String>.from(json["auth"]);
-  }
-}
 
 class HttpRestRequestDatum extends ChangeNotifier {
   String id = "request_${UuidV4().generate()}";
@@ -157,11 +21,21 @@ class HttpRestRequestDatum extends ChangeNotifier {
   Map<String, String> variables = {};
 
   HttpRestRequestDatum() {
-    paramControllers.add(APIRowData(allowDeletion: false));
-    functionControllers.add(APIRowData(allowDeletion: false));
-    headerControllers.add(APIRowData(allowDeletion: false));
-    cryptoControllers.add(APIRowData(allowDeletion: false));
-    staticVariableControllers.add(APIRowData(allowDeletion: false));
+    paramData.add(APIRowData(allowDeletion: false));
+    headerData.add(APIRowData(allowDeletion: false));
+    cryptoData.add(APIRowData(allowDeletion: false));
+    functionData.add(APIRowData(allowDeletion: false));
+    variableData.add(APIRowData(allowDeletion: false));
+    liveVariableData.add(
+      APIRowData(
+          allowDeletion: false,
+          keyReadOnly: true,
+          valueReadOnly: true,
+          descriptionReadOnly: true,
+          key: "RESPONSE",
+          value: response.toString(),
+          description: "Response from the server"),
+    );
   }
 
   final urlInputController = TextEditingController();
@@ -190,19 +64,12 @@ class HttpRestRequestDatum extends ChangeNotifier {
       ?.color;
 
   bool isRequesting = false;
-  bool? selectedAllParam = true;
-  bool? selectedAllHeader = true;
-  bool? selectedAllStaticVariables = true;
-  bool? selectedAllCrypto = true;
-  bool? selectedAllFunc = true;
-  bool? selectedAllDynamicVaraibles = true;
-
-  List<APIRowData> paramControllers = [];
-  List<APIRowData> headerControllers = [];
-  List<APIRowData> cryptoControllers = [];
-  List<APIRowData> functionControllers = [];
-  List<APIRowData> staticVariableControllers = [];
-  List<APIRowData> dynamicVariableControllers = [];
+  final paramData = ApiUtilTableData();
+  final headerData = ApiUtilTableData();
+  final cryptoData = ApiUtilTableData();
+  final functionData = ApiUtilTableData();
+  final variableData = ApiUtilTableData();
+  final liveVariableData = ApiUtilTableData();
 
   set autopopulateData(TempFile api) {
     urlInputController.text = api.url;
@@ -309,8 +176,8 @@ class HttpRestRequestDatum extends ChangeNotifier {
   buildUrlWithQueryParams(int rowIndex, {String? key, String? value}) {
     final uri = Uri.parse(urlInputController.text);
     var updatedParams = {};
-    var updatedKey = key ?? paramControllers[rowIndex].key;
-    var updatedValue = value ?? paramControllers[rowIndex].value;
+    var updatedKey = key ?? paramData.controllers[rowIndex].key;
+    var updatedValue = value ?? paramData.controllers[rowIndex].value;
     if (updatedKey != null) {
       updatedParams[updatedKey] = updatedValue;
     }
@@ -332,26 +199,30 @@ class HttpRestRequestDatum extends ChangeNotifier {
     urlInputController.clear();
     bodyInputController.clear();
     isRequesting = false;
-    selectedAllParam = true;
-    selectedAllCrypto = true;
-    selectedAllHeader = true;
-    paramControllers.clear();
-    cryptoControllers.clear();
-    dynamicVariableControllers.clear();
-    staticVariableControllers.clear();
-    functionControllers.clear();
-    headerControllers.clear();
+    paramData.selectedAll = true;
+    variableData.selectedAll = true;
+    liveVariableData.selectedAll = true;
+    functionData.selectedAll = true;
+    cryptoData.selectedAll = true;
+    headerData.selectedAll = true;
+
+    paramData.controllers.clear();
+    variableData.controllers.clear();
+    liveVariableData.controllers.clear();
+    functionData.controllers.clear();
+    cryptoData.controllers.clear();
+    headerData.controllers.clear();
 
     methodColor = HttpRequestMethodTypeExtension.methodByDisplay(
             HttpRequestMethodTypeExtension.defaultHttpMethod)
         ?.color;
 
-    paramControllers.add(APIRowData(allowDeletion: false));
-    cryptoControllers.add(APIRowData(allowDeletion: false));
-    headerControllers.add(APIRowData(allowDeletion: false));
-    dynamicVariableControllers.add(APIRowData(allowDeletion: false));
-    staticVariableControllers.add(APIRowData(allowDeletion: false));
-    functionControllers.add(APIRowData(allowDeletion: false));
+    paramData.add(APIRowData(allowDeletion: false));
+    variableData.add(APIRowData(allowDeletion: false));
+    liveVariableData.add(APIRowData(allowDeletion: false));
+    functionData.add(APIRowData(allowDeletion: false));
+    cryptoData.add(APIRowData(allowDeletion: false));
+    headerData.add(APIRowData(allowDeletion: false));
     response = null;
 
     notifyListeners();
@@ -359,271 +230,8 @@ class HttpRestRequestDatum extends ChangeNotifier {
     clearAuth();
   }
 
-  /// Params
-  setParamSelectedRowAt(int index) {
-    paramControllers[index].isSelected = true;
-    var shouldSelectAllParam = true;
-    for (var row in paramControllers) {
-      if (!row.isSelected) {
-        shouldSelectAllParam = false;
-        break;
-      }
-    }
-    selectedAllParam = shouldSelectAllParam;
-  }
-
-  setParamUnSelectedRowAt(int index) {
-    selectedAllParam = false;
-    paramControllers[index].isSelected = false;
-  }
-
-  toggleParamAllRow() {
-    if (selectedAllParam == null) return;
-    selectedAllParam! ? deSelectParamAllRow() : selectParamAllRow();
-  }
-
-  toggleParamRowSelectionAt(int index) {
-    paramControllers[index].isSelected = !paramControllers[index].isSelected;
-    var shouldSelectAllParam = true;
-    for (var row in paramControllers) {
-      if (!row.isSelected) {
-        shouldSelectAllParam = false;
-        break;
-      }
-    }
-    selectedAllParam = shouldSelectAllParam;
-  }
-
-  selectParamAllRow() {
-    selectedAllParam = true;
-    for (var row in paramControllers) {
-      if (row.isSelected) continue;
-      row.isSelected = true;
-    }
-  }
-
-  deSelectParamAllRow() {
-    selectedAllParam = false;
-    for (var row in paramControllers) {
-      if (!row.isSelected) continue;
-      row.isSelected = false;
-    }
-  }
-
-  addParam(APIRowData data) => paramControllers.add(data);
-
-  removeParamAt(int index) => paramControllers.removeAt(index);
-
-  /// Functions
-  setFuncSelectedRowAt(int index) {
-    functionControllers[index].isSelected = true;
-    var shouldSelectAll = true;
-    for (var row in functionControllers) {
-      if (!row.isSelected) {
-        shouldSelectAll = false;
-        break;
-      }
-    }
-    selectedAllFunc = shouldSelectAll;
-  }
-
-  setFuncUnSelectedRowAt(int index) {
-    selectedAllFunc = false;
-    functionControllers[index].isSelected = false;
-  }
-
-  toggleFuncAllRow() {
-    if (selectedAllFunc == null) return;
-    selectedAllFunc! ? deSelectFuncAllRow() : selectFuncAllRow();
-  }
-
-  toggleFuncRowSelectionAt(int index) {
-    functionControllers[index].isSelected =
-        !functionControllers[index].isSelected;
-    var shouldSelectAll = true;
-    for (var row in functionControllers) {
-      if (!row.isSelected) {
-        shouldSelectAll = false;
-        break;
-      }
-    }
-    selectedAllFunc = shouldSelectAll;
-  }
-
-  selectFuncAllRow() {
-    selectedAllFunc = true;
-    for (var row in functionControllers) {
-      if (row.isSelected) continue;
-      row.isSelected = true;
-    }
-  }
-
-  deSelectFuncAllRow() {
-    selectedAllFunc = false;
-    for (var row in functionControllers) {
-      if (!row.isSelected) continue;
-      row.isSelected = false;
-    }
-  }
-
-  addFunc(APIRowData data) => functionControllers.add(data);
-
-  removeFuncAt(int index) => functionControllers.removeAt(index);
-
-  /// Crypto
-  setCryptoSelectedRowAt(int index) {
-    cryptoControllers[index].isSelected = true;
-    var shouldSelectAllCrypto = true;
-    for (var row in cryptoControllers) {
-      if (!row.isSelected) {
-        shouldSelectAllCrypto = false;
-        break;
-      }
-    }
-    selectedAllCrypto = shouldSelectAllCrypto;
-  }
-
-  setCryptoUnSelectedRowAt(int index) {
-    selectedAllCrypto = false;
-    cryptoControllers[index].isSelected = false;
-  }
-
-  toggleCryptoAllRow() {
-    if (selectedAllCrypto == null) return;
-    selectedAllCrypto! ? deSelectCryptoAllRow() : selectCryptoAllRow();
-  }
-
-  toggleCryptoRowSelectionAt(int index) {
-    cryptoControllers[index].isSelected = !cryptoControllers[index].isSelected;
-    var shouldSelectAllCrypto = true;
-    for (var row in cryptoControllers) {
-      if (!row.isSelected) {
-        shouldSelectAllCrypto = false;
-        break;
-      }
-    }
-    selectedAllCrypto = shouldSelectAllCrypto;
-  }
-
-  selectCryptoAllRow() {
-    selectedAllCrypto = true;
-    for (var row in cryptoControllers) {
-      if (row.isSelected) continue;
-      row.isSelected = true;
-    }
-  }
-
-  deSelectCryptoAllRow() {
-    selectedAllCrypto = false;
-    for (var row in cryptoControllers) {
-      if (!row.isSelected) continue;
-      row.isSelected = false;
-    }
-  }
-
-  addCrypto(APIRowData data) => cryptoControllers.add(data);
-
-  removeCryptoAt(int index) => cryptoControllers.removeAt(index);
-
-  /// Headers
-  setHeaderSelectedRowAt(int index) {
-    headerControllers[index].isSelected = true;
-    var shouldSelectAllHeader = true;
-    for (var row in headerControllers) {
-      if (!row.isSelected) {
-        shouldSelectAllHeader = false;
-        break;
-      }
-    }
-    selectedAllHeader = shouldSelectAllHeader;
-  }
-
-  setHeaderUnSelectedRowAt(int index) {
-    headerControllers[index].isSelected = false;
-    selectedAllHeader = false;
-  }
-
-  toggleHeaderAllRow() {
-    if (selectedAllHeader == null) return;
-    selectedAllHeader! ? deSelectHeaderAllRow() : selectHeaderAllRow();
-  }
-
-  toggleHeaderRowSelectionAt(int index) {
-    headerControllers[index].isSelected = !headerControllers[index].isSelected;
-    var shouldSelectAllHeader = true;
-    for (var row in headerControllers) {
-      if (!row.isSelected) {
-        shouldSelectAllHeader = false;
-        break;
-      }
-    }
-    selectedAllHeader = shouldSelectAllHeader;
-  }
-
-  selectHeaderAllRow() {
-    selectedAllHeader = true;
-    for (var row in headerControllers) {
-      if (row.isSelected) continue;
-      row.isSelected = true;
-    }
-  }
-
-  deSelectHeaderAllRow() {
-    selectedAllHeader = false;
-    for (var row in headerControllers) {
-      if (!row.isSelected) continue;
-      row.isSelected = false;
-    }
-  }
-
-  addHeader(APIRowData data) => headerControllers.add(data);
-
-  removeHeaderAt(int index) => headerControllers.removeAt(index);
-
-  /// Static variables
-  selectStaticVariablesAllRow() {
-    selectedAllStaticVariables = true;
-    for (var row in staticVariableControllers) {
-      if (row.isSelected) continue;
-      row.isSelected = true;
-    }
-  }
-
-  deSelectStaticVariablesAllRow() {
-    selectedAllStaticVariables = false;
-    for (var row in staticVariableControllers) {
-      if (!row.isSelected) continue;
-      row.isSelected = false;
-    }
-  }
-
-  toggleStaticVariablesAllRow() {
-    if (selectedAllStaticVariables == null) return;
-    selectedAllStaticVariables!
-        ? deSelectStaticVariablesAllRow()
-        : selectStaticVariablesAllRow();
-  }
-
-  toggleStaticVariablesRowSelectionAt(int index) {
-    staticVariableControllers[index].isSelected =
-        !staticVariableControllers[index].isSelected;
-    var shouldSelectAllStaticVariables = true;
-    for (var row in staticVariableControllers) {
-      if (!row.isSelected) {
-        shouldSelectAllStaticVariables = false;
-        break;
-      }
-    }
-    selectedAllStaticVariables = shouldSelectAllStaticVariables;
-  }
-
-  addStaticVariables(APIRowData data) => staticVariableControllers.add(data);
-
-  removeStaticVariablesAt(int index) =>
-      staticVariableControllers.removeAt(index);
-
   Headers? get headers {
-    if (headerControllers.isEmpty) return null;
+    if (headerData.controllers.isEmpty) return null;
     Map<String, List<String>> result = {};
     String auth = '';
     switch (authType) {
@@ -642,7 +250,7 @@ class HttpRestRequestDatum extends ChangeNotifier {
     if (auth.isNotEmpty) {
       result["Authorization"] = [auth];
     }
-    for (var header in headerControllers) {
+    for (var header in headerData.controllers) {
       var key = header.keyController.text;
       if (key.trim().isEmpty || !header.isSelected) continue;
       result[key] = header.valueController.text.split(',');
@@ -671,15 +279,14 @@ class HttpRestRequestDatum extends ChangeNotifier {
       if (method == null) {
         throw Exception("Unknown request method");
       }
-      var replacements = staticVariableControllers.toMap;
-      var path =
-          urlInputController.text.replaceTextStaticVariables(replacements);
-      var body =
-          bodyInputController.text.replaceTextStaticVariables(replacements);
+      var replacements = variableData.controllers.toMap;
+      var path = urlInputController.text.replaceTextvariables(replacements);
+      var body = bodyInputController.text.replaceTextvariables(replacements);
       var dio = Dio(
         BaseOptions(
           headers: headers?.map.toMapWithVariables(replacements),
-          queryParameters: paramControllers.toMapWithVariables(replacements),
+          queryParameters:
+              paramData.controllers.toMapWithVariables(replacements),
           responseType: headers?.responseType ?? ResponseType.bytes,
           contentType: headers?.value(Headers.contentTypeHeader),
           receiveDataWhenStatusError: true,
@@ -711,7 +318,7 @@ class HttpRestRequestDatum extends ChangeNotifier {
       isRequesting = true;
       notifyListeners();
 
-      var params = paramControllers.toMapWithVariables(replacements);
+      var params = paramData.controllers.toMapWithVariables(replacements);
 
       switch (method) {
         case HttpRequestMethodType.get:

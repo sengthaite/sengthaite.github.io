@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:sengthaite_blog/features/tool/api/api_request_builder.dart';
+import 'package:sengthaite_blog/features/tool/api/api_util_table_data.dart';
 
 class APIUtilHeaderView extends StatefulWidget {
   const APIUtilHeaderView({super.key});
@@ -10,7 +11,8 @@ class APIUtilHeaderView extends StatefulWidget {
 }
 
 class _APIUtilHeaderViewState extends State<APIUtilHeaderView> {
-  var currentRequest = HttpRequestBuilder.getInstance().selectedDatum;
+  var currentRequest =
+      HttpRequestBuilder.getInstance().selectedDatum?.headerData;
 
   @override
   Widget build(BuildContext context) {
@@ -29,11 +31,11 @@ class _APIUtilHeaderViewState extends State<APIUtilHeaderView> {
             children: [
               TableRow(children: [
                 Checkbox(
-                  value: currentRequest?.selectedAllHeader,
+                  value: currentRequest?.selectedAll,
                   onChanged: (value) {
-                    currentRequest?.toggleHeaderAllRow();
+                    currentRequest?.toggleAllRow();
                     setState(() {
-                      currentRequest?.selectedAllHeader = value;
+                      currentRequest?.selectedAll = value;
                     });
                   },
                 ),
@@ -63,7 +65,7 @@ class _APIUtilHeaderViewState extends State<APIUtilHeaderView> {
                   hoverColor: Colors.transparent,
                   onPressed: () {
                     setState(() {
-                      currentRequest?.addHeader(APIRowData());
+                      currentRequest?.add(APIRowData());
                     });
                   },
                   icon: Icon(
@@ -72,15 +74,15 @@ class _APIUtilHeaderViewState extends State<APIUtilHeaderView> {
                   ),
                 ),
               ]),
-              ...List.generate(currentRequest?.headerControllers.length ?? 0,
+              ...List.generate(currentRequest?.controllers.length ?? 0,
                   (index) {
-                var dataRow = currentRequest?.headerControllers[index];
+                var dataRow = currentRequest?.controllers[index];
                 return TableRow(
                   children: [
                     Checkbox(
                       value: dataRow?.isSelected,
-                      onChanged: (value) => setState(() =>
-                          currentRequest?.toggleHeaderRowSelectionAt(index)),
+                      onChanged: (value) => setState(
+                          () => currentRequest?.toggleRowSelectionAt(index)),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -140,7 +142,7 @@ class _APIUtilHeaderViewState extends State<APIUtilHeaderView> {
                             ),
                             onPressed: () {
                               setState(() {
-                                currentRequest?.removeHeaderAt(index);
+                                currentRequest?.removeAt(index);
                               });
                             },
                           )

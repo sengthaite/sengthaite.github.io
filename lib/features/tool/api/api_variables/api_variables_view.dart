@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:sengthaite_blog/features/tool/api/api_request_builder.dart';
+import 'package:sengthaite_blog/features/tool/api/api_util_table_data.dart';
 
-class APIStaticVariablesView extends StatefulWidget {
-  const APIStaticVariablesView({
+class APIVariablesView extends StatefulWidget {
+  const APIVariablesView({
     super.key,
   });
 
   @override
-  State<APIStaticVariablesView> createState() => _APIStaticVariablesViewState();
+  State<APIVariablesView> createState() => _APIVariablesViewState();
 }
 
-class _APIStaticVariablesViewState extends State<APIStaticVariablesView> {
-  var currentRequest = HttpRequestBuilder.getInstance().selectedDatum;
+class _APIVariablesViewState extends State<APIVariablesView> {
+  var currentRequest =
+      HttpRequestBuilder.getInstance().selectedDatum?.variableData;
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -32,11 +34,11 @@ class _APIStaticVariablesViewState extends State<APIStaticVariablesView> {
             children: [
               TableRow(children: [
                 Checkbox(
-                  value: currentRequest?.selectedAllStaticVariables,
+                  value: currentRequest?.selectedAll,
                   onChanged: (value) {
-                    currentRequest?.toggleStaticVariablesAllRow();
+                    currentRequest?.toggleAllRow();
                     setState(() {
-                      currentRequest?.selectedAllStaticVariables = value;
+                      currentRequest?.selectedAll = value;
                     });
                   },
                 ),
@@ -66,7 +68,7 @@ class _APIStaticVariablesViewState extends State<APIStaticVariablesView> {
                   hoverColor: Colors.transparent,
                   onPressed: () {
                     setState(() {
-                      currentRequest?.addStaticVariables(APIRowData());
+                      currentRequest?.add(APIRowData());
                     });
                   },
                   icon: Icon(
@@ -75,17 +77,15 @@ class _APIStaticVariablesViewState extends State<APIStaticVariablesView> {
                   ),
                 ),
               ]),
-              ...List.generate(
-                  currentRequest?.staticVariableControllers.length ?? 0,
+              ...List.generate(currentRequest?.controllers.length ?? 0,
                   (index) {
-                var dataRow = currentRequest?.staticVariableControllers[index];
+                var dataRow = currentRequest?.controllers[index];
                 return TableRow(
                   children: [
                     Checkbox(
                       value: dataRow?.isSelected,
                       onChanged: (value) => setState(
-                        () => currentRequest
-                            ?.toggleStaticVariablesRowSelectionAt(index),
+                        () => currentRequest?.toggleRowSelectionAt(index),
                       ),
                     ),
                     Padding(
@@ -143,7 +143,7 @@ class _APIStaticVariablesViewState extends State<APIStaticVariablesView> {
                             ),
                             onPressed: () {
                               setState(() {
-                                currentRequest?.removeStaticVariablesAt(index);
+                                currentRequest?.removeAt(index);
                               });
                             },
                           )

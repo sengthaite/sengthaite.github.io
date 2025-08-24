@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:sengthaite_blog/features/tool/api/api_dynamic_variables/api_dynamic_variables_view.dart';
 import 'package:sengthaite_blog/features/tool/api/api_encryption/api_encryption_view.dart';
 import 'package:sengthaite_blog/features/tool/api/api_functions/api_func_view.dart';
 import 'package:sengthaite_blog/features/tool/api/api_log/api_log_view.dart';
@@ -7,7 +6,8 @@ import 'package:sengthaite_blog/features/tool/api/api_utils/api_util_auth_view.d
 import 'package:sengthaite_blog/features/tool/api/api_utils/api_util_body_view.dart';
 import 'package:sengthaite_blog/features/tool/api/api_utils/api_util_header_view.dart';
 import 'package:sengthaite_blog/features/tool/api/api_utils/api_util_param_view.dart';
-import 'package:sengthaite_blog/features/tool/api/api_variables/api_static_variables_view.dart';
+import 'package:sengthaite_blog/features/tool/api/api_variables/api_live_variables_view.dart';
+import 'package:sengthaite_blog/features/tool/api/api_variables/api_variables_view.dart';
 
 class APISettingItem {
   APISettingItem({
@@ -22,15 +22,7 @@ class APISettingItem {
   Widget item;
 }
 
-enum SettingCode {
-  requestBuilder,
-  encryption,
-  staticVariable,
-  dynamicVariable,
-  func,
-  log,
-  test
-}
+enum SettingCode { requestBuilder, encryption, variable, func, log, test }
 
 class APIUtilView extends StatefulWidget {
   const APIUtilView({
@@ -58,14 +50,9 @@ class _APIUtilViewState extends State<APIUtilView> {
       code: SettingCode.requestBuilder,
     ),
     APISettingItem(
-      title: "Static Variables",
-      item: Text("Static Variables"),
-      code: SettingCode.staticVariable,
-    ),
-    APISettingItem(
-      title: "Dynamic Variables",
-      item: Text("Dynamic Variables"),
-      code: SettingCode.dynamicVariable,
+      title: "Variables",
+      item: Text("Variables"),
+      code: SettingCode.variable,
     ),
     APISettingItem(
       title: "Functions",
@@ -98,13 +85,10 @@ class _APIUtilViewState extends State<APIUtilView> {
           "Headers": APIUtilHeaderView(),
           "Body": APIUtilBodyView(),
         };
-      case SettingCode.staticVariable:
+      case SettingCode.variable:
         return {
-          "Static Variables": APIStaticVariablesView(),
-        };
-      case SettingCode.dynamicVariable:
-        return {
-          "Dynamic Variables": APIDynamicVariableView(),
+          "Live Variables": APILiveVariablesView(),
+          "Variables": APIVariablesView(),
         };
       case SettingCode.func:
         return {

@@ -90,6 +90,7 @@ class TabBarLayoutToolView extends TabBarLayoutView {
         actions: [
           IconButton(
             icon: Icon(MdiIcons.vectorCombine),
+            tooltip: "HTTP Config",
             onPressed: () {
               var context = Navigation().tabBarDetailContext;
               if (context == null) return;
@@ -102,6 +103,7 @@ class TabBarLayoutToolView extends TabBarLayoutView {
           ),
           IconButton(
             icon: Icon(MdiIcons.export),
+            tooltip: "Export Collection",
             onPressed: () {
               var context = Navigation().tabBarDetailContext;
               if (context == null) return;

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:sengthaite_blog/features/tool/api/api_request_builder.dart';
+import 'package:sengthaite_blog/features/tool/api/api_util_table_data.dart';
 
 class APIUtilParamView extends StatefulWidget {
   const APIUtilParamView({
@@ -12,7 +13,9 @@ class APIUtilParamView extends StatefulWidget {
 }
 
 class _APIUtilParamViewState extends State<APIUtilParamView> {
-  var currentRequest = HttpRequestBuilder?.getInstance().selectedDatum;
+  var selectedDatum = HttpRequestBuilder.getInstance().selectedDatum;
+  var currentRequest =
+      HttpRequestBuilder.getInstance().selectedDatum?.paramData;
 
   @override
   Widget build(BuildContext context) {
@@ -31,10 +34,10 @@ class _APIUtilParamViewState extends State<APIUtilParamView> {
             children: [
               TableRow(children: [
                 Checkbox(
-                  value: currentRequest?.selectedAllParam ?? false,
+                  value: currentRequest?.selectedAll ?? false,
                   onChanged: (value) {
-                    currentRequest?.toggleParamAllRow();
-                    setState(() => currentRequest?.selectedAllParam = value);
+                    currentRequest?.toggleAllRow();
+                    setState(() => currentRequest?.selectedAll = value);
                   },
                 ),
                 const Padding(
@@ -62,22 +65,22 @@ class _APIUtilParamViewState extends State<APIUtilParamView> {
                   focusColor: Colors.transparent,
                   hoverColor: Colors.transparent,
                   onPressed: () =>
-                      setState(() => currentRequest?.addParam(APIRowData())),
+                      setState(() => currentRequest?.add(APIRowData())),
                   icon: Icon(
                     MdiIcons.plus,
                     color: Colors.green,
                   ),
                 ),
               ]),
-              ...List.generate(currentRequest?.paramControllers.length ?? 0,
+              ...List.generate(currentRequest?.controllers.length ?? 0,
                   (index) {
-                var dataRow = currentRequest?.paramControllers[index];
+                var dataRow = currentRequest?.controllers[index];
                 return TableRow(
                   children: [
                     Checkbox(
                       value: dataRow?.isSelected,
-                      onChanged: (value) => setState(() =>
-                          currentRequest?.toggleParamRowSelectionAt(index)),
+                      onChanged: (value) => setState(
+                          () => currentRequest?.toggleRowSelectionAt(index)),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -91,7 +94,7 @@ class _APIUtilParamViewState extends State<APIUtilParamView> {
                           border: InputBorder.none,
                         ),
                         controller: dataRow?.keyController,
-                        onChanged: (text) => currentRequest
+                        onChanged: (text) => selectedDatum
                             ?.buildUrlWithQueryParams(index, key: text),
                       ),
                     ),
@@ -107,7 +110,7 @@ class _APIUtilParamViewState extends State<APIUtilParamView> {
                           border: InputBorder.none,
                         ),
                         controller: dataRow?.valueController,
-                        onChanged: (value) => currentRequest
+                        onChanged: (value) => selectedDatum
                             ?.buildUrlWithQueryParams(index, value: value),
                       ),
                     ),
@@ -136,8 +139,8 @@ class _APIUtilParamViewState extends State<APIUtilParamView> {
                               Icons.delete,
                               color: Colors.red,
                             ),
-                            onPressed: () => setState(
-                                () => currentRequest?.removeParamAt(index)),
+                            onPressed: () =>
+                                setState(() => currentRequest?.removeAt(index)),
                           )
                         : const SizedBox(),
                   ],

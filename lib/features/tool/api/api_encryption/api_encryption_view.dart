@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:sengthaite_blog/constants/enum.constants.dart';
 import 'package:sengthaite_blog/features/tool/api/api_request_builder.dart';
+import 'package:sengthaite_blog/features/tool/api/api_util_table_data.dart';
 
 class APICryptoSelectionView extends StatefulWidget {
   final APIRowData dataRow;
@@ -156,7 +157,8 @@ class APIEncryptionView extends StatefulWidget {
 }
 
 class _APIEncryptionViewState extends State<APIEncryptionView> {
-  var currentRequest = HttpRequestBuilder.getInstance().selectedDatum;
+  var currentRequest =
+      HttpRequestBuilder.getInstance().selectedDatum?.cryptoData;
 
   @override
   Widget build(BuildContext context) {
@@ -177,10 +179,10 @@ class _APIEncryptionViewState extends State<APIEncryptionView> {
             children: [
               TableRow(children: [
                 Checkbox(
-                  value: currentRequest?.selectedAllCrypto ?? true,
+                  value: currentRequest?.selectedAll ?? true,
                   onChanged: (value) {
-                    currentRequest?.toggleCryptoAllRow();
-                    setState(() => currentRequest?.selectedAllCrypto = value);
+                    currentRequest?.toggleAllRow();
+                    setState(() => currentRequest?.selectedAll = value);
                   },
                 ),
                 const Padding(
@@ -208,22 +210,22 @@ class _APIEncryptionViewState extends State<APIEncryptionView> {
                   focusColor: Colors.transparent,
                   hoverColor: Colors.transparent,
                   onPressed: () =>
-                      setState(() => currentRequest?.addCrypto(APIRowData())),
+                      setState(() => currentRequest?.add(APIRowData())),
                   icon: Icon(
                     MdiIcons.plus,
                     color: Colors.green,
                   ),
                 ),
               ]),
-              ...List.generate(currentRequest?.cryptoControllers.length ?? 0,
+              ...List.generate(currentRequest?.controllers.length ?? 0,
                   (index) {
-                var dataRow = currentRequest?.cryptoControllers[index];
+                var dataRow = currentRequest?.controllers[index];
                 return TableRow(
                   children: [
                     Checkbox(
                       value: dataRow?.isSelected,
                       onChanged: (value) => setState(
-                        () => currentRequest?.toggleCryptoRowSelectionAt(index),
+                        () => currentRequest?.toggleRowSelectionAt(index),
                       ),
                     ),
                     Padding(
@@ -289,7 +291,7 @@ class _APIEncryptionViewState extends State<APIEncryptionView> {
                             ),
                             onPressed: () {
                               setState(() {
-                                currentRequest?.removeCryptoAt(index);
+                                currentRequest?.removeAt(index);
                               });
                             },
                           )
