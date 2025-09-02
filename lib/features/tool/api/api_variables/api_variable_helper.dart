@@ -4,7 +4,7 @@ class APIVarialbeHelper {
   static String replaceAllVariables(String template) {
     final datum = HttpRequestBuilder.getInstance().selectedDatum;
     final allVariables = datum?.allVariables;
-    final response = {"Response": datum?.response ?? {}};
+    final response = {"ResponseData": datum?.response?.data ?? {}};
     if (allVariables == null || allVariables.isEmpty) return template;
     if (response.isNotEmpty) {
       for (final entry in allVariables.entries) {
@@ -12,7 +12,7 @@ class APIVarialbeHelper {
       }
     }
     return template.replaceAllMapped(
-      RegExp(r'\@(\w+)\@'),
+      RegExp(r'\{(\w+)\}'),
       (match) =>
           allVariables[match.group(1)]?.toString() ?? '\$${match.group(1)}\$',
     );

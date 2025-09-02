@@ -451,6 +451,7 @@ class HttpRequestBuilder extends ChangeNotifier {
   }
 
   factory HttpRequestBuilder.getInstance() {
+    if (_instance != null) return _instance!;
     _instance = HttpRequestBuilder._();
     return _instance!;
   }
