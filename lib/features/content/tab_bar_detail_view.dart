@@ -84,6 +84,7 @@ class TabBarDetailView extends StatelessWidget {
                             .map(
                               (e) => InkWell(
                                 onTap: e.onTap,
+                                hoverColor: Colors.transparent,
                                 child: CategoryTabItemView(item: e),
                               ),
                             )

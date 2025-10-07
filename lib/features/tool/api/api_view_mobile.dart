@@ -45,9 +45,9 @@ class _APIViewDesktopState extends State<APIViewMobile> {
                   DropdownMenu(
                     width: 100,
                     textStyle: TextStyle(
-                        fontSize: 14,
-                        color: methodColor,
-                        fontWeight: FontWeight.bold),
+                      color: methodColor,
+                      fontWeight: FontWeight.bold,
+                    ),
                     initialSelection: selectedData.getRequestMethod ??
                         HttpRequestMethodTypeExtension.defaultHttpMethod,
                     requestFocusOnTap: false,

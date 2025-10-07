@@ -92,6 +92,7 @@ class TabBarLayoutContentView extends TabBarLayoutView {
                               ),
                               Expanded(
                                 child: TocWidget(
+                                  physics: BouncingScrollPhysics(),
                                   controller: tocController!,
                                 ),
                               ),

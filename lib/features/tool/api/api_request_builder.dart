@@ -258,7 +258,6 @@ class HttpRestRequestDatum extends ChangeNotifier {
 
   String? _requestMethod;
 
-  /// TODO: unexpect null
   Response? response;
 
   get getRequestMethod => _requestMethod;
