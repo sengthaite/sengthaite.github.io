@@ -9,10 +9,7 @@ class TabBarLayoutViewItem {
   final TabBarNavigationTitle itemTitle;
   final Widget itemWidget;
 
-  TabBarLayoutViewItem({
-    required this.itemTitle,
-    required this.itemWidget,
-  });
+  TabBarLayoutViewItem({required this.itemTitle, required this.itemWidget});
 }
 
 class TabBarLayoutView extends StatefulWidget {
@@ -42,34 +39,34 @@ class TabBarLayoutViewState extends State<TabBarLayoutView>
 
   String _defaultEmptyContentTitle = "Empty Content";
 
-  removeUntil(TabBarNavigationTitle item) => setState(() =>
-      navigationTitleItems.length = navigationTitleItems.indexOf(item) + 1);
+  dynamic removeUntil(TabBarNavigationTitle item) => setState(
+    () => navigationTitleItems.length = navigationTitleItems.indexOf(item) + 1,
+  );
 
-  removeLast() => setState(() => navigationTitleItems.removeLast());
+  void removeLast() => setState(() => navigationTitleItems.removeLast());
 
-  addItem(TabBarNavigationTitle item) =>
+  void addItem(TabBarNavigationTitle item) =>
       setState(() => navigationTitleItems.add(item));
 
-  clearAllItems() => setState(() => navigationTitleItems.clear());
+  void clearAllItems() => setState(() => navigationTitleItems.clear());
 
-  GestureDetector categoryItem(
-      {required TabBarNavigationTitle item, required Widget itemIcon}) {
-    return GestureDetector(
-      onTap: () => addItem(item),
-      child: itemIcon,
-    );
+  GestureDetector categoryItem({
+    required TabBarNavigationTitle item,
+    required Widget itemIcon,
+  }) {
+    return GestureDetector(onTap: () => addItem(item), child: itemIcon);
   }
 
   Function backOnClick(TabBarNavigationTitle item) => removeUntil(item);
 
   Widget get categoriesWidget => Wrap(
-        spacing: 10,
-        runSpacing: 10,
-        alignment: WrapAlignment.spaceEvenly,
-        children: widget.categories.map((e) {
-          return categoryItem(item: e.itemTitle, itemIcon: e.itemWidget);
-        }).toList(),
-      );
+    spacing: 10,
+    runSpacing: 10,
+    alignment: WrapAlignment.spaceEvenly,
+    children: widget.categories.map((e) {
+      return categoryItem(item: e.itemTitle, itemIcon: e.itemWidget);
+    }).toList(),
+  );
 
   Widget layoutWidget({required Widget child, required EdgeInsets padding}) {
     return Expanded(
@@ -91,7 +88,7 @@ class TabBarLayoutViewState extends State<TabBarLayoutView>
     );
   }
 
-  _updateNavigationState() {
+  void _updateNavigationState() {
     switch (widget.section) {
       case TabSection.content:
         Navigation().contentTabState = this;
@@ -128,30 +125,22 @@ class TabBarLayoutViewState extends State<TabBarLayoutView>
           layoutWidget(
             child: navigationTitleItems.isNotEmpty
                 ? Stack(
-                    children:
-                        navigationTitleItems.map((e) => e.widget).toList(),
+                    children: navigationTitleItems
+                        .map((e) => e.widget)
+                        .toList(),
                   )
                 : ((widget.categories.isNotEmpty)
-                    ? SingleChildScrollView(
-                        child: categoriesWidget,
-                      )
-                    : Center(
-                        child: Text(_defaultEmptyContentTitle),
-                      )),
+                      ? SingleChildScrollView(child: categoriesWidget)
+                      : Center(child: Text(_defaultEmptyContentTitle))),
             padding: orientation == Orientation.landscape
                 ? const EdgeInsets.symmetric(vertical: 16, horizontal: 20)
                 : const EdgeInsets.all(8),
           ),
           if (!widget.hideBottomBar)
             const Padding(
-              padding: EdgeInsets.symmetric(
-                vertical: 12,
-              ),
-              child: Text(
-                "Since 2024 (v2.0.0)",
-                textAlign: TextAlign.center,
-              ),
-            )
+              padding: EdgeInsets.symmetric(vertical: 12),
+              child: Text("Since 2024 (v2.0.0)", textAlign: TextAlign.center),
+            ),
         ],
       ),
     );

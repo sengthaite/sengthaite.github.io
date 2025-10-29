@@ -15,6 +15,7 @@ import 'package:sengthaite_blog/features/tool/api/api_request_builder.dart';
 import 'package:sengthaite_blog/features/tool/api/api_util_view.dart';
 import 'package:sengthaite_blog/features/tool/api/api_view_desktop.dart';
 import 'package:sengthaite_blog/features/tool/api/api_view_mobile.dart';
+import 'package:sengthaite_blog/features/tool/calculator/calculator_view_desktop.dart';
 import 'package:sengthaite_blog/features/tool/camera/camera_view.dart';
 import 'package:sengthaite_blog/features/tool/text_editor/text_editor_tool_desktop.dart';
 import 'package:sengthaite_blog/features/tool/text_editor/text_editor_tool_mobile.dart';
@@ -25,7 +26,7 @@ import 'tool/api/api_file_manager_view.dart';
 
 class TabBarLayoutToolView extends TabBarLayoutView {
   TabBarLayoutToolView({super.key, required this.hideBottomAppBar})
-      : super(section: TabSection.tool, hideBottomBar: hideBottomAppBar);
+    : super(section: TabSection.tool, hideBottomBar: hideBottomAppBar);
 
   final bool hideBottomAppBar;
 
@@ -37,12 +38,17 @@ class TabBarLayoutToolView extends TabBarLayoutView {
     return [
       ToolItemModel(
         index: 0,
+        title: "Calculator",
+        image: AssetIcons.cal.image,
+        widgetBuilder: (context) =>
+            AppLayout(context: context, defaultWidget: CalculatorDesktopView()),
+      ),
+      ToolItemModel(
+        index: 0,
         title: "Camera",
         image: AssetIcons.camera.image,
-        widgetBuilder: (context) => AppLayout(
-          context: context,
-          defaultWidget: CameraView(),
-        ),
+        widgetBuilder: (context) =>
+            AppLayout(context: context, defaultWidget: CameraView()),
       ),
       ToolItemModel(
         index: 0,
@@ -55,32 +61,33 @@ class TabBarLayoutToolView extends TabBarLayoutView {
               var context = Navigation().tabBarDetailContext;
               if (context == null) return;
               showModalBottomSheet(
-                  context: context,
-                  showDragHandle: true,
-                  builder: (context) {
-                    return Padding(
-                      padding: const EdgeInsets.only(
-                          left: 4, right: 4, top: 4, bottom: 8),
-                      child: QuillSimpleToolbar(
-                        controller: _controller,
-                        config: QuillSimpleToolbarConfig(
-                          toolbarIconAlignment: WrapAlignment.start,
-                          toolbarIconCrossAlignment: WrapCrossAlignment.start,
-                        ),
+                context: context,
+                showDragHandle: true,
+                builder: (context) {
+                  return Padding(
+                    padding: const EdgeInsets.only(
+                      left: 4,
+                      right: 4,
+                      top: 4,
+                      bottom: 8,
+                    ),
+                    child: QuillSimpleToolbar(
+                      controller: _controller,
+                      config: QuillSimpleToolbarConfig(
+                        toolbarIconAlignment: WrapAlignment.start,
+                        toolbarIconCrossAlignment: WrapCrossAlignment.start,
                       ),
-                    );
-                  });
+                    ),
+                  );
+                },
+              );
             },
           ),
         ],
         widgetBuilder: (context) => AppLayout(
           context: context,
-          defaultWidget: TextEditorToolDesktop(
-            controller: _controller,
-          ),
-          mobileWidget: TextEditorToolMobile(
-            controller: _controller,
-          ),
+          defaultWidget: TextEditorToolDesktop(controller: _controller),
+          mobileWidget: TextEditorToolMobile(controller: _controller),
         ),
       ),
       ToolItemModel(
@@ -121,8 +128,9 @@ class TabBarLayoutToolView extends TabBarLayoutView {
                   ),
                   actions: [
                     TextButton(
-                        onPressed: () => Navigator.of(context).pop(),
-                        child: Text("Cancel")),
+                      onPressed: () => Navigator.of(context).pop(),
+                      child: Text("Cancel"),
+                    ),
                     TextButton(onPressed: () {}, child: Text("Confirm")),
                   ],
                 ),
@@ -134,21 +142,18 @@ class TabBarLayoutToolView extends TabBarLayoutView {
           providers: [
             ChangeNotifierProvider(
               create: (context) => requestBuilder.selectedDatum,
-            )
+            ),
           ],
           child: AppLayout(
             context: context,
             defaultWidget: Row(
               crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                const APIViewDesktop(),
-                ApiFileManagerView(),
-              ],
+              children: [const APIViewDesktop(), ApiFileManagerView()],
             ),
             mobileWidget: const APIViewMobile(),
           ),
         ),
-      )
+      ),
     ];
   }
 
@@ -162,7 +167,8 @@ class TabBarLayoutToolView extends TabBarLayoutView {
         widget: TabBarDetailView(
           title: title.toTitle(),
           actions: item.actions,
-          widget: item.futureBuilder ??
+          widget:
+              item.futureBuilder ??
               (item.widgetBuilder != null
                   ? Builder(builder: item.widgetBuilder!)
                   : item.widget),

@@ -6,9 +6,7 @@ import 'package:sengthaite_blog/extensions/string_ext.dart';
 import 'package:sengthaite_blog/features/tool/api/api_request_builder.dart';
 
 class APIViewMobile extends StatefulWidget {
-  const APIViewMobile({
-    super.key,
-  });
+  const APIViewMobile({super.key});
 
   @override
   State<APIViewMobile> createState() => _APIViewDesktopState();
@@ -17,8 +15,8 @@ class APIViewMobile extends StatefulWidget {
 class _APIViewDesktopState extends State<APIViewMobile> {
   bool allowSubmitRequest = false;
   Color? methodColor = HttpRequestMethodTypeExtension.methodByDisplay(
-          HttpRequestMethodTypeExtension.defaultHttpMethod)
-      ?.color;
+    HttpRequestMethodTypeExtension.defaultHttpMethod,
+  )?.color;
 
   @override
   void dispose() {
@@ -48,7 +46,8 @@ class _APIViewDesktopState extends State<APIViewMobile> {
                       color: methodColor,
                       fontWeight: FontWeight.bold,
                     ),
-                    initialSelection: selectedData.getRequestMethod ??
+                    initialSelection:
+                        selectedData.getRequestMethod ??
                         HttpRequestMethodTypeExtension.defaultHttpMethod,
                     requestFocusOnTap: false,
                     dropdownMenuEntries: HttpRequestMethodTypeExtension
@@ -57,12 +56,12 @@ class _APIViewDesktopState extends State<APIViewMobile> {
                         .toList(),
                     onSelected: (value) {
                       if (value == null) return;
-                      selectedData.setRequestMethod = value as String;
+                      selectedData.setRequestMethod = value;
                       setState(() {
                         methodColor =
                             HttpRequestMethodTypeExtension.methodByDisplay(
-                                    value)
-                                ?.color;
+                              value,
+                            )?.color;
                       });
                     },
                   ),
@@ -89,16 +88,16 @@ class _APIViewDesktopState extends State<APIViewMobile> {
               Expanded(
                 child:
                     selectedData.response != null && !selectedData.isRequesting
-                        ? HttpResponseView(response: selectedData.response)
-                        : Center(
-                            child: selectedData.isRequesting
-                                ? const CircularProgressIndicator()
-                                : const Padding(
-                                    padding: EdgeInsets.all(8.0),
-                                    child: Text("Empty response"),
-                                  ),
-                          ),
-              )
+                    ? HttpResponseView(response: selectedData.response)
+                    : Center(
+                        child: selectedData.isRequesting
+                            ? const CircularProgressIndicator()
+                            : const Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Text("Empty response"),
+                              ),
+                      ),
+              ),
             ],
           ),
         ),

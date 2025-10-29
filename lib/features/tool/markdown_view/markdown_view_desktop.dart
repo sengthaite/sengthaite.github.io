@@ -29,21 +29,23 @@ class MarkdownViewDesktop extends StatelessWidget {
       data: markdown,
       tocController: tocController,
       markdownGenerator: MarkdownGenerator(
-        generators: [
-          videoGeneratorWithTag,
-        ],
+        generators: [videoGeneratorWithTag],
         textGenerator: (node, config, visitor) =>
             CustomTextNode(node.textContent, config, visitor),
       ),
-      config: config.copy(configs: [
-        PreConfig(theme: monokaiTheme),
-        LinkConfig(onTap: (link) {
-          final url = link;
-          if (url.startsWith('http')) {
-            launchUrl(Uri.parse(url));
-          }
-        })
-      ]),
+      config: config.copy(
+        configs: [
+          PreConfig(theme: monokaiTheme),
+          LinkConfig(
+            onTap: (link) {
+              final url = link;
+              if (url.startsWith('http')) {
+                launchUrl(Uri.parse(url));
+              }
+            },
+          ),
+        ],
+      ),
     );
   }
 }

@@ -32,21 +32,21 @@ class APIRowData {
   }
 
   APIRowData.fromJson(Map<String, dynamic> json)
-      : allowDeletion = json['allowDeletion'] ?? true,
-        isSelected = json['isSelected'] ?? true,
-        key = json['key'],
-        value = json['value'],
-        description = json['description'],
-        function = json['function'];
+    : allowDeletion = json['allowDeletion'] ?? true,
+      isSelected = json['isSelected'] ?? true,
+      key = json['key'],
+      value = json['value'],
+      description = json['description'],
+      function = json['function'];
 
   Map<String, dynamic> toJson() => {
-        'allowDeletion': allowDeletion,
-        'isSelected': isSelected,
-        'key': keyController.text,
-        'value': valueController.text,
-        'description': descriptionController.text,
-        'function': function,
-      };
+    'allowDeletion': allowDeletion,
+    'isSelected': isSelected,
+    'key': keyController.text,
+    'value': valueController.text,
+    'description': descriptionController.text,
+    'function': function,
+  };
 }
 
 extension MapKeyValueReplacement on Map<String, List<String>> {
@@ -69,8 +69,9 @@ extension ListAPIRowData on List<APIRowData> {
     for (var each in this) {
       var key = each.keyController.text;
       if (!each.isSelected) continue;
-      result[key] =
-          each.valueController.text.replaceTextvariables(replacements);
+      result[key] = each.valueController.text.replaceTextvariables(
+        replacements,
+      );
     }
     return result;
   }
@@ -104,8 +105,9 @@ extension APIRowDataVariables on String {
     });
 
     // Now, handle the regular double curly braces
-    String replacedString =
-        tempString.replaceAllMapped(doubleBraceRegex, (match) {
+    String replacedString = tempString.replaceAllMapped(doubleBraceRegex, (
+      match,
+    ) {
       final key = match.group(1);
       return replacements.containsKey(key)
           ? replacements[key]!
@@ -125,16 +127,11 @@ class RequestData {
   Map<String, String> body = {};
   Map<String, String> auth = {};
 
-  toJson() {
-    return {
-      "headers": headers,
-      "params": params,
-      "body": body,
-      "auth": auth,
-    };
+  Map<String, Map<String, String>> toJson() {
+    return {"headers": headers, "params": params, "body": body, "auth": auth};
   }
 
-  fromJson(Map<String, dynamic> json) {
+  void fromJson(Map<String, dynamic> json) {
     headers = Map<String, String>.from(json["headers"]);
     params = Map<String, String>.from(json["params"]);
     body = Map<String, String>.from(json["body"]);
@@ -147,7 +144,7 @@ class ApiUtilTableData {
 
   bool? selectedAll = true;
 
-  selectedRowAt(int index) {
+  void selectedRowAt(int index) {
     controllers[index].isSelected = true;
     var shouldSelectAll = true;
     for (var row in controllers) {
@@ -159,17 +156,17 @@ class ApiUtilTableData {
     selectedAll = shouldSelectAll;
   }
 
-  deSelectedRowAt(int index) {
+  void deSelectedRowAt(int index) {
     selectedAll = false;
     controllers[index].isSelected = false;
   }
 
-  toggleAllRow() {
+  void toggleAllRow() {
     if (selectedAll == null) return;
     selectedAll! ? deSelectAllRow() : selectAllRow();
   }
 
-  toggleRowSelectionAt(int index) {
+  void toggleRowSelectionAt(int index) {
     controllers[index].isSelected = !controllers[index].isSelected;
     var shouldSelectAll = true;
     for (var row in controllers) {
@@ -181,7 +178,7 @@ class ApiUtilTableData {
     selectedAll = shouldSelectAll;
   }
 
-  selectAllRow() {
+  void selectAllRow() {
     selectedAll = true;
     for (var row in controllers) {
       if (row.isSelected) continue;
@@ -189,7 +186,7 @@ class ApiUtilTableData {
     }
   }
 
-  deSelectAllRow() {
+  void deSelectAllRow() {
     selectedAll = false;
     for (var row in controllers) {
       if (!row.isSelected) continue;
@@ -197,9 +194,9 @@ class ApiUtilTableData {
     }
   }
 
-  addList(List<APIRowData> data) => controllers.addAll(data);
+  void addList(List<APIRowData> data) => controllers.addAll(data);
 
-  add(APIRowData data) => controllers.add(data);
+  void add(APIRowData data) => controllers.add(data);
 
-  removeAt(int index) => controllers.removeAt(index);
+  APIRowData removeAt(int index) => controllers.removeAt(index);
 }

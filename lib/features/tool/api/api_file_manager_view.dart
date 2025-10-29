@@ -9,9 +9,7 @@ import 'package:sengthaite_blog/shared/file/hivehelper.dart';
 import 'api_request_builder.dart';
 
 class ApiFileManagerView extends StatefulWidget {
-  const ApiFileManagerView({
-    super.key,
-  });
+  const ApiFileManagerView({super.key});
 
   @override
   State<ApiFileManagerView> createState() => _ApiFileManagerViewState();
@@ -25,7 +23,7 @@ class _ApiFileManagerViewState extends State<ApiFileManagerView> {
   TempDir? defaultDir;
   APIFileWidget? selectedRow;
 
-  _init() async {
+  Future<void> _init() async {
     await service.init();
     defaultDir = await service.defaultDir;
     defaultDir!.onFileListChange = () {
@@ -79,15 +77,15 @@ class _ApiFileManagerViewState extends State<ApiFileManagerView> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       IconButton(
-                          onPressed: () {
-                            showDialog(
-                              context: context,
-                              builder: (context) => APIFileCreationWidget(
-                                defaultDir: defaultDir,
-                              ),
-                            );
-                          },
-                          icon: Icon(MdiIcons.plus)),
+                        onPressed: () {
+                          showDialog(
+                            context: context,
+                            builder: (context) =>
+                                APIFileCreationWidget(defaultDir: defaultDir),
+                          );
+                        },
+                        icon: Icon(MdiIcons.plus),
+                      ),
                       TextButton(
                         onPressed: fileList.isNotEmpty
                             ? () {
@@ -106,10 +104,10 @@ class _ApiFileManagerViewState extends State<ApiFileManagerView> {
                                 : MaterialTheme.colorScheme(context).secondary,
                           ),
                         ),
-                      )
+                      ),
                     ],
                   ),
-                )
+                ),
               ],
             ),
             Divider(),
@@ -138,55 +136,57 @@ class _ApiFileManagerViewState extends State<ApiFileManagerView> {
                       ? null
                       : () {
                           showDialog(
-                              context: context,
-                              builder: (context) {
-                                return AlertDialog(
-                                  title: Text(
-                                    "Are you sure, you want to clear all?",
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w600,
-                                    ),
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                title: Text(
+                                  "Are you sure, you want to clear all?",
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w600,
                                   ),
-                                  actions: [
-                                    TextButton(
-                                      onPressed: () =>
-                                          Navigator.of(context).pop(),
-                                      child: Text("Cancel",
-                                          style: TextStyle(
-                                            color: MaterialTheme.colorScheme(
-                                                    context)
-                                                .secondary,
-                                          )),
-                                    ),
-                                    TextButton(
-                                      onPressed: () {
-                                        setState(() {
-                                          selectedAll = false;
-                                          selectedFilename.clear();
-                                          defaultDir?.clean();
-                                          isEditing = false;
-                                        });
-                                        HttpRequestBuilder.getInstance()
-                                            .reset();
-                                        Navigator.of(context).pop();
-                                      },
-                                      child: Text(
-                                        "Confirm",
-                                        style: TextStyle(
-                                          color:
-                                              MaterialTheme.colorScheme(context)
-                                                  .error,
-                                        ),
+                                ),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () =>
+                                        Navigator.of(context).pop(),
+                                    child: Text(
+                                      "Cancel",
+                                      style: TextStyle(
+                                        color: MaterialTheme.colorScheme(
+                                          context,
+                                        ).secondary,
                                       ),
                                     ),
-                                  ],
-                                );
-                              });
+                                  ),
+                                  TextButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        selectedAll = false;
+                                        selectedFilename.clear();
+                                        defaultDir?.clean();
+                                        isEditing = false;
+                                      });
+                                      HttpRequestBuilder.getInstance().reset();
+                                      Navigator.of(context).pop();
+                                    },
+                                    child: Text(
+                                      "Confirm",
+                                      style: TextStyle(
+                                        color: MaterialTheme.colorScheme(
+                                          context,
+                                        ).error,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              );
+                            },
+                          );
                         },
                   label: Text("Clear"),
                   icon: Icon(MdiIcons.deleteEmpty),
-                )
+                ),
               ],
             ),
             Divider(),
@@ -218,7 +218,9 @@ class _ApiFileManagerViewState extends State<ApiFileManagerView> {
                             var eachFile = fileList[index];
                             return Padding(
                               padding: const EdgeInsets.symmetric(
-                                  vertical: 8, horizontal: 12),
+                                vertical: 8,
+                                horizontal: 12,
+                              ),
                               child: Row(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
@@ -226,7 +228,7 @@ class _ApiFileManagerViewState extends State<ApiFileManagerView> {
                                     Checkbox(
                                       value:
                                           selectedFilename[eachFile.filename] ??
-                                              false,
+                                          false,
                                       onChanged: (value) {
                                         setState(() {
                                           selectedFilename[eachFile.filename] =
@@ -234,36 +236,40 @@ class _ApiFileManagerViewState extends State<ApiFileManagerView> {
                                           var selectedFileLength =
                                               selectedFilename.keys
                                                   .where(
-                                                      (e) =>
-                                                          selectedFilename[e] ??
-                                                          false)
+                                                    (e) =>
+                                                        selectedFilename[e] ??
+                                                        false,
+                                                  )
                                                   .length;
-                                          selectedAll = selectedFileLength ==
+                                          selectedAll =
+                                              selectedFileLength ==
                                                   fileList.length &&
                                               selectedFilename.isNotEmpty;
                                         });
                                       },
                                     ),
                                   Expanded(
-                                      child: APIFileWidget(
-                                          file: eachFile,
-                                          onTap: (rowWidget) {
-                                            rowWidget.isSelected.value = true;
-                                            selectedRow?.isSelected.value =
-                                                false;
-                                            var isDeselected =
-                                                selectedRow == rowWidget;
+                                    child: APIFileWidget(
+                                      file: eachFile,
+                                      onTap: (rowWidget) {
+                                        rowWidget.isSelected.value = true;
+                                        selectedRow?.isSelected.value = false;
+                                        var isDeselected =
+                                            selectedRow == rowWidget;
 
-                                            if (isDeselected) {
-                                              selectedRow = null;
-                                              HttpRequestBuilder.getInstance()
-                                                  .reset();
-                                            } else {
-                                              selectedRow = rowWidget;
-                                              HttpRequestBuilder.getInstance()
-                                                  .autopopulateData = eachFile;
-                                            }
-                                          })),
+                                        if (isDeselected) {
+                                          selectedRow = null;
+                                          HttpRequestBuilder.getInstance()
+                                              .reset();
+                                        } else {
+                                          selectedRow = rowWidget;
+                                          HttpRequestBuilder.getInstance()
+                                                  .autopopulateData =
+                                              eachFile;
+                                        }
+                                      },
+                                    ),
+                                  ),
                                 ],
                               ),
                             );
@@ -272,7 +278,7 @@ class _ApiFileManagerViewState extends State<ApiFileManagerView> {
                         ],
                       ),
               ),
-            )
+            ),
           ],
         ),
       ),
@@ -281,10 +287,7 @@ class _ApiFileManagerViewState extends State<ApiFileManagerView> {
 }
 
 class APIFileCreationWidget extends StatefulWidget {
-  const APIFileCreationWidget({
-    super.key,
-    required this.defaultDir,
-  });
+  const APIFileCreationWidget({super.key, required this.defaultDir});
 
   final TempDir? defaultDir;
 
@@ -297,24 +300,21 @@ class _APIFileCreationWidgetState extends State<APIFileCreationWidget> {
   TextEditingController urlInputController = TextEditingController();
   String requestMethod = HttpRequestMethodTypeExtension.defaultHttpMethod;
   Color? methodColor = HttpRequestMethodTypeExtension.methodByDisplay(
-          HttpRequestMethodTypeExtension.defaultHttpMethod)
-      ?.color;
+    HttpRequestMethodTypeExtension.defaultHttpMethod,
+  )?.color;
   bool canSave = false;
 
-  checkCanSave() => setState(() {
-        var urlInputText = urlInputController.text;
-        canSave = fileNameController.text.isNotEmpty && urlInputText.isUrl;
-      });
+  void checkCanSave() => setState(() {
+    var urlInputText = urlInputController.text;
+    canSave = fileNameController.text.isNotEmpty && urlInputText.isUrl;
+  });
 
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
       title: Text(
         "Create",
-        style: TextStyle(
-          fontSize: 20,
-          fontWeight: FontWeight.w600,
-        ),
+        style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
       ),
       content: Container(
         width: 500,
@@ -345,24 +345,24 @@ class _APIFileCreationWidgetState extends State<APIFileCreationWidget> {
               children: [
                 DropdownMenu(
                   textStyle: TextStyle(
-                      fontSize: 14,
-                      color: methodColor,
-                      fontWeight: FontWeight.bold),
+                    fontSize: 14,
+                    color: methodColor,
+                    fontWeight: FontWeight.bold,
+                  ),
                   initialSelection: requestMethod,
                   requestFocusOnTap: false,
-                  dropdownMenuEntries:
-                      HttpRequestMethodTypeExtension.listRequestMethods
-                          .map(
-                            (e) => DropdownMenuEntry(value: e, label: e),
-                          )
-                          .toList(),
+                  dropdownMenuEntries: HttpRequestMethodTypeExtension
+                      .listRequestMethods
+                      .map((e) => DropdownMenuEntry(value: e, label: e))
+                      .toList(),
                   onSelected: (value) {
                     if (value == null) return;
                     requestMethod = value;
                     setState(() {
                       methodColor =
-                          HttpRequestMethodTypeExtension.methodByDisplay(value)
-                              ?.color;
+                          HttpRequestMethodTypeExtension.methodByDisplay(
+                            value,
+                          )?.color;
                     });
                   },
                 ),
@@ -393,8 +393,9 @@ class _APIFileCreationWidgetState extends State<APIFileCreationWidget> {
                   child: Text(
                     "Cancel",
                     style: TextStyle(
-                        color: MaterialTheme.colorScheme(context).error,
-                        fontWeight: FontWeight.w500),
+                      color: MaterialTheme.colorScheme(context).error,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                 ),
                 TextButton(
@@ -419,7 +420,7 @@ class _APIFileCreationWidgetState extends State<APIFileCreationWidget> {
                   ),
                 ),
               ],
-            )
+            ),
           ],
         ),
       ),
@@ -428,11 +429,7 @@ class _APIFileCreationWidgetState extends State<APIFileCreationWidget> {
 }
 
 class APIFileWidget extends StatelessWidget {
-  APIFileWidget({
-    super.key,
-    required this.file,
-    this.onTap,
-  });
+  APIFileWidget({super.key, required this.file, this.onTap});
 
   final TempFile file;
   final void Function(APIFileWidget)? onTap;
@@ -460,8 +457,10 @@ class APIFileWidget extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Row(
               children: [
-                Icon(MdiIcons.api,
-                    color: MaterialTheme.colorScheme(context).surfaceTint),
+                Icon(
+                  MdiIcons.api,
+                  color: MaterialTheme.colorScheme(context).surfaceTint,
+                ),
                 SizedBox(width: 12),
                 Expanded(
                   child: Column(
@@ -471,8 +470,9 @@ class APIFileWidget extends StatelessWidget {
                       Text(
                         file.filename,
                         style: TextStyle(
-                          color:
-                              MaterialTheme.colorScheme(context).inverseSurface,
+                          color: MaterialTheme.colorScheme(
+                            context,
+                          ).inverseSurface,
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
                         ),
@@ -497,12 +497,13 @@ class APIFileWidget extends StatelessWidget {
                   child: Text(
                     file.requestMethod.toUpperCase(),
                     style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: HttpRequestMethodTypeExtension.methodByDisplay(
-                                file.requestMethod)
-                            ?.color),
+                      fontWeight: FontWeight.bold,
+                      color: HttpRequestMethodTypeExtension.methodByDisplay(
+                        file.requestMethod,
+                      )?.color,
+                    ),
                   ),
-                )
+                ),
               ],
             ),
           ),
@@ -513,10 +514,7 @@ class APIFileWidget extends StatelessWidget {
 }
 
 class DirectoryWidget extends StatelessWidget {
-  const DirectoryWidget({
-    super.key,
-    required this.dir,
-  });
+  const DirectoryWidget({super.key, required this.dir});
 
   final TempDir dir;
 
@@ -526,32 +524,29 @@ class DirectoryWidget extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Row(children: [
-          Icon(
-            MdiIcons.folder,
-            color: MaterialTheme.colorScheme(context).tertiary,
-          ),
-          SizedBox(width: 12),
-          Text(dir.dirname),
-        ]),
+        child: Row(
+          children: [
+            Icon(
+              MdiIcons.folder,
+              color: MaterialTheme.colorScheme(context).tertiary,
+            ),
+            SizedBox(width: 12),
+            Text(dir.dirname),
+          ],
+        ),
       ),
     );
   }
 }
 
 class EmptyDirWidget extends StatelessWidget {
-  const EmptyDirWidget({
-    super.key,
-  });
+  const EmptyDirWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(top: 64),
-      child: Text(
-        "Empty",
-        textAlign: TextAlign.center,
-      ),
+      child: Text("Empty", textAlign: TextAlign.center),
     );
   }
 }

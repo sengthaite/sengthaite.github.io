@@ -51,8 +51,8 @@ class HttpRestRequestDatum extends ChangeNotifier {
   var cancelToken = CancelToken();
 
   Color? methodColor = HttpRequestMethodTypeExtension.methodByDisplay(
-          HttpRequestMethodTypeExtension.defaultHttpMethod)
-      ?.color;
+    HttpRequestMethodTypeExtension.defaultHttpMethod,
+  )?.color;
 
   bool isRequesting = false;
   final paramData = ApiUtilTableData();
@@ -66,12 +66,12 @@ class HttpRestRequestDatum extends ChangeNotifier {
     urlInputController.text = api.url;
     _requestMethod = api.requestMethod;
     methodColor = HttpRequestMethodTypeExtension.methodByDisplay(
-            _requestMethod ?? HttpRequestMethodTypeExtension.defaultHttpMethod)
-        ?.color;
+      _requestMethod ?? HttpRequestMethodTypeExtension.defaultHttpMethod,
+    )?.color;
     notifyListeners();
   }
 
-  clearAuth() {
+  void clearAuth() {
     usernameController.clear();
     passwordController.clear();
     bearerController.clear();
@@ -153,10 +153,7 @@ class HttpRestRequestDatum extends ChangeNotifier {
         break;
     }
     try {
-      var token = jwt.sign(
-        key,
-        algorithm: algorithm,
-      );
+      var token = jwt.sign(key, algorithm: algorithm);
       return "Bearer $token";
     } catch (error) {
       APIUtil.showTextDialog(error.toString());
@@ -164,7 +161,7 @@ class HttpRestRequestDatum extends ChangeNotifier {
     }
   }
 
-  buildUrlWithQueryParams(int rowIndex, {String? key, String? value}) {
+  void buildUrlWithQueryParams(int rowIndex, {String? key, String? value}) {
     final uri = Uri.parse(urlInputController.text);
     var updatedParams = {};
     var updatedKey = key ?? paramData.controllers[rowIndex].key;
@@ -173,8 +170,9 @@ class HttpRestRequestDatum extends ChangeNotifier {
       updatedParams[updatedKey] = updatedValue;
     }
 
-    final fullUri = uri
-        .replace(queryParameters: {...uri.queryParameters, ...updatedParams});
+    final fullUri = uri.replace(
+      queryParameters: {...uri.queryParameters, ...updatedParams},
+    );
 
     var parsedUrl = fullUri.toString();
 
@@ -185,7 +183,7 @@ class HttpRestRequestDatum extends ChangeNotifier {
     urlInputController.text = parsedUrl;
   }
 
-  reset() {
+  void reset() {
     cancelToken.cancel("Request is canceled.");
     urlInputController.clear();
     bodyInputController.clear();
@@ -205,8 +203,8 @@ class HttpRestRequestDatum extends ChangeNotifier {
     headerData.controllers.clear();
 
     methodColor = HttpRequestMethodTypeExtension.methodByDisplay(
-            HttpRequestMethodTypeExtension.defaultHttpMethod)
-        ?.color;
+      HttpRequestMethodTypeExtension.defaultHttpMethod,
+    )?.color;
 
     response = null;
 
@@ -260,7 +258,7 @@ class HttpRestRequestDatum extends ChangeNotifier {
 
   Response? response;
 
-  get getRequestMethod => _requestMethod;
+  String? get getRequestMethod => _requestMethod;
 
   set setRequestMethod(String method) {
     _requestMethod = method;
@@ -270,11 +268,12 @@ class HttpRestRequestDatum extends ChangeNotifier {
 
   bool get isValidUri => Uri.tryParse(urlInputController.text) != null;
 
-  request() async {
+  Future<void> request() async {
     try {
       HttpRequestMethodType? method =
-          HttpRequestMethodTypeExtension.methodByDisplay(_requestMethod ??
-              HttpRequestMethodTypeExtension.defaultHttpMethod);
+          HttpRequestMethodTypeExtension.methodByDisplay(
+            _requestMethod ?? HttpRequestMethodTypeExtension.defaultHttpMethod,
+          );
       if (method == null) {
         throw Exception("Unknown request method");
       }
@@ -284,8 +283,9 @@ class HttpRestRequestDatum extends ChangeNotifier {
       var dio = Dio(
         BaseOptions(
           headers: headers?.map.toMapWithVariables(replacements),
-          queryParameters:
-              paramData.controllers.toMapWithVariables(replacements),
+          queryParameters: paramData.controllers.toMapWithVariables(
+            replacements,
+          ),
           responseType: headers?.responseType ?? ResponseType.bytes,
           contentType: headers?.value(Headers.contentTypeHeader),
           receiveDataWhenStatusError: true,
@@ -298,20 +298,31 @@ class HttpRestRequestDatum extends ChangeNotifier {
       Uri? uri = Uri.tryParse(path);
       if (!isValidUri || uri == null) {
         showErrorDialog(
-            title: const Text("URL Error",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),
-            content: RichText(
-                text: TextSpan(children: [
-              const TextSpan(
-                  text: "Invalid url: ", style: TextStyle(fontSize: 12)),
-              TextSpan(
+          title: const Text(
+            "URL Error",
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+          ),
+          content: RichText(
+            text: TextSpan(
+              children: [
+                const TextSpan(
+                  text: "Invalid url: ",
+                  style: TextStyle(fontSize: 12),
+                ),
+                TextSpan(
                   text: path,
                   style: const TextStyle(
-                      fontSize: 12, fontWeight: FontWeight.bold))
-            ])),
-            onDismiss: () {
-              urlInputController.clear();
-            });
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          onDismiss: () {
+            urlInputController.clear();
+          },
+        );
         return;
       }
       isRequesting = true;
@@ -321,38 +332,63 @@ class HttpRestRequestDatum extends ChangeNotifier {
 
       switch (method) {
         case HttpRequestMethodType.get:
-          response = await dio.get(path,
-              queryParameters: params, cancelToken: cancelToken);
+          response = await dio.get(
+            path,
+            queryParameters: params,
+            cancelToken: cancelToken,
+          );
           break;
         case HttpRequestMethodType.head:
-          response = await dio.head(path,
-              data: body, queryParameters: params, cancelToken: cancelToken);
+          response = await dio.head(
+            path,
+            data: body,
+            queryParameters: params,
+            cancelToken: cancelToken,
+          );
           break;
         case HttpRequestMethodType.post:
-          response = await dio.post(path,
-              data: body, queryParameters: params, cancelToken: cancelToken);
+          response = await dio.post(
+            path,
+            data: body,
+            queryParameters: params,
+            cancelToken: cancelToken,
+          );
           break;
         case HttpRequestMethodType.put:
-          response = await dio.put(path,
-              data: body, queryParameters: params, cancelToken: cancelToken);
+          response = await dio.put(
+            path,
+            data: body,
+            queryParameters: params,
+            cancelToken: cancelToken,
+          );
           break;
         case HttpRequestMethodType.delete:
-          response = await dio.delete(path,
-              data: body, queryParameters: params, cancelToken: cancelToken);
+          response = await dio.delete(
+            path,
+            data: body,
+            queryParameters: params,
+            cancelToken: cancelToken,
+          );
           break;
         case HttpRequestMethodType.connect:
         case HttpRequestMethodType.options:
         case HttpRequestMethodType.trace:
           break;
         case HttpRequestMethodType.patch:
-          response = await dio.patch(path,
-              data: body, queryParameters: params, cancelToken: cancelToken);
+          response = await dio.patch(
+            path,
+            data: body,
+            queryParameters: params,
+            cancelToken: cancelToken,
+          );
           break;
       }
     } catch (e) {
       showErrorDialog(
-        title: const Text("Network Error",
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),
+        title: const Text(
+          "Network Error",
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+        ),
         content: Text(e.toString()),
       );
     } finally {
@@ -375,15 +411,15 @@ class HttpRestRequestDatum extends ChangeNotifier {
     };
   }
 
-  fromJson(Map<String, dynamic> json) {}
+  void fromJson(Map<String, dynamic> json) {}
 
   // AES
 }
 
 class HttpRestRequestData extends ChangeNotifier {
   /// Import and Export zip file
-  export() {}
-  import() {}
+  void export() {}
+  void import() {}
 
   String id = UuidV4().generate();
   String version;
@@ -401,16 +437,16 @@ class HttpRestRequestData extends ChangeNotifier {
     this.onCollectionChanged,
   });
 
-  itemAt(int index) => collection.elementAt(index);
+  HttpRestRequestDatum itemAt(int index) => collection.elementAt(index);
 
-  add() {
+  void add() {
     collection.add(HttpRestRequestDatum());
     if (onCollectionChanged != null) {
       onCollectionChanged!();
     }
   }
 
-  remove(String id) {
+  void remove(String id) {
     collection.removeWhere((element) => element.id == id);
     if (onCollectionChanged != null) {
       onCollectionChanged!();
@@ -421,13 +457,13 @@ class HttpRestRequestData extends ChangeNotifier {
 class HttpRequestBuilder extends ChangeNotifier {
   static HttpRequestBuilder? _instance;
 
-  removeInstance() => _instance = null;
+  Null removeInstance() => _instance = null;
 
   HttpRestRequestData data = HttpRestRequestData()..add();
 
   HttpRestRequestDatum? selectedDatum;
 
-  reset() => selectedDatum?.reset();
+  dynamic reset() => selectedDatum?.reset();
 
   set autopopulateData(TempFile file) => selectedDatum?.autopopulateData = file;
 
@@ -441,7 +477,7 @@ class HttpRequestBuilder extends ChangeNotifier {
   TextEditingController? get urlInputController =>
       selectedDatum?.urlInputController;
 
-  request() => selectedDatum?.request();
+  dynamic request() => selectedDatum?.request();
 
   bool get isRequesting => selectedDatum?.isRequesting ?? false;
 

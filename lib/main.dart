@@ -1,7 +1,7 @@
 import 'package:device_preview/device_preview.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart';
-import 'package:hive/hive.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:sengthaite_blog/constants/app.constants.dart';
 import 'package:sengthaite_blog/constants/image.constants.dart';
@@ -14,17 +14,12 @@ import 'package:sengthaite_blog/features/tab_bar_layout_tool_view.dart';
 import 'package:sengthaite_blog/shared/app.data.dart';
 import 'package:sengthaite_blog/shared/app.layout.dart';
 
-import 'shared/file/hivedir.dart';
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await AppData().initData();
-  Hive.registerAdapter(TempDirAdapter());
-  Hive.registerAdapter(TempFileAdapter());
   runApp(
     DevicePreview(
-      // enabled: !kReleaseMode,
-      enabled: false,
+      enabled: !kReleaseMode,
       builder: (context) => const MainView(),
     ),
   );
@@ -53,15 +48,14 @@ class _StateMainView extends State<MainView> {
       debugShowCheckedModeBanner: false,
       locale: DevicePreview.locale(context),
       builder: DevicePreview.appBuilder,
-      localizationsDelegates: const [
-        FlutterQuillLocalizations.delegate,
-      ],
+      localizationsDelegates: const [FlutterQuillLocalizations.delegate],
       theme: theme.light(),
       darkTheme: theme.dark(),
       highContrastTheme: theme.lightMediumContrast(),
       highContrastDarkTheme: theme.darkMediumContrast(),
-      scrollBehavior:
-          const MaterialScrollBehavior().copyWith(scrollbars: false),
+      scrollBehavior: const MaterialScrollBehavior().copyWith(
+        scrollbars: false,
+      ),
       navigatorKey: Navigation().navigatorKey,
       home: AppLayout(
         defaultWidget: DefaultTabController(
@@ -77,10 +71,7 @@ class _StateMainView extends State<MainView> {
                       children: [
                         AssetIcons.logo.image,
                         const SizedBox(width: 20),
-                        const Text(
-                          appTitle,
-                          style: pageTitleTextStyle,
-                        )
+                        const Text(appTitle, style: pageTitleTextStyle),
                       ],
                     ),
                     bottom: TabBar(
@@ -95,11 +86,9 @@ class _StateMainView extends State<MainView> {
                       indicatorSize: TabBarIndicatorSize.tab,
                       dividerColor: Colors.transparent,
                       tabs: const [
-                        Tab(
-                          text: tabTitleArticle,
-                        ),
+                        Tab(text: tabTitleArticle),
                         Tab(text: tabTitleTool),
-                        Tab(text: tabTitleProject)
+                        Tab(text: tabTitleProject),
                       ],
                     ),
                   ),

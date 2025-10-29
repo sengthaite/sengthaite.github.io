@@ -40,7 +40,6 @@ class TakePictureScreenState extends State<CameraView> {
             var camera = snapshot.requireData.first as CameraDescription;
             _controller = CameraController(
               camera,
-              // Define the resolution to use.
               ResolutionPreset.high,
             );
             var controllerInitialize = _controller.initialize();
@@ -61,7 +60,6 @@ class TakePictureScreenState extends State<CameraView> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
-        // Provide an onPressed callback.
         onPressed: () async {
           try {
             await futureData;

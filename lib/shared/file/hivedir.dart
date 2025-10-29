@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:typed_data';
 
-import 'package:hive/hive.dart';
+import 'package:hive_ce/hive.dart';
 import 'package:uuid/uuid.dart';
 
 part 'hivedir.g.dart';
@@ -65,8 +65,8 @@ class TempDir {
     DateTime? createdDate,
     this.onFileListChange,
     required this.dirname,
-  })  : id = id ?? const Uuid().v4(),
-        createdDate = createdDate ?? DateTime.now();
+  }) : id = id ?? const Uuid().v4(),
+       createdDate = createdDate ?? DateTime.now();
 }
 
 @HiveType(typeId: 2)
@@ -80,7 +80,8 @@ class TempFile {
   @HiveField(3)
   Uint8List fileContent = Uint8List.fromList([]);
 
-  get getFileContentJson => jsonDecode(String.fromCharCodes(fileContent));
+  dynamic get getFileContentJson =>
+      jsonDecode(String.fromCharCodes(fileContent));
 
   set newFileContent(String content) =>
       fileContent = Uint8List.fromList(content.codeUnits);
@@ -96,6 +97,6 @@ class TempFile {
     required this.url,
     required this.requestMethod,
     required this.filename,
-  })  : id = id ?? const Uuid().v4(),
-        createdDate = createdDate ?? DateTime.now();
+  }) : id = id ?? const Uuid().v4(),
+       createdDate = createdDate ?? DateTime.now();
 }

@@ -6,9 +6,7 @@ import 'package:sengthaite_blog/extensions/string_ext.dart';
 import 'package:sengthaite_blog/features/tool/api/api_request_builder.dart';
 
 class APIViewDesktop extends StatefulWidget {
-  const APIViewDesktop({
-    super.key,
-  });
+  const APIViewDesktop({super.key});
 
   @override
   State<APIViewDesktop> createState() => _APIViewDesktopState();
@@ -43,7 +41,8 @@ class _APIViewDesktopState extends State<APIViewDesktop> {
                   color: selectedData.methodColor,
                   fontWeight: FontWeight.bold,
                 ),
-                initialSelection: selectedData.getRequestMethod ??
+                initialSelection:
+                    selectedData.getRequestMethod ??
                     HttpRequestMethodTypeExtension.defaultHttpMethod,
                 requestFocusOnTap: false,
                 dropdownMenuEntries: HttpRequestMethodTypeExtension
@@ -52,7 +51,7 @@ class _APIViewDesktopState extends State<APIViewDesktop> {
                     .toList(),
                 onSelected: (value) {
                   if (value == null) return;
-                  selectedData.setRequestMethod = value as String;
+                  selectedData.setRequestMethod = value;
                 },
               ),
               const SizedBox(width: 10),
@@ -77,8 +76,9 @@ class _APIViewDesktopState extends State<APIViewDesktop> {
               ),
               const SizedBox(width: 10),
               TextButton(
-                onPressed:
-                    allowSubmitRequest ? () => selectedData.request() : null,
+                onPressed: allowSubmitRequest
+                    ? () => selectedData.request()
+                    : null,
                 child: const Text(
                   "Request",
                   style: TextStyle(fontWeight: FontWeight.bold),
@@ -97,7 +97,7 @@ class _APIViewDesktopState extends State<APIViewDesktop> {
                             child: Text("Empty response"),
                           ),
                   ),
-          )
+          ),
         ],
       ),
     );

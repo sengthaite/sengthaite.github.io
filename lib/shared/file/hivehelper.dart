@@ -1,4 +1,4 @@
-import 'package:hive/hive.dart';
+import 'package:hive_ce/hive.dart';
 import 'package:sengthaite_blog/shared/file/hivedir.dart';
 
 class HiveAPIDirService {
@@ -8,7 +8,7 @@ class HiveAPIDirService {
 
   Future<TempDir?> get defaultDir async => await findDir("Default");
 
-  init() async {
+  Future<void> init() async {
     Hive.init(_boxName);
     var allDirs = await getAllDirs();
     if (allDirs.isEmpty) await newDir(TempDir(dirname: "Default"));
