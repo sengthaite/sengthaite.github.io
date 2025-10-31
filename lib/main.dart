@@ -13,6 +13,7 @@ import 'package:sengthaite_blog/features/tab_bar_layout_project_view.dart';
 import 'package:sengthaite_blog/features/tab_bar_layout_tool_view.dart';
 import 'package:sengthaite_blog/shared/app.data.dart';
 import 'package:sengthaite_blog/shared/app.layout.dart';
+import 'package:sengthaite_blog/shared/data/appsetting.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -33,7 +34,7 @@ class MainView extends StatefulWidget {
 }
 
 class _StateMainView extends State<MainView> {
-  bool hideAppBar = false;
+  AppSettings appSettings = AppSettings();
 
   @override
   void initState() {
@@ -63,7 +64,7 @@ class _StateMainView extends State<MainView> {
           initialIndex: 1,
           length: 3,
           child: Scaffold(
-            appBar: hideAppBar
+            appBar: appSettings.isFullScreenMode
                 ? null
                 : AppBar(
                     title: Row(
@@ -95,18 +96,26 @@ class _StateMainView extends State<MainView> {
             body: TabBarView(
               physics: const NeverScrollableScrollPhysics(),
               children: [
-                TabBarLayoutContentView(hideBottomAppBar: hideAppBar),
-                TabBarLayoutToolView(hideBottomAppBar: hideAppBar),
-                TabBarLayoutProjectView(hideBottomAppBar: hideAppBar),
+                TabBarLayoutContentView(
+                  hideBottomAppBar: appSettings.isFullScreenMode,
+                ),
+                TabBarLayoutToolView(
+                  hideBottomAppBar: appSettings.isFullScreenMode,
+                ),
+                TabBarLayoutProjectView(
+                  hideBottomAppBar: appSettings.isFullScreenMode,
+                ),
               ],
             ),
             floatingActionButton: FloatingActionButton.small(
               elevation: 1,
               onPressed: () => setState(() {
-                hideAppBar = !hideAppBar;
+                appSettings.isFullScreenMode = !appSettings.isFullScreenMode;
               }),
               child: Icon(
-                hideAppBar ? MdiIcons.arrowExpand : MdiIcons.arrowExpandAll,
+                appSettings.isFullScreenMode
+                    ? MdiIcons.arrowExpand
+                    : MdiIcons.arrowExpandAll,
               ),
             ),
           ),

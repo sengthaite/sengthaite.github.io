@@ -13,6 +13,7 @@ class CalculatorDesktopView extends StatefulWidget {
 }
 
 class _CalculatorScreenState extends State<CalculatorDesktopView> {
+  String _expressionDisplay = '';
   String _display = '0';
   CalculatorMode _mode = CalculatorMode.basic;
 
@@ -58,9 +59,11 @@ class _CalculatorScreenState extends State<CalculatorDesktopView> {
     setState(() {
       if (value == 'C') {
         _display = '0';
+        _expressionDisplay = '';
       } else if (value == '⌫') {
         _display = _display.substring(0, _display.length - 1);
         if (_display.isEmpty) _display = '0';
+        _expressionDisplay = '';
       } else if (value == '=') {
         try {
           // --- Step 1: Replace UI symbols with parser-compatible symbols ---
@@ -91,6 +94,7 @@ class _CalculatorScreenState extends State<CalculatorDesktopView> {
           Expression exp = p.parse(expression); // Your code snippet is here
           ContextModel cm = ContextModel();
 
+          _expressionDisplay = expression;
           // Evaluate the expression
           double eval = exp.evaluate(EvaluationType.REAL, cm);
 
@@ -102,6 +106,7 @@ class _CalculatorScreenState extends State<CalculatorDesktopView> {
         } catch (e) {
           // Catch the FormatException or any other error
           _display = 'Error';
+          _expressionDisplay = '';
         }
       } else if (_display == '0' || _display == 'Error') {
         // Start a new expression
@@ -119,50 +124,124 @@ class _CalculatorScreenState extends State<CalculatorDesktopView> {
         } else if (value == 'x²') {
           _display += '^2';
         } else {
-          _display += value;
+          _display += isSingleDigitCharCode(value) ? value : ' $value ';
         }
       }
     });
   }
 
-  // --- UI Building ---
+  bool isSingleDigitCharCode(String s) {
+    if (s.length != 1) {
+      return false;
+    }
+    final int charCode = s.codeUnitAt(0);
+    return charCode >= '0'.codeUnitAt(0) && charCode <= '9'.codeUnitAt(0);
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Flutter Calculator'),
-        actions: [
-          // Mode Toggle Switch
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: Row(
-              children: [
-                const Icon(Icons.calculate_outlined, size: 18),
-                const SizedBox(width: 8),
-                Text(_mode == CalculatorMode.basic ? "Basic" : "Scientific"),
-                Switch(
-                  value: _mode == CalculatorMode.scientific,
-                  onChanged: (bool val) {
-                    setState(() {
-                      _mode = val
-                          ? CalculatorMode.scientific
-                          : CalculatorMode.basic;
-                    });
-                  },
-                ),
-              ],
+    return KeyboardListener(
+      focusNode: _focusNode,
+      onKeyEvent: _handleKeyPress,
+      child: Builder(
+        builder: (context) {
+          FocusScope.of(context).requestFocus(_focusNode);
+          return Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [Colors.black54, Colors.black54, Colors.black],
+                stops: [0.1, 0.2, 1.0],
+              ),
+              borderRadius: BorderRadius.circular(
+                10,
+              ), // Optional: Add rounded corners
             ),
-          ),
-        ],
-      ),
-      body: KeyboardListener(
-        focusNode: _focusNode,
-        onKeyEvent: _handleKeyPress,
-        child: Builder(
-          builder: (context) {
-            FocusScope.of(context).requestFocus(_focusNode);
-            return Column(
+            child: Column(
               children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 10,
+                    vertical: 10,
+                  ),
+                  child: Row(
+                    children: [
+                      TextButton(
+                        onPressed: () =>
+                            setState(() => _mode = CalculatorMode.basic),
+                        style: ButtonStyle(
+                          overlayColor: WidgetStateProperty.all(
+                            Colors.transparent,
+                          ),
+                        ),
+                        child: Text(
+                          "Basic",
+                          style: _mode == CalculatorMode.basic
+                              ? TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.transparent,
+                                  decoration: TextDecoration.underline,
+                                  decorationColor: Colors.blue,
+                                  decorationThickness: 2,
+                                  decorationStyle: TextDecorationStyle.solid,
+                                  shadows: [
+                                    Shadow(
+                                      color: Colors.white,
+                                      offset: Offset(0, -5),
+                                    ),
+                                  ],
+                                )
+                              : TextStyle(
+                                  color: Colors.transparent,
+                                  shadows: [
+                                    Shadow(
+                                      color: Colors.white,
+                                      offset: Offset(0, -5),
+                                    ),
+                                  ],
+                                ),
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: () =>
+                            setState(() => _mode = CalculatorMode.scientific),
+                        style: ButtonStyle(
+                          overlayColor: WidgetStateProperty.all(
+                            Colors.transparent,
+                          ),
+                        ),
+                        child: Text(
+                          "Scientific",
+                          style: _mode == CalculatorMode.scientific
+                              ? TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.transparent,
+                                  decoration: TextDecoration.underline,
+                                  decorationColor: Colors.blue,
+                                  decorationThickness: 2,
+                                  decorationStyle: TextDecorationStyle.solid,
+                                  shadows: [
+                                    Shadow(
+                                      color: Colors.white,
+                                      offset: Offset(0, -5),
+                                    ),
+                                  ],
+                                )
+                              : TextStyle(
+                                  color: Colors.transparent,
+                                  shadows: [
+                                    Shadow(
+                                      color: Colors.white,
+                                      offset: Offset(0, -5),
+                                    ),
+                                  ],
+                                ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
                 // Display Area
                 _buildDisplay(),
                 const Divider(height: 1.0, color: Colors.white24),
@@ -170,18 +249,18 @@ class _CalculatorScreenState extends State<CalculatorDesktopView> {
                 Expanded(
                   child: Row(
                     children: [
+                      // Basic panel (always shown)
+                      Expanded(child: _buildBasicPanel()),
                       // Scientific panel (conditionally shown)
                       if (_mode == CalculatorMode.scientific)
                         _buildScientificPanel(),
-                      // Basic panel (always shown)
-                      Expanded(child: _buildBasicPanel()),
                     ],
                   ),
                 ),
               ],
-            );
-          },
-        ),
+            ),
+          );
+        },
       ),
     );
   }
@@ -195,14 +274,24 @@ class _CalculatorScreenState extends State<CalculatorDesktopView> {
         alignment: Alignment.bottomRight,
         child: SingleChildScrollView(
           reverse: true,
-          child: Text(
-            _display,
-            style: const TextStyle(
-              fontSize: 48,
-              fontWeight: FontWeight.bold,
-              color: Colors.black26,
-            ),
-            textAlign: TextAlign.right,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Text(
+                _expressionDisplay,
+                style: const TextStyle(fontSize: 24, color: Colors.white70),
+                textAlign: TextAlign.right,
+              ),
+              Text(
+                _display,
+                style: const TextStyle(
+                  fontSize: 48,
+                  fontWeight: FontWeight.w400,
+                  color: Colors.white,
+                ),
+                textAlign: TextAlign.right,
+              ),
+            ],
           ),
         ),
       ),
@@ -213,11 +302,11 @@ class _CalculatorScreenState extends State<CalculatorDesktopView> {
   Widget _buildBasicPanel() {
     // Button layout definition
     const List<List<String>> basicButtons = [
-      ['C', '⌫', '%', '÷'],
-      ['7', '8', '9', '×'],
-      ['4', '5', '6', '-'],
-      ['1', '2', '3', '+'],
-      ['00', '0', '.', '='],
+      ['7', '8', '9', '÷'],
+      ['4', '5', '6', '×'],
+      ['1', '2', '3', '-'],
+      ['%', '0', '.', '+'],
+      ['C', '⌫', '', '='],
     ];
 
     return Container(
@@ -227,10 +316,11 @@ class _CalculatorScreenState extends State<CalculatorDesktopView> {
           return Expanded(
             child: Row(
               children: row.map((text) {
+                if (text.isEmpty) return Container();
                 return _buildButton(
                   text: text,
                   color: _getButtonColor(text),
-                  flex: (text == '0') ? 2 : 1, // Make '0' wider
+                  flex: (text == '=') ? 2 : 1, // Make '0' wider
                 );
               }).toList(),
             ),
@@ -252,9 +342,8 @@ class _CalculatorScreenState extends State<CalculatorDesktopView> {
     ];
 
     return Container(
-      width: 160, // Fixed width for the scientific panel
+      width: 400, // Fixed width for the scientific panel
       padding: const EdgeInsets.all(8.0),
-      color: const Color(0xFF282828), // Slightly different background
       child: Column(
         children: scientificButtons.map((row) {
           return Expanded(
@@ -273,7 +362,7 @@ class _CalculatorScreenState extends State<CalculatorDesktopView> {
     return Expanded(
       flex: flex,
       child: Padding(
-        padding: const EdgeInsets.all(4.0),
+        padding: const EdgeInsets.all(4),
         child: ElevatedButton(
           onPressed: () => _onButtonPressed(text),
           style: ElevatedButton.styleFrom(
@@ -282,12 +371,8 @@ class _CalculatorScreenState extends State<CalculatorDesktopView> {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(16),
             ),
-            // padding: const EdgeInsets.symmetric(vertical: 20), // <-- REMOVED THIS LINE
           ),
-          child: Text(
-            text,
-            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-          ),
+          child: Text(text, style: const TextStyle(fontSize: 20)),
         ),
       ),
     );

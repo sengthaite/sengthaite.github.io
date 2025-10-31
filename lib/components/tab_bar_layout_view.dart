@@ -117,11 +117,12 @@ class TabBarLayoutViewState extends State<TabBarLayoutView>
       builder: (context, orientation) => Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          TabBarLayoutNavigationView(
-            defaultText: _defaultContentTitle,
-            defaultTextClick: () => clearAllItems(),
-            navigationTitleItems: navigationTitleItems,
-          ),
+          if (!widget.hideBottomBar)
+            TabBarLayoutNavigationView(
+              defaultText: _defaultContentTitle,
+              defaultTextClick: () => clearAllItems(),
+              navigationTitleItems: navigationTitleItems,
+            ),
           layoutWidget(
             child: navigationTitleItems.isNotEmpty
                 ? Stack(
