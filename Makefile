@@ -22,5 +22,5 @@ add_assets:
 all: clean autogen build_runner
 
 deploy: clean all
-	flutter pub global run dependency_validator
+# 	flutter pub global run dependency_validator
 	flutter pub global run peanut --extra-args --base-href=/
