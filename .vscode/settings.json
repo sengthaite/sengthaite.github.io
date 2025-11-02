@@ -1,4 +1,4 @@
 {
   "makefile.configureOnOpen": false,
-  "python.terminal.activateEnvironment": true
+  "python.terminal.activateEnvironment": false
 }

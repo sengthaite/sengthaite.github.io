@@ -64,22 +64,22 @@ flutter:
     - assets/
     - assets/content_icons/
     - assets/contents/
-    - assets/contents/Database/
-    - assets/contents/Biography/
-    - assets/contents/General/
-    - assets/contents/C#/
-    - assets/contents/LLVM/
-    - assets/contents/Angular/
-    - assets/contents/Kotlin/
-    - assets/contents/CLI/
-    - assets/contents/Reverse_Engineer/
-    - assets/contents/iOS/
-    - assets/contents/Swift/
-    - assets/contents/Android/
-    - assets/contents/Maths/
-    - assets/contents/OS/
-    - assets/contents/Cambodia/
-    - assets/contents/Tool/
+    # - assets/contents/database/
+    # - assets/contents/biography/
+    # - assets/contents/general/
+    # - assets/contents/csharp/
+    # - assets/contents/llvm/
+    # - assets/contents/angular/
+    # - assets/contents/kotlin/
+    # - assets/contents/cli/
+    # - assets/contents/reverse_engineer/
+    # - assets/contents/ios/
+    # - assets/contents/swift/
+    # - assets/contents/android/
+    # - assets/contents/maths/
+    # - assets/contents/os/
+    # - assets/contents/cambodia/
+    # - assets/contents/tool/
     - assets/project_icons/
     - assets/autogen_meta/
     - assets/tool_icons/

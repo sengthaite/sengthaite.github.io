@@ -8,7 +8,6 @@ pip_install:
 
 clean:
 	rm -rf ./assets/autogen_meta
-	rm -rf ./build
 
 build_runner:
 	dart run build_runner build --delete-conflicting-outputs

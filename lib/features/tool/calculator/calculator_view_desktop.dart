@@ -90,7 +90,7 @@ class _CalculatorScreenState extends State<CalculatorDesktopView> {
           // -----------------------------------------------------------
 
           // --- Step 3: Parse and Evaluate ---
-          Parser p = Parser();
+          GrammarParser p = GrammarParser();
           Expression exp = p.parse(expression); // Your code snippet is here
           ContextModel cm = ContextModel();
 

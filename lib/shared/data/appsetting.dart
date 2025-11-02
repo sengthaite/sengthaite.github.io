@@ -3,7 +3,7 @@ import 'package:uuid/uuid.dart';
 
 part 'appsetting.g.dart';
 
-@HiveType(typeId: 2)
+@HiveType(typeId: 3)
 class AppSettings {
   @HiveField(0)
   final String id;
