@@ -15,7 +15,7 @@ import 'package:sengthaite_blog/features/tool/api/api_request_builder.dart';
 import 'package:sengthaite_blog/features/tool/api/api_util_view.dart';
 import 'package:sengthaite_blog/features/tool/api/api_view_desktop.dart';
 import 'package:sengthaite_blog/features/tool/api/api_view_mobile.dart';
-import 'package:sengthaite_blog/features/tool/calculator/calculator_view_desktop.dart';
+// import 'package:sengthaite_blog/features/tool/calculator/calculator_view_desktop.dart';
 import 'package:sengthaite_blog/features/tool/camera/camera_view.dart';
 import 'package:sengthaite_blog/features/tool/text_editor/text_editor_tool_desktop.dart';
 import 'package:sengthaite_blog/features/tool/text_editor/text_editor_tool_mobile.dart';
@@ -36,13 +36,13 @@ class TabBarLayoutToolView extends TabBarLayoutView {
     final HttpRequestBuilder requestBuilder = HttpRequestBuilder.getInstance();
 
     return [
-      ToolItemModel(
-        index: 0,
-        title: "Calculator",
-        image: AssetIcons.cal.image,
-        widgetBuilder: (context) =>
-            AppLayout(context: context, defaultWidget: CalculatorDesktopView()),
-      ),
+      // ToolItemModel(
+      //   index: 0,
+      //   title: "Calculator",
+      //   image: AssetIcons.cal.image,
+      //   widgetBuilder: (context) =>
+      //       AppLayout(context: context, defaultWidget: CalculatorDesktopView()),
+      // ),
       ToolItemModel(
         index: 0,
         title: "Camera",
