@@ -50,6 +50,8 @@ dependencies:
   barcode_widget: ^2.0.4
   barcode_image: ^2.0.3
   pdf: ^3.11.3
+  file_selector: ^1.1.0
+  image: ^4.5.4
 
 dev_dependencies:
   flutter_test:

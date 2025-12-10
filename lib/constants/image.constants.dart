@@ -24,7 +24,8 @@ enum AssetIcons {
   camera("camera.svg", section: TabSection.tool),
   textEditor("text_editor.svg", section: TabSection.tool),
   http("http.svg", section: TabSection.tool),
-  cal("calculator.svg", section: TabSection.tool);
+  cal("calculator.svg", section: TabSection.tool),
+  qrcode("qrcode.svg", section: TabSection.tool);
 
   const AssetIcons(
     this.imageName, {

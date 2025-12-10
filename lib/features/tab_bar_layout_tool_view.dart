@@ -17,6 +17,7 @@ import 'package:sengthaite_blog/features/tool/api/api_view_desktop.dart';
 import 'package:sengthaite_blog/features/tool/api/api_view_mobile.dart';
 // import 'package:sengthaite_blog/features/tool/calculator/calculator_view_desktop.dart';
 import 'package:sengthaite_blog/features/tool/camera/camera_view.dart';
+import 'package:sengthaite_blog/features/tool/qrcode/qrbarcode_view_mobile.dart';
 import 'package:sengthaite_blog/features/tool/text_editor/text_editor_tool_desktop.dart';
 import 'package:sengthaite_blog/features/tool/text_editor/text_editor_tool_mobile.dart';
 import 'package:sengthaite_blog/generated/models/tool_model.dart';
@@ -43,6 +44,13 @@ class TabBarLayoutToolView extends TabBarLayoutView {
       //   widgetBuilder: (context) =>
       //       AppLayout(context: context, defaultWidget: CalculatorDesktopView()),
       // ),
+      ToolItemModel(
+        index: 0,
+        title: "QR/Bar Code",
+        image: AssetIcons.qrcode.image,
+        widgetBuilder: (context) =>
+            AppLayout(context: context, defaultWidget: QrbarcodeViewMobile()),
+      ),
       ToolItemModel(
         index: 0,
         title: "Camera",
