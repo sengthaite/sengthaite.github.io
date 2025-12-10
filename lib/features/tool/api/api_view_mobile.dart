@@ -41,10 +41,11 @@ class _APIViewDesktopState extends State<APIViewMobile> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   DropdownMenu(
-                    width: 100,
+                    width: 118,
                     textStyle: TextStyle(
                       color: methodColor,
                       fontWeight: FontWeight.bold,
+                      fontSize: 10,
                     ),
                     initialSelection:
                         selectedData.getRequestMethod ??
@@ -69,7 +70,7 @@ class _APIViewDesktopState extends State<APIViewMobile> {
                   Expanded(
                     child: TextFormField(
                       textInputAction: TextInputAction.done,
-                      style: const TextStyle(fontSize: 14),
+                      style: const TextStyle(fontSize: 10,),
                       controller: selectedData.urlInputController,
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
