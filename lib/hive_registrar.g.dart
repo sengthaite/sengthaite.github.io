@@ -5,10 +5,12 @@
 import 'package:hive_ce/hive.dart';
 import 'package:sengthaite_blog/shared/data/appsetting.dart';
 import 'package:sengthaite_blog/shared/file/hivedir.dart';
+import 'package:sengthaite_blog/shared/file/hiveeditor.dart';
 
 extension HiveRegistrar on HiveInterface {
   void registerAdapters() {
     registerAdapter(AppSettingsAdapter());
+    registerAdapter(HiveEditorAdapter());
     registerAdapter(TempDirAdapter());
     registerAdapter(TempFileAdapter());
   }
@@ -17,6 +19,7 @@ extension HiveRegistrar on HiveInterface {
 extension IsolatedHiveRegistrar on IsolatedHiveInterface {
   void registerAdapters() {
     registerAdapter(AppSettingsAdapter());
+    registerAdapter(HiveEditorAdapter());
     registerAdapter(TempDirAdapter());
     registerAdapter(TempFileAdapter());
   }

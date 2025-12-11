@@ -9,8 +9,16 @@ class TextEditorToolMobile extends StatelessWidget {
 
   final QuillController controller;
 
+  //TODO: to update on change save text
+  void _onChange() {
+    final text = controller.plainTextEditingValue.text;
+  }
+
   @override
   Widget build(BuildContext context) {
+
+    controller.addListener(_onChange);
+
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
