@@ -173,18 +173,18 @@ packages:
     dependency: transitive
     description:
       name: camera_android_camerax
-      sha256: b555c5748a9164830b3d57644e1c8a20408d0cae90b157f6af4b1ad5f5fb187a
+      sha256: "474d8355961658d43f1c976e2fa1ca715505bea1adbd56df34c581aaa70ec41f"
       url: "https://pub.dev"
     source: hosted
-    version: "0.6.26"
+    version: "0.6.26+2"
   camera_avfoundation:
     dependency: transitive
     description:
       name: camera_avfoundation
-      sha256: "035b90c1e33c2efad7548f402572078f6e514d4f82be0a315cd6c6af7e855aa8"
+      sha256: "0efb057a1fecdbf9b697272fbf79afbd47ac0e7bd69b4d900d3f304b31d93bad"
       url: "https://pub.dev"
     source: hosted
-    version: "0.9.22+6"
+    version: "0.9.22+7"
   camera_platform_interface:
     dependency: transitive
     description:
@@ -429,10 +429,10 @@ packages:
     dependency: "direct main"
     description:
       name: file_picker
-      sha256: "7872545770c277236fd32b022767576c562ba28366204ff1a5628853cf8f2200"
+      sha256: d974b6ba2606371ac71dd94254beefb6fa81185bde0b59bdc1df09885da85fde
       url: "https://pub.dev"
     source: hosted
-    version: "10.3.7"
+    version: "10.3.8"
   file_saver:
     dependency: "direct main"
     description:
@@ -721,10 +721,10 @@ packages:
     dependency: "direct main"
     description:
       name: hive_ce
-      sha256: "81d39a03c4c0ba5938260a8c3547d2e71af59defecea21793d57fc3551f0d230"
+      sha256: "412c638aeac0f003bba664884e3048b9547e541aaca13f10cc639da788184bed"
       url: "https://pub.dev"
     source: hosted
-    version: "2.15.1"
+    version: "2.16.0"
   hive_ce_generator:
     dependency: "direct main"
     description:
@@ -1502,10 +1502,10 @@ packages:
     dependency: transitive
     description:
       name: video_player_android
-      sha256: d74b66f283afff135d5be0ceccca2ca74dff7df1e9b1eaca6bd4699875d3ae60
+      sha256: ee4fd520b0cafa02e4a867a0f882092e727cdaa1a2d24762171e787f8a502b0a
       url: "https://pub.dev"
     source: hosted
-    version: "2.8.22"
+    version: "2.9.1"
   video_player_avfoundation:
     dependency: transitive
     description:
@@ -1550,10 +1550,10 @@ packages:
     dependency: transitive
     description:
       name: watcher
-      sha256: "592ab6e2892f67760543fb712ff0177f4ec76c031f02f5b4ff8d3fc5eb9fb61a"
+      sha256: f52385d4f73589977c80797e60fe51014f7f2b957b5e9a62c3f6ada439889249
       url: "https://pub.dev"
     source: hosted
-    version: "1.1.4"
+    version: "1.2.0"
   web:
     dependency: transitive
     description:

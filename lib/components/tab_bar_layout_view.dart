@@ -15,12 +15,16 @@ class TabBarLayoutViewItem {
 class TabBarLayoutView extends StatefulWidget {
   const TabBarLayoutView({
     super.key,
+    this.onInit,
+    this.onDispose,
     required this.section,
     required this.hideBottomBar,
   });
 
   final TabSection section;
   final bool hideBottomBar;
+  final Function? onDispose;
+  final Function? onInit;
 
   List<TabBarLayoutViewItem> get categories => [];
 
@@ -106,6 +110,18 @@ class TabBarLayoutViewState extends State<TabBarLayoutView>
         _defaultEmptyContentTitle = "Not available";
         break;
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    widget.onInit?.call();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    widget.onDispose?.call();
   }
 
   @override

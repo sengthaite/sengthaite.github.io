@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_quill/flutter_quill.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:provider/provider.dart';
@@ -26,12 +25,10 @@ import 'package:sengthaite_blog/shared/app.layout.dart';
 import 'tool/api/api_file_manager_view.dart';
 
 class TabBarLayoutToolView extends TabBarLayoutView {
-  TabBarLayoutToolView({super.key, required this.hideBottomAppBar})
+  const TabBarLayoutToolView({super.key, required this.hideBottomAppBar})
     : super(section: TabSection.tool, hideBottomBar: hideBottomAppBar);
 
   final bool hideBottomAppBar;
-
-  final QuillController _controller = QuillController.basic();
 
   List<ToolItemModel> toolList() {
     final HttpRequestBuilder requestBuilder = HttpRequestBuilder.getInstance();
@@ -62,40 +59,40 @@ class TabBarLayoutToolView extends TabBarLayoutView {
         index: 0,
         title: "Text editor",
         image: AssetIcons.textEditor.image,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.extension),
-            onPressed: () {
-              var context = Navigation().tabBarDetailContext;
-              if (context == null) return;
-              showModalBottomSheet(
-                context: context,
-                showDragHandle: true,
-                builder: (context) {
-                  return Padding(
-                    padding: const EdgeInsets.only(
-                      left: 4,
-                      right: 4,
-                      top: 4,
-                      bottom: 8,
-                    ),
-                    child: QuillSimpleToolbar(
-                      controller: _controller,
-                      config: QuillSimpleToolbarConfig(
-                        toolbarIconAlignment: WrapAlignment.start,
-                        toolbarIconCrossAlignment: WrapCrossAlignment.start,
-                      ),
-                    ),
-                  );
-                },
-              );
-            },
-          ),
-        ],
+        // actions: [
+        //   IconButton(
+        //     icon: const Icon(Icons.extension),
+        //     onPressed: () {
+        //       var context = Navigation().tabBarDetailContext;
+        //       if (context == null) return;
+        //       showModalBottomSheet(
+        //         context: context,
+        //         showDragHandle: true,
+        //         builder: (context) {
+        //           return Padding(
+        //             padding: const EdgeInsets.only(
+        //               left: 4,
+        //               right: 4,
+        //               top: 4,
+        //               bottom: 8,
+        //             ),
+        //             child: QuillSimpleToolbar(
+        //               controller: _controller,
+        //               config: QuillSimpleToolbarConfig(
+        //                 toolbarIconAlignment: WrapAlignment.start,
+        //                 toolbarIconCrossAlignment: WrapCrossAlignment.start,
+        //               ),
+        //             ),
+        //           );
+        //         },
+        //       );
+        //     },
+        //   ),
+        // ],
         widgetBuilder: (context) => AppLayout(
           context: context,
-          defaultWidget: TextEditorToolDesktop(controller: _controller),
-          mobileWidget: TextEditorToolMobile(controller: _controller),
+          defaultWidget: TextEditorToolDesktop(),
+          mobileWidget: TextEditorToolMobile(),
         ),
       ),
       ToolItemModel(

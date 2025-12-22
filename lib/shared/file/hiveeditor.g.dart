@@ -16,7 +16,7 @@ class HiveEditorAdapter extends TypeAdapter<HiveEditor> {
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return HiveEditor(content: fields[0] as String);
+    return HiveEditor()..data = fields[0] as String?;
   }
 
   @override
@@ -24,7 +24,7 @@ class HiveEditorAdapter extends TypeAdapter<HiveEditor> {
     writer
       ..writeByte(1)
       ..writeByte(0)
-      ..write(obj.content);
+      ..write(obj.data);
   }
 
   @override
