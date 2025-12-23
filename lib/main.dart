@@ -20,6 +20,7 @@ import 'package:sengthaite_blog/shared/data/appsetting.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Hive.registerAdapters();
+  Hive.init(".hive_data");
   await AppData().initData();
   runApp(
     DevicePreview(

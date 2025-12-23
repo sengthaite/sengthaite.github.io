@@ -48,3 +48,6 @@ app.*.map.json
 # FVM Version Cache
 .fvm/
 **/API_DIR
+
+# Persistent data
+.hive_data

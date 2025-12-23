@@ -1,15 +1,15 @@
 {
     "author": "Te Sengthai",
-    "created_date": "2025-12-19T00:04:24.771237",
+    "created_date": "2025-12-23T17:18:35.007607",
     "data": [
         {
-            "created_date": "2025-12-11T00:47:43.392132",
+            "created_date": "2025-12-23T17:15:22.664172",
             "files": [
                 {
                     "access_date": "2025-12-11T00:47:43.392132",
                     "change_date": "2025-12-11T00:47:43.392132",
                     "exerpt": "Getting start with android learning topics",
-                    "full_path": "assets/contents/android/android-dev-roadmap.txt",
+                    "full_path": "assets/contents/Android/android-dev-roadmap.txt",
                     "hasToc": false,
                     "index": 0,
                     "modified_date": "2025-12-11T00:47:43.392132",
@@ -20,7 +20,7 @@
                     "access_date": "2025-12-11T00:47:43.392132",
                     "change_date": "2025-12-11T00:47:43.392132",
                     "exerpt": "Some interesting projects ideas to getting start with android app development",
-                    "full_path": "assets/contents/android/android-projects.txt",
+                    "full_path": "assets/contents/Android/android-projects.txt",
                     "hasToc": false,
                     "index": 1,
                     "modified_date": "2025-12-11T00:47:43.392132",
@@ -31,7 +31,7 @@
                     "access_date": "2025-12-11T00:47:43.392132",
                     "change_date": "2025-12-11T00:47:43.392132",
                     "exerpt": "General questions that related to android devices, operating system, coding, history, and stories",
-                    "full_path": "assets/contents/android/android-questions.txt",
+                    "full_path": "assets/contents/Android/android-questions.txt",
                     "hasToc": false,
                     "index": 2,
                     "modified_date": "2025-12-11T00:47:43.392132",
@@ -42,7 +42,7 @@
                     "access_date": "2025-12-11T00:47:43.392132",
                     "change_date": "2025-12-11T00:47:43.392132",
                     "exerpt": "The content to learn most of the core functionalities provided by android studio",
-                    "full_path": "assets/contents/android/android-studio-features.txt",
+                    "full_path": "assets/contents/Android/android-studio-features.txt",
                     "hasToc": true,
                     "index": 3,
                     "modified_date": "2025-12-11T00:47:43.392132",
@@ -53,7 +53,7 @@
                     "access_date": "2025-12-11T00:47:43.392132",
                     "change_date": "2025-12-11T00:47:43.392132",
                     "exerpt": "Getting started with kotlin programming language for android development and other useful usecases",
-                    "full_path": "assets/contents/android/basic-kotlin.txt",
+                    "full_path": "assets/contents/Android/basic-kotlin.txt",
                     "hasToc": true,
                     "index": 4,
                     "modified_date": "2025-12-11T00:47:43.392132",
@@ -64,7 +64,7 @@
                     "access_date": "2025-12-11T00:47:43.392132",
                     "change_date": "2025-12-11T00:47:43.392132",
                     "exerpt": "Finding resources for getting your feet wet with kotlin is crucial and the link to the resources are priceless",
-                    "full_path": "assets/contents/android/kotlin-learning-links.txt",
+                    "full_path": "assets/contents/Android/kotlin-learning-links.txt",
                     "hasToc": false,
                     "index": 5,
                     "modified_date": "2025-12-11T00:47:43.392132",
@@ -72,19 +72,19 @@
                     "title": "Kotlin Resource Links"
                 }
             ],
-            "icon": "android.svg",
+            "icon": "Android.svg",
             "index": 0,
-            "name": "android",
-            "path": "assets/contents/android"
+            "name": "Android",
+            "path": "assets/contents/Android"
         },
         {
-            "created_date": "2025-12-11T00:47:43.392132",
+            "created_date": "2025-12-23T17:15:29.436221",
             "files": [
                 {
                     "access_date": "2025-12-11T00:47:43.392132",
                     "change_date": "2025-12-11T00:47:43.392132",
                     "exerpt": "Deploying angular app with specifying base url which is useful for the case that we deploy our web on github page",
-                    "full_path": "assets/contents/angular/angular-base-url.txt",
+                    "full_path": "assets/contents/Angular/angular-base-url.txt",
                     "hasToc": true,
                     "index": 0,
                     "modified_date": "2025-12-11T00:47:43.392132",
@@ -95,7 +95,7 @@
                     "access_date": "2025-12-11T00:47:43.392132",
                     "change_date": "2025-12-11T00:47:43.392132",
                     "exerpt": "To get to know more about angular",
-                    "full_path": "assets/contents/angular/angular-useful-link.txt",
+                    "full_path": "assets/contents/Angular/angular-useful-link.txt",
                     "hasToc": false,
                     "index": 1,
                     "modified_date": "2025-12-11T00:47:43.392132",
@@ -106,7 +106,7 @@
                     "access_date": "2025-12-11T00:47:43.392132",
                     "change_date": "2025-12-11T00:47:43.392132",
                     "exerpt": "Getting started with Angular",
-                    "full_path": "assets/contents/angular/common-angular.txt",
+                    "full_path": "assets/contents/Angular/common-angular.txt",
                     "hasToc": true,
                     "index": 2,
                     "modified_date": "2025-12-11T00:47:43.392132",
@@ -114,19 +114,19 @@
                     "title": "Common Angular"
                 }
             ],
-            "icon": "angular.svg",
+            "icon": "Angular.svg",
             "index": 1,
-            "name": "angular",
-            "path": "assets/contents/angular"
+            "name": "Angular",
+            "path": "assets/contents/Angular"
         },
         {
-            "created_date": "2025-12-11T00:47:43.392132",
+            "created_date": "2025-12-23T17:15:36.752273",
             "files": [
                 {
                     "access_date": "2025-12-11T00:47:43.392132",
                     "change_date": "2025-12-11T00:47:43.392132",
                     "exerpt": "អ្នកប្រាជ្ញអក្សរសាស្រ្តខ្មែរ ដែលបន្សល់ស្នាដៃដូចជា ច្បាប់ប្រៀនប្រដៅ ដាស់តឿនដល់កូនខ្មែរ",
-                    "full_path": "assets/contents/biography/krom_ngoy.txt",
+                    "full_path": "assets/contents/Biography/krom_ngoy.txt",
                     "hasToc": false,
                     "index": 0,
                     "modified_date": "2025-12-11T00:47:43.392132",
@@ -134,39 +134,19 @@
                     "title": "ក្រមង៉ុយ"
                 }
             ],
-            "icon": "biography.svg",
+            "icon": "Biography.svg",
             "index": 2,
-            "name": "biography",
-            "path": "assets/contents/biography"
+            "name": "Biography",
+            "path": "assets/contents/Biography"
         },
         {
-            "created_date": "2025-12-11T00:47:43.392132",
-            "files": [
-                {
-                    "access_date": "2025-12-11T00:47:43.392132",
-                    "change_date": "2025-12-11T00:47:43.392132",
-                    "exerpt": "កម្ពុជាមាន២៤ខេត្តនិងរាជធានីមួយ",
-                    "full_path": "assets/contents/cambodia/name_of_provinces_cambodia.txt",
-                    "hasToc": false,
-                    "index": 0,
-                    "modified_date": "2025-12-11T00:47:43.392132",
-                    "name": "name_of_provinces_cambodia.txt",
-                    "title": "ឈ្មោះនៃខេត្តទាំងអស់របស់ប្រទេសកម្ពុជា"
-                }
-            ],
-            "icon": "cambodia.svg",
-            "index": 3,
-            "name": "cambodia",
-            "path": "assets/contents/cambodia"
-        },
-        {
-            "created_date": "2025-12-11T00:47:43.392132",
+            "created_date": "2025-12-23T17:15:56.504410",
             "files": [
                 {
                     "access_date": "2025-12-11T00:47:43.392132",
                     "change_date": "2025-12-11T00:47:43.392132",
                     "exerpt": "Guide to ssh to termux android with assessible USB connection",
-                    "full_path": "assets/contents/cli/ssh-to-termux-via-usb.txt",
+                    "full_path": "assets/contents/CLI/ssh-to-termux-via-usb.txt",
                     "hasToc": true,
                     "index": 0,
                     "modified_date": "2025-12-11T00:47:43.392132",
@@ -174,19 +154,19 @@
                     "title": "SSH to Termux Android via USB Guide"
                 }
             ],
-            "icon": "cli.svg",
-            "index": 4,
-            "name": "cli",
-            "path": "assets/contents/cli"
+            "icon": "CLI.svg",
+            "index": 3,
+            "name": "CLI",
+            "path": "assets/contents/CLI"
         },
         {
-            "created_date": "2025-12-11T00:47:43.392132",
+            "created_date": "2025-12-23T17:16:05.808473",
             "files": [
                 {
                     "access_date": "2025-12-11T00:47:43.392132",
                     "change_date": "2025-12-11T00:47:43.392132",
                     "exerpt": "Collections of keywords related to C# and .NET",
-                    "full_path": "assets/contents/csharp/csharp_keywords.txt",
+                    "full_path": "assets/contents/CSharp/csharp_keywords.txt",
                     "hasToc": false,
                     "index": 0,
                     "modified_date": "2025-12-11T00:47:43.392132",
@@ -197,7 +177,7 @@
                     "access_date": "2025-12-11T00:47:43.392132",
                     "change_date": "2025-12-11T00:47:43.392132",
                     "exerpt": "Learn more C# and .NET",
-                    "full_path": "assets/contents/csharp/dotnet_learning_resources.txt",
+                    "full_path": "assets/contents/CSharp/dotnet_learning_resources.txt",
                     "hasToc": false,
                     "index": 1,
                     "modified_date": "2025-12-11T00:47:43.392132",
@@ -205,19 +185,39 @@
                     "title": "C# and .NET Resources"
                 }
             ],
-            "icon": "csharp.svg",
-            "index": 5,
-            "name": "csharp",
-            "path": "assets/contents/csharp"
+            "icon": "CSharp.svg",
+            "index": 4,
+            "name": "CSharp",
+            "path": "assets/contents/CSharp"
         },
         {
-            "created_date": "2025-12-11T00:47:43.392132",
+            "created_date": "2025-12-23T17:15:49.540362",
+            "files": [
+                {
+                    "access_date": "2025-12-11T00:47:43.392132",
+                    "change_date": "2025-12-11T00:47:43.392132",
+                    "exerpt": "កម្ពុជាមាន២៤ខេត្តនិងរាជធានីមួយ",
+                    "full_path": "assets/contents/Cambodia/name_of_provinces_cambodia.txt",
+                    "hasToc": false,
+                    "index": 0,
+                    "modified_date": "2025-12-11T00:47:43.392132",
+                    "name": "name_of_provinces_cambodia.txt",
+                    "title": "ឈ្មោះនៃខេត្តទាំងអស់របស់ប្រទេសកម្ពុជា"
+                }
+            ],
+            "icon": "Cambodia.svg",
+            "index": 5,
+            "name": "Cambodia",
+            "path": "assets/contents/Cambodia"
+        },
+        {
+            "created_date": "2025-12-23T17:16:12.108515",
             "files": [
                 {
                     "access_date": "2025-12-11T00:47:43.392132",
                     "change_date": "2025-12-11T00:47:43.392132",
                     "exerpt": "Read more know more about database",
-                    "full_path": "assets/contents/database/database-useful-link.txt",
+                    "full_path": "assets/contents/Database/database-useful-link.txt",
                     "hasToc": false,
                     "index": 0,
                     "modified_date": "2025-12-11T00:47:43.392132",
@@ -228,7 +228,7 @@
                     "access_date": "2025-12-11T00:47:43.392132",
                     "change_date": "2025-12-11T00:47:43.392132",
                     "exerpt": "Basic knowledge with SQL",
-                    "full_path": "assets/contents/database/sql-fundamental.txt",
+                    "full_path": "assets/contents/Database/sql-fundamental.txt",
                     "hasToc": true,
                     "index": 1,
                     "modified_date": "2025-12-11T00:47:43.392132",
@@ -236,19 +236,19 @@
                     "title": "SQL Basic"
                 }
             ],
-            "icon": "database.svg",
+            "icon": "Database.svg",
             "index": 6,
-            "name": "database",
-            "path": "assets/contents/database"
+            "name": "Database",
+            "path": "assets/contents/Database"
         },
         {
-            "created_date": "2025-12-11T00:47:43.392132",
+            "created_date": "2025-12-23T17:16:21.296575",
             "files": [
                 {
                     "access_date": "2025-12-11T00:47:43.392132",
                     "change_date": "2025-12-11T00:47:43.392132",
                     "exerpt": "Alan Mathison Turing គឺជា គណិតវិទូ អ្នកវិទ្យាសាស្ត្រកុំព្យូទ័រ អ្នកសិក្សាទៅលើតក្កវិទ្យា អ្នកសិក្សាទៅលើការបំប្លែងព័ត៌មានសំងាត់ ទស្សនវិទូ និង អ្នកទ្រឹស្តីជីវវិទ្យា",
-                    "full_path": "assets/contents/general/alan-turing.txt",
+                    "full_path": "assets/contents/General/alan-turing.txt",
                     "hasToc": false,
                     "index": 0,
                     "modified_date": "2025-12-11T00:47:43.392132",
@@ -259,7 +259,7 @@
                     "access_date": "2025-12-11T00:47:43.392132",
                     "change_date": "2025-12-11T00:47:43.392132",
                     "exerpt": "បឺរជាផ្លែឈឺហូបផ្លែ ម៉្យាងដែលមានសាច់បៃតងខ្ចី និងមានសម្បកខ្មៅអ៊ុចៗ",
-                    "full_path": "assets/contents/general/avocado.txt",
+                    "full_path": "assets/contents/General/avocado.txt",
                     "hasToc": false,
                     "index": 1,
                     "modified_date": "2025-12-11T00:47:43.392132",
@@ -270,7 +270,7 @@
                     "access_date": "2025-12-11T00:47:43.392132",
                     "change_date": "2025-12-11T00:47:43.392132",
                     "exerpt": "អត្ថប្រយោជន៍ ចំពោះការទទួលទានផ្លែចេក",
-                    "full_path": "assets/contents/general/banana.txt",
+                    "full_path": "assets/contents/General/banana.txt",
                     "hasToc": false,
                     "index": 2,
                     "modified_date": "2025-12-11T00:47:43.392132",
@@ -281,7 +281,7 @@
                     "access_date": "2025-12-11T00:47:43.392132",
                     "change_date": "2025-12-11T00:47:43.392132",
                     "exerpt": "ឈាម គឺជាសារធាតុរាវដ៏ពិសេសក្នុងខ្លួន ដែលមានធាតុផ្សំសំខាន់ៗចំនួនបួន",
-                    "full_path": "assets/contents/general/blood.txt",
+                    "full_path": "assets/contents/General/blood.txt",
                     "hasToc": false,
                     "index": 3,
                     "modified_date": "2025-12-11T00:47:43.392132",
@@ -292,7 +292,7 @@
                     "access_date": "2025-12-11T00:47:43.392132",
                     "change_date": "2025-12-11T00:47:43.392132",
                     "exerpt": "Search for Terminal application with spotlight",
-                    "full_path": "assets/contents/general/chrome-without-security-enable.txt",
+                    "full_path": "assets/contents/General/chrome-without-security-enable.txt",
                     "hasToc": false,
                     "index": 4,
                     "modified_date": "2025-12-11T00:47:43.392132",
@@ -303,7 +303,7 @@
                     "access_date": "2025-12-11T00:47:43.392132",
                     "change_date": "2025-12-11T00:47:43.392132",
                     "exerpt": "ក្រូចឆ្មា មានពណ៌លឿងស្រាល ហើយរសជាតិជូរ ដែលត្រូវបានគេប្រើជាគ្រឿងផ្សំក្នុងម្ហូបអាហារជុំវិញពិភពលោក",
-                    "full_path": "assets/contents/general/citrus.txt",
+                    "full_path": "assets/contents/General/citrus.txt",
                     "hasToc": false,
                     "index": 5,
                     "modified_date": "2025-12-11T00:47:43.392132",
@@ -314,7 +314,7 @@
                     "access_date": "2025-12-11T00:47:43.392132",
                     "change_date": "2025-12-11T00:47:43.392132",
                     "exerpt": "User Authentication and Authorization",
-                    "full_path": "assets/contents/general/client-app-common-features.txt",
+                    "full_path": "assets/contents/General/client-app-common-features.txt",
                     "hasToc": false,
                     "index": 6,
                     "modified_date": "2025-12-11T00:47:43.392132",
@@ -325,7 +325,7 @@
                     "access_date": "2025-12-11T00:47:43.392132",
                     "change_date": "2025-12-11T00:47:43.392132",
                     "exerpt": "ផ្លែដូង ជាផ្លែឈើដែលមានរាងមូល ឬមូលទ្រវែង។ សាច់របស់វាមានជាតិខ្លាច់ខ្ពស់ អាចទទួលទានទាំងស្រស់ ឬក៏ទទួលទានពេលសម្ងួតរួច",
-                    "full_path": "assets/contents/general/coconut.txt",
+                    "full_path": "assets/contents/General/coconut.txt",
                     "hasToc": false,
                     "index": 7,
                     "modified_date": "2025-12-11T00:47:43.392132",
@@ -336,7 +336,7 @@
                     "access_date": "2025-12-11T00:47:43.392132",
                     "change_date": "2025-12-11T00:47:43.392132",
                     "exerpt": "កាហ្វេ ជាប្រភេទភេស្ជជៈមួយប្រភេទដែលលក់ដាច់បំផុតលើលោកក្នុងចំណោមភេសជ្ជៈដែលទទួលទានក្តៅៗ",
-                    "full_path": "assets/contents/general/coffee.txt",
+                    "full_path": "assets/contents/General/coffee.txt",
                     "hasToc": false,
                     "index": 8,
                     "modified_date": "2025-12-11T00:47:43.392132",
@@ -347,7 +347,7 @@
                     "access_date": "2025-12-11T00:47:43.392132",
                     "change_date": "2025-12-11T00:47:43.392132",
                     "exerpt": "Floating point number begin with one or more of digit from 0 to 9",
-                    "full_path": "assets/contents/general/common-regex.txt",
+                    "full_path": "assets/contents/General/common-regex.txt",
                     "hasToc": false,
                     "index": 9,
                     "modified_date": "2025-12-11T00:47:43.392132",
@@ -358,7 +358,7 @@
                     "access_date": "2025-12-11T00:47:43.392132",
                     "change_date": "2025-12-11T00:47:43.392132",
                     "exerpt": "ផ្លែទុរេន គឺជាផ្លែឈឺហូបផ្លែមានជាច្រើនប្រភេទចំនួនប្រហែល៣០ប្រភេទដែលក្នុងនោះយ៉ាងតិច៩ប្រភេទមានផ្លែដែលអាចទទួលទានបាន",
-                    "full_path": "assets/contents/general/durian.txt",
+                    "full_path": "assets/contents/General/durian.txt",
                     "hasToc": false,
                     "index": 10,
                     "modified_date": "2025-12-11T00:47:43.392132",
@@ -369,7 +369,7 @@
                     "access_date": "2025-12-11T00:47:43.392132",
                     "change_date": "2025-12-11T00:47:43.392132",
                     "exerpt": "Dial the following code in keypad",
-                    "full_path": "assets/contents/general/find-phone-number-cambodia.txt",
+                    "full_path": "assets/contents/General/find-phone-number-cambodia.txt",
                     "hasToc": false,
                     "index": 11,
                     "modified_date": "2025-12-11T00:47:43.392132",
@@ -380,7 +380,7 @@
                     "access_date": "2025-12-11T00:47:43.392132",
                     "change_date": "2025-12-11T00:47:43.392132",
                     "exerpt": "ខ្ទឹមស (Allium Sativum) ជាប្រភេទរុក្ខជាតិម៉្យាងប្រើក្នុងការចំអិនម្ហូបអាហារ និងក្នុងផ្នែកវេជ្ជសាស្រ្ត",
-                    "full_path": "assets/contents/general/garlic.txt",
+                    "full_path": "assets/contents/General/garlic.txt",
                     "hasToc": false,
                     "index": 12,
                     "modified_date": "2025-12-11T00:47:43.392132",
@@ -391,7 +391,7 @@
                     "access_date": "2025-12-11T00:47:43.392132",
                     "change_date": "2025-12-11T00:47:43.392132",
                     "exerpt": "គ្នាច្រើនអន្សមខ្លោច គ្នាដូចស្រមោចអន្សមឆៅ...",
-                    "full_path": "assets/contents/general/khmer-proverb.txt",
+                    "full_path": "assets/contents/General/khmer-proverb.txt",
                     "hasToc": false,
                     "index": 13,
                     "modified_date": "2025-12-11T00:47:43.392132",
@@ -402,7 +402,7 @@
                     "access_date": "2025-12-11T00:47:43.392132",
                     "change_date": "2025-12-11T00:47:43.392132",
                     "exerpt": "ទឹកដោះគោ មានទឹក 87% ហើយក្រៅពីនេះជា ប្រូតេអ៉ីន ជាតិខ្លាញ់ កាបូនអ៊ីដ្រាត វីតាមីន និង សារធាតុរ៉ែ",
-                    "full_path": "assets/contents/general/milk.txt",
+                    "full_path": "assets/contents/General/milk.txt",
                     "hasToc": false,
                     "index": 14,
                     "modified_date": "2025-12-11T00:47:43.392132",
@@ -413,7 +413,7 @@
                     "access_date": "2025-12-11T00:47:43.392132",
                     "change_date": "2025-12-11T00:47:43.392132",
                     "exerpt": "លុយ គឺជាវត្ថុប្រើជាមធ្យោបាយ ក្នុងការទិញដូរក្នុងវិស័យសេដ្ឋកិច្ច",
-                    "full_path": "assets/contents/general/money.txt",
+                    "full_path": "assets/contents/General/money.txt",
                     "hasToc": false,
                     "index": 15,
                     "modified_date": "2025-12-11T00:47:43.392132",
@@ -424,7 +424,7 @@
                     "access_date": "2025-12-11T00:47:43.392132",
                     "change_date": "2025-12-11T00:47:43.392132",
                     "exerpt": "Guide on how to install nginx",
-                    "full_path": "assets/contents/general/nginx-mac-homebrew.txt",
+                    "full_path": "assets/contents/General/nginx-mac-homebrew.txt",
                     "hasToc": true,
                     "index": 16,
                     "modified_date": "2025-12-11T00:47:43.392132",
@@ -435,7 +435,7 @@
                     "access_date": "2025-12-11T00:47:43.392132",
                     "change_date": "2025-12-11T00:47:43.392132",
                     "exerpt": "ហ្វឺជាប្រភេទអាហារមួយបែប ដែលមានប្រភពដើមមកពីប្រទេសវៀតណាមភាគខាងជើង ក្នុងអំឡុងដើមសតវត្សទី២០",
-                    "full_path": "assets/contents/general/pho.txt",
+                    "full_path": "assets/contents/General/pho.txt",
                     "hasToc": false,
                     "index": 17,
                     "modified_date": "2025-12-11T00:47:43.392132",
@@ -446,7 +446,7 @@
                     "access_date": "2025-12-11T00:47:43.392132",
                     "change_date": "2025-12-11T00:47:43.392132",
                     "exerpt": "Projects for practices programming languages",
-                    "full_path": "assets/contents/general/programming-challenges.txt",
+                    "full_path": "assets/contents/General/programming-challenges.txt",
                     "hasToc": true,
                     "index": 18,
                     "modified_date": "2025-12-11T00:47:43.392132",
@@ -457,7 +457,7 @@
                     "access_date": "2025-12-11T00:47:43.392132",
                     "change_date": "2025-12-11T00:47:43.392132",
                     "exerpt": "Restore a modified file in Mac OS",
-                    "full_path": "assets/contents/general/recover-file-mac.txt",
+                    "full_path": "assets/contents/General/recover-file-mac.txt",
                     "hasToc": false,
                     "index": 19,
                     "modified_date": "2025-12-11T00:47:43.392132",
@@ -468,7 +468,7 @@
                     "access_date": "2025-12-11T00:47:43.392132",
                     "change_date": "2025-12-11T00:47:43.392132",
                     "exerpt": "SOLID is a mnemonic acronym for 5 design principles intended to make OOP designs more understandable, flexible, and maintainable",
-                    "full_path": "assets/contents/general/solid_principles.txt",
+                    "full_path": "assets/contents/General/solid_principles.txt",
                     "hasToc": true,
                     "index": 20,
                     "modified_date": "2025-12-11T00:47:43.392132",
@@ -479,7 +479,7 @@
                     "access_date": "2025-12-11T00:47:43.392132",
                     "change_date": "2025-12-11T00:47:43.392132",
                     "exerpt": "ទឹកស៊ីអ៊ីវ ជាប្រភេទទឹកជ្រលក់ម៉្យាងធ្វើចេញមកពី ការផ្អាប់សណ្តែកសៀងកិន ការដុតរោលគ្រាប់សណ្តែក ទឹកអំប៊ិល និងមេ",
-                    "full_path": "assets/contents/general/soy-source.txt",
+                    "full_path": "assets/contents/General/soy-source.txt",
                     "hasToc": false,
                     "index": 21,
                     "modified_date": "2025-12-11T00:47:43.392132",
@@ -490,7 +490,7 @@
                     "access_date": "2025-12-11T00:47:43.392132",
                     "change_date": "2025-12-11T00:47:43.392132",
                     "exerpt": "SDGs topics",
-                    "full_path": "assets/contents/general/sustainable-development-goals.txt",
+                    "full_path": "assets/contents/General/sustainable-development-goals.txt",
                     "hasToc": false,
                     "index": 22,
                     "modified_date": "2025-12-11T00:47:43.392132",
@@ -501,7 +501,7 @@
                     "access_date": "2025-12-11T00:47:43.392132",
                     "change_date": "2025-12-11T00:47:43.392132",
                     "exerpt": "តែជាភេសជ្ជៈមួយប្រភេទ ដែលមានដើមកំណើតមកពីភាគនិរតីនៃប្រទេសចិន",
-                    "full_path": "assets/contents/general/tea.txt",
+                    "full_path": "assets/contents/General/tea.txt",
                     "hasToc": false,
                     "index": 23,
                     "modified_date": "2025-12-11T00:47:43.392132",
@@ -512,7 +512,7 @@
                     "access_date": "2025-12-11T00:47:43.392132",
                     "change_date": "2025-12-11T00:47:43.392132",
                     "exerpt": "Getting to know terminal multiplexer and its usecases",
-                    "full_path": "assets/contents/general/tmux.txt",
+                    "full_path": "assets/contents/General/tmux.txt",
                     "hasToc": true,
                     "index": 24,
                     "modified_date": "2025-12-11T00:47:43.392132",
@@ -523,7 +523,7 @@
                     "access_date": "2025-12-11T00:47:43.392132",
                     "change_date": "2025-12-11T00:47:43.392132",
                     "exerpt": "អង្គភាព Wikimedia​ ជាអង្គភាពមិនរកកម្រៃមួយរបស់អាមេរិក ដែលមានស្នាក់ការកណ្តាលនៅ San Francisco, California ហើយចុះបញ្ជីជាអង្គភាពសប្បុរសធម៌​តាមច្បាប់ក្នុងប្រទេស",
-                    "full_path": "assets/contents/general/wikimedia-foundation.txt",
+                    "full_path": "assets/contents/General/wikimedia-foundation.txt",
                     "hasToc": false,
                     "index": 25,
                     "modified_date": "2025-12-11T00:47:43.392132",
@@ -531,80 +531,27 @@
                     "title": "Wikimedia Foundation"
                 }
             ],
-            "icon": "general.svg",
+            "icon": "General.svg",
             "index": 7,
-            "name": "general",
-            "path": "assets/contents/general"
+            "name": "General",
+            "path": "assets/contents/General"
         },
         {
-            "created_date": "2025-12-11T00:47:43.392132",
-            "files": [
-                {
-                    "access_date": "2025-12-11T00:47:43.392132",
-                    "change_date": "2025-12-11T00:47:43.392132",
-                    "exerpt": "The Swift Programming Language|Swift is a powerful and intuitive programming language for iOS, iPadOS, macOS, tvOS, and watchOS",
-                    "full_path": "assets/contents/ios/ios-dev-roadmap.txt",
-                    "hasToc": false,
-                    "index": 0,
-                    "modified_date": "2025-12-11T00:47:43.392132",
-                    "name": "ios-dev-roadmap.txt",
-                    "title": "iOS Developer Roadmap"
-                },
-                {
-                    "access_date": "2025-12-11T00:47:43.392132",
-                    "change_date": "2025-12-11T00:47:43.392132",
-                    "exerpt": "List of tools|Tools to help iOS development process, e.g. json serialization, debugging, code template, auto generation (language, ...), CI/CD",
-                    "full_path": "assets/contents/ios/ios-dev-topics.txt",
-                    "hasToc": false,
-                    "index": 1,
-                    "modified_date": "2025-12-11T00:47:43.392132",
-                    "name": "ios-dev-topics.txt",
-                    "title": "iOS Development Related Topics"
-                },
-                {
-                    "access_date": "2025-12-11T00:47:43.392132",
-                    "change_date": "2025-12-11T00:47:43.392132",
-                    "exerpt": "Projects with iOS",
-                    "full_path": "assets/contents/ios/ios_projects.txt",
-                    "hasToc": false,
-                    "index": 2,
-                    "modified_date": "2025-12-11T00:47:43.392132",
-                    "name": "ios_projects.txt",
-                    "title": "iOS Projects"
-                },
-                {
-                    "access_date": "2025-12-11T00:47:43.392132",
-                    "change_date": "2025-12-11T00:47:43.392132",
-                    "exerpt": "To list installed apps and their bundle identifiers on an iPhone using the command line on a Mac, you can use the following steps",
-                    "full_path": "assets/contents/ios/list-ios-app-bundleid.txt",
-                    "hasToc": false,
-                    "index": 3,
-                    "modified_date": "2025-12-11T00:47:43.392132",
-                    "name": "list-ios-app-bundleid.txt",
-                    "title": "Iphone list installed app bundle ID using MacOS"
-                }
-            ],
-            "icon": "ios.svg",
-            "index": 8,
-            "name": "ios",
-            "path": "assets/contents/ios"
-        },
-        {
-            "created_date": "2025-12-17T22:37:56.317980",
+            "created_date": "2025-12-23T17:16:40.144695",
             "files": [],
-            "icon": "kotlin.svg",
-            "index": 9,
-            "name": "kotlin",
-            "path": "assets/contents/kotlin"
+            "icon": "Kotlin.svg",
+            "index": 8,
+            "name": "Kotlin",
+            "path": "assets/contents/Kotlin"
         },
         {
-            "created_date": "2025-12-11T00:47:43.392132",
+            "created_date": "2025-12-23T17:16:46.084732",
             "files": [
                 {
                     "access_date": "2025-12-11T00:47:43.392132",
                     "change_date": "2025-12-11T00:47:43.392132",
                     "exerpt": "Exercises",
-                    "full_path": "assets/contents/llvm/the-c-programming-exercises.txt",
+                    "full_path": "assets/contents/LLVM/the-c-programming-exercises.txt",
                     "hasToc": true,
                     "index": 0,
                     "modified_date": "2025-12-11T00:47:43.392132",
@@ -612,27 +559,27 @@
                     "title": "The C Programming Language Exercises"
                 }
             ],
-            "icon": "llvm.svg",
-            "index": 10,
-            "name": "llvm",
-            "path": "assets/contents/llvm"
+            "icon": "LLVM.svg",
+            "index": 9,
+            "name": "LLVM",
+            "path": "assets/contents/LLVM"
         },
         {
-            "created_date": "2025-12-17T22:37:24.209768",
+            "created_date": "2025-12-23T17:16:59.364813",
             "files": [],
-            "icon": "maths.svg",
-            "index": 11,
-            "name": "maths",
-            "path": "assets/contents/maths"
+            "icon": "Maths.svg",
+            "index": 10,
+            "name": "Maths",
+            "path": "assets/contents/Maths"
         },
         {
-            "created_date": "2025-12-11T00:47:43.392132",
+            "created_date": "2025-12-23T17:17:03.420838",
             "files": [
                 {
                     "access_date": "2025-12-11T00:47:43.392132",
                     "change_date": "2025-12-11T00:47:43.392132",
                     "exerpt": "The minix3",
-                    "full_path": "assets/contents/os/minix-kernel-roadmap.txt",
+                    "full_path": "assets/contents/OS/minix-kernel-roadmap.txt",
                     "hasToc": true,
                     "index": 0,
                     "modified_date": "2025-12-11T00:47:43.392132",
@@ -640,19 +587,19 @@
                     "title": "OS Developer Roadmap"
                 }
             ],
-            "icon": "os.svg",
-            "index": 12,
-            "name": "os",
-            "path": "assets/contents/os"
+            "icon": "OS.svg",
+            "index": 11,
+            "name": "OS",
+            "path": "assets/contents/OS"
         },
         {
-            "created_date": "2025-12-11T00:47:43.392132",
+            "created_date": "2025-12-23T17:17:16.052912",
             "files": [
                 {
                     "access_date": "2025-12-11T00:47:43.392132",
                     "change_date": "2025-12-11T00:47:43.392132",
                     "exerpt": "Topics for reverse engineering",
-                    "full_path": "assets/contents/reverse_engineer/reverse-engineer-roadmap.txt",
+                    "full_path": "assets/contents/Reverse_Engineer/reverse-engineer-roadmap.txt",
                     "hasToc": false,
                     "index": 0,
                     "modified_date": "2025-12-11T00:47:43.392132",
@@ -660,19 +607,19 @@
                     "title": "Reverse Engineering Roadmap"
                 }
             ],
-            "icon": "reverse_engineer.svg",
-            "index": 13,
-            "name": "reverse_engineer",
-            "path": "assets/contents/reverse_engineer"
+            "icon": "Reverse_Engineer.svg",
+            "index": 12,
+            "name": "Reverse_Engineer",
+            "path": "assets/contents/Reverse_Engineer"
         },
         {
-            "created_date": "2025-12-11T00:47:43.396132",
+            "created_date": "2025-12-23T17:17:23.768957",
             "files": [
                 {
                     "access_date": "2025-12-11T00:47:43.396132",
                     "change_date": "2025-12-11T00:47:43.396132",
                     "exerpt": "Swift contents",
-                    "full_path": "assets/contents/swift/basic-swift.txt",
+                    "full_path": "assets/contents/Swift/basic-swift.txt",
                     "hasToc": true,
                     "index": 0,
                     "modified_date": "2025-12-11T00:47:43.396132",
@@ -683,7 +630,7 @@
                     "access_date": "2025-12-11T00:47:43.396132",
                     "change_date": "2025-12-11T00:47:43.396132",
                     "exerpt": "Swift operators",
-                    "full_path": "assets/contents/swift/operators.txt",
+                    "full_path": "assets/contents/Swift/operators.txt",
                     "hasToc": true,
                     "index": 1,
                     "modified_date": "2025-12-11T00:47:43.396132",
@@ -694,7 +641,7 @@
                     "access_date": "2025-12-11T00:47:43.396132",
                     "change_date": "2025-12-11T00:47:43.396132",
                     "exerpt": "Existing platforms for practicing and learning swift",
-                    "full_path": "assets/contents/swift/platforms-learning-swift.txt",
+                    "full_path": "assets/contents/Swift/platforms-learning-swift.txt",
                     "hasToc": true,
                     "index": 2,
                     "modified_date": "2025-12-11T00:47:43.396132",
@@ -705,7 +652,7 @@
                     "access_date": "2025-12-11T00:47:43.396132",
                     "change_date": "2025-12-11T00:47:43.396132",
                     "exerpt": "Swift is general-purpose programming language built using modern approach to safety, performance, and software design patterns",
-                    "full_path": "assets/contents/swift/swift-general-information.txt",
+                    "full_path": "assets/contents/Swift/swift-general-information.txt",
                     "hasToc": true,
                     "index": 3,
                     "modified_date": "2025-12-11T00:47:43.396132",
@@ -716,7 +663,7 @@
                     "access_date": "2025-12-11T00:47:43.396132",
                     "change_date": "2025-12-11T00:47:43.396132",
                     "exerpt": "Well-known resources for learning iOS",
-                    "full_path": "assets/contents/swift/useful-link-swift.txt",
+                    "full_path": "assets/contents/Swift/useful-link-swift.txt",
                     "hasToc": true,
                     "index": 4,
                     "modified_date": "2025-12-11T00:47:43.396132",
@@ -724,19 +671,19 @@
                     "title": "iOS Development Resource"
                 }
             ],
-            "icon": "swift.svg",
-            "index": 14,
-            "name": "swift",
-            "path": "assets/contents/swift"
+            "icon": "Swift.svg",
+            "index": 13,
+            "name": "Swift",
+            "path": "assets/contents/Swift"
         },
         {
-            "created_date": "2025-12-11T00:47:43.396132",
+            "created_date": "2025-12-23T17:17:29.140988",
             "files": [
                 {
                     "access_date": "2025-12-11T00:47:43.396132",
                     "change_date": "2025-12-11T00:47:43.396132",
                     "exerpt": "Tools for advanced developers",
-                    "full_path": "assets/contents/tool/developer-cli-tools.txt",
+                    "full_path": "assets/contents/Tool/developer-cli-tools.txt",
                     "hasToc": true,
                     "index": 0,
                     "modified_date": "2025-12-11T00:47:43.396132",
@@ -744,10 +691,63 @@
                     "title": "Developer CLI Tools"
                 }
             ],
-            "icon": "tool.svg",
+            "icon": "Tool.svg",
+            "index": 14,
+            "name": "Tool",
+            "path": "assets/contents/Tool"
+        },
+        {
+            "created_date": "2025-12-23T17:16:28.692623",
+            "files": [
+                {
+                    "access_date": "2025-12-11T00:47:43.392132",
+                    "change_date": "2025-12-11T00:47:43.392132",
+                    "exerpt": "The Swift Programming Language|Swift is a powerful and intuitive programming language for iOS, iPadOS, macOS, tvOS, and watchOS",
+                    "full_path": "assets/contents/iOS/ios-dev-roadmap.txt",
+                    "hasToc": false,
+                    "index": 0,
+                    "modified_date": "2025-12-11T00:47:43.392132",
+                    "name": "ios-dev-roadmap.txt",
+                    "title": "iOS Developer Roadmap"
+                },
+                {
+                    "access_date": "2025-12-11T00:47:43.392132",
+                    "change_date": "2025-12-11T00:47:43.392132",
+                    "exerpt": "List of tools|Tools to help iOS development process, e.g. json serialization, debugging, code template, auto generation (language, ...), CI/CD",
+                    "full_path": "assets/contents/iOS/ios-dev-topics.txt",
+                    "hasToc": false,
+                    "index": 1,
+                    "modified_date": "2025-12-11T00:47:43.392132",
+                    "name": "ios-dev-topics.txt",
+                    "title": "iOS Development Related Topics"
+                },
+                {
+                    "access_date": "2025-12-11T00:47:43.392132",
+                    "change_date": "2025-12-11T00:47:43.392132",
+                    "exerpt": "Projects with iOS",
+                    "full_path": "assets/contents/iOS/ios_projects.txt",
+                    "hasToc": false,
+                    "index": 2,
+                    "modified_date": "2025-12-11T00:47:43.392132",
+                    "name": "ios_projects.txt",
+                    "title": "iOS Projects"
+                },
+                {
+                    "access_date": "2025-12-11T00:47:43.392132",
+                    "change_date": "2025-12-11T00:47:43.392132",
+                    "exerpt": "To list installed apps and their bundle identifiers on an iPhone using the command line on a Mac, you can use the following steps",
+                    "full_path": "assets/contents/iOS/list-ios-app-bundleid.txt",
+                    "hasToc": false,
+                    "index": 3,
+                    "modified_date": "2025-12-11T00:47:43.392132",
+                    "name": "list-ios-app-bundleid.txt",
+                    "title": "Iphone list installed app bundle ID using MacOS"
+                }
+            ],
+            "icon": "iOS.svg",
             "index": 15,
-            "name": "tool",
-            "path": "assets/contents/tool"
+            "name": "iOS",
+            "path": "assets/contents/iOS"
         }
     ],
     "type": "dashboard",

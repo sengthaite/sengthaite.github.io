@@ -7,8 +7,8 @@ import 'package:sengthaite_blog/shared/markdown_custom/custom_text_node.dart';
 import 'package:sengthaite_blog/shared/markdown_custom/video.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class MarkdownViewDesktop extends StatelessWidget {
-  const MarkdownViewDesktop({
+class MarkdownView extends StatelessWidget {
+  const MarkdownView({
     super.key,
     required this.markdown,
     required this.tocController,

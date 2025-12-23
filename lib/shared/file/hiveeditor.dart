@@ -7,22 +7,23 @@ import 'package:hive_ce/hive.dart';
 part 'hiveeditor.g.dart';
 
 @HiveType(typeId: 4)
-class HiveEditor {
+class HiveEditor extends HiveObject {
   @HiveField(0)
   String? data;
 
-  set putData(Delta obj) {
+  Future<void> saveData(Delta obj) async {
     try {
       data = jsonEncode(obj.toJson());
+      await save();
     } catch (error) {
       debugPrint(error.toString());
     }
   }
 
-  Delta? get getData {
-    if (data == null) return null;
+  Delta? formatDelta(String? rawData) {
+    if (rawData == null) return null;
     try {
-      return jsonDecode(data!);
+      return Delta.fromJson(jsonDecode(rawData));
     } catch (error) {
       debugPrint(error.toString());
     }

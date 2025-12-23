@@ -2,14 +2,13 @@ import 'package:hive_ce/hive.dart';
 import 'package:sengthaite_blog/shared/file/hivedir.dart';
 
 class HiveAPIDirService {
-  final String _boxName = "API_DIR";
+  final String _boxName = "api_dir";
 
   Future<Box<TempDir>> get _box async => await Hive.openBox<TempDir>(_boxName);
 
   Future<TempDir?> get defaultDir async => await findDir("Default");
 
   Future<void> init() async {
-    Hive.init(_boxName);
     var allDirs = await getAllDirs();
     if (allDirs.isEmpty) await newDir(TempDir(dirname: "Default"));
   }

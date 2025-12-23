@@ -13,8 +13,7 @@ import 'package:sengthaite_blog/extensions/datetime_ext.dart';
 import 'package:sengthaite_blog/extensions/string_ext.dart';
 import 'package:sengthaite_blog/features/content/tab_bar_detail_view.dart';
 import 'package:sengthaite_blog/features/navigation/navigation.dart';
-import 'package:sengthaite_blog/features/tool/markdown_view/markdown_view_desktop.dart';
-import 'package:sengthaite_blog/features/tool/markdown_view/markdown_view_mobile.dart';
+import 'package:sengthaite_blog/features/tool/markdown_view/markdown_view.dart';
 import 'package:sengthaite_blog/generated/app_model_frontmatter.dart';
 import 'package:sengthaite_blog/generated/models/app_model.dart';
 import 'package:sengthaite_blog/generated/models/category_tab_item_model.dart';
@@ -113,14 +112,10 @@ class TabBarLayoutContentView extends TabBarLayoutView {
                 child: Builder(
                   builder: (context) => AppLayout(
                     context: context,
-                    defaultWidget: MarkdownViewDesktop(
+                    defaultWidget: MarkdownView(
                       markdown: document?.content ?? '',
                       tocController: tocController,
-                    ),
-                    mobileWidget: MarkdownViewMobile(
-                      markdown: document?.content ?? '',
-                      tocController: tocController,
-                    ),
+                    )
                   ),
                 ),
               ),
