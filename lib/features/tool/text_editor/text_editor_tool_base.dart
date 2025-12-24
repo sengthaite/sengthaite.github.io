@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart';
 import 'package:hive_ce/hive.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:rxdart/subjects.dart';
 import 'package:sengthaite_blog/shared/file/hiveeditor.dart';
 
 class TextEditorTool extends StatefulWidget {
