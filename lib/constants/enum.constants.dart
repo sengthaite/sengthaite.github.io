@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
+
 enum TabSection { content, tool, project }
 
 enum CryptoType {
@@ -57,12 +59,6 @@ enum CryptoType {
   }
 }
 
-/// * "android"
-/// * "fuchsia"
-/// * "ios"
-/// * "linux"
-/// * "macos"
-/// * "windows"
 enum CurrentPlatform {
   android,
   fuchsia,
@@ -70,9 +66,11 @@ enum CurrentPlatform {
   linux,
   macos,
   unknown,
+  web,
   windows;
 
   static CurrentPlatform get type {
+    if (kIsWeb) return CurrentPlatform.web;
     final currentOS = Platform.operatingSystem;
     switch (currentOS) {
       case "android": return CurrentPlatform.android;

@@ -1,9 +1,7 @@
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
-import 'package:provider/provider.dart';
 import 'package:sengthaite_blog/components/category_item_icon.dart';
 import 'package:sengthaite_blog/components/tab_bar_layout_view.dart';
 import 'package:sengthaite_blog/components/tab_bar_navigation_title.dart';
@@ -12,7 +10,6 @@ import 'package:sengthaite_blog/constants/image.constants.dart';
 import 'package:sengthaite_blog/extensions/string_ext.dart';
 import 'package:sengthaite_blog/features/content/tab_bar_detail_view.dart';
 import 'package:sengthaite_blog/features/navigation/navigation.dart';
-import 'package:sengthaite_blog/features/tool/api/api_request_builder.dart';
 import 'package:sengthaite_blog/features/tool/api/api_util_view.dart';
 import 'package:sengthaite_blog/features/tool/api/api_view_desktop.dart';
 import 'package:sengthaite_blog/features/tool/api/api_view_mobile.dart';
@@ -33,8 +30,6 @@ class TabBarLayoutToolView extends TabBarLayoutView {
   final bool hideBottomAppBar;
 
   List<ToolItemModel> toolList() {
-    final HttpRequestBuilder requestBuilder = HttpRequestBuilder.getInstance();
-
     return [
       ToolItemModel(
         index: 0,
@@ -61,36 +56,6 @@ class TabBarLayoutToolView extends TabBarLayoutView {
         index: 0,
         title: "Text editor",
         image: AssetIcons.textEditor.image,
-        // actions: [
-        //   IconButton(
-        //     icon: const Icon(Icons.extension),
-        //     onPressed: () {
-        //       var context = Navigation().tabBarDetailContext;
-        //       if (context == null) return;
-        //       showModalBottomSheet(
-        //         context: context,
-        //         showDragHandle: true,
-        //         builder: (context) {
-        //           return Padding(
-        //             padding: const EdgeInsets.only(
-        //               left: 4,
-        //               right: 4,
-        //               top: 4,
-        //               bottom: 8,
-        //             ),
-        //             child: QuillSimpleToolbar(
-        //               controller: _controller,
-        //               config: QuillSimpleToolbarConfig(
-        //                 toolbarIconAlignment: WrapAlignment.start,
-        //                 toolbarIconCrossAlignment: WrapCrossAlignment.start,
-        //               ),
-        //             ),
-        //           );
-        //         },
-        //       );
-        //     },
-        //   ),
-        // ],
         widgetBuilder: (context) => AppLayout(
           context: context,
           defaultWidget: TextEditorToolDesktop(),

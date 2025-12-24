@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:sengthaite_blog/components/http_response_view.dart';
 import 'package:sengthaite_blog/constants/theme.dart';
 import 'package:sengthaite_blog/extensions/http_ext.dart';
@@ -20,13 +19,13 @@ class _APIViewDesktopState extends State<APIViewDesktop> {
 
   @override
   void dispose() {
-    super.dispose();
     HttpRequestBuilder.getInstance().removeInstance();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    final selectedData = context.watch<HttpRestRequestDatum>();
+    final selectedData = HttpRequestBuilder.getInstance().selectedDatum!;
     allowSubmitRequest = selectedData.urlInputController.text.isNotEmpty;
     return Expanded(
       child: Column(
