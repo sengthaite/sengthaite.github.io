@@ -1,13 +1,17 @@
 
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart';
 import 'package:hive_ce/hive.dart';
+import 'package:rxdart/rxdart.dart';
+import 'package:rxdart/subjects.dart';
 import 'package:sengthaite_blog/shared/file/hiveeditor.dart';
 
 class TextEditorTool extends StatefulWidget {
-  const TextEditorTool({super.key, required this.widget});
+  const TextEditorTool({super.key, required this.config});
 
-  final Widget widget;
+  final QuillEditorConfig config;
 
   @override
   State<TextEditorTool> createState() => _TextEditorToolState();
@@ -16,14 +20,15 @@ class TextEditorTool extends StatefulWidget {
 
 class _TextEditorToolState extends State<TextEditorTool> {
   final _hiveEditor = "hive_editor";
-  final QuillController controller = QuillController.basic();
+  final _controller = QuillController.basic();
+  final _hiveSubject = PublishSubject<Document>();
+  StreamSubscription? _subscription;
 
   Future<Box<HiveEditor>> get _box async =>
       await Hive.openBox<HiveEditor>(_hiveEditor);
 
-  Future<void> saveAsMarkdown() async {
+  Future<void> saveAsMarkdown(Document document) async {
     final box = await _box;
-    final document = controller.document;
     final hiveEditor = HiveEditor();
     box.put("content", hiveEditor);
     hiveEditor.saveData(document.toDelta());
@@ -36,7 +41,7 @@ class _TextEditorToolState extends State<TextEditorTool> {
       if (hiveBox == null) return;
       final data = hiveBox.formatDelta(hiveBox.data);
       if (data != null) {
-        controller.document = Document.fromDelta(data);
+        _controller.document = Document.fromDelta(data);
       }
     } catch (error) {
       debugPrint(error.toString());
@@ -47,17 +52,31 @@ class _TextEditorToolState extends State<TextEditorTool> {
   void initState() {
     super.initState();
     loadMarkdown();
+    _subscription = _hiveSubject.debounceTime(const Duration(milliseconds: 500))
+    .listen((document) async => await saveAsMarkdown(document));
+
+    _controller.addListener(()=> _hiveSubject.add(_controller.document));
   }
 
   @override
   Future<void> dispose() async {
+    _controller.dispose();
+    _subscription?.cancel();
+    _hiveSubject.close();
     super.dispose();
-    await saveAsMarkdown();
-    controller.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return widget.widget;
+    return Column(
+      children: [
+        Expanded(
+          child: QuillEditor.basic(
+            controller: _controller,
+            config: widget.config,
+          ),
+        ),
+      ],
+    );
   }
 }

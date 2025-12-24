@@ -3,32 +3,7 @@ import "package:google_fonts/google_fonts.dart";
 
 class MaterialTheme {
   static TextTheme textTheme() {
-    return TextTheme(
-      bodyLarge: GoogleFonts.openSans(
-        fontSize: 16,
-        fontWeight: FontWeight.w400,
-      ),
-      bodyMedium: GoogleFonts.openSans(
-        fontSize: 14,
-        fontWeight: FontWeight.w400,
-      ),
-      bodySmall: GoogleFonts.openSans(
-        fontSize: 12,
-        fontWeight: FontWeight.w400,
-      ),
-      titleLarge: GoogleFonts.openSans(
-        fontSize: 20,
-        fontWeight: FontWeight.w600,
-      ),
-      titleMedium: GoogleFonts.openSans(
-        fontSize: 18,
-        fontWeight: FontWeight.w500,
-      ),
-      titleSmall: GoogleFonts.openSans(
-        fontSize: 16,
-        fontWeight: FontWeight.w500,
-      ),
-    );
+    return GoogleFonts.notoSansKhmerTextTheme();
   }
 
   static bool isDark(BuildContext context) =>

@@ -18,7 +18,7 @@ dependencies:
   freezed_annotation: ^3.1.0
   json_annotation: ^4.9.0
   flutter_quill: ^11.5.0
-  flutter_svg: ^2.0.10+1
+  flutter_svg: ^2.2.3
   path: ^1.9.0
   google_fonts: ^6.2.1
   video_player: ^2.9.1
@@ -52,6 +52,7 @@ dependencies:
   pdf: ^3.11.3
   file_selector: ^1.1.0
   image: ^4.5.4
+  rxdart: ^0.28.0
 
 dev_dependencies:
   flutter_test:
@@ -88,6 +89,7 @@ flutter:
     # - assets/project_icons/
     - assets/autogen_meta/
     - assets/tool_icons/
+    
 
 targets:
   $default:

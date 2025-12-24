@@ -4,6 +4,7 @@ import 'package:flutter_code_editor/flutter_code_editor.dart';
 import 'package:flutter_highlight/themes/github.dart';
 import 'package:highlight/languages/dart.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:sengthaite_blog/constants/theme.dart';
 import 'package:sengthaite_blog/features/tool/api/api_functions/config/code_snippets.dart';
 import 'package:sengthaite_blog/features/tool/api/api_request_builder.dart';
 import 'package:sengthaite_blog/features/tool/api/api_util_table_data.dart';
@@ -18,6 +19,7 @@ class APIFuncView extends StatefulWidget {
 
 class _APIFuncViewState extends State<APIFuncView> {
   final datum = HttpRequestBuilder.getInstance().selectedDatum;
+  var textTheme = MaterialTheme.textTheme();
 
   @override
   Widget build(BuildContext context) {
@@ -48,29 +50,29 @@ class _APIFuncViewState extends State<APIFuncView> {
                     });
                   },
                 ),
-                const Padding(
+                 Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Text("Function",
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontWeight: FontWeight.bold)),
+                      style: textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.bold)),
                 ),
-                const Padding(
+                 Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Text("Arguments",
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontWeight: FontWeight.bold)),
+                      style: textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.bold)),
                 ),
-                const Padding(
+                 Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Text("Description",
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontWeight: FontWeight.bold)),
+                      style: textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.bold)),
                 ),
-                const Padding(
+                 Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Text("Execute",
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontWeight: FontWeight.bold)),
+                      style: textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.bold)),
                 ),
                 IconButton(
                   splashColor: Colors.transparent,
@@ -103,7 +105,7 @@ class _APIFuncViewState extends State<APIFuncView> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: TextFormField(
-                        style: const TextStyle(
+                        style: textTheme.bodyMedium!.copyWith(
                             fontSize: 12, fontWeight: FontWeight.bold),
                         enableSuggestions: false,
                         maxLines: null,
@@ -131,7 +133,7 @@ class _APIFuncViewState extends State<APIFuncView> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: TextFormField(
-                        style: const TextStyle(fontSize: 12),
+                        style: textTheme.bodyMedium!.copyWith(fontSize: 12),
                         enableSuggestions: false,
                         maxLines: null,
                         keyboardType: TextInputType.multiline,

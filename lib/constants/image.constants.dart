@@ -25,7 +25,7 @@ enum AssetIcons {
   textEditor("text_editor.svg", section: TabSection.tool),
   http("http.svg", section: TabSection.tool),
   cal("calculator.svg", section: TabSection.tool),
-  qrcode("qrcode.svg", section: TabSection.tool);
+  qrcode("qrcode.png", section: TabSection.tool);
 
   const AssetIcons(
     this.imageName, {

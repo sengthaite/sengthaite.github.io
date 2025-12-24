@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sengthaite_blog/constants/theme.dart';
 import 'package:sengthaite_blog/features/tool/api/api_encryption/api_encryption_view.dart';
 import 'package:sengthaite_blog/features/tool/api/api_functions/api_func_view.dart';
 import 'package:sengthaite_blog/features/tool/api/api_log/api_log_view.dart';
@@ -116,6 +117,8 @@ class _APIUtilViewState extends State<APIUtilView> {
 
   SettingCode? activeItemCode;
 
+  var textTheme = MaterialTheme.textTheme();
+
   @override
   Widget build(BuildContext context) {
     var drawerItems = getDrawerItems;
@@ -125,9 +128,9 @@ class _APIUtilViewState extends State<APIUtilView> {
       initialIndex: 0,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text(
+          title: Text(
             "HTTP Request",
-            style: TextStyle(
+            style: textTheme.bodyMedium!.copyWith(
               fontSize: 20,
               fontWeight: FontWeight.bold,
             ),
@@ -139,7 +142,7 @@ class _APIUtilViewState extends State<APIUtilView> {
                 .map((e) => Tab(
                         child: Text(
                       e,
-                      style: const TextStyle(fontSize: 11),
+                      style: textTheme.bodyMedium!.copyWith(fontSize: 11),
                     )))
                 .toList(),
           ),
@@ -150,10 +153,10 @@ class _APIUtilViewState extends State<APIUtilView> {
         drawer: Drawer(
           child: Column(
             children: [
-              const DrawerHeader(
+               DrawerHeader(
                 child: Text(
                   "Settings",
-                  style: TextStyle(
+                  style: textTheme.bodyMedium!.copyWith(
                     fontSize: 18,
                     fontWeight: FontWeight.w400,
                   ),
@@ -168,7 +171,7 @@ class _APIUtilViewState extends State<APIUtilView> {
                 return ListTile(
                   title: Text(
                     item.value.title,
-                    style: TextStyle(
+                    style: textTheme.bodyMedium!.copyWith(
                         color: item.value.isActive ? Colors.blue : null),
                   ),
                   onTap: () {

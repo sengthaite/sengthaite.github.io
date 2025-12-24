@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:sengthaite_blog/constants/theme.dart';
 import 'package:sengthaite_blog/features/tool/api/api_request_builder.dart';
 import 'package:sengthaite_blog/features/tool/api/api_util_table_data.dart';
 
@@ -16,6 +17,7 @@ class _APIUtilParamViewState extends State<APIUtilParamView> {
   var selectedDatum = HttpRequestBuilder.getInstance().selectedDatum;
   var currentRequest =
       HttpRequestBuilder.getInstance().selectedDatum?.paramData;
+  var textTheme = MaterialTheme.textTheme();
 
   @override
   Widget build(BuildContext context) {
@@ -40,23 +42,23 @@ class _APIUtilParamViewState extends State<APIUtilParamView> {
                     setState(() => currentRequest?.selectedAll = value);
                   },
                 ),
-                const Padding(
+                 Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Text("Key",
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontWeight: FontWeight.bold)),
+                      style: textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.bold)),
                 ),
-                const Padding(
+                 Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Text("Value",
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontWeight: FontWeight.bold)),
+                      style: textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.bold)),
                 ),
-                const Padding(
+                 Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Text("Description",
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontWeight: FontWeight.bold)),
+                      style: textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.bold)),
                 ),
                 IconButton(
                   splashColor: Colors.transparent,
@@ -85,7 +87,7 @@ class _APIUtilParamViewState extends State<APIUtilParamView> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: TextFormField(
-                        style: const TextStyle(fontSize: 12),
+                        style: textTheme.labelSmall,
                         enableSuggestions: false,
                         maxLines: null,
                         keyboardType: TextInputType.multiline,
@@ -101,7 +103,7 @@ class _APIUtilParamViewState extends State<APIUtilParamView> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: TextFormField(
-                        style: const TextStyle(fontSize: 12),
+                        style: textTheme.labelSmall,
                         enableSuggestions: false,
                         maxLines: null,
                         keyboardType: TextInputType.multiline,
@@ -117,7 +119,7 @@ class _APIUtilParamViewState extends State<APIUtilParamView> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: TextFormField(
-                        style: const TextStyle(fontSize: 12),
+                        style: textTheme.labelSmall,
                         enableSuggestions: false,
                         maxLines: null,
                         keyboardType: TextInputType.multiline,

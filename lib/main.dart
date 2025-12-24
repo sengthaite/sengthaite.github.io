@@ -6,7 +6,6 @@ import 'package:hive_ce/hive.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:sengthaite_blog/constants/app.constants.dart';
 import 'package:sengthaite_blog/constants/image.constants.dart';
-import 'package:sengthaite_blog/constants/style.constants.dart';
 import 'package:sengthaite_blog/constants/theme.dart';
 import 'package:sengthaite_blog/features/navigation/navigation.dart';
 import 'package:sengthaite_blog/features/tab_bar_layout_content_view.dart';
@@ -76,7 +75,7 @@ class _StateMainView extends State<MainView> {
                       children: [
                         AssetIcons.logo.image,
                         const SizedBox(width: 20),
-                        const Text(appTitle, style: pageTitleTextStyle),
+                        Text(appTitle, style: MaterialTheme.textTheme().titleMedium!.copyWith(fontSize: 28),),
                       ],
                     ),
                     bottom: TabBar(

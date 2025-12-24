@@ -15,6 +15,7 @@
  */
 
 import 'package:flutter/material.dart';
+import 'package:sengthaite_blog/constants/theme.dart';
 
 class BarcodeError extends StatelessWidget {
   const BarcodeError({super.key, required this.message});
@@ -31,7 +32,7 @@ class BarcodeError extends StatelessWidget {
           padding: const EdgeInsets.all(20),
           child: Text(
             message,
-            style: TextStyle(color: Theme.of(context).colorScheme.error),
+            style: MaterialTheme.textTheme().bodyMedium!.copyWith(color: Theme.of(context).colorScheme.error),
           ),
         ),
       ),

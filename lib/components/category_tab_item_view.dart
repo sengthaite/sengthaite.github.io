@@ -4,16 +4,14 @@ import 'package:sengthaite_blog/constants/theme.dart';
 import 'package:sengthaite_blog/generated/models/category_tab_item_model.dart';
 
 class CategoryTabItemView extends StatelessWidget {
-  const CategoryTabItemView({
-    super.key,
-    required this.item,
-  });
+  const CategoryTabItemView({super.key, required this.item});
 
   final CategoryTabItemModel item;
 
   @override
   Widget build(BuildContext context) {
     var colorScheme = MaterialTheme.colorScheme(context);
+    var textTheme = MaterialTheme.textTheme().bodyMedium;
     return Container(
       constraints: const BoxConstraints(maxWidth: 450, minWidth: 400),
       child: Container(
@@ -33,27 +31,21 @@ class CategoryTabItemView extends StatelessWidget {
                   item.title,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
+                  style: textTheme!.copyWith(
                     fontWeight: FontWeight.bold,
                     fontSize: FontSize.large.value,
                     color: colorScheme.onPrimaryContainer,
                   ),
                 ),
-                const SizedBox(
-                  height: 6,
-                ),
+                const SizedBox(height: 6),
                 RichText(
                   softWrap: false,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   text: TextSpan(
-                    style: TextStyle(color: colorScheme.outline),
+                    style: textTheme.copyWith(color: colorScheme.outline),
                     text: "${item.date} | ",
-                    children: [
-                      TextSpan(
-                        text: item.description,
-                      ),
-                    ],
+                    children: [TextSpan(text: item.description)],
                   ),
                 ),
               ],

@@ -30,6 +30,7 @@ class TabBarDetailView extends StatelessWidget {
   Widget build(BuildContext context) {
     return OrientationBuilder(builder: (context, orientation) {
       var colorScheme = MaterialTheme.colorScheme(context);
+      var textStyle = MaterialTheme.textTheme().titleMedium;
       return Scaffold(
         endDrawer: endDrawer,
         appBar: AppBar(
@@ -38,7 +39,7 @@ class TabBarDetailView extends StatelessWidget {
           title: Text(
             softWrap: true,
             title,
-            style: const TextStyle(
+            style: textStyle!.copyWith(
               fontSize: 16,
               fontWeight: FontWeight.bold,
             ),

@@ -15,6 +15,7 @@
  */
 
 import 'package:flutter/material.dart';
+import 'package:sengthaite_blog/constants/theme.dart';
 
 import 'barcode_conf.dart';
 
@@ -28,6 +29,7 @@ class BarcodeInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var textTheme = MaterialTheme.textTheme();
     final bc = conf.barcode;
 
     final charset = StringBuffer();
@@ -48,31 +50,31 @@ class BarcodeInfo extends StatelessWidget {
               children: [
                 TextSpan(
                   text: '${bc.name}\n',
-                  style: const TextStyle(
+                  style: textTheme.bodyMedium!.copyWith(
                       fontWeight: FontWeight.bold, fontSize: 30),
                 ),
-                const TextSpan(
+                 TextSpan(
                   text: '\nDescription:\n',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                  style: textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.bold, fontSize: 20),
                 ),
                 TextSpan(
                   text: '${conf.desc}\n',
                 ),
-                const TextSpan(
+                 TextSpan(
                   text: '\nAccepted data:\n',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                  style: textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.bold, fontSize: 20),
                 ),
                 TextSpan(
                   text: '$charset\n\n',
                 ),
                 TextSpan(
                   text: 'Minimum length: ${bc.minLength}\n',
-                  style: const TextStyle(fontWeight: FontWeight.bold),
+                  style: textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.bold),
                 ),
                 // if (bc.maxLength < Barcode.infiniteMaxLength)
                 TextSpan(
                   text: 'Maximum length: ${bc.maxLength}\n',
-                  style: const TextStyle(fontWeight: FontWeight.bold),
+                  style: textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.bold),
                 ),
               ],
             ),

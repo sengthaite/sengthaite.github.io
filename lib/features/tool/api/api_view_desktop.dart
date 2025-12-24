@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sengthaite_blog/components/http_response_view.dart';
+import 'package:sengthaite_blog/constants/theme.dart';
 import 'package:sengthaite_blog/extensions/http_ext.dart';
 import 'package:sengthaite_blog/extensions/string_ext.dart';
 import 'package:sengthaite_blog/features/tool/api/api_request_builder.dart';
@@ -14,7 +15,7 @@ class APIViewDesktop extends StatefulWidget {
 
 class _APIViewDesktopState extends State<APIViewDesktop> {
   bool allowSubmitRequest = false;
-
+  var textTheme = MaterialTheme.textTheme();
   String? labelText;
 
   @override
@@ -36,7 +37,7 @@ class _APIViewDesktopState extends State<APIViewDesktop> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               DropdownMenu(
-                textStyle: TextStyle(
+                textStyle: textTheme.bodyMedium!.copyWith(
                   fontSize: 14,
                   color: selectedData.methodColor,
                   fontWeight: FontWeight.bold,
@@ -79,9 +80,9 @@ class _APIViewDesktopState extends State<APIViewDesktop> {
                 onPressed: allowSubmitRequest
                     ? () => selectedData.request()
                     : null,
-                child: const Text(
+                child: Text(
                   "Request",
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                  style: textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.bold),
                 ),
               ),
             ],

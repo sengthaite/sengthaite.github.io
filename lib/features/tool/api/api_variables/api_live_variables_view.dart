@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:sengthaite_blog/constants/theme.dart';
 import 'package:sengthaite_blog/features/tool/api/api_request_builder.dart';
 import 'package:sengthaite_blog/features/tool/api/api_util_table_data.dart';
 
@@ -15,6 +16,8 @@ class APILiveVariablesView extends StatefulWidget {
 class _APILiveVariablesViewState extends State<APILiveVariablesView> {
   var currentRequest =
       HttpRequestBuilder.getInstance().selectedDatum?.liveVariableData;
+  var textTheme = MaterialTheme.textTheme();
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -42,23 +45,23 @@ class _APILiveVariablesViewState extends State<APILiveVariablesView> {
                     });
                   },
                 ),
-                const Padding(
+                 Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Text("Key",
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontWeight: FontWeight.bold)),
+                      style: textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.bold),),
                 ),
-                const Padding(
+                 Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Text("Value",
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontWeight: FontWeight.bold)),
+                      style: textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.bold),),
                 ),
-                const Padding(
+                 Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Text("Description",
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontWeight: FontWeight.bold)),
+                      style: textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.bold),),
                 ),
                 IconButton(
                   splashColor: Colors.transparent,
@@ -91,7 +94,7 @@ class _APILiveVariablesViewState extends State<APILiveVariablesView> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: TextFormField(
-                        style: const TextStyle(fontSize: 12),
+                        style: textTheme.labelSmall,
                         enableSuggestions: false,
                         maxLines: null,
                         readOnly: dataRow?.keyReadOnly ?? false,
@@ -106,7 +109,7 @@ class _APILiveVariablesViewState extends State<APILiveVariablesView> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: TextFormField(
-                        style: const TextStyle(fontSize: 12),
+                        style: textTheme.labelSmall,
                         enableSuggestions: false,
                         maxLines: null,
                         readOnly: dataRow?.valueReadOnly ?? false,
@@ -121,7 +124,7 @@ class _APILiveVariablesViewState extends State<APILiveVariablesView> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: TextFormField(
-                        style: const TextStyle(fontSize: 12),
+                        style: textTheme.labelSmall,
                         enableSuggestions: false,
                         maxLines: null,
                         keyboardType: TextInputType.multiline,

@@ -2,6 +2,7 @@ import 'dart:typed_data';
 
 import 'package:file_saver/file_saver.dart';
 import 'package:flutter/material.dart';
+import 'package:sengthaite_blog/constants/theme.dart';
 
 class APIFilenameDialogWidget extends StatefulWidget {
   final Uint8List bytes;
@@ -17,6 +18,7 @@ class APIFilenameDialogWidget extends StatefulWidget {
 
 class _APIFilenameDialogWidgetState extends State<APIFilenameDialogWidget> {
   String downloadName = '';
+  var textTheme = MaterialTheme.textTheme();
 
   void download() async {
     await FileSaver.instance.saveFile(
@@ -32,9 +34,9 @@ class _APIFilenameDialogWidgetState extends State<APIFilenameDialogWidget> {
       content: SingleChildScrollView(
         child: ListBody(
           children: <Widget>[
-            const Text(
+             Text(
               'Download',
-              style: TextStyle(
+              style: textTheme.bodyMedium!.copyWith(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),

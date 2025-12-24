@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sengthaite_blog/components/http_response_view.dart';
+import 'package:sengthaite_blog/constants/theme.dart';
 import 'package:sengthaite_blog/extensions/http_ext.dart';
 import 'package:sengthaite_blog/extensions/string_ext.dart';
 import 'package:sengthaite_blog/features/tool/api/api_request_builder.dart';
@@ -14,6 +15,7 @@ class APIViewMobile extends StatefulWidget {
 
 class _APIViewDesktopState extends State<APIViewMobile> {
   bool allowSubmitRequest = false;
+  var textTheme = MaterialTheme.textTheme();
   Color? methodColor = HttpRequestMethodTypeExtension.methodByDisplay(
     HttpRequestMethodTypeExtension.defaultHttpMethod,
   )?.color;
@@ -42,7 +44,7 @@ class _APIViewDesktopState extends State<APIViewMobile> {
                 children: [
                   DropdownMenu(
                     width: 118,
-                    textStyle: TextStyle(
+                    textStyle: textTheme.bodyMedium!.copyWith(
                       color: methodColor,
                       fontWeight: FontWeight.bold,
                       fontSize: 10,
@@ -70,7 +72,7 @@ class _APIViewDesktopState extends State<APIViewMobile> {
                   Expanded(
                     child: TextFormField(
                       textInputAction: TextInputAction.done,
-                      style: const TextStyle(fontSize: 10,),
+                      style: textTheme.bodyMedium!.copyWith(fontSize: 10,),
                       controller: selectedData.urlInputController,
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
