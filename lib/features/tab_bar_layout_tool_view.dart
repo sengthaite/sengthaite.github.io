@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
@@ -34,13 +36,6 @@ class TabBarLayoutToolView extends TabBarLayoutView {
     final HttpRequestBuilder requestBuilder = HttpRequestBuilder.getInstance();
 
     return [
-      // ToolItemModel(
-      //   index: 0,
-      //   title: "Calculator",
-      //   image: AssetIcons.cal.image,
-      //   widgetBuilder: (context) =>
-      //       AppLayout(context: context, defaultWidget: CalculatorDesktopView()),
-      // ),
       ToolItemModel(
         index: 0,
         title: "QR/Bar Code",
@@ -54,6 +49,13 @@ class TabBarLayoutToolView extends TabBarLayoutView {
         image: AssetIcons.camera.image,
         widgetBuilder: (context) =>
             AppLayout(context: context, defaultWidget: CameraView()),
+        hiddenPlatform: [
+          CurrentPlatform.fuchsia,
+          CurrentPlatform.linux,
+          CurrentPlatform.macos,
+          CurrentPlatform.unknown,
+          CurrentPlatform.windows,
+        ],
       ),
       ToolItemModel(
         index: 0,
@@ -143,20 +145,13 @@ class TabBarLayoutToolView extends TabBarLayoutView {
             },
           ),
         ],
-        widgetBuilder: (context) => MultiProvider(
-          providers: [
-            ChangeNotifierProvider(
-              create: (context) => requestBuilder.selectedDatum,
-            ),
-          ],
-          child: AppLayout(
-            context: context,
-            defaultWidget: Row(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [const APIViewDesktop(), ApiFileManagerView()],
-            ),
-            mobileWidget: const APIViewMobile(),
+        widgetBuilder: (context) => AppLayout(
+          context: context,
+          defaultWidget: Row(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [const APIViewDesktop(), ApiFileManagerView()],
           ),
+          mobileWidget: const APIViewMobile(),
         ),
       ),
     ];
@@ -191,6 +186,13 @@ class TabBarLayoutToolView extends TabBarLayoutView {
   List<TabBarLayoutViewItem> get categories {
     final list = toolList();
     if (list.isEmpty) return [];
-    return list.map((e) => _mapItem(e)).toList();
+    return list
+        .where((each) {
+          var hidden = each.hiddenPlatform;
+          if (hidden == null || hidden.isEmpty) return true;
+          return !hidden.contains(CurrentPlatform.type);
+        })
+        .map((e) => _mapItem(e))
+        .toList();
   }
 }

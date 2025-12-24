@@ -7,7 +7,7 @@ import 'package:uuid/uuid.dart';
 part 'hivedir.g.dart';
 
 @HiveType(typeId: 1)
-class TempDir {
+class TempDir extends HiveObject {
   @HiveField(0)
   final String id;
   @HiveField(1)
@@ -70,7 +70,7 @@ class TempDir {
 }
 
 @HiveType(typeId: 2)
-class TempFile {
+class TempFile extends HiveObject {
   @HiveField(0)
   final String id;
   @HiveField(1)
