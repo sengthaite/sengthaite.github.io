@@ -21,8 +21,8 @@ import 'package:barcode_image/barcode_image.dart';
 import 'package:file_selector/file_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:image/image.dart' as im;
-import 'package:pdf/pdf.dart';
-import 'package:pdf/widgets.dart' as pw;
+// import 'package:pdf/pdf.dart';
+// import 'package:pdf/widgets.dart' as pw;
 
 import 'barcode_conf.dart';
 
@@ -60,73 +60,73 @@ class Download extends StatelessWidget {
         children: [
           _button(Icons.file_download, 'SVG', _exportSvg),
           _button(Icons.file_download, 'PNG', _exportPng),
-          _button(Icons.file_download, 'PDF', _exportPdf),
+          // _button(Icons.file_download, 'PDF', _exportPdf),
         ],
       ),
     );
   }
 
-  Future<void> _exportPdf() async {
-    final bc = conf.barcode;
-    final pdf = pw.Document(
-      author: 'David PHAM-VAN',
-      keywords: 'barcode, dart, ${conf.barcode.name}',
-      subject: conf.barcode.name,
-      title: 'Barcode demo',
-    );
-    const scale = 5.0;
+  // Future<void> _exportPdf() async {
+  //   final bc = conf.barcode;
+  //   final pdf = pw.Document(
+  //     author: 'David PHAM-VAN',
+  //     keywords: 'barcode, dart, ${conf.barcode.name}',
+  //     subject: conf.barcode.name,
+  //     title: 'Barcode demo',
+  //   );
+  //   const scale = 5.0;
 
-    pdf.addPage(pw.Page(
-      build: (context) => pw.Center(
-        child: pw.Column(children: [
-          pw.Header(text: bc.name, level: 2),
-          pw.Spacer(),
-          pw.BarcodeWidget(
-            barcode: bc,
-            data: conf.normalizedData,
-            width: conf.width * PdfPageFormat.mm / scale,
-            height: conf.height * PdfPageFormat.mm / scale,
-            textStyle: pw.TextStyle(
-              fontSize: conf.fontSize * PdfPageFormat.mm / scale,
-            ),
-          ),
-          pw.Spacer(),
-          pw.Paragraph(text: conf.desc),
-          pw.Spacer(),
-          pw.Align(
-            alignment: pw.Alignment.centerRight,
-            child: pw.RichText(
-              text: pw.TextSpan(
-                text: 'Pdf file built using: ',
-                children: [
-                  pw.TextSpan(
-                    text: 'https://pub.dev/packages/pdf',
-                    annotation: pw.AnnotationUrl(
-                      'https://pub.dev/packages/pdf',
-                    ),
-                    style: const pw.TextStyle(
-                      color: PdfColors.blue,
-                      decoration: pw.TextDecoration.underline,
-                    ),
-                  )
-                ],
-              ),
-            ),
-          ),
-        ]),
-      ),
-    ));
+  //   pdf.addPage(pw.Page(
+  //     build: (context) => pw.Center(
+  //       child: pw.Column(children: [
+  //         pw.Header(text: bc.name, level: 2),
+  //         pw.Spacer(),
+  //         pw.BarcodeWidget(
+  //           barcode: bc,
+  //           data: conf.normalizedData,
+  //           width: conf.width * PdfPageFormat.mm / scale,
+  //           height: conf.height * PdfPageFormat.mm / scale,
+  //           textStyle: pw.TextStyle(
+  //             fontSize: conf.fontSize * PdfPageFormat.mm / scale,
+  //           ),
+  //         ),
+  //         pw.Spacer(),
+  //         pw.Paragraph(text: conf.desc),
+  //         pw.Spacer(),
+  //         pw.Align(
+  //           alignment: pw.Alignment.centerRight,
+  //           child: pw.RichText(
+  //             text: pw.TextSpan(
+  //               text: 'Pdf file built using: ',
+  //               children: [
+  //                 pw.TextSpan(
+  //                   text: 'https://pub.dev/packages/pdf',
+  //                   annotation: pw.AnnotationUrl(
+  //                     'https://pub.dev/packages/pdf',
+  //                   ),
+  //                   style: const pw.TextStyle(
+  //                     color: PdfColors.blue,
+  //                     decoration: pw.TextDecoration.underline,
+  //                   ),
+  //                 )
+  //               ],
+  //             ),
+  //           ),
+  //         ),
+  //       ]),
+  //     ),
+  //   ));
 
-    final location = await getSaveLocation();
-    if (location != null) {
-      final file = XFile.fromData(
-        await pdf.save(),
-        name: '${bc.name}.pdf',
-        mimeType: 'application/pdf',
-      );
-      await file.saveTo(location.path);
-    }
-  }
+  //   final location = await getSaveLocation();
+  //   if (location != null) {
+  //     final file = XFile.fromData(
+  //       await pdf.save(),
+  //       name: '${bc.name}.pdf',
+  //       mimeType: 'application/pdf',
+  //     );
+  //     await file.saveTo(location.path);
+  //   }
+  // }
 
   Future<void> _exportPng() async {
     final bc = conf.barcode;

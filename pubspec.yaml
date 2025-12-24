@@ -9,7 +9,6 @@ dependencies:
   flutter:
     sdk: flutter
 
-  math_expressions: ^2.5.0
   uuid: ^4.5.1
   material_design_icons_flutter: ^7.0.7296
   intl: ^0.20.2
@@ -26,7 +25,7 @@ dependencies:
   # flutter_math_fork: ^0.7.2
   markdown: ^7.2.2
   html: ^0.15.4
-  provider: ^6.1.2
+  #provider: ^6.1.2
   dio: ^5.5.0+1
   # flutter_code_editor: ^0.3.2
   modal_bottom_sheet: ^3.0.0
@@ -49,17 +48,17 @@ dependencies:
   yaml: ^3.1.3
   barcode_widget: ^2.0.4
   barcode_image: ^2.0.3
-  pdf: ^3.11.3
+  # pdf: ^3.11.3
   file_selector: ^1.1.0
-  image: ^4.5.4
+  image: ^4.7.2
   rxdart: ^0.28.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
+  # math_expressions: ^3.1.0
   flutter_lints: ^6.0.0
-  # hive_generator: ^2.0.1
   build_runner: ^2.4.9
   json_serializable: ^6.11.1
   freezed: ^3.2.3
@@ -70,22 +69,22 @@ flutter:
     - assets/
     - assets/content_icons/
     - assets/contents/
-    - assets/contents/Database/
-    - assets/contents/Biography/
-    - assets/contents/General/
-    - assets/contents/CSharp/
-    - assets/contents/LLVM/
-    - assets/contents/Angular/
-    - assets/contents/Kotlin/
-    - assets/contents/CLI/
-    - assets/contents/Reverse_Engineer/
-    - assets/contents/iOS/
-    - assets/contents/Swift/
-    - assets/contents/Android/
-    - assets/contents/Maths/
-    - assets/contents/OS/
-    - assets/contents/Cambodia/
-    - assets/contents/Tool/
+    - assets/contents/database/
+    - assets/contents/biography/
+    - assets/contents/general/
+    - assets/contents/csharp/
+    - assets/contents/llvm/
+    - assets/contents/angular/
+    - assets/contents/kotlin/
+    - assets/contents/cli/
+    - assets/contents/reverse_engineer/
+    - assets/contents/ios/
+    - assets/contents/swift/
+    - assets/contents/android/
+    - assets/contents/maths/
+    - assets/contents/os/
+    - assets/contents/cambodia/
+    - assets/contents/tool/
     # - assets/project_icons/
     - assets/autogen_meta/
     - assets/tool_icons/
