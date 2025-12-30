@@ -80,7 +80,7 @@ def contentDir(path):
     return finalResult
 
 
-autogenPath = Path("assets/autogen_meta")
+autogenPath = Path("autogen_meta")
 autogenPath.mkdir(parents=True, exist_ok=True)
 
 dashboardData = {
@@ -105,5 +105,5 @@ dashboardData["data"] = list(
     )
 )
 
-with open("assets/autogen_meta/data_content.json", "w") as out_file:
+with open("autogen_meta/data_content.json", "w") as out_file:
     json.dump(dashboardData, out_file, sort_keys=True, indent=4, ensure_ascii=False)
