@@ -39,7 +39,7 @@ def content_dir_markdown(path):
                     "name": entry.name,
                     "title": post.get("title", ""),
                     "exerpt": post.get("exerpt", ""),
-                    "full_path": "assets/" + entry.path,
+                    "full_path": entry.path,
                     "access_date": datetime.datetime.fromtimestamp(
                         stat_result.st_atime
                     ).isoformat(),
