@@ -79,7 +79,7 @@ class TabBarLayoutContentView extends TabBarLayoutView {
       description: data.exerpt ?? 'No description available.',
       onTap: () async {
         var document = await _getMarkdownFromPath(data.fullPath);
-        TocController? tocController = data.hasToc ?? false
+        TocController tocController = data.hasToc ?? false
             ? (TocController()..setTocList([
                 Toc(node: HeadingNode(const H1Config(), WidgetVisitor())),
               ]))
@@ -117,7 +117,7 @@ class TabBarLayoutContentView extends TabBarLayoutView {
                           Expanded(
                             child: TocWidget(
                               physics: BouncingScrollPhysics(),
-                              controller: tocController!,
+                              controller: tocController,
                             ),
                           ),
                         ],
