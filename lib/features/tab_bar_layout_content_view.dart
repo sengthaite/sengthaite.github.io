@@ -51,6 +51,21 @@ class TabBarLayoutContentView extends TabBarLayoutView {
       result['content'] = parseResult.content;
       return AppModelFrontmatter.fromJson(result);
     } catch (error) {
+      showDialog(
+        context: Navigation().navigatorKey.currentContext!,
+        builder: (context) {
+          return AlertDialog(
+            title: Text('Error'),
+            content: Text('Failed to load document at $path.\nError: $error'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(),
+                child: Text('OK'),
+              ),
+            ],
+          );
+        },
+      );
       return Future(() => AppModelFrontmatter());
     }
   }
@@ -115,9 +130,9 @@ class TabBarLayoutContentView extends TabBarLayoutView {
                   builder: (context) => AppLayout(
                     context: context,
                     defaultWidget: MarkdownView(
-                      markdown: document?.content ?? '',
+                      markdown: document?.content ?? 'NA',
                       tocController: tocController,
-                    )
+                    ),
                   ),
                 ),
               ),
