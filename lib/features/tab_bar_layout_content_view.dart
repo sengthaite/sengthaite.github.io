@@ -66,7 +66,7 @@ class TabBarLayoutContentView extends TabBarLayoutView {
           );
         },
       );
-      return Future(() => AppModelFrontmatter());
+      return Future(() => AppModelFrontmatter.fromJson({'content': content}));
     }
   }
 
