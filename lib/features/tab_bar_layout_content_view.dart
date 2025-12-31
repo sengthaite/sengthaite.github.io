@@ -83,7 +83,7 @@ class TabBarLayoutContentView extends TabBarLayoutView {
             ? (TocController()..setTocList([
                 Toc(node: HeadingNode(const H1Config(), WidgetVisitor())),
               ]))
-            : null;
+            : TocController();
         Navigation().contentTabState?.addItem(
           TabBarNavigationTitle(
             title: title,
