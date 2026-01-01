@@ -1,7 +1,7 @@
 .PHONY: all check autogen rebuild build_runner deploy pip_install build_web
 
 build_web:
-	flutter build web --base-href=/ --no-wasm-dry-run
+	flutter build web --base-href=/ --wasm --optimization-level=2
 
 autogen:
 	python3 ./scripts/autogen.py
