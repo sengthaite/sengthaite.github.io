@@ -1,4 +1,7 @@
-.PHONY: all check autogen rebuild build_runner deploy pip_install
+.PHONY: all check autogen rebuild build_runner deploy pip_install build_web
+
+build_web:
+	flutter build web --base-href=/ --no-wasm-dry-run
 
 autogen:
 	python3 ./scripts/autogen.py
@@ -17,10 +20,10 @@ check:
 
 add_assets:
 	asset_manager add
- 
+
 all: clean autogen build_runner
 
 deploy: clean all
- 	# flutter pub global run dependency_validator
+	# flutter pub global run dependency_validator
 	flutter pub global run peanut --extra-args --base-href=/ --no-wasm --release
 	git push origin --set-upstream gh-pages

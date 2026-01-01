@@ -1,4 +1,8 @@
 {
   "makefile.configureOnOpen": false,
-  "python.terminal.activateEnvironment": false
+  "python.terminal.activateEnvironment": false,
+  "cSpell.words": [
+    "allprojects",
+    "subprojects"
+  ]
 }
