@@ -48,24 +48,9 @@ class TabBarLayoutContentView extends TabBarLayoutView {
     try {
       var parseResult = fm.parse(content);
       var result = convertYamlMapToMap(parseResult.data);
-      result['content'] = parseResult.content;
+      result['content'] = parseResult.content ?? content;
       return AppModelFrontmatter.fromJson(result);
     } catch (error) {
-      showDialog(
-        context: Navigation().navigatorKey.currentContext!,
-        builder: (context) {
-          return AlertDialog(
-            title: Text('Error'),
-            content: Text('Failed to load document at $path.\nError: $error'),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.of(context).pop(),
-                child: Text('OK'),
-              ),
-            ],
-          );
-        },
-      );
       return Future(() => AppModelFrontmatter.fromJson({'content': content}));
     }
   }
