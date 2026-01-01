@@ -1,7 +1,11 @@
+import 'dart:io' as io;
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_quill/flutter_quill.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:path/path.dart' as path;
 import 'package:sengthaite_blog/components/category_item_icon.dart';
 import 'package:sengthaite_blog/components/tab_bar_layout_view.dart';
 import 'package:sengthaite_blog/components/tab_bar_navigation_title.dart';
@@ -24,10 +28,36 @@ import 'package:sengthaite_blog/shared/app.layout.dart';
 import 'tool/api/api_file_manager_view.dart';
 
 class TabBarLayoutToolView extends TabBarLayoutView {
-  const TabBarLayoutToolView({super.key, required this.hideBottomAppBar})
+  TabBarLayoutToolView({super.key, required this.hideBottomAppBar})
     : super(section: TabSection.tool, hideBottomBar: hideBottomAppBar);
 
   final bool hideBottomAppBar;
+
+  @override
+  void onDispose() {
+    _quillController.dispose();
+    super.onDispose();
+  }
+
+  final QuillController _quillController = QuillController.basic(
+    config: QuillControllerConfig(
+      clipboardConfig: QuillClipboardConfig(
+        enableExternalRichPaste: true,
+        onImagePaste: (imageBytes) async {
+          if (kIsWeb) {
+            return null;
+          }
+          final newFileName =
+              'image-file-${DateTime.now().toIso8601String()}.png';
+          final newPath = path.join(io.Directory.systemTemp.path, newFileName);
+          final file = await io.File(
+            newPath,
+          ).writeAsBytes(imageBytes, flush: true);
+          return file.path;
+        },
+      ),
+    ),
+  );
 
   List<ToolItemModel> toolList() {
     return [
@@ -56,10 +86,42 @@ class TabBarLayoutToolView extends TabBarLayoutView {
         index: 0,
         title: "Text editor",
         image: AssetIcons.textEditor.image,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.extension),
+            onPressed: () {
+              var context = Navigation().tabBarDetailContext;
+              if (context == null) return;
+              showModalBottomSheet(
+                context: context,
+                showDragHandle: true,
+                builder: (context) {
+                  return Padding(
+                    padding: const EdgeInsets.only(
+                      left: 4,
+                      right: 4,
+                      top: 4,
+                      bottom: 8,
+                    ),
+                    child: QuillSimpleToolbar(
+                      controller: _quillController,
+                      config: QuillSimpleToolbarConfig(
+                        toolbarIconAlignment: WrapAlignment.start,
+                        toolbarIconCrossAlignment: WrapCrossAlignment.start,
+                      ),
+                    ),
+                  );
+                },
+              );
+            },
+          ),
+        ],
         widgetBuilder: (context) => AppLayout(
           context: context,
-          defaultWidget: TextEditorToolDesktop(),
-          mobileWidget: TextEditorToolMobile(),
+          defaultWidget: TextEditorToolDesktop(
+            quillController: _quillController,
+          ),
+          mobileWidget: TextEditorToolMobile(quillController: _quillController),
         ),
       ),
       ToolItemModel(
