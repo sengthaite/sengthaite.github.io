@@ -20,19 +20,22 @@ class AppSettingsAdapter extends TypeAdapter<AppSettings> {
       id: fields[0] as String?,
       createdDate: fields[1] as DateTime?,
       isFullScreenMode: fields[2] as bool?,
+      locale: fields[3] as Locale?,
     );
   }
 
   @override
   void write(BinaryWriter writer, AppSettings obj) {
     writer
-      ..writeByte(3)
+      ..writeByte(4)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
       ..write(obj.createdDate)
       ..writeByte(2)
-      ..write(obj.isFullScreenMode);
+      ..write(obj.isFullScreenMode)
+      ..writeByte(3)
+      ..write(obj.locale);
   }
 
   @override

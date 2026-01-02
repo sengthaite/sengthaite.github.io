@@ -4,7 +4,7 @@ gen_l10n:
 	flutter gen-l10n
 
 build_web:
-	flutter build web --base-href=/ --wasm --optimization-level=2
+	flutter build web --base-href=/ --wasm
 
 autogen:
 	python3 ./scripts/autogen.py
@@ -26,7 +26,7 @@ add_assets:
 
 all: clean autogen build_runner
 
-deploy: clean all
+deploy: clean all gen_l10n
 	# flutter pub global run dependency_validator
 	flutter pub global run peanut --extra-args --base-href=/ --no-wasm --release
 	git push origin --set-upstream gh-pages
