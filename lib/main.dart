@@ -39,7 +39,10 @@ class MainView extends StatefulWidget {
 }
 
 class _StateMainView extends State<MainView> {
-  AppSettings appSettings = AppSettings();
+  late AppSettings appSettings;
+
+  Future<Box<AppSettings>> get _box async =>
+      await Hive.openBox<AppSettings>(hiveAppSettings);
 
   final List<DropdownMenuEntry<String>> menuEntries =
       <DropdownMenuEntry<String>>[
@@ -69,8 +72,19 @@ class _StateMainView extends State<MainView> {
         ),
       ];
 
+  void loadSaveSettings() async {
+    var box = await _box;
+    appSettings = box.get("appSettings") ?? AppSettings();
+  }
+
+  void saveAppSettings() async {
+    var box = await _box;
+    await box.put("appSettings", appSettings);
+  }
+
   @override
   void initState() {
+    loadSaveSettings();
     super.initState();
   }
 
@@ -80,8 +94,8 @@ class _StateMainView extends State<MainView> {
     MaterialTheme theme = MaterialTheme();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      // locale: DevicePreview.locale(context),
-      locale: const Locale('km', 'KH'),
+      locale: DevicePreview.locale(context),
+      // locale: const Locale('km', 'KH'),
       builder: DevicePreview.appBuilder,
       localizationsDelegates: const [
         FlutterQuillLocalizations.delegate,
@@ -158,7 +172,9 @@ class _StateMainView extends State<MainView> {
             floatingActionButton: FloatingActionButton.small(
               elevation: 1,
               onPressed: () => setState(() {
-                appSettings.isFullScreenMode = !appSettings.isFullScreenMode;
+                var isFullScreenMode = !appSettings.isFullScreenMode;
+                appSettings.isFullScreenMode = isFullScreenMode;
+                saveAppSettings();
               }),
               child: Icon(
                 appSettings.isFullScreenMode
