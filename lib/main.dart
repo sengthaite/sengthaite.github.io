@@ -39,7 +39,7 @@ class MainView extends StatefulWidget {
 }
 
 class _StateMainView extends State<MainView> {
-  late AppSettings appSettings;
+  AppSettings? appSettings;
 
   Future<Box<AppSettings>> get _box async =>
       await Hive.openBox<AppSettings>(hiveAppSettings);
@@ -72,6 +72,10 @@ class _StateMainView extends State<MainView> {
         ),
       ];
 
+  bool get isFullScreenModel {
+    return appSettings?.isFullScreenMode ?? false;
+  }
+
   void loadSaveSettings() async {
     var box = await _box;
     appSettings = box.get("appSettings") ?? AppSettings();
@@ -79,7 +83,7 @@ class _StateMainView extends State<MainView> {
 
   void saveAppSettings() async {
     var box = await _box;
-    await box.put("appSettings", appSettings);
+    await box.put("appSettings", appSettings ?? AppSettings());
   }
 
   @override
@@ -122,7 +126,7 @@ class _StateMainView extends State<MainView> {
           initialIndex: 1,
           length: 3,
           child: Scaffold(
-            appBar: appSettings.isFullScreenMode
+            appBar: isFullScreenModel
                 ? null
                 : AppBar(
                     title: Row(
@@ -159,25 +163,25 @@ class _StateMainView extends State<MainView> {
               physics: const NeverScrollableScrollPhysics(),
               children: [
                 TabBarLayoutContentView(
-                  hideBottomAppBar: appSettings.isFullScreenMode,
+                  hideBottomAppBar: isFullScreenModel,
                 ),
                 TabBarLayoutToolView(
-                  hideBottomAppBar: appSettings.isFullScreenMode,
+                  hideBottomAppBar: isFullScreenModel,
                 ),
                 TabBarLayoutProjectView(
-                  hideBottomAppBar: appSettings.isFullScreenMode,
+                  hideBottomAppBar: isFullScreenModel,
                 ),
               ],
             ),
             floatingActionButton: FloatingActionButton.small(
               elevation: 1,
               onPressed: () => setState(() {
-                var isFullScreenMode = !appSettings.isFullScreenMode;
-                appSettings.isFullScreenMode = isFullScreenMode;
+                var isFullScreenMode = !isFullScreenModel;
+                appSettings?.isFullScreenMode = isFullScreenMode;
                 saveAppSettings();
               }),
               child: Icon(
-                appSettings.isFullScreenMode
+                isFullScreenModel
                     ? MdiIcons.arrowExpand
                     : MdiIcons.arrowExpandAll,
               ),
