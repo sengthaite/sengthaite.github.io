@@ -48,10 +48,10 @@ class TabBarLayoutContentView extends TabBarLayoutView {
     try {
       var parseResult = fm.parse(content);
       var result = convertYamlMapToMap(parseResult.data);
-      result['content'] = parseResult.content;
+      result['content'] = parseResult.content ?? content;
       return AppModelFrontmatter.fromJson(result);
     } catch (error) {
-      return Future(() => AppModelFrontmatter());
+      return Future(() => AppModelFrontmatter.fromJson({'content': content}));
     }
   }
 
@@ -64,11 +64,11 @@ class TabBarLayoutContentView extends TabBarLayoutView {
       description: data.exerpt ?? 'No description available.',
       onTap: () async {
         var document = await _getMarkdownFromPath(data.fullPath);
-        TocController? tocController = data.hasToc ?? false
+        TocController tocController = data.hasToc ?? false
             ? (TocController()..setTocList([
                 Toc(node: HeadingNode(const H1Config(), WidgetVisitor())),
               ]))
-            : null;
+            : TocController();
         Navigation().contentTabState?.addItem(
           TabBarNavigationTitle(
             title: title,
@@ -102,7 +102,7 @@ class TabBarLayoutContentView extends TabBarLayoutView {
                           Expanded(
                             child: TocWidget(
                               physics: BouncingScrollPhysics(),
-                              controller: tocController!,
+                              controller: tocController,
                             ),
                           ),
                         ],
@@ -115,9 +115,9 @@ class TabBarLayoutContentView extends TabBarLayoutView {
                   builder: (context) => AppLayout(
                     context: context,
                     defaultWidget: MarkdownView(
-                      markdown: document?.content ?? '',
+                      markdown: document?.content ?? 'NA',
                       tocController: tocController,
-                    )
+                    ),
                   ),
                 ),
               ),

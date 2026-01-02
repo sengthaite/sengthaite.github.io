@@ -1,19 +1,3 @@
-/*
- * Copyright (C) 2020, David PHAM-VAN <dev.nfet.net@gmail.com>
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 import 'package:flutter/material.dart';
 import 'package:sengthaite_blog/constants/theme.dart';
 
@@ -57,17 +41,16 @@ class DropdownPreferenceState<T> extends State<DropdownPreference> {
       title: Text(widget.title),
       subtitle: widget.desc == null ? null : Text(widget.desc!),
       trailing: DropdownButton<T>(
-        items: widget.values.keys.map<DropdownMenuItem<T>>((dynamic val) {
-          return DropdownMenuItem<T>(
-            value: val,
-            child: Text(
-              widget.values[val]!,
-              textAlign: TextAlign.end,
+        items:
+            widget.values.keys.map<DropdownMenuItem<T>>((dynamic val) {
+              return DropdownMenuItem<T>(
+                value: val,
+                child: Text(widget.values[val]!, textAlign: TextAlign.end),
+              );
+            }).toList()..sort(
+              (a, b) =>
+                  widget.values[a.value]!.compareTo(widget.values[b.value]!),
             ),
-          );
-        }).toList()
-          ..sort((a, b) =>
-              widget.values[a.value]!.compareTo(widget.values[b.value]!)),
         onChanged: (newVal) async {
           widget.onWrite(context, newVal);
         },
@@ -124,15 +107,20 @@ class TextPreferenceState extends State<TextPreference> {
     }
 
     return ListTile(
-      leading: Text(widget.title,
-          style: widget.enabled
-              ? null
-              : textTheme.bodyMedium!.copyWith(color: Theme.of(context).disabledColor)),
+      leading: Text(
+        widget.title,
+        style: widget.enabled
+            ? null
+            : textTheme.bodyMedium!.copyWith(
+                color: Theme.of(context).disabledColor,
+              ),
+      ),
       subtitle: widget.desc == null ? null : Text(widget.desc!),
       title: TextField(
         controller: controller,
-        onChanged:
-            widget.enabled ? (val) => widget.onWrite(context, val) : null,
+        onChanged: widget.enabled
+            ? (val) => widget.onWrite(context, val)
+            : null,
       ),
     );
   }

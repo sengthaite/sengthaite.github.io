@@ -28,52 +28,48 @@ class TabBarDetailView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return OrientationBuilder(builder: (context, orientation) {
-      var colorScheme = MaterialTheme.colorScheme(context);
-      var textStyle = MaterialTheme.textTheme().titleMedium;
-      return Scaffold(
-        endDrawer: endDrawer,
-        appBar: AppBar(
-          surfaceTintColor: Colors.transparent,
-          actions: actions,
-          title: Text(
-            softWrap: true,
-            title,
-            style: textStyle!.copyWith(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
+    return OrientationBuilder(
+      builder: (context, orientation) {
+        var colorScheme = MaterialTheme.colorScheme(context);
+        var textStyle = MaterialTheme.textTheme().titleMedium;
+        return Scaffold(
+          endDrawer: endDrawer,
+          appBar: AppBar(
+            surfaceTintColor: Colors.transparent,
+            actions: actions,
+            title: Text(
+              softWrap: true,
+              title,
+              style: textStyle!.copyWith(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            leading: IconButton(
+              color: colorScheme.onBackground,
+              hoverColor: colorScheme.surfaceDim,
+              onPressed: onBackPressed,
+              icon: Icon(MdiIcons.arrowLeft, color: colorScheme.primary),
             ),
           ),
-          leading: IconButton(
-            color: colorScheme.onBackground,
-            hoverColor: colorScheme.surfaceDim,
-            onPressed: onBackPressed,
-            icon: Icon(
-              MdiIcons.arrowLeft,
-              color: colorScheme.primary,
-            ),
-          ),
-        ),
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            if (widget != null)
-              Expanded(
-                child: Container(
-                    color: Theme.of(context).cardColor, child: widget),
-              )
-            else if (widgetBuilder != null)
-              Expanded(
-                child: Builder(
-                  builder: widgetBuilder!,
-                ),
-              )
-            else if (futureBuilder != null)
-              Expanded(child: futureBuilder!),
-            if (items != null)
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Padding(
+          body: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              if (widget != null)
+                Expanded(
+                  child: Container(
+                    color: Theme.of(context).cardColor,
+                    child: widget,
+                  ),
+                )
+              else if (widgetBuilder != null)
+                Expanded(child: Builder(builder: widgetBuilder!))
+              else if (futureBuilder != null)
+                Expanded(child: futureBuilder!),
+              if (items != null)
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Padding(
                       padding: const EdgeInsets.all(8),
                       child: Wrap(
                         alignment: orientation == Orientation.landscape
@@ -90,12 +86,14 @@ class TabBarDetailView extends StatelessWidget {
                               ),
                             )
                             .toList(),
-                      )),
+                      ),
+                    ),
+                  ),
                 ),
-              )
-          ],
-        ),
-      );
-    });
+            ],
+          ),
+        );
+      },
+    );
   }
 }

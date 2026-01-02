@@ -15,69 +15,69 @@ def has_headings(markdown_text):
     return bool(re.search(heading_pattern, markdown_text, flags=re.MULTILINE))
 
 
-def contentDirMarkdown(path):
-    contentResult = sorted(
+def content_dir_markdown(path):
+    content_result = sorted(
         filter(
             lambda path: path.name.endswith(".txt"),
             os.scandir(path),
         ),
         key=lambda x: (x.is_file(), x.name),
     )
-    finalResult = []
-    for result in enumerate(contentResult):
+    final_result = []
+    for result in enumerate(content_result):
         index = result[0]
         entry = result[1]
-        statResult = entry.stat()
+        stat_result = entry.stat()
         with open(entry.path, "r") as file:
-            fileContent = file.read()
-            hasHeading = has_headings(fileContent)
-            post = frontmatter.loads(fileContent)
-            finalResult.append(
+            file_content = file.read()
+            has_heading = has_headings(file_content)
+            post = frontmatter.loads(file_content)
+            final_result.append(
                 {
                     "index": index,
-                    "hasToc": hasHeading,
+                    "hasToc": has_heading,
                     "name": entry.name,
                     "title": post.get("title", ""),
                     "exerpt": post.get("exerpt", ""),
                     "full_path": entry.path,
                     "access_date": datetime.datetime.fromtimestamp(
-                        statResult.st_atime
+                        stat_result.st_atime
                     ).isoformat(),
                     "modified_date": datetime.datetime.fromtimestamp(
-                        statResult.st_mtime
+                        stat_result.st_mtime
                     ).isoformat(),
                     "change_date": datetime.datetime.fromtimestamp(
-                        statResult.st_ctime
+                        stat_result.st_ctime
                     ).isoformat(),
                 }
             )
-    return finalResult
+    return final_result
 
 
-def contentDir(path):
-    contentResult = sorted(os.scandir(path), key=lambda x: (x.is_dir(), x.name))
-    finalResult = []
-    for result in enumerate(contentResult):
+def content_dir(path):
+    content_result = sorted(os.scandir(path), key=lambda x: (x.is_dir(), x.name))
+    final_result = []
+    for result in enumerate(content_result):
         index = result[0]
         entry = result[1]
-        statResult = entry.stat()
-        finalResult.append(
+        stat_result = entry.stat()
+        final_result.append(
             {
                 "index": index,
                 "name": entry.name,
                 "path": entry.path,
                 "access_date": datetime.datetime.fromtimestamp(
-                    statResult.st_atime
+                    stat_result.st_atime
                 ).isoformat(),
                 "modified_date": datetime.datetime.fromtimestamp(
-                    statResult.st_mtime
+                    stat_result.st_mtime
                 ).isoformat(),
                 "change_date": datetime.datetime.fromtimestamp(
-                    statResult.st_ctime
+                    stat_result.st_ctime
                 ).isoformat(),
             }
         )
-    return finalResult
+    return final_result
 
 
 autogenPath = Path("autogen_meta")
@@ -90,20 +90,18 @@ dashboardData = {
     "type": "dashboard",
     "data": [],
 }
-contentResult = contentDir(ContentPath)
-dashboardData["data"] = list(
-    map(
-        lambda res: {
-            "index": res.get("index"),
-            "name": res.get("name"),
-            "path": res.get("path"),
-            "created_date": res.get("change_date"),
-            "icon": res.get("name") + ".svg",
-            "files": contentDirMarkdown(res.get("path", "")),
-        },
-        contentResult,
-    )
-)
+content_result = content_dir(ContentPath)
+dashboardData["data"] = [
+    {
+        "index": res.get("index"),
+        "name": res.get("name"),
+        "path": res.get("path"),
+        "created_date": res.get("change_date"),
+        "icon": res.get("name") + ".svg",
+        "files": content_dir_markdown(res.get("path")),
+    }
+    for res in content_result
+]
 
 with open("autogen_meta/data_content.json", "w") as out_file:
     json.dump(dashboardData, out_file, sort_keys=True, indent=4, ensure_ascii=False)

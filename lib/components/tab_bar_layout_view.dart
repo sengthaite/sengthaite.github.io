@@ -15,16 +15,15 @@ class TabBarLayoutViewItem {
 class TabBarLayoutView extends StatefulWidget {
   const TabBarLayoutView({
     super.key,
-    this.onInit,
-    this.onDispose,
     required this.section,
     required this.hideBottomBar,
   });
 
   final TabSection section;
   final bool hideBottomBar;
-  final Function? onDispose;
-  final Function? onInit;
+
+  void onDispose() {}
+  void onInit() {}
 
   List<TabBarLayoutViewItem> get categories => [];
 
@@ -115,13 +114,13 @@ class TabBarLayoutViewState extends State<TabBarLayoutView>
   @override
   void initState() {
     super.initState();
-    widget.onInit?.call();
+    widget.onInit.call();
   }
 
   @override
   void dispose() {
     super.dispose();
-    widget.onDispose?.call();
+    widget.onDispose.call();
   }
 
   @override

@@ -1,6 +1,8 @@
+import 'package:country_flags/country_flags.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_quill/flutter_quill.dart';
 import 'package:hive_ce/hive.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -37,10 +39,52 @@ class MainView extends StatefulWidget {
 }
 
 class _StateMainView extends State<MainView> {
-  AppSettings appSettings = AppSettings();
+  late AppSettings appSettings;
+
+  Future<Box<AppSettings>> get _box async =>
+      await Hive.openBox<AppSettings>(hiveAppSettings);
+
+  final List<DropdownMenuEntry<String>> menuEntries =
+      <DropdownMenuEntry<String>>[
+        DropdownMenuEntry<String>(
+          value: 'en',
+          label: 'English',
+          leadingIcon: CountryFlag.fromCountryCode(
+            'US',
+            theme: ImageTheme(width: 24, height: 24),
+          ),
+        ),
+        DropdownMenuEntry<String>(
+          value: 'km',
+          label: 'Khmer',
+          leadingIcon: CountryFlag.fromCountryCode(
+            'KH',
+            theme: ImageTheme(width: 24, height: 24),
+          ),
+        ),
+        DropdownMenuEntry<String>(
+          value: 'zh',
+          label: 'Chinese',
+          leadingIcon: CountryFlag.fromCountryCode(
+            'CN',
+            theme: ImageTheme(width: 24, height: 24),
+          ),
+        ),
+      ];
+
+  void loadSaveSettings() async {
+    var box = await _box;
+    appSettings = box.get("appSettings") ?? AppSettings();
+  }
+
+  void saveAppSettings() async {
+    var box = await _box;
+    await box.put("appSettings", appSettings);
+  }
 
   @override
   void initState() {
+    loadSaveSettings();
     super.initState();
   }
 
@@ -51,8 +95,19 @@ class _StateMainView extends State<MainView> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       locale: DevicePreview.locale(context),
+      // locale: const Locale('km', 'KH'),
       builder: DevicePreview.appBuilder,
-      localizationsDelegates: const [FlutterQuillLocalizations.delegate],
+      localizationsDelegates: const [
+        FlutterQuillLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: [
+        const Locale('en', 'US'),
+        const Locale('km', 'KH'),
+        const Locale('zh', 'CN'),
+      ],
       theme: theme.light(),
       darkTheme: theme.dark(),
       highContrastTheme: theme.lightMediumContrast(),
@@ -75,7 +130,11 @@ class _StateMainView extends State<MainView> {
                       children: [
                         AssetIcons.logo.image,
                         const SizedBox(width: 20),
-                        Text(appTitle, style: MaterialTheme.textTheme().titleMedium!.copyWith(fontSize: 28),),
+                        Text(
+                          appTitle,
+                          style: MaterialTheme.textTheme().titleMedium!
+                              .copyWith(fontSize: 28),
+                        ),
                       ],
                     ),
                     bottom: TabBar(
@@ -113,7 +172,9 @@ class _StateMainView extends State<MainView> {
             floatingActionButton: FloatingActionButton.small(
               elevation: 1,
               onPressed: () => setState(() {
-                appSettings.isFullScreenMode = !appSettings.isFullScreenMode;
+                var isFullScreenMode = !appSettings.isFullScreenMode;
+                appSettings.isFullScreenMode = isFullScreenMode;
+                saveAppSettings();
               }),
               child: Icon(
                 appSettings.isFullScreenMode

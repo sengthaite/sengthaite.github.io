@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_highlight/themes/monokai.dart';
+import 'package:flutter_highlight/themes/github.dart';
 import 'package:markdown_widget/config/all.dart';
 import 'package:markdown_widget/widget/all.dart';
 import 'package:sengthaite_blog/constants/theme.dart';
-import 'package:sengthaite_blog/shared/markdown_custom/custom_text_node.dart';
-import 'package:sengthaite_blog/shared/markdown_custom/video.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class MarkdownView extends StatelessWidget {
@@ -24,18 +22,12 @@ class MarkdownView extends StatelessWidget {
     final config = MaterialTheme.isDark(context)
         ? MarkdownConfig.darkConfig
         : MarkdownConfig.defaultConfig;
-
     return MarkdownWidget(
       data: markdown,
       tocController: tocController,
-      markdownGenerator: MarkdownGenerator(
-        generators: [videoGeneratorWithTag],
-        textGenerator: (node, config, visitor) =>
-            CustomTextNode(node.textContent, config, visitor),
-      ),
       config: config.copy(
         configs: [
-          PreConfig(theme: monokaiTheme),
+          PreConfig(theme: githubTheme),
           LinkConfig(
             onTap: (link) {
               final url = link;

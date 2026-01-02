@@ -1,5 +1,5 @@
-
 import 'package:flutter/material.dart';
+import 'package:flutter_quill/flutter_quill.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:sengthaite_blog/components/category_item_icon.dart';
@@ -16,6 +16,7 @@ import 'package:sengthaite_blog/features/tool/api/api_view_mobile.dart';
 // import 'package:sengthaite_blog/features/tool/calculator/calculator_view_desktop.dart';
 import 'package:sengthaite_blog/features/tool/camera/camera_view.dart';
 import 'package:sengthaite_blog/features/tool/qrcode/qrbarcode_view_mobile.dart';
+import 'package:sengthaite_blog/features/tool/text_editor/text_editor_tool_base.dart';
 import 'package:sengthaite_blog/features/tool/text_editor/text_editor_tool_desktop.dart';
 import 'package:sengthaite_blog/features/tool/text_editor/text_editor_tool_mobile.dart';
 import 'package:sengthaite_blog/generated/models/tool_model.dart';
@@ -56,6 +57,37 @@ class TabBarLayoutToolView extends TabBarLayoutView {
         index: 0,
         title: "Text editor",
         image: AssetIcons.textEditor.image,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.extension),
+            onPressed: () {
+              var context = Navigation().tabBarDetailContext;
+              var quillController = TextEditorTool.quillController;
+              if (context == null || quillController == null) return;
+              showModalBottomSheet(
+                context: context,
+                showDragHandle: true,
+                builder: (context) {
+                  return Padding(
+                    padding: const EdgeInsets.only(
+                      left: 4,
+                      right: 4,
+                      top: 4,
+                      bottom: 8,
+                    ),
+                    child: QuillSimpleToolbar(
+                      controller: quillController,
+                      config: QuillSimpleToolbarConfig(
+                        toolbarIconAlignment: WrapAlignment.start,
+                        toolbarIconCrossAlignment: WrapCrossAlignment.start,
+                      ),
+                    ),
+                  );
+                },
+              );
+            },
+          ),
+        ],
         widgetBuilder: (context) => AppLayout(
           context: context,
           defaultWidget: TextEditorToolDesktop(),

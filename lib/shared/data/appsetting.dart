@@ -4,7 +4,7 @@ import 'package:uuid/uuid.dart';
 part 'appsetting.g.dart';
 
 @HiveType(typeId: 3)
-class AppSettings {
+class AppSettings extends HiveObject {
   @HiveField(0)
   final String id;
   @HiveField(1)
