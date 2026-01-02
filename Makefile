@@ -1,4 +1,7 @@
-.PHONY: all check autogen rebuild build_runner deploy pip_install build_web
+.PHONY: all check autogen rebuild build_runner deploy pip_install build_web gen_l10n
+
+gen_l10n:
+	flutter gen-l10n
 
 build_web:
 	flutter build web --base-href=/ --wasm --optimization-level=2

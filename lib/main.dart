@@ -1,4 +1,3 @@
-import 'package:country_flags/country_flags.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +13,7 @@ import 'package:sengthaite_blog/features/tab_bar_layout_content_view.dart';
 import 'package:sengthaite_blog/features/tab_bar_layout_project_view.dart';
 import 'package:sengthaite_blog/features/tab_bar_layout_tool_view.dart';
 import 'package:sengthaite_blog/hive_registrar.g.dart';
+import 'package:sengthaite_blog/l10n/app_localizations.dart';
 import 'package:sengthaite_blog/shared/app.data.dart';
 import 'package:sengthaite_blog/shared/app.layout.dart';
 import 'package:sengthaite_blog/shared/data/appsetting.dart';
@@ -39,57 +39,20 @@ class MainView extends StatefulWidget {
 }
 
 class _StateMainView extends State<MainView> {
-  AppSettings? appSettings;
+  AppSettings? get appSettings => AppData().appSettings;
 
-  Future<Box<AppSettings>> get _box async =>
-      await Hive.openBox<AppSettings>(hiveAppSettings);
-
-  final List<DropdownMenuEntry<String>> menuEntries =
-      <DropdownMenuEntry<String>>[
-        DropdownMenuEntry<String>(
-          value: 'en',
-          label: 'English',
-          leadingIcon: CountryFlag.fromCountryCode(
-            'US',
-            theme: ImageTheme(width: 24, height: 24),
-          ),
+  final List<DropdownMenuEntry<Locale>> menuEntries =
+      <DropdownMenuEntry<Locale>>[
+        DropdownMenuEntry(value: Locale('en', 'US'), label: 'English'),
+        DropdownMenuEntry<Locale>(
+          value: Locale('km', 'KH'),
+          label: 'ភាសាខ្មែរ',
         ),
-        DropdownMenuEntry<String>(
-          value: 'km',
-          label: 'Khmer',
-          leadingIcon: CountryFlag.fromCountryCode(
-            'KH',
-            theme: ImageTheme(width: 24, height: 24),
-          ),
-        ),
-        DropdownMenuEntry<String>(
-          value: 'zh',
-          label: 'Chinese',
-          leadingIcon: CountryFlag.fromCountryCode(
-            'CN',
-            theme: ImageTheme(width: 24, height: 24),
-          ),
-        ),
+        DropdownMenuEntry<Locale>(value: Locale('zh', 'CN'), label: '中文'),
       ];
 
   bool get isFullScreenModel {
     return appSettings?.isFullScreenMode ?? false;
-  }
-
-  void loadSaveSettings() async {
-    var box = await _box;
-    appSettings = box.get("appSettings") ?? AppSettings();
-  }
-
-  void saveAppSettings() async {
-    var box = await _box;
-    await box.put("appSettings", appSettings ?? AppSettings());
-  }
-
-  @override
-  void initState() {
-    loadSaveSettings();
-    super.initState();
   }
 
   @override
@@ -98,20 +61,17 @@ class _StateMainView extends State<MainView> {
     MaterialTheme theme = MaterialTheme();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      locale: DevicePreview.locale(context),
-      // locale: const Locale('km', 'KH'),
+      // locale: DevicePreview.locale(context),
+      locale: appSettings?.locale ?? Locale('en', 'US'),
       builder: DevicePreview.appBuilder,
       localizationsDelegates: const [
         FlutterQuillLocalizations.delegate,
+        ...AppLocalizations.localizationsDelegates,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      supportedLocales: [
-        const Locale('en', 'US'),
-        const Locale('km', 'KH'),
-        const Locale('zh', 'CN'),
-      ],
+      supportedLocales: AppLocalizations.supportedLocales,
       theme: theme.light(),
       darkTheme: theme.dark(),
       highContrastTheme: theme.lightMediumContrast(),
@@ -120,75 +80,104 @@ class _StateMainView extends State<MainView> {
         scrollbars: false,
       ),
       navigatorKey: Navigation().navigatorKey,
-      home: AppLayout(
-        defaultWidget: DefaultTabController(
-          animationDuration: Duration.zero,
-          initialIndex: 1,
-          length: 3,
-          child: Scaffold(
-            appBar: isFullScreenModel
-                ? null
-                : AppBar(
-                    title: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        AssetIcons.logo.image,
-                        const SizedBox(width: 20),
-                        Text(
-                          appTitle,
-                          style: MaterialTheme.textTheme().titleMedium!
-                              .copyWith(fontSize: 28),
+      home: Builder(
+        builder: (context) {
+          var appLocalization = AppLocalizations.of(context)!;
+          return AppLayout(
+            defaultWidget: DefaultTabController(
+              animationDuration: Duration.zero,
+              initialIndex: 1,
+              length: 3,
+              child: Scaffold(
+                drawer: Drawer(
+                  child: Column(
+                    children: [
+                      DrawerHeader(
+                        child: Text(
+                          appLocalization.settings,
+                          style: MaterialTheme.textTheme().titleMedium,
                         ),
-                      ],
-                    ),
-                    bottom: TabBar(
-                      isScrollable: false,
-                      physics: const NeverScrollableScrollPhysics(),
-                      overlayColor: WidgetStateProperty.all(Colors.transparent),
-                      padding: EdgeInsets.symmetric(
-                        horizontal: screenSize.width > 1100
-                            ? screenSize.width * 0.35
-                            : 20,
                       ),
-                      indicatorSize: TabBarIndicatorSize.tab,
-                      dividerColor: Colors.transparent,
-                      tabs: const [
-                        Tab(text: tabTitleArticle),
-                        Tab(text: tabTitleTool),
-                        Tab(text: tabTitleProject),
-                      ],
-                    ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: DropdownMenu(
+                          dropdownMenuEntries: menuEntries,
+                          initialSelection: appSettings?.locale,
+                          onSelected: (value) => setState(() {
+                            appSettings?.locale = value;
+                            AppData().saveAppSettings();
+                          }),
+                        ),
+                      ),
+                    ],
                   ),
-            body: TabBarView(
-              physics: const NeverScrollableScrollPhysics(),
-              children: [
-                TabBarLayoutContentView(
-                  hideBottomAppBar: isFullScreenModel,
                 ),
-                TabBarLayoutToolView(
-                  hideBottomAppBar: isFullScreenModel,
+                appBar: isFullScreenModel
+                    ? null
+                    : AppBar(
+                        centerTitle: true,
+                        title: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            AssetIcons.logo.image,
+                            const SizedBox(width: 20),
+                            Text(
+                              appTitle,
+                              style: MaterialTheme.textTheme().titleMedium,
+                            ),
+                          ],
+                        ),
+                        bottom: TabBar(
+                          isScrollable: false,
+                          physics: const NeverScrollableScrollPhysics(),
+                          overlayColor: WidgetStateProperty.all(
+                            Colors.transparent,
+                          ),
+                          padding: EdgeInsets.symmetric(
+                            horizontal: screenSize.width > 1100
+                                ? screenSize.width * 0.35
+                                : 20,
+                          ),
+                          indicatorSize: TabBarIndicatorSize.tab,
+                          dividerColor: Colors.transparent,
+                          tabs: [
+                            Tab(text: appLocalization.article.toUpperCase()),
+                            Tab(text: appLocalization.tool.toUpperCase()),
+                            Tab(text: appLocalization.project.toUpperCase()),
+                          ],
+                        ),
+                      ),
+                body: TabBarView(
+                  physics: const NeverScrollableScrollPhysics(),
+                  children: [
+                    TabBarLayoutContentView(
+                      hideBottomAppBar: isFullScreenModel,
+                    ),
+                    TabBarLayoutToolView(hideBottomAppBar: isFullScreenModel),
+                    TabBarLayoutProjectView(
+                      hideBottomAppBar: isFullScreenModel,
+                    ),
+                  ],
                 ),
-                TabBarLayoutProjectView(
-                  hideBottomAppBar: isFullScreenModel,
+                floatingActionButton: FloatingActionButton.small(
+                  elevation: 1,
+                  onPressed: () => setState(() {
+                    var isFullScreenMode = !isFullScreenModel;
+                    appSettings?.isFullScreenMode = isFullScreenMode;
+                    AppData().saveAppSettings();
+                  }),
+                  child: Icon(
+                    isFullScreenModel
+                        ? MdiIcons.arrowExpand
+                        : MdiIcons.arrowExpandAll,
+                  ),
                 ),
-              ],
-            ),
-            floatingActionButton: FloatingActionButton.small(
-              elevation: 1,
-              onPressed: () => setState(() {
-                var isFullScreenMode = !isFullScreenModel;
-                appSettings?.isFullScreenMode = isFullScreenMode;
-                saveAppSettings();
-              }),
-              child: Icon(
-                isFullScreenModel
-                    ? MdiIcons.arrowExpand
-                    : MdiIcons.arrowExpandAll,
               ),
             ),
-          ),
-        ),
-        context: context,
+            context: context,
+          );
+        },
       ),
     );
   }

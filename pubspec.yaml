@@ -49,7 +49,6 @@ dependencies:
   cupertino_icons: ^1.0.8
   flutter_localizations:
     sdk: flutter
-  country_flags: ^4.1.1
 
 dev_dependencies:
   flutter_test:
