@@ -5,6 +5,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_quill/flutter_quill.dart';
 import 'package:hive_ce/hive.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:sengthaite_blog/constants/app.constants.dart';
 import 'package:sengthaite_blog/constants/image.constants.dart';
 import 'package:sengthaite_blog/constants/theme.dart';
@@ -21,7 +22,8 @@ import 'package:sengthaite_blog/shared/data/appsetting.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Hive.registerAdapters();
-  Hive.init(".hive_data");
+  var path = await getApplicationSupportDirectory();
+  Hive.init("${path.path}/.hive_data");
   await AppData().initData();
   runApp(
     DevicePreview(
