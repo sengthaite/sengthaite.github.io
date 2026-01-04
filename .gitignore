@@ -54,3 +54,4 @@ app.*.map.json
 
 # Persistent data
 .hive_data
+**/.hive_data

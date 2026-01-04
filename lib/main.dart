@@ -22,8 +22,12 @@ import 'package:sengthaite_blog/shared/data/appsetting.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Hive.registerAdapters();
-  var path = await getApplicationSupportDirectory();
-  Hive.init("${path.path}/.hive_data");
+  var hivePath = '.hive_data';
+  if (!kIsWeb) {
+    var directory = await getApplicationCacheDirectory();
+    hivePath = "${directory.path}/.hive_data";
+  }
+  Hive.init(hivePath);
   await AppData().initData();
   runApp(
     DevicePreview(

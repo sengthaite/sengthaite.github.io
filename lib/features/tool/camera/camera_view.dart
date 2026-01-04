@@ -12,7 +12,8 @@ class CameraView extends StatefulWidget {
 
 class TakePictureScreenState extends State<CameraView> {
   late CameraController _controller;
-  late Future<List> futureData;
+  late Future<List<CameraDescription>> futureData;
+  CameraDescription? selectedCameraDescription;
 
   @override
   void initState() {
@@ -33,14 +34,63 @@ class TakePictureScreenState extends State<CameraView> {
         future: futureData,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
-            var camera = (snapshot.requireData.last as CameraDescription);
+            var cameras = snapshot.requireData as List<CameraDescription>;
+            if (cameras.isEmpty) {
+              return const Center(child: Text('No camera found'));
+            }
+            bool canSwitchCamera = cameras.length > 1;
+            var camera = selectedCameraDescription ?? cameras.last;
             _controller = CameraController(camera, ResolutionPreset.high);
             var controllerInitialize = _controller.initialize();
             return FutureBuilder(
               future: controllerInitialize,
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.done) {
-                  return Center(child: CameraPreview(_controller));
+                  return Stack(
+                    alignment: AlignmentGeometry.bottomCenter,
+                    children: [
+                      CameraPreview(_controller),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          IconButton(
+                            onPressed: () async {
+                              try {
+                                await futureData;
+                                final image = await _controller.takePicture();
+                                if (!context.mounted) return;
+                                await Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        DisplayPictureScreen(image: image),
+                                  ),
+                                );
+                              } catch (e) {
+                                debugPrint(e.toString());
+                              }
+                            },
+                            icon: Icon(Icons.camera_alt),
+                          ),
+                          if (canSwitchCamera)
+                            IconButton(
+                              onPressed: () async {
+                                var lensDirection =
+                                    _controller.description.lensDirection;
+                                for (var each in cameras) {
+                                  if (each.lensDirection != lensDirection) {
+                                    setState(() {
+                                      selectedCameraDescription = each;
+                                    });
+                                    break;
+                                  }
+                                }
+                              },
+                              icon: Icon(Icons.cameraswitch),
+                            ),
+                        ],
+                      ),
+                    ],
+                  );
                 } else {
                   return const Center(child: CircularProgressIndicator());
                 }
@@ -51,26 +101,6 @@ class TakePictureScreenState extends State<CameraView> {
             return const Center(child: CircularProgressIndicator());
           }
         },
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: FloatingActionButton(
-        heroTag: 'camera_take_picture',
-        onPressed: () async {
-          try {
-            await futureData;
-            final image = await _controller.takePicture();
-
-            if (!context.mounted) return;
-            await Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => DisplayPictureScreen(image: image),
-              ),
-            );
-          } catch (e) {
-            debugPrint(e.toString());
-          }
-        },
-        child: const Icon(Icons.camera_alt),
       ),
     );
   }
