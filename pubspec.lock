@@ -321,6 +321,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "10.8.3"
+  dart_reed_solomon_nullsafety:
+    dependency: transitive
+    description:
+      name: dart_reed_solomon_nullsafety
+      sha256: fa4b160112567377225a65d55a9cb59df048a58acfcf356b56be5a8dbcbbdb1e
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.2.0"
   dart_style:
     dependency: transitive
     description:
@@ -1133,6 +1141,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.2"
+  qr_code_vision:
+    dependency: "direct main"
+    description:
+      name: qr_code_vision
+      sha256: "00f611986d1f67035ea61cd7705ba203036eaab396fdd7d44c469eb735f4398f"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.2"
   quill_native_bridge:
     dependency: transitive
     description:
