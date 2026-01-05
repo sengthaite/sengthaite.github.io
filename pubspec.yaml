@@ -50,6 +50,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   path_provider: ^2.1.5
+  rename_app: ^1.6.5
 
 dev_dependencies:
   flutter_test:
@@ -58,6 +59,7 @@ dev_dependencies:
   build_runner: ^2.4.9
   json_serializable: ^6.11.1
   freezed: ^3.2.3
+  icons_launcher: ^3.0.3
 
 flutter:
   uses-material-design: true
@@ -85,6 +87,28 @@ flutter:
     # - assets/project_icons/
     - assets/autogen_meta/
     - assets/tool_icons/
+
+icons_launcher:
+  image_path: 'assets/icon/icon.png'
+  platforms:
+    android:
+      enable: true
+      image_path: 'assets/icon/icon.png'
+    ios:
+      enable: true
+      image_path: 'assets/icon/icon.png'
+    web:
+      enable: true
+      image_path: 'assets/icon/icon.png'
+    macos:
+      enable: true
+      image_path: 'assets/icon/icon.png'
+    windows:
+      enable: true
+      image_path: 'assets/icon/icon.png'
+    linux:
+      enable: true
+      image_path: 'assets/icon/icon.png'
     
 
 targets:

@@ -1,4 +1,7 @@
-.PHONY: all check autogen rebuild build_runner deploy pip_install build_web gen_l10n
+.PHONY: all check autogen rebuild build_runner deploy pip_install build_web gen_l10n gen_icon
+
+gen_icon:
+	dart run icons_launcher:create
 
 gen_l10n:
 	flutter gen-l10n
@@ -30,3 +33,5 @@ deploy: clean all gen_l10n
 	# flutter pub global run dependency_validator
 	flutter pub global run peanut --extra-args --base-href=/ --no-wasm --release
 	git push origin --set-upstream gh-pages
+
+# dart run rename_app:main all="My App Name"
