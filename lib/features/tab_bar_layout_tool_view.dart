@@ -13,9 +13,7 @@ import 'package:sengthaite_blog/features/navigation/navigation.dart';
 import 'package:sengthaite_blog/features/tool/api/api_util_view.dart';
 import 'package:sengthaite_blog/features/tool/api/api_view_desktop.dart';
 import 'package:sengthaite_blog/features/tool/api/api_view_mobile.dart';
-// import 'package:sengthaite_blog/features/tool/calculator/calculator_view_desktop.dart';
 import 'package:sengthaite_blog/features/tool/camera/camera_view.dart';
-import 'package:sengthaite_blog/features/tool/qrcode/qrbarcode_view_mobile.dart';
 import 'package:sengthaite_blog/features/tool/text_editor/text_editor_tool_base.dart';
 import 'package:sengthaite_blog/features/tool/text_editor/text_editor_tool_desktop.dart';
 import 'package:sengthaite_blog/features/tool/text_editor/text_editor_tool_mobile.dart';
@@ -33,14 +31,6 @@ class TabBarLayoutToolView extends TabBarLayoutView {
   List<ToolItemModel> toolList() {
     return [
       ToolItemModel(
-        index: 0,
-        title: "QR/Bar Code",
-        image: AssetIcons.qrcode.image,
-        widgetBuilder: (context) =>
-            AppLayout(context: context, defaultWidget: QrbarcodeViewMobile()),
-      ),
-      ToolItemModel(
-        index: 0,
         title: "Camera",
         image: AssetIcons.camera.image,
         widgetBuilder: (context) =>
@@ -54,7 +44,6 @@ class TabBarLayoutToolView extends TabBarLayoutView {
         ],
       ),
       ToolItemModel(
-        index: 0,
         title: "Text editor",
         image: AssetIcons.textEditor.image,
         actions: [
@@ -95,7 +84,6 @@ class TabBarLayoutToolView extends TabBarLayoutView {
         ),
       ),
       ToolItemModel(
-        index: 1,
         title: "HTTP",
         image: AssetIcons.http.image,
         actions: [
@@ -159,7 +147,6 @@ class TabBarLayoutToolView extends TabBarLayoutView {
     return TabBarLayoutViewItem(
       itemTitle: TabBarNavigationTitle(
         title: title.toTitle(),
-        index: item.index,
         onTap: (e) => Navigation().toolTabState?.removeUntil(e),
         widget: TabBarDetailView(
           title: title.toTitle(),

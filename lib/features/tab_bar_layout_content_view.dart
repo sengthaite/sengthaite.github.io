@@ -72,7 +72,6 @@ class TabBarLayoutContentView extends TabBarLayoutView {
         Navigation().contentTabState?.addItem(
           TabBarNavigationTitle(
             title: title,
-            index: data.index ?? 0,
             widget: TabBarDetailView(
               title: title,
               endDrawer: data.hasToc ?? false
@@ -134,7 +133,6 @@ class TabBarLayoutContentView extends TabBarLayoutView {
     return TabBarLayoutViewItem(
       itemTitle: TabBarNavigationTitle(
         title: title.toTitle(),
-        index: item.index ?? 0,
         onTap: (e) => Navigation().contentTabState?.removeUntil(e),
         widget: TabBarDetailView(
           title: title.toTitle(),

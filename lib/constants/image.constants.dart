@@ -90,17 +90,9 @@ enum AssetIcons {
         break;
     }
     if (path.extension(imageName) == '.svg') {
-      return SvgPicture.asset(
-        "$basePath/$imageName",
-        width: 60,
-        height: 60,
-      );
+      return SvgPicture.asset("$basePath/$imageName", width: 60, height: 60);
     }
-    return Image.asset(
-      "$basePath/$imageName",
-      width: 60,
-      height: 60,
-    );
+    return Image.asset("$basePath/$imageName", width: 60, height: 60);
   }
 
   final String imageName;

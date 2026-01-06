@@ -5,7 +5,6 @@ import 'package:uuid/v8.dart';
 class TabBarNavigationTitle {
   TabBarNavigationTitle({
     required this.title,
-    required this.index,
     required this.widget,
     this.titleStyle,
     this.onTap,
@@ -14,7 +13,6 @@ class TabBarNavigationTitle {
   TextStyle? titleStyle;
 
   final UuidV8 id = const UuidV8();
-  final int index;
   final String title;
   final Widget widget;
   Function(TabBarNavigationTitle)? onTap;
