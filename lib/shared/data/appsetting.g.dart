@@ -17,17 +17,18 @@ class AppSettingsAdapter extends TypeAdapter<AppSettings> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return AppSettings(
-      id: fields[0] as String?,
-      createdDate: fields[1] as DateTime?,
-      isFullScreenMode: fields[2] as bool?,
-      locale: fields[3] as Locale?,
-    );
+        id: fields[0] as String?,
+        createdDate: fields[1] as DateTime?,
+        isFullScreenMode: fields[2] as bool?,
+      )
+      ..localeLanguageCode = fields[3] as String?
+      ..localeCountryCode = fields[4] as String?;
   }
 
   @override
   void write(BinaryWriter writer, AppSettings obj) {
     writer
-      ..writeByte(4)
+      ..writeByte(5)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -35,7 +36,9 @@ class AppSettingsAdapter extends TypeAdapter<AppSettings> {
       ..writeByte(2)
       ..write(obj.isFullScreenMode)
       ..writeByte(3)
-      ..write(obj.locale);
+      ..write(obj.localeLanguageCode)
+      ..writeByte(4)
+      ..write(obj.localeCountryCode);
   }
 
   @override
