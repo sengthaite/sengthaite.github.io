@@ -44,3 +44,10 @@ jobs:
         with:
           name: android-release-apk
           path: build/app/outputs/flutter-apk/app-release.apk
+
+      - name: Create Release and Upload APK
+        uses: softprops/action-gh-release@v2
+        with:
+          files: build/app/outputs/flutter-apk/app-release.apk
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Use the default GITHUB_TOKEN
