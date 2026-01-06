@@ -1,6 +1,6 @@
 {
     "author": "Te Sengthai",
-    "created_date": "2026-01-06T23:54:52.881922",
+    "created_date": "2026-01-07T01:18:43.286993",
     "data": [
         {
             "created_date": "2025-12-31T14:13:13.975803",
@@ -590,14 +590,6 @@
             "path": "assets/contents/ios"
         },
         {
-            "created_date": "2025-12-31T13:27:42.524952",
-            "files": [],
-            "icon": "kotlin.svg",
-            "index": 9,
-            "name": "kotlin",
-            "path": "assets/contents/kotlin"
-        },
-        {
             "created_date": "2025-12-31T14:13:13.980340",
             "files": [
                 {
@@ -613,17 +605,9 @@
                 }
             ],
             "icon": "llvm.svg",
-            "index": 10,
+            "index": 9,
             "name": "llvm",
             "path": "assets/contents/llvm"
-        },
-        {
-            "created_date": "2025-12-31T13:27:48.126267",
-            "files": [],
-            "icon": "maths.svg",
-            "index": 11,
-            "name": "maths",
-            "path": "assets/contents/maths"
         },
         {
             "created_date": "2025-12-31T14:13:13.980593",
@@ -641,7 +625,7 @@
                 }
             ],
             "icon": "os.svg",
-            "index": 12,
+            "index": 10,
             "name": "os",
             "path": "assets/contents/os"
         },
@@ -661,7 +645,7 @@
                 }
             ],
             "icon": "reverse_engineer.svg",
-            "index": 13,
+            "index": 11,
             "name": "reverse_engineer",
             "path": "assets/contents/reverse_engineer"
         },
@@ -725,7 +709,7 @@
                 }
             ],
             "icon": "swift.svg",
-            "index": 14,
+            "index": 12,
             "name": "swift",
             "path": "assets/contents/swift"
         },
@@ -745,7 +729,7 @@
                 }
             ],
             "icon": "tool.svg",
-            "index": 15,
+            "index": 13,
             "name": "tool",
             "path": "assets/contents/tool"
         }

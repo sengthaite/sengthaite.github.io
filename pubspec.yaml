@@ -75,13 +75,13 @@ flutter:
     - assets/contents/csharp/
     - assets/contents/llvm/
     - assets/contents/angular/
-    - assets/contents/kotlin/
+    # - assets/contents/kotlin/
     - assets/contents/cli/
     - assets/contents/reverse_engineer/
     - assets/contents/ios/
     - assets/contents/swift/
     - assets/contents/android/
-    - assets/contents/maths/
+    # - assets/contents/maths/
     - assets/contents/os/
     - assets/contents/cambodia/
     - assets/contents/tool/
