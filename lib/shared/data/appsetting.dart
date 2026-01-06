@@ -14,7 +14,19 @@ class AppSettings extends HiveObject {
   @HiveField(2)
   bool isFullScreenMode;
   @HiveField(3)
-  Locale? locale;
+  String? localeLanguageCode;
+  @HiveField(4)
+  String? localeCountryCode;
+
+  set locale(Locale? value) {
+    localeLanguageCode = value?.languageCode;
+    localeCountryCode = value?.countryCode;
+  }
+
+  Locale? get locale {
+    if (localeLanguageCode == null) return null;
+    return Locale(localeLanguageCode!, localeCountryCode);
+  }
 
   AppSettings({
     String? id,
@@ -24,5 +36,6 @@ class AppSettings extends HiveObject {
   }) : id = id ?? const Uuid().v4(),
        createdDate = createdDate ?? DateTime.now(),
        isFullScreenMode = isFullScreenMode ?? false,
-       locale = locale ?? Locale('en', 'US');
+       localeLanguageCode = locale?.languageCode,
+       localeCountryCode = locale?.countryCode;
 }

@@ -18,13 +18,17 @@ class AppData {
       await Hive.openBox<AppSettings>(hiveAppSettings);
 
   void saveAppSettings() async {
-    if (appSettings == null) {
-      debugPrint("AppSettings is null");
-      return;
+    try {
+      if (appSettings == null) {
+        debugPrint("AppSettings is null");
+        return;
+      }
+      var box = await _box;
+      box.put('appSettings', appSettings!);
+      await appSettings?.save();
+    } catch (error) {
+      debugPrint("Error saving AppSettings: $error");
     }
-    var box = await _box;
-    box.put('appSettings', appSettings!);
-    await appSettings?.save();
   }
 
   Future<bool> initData() async {
