@@ -2,7 +2,6 @@ name: Flutter CI/CD - Build APK & Deploy Web
 
 on:
   push:
-    branches: [release]
     tags:
       - 'v*'  # Trigger on version tags (e.g., v1.0.0)
 
