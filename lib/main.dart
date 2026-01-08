@@ -61,6 +61,8 @@ class _StateMainView extends State<MainView> {
     return appSettings?.isFullScreenMode ?? false;
   }
 
+  Locale get locale => appSettings?.locale ?? Locale('en', 'US');
+
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
@@ -68,7 +70,7 @@ class _StateMainView extends State<MainView> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       // locale: DevicePreview.locale(context),
-      locale: appSettings?.locale ?? Locale('en', 'US'),
+      locale: locale,
       builder: DevicePreview.appBuilder,
       localizationsDelegates: const [
         FlutterQuillLocalizations.delegate,
@@ -98,18 +100,23 @@ class _StateMainView extends State<MainView> {
                 child: Scaffold(
                   drawer: Drawer(
                     child: Column(
+                      mainAxisSize: MainAxisSize.min,
                       children: [
-                        DrawerHeader(
-                          child: Text(
-                            appLocalization.settings,
-                            style: MaterialTheme.textTheme().titleMedium,
+                        SizedBox(
+                          height: 80,
+                          child: DrawerHeader(
+                            child: Text(
+                              appLocalization.settings,
+                              style: MaterialTheme.textTheme().titleMedium!
+                                  .copyWith(fontWeight: FontWeight.bold),
+                            ),
                           ),
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: DropdownMenu(
                             dropdownMenuEntries: menuEntries,
-                            initialSelection: appSettings?.locale,
+                            initialSelection: locale,
                             onSelected: (value) => setState(() {
                               appSettings?.locale = value;
                               AppData().saveAppSettings();
