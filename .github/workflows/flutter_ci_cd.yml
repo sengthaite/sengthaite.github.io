@@ -91,16 +91,8 @@ jobs:
         flutter build web --release --base-href "/"
         echo "Web build completed!"
     
-    - name: Setup Pages
-      uses: actions/configure-pages@v4
-    
-    - name: Upload web artifact
-      uses: actions/upload-pages-artifact@v3
-      with:
-        path: build/web
-    
     - name: Deploy to GitHub Pages
-      uses: actions/deploy-pages@v4
+      uses: peaceiris/actions-gh-pages@v4
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        target_branch: gh-pages
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build/web
