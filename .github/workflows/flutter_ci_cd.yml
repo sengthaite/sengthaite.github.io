@@ -67,7 +67,6 @@ jobs:
     environment:
       name: github-pages
     runs-on: ubuntu-latest
-    needs: build-android  # Run after Android build completes
     permissions:
       contents: write  # Required for gh-pages deployment
       pages: write
