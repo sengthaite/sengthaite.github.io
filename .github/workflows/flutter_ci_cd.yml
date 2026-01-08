@@ -64,6 +64,8 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   build-web:
+    environment:
+      name: github-pages
     runs-on: ubuntu-latest
     needs: build-android  # Run after Android build completes
     permissions:
