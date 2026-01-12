@@ -52,6 +52,7 @@ dependencies:
   path_provider: ^2.1.5
   rename_app: ^1.6.5
   qr_code_vision: ^0.1.2
+  markdown_quill: ^4.3.0
 
 dev_dependencies:
   flutter_test:

@@ -1,7 +1,13 @@
+import 'dart:convert';
+import 'dart:io';
+
+import 'package:file_saver/file_saver.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart';
+import 'package:markdown_quill/markdown_quill.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:sengthaite_blog/components/category_item_icon.dart';
 import 'package:sengthaite_blog/components/tab_bar_layout_view.dart';
 import 'package:sengthaite_blog/components/tab_bar_navigation_title.dart';
@@ -75,6 +81,34 @@ class TabBarLayoutToolView extends TabBarLayoutView {
                 },
               );
             },
+          ),
+          IconButton(
+            onPressed: () async {
+              var context = Navigation().tabBarDetailContext;
+              var quillController = TextEditorTool.quillController;
+              if (context == null || quillController == null) return;
+              final delta = quillController.document.toDelta();
+              final markdown = DeltaToMarkdown().convert(delta);
+              final fileName = 'note_${DateTime.now().millisecondsSinceEpoch}';
+
+              try {
+                await FileSaver.instance.saveFile(
+                  name: fileName,
+                  bytes: Utf8Encoder().convert(markdown),
+                  fileExtension: 'md',
+                  mimeType: MimeType.text,
+                );
+              } catch (e) {
+                try {
+                  final directory = await getApplicationDocumentsDirectory();
+                  final file = File('${directory.path}/$fileName');
+                  await file.writeAsString(markdown);
+                } catch (e) {
+                  debugPrint('Could not save file: $e');
+                }
+              }
+            },
+            icon: Icon(Icons.download),
           ),
         ],
         widgetBuilder: (context) => AppLayout(
