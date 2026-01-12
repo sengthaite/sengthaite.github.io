@@ -96,73 +96,73 @@ class _StateMainView extends State<MainView> {
               animationDuration: Duration.zero,
               initialIndex: 1,
               length: 3,
-              child: SafeArea(
-                child: Scaffold(
-                  drawer: Drawer(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        SizedBox(
-                          height: 80,
-                          child: DrawerHeader(
-                            child: Text(
-                              appLocalization.settings,
-                              style: MaterialTheme.textTheme().titleMedium!
-                                  .copyWith(fontWeight: FontWeight.bold),
-                            ),
+              child: Scaffold(
+                drawer: Drawer(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      SizedBox(
+                        height: 80,
+                        child: DrawerHeader(
+                          child: Text(
+                            appLocalization.settings,
+                            style: MaterialTheme.textTheme().titleMedium!
+                                .copyWith(fontWeight: FontWeight.bold),
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: DropdownMenu(
-                            dropdownMenuEntries: menuEntries,
-                            initialSelection: locale,
-                            onSelected: (value) => setState(() {
-                              appSettings?.locale = value;
-                              AppData().saveAppSettings();
-                            }),
-                          ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: DropdownMenu(
+                          dropdownMenuEntries: menuEntries,
+                          initialSelection: locale,
+                          onSelected: (value) => setState(() {
+                            appSettings?.locale = value;
+                            AppData().saveAppSettings();
+                          }),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                  appBar: isFullScreenModel
-                      ? null
-                      : AppBar(
-                          centerTitle: true,
-                          title: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              AssetIcons.logo.image,
-                              const SizedBox(width: 20),
-                              Text(
-                                appTitle,
-                                style: MaterialTheme.textTheme().titleMedium,
-                              ),
-                            ],
-                          ),
-                          bottom: TabBar(
-                            isScrollable: false,
-                            physics: const NeverScrollableScrollPhysics(),
-                            overlayColor: WidgetStateProperty.all(
-                              Colors.transparent,
+                ),
+                appBar: isFullScreenModel
+                    ? null
+                    : AppBar(
+                        centerTitle: true,
+                        title: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            AssetIcons.logo.image,
+                            const SizedBox(width: 20),
+                            Text(
+                              appTitle,
+                              style: MaterialTheme.textTheme().titleMedium,
                             ),
-                            padding: EdgeInsets.symmetric(
-                              horizontal: screenSize.width > 1100
-                                  ? screenSize.width * 0.35
-                                  : 20,
-                            ),
-                            indicatorSize: TabBarIndicatorSize.tab,
-                            dividerColor: Colors.transparent,
-                            tabs: [
-                              Tab(text: appLocalization.article.toUpperCase()),
-                              Tab(text: appLocalization.tool.toUpperCase()),
-                              Tab(text: appLocalization.project.toUpperCase()),
-                            ],
-                          ),
+                          ],
                         ),
-                  body: TabBarView(
+                        bottom: TabBar(
+                          isScrollable: false,
+                          physics: const NeverScrollableScrollPhysics(),
+                          overlayColor: WidgetStateProperty.all(
+                            Colors.transparent,
+                          ),
+                          padding: EdgeInsets.symmetric(
+                            horizontal: screenSize.width > 1100
+                                ? screenSize.width * 0.35
+                                : 20,
+                          ),
+                          indicatorSize: TabBarIndicatorSize.tab,
+                          dividerColor: Colors.transparent,
+                          tabs: [
+                            Tab(text: appLocalization.article.toUpperCase()),
+                            Tab(text: appLocalization.tool.toUpperCase()),
+                            Tab(text: appLocalization.project.toUpperCase()),
+                          ],
+                        ),
+                      ),
+                body: SafeArea(
+                  child: TabBarView(
                     physics: const NeverScrollableScrollPhysics(),
                     children: [
                       TabBarLayoutContentView(
@@ -174,18 +174,18 @@ class _StateMainView extends State<MainView> {
                       ),
                     ],
                   ),
-                  floatingActionButton: FloatingActionButton.small(
-                    elevation: 1,
-                    onPressed: () => setState(() {
-                      var isFullScreenMode = !isFullScreenModel;
-                      appSettings?.isFullScreenMode = isFullScreenMode;
-                      AppData().saveAppSettings();
-                    }),
-                    child: Icon(
-                      isFullScreenModel
-                          ? MdiIcons.arrowExpand
-                          : MdiIcons.arrowExpandAll,
-                    ),
+                ),
+                floatingActionButton: FloatingActionButton.small(
+                  elevation: 1,
+                  onPressed: () => setState(() {
+                    var isFullScreenMode = !isFullScreenModel;
+                    appSettings?.isFullScreenMode = isFullScreenMode;
+                    AppData().saveAppSettings();
+                  }),
+                  child: Icon(
+                    isFullScreenModel
+                        ? MdiIcons.arrowExpand
+                        : MdiIcons.arrowExpandAll,
                   ),
                 ),
               ),
