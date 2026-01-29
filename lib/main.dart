@@ -6,6 +6,7 @@ import 'package:flutter_quill/flutter_quill.dart';
 import 'package:hive_ce/hive.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:sengthaite_blog/components/loading_screen.dart';
 import 'package:sengthaite_blog/constants/app.constants.dart';
 import 'package:sengthaite_blog/constants/image.constants.dart';
 import 'package:sengthaite_blog/constants/theme.dart';
@@ -63,137 +64,168 @@ class _StateMainView extends State<MainView> {
 
   Locale get locale => appSettings?.locale ?? Locale('en', 'US');
 
+  bool isLoading = false;
+
+  void onLoading() {
+    setState(() {
+      isLoading = AppData().isLoading.value;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    AppData().isLoading.addListener(onLoading);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    AppData().isLoading.removeListener(onLoading);
+    AppData().isLoading.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
     MaterialTheme theme = MaterialTheme();
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      // locale: DevicePreview.locale(context),
-      locale: locale,
-      builder: DevicePreview.appBuilder,
-      localizationsDelegates: const [
-        FlutterQuillLocalizations.delegate,
-        ...AppLocalizations.localizationsDelegates,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: AppLocalizations.supportedLocales,
-      theme: theme.light(),
-      darkTheme: theme.dark(),
-      highContrastTheme: theme.lightMediumContrast(),
-      highContrastDarkTheme: theme.darkMediumContrast(),
-      scrollBehavior: const MaterialScrollBehavior().copyWith(
-        scrollbars: false,
-      ),
-      navigatorKey: Navigation().navigatorKey,
-      home: Builder(
-        builder: (context) {
-          var appLocalization = AppLocalizations.of(context)!;
-          return AppLayout(
-            defaultWidget: DefaultTabController(
-              animationDuration: Duration.zero,
-              initialIndex: 1,
-              length: 3,
-              child: Scaffold(
-                drawer: Drawer(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      SizedBox(
-                        height: 80,
-                        child: DrawerHeader(
-                          child: Text(
-                            appLocalization.settings,
-                            style: MaterialTheme.textTheme().titleMedium!
-                                .copyWith(fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: DropdownMenu(
-                          dropdownMenuEntries: menuEntries,
-                          initialSelection: locale,
-                          onSelected: (value) => setState(() {
-                            appSettings?.locale = value;
-                            AppData().saveAppSettings();
-                          }),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                appBar: isFullScreenModel
-                    ? null
-                    : AppBar(
-                        centerTitle: true,
-                        title: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            AssetIcons.logo.image,
-                            const SizedBox(width: 20),
-                            Text(
-                              appTitle,
-                              style: MaterialTheme.textTheme().titleMedium,
+    return 
+        MaterialApp(
+        debugShowCheckedModeBanner: false,
+        // locale: DevicePreview.locale(context),
+        locale: locale,
+        builder: DevicePreview.appBuilder,
+        localizationsDelegates: const [
+          FlutterQuillLocalizations.delegate,
+          ...AppLocalizations.localizationsDelegates,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: AppLocalizations.supportedLocales,
+        theme: theme.light(),
+        darkTheme: theme.dark(),
+        highContrastTheme: theme.lightMediumContrast(),
+        highContrastDarkTheme: theme.darkMediumContrast(),
+        scrollBehavior: const MaterialScrollBehavior().copyWith(
+          scrollbars: false,
+        ),
+        navigatorKey: Navigation().navigatorKey,
+        home: Builder(
+          builder: (context) {
+            var appLocalization = AppLocalizations.of(context)!;
+            return Stack(
+              children: [AppLayout(
+                defaultWidget: DefaultTabController(
+                  animationDuration: Duration.zero,
+                  initialIndex: 1,
+                  length: 3,
+                  child: Scaffold(
+                    drawer: Drawer(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          SizedBox(
+                            height: 80,
+                            child: DrawerHeader(
+                              child: Text(
+                                appLocalization.settings,
+                                style: MaterialTheme.textTheme().titleMedium!
+                                    .copyWith(fontWeight: FontWeight.bold),
+                              ),
                             ),
-                          ],
-                        ),
-                        bottom: TabBar(
-                          isScrollable: false,
-                          physics: const NeverScrollableScrollPhysics(),
-                          overlayColor: WidgetStateProperty.all(
-                            Colors.transparent,
                           ),
-                          padding: EdgeInsets.symmetric(
-                            horizontal: screenSize.width > 1100
-                                ? screenSize.width * 0.35
-                                : 20,
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: DropdownMenu(
+                              dropdownMenuEntries: menuEntries,
+                              initialSelection: locale,
+                              onSelected: (value) => setState(() {
+                                appSettings?.locale = value;
+                                AppData().saveAppSettings();
+                              }),
+                            ),
                           ),
-                          indicatorSize: TabBarIndicatorSize.tab,
-                          dividerColor: Colors.transparent,
-                          tabs: [
-                            Tab(text: appLocalization.article.toUpperCase()),
-                            Tab(text: appLocalization.tool.toUpperCase()),
-                            Tab(text: appLocalization.project.toUpperCase()),
-                          ],
-                        ),
+                        ],
                       ),
-                body: SafeArea(
-                  child: TabBarView(
-                    physics: const NeverScrollableScrollPhysics(),
-                    children: [
-                      TabBarLayoutContentView(
-                        hideBottomAppBar: isFullScreenModel,
+                    ),
+                    appBar: isFullScreenModel
+                        ? null
+                        : AppBar(
+                            centerTitle: true,
+                            title: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                AssetIcons.logo.image,
+                                const SizedBox(width: 20),
+                                Text(
+                                  appTitle,
+                                  style: MaterialTheme.textTheme().titleMedium,
+                                ),
+                              ],
+                            ),
+                            bottom: TabBar(
+                              isScrollable: false,
+                              physics: const NeverScrollableScrollPhysics(),
+                              overlayColor: WidgetStateProperty.all(
+                                Colors.transparent,
+                              ),
+                              padding: EdgeInsets.symmetric(
+                                horizontal: screenSize.width > 1100
+                                    ? screenSize.width * 0.35
+                                    : 20,
+                              ),
+                              indicatorSize: TabBarIndicatorSize.tab,
+                              dividerColor: Colors.transparent,
+                              tabs: [
+                                Tab(text: appLocalization.article.toUpperCase()),
+                                Tab(text: appLocalization.tool.toUpperCase()),
+                                Tab(text: appLocalization.project.toUpperCase()),
+                              ],
+                            ),
+                          ),
+                    body: SafeArea(
+                      child:
+                          TabBarView(
+                            physics: const NeverScrollableScrollPhysics(),
+                            children: [
+                              TabBarLayoutContentView(
+                                hideBottomAppBar: isFullScreenModel,
+                              ),
+                              TabBarLayoutToolView(
+                                hideBottomAppBar: isFullScreenModel,
+                              ),
+                              TabBarLayoutProjectView(
+                                hideBottomAppBar: isFullScreenModel,
+                              ),
+                            ],
+                          ),
+                          
+                        
+                    ),
+                    floatingActionButton: FloatingActionButton.small(
+                      elevation: 1,
+                      onPressed: () => setState(() {
+                        var isFullScreenMode = !isFullScreenModel;
+                        appSettings?.isFullScreenMode = isFullScreenMode;
+                        AppData().saveAppSettings();
+                      }),
+                      child: Icon(
+                        isFullScreenModel
+                            ? MdiIcons.arrowExpand
+                            : MdiIcons.arrowExpandAll,
                       ),
-                      TabBarLayoutToolView(hideBottomAppBar: isFullScreenModel),
-                      TabBarLayoutProjectView(
-                        hideBottomAppBar: isFullScreenModel,
-                      ),
-                    ],
+                    ),
                   ),
                 ),
-                floatingActionButton: FloatingActionButton.small(
-                  elevation: 1,
-                  onPressed: () => setState(() {
-                    var isFullScreenMode = !isFullScreenModel;
-                    appSettings?.isFullScreenMode = isFullScreenMode;
-                    AppData().saveAppSettings();
-                  }),
-                  child: Icon(
-                    isFullScreenModel
-                        ? MdiIcons.arrowExpand
-                        : MdiIcons.arrowExpandAll,
-                  ),
-                ),
+                context: context,
               ),
-            ),
-            context: context,
-          );
-        },
-      ),
+              if (isLoading) const Positioned.fill(child: Center(child: LoadingScreen()))
+              ]
+            );
+          },
+        ),
     );
   }
 }

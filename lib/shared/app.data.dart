@@ -17,6 +17,8 @@ class AppData {
   Future<Box<AppSettings>> get _box async =>
       await Hive.openBox<AppSettings>(hiveAppSettings);
 
+  ValueNotifier<bool> isLoading = ValueNotifier(false);
+
   void saveAppSettings() async {
     try {
       if (appSettings == null) {

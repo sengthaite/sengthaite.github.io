@@ -44,13 +44,16 @@ class TabBarLayoutContentView extends TabBarLayoutView {
   Future<AppModelFrontmatter?> _getMarkdownFromPath(String? path) async {
     if (path == null) return null;
     if (path.trim().isEmpty) return null;
+    AppData().isLoading.value = true;
     var content = await rootBundle.loadString(path);
     try {
       var parseResult = fm.parse(content);
       var result = convertYamlMapToMap(parseResult.data);
       result['content'] = parseResult.content ?? content;
+      AppData().isLoading.value = false;
       return AppModelFrontmatter.fromJson(result);
     } catch (error) {
+      AppData().isLoading.value = false;
       return Future(() => AppModelFrontmatter.fromJson({'content': content}));
     }
   }
