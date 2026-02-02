@@ -21,6 +21,7 @@ enum AssetIcons {
   cli("cli.svg"),
   tools("tool.svg"),
   biography("biography.svg"),
+  github("github.svg", section: TabSection.tool),
   camera("camera.svg", section: TabSection.tool),
   textEditor("text_editor.svg", section: TabSection.tool),
   http("http.svg", section: TabSection.tool),
@@ -72,6 +73,8 @@ enum AssetIcons {
         return AssetIcons.biography;
       case "text_editor":
         return AssetIcons.textEditor;
+      case "github":
+        return AssetIcons.github;
       default:
         return AssetIcons.logo;
     }

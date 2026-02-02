@@ -19,6 +19,7 @@ import 'package:sengthaite_blog/l10n/app_localizations.dart';
 import 'package:sengthaite_blog/shared/app.data.dart';
 import 'package:sengthaite_blog/shared/app.layout.dart';
 import 'package:sengthaite_blog/shared/data/appsetting.dart';
+import 'package:sengthaite_blog/shared/dialog/github_login_dialog.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -89,33 +90,33 @@ class _StateMainView extends State<MainView> {
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
     MaterialTheme theme = MaterialTheme();
-    return 
-        MaterialApp(
-        debugShowCheckedModeBanner: false,
-        // locale: DevicePreview.locale(context),
-        locale: locale,
-        builder: DevicePreview.appBuilder,
-        localizationsDelegates: const [
-          FlutterQuillLocalizations.delegate,
-          ...AppLocalizations.localizationsDelegates,
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-        ],
-        supportedLocales: AppLocalizations.supportedLocales,
-        theme: theme.light(),
-        darkTheme: theme.dark(),
-        highContrastTheme: theme.lightMediumContrast(),
-        highContrastDarkTheme: theme.darkMediumContrast(),
-        scrollBehavior: const MaterialScrollBehavior().copyWith(
-          scrollbars: false,
-        ),
-        navigatorKey: Navigation().navigatorKey,
-        home: Builder(
-          builder: (context) {
-            var appLocalization = AppLocalizations.of(context)!;
-            return Stack(
-              children: [AppLayout(
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      // locale: DevicePreview.locale(context),
+      locale: locale,
+      builder: DevicePreview.appBuilder,
+      localizationsDelegates: const [
+        FlutterQuillLocalizations.delegate,
+        ...AppLocalizations.localizationsDelegates,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: AppLocalizations.supportedLocales,
+      theme: theme.light(),
+      darkTheme: theme.dark(),
+      highContrastTheme: theme.lightMediumContrast(),
+      highContrastDarkTheme: theme.darkMediumContrast(),
+      scrollBehavior: const MaterialScrollBehavior().copyWith(
+        scrollbars: false,
+      ),
+      navigatorKey: Navigation().navigatorKey,
+      home: Builder(
+        builder: (context) {
+          var appLocalization = AppLocalizations.of(context)!;
+          return Stack(
+            children: [
+              AppLayout(
                 defaultWidget: DefaultTabController(
                   animationDuration: Duration.zero,
                   initialIndex: 1,
@@ -157,7 +158,13 @@ class _StateMainView extends State<MainView> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                AssetIcons.logo.image,
+                                GestureDetector(
+                                  onDoubleTap: () => showGithubLoginDialog(),
+                                  onLongPress: () {
+                                    debugPrint("long press");
+                                  },
+                                  child: AssetIcons.logo.image,
+                                ),
                                 const SizedBox(width: 20),
                                 Text(
                                   appTitle,
@@ -179,30 +186,31 @@ class _StateMainView extends State<MainView> {
                               indicatorSize: TabBarIndicatorSize.tab,
                               dividerColor: Colors.transparent,
                               tabs: [
-                                Tab(text: appLocalization.article.toUpperCase()),
+                                Tab(
+                                  text: appLocalization.article.toUpperCase(),
+                                ),
                                 Tab(text: appLocalization.tool.toUpperCase()),
-                                Tab(text: appLocalization.project.toUpperCase()),
+                                Tab(
+                                  text: appLocalization.project.toUpperCase(),
+                                ),
                               ],
                             ),
                           ),
                     body: SafeArea(
-                      child:
-                          TabBarView(
-                            physics: const NeverScrollableScrollPhysics(),
-                            children: [
-                              TabBarLayoutContentView(
-                                hideBottomAppBar: isFullScreenModel,
-                              ),
-                              TabBarLayoutToolView(
-                                hideBottomAppBar: isFullScreenModel,
-                              ),
-                              TabBarLayoutProjectView(
-                                hideBottomAppBar: isFullScreenModel,
-                              ),
-                            ],
+                      child: TabBarView(
+                        physics: const NeverScrollableScrollPhysics(),
+                        children: [
+                          TabBarLayoutContentView(
+                            hideBottomAppBar: isFullScreenModel,
                           ),
-                          
-                        
+                          TabBarLayoutToolView(
+                            hideBottomAppBar: isFullScreenModel,
+                          ),
+                          TabBarLayoutProjectView(
+                            hideBottomAppBar: isFullScreenModel,
+                          ),
+                        ],
+                      ),
                     ),
                     floatingActionButton: FloatingActionButton.small(
                       elevation: 1,
@@ -221,11 +229,12 @@ class _StateMainView extends State<MainView> {
                 ),
                 context: context,
               ),
-              if (isLoading) const Positioned.fill(child: Center(child: LoadingScreen()))
-              ]
-            );
-          },
-        ),
+              if (isLoading)
+                const Positioned.fill(child: Center(child: LoadingScreen())),
+            ],
+          );
+        },
+      ),
     );
   }
 }
