@@ -1,0 +1,30 @@
+display_name: Ste Glob
+package_name: steglob
+
+maintainer:
+  name: Sengthai Te
+  email: sengthaite@gmail.com
+
+priority: optional
+
+section: x11
+
+installed_size: 15700
+
+essential: false
+
+icon: assets/icon/icon.png
+
+postuninstall_scripts:
+  - echo "build completed"
+
+keywords:
+  - Blog
+
+generic_name: SteGlob
+
+categories:
+  - Development
+  - Utility
+
+startup_notify: true
