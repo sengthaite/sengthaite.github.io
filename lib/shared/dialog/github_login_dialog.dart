@@ -4,7 +4,6 @@ import 'package:sengthaite_blog/extensions/file_picker.dart';
 import 'package:sengthaite_blog/features/navigation/navigation.dart';
 import 'package:sengthaite_blog/features/tool/api/github/github_api.dart';
 import 'package:sengthaite_blog/shared/app.data.dart';
-import 'package:sengthaite_blog/shared/common/checkbox_text.dart';
 
 void showGithubLoginDialog({Function(dynamic value)? onSuccess}) {
   final formKey = GlobalKey<FormState>();
