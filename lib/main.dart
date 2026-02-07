@@ -159,7 +159,21 @@ class _StateMainView extends State<MainView> {
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 GestureDetector(
-                                  onDoubleTap: () => showGithubLoginDialog(),
+                                  onDoubleTap: () => showGithubLoginDialog(
+                                    onSuccess: (response) {
+                                      Map<String, dynamic> result =
+                                          response as Map<String, dynamic>;
+                                      AppData().appSettings?.githubMyRoadmaps = result;
+                                      AppData().saveAppSettings();
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => Container(),
+                                          fullscreenDialog: true,
+                                        ),
+                                      );
+                                    },
+                                  ),
                                   onLongPress: () {
                                     debugPrint("long press");
                                   },

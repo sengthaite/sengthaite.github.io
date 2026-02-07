@@ -42,7 +42,7 @@ class AppData {
     }
     if (appSettings == null) {
       var box = await _box;
-      appSettings = box.get('appSettings') ?? AppSettings();
+      appSettings = box.get('appSettings') ?? AppSettings(githubMyRoadmaps: {});
     }
     return true;
   }

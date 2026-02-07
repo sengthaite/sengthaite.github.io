@@ -13,6 +13,7 @@ enum HttpRequestMethodType {
   patch
 }
 
+
 extension HttpRequestMethodTypeExtension on HttpRequestMethodType {
   static String get defaultHttpMethod => listRequestMethods.first;
 
