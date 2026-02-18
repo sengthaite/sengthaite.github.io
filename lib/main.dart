@@ -11,6 +11,7 @@ import 'package:sengthaite_blog/constants/app.constants.dart';
 import 'package:sengthaite_blog/constants/image.constants.dart';
 import 'package:sengthaite_blog/constants/theme.dart';
 import 'package:sengthaite_blog/features/navigation/navigation.dart';
+import 'package:sengthaite_blog/features/personal/personal_git_view.dart';
 import 'package:sengthaite_blog/features/tab_bar_layout_content_view.dart';
 import 'package:sengthaite_blog/features/tab_bar_layout_project_view.dart';
 import 'package:sengthaite_blog/features/tab_bar_layout_tool_view.dart';
@@ -159,7 +160,16 @@ class _StateMainView extends State<MainView> {
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 GestureDetector(
-                                  onDoubleTap: () => showGithubLoginDialog(
+                                  onDoubleTap: () { 
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => PersonalGitView(),
+                                          fullscreenDialog: true,
+                                        ),
+                                      );
+                                      return;
+                                      showGithubLoginDialog(
                                     onSuccess: (response) {
                                       Map<String, dynamic> result =
                                           response as Map<String, dynamic>;
@@ -172,11 +182,24 @@ class _StateMainView extends State<MainView> {
                                           fullscreenDialog: true,
                                         ),
                                       );
+                                    }
+                                  );
+                                  },
+                                  onLongPress: () => showGithubLoginDialog(
+                                    onSuccess: (response) {
+                                      Map<String, dynamic> result =
+                                          response as Map<String, dynamic>;
+                                      AppData().appSettings?.githubMyRoadmaps = result;
+                                      AppData().saveAppSettings();
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => PersonalGitView(),
+                                          fullscreenDialog: true,
+                                        ),
+                                      );
                                     },
                                   ),
-                                  onLongPress: () {
-                                    debugPrint("long press");
-                                  },
                                   child: AssetIcons.logo.image,
                                 ),
                                 const SizedBox(width: 20),
