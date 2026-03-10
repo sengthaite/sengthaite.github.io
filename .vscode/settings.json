@@ -1,8 +1,8 @@
 {
   "makefile.configureOnOpen": false,
   "python.terminal.activateEnvironment": false,
-  "cSpell.words": [
-    "allprojects",
-    "subprojects"
-  ]
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit",
+    "source.organizeImports": "explicit"
+  },
 }

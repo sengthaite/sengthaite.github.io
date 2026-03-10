@@ -10,11 +10,11 @@ import 'package:sengthaite_blog/shared/app.data.dart';
 
   GithubAPI({required this.personalAccessToken});
 
-  Future<Map<String, dynamic>> listRepos() async {
+  Future<dynamic> listRepos({required String url}) async {
     AppData().isLoading.value = true;
     debugPrint(personalAccessToken);
     try {
-      var result = await dio.get('https://api.github.com/repos/sengthaite/my_roadmap/contents', options: Options(headers: {
+      var result = await dio.get(url, options: Options(headers: {
         'Authorization': 'Bearer $personalAccessToken',
         'Accept': 'application/vnd.github.object',
         'X-GitHub-Api-Version': '2022-11-28'

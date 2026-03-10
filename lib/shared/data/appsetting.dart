@@ -18,9 +18,9 @@ class AppSettings extends HiveObject {
   @HiveField(4)
   String? localeCountryCode;
   @HiveField(5)
-  Map<String, dynamic>? githubMyRoadmaps;
-  @HiveField(6)
   String? githubToken;
+  @HiveField(6)
+  String? githubUrl;
 
   set locale(Locale? value) {
     localeLanguageCode = value?.languageCode;
@@ -37,7 +37,6 @@ class AppSettings extends HiveObject {
     DateTime? createdDate,
     bool? isFullScreenMode,
     Locale? locale,
-    this.githubMyRoadmaps,
   }) : id = id ?? const Uuid().v4(),
        createdDate = createdDate ?? DateTime.now(),
        isFullScreenMode = isFullScreenMode ?? false,

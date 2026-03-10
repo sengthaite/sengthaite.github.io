@@ -20,11 +20,11 @@ class AppSettingsAdapter extends TypeAdapter<AppSettings> {
         id: fields[0] as String?,
         createdDate: fields[1] as DateTime?,
         isFullScreenMode: fields[2] as bool?,
-        githubMyRoadmaps: (fields[5] as Map?)?.cast<String, dynamic>(),
       )
       ..localeLanguageCode = fields[3] as String?
       ..localeCountryCode = fields[4] as String?
-      ..githubToken = fields[6] as String?;
+      ..githubToken = fields[5] as String?
+      ..githubUrl = fields[6] as String?;
   }
 
   @override
@@ -42,9 +42,9 @@ class AppSettingsAdapter extends TypeAdapter<AppSettings> {
       ..writeByte(4)
       ..write(obj.localeCountryCode)
       ..writeByte(5)
-      ..write(obj.githubMyRoadmaps)
+      ..write(obj.githubToken)
       ..writeByte(6)
-      ..write(obj.githubToken);
+      ..write(obj.githubUrl);
   }
 
   @override

@@ -1,8 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:sengthaite_blog/constants/image.constants.dart';
 import 'package:sengthaite_blog/extensions/file_picker.dart';
 import 'package:sengthaite_blog/features/navigation/navigation.dart';
-import 'package:sengthaite_blog/features/tool/api/github/github_api.dart';
 import 'package:sengthaite_blog/shared/app.data.dart';
 
 void showGithubLoginDialog({Function(dynamic value)? onSuccess}) {
@@ -45,18 +46,19 @@ class _GithubLoginWidgetState extends State<GithubLoginWidget> {
                   debugPrint("Invalid file");
                   return;
                 }
-                if (widget.onSuccess != null) {
-                  var githubApi = GithubAPI(personalAccessToken: fileContent);
-                  var repos = await githubApi.listRepos();
-                  if (repos.isEmpty) {
-                    debugPrint("Empty repos");
-                    return;
-                  }
-                  if (rememberedMe) {
-                    AppData().appSettings?.githubToken = fileContent;
+                try {
+                  var jsonData = jsonDecode(fileContent);
+                  var token = jsonData['token'];
+                  var url = jsonData['url'];
+                  if (rememberedMe && token != null && url != null) {
+                    AppData().appSettings?.githubToken = token;
+                    AppData().appSettings?.githubUrl = url;
                     AppData().saveAppSettings();
                   }
-                  widget.onSuccess!(repos);
+                  if (widget.onSuccess != null) widget.onSuccess!(jsonData);
+                } catch (e) {
+                  debugPrint("Error reading file: $e");
+                  return;
                 }
               },
               icon: Text("Auth File"),
@@ -74,12 +76,12 @@ class _GithubLoginWidgetState extends State<GithubLoginWidget> {
                   },
                 ),
                 SizedBox(width: 8),
-                Text("Remember Me")
+                Text("Remember Me"),
               ],
             ),
           ],
         ),
-      )
+      ),
     );
   }
 }

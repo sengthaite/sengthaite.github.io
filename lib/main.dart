@@ -87,6 +87,28 @@ class _StateMainView extends State<MainView> {
     AppData().isLoading.dispose();
   }
 
+  void showGitContentDetail(BuildContext context) => showGithubLoginDialog(
+    onSuccess: (response) {
+      if (response == null) {
+        Navigator.pop(context);
+        return;
+      }
+      Map<String, dynamic> result = response as Map<String, dynamic>;
+      if (result.isEmpty) {
+        debugPrint("Empty repos");
+        return;
+      }
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) =>
+              PersonalGitView(url: response['url'], token: response['token']),
+          fullscreenDialog: true,
+        ),
+      );
+    },
+  );
+
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
@@ -160,46 +182,10 @@ class _StateMainView extends State<MainView> {
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 GestureDetector(
-                                  onDoubleTap: () { 
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) => PersonalGitView(),
-                                          fullscreenDialog: true,
-                                        ),
-                                      );
-                                      return;
-                                      showGithubLoginDialog(
-                                    onSuccess: (response) {
-                                      Map<String, dynamic> result =
-                                          response as Map<String, dynamic>;
-                                      AppData().appSettings?.githubMyRoadmaps = result;
-                                      AppData().saveAppSettings();
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) => Container(),
-                                          fullscreenDialog: true,
-                                        ),
-                                      );
-                                    }
-                                  );
-                                  },
-                                  onLongPress: () => showGithubLoginDialog(
-                                    onSuccess: (response) {
-                                      Map<String, dynamic> result =
-                                          response as Map<String, dynamic>;
-                                      AppData().appSettings?.githubMyRoadmaps = result;
-                                      AppData().saveAppSettings();
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) => PersonalGitView(),
-                                          fullscreenDialog: true,
-                                        ),
-                                      );
-                                    },
-                                  ),
+                                  onDoubleTap: () =>
+                                      showGitContentDetail(context),
+                                  onLongPress: () =>
+                                      showGitContentDetail(context),
                                   child: AssetIcons.logo.image,
                                 ),
                                 const SizedBox(width: 20),
