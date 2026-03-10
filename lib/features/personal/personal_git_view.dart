@@ -19,11 +19,15 @@ class _PersonalGitViewState extends State<PersonalGitView> {
 
   @override
   void initState() {
-    setState(() async {
-      var githubApi = GithubAPI(personalAccessToken: widget.token);
-      list = await githubApi.listRepos(url: widget.url);
-    });
+    fetchGitContent();
     super.initState();
+  }
+
+  void fetchGitContent() async {
+    var githubApi = GithubAPI(personalAccessToken: widget.token);
+    var data = await githubApi.listRepos(url: widget.url);
+    list = GitListRepoData.fromJson(data);
+    setState(() {});
   }
 
   void showGitContentDetail(BuildContext context, String? baseUrl) => Navigator.push(

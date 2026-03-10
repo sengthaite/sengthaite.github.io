@@ -70,8 +70,9 @@ class _GithubLoginWidgetState extends State<GithubLoginWidget> {
                 Checkbox(
                   value: rememberedMe,
                   onChanged: (value) {
+                    if (value == null || !mounted) return;
                     setState(() {
-                      rememberedMe = value ?? false;
+                      rememberedMe = value;
                     });
                   },
                 ),

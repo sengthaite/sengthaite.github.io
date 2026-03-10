@@ -69,9 +69,13 @@ class _StateMainView extends State<MainView> {
   bool isLoading = false;
 
   void onLoading() {
-    setState(() {
+    if (mounted) {
+      setState(() {
+        isLoading = AppData().isLoading.value;
+      });
+    } else {
       isLoading = AppData().isLoading.value;
-    });
+    }
   }
 
   @override
@@ -89,8 +93,8 @@ class _StateMainView extends State<MainView> {
 
   void showGitContentDetail(BuildContext context) => showGithubLoginDialog(
     onSuccess: (response) {
+      Navigator.pop(context);
       if (response == null) {
-        Navigator.pop(context);
         return;
       }
       Map<String, dynamic> result = response as Map<String, dynamic>;

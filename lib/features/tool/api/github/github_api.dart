@@ -1,29 +1,29 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:sengthaite_blog/shared/app.data.dart';
 
- class GithubAPI {
-
+class GithubAPI {
   final String personalAccessToken;
 
   var dio = Dio();
 
   GithubAPI({required this.personalAccessToken});
 
-  Future<dynamic> listRepos({required String url}) async {
-    AppData().isLoading.value = true;
+  Future<Map<String, dynamic>> listRepos({required String url}) async {
     debugPrint(personalAccessToken);
     try {
-      var result = await dio.get(url, options: Options(headers: {
-        'Authorization': 'Bearer $personalAccessToken',
-        'Accept': 'application/vnd.github.object',
-        'X-GitHub-Api-Version': '2022-11-28'
-      }));
-      AppData().isLoading.value = false;
+      var result = await dio.get(
+        url,
+        options: Options(
+          headers: {
+            'Authorization': 'Bearer $personalAccessToken',
+            'Accept': 'application/vnd.github.object',
+            'X-GitHub-Api-Version': '2022-11-28',
+          },
+        ),
+      );
       return result.data;
     } catch (error) {
       debugPrint(error.toString());
-      AppData().isLoading.value = false;
       return {};
     }
   }
