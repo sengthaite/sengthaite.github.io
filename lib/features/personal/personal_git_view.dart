@@ -5,9 +5,15 @@ import 'package:sengthaite_blog/features/tool/api/github/github_api.dart';
 import 'package:sengthaite_blog/shared/app.data.dart';
 
 class PersonalGitView extends StatefulWidget {
-  const PersonalGitView({super.key, required this.url, required this.token});
+  const PersonalGitView({
+    super.key,
+    required this.url,
+    required this.path,
+    required this.token,
+  });
 
   final String url;
+  final String path;
   final String token;
 
   @override
@@ -19,24 +25,30 @@ class _PersonalGitViewState extends State<PersonalGitView> {
 
   @override
   void initState() {
-    fetchGitContent();
     super.initState();
+    fetchGitContent();
   }
 
   void fetchGitContent() async {
+    if (!mounted) return;
     var githubApi = GithubAPI(personalAccessToken: widget.token);
-    var data = await githubApi.listRepos(url: widget.url);
+    var data = await githubApi.listRepos(url: "${widget.url}/${widget.path}");
     list = GitListRepoData.fromJson(data);
     setState(() {});
   }
 
-  void showGitContentDetail(BuildContext context, String? baseUrl) => Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) => PersonalGitView(url: baseUrl!, token: widget.token),
-                                          fullscreenDialog: true,
-                                        ),
-                                      );
+  void showGitContentDetail(
+    BuildContext context,
+    String baseUrl,
+    String path,
+  ) => Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) =>
+          PersonalGitView(url: baseUrl, path: path, token: widget.token),
+      fullscreenDialog: true,
+    ),
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -44,18 +56,34 @@ class _PersonalGitViewState extends State<PersonalGitView> {
       appBar: AppBar(),
       body: list.isEmpty
           ? Center(child: Text("No content available"))
-          : GridView.extent(
-              maxCrossAxisExtent: 150,
-              shrinkWrap: true,
-              children: List.generate(list.length, (index) {
-                var item = list.entries!.elementAt(index);
-                return Center(
-                  child: IconButton.outlined(
+          : SingleChildScrollView(
+              child: Wrap(
+                spacing: 10,
+                runSpacing: 10,
+                alignment: WrapAlignment.spaceEvenly,
+                children: List.generate(list.length, (index) {
+                  var item = list.entries!.elementAt(index);
+                  return IconButton.outlined(
                     onPressed: () async {
                       if (item.isDirectory) {
                         AppData().isLoading.value = true;
-                        var fullUrl = "${widget.url}/${item.path}";
-                        showGitContentDetail(context, fullUrl);
+                        showGitContentDetail(context, widget.url, item.path!);
+                        AppData().isLoading.value = false;
+                      } else if (item.isFile && item.downloadUrl != null) {
+                        AppData().isLoading.value = true;
+                        // await launchUrl(Uri.parse(item.downloadUrl!));
+                        // var dio = Dio(
+                        //   BaseOptions(
+                        //     headers: {
+                        //       "Accept": "application/vnd.github.v3.raw",
+                        //     },
+                        //     receiveDataWhenStatusError: true,
+                        //     followRedirects: true,
+                        //     maxRedirects: 3,
+                        //     persistentConnection: true,
+                        //   ),
+                        // );
+                        // dio.get
                         AppData().isLoading.value = false;
                       }
                     },
@@ -68,9 +96,9 @@ class _PersonalGitViewState extends State<PersonalGitView> {
                         ),
                       ],
                     ),
-                  ),
-                );
-              }),
+                  );
+                }),
+              ),
             ),
     );
   }

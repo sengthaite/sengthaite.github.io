@@ -106,7 +106,7 @@ class _StateMainView extends State<MainView> {
         context,
         MaterialPageRoute(
           builder: (context) =>
-              PersonalGitView(url: response['url'], token: response['token']),
+              PersonalGitView(url: response['url'], path: "", token: response['token']),
           fullscreenDialog: true,
         ),
       );

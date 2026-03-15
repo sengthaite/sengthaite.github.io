@@ -17,6 +17,8 @@ class GitListRepoData {
 
     bool get isDirectory => type == "dir";
 
+    bool get isFile => type == "file";
+
     GitListRepoData({
         this.name,
         this.path,

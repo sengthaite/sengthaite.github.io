@@ -41,12 +41,12 @@ class _GithubLoginWidgetState extends State<GithubLoginWidget> {
             IconButton.outlined(
               onPressed: () async {
                 String? fileContent = AppData().appSettings?.githubToken;
-                fileContent ??= await openFilePicker();
-                if (fileContent == null) {
-                  debugPrint("Invalid file");
-                  return;
-                }
                 try {
+                  fileContent ??= await openFilePicker();
+                  if (fileContent == null) {
+                    debugPrint("Invalid file");
+                    return;
+                  }
                   var jsonData = jsonDecode(fileContent);
                   var token = jsonData['token'];
                   var url = jsonData['url'];
