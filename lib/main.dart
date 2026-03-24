@@ -91,27 +91,48 @@ class _StateMainView extends State<MainView> {
     AppData().isLoading.dispose();
   }
 
-  void showGitContentDetail(BuildContext context) => showGithubLoginDialog(
-    onSuccess: (response) {
-      Navigator.pop(context);
-      if (response == null) {
-        return;
-      }
-      Map<String, dynamic> result = response as Map<String, dynamic>;
-      if (result.isEmpty) {
-        debugPrint("Empty repos");
-        return;
-      }
+  void showGitContentDetail(BuildContext context) {
+    bool isRememberedMe = appSettings?.isRememberedMe ?? false;
+    String githubToken = appSettings?.githubToken ?? '';
+    String githubUrl = appSettings?.githubUrl ?? '';
+    if (isRememberedMe && githubToken.isNotEmpty && githubUrl.isNotEmpty) {
       Navigator.push(
         context,
         MaterialPageRoute(
           builder: (context) =>
-              PersonalGitView(url: response['url'], path: "", token: response['token']),
+              PersonalGitView(url: githubUrl, path: "", token: githubToken),
           fullscreenDialog: true,
         ),
       );
-    },
-  );
+      return;
+    }
+    showGithubLoginDialog(
+      onSuccess: (response) {
+        Navigator.pop(context);
+        if (response == null) {
+          return;
+        }
+        Map<String, dynamic> result = response as Map<String, dynamic>;
+        String? url = response['url'];
+        String? token = response['token'];
+        if (result.isEmpty || url == null || token == null) {
+          debugPrint("Empty repos");
+          return;
+        }
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => PersonalGitView(
+              url: response['url'],
+              path: "",
+              token: response['token'],
+            ),
+            fullscreenDialog: true,
+          ),
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -172,6 +193,15 @@ class _StateMainView extends State<MainView> {
                                 appSettings?.locale = value;
                                 AppData().saveAppSettings();
                               }),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: IconButton.outlined(
+                              onPressed: () {
+                                AppData().appSettings?.delete();
+                              },
+                              icon: Text("Clear Cache"),
                             ),
                           ),
                         ],

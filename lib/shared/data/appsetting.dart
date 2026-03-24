@@ -21,11 +21,15 @@ class AppSettings extends HiveObject {
   String? githubToken;
   @HiveField(6)
   String? githubUrl;
+  @HiveField(7)
+  bool? rememberedMe;
 
   set locale(Locale? value) {
     localeLanguageCode = value?.languageCode;
     localeCountryCode = value?.countryCode;
   }
+
+  bool get isRememberedMe => rememberedMe ?? false;
 
   Locale? get locale {
     if (localeLanguageCode == null) return null;

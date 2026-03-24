@@ -24,13 +24,14 @@ class AppSettingsAdapter extends TypeAdapter<AppSettings> {
       ..localeLanguageCode = fields[3] as String?
       ..localeCountryCode = fields[4] as String?
       ..githubToken = fields[5] as String?
-      ..githubUrl = fields[6] as String?;
+      ..githubUrl = fields[6] as String?
+      ..rememberedMe = fields[7] as bool?;
   }
 
   @override
   void write(BinaryWriter writer, AppSettings obj) {
     writer
-      ..writeByte(7)
+      ..writeByte(8)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -44,7 +45,9 @@ class AppSettingsAdapter extends TypeAdapter<AppSettings> {
       ..writeByte(5)
       ..write(obj.githubToken)
       ..writeByte(6)
-      ..write(obj.githubUrl);
+      ..write(obj.githubUrl)
+      ..writeByte(7)
+      ..write(obj.rememberedMe);
   }
 
   @override

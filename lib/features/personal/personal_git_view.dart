@@ -30,11 +30,12 @@ class _PersonalGitViewState extends State<PersonalGitView> {
   }
 
   void fetchGitContent() async {
-    if (!mounted) return;
     var githubApi = GithubAPI(personalAccessToken: widget.token);
     var data = await githubApi.listRepos(url: "${widget.url}/${widget.path}");
-    list = GitListRepoData.fromJson(data);
-    setState(() {});
+    if (!mounted) return;
+    setState(() {
+      list = GitListRepoData.fromJson(data);
+    });
   }
 
   void showGitContentDetail(

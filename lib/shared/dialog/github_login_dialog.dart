@@ -28,8 +28,25 @@ class GithubLoginWidget extends StatefulWidget {
 
 class _GithubLoginWidgetState extends State<GithubLoginWidget> {
   bool rememberedMe = false;
+  String? token;
+  String? url;
+
+  @override
+  void initState() {
+    super.initState();
+    rememberedMe = AppData().appSettings?.rememberedMe ?? true;
+    token = AppData().appSettings?.githubToken;
+    url = AppData().appSettings?.githubUrl;
+  }
+
   @override
   Widget build(BuildContext context) {
+    final canLogin =
+        rememberedMe &&
+        token != null &&
+        url != null &&
+        widget.onSuccess != null;
+
     return AlertDialog(
       icon: AssetIcons.github.image,
       title: Text("Github Login"),
@@ -40,9 +57,8 @@ class _GithubLoginWidgetState extends State<GithubLoginWidget> {
           children: [
             IconButton.outlined(
               onPressed: () async {
-                String? fileContent = AppData().appSettings?.githubToken;
                 try {
-                  fileContent ??= await openFilePicker();
+                  var fileContent = await openFilePicker();
                   if (fileContent == null) {
                     debugPrint("Invalid file");
                     return;
@@ -53,6 +69,7 @@ class _GithubLoginWidgetState extends State<GithubLoginWidget> {
                   if (rememberedMe && token != null && url != null) {
                     AppData().appSettings?.githubToken = token;
                     AppData().appSettings?.githubUrl = url;
+                    AppData().appSettings?.rememberedMe = true;
                     AppData().saveAppSettings();
                   }
                   if (widget.onSuccess != null) widget.onSuccess!(jsonData);
@@ -62,6 +79,13 @@ class _GithubLoginWidgetState extends State<GithubLoginWidget> {
                 }
               },
               icon: Text("Auth File"),
+            ),
+            SizedBox(height: 8),
+            if(canLogin) IconButton.filled(
+              onPressed: () {
+                widget.onSuccess!({'token': token, 'url': url});
+              },
+              icon: Text("Login"),
             ),
             SizedBox(height: 8),
             Row(
