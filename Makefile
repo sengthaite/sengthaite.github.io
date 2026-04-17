@@ -6,8 +6,11 @@ gen_icon:
 gen_l10n:
 	flutter gen-l10n
 
-build_linux:
+dist_linux:
 	flutter_distributor release --name=dev --jobs=release-dev-linux-deb
+
+build_linux:
+	flutter build linux --release
 
 build_web:
 	flutter build web --base-href=/ --wasm

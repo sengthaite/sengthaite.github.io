@@ -5,4 +5,6 @@
     "source.fixAll": "explicit",
     "source.organizeImports": "explicit"
   },
+  "FSharp.suggestGitignore": false,
+  "cmake.sourceDirectory": "/home/ste/Desktop/sengthaite.github.io/linux",
 }
