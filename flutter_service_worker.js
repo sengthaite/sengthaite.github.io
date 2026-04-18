@@ -110,7 +110,7 @@ const RESOURCES = {"assets/assets/autogen_meta/data_content.json": "edefc3b75d8f
 "canvaskit/skwasm_heavy.wasm": "b0be7910760d205ea4e011458df6ee01",
 "canvaskit/skwasm.js": "8060d46e9a4901ca9991edd3a26be4f0",
 "flutter.js": "24bc71911b75b5f8135c949e27a2984e",
-"flutter_bootstrap.js": "c09ac5c92c1a17d511dfc6c91a16cf75",
+"flutter_bootstrap.js": "8dfe6a6a7f02b273ab8977fb7b162ad1",
 "main.dart.js": "489472d6554e0651d05cf58c507ee56d",
 "version.json": "a07d8bd594cce6033c300d9d89d41de4",
 "icons/Icon-maskable-512.png": "5d6ff263f9bcd9fa1cf5d434f029fd35",
