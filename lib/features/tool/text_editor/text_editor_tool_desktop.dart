@@ -7,9 +7,9 @@ class TextEditorToolDesktop extends TextEditorTool {
         config: QuillEditorConfig(
           minHeight: 300,
           autoFocus: false,
-          searchConfig: QuillSearchConfig(
-            searchEmbedMode: SearchEmbedMode.plainText,
-          ),
+          // searchConfig: QuillSearchConfig(
+          //   searchEmbedMode: SearchEmbedMode.plainText,
+          // ),
         ),
       );
 }

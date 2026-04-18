@@ -41,7 +41,7 @@ jobs:
     
     - name: Build APK (Release - Unsigned)
       run: |
-        flutter build apk --release --no-shrink
+        flutter build apk --release --target-platform android-arm64
         echo "APK built successfully!"
         ls -la build/app/outputs/flutter-apk/
     
@@ -49,14 +49,14 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: app-release-unsigned
-        path: build/app/outputs/flutter-apk/app-release.apk
+        path: build/app/outputs/flutter-apk/app-release-arm64.apk
         retention-days: 2
     
     - name: Create GitHub Release
       if: startsWith(github.ref, 'refs/tags/v')
       uses: softprops/action-gh-release@v1
       with:
-        files: build/app/outputs/flutter-apk/app-release.apk
+        files: build/app/outputs/flutter-apk/app-release-arm64.apk
         generate_release_notes: true
         prerelease: false
         draft: false

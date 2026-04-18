@@ -6,9 +6,9 @@ class TextEditorToolMobile extends TextEditorTool {
     : super(
         config: QuillEditorConfig(
           autoFocus: false,
-          searchConfig: QuillSearchConfig(
-            searchEmbedMode: SearchEmbedMode.plainText,
-          ),
+          // searchConfig: QuillSearchConfig(
+          //   searchEmbedMode: SearchEmbedMode.plainText,
+          // ),
         ),
       );
 }

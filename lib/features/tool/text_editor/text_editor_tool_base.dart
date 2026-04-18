@@ -1,11 +1,8 @@
 import 'dart:async';
-import 'dart:io' as io;
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart';
 import 'package:hive_ce/hive.dart';
-import 'package:path/path.dart' as path;
 import 'package:rxdart/rxdart.dart';
 import 'package:sengthaite_blog/constants/app.constants.dart';
 import 'package:sengthaite_blog/shared/file/hiveeditor.dart';
@@ -57,24 +54,24 @@ class _TextEditorToolState extends State<TextEditorTool> {
   void initState() {
     TextEditorTool.quillController = QuillController.basic(
       config: QuillControllerConfig(
-        clipboardConfig: QuillClipboardConfig(
-          enableExternalRichPaste: true,
-          onImagePaste: (imageBytes) async {
-            if (kIsWeb) {
-              return null;
-            }
-            final newFileName =
-                'image-file-${DateTime.now().toIso8601String()}.png';
-            final newPath = path.join(
-              io.Directory.systemTemp.path,
-              newFileName,
-            );
-            final file = await io.File(
-              newPath,
-            ).writeAsBytes(imageBytes, flush: true);
-            return file.path;
-          },
-        ),
+        // clipboardConfig: QuillClipboardConfig(
+        //   enableExternalRichPaste: true,
+        //   onImagePaste: (imageBytes) async {
+        //     if (kIsWeb) {
+        //       return null;
+        //     }
+        //     final newFileName =
+        //         'image-file-${DateTime.now().toIso8601String()}.png';
+        //     final newPath = path.join(
+        //       io.Directory.systemTemp.path,
+        //       newFileName,
+        //     );
+        //     final file = await io.File(
+        //       newPath,
+        //     ).writeAsBytes(imageBytes, flush: true);
+        //     return file.path;
+        //   },
+        // ),
       ),
     );
     loadMarkdown();
