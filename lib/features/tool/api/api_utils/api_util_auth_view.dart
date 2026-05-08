@@ -1,7 +1,6 @@
 import 'dart:core';
-
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:sengthaite_blog/extensions/file_picker.dart';
 import 'package:sengthaite_blog/features/tool/api/api_request_builder.dart';
 
 class APIUtilAuthView extends StatefulWidget {
@@ -68,137 +67,139 @@ class _APIUtilAuthViewState extends State<APIUtilAuthView> {
           if (currentRequest?.authType == "basic")
             SizedBox(
               width: 250,
-              child: Column(children: [
-                SizedBox(height: 12),
-                Padding(
-                  padding: EdgeInsets.all(8),
-                  child: TextField(
-                    decoration: InputDecoration(
+              child: Column(
+                children: [
+                  SizedBox(height: 12),
+                  Padding(
+                    padding: EdgeInsets.all(8),
+                    child: TextField(
+                      decoration: InputDecoration(
                         hintText: 'Username',
                         border: OutlineInputBorder(),
-                        contentPadding: EdgeInsets.all(4)),
-                    controller: currentRequest?.usernameController,
+                        contentPadding: EdgeInsets.all(4),
+                      ),
+                      controller: currentRequest?.usernameController,
+                    ),
                   ),
-                ),
-                SizedBox(height: 5),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: TextField(
-                    decoration: InputDecoration(
+                  SizedBox(height: 5),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextField(
+                      decoration: InputDecoration(
                         hintText: 'Password',
                         border: OutlineInputBorder(),
-                        contentPadding: EdgeInsets.all(4)),
-                    controller: currentRequest?.passwordController,
+                        contentPadding: EdgeInsets.all(4),
+                      ),
+                      controller: currentRequest?.passwordController,
+                    ),
                   ),
-                )
-              ]),
+                ],
+              ),
             ),
           if (currentRequest?.authType == "bearer")
             SizedBox(
               width: 250,
-              child: Column(children: [
-                SizedBox(height: 12),
-                Padding(
-                  padding: EdgeInsets.all(8),
-                  child: TextField(
-                    decoration: InputDecoration(
+              child: Column(
+                children: [
+                  SizedBox(height: 12),
+                  Padding(
+                    padding: EdgeInsets.all(8),
+                    child: TextField(
+                      decoration: InputDecoration(
                         hintText: 'Bearer Token',
                         border: OutlineInputBorder(),
-                        contentPadding: EdgeInsets.all(4)),
-                    controller: currentRequest?.bearerController,
+                        contentPadding: EdgeInsets.all(4),
+                      ),
+                      controller: currentRequest?.bearerController,
+                    ),
                   ),
-                ),
-              ]),
+                ],
+              ),
             ),
           if (currentRequest?.authType == "jsonwebtoken")
             SizedBox(
               width: 250,
-              child: Column(children: [
-                SizedBox(height: 12),
-                Padding(
-                  padding: EdgeInsets.all(8),
-                  child: DropdownMenu(
-                    initialSelection: currentRequest?.jwtAlgorithm.text,
-                    requestFocusOnTap: true,
-                    label: const Text('Algorithm'),
-                    dropdownMenuEntries: jwtAlgorithms,
-                    onSelected: (value) => setState(() {
-                      currentRequest?.jwtAlgorithm.text = value ?? "HS256";
-                    }),
-                  ),
-                ),
-                SizedBox(height: 5),
-                if (currentRequest?.isHashingAlgorithm ?? false)
-                  SizedBox(
-                    width: 250,
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: TextField(
-                            maxLines: 5,
-                            keyboardType: TextInputType.multiline,
-                            decoration: InputDecoration(
-                              hintText: 'secret',
-                              border: OutlineInputBorder(),
-                              contentPadding: EdgeInsets.all(4),
-                            ),
-                            controller: currentRequest?.jwtSecret,
-                          ),
-                        ),
-                        Row(
-                          children: [
-                            Checkbox(
-                              value: currentRequest?.isSecretBase64,
-                              onChanged: (value) => setState(() {
-                                currentRequest?.isSecretBase64 = value ?? false;
-                              }),
-                            ),
-                            Text("Secret Base64 encoded"),
-                          ],
-                        )
-                      ],
+              child: Column(
+                children: [
+                  SizedBox(height: 12),
+                  Padding(
+                    padding: EdgeInsets.all(8),
+                    child: DropdownMenu(
+                      initialSelection: currentRequest?.jwtAlgorithm.text,
+                      requestFocusOnTap: true,
+                      label: const Text('Algorithm'),
+                      dropdownMenuEntries: jwtAlgorithms,
+                      onSelected: (value) => setState(() {
+                        currentRequest?.jwtAlgorithm.text = value ?? "HS256";
+                      }),
                     ),
                   ),
-                if (!(currentRequest?.isHashingAlgorithm ?? true))
-                  SizedBox(
-                    width: 250,
-                    child: Column(
-                      children: [
-                        TextButton(
-                          onPressed: () async {
-                            FilePickerResult? result =
-                                await FilePicker.platform.pickFiles();
-                            if (result != null) {
-                              final fileContent = await result
-                                  .files.single.xFile
-                                  .readAsString();
+                  SizedBox(height: 5),
+                  if (currentRequest?.isHashingAlgorithm ?? false)
+                    SizedBox(
+                      width: 250,
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: TextField(
+                              maxLines: 5,
+                              keyboardType: TextInputType.multiline,
+                              decoration: InputDecoration(
+                                hintText: 'secret',
+                                border: OutlineInputBorder(),
+                                contentPadding: EdgeInsets.all(4),
+                              ),
+                              controller: currentRequest?.jwtSecret,
+                            ),
+                          ),
+                          Row(
+                            children: [
+                              Checkbox(
+                                value: currentRequest?.isSecretBase64,
+                                onChanged: (value) => setState(() {
+                                  currentRequest?.isSecretBase64 =
+                                      value ?? false;
+                                }),
+                              ),
+                              Text("Secret Base64 encoded"),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  if (!(currentRequest?.isHashingAlgorithm ?? true))
+                    SizedBox(
+                      width: 250,
+                      child: Column(
+                        children: [
+                          TextButton(
+                            onPressed: () async {
+                              String? fileContent =
+                                  await openFilePicker() ?? '';
                               setState(() {
                                 currentRequest?.jwtPrivateKey.text =
                                     fileContent;
                               });
-                            } else {
-                              // User canceled the picker
-                            }
-                          },
-                          child: Text("Select File"),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: TextField(
-                            decoration: InputDecoration(
-                              hintText: 'Private key',
-                              border: OutlineInputBorder(),
-                              contentPadding: EdgeInsets.all(4),
-                            ),
-                            controller: currentRequest?.jwtPrivateKey,
+                            },
+                            child: Text("Select File"),
                           ),
-                        ),
-                      ],
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: TextField(
+                              decoration: InputDecoration(
+                                hintText: 'Private key',
+                                border: OutlineInputBorder(),
+                                contentPadding: EdgeInsets.all(4),
+                              ),
+                              controller: currentRequest?.jwtPrivateKey,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                SizedBox(height: 12),
-                Padding(
+                  SizedBox(height: 12),
+                  Padding(
                     padding: EdgeInsets.all(8),
                     child: TextField(
                       controller: currentRequest?.jwtPayload,
@@ -207,9 +208,11 @@ class _APIUtilAuthViewState extends State<APIUtilAuthView> {
                         border: OutlineInputBorder(),
                         contentPadding: EdgeInsets.all(4),
                       ),
-                    )),
-              ]),
-            )
+                    ),
+                  ),
+                ],
+              ),
+            ),
         ],
       ),
     );

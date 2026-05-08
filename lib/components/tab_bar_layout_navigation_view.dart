@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:sengthaite_blog/components/tab_bar_navigation_title.dart';
+import 'package:sengthaite_blog/constants/theme.dart';
 
 class TabBarLayoutNavigationView extends StatefulWidget {
   const TabBarLayoutNavigationView({
@@ -19,6 +20,9 @@ class TabBarLayoutNavigationView extends StatefulWidget {
 }
 
 class _TabBarLayoutNavigtionState extends State<TabBarLayoutNavigationView> {
+  
+  var titleStyle = MaterialTheme.textTheme().titleMedium;
+
   List<TextSpan>? getNavItemWidget() {
     var items = widget.navigationTitleItems;
     if (items == null) {
@@ -31,12 +35,12 @@ class _TabBarLayoutNavigtionState extends State<TabBarLayoutNavigationView> {
     for (final (index, item) in items.indexed) {
       if (index == lastIndex) {
         item.setTitleStyle(
-          const TextStyle(color: Colors.blue),
+          titleStyle!.copyWith(color: Colors.blue),
         );
         break;
       }
       item.setTitleStyle(
-        const TextStyle(color: Colors.grey),
+        titleStyle!.copyWith(color: Colors.grey),
       );
     }
     return items.map((e) => e.titleWidget).toList();
@@ -55,7 +59,7 @@ class _TabBarLayoutNavigtionState extends State<TabBarLayoutNavigationView> {
               overflow: TextOverflow.ellipsis,
               text: TextSpan(
                   text: widget.defaultText,
-                  style: const TextStyle(color: Colors.grey),
+                  style: titleStyle!.copyWith(color: Colors.grey),
                   recognizer: widget.defaultTextClick != null
                       ? (TapGestureRecognizer()
                         ..onTap = () => widget.defaultTextClick!())

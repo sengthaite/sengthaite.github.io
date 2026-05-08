@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:sengthaite_blog/components/http_response_view.dart';
+import 'package:sengthaite_blog/constants/theme.dart';
 import 'package:sengthaite_blog/extensions/http_ext.dart';
 import 'package:sengthaite_blog/extensions/string_ext.dart';
 import 'package:sengthaite_blog/features/tool/api/api_request_builder.dart';
 
 class APIViewMobile extends StatefulWidget {
-  const APIViewMobile({
-    super.key,
-  });
+  const APIViewMobile({super.key});
 
   @override
   State<APIViewMobile> createState() => _APIViewDesktopState();
@@ -16,19 +14,20 @@ class APIViewMobile extends StatefulWidget {
 
 class _APIViewDesktopState extends State<APIViewMobile> {
   bool allowSubmitRequest = false;
+  var textTheme = MaterialTheme.textTheme();
   Color? methodColor = HttpRequestMethodTypeExtension.methodByDisplay(
-          HttpRequestMethodTypeExtension.defaultHttpMethod)
-      ?.color;
+    HttpRequestMethodTypeExtension.defaultHttpMethod,
+  )?.color;
 
   @override
   void dispose() {
-    super.dispose();
     HttpRequestBuilder.getInstance().removeInstance();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    final selectedData = context.watch<HttpRestRequestDatum>();
+    final selectedData = HttpRequestBuilder.getInstance().selectedDatum!;
     return Row(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -43,12 +42,14 @@ class _APIViewDesktopState extends State<APIViewMobile> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   DropdownMenu(
-                    width: 100,
-                    textStyle: TextStyle(
-                        fontSize: 14,
-                        color: methodColor,
-                        fontWeight: FontWeight.bold),
-                    initialSelection: selectedData.getRequestMethod ??
+                    width: 118,
+                    textStyle: textTheme.bodyMedium!.copyWith(
+                      color: methodColor,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 10,
+                    ),
+                    initialSelection:
+                        selectedData.getRequestMethod ??
                         HttpRequestMethodTypeExtension.defaultHttpMethod,
                     requestFocusOnTap: false,
                     dropdownMenuEntries: HttpRequestMethodTypeExtension
@@ -57,12 +58,12 @@ class _APIViewDesktopState extends State<APIViewMobile> {
                         .toList(),
                     onSelected: (value) {
                       if (value == null) return;
-                      selectedData.setRequestMethod = value as String;
+                      selectedData.setRequestMethod = value;
                       setState(() {
                         methodColor =
                             HttpRequestMethodTypeExtension.methodByDisplay(
-                                    value)
-                                ?.color;
+                              value,
+                            )?.color;
                       });
                     },
                   ),
@@ -70,7 +71,7 @@ class _APIViewDesktopState extends State<APIViewMobile> {
                   Expanded(
                     child: TextFormField(
                       textInputAction: TextInputAction.done,
-                      style: const TextStyle(fontSize: 14),
+                      style: textTheme.bodyMedium!.copyWith(fontSize: 10,),
                       controller: selectedData.urlInputController,
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
@@ -89,16 +90,16 @@ class _APIViewDesktopState extends State<APIViewMobile> {
               Expanded(
                 child:
                     selectedData.response != null && !selectedData.isRequesting
-                        ? HttpResponseView(response: selectedData.response)
-                        : Center(
-                            child: selectedData.isRequesting
-                                ? const CircularProgressIndicator()
-                                : const Padding(
-                                    padding: EdgeInsets.all(8.0),
-                                    child: Text("Empty response"),
-                                  ),
-                          ),
-              )
+                    ? HttpResponseView(response: selectedData.response)
+                    : Center(
+                        child: selectedData.isRequesting
+                            ? const CircularProgressIndicator()
+                            : const Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Text("Empty response"),
+                              ),
+                      ),
+              ),
             ],
           ),
         ),

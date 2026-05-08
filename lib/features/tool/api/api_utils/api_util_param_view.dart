@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:sengthaite_blog/constants/theme.dart';
 import 'package:sengthaite_blog/features/tool/api/api_request_builder.dart';
+import 'package:sengthaite_blog/features/tool/api/api_util_table_data.dart';
 
 class APIUtilParamView extends StatefulWidget {
   const APIUtilParamView({
@@ -12,7 +14,10 @@ class APIUtilParamView extends StatefulWidget {
 }
 
 class _APIUtilParamViewState extends State<APIUtilParamView> {
-  var currentRequest = HttpRequestBuilder?.getInstance().selectedDatum;
+  var selectedDatum = HttpRequestBuilder.getInstance().selectedDatum;
+  var currentRequest =
+      HttpRequestBuilder.getInstance().selectedDatum?.paramData;
+  var textTheme = MaterialTheme.textTheme();
 
   @override
   Widget build(BuildContext context) {
@@ -31,31 +36,29 @@ class _APIUtilParamViewState extends State<APIUtilParamView> {
             children: [
               TableRow(children: [
                 Checkbox(
-                  value: currentRequest?.selectedAllParam,
+                  value: currentRequest?.selectedAll ?? false,
                   onChanged: (value) {
-                    currentRequest?.toggleParamAllRow();
-                    setState(() {
-                      currentRequest?.selectedAllParam = value;
-                    });
+                    currentRequest?.toggleAllRow();
+                    setState(() => currentRequest?.selectedAll = value);
                   },
                 ),
-                const Padding(
+                 Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Text("Key",
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontWeight: FontWeight.bold)),
+                      style: textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.bold)),
                 ),
-                const Padding(
+                 Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Text("Value",
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontWeight: FontWeight.bold)),
+                      style: textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.bold)),
                 ),
-                const Padding(
+                 Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Text("Description",
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontWeight: FontWeight.bold)),
+                      style: textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.bold)),
                 ),
                 IconButton(
                   splashColor: Colors.transparent,
@@ -63,31 +66,28 @@ class _APIUtilParamViewState extends State<APIUtilParamView> {
                   highlightColor: Colors.transparent,
                   focusColor: Colors.transparent,
                   hoverColor: Colors.transparent,
-                  onPressed: () {
-                    setState(() {
-                      currentRequest?.addParam(APIRowData());
-                    });
-                  },
+                  onPressed: () =>
+                      setState(() => currentRequest?.add(APIRowData())),
                   icon: Icon(
                     MdiIcons.plus,
                     color: Colors.green,
                   ),
                 ),
               ]),
-              ...List.generate(currentRequest?.paramControllers.length ?? 0,
+              ...List.generate(currentRequest?.controllers.length ?? 0,
                   (index) {
-                var dataRow = currentRequest?.paramControllers[index];
+                var dataRow = currentRequest?.controllers[index];
                 return TableRow(
                   children: [
                     Checkbox(
                       value: dataRow?.isSelected,
-                      onChanged: (value) => setState(() =>
-                          currentRequest?.toggleParamRowSelectionAt(index)),
+                      onChanged: (value) => setState(
+                          () => currentRequest?.toggleRowSelectionAt(index)),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: TextFormField(
-                        style: const TextStyle(fontSize: 12),
+                        style: textTheme.labelSmall,
                         enableSuggestions: false,
                         maxLines: null,
                         keyboardType: TextInputType.multiline,
@@ -96,14 +96,14 @@ class _APIUtilParamViewState extends State<APIUtilParamView> {
                           border: InputBorder.none,
                         ),
                         controller: dataRow?.keyController,
-                        onChanged: (text) => currentRequest
+                        onChanged: (text) => selectedDatum
                             ?.buildUrlWithQueryParams(index, key: text),
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: TextFormField(
-                        style: const TextStyle(fontSize: 12),
+                        style: textTheme.labelSmall,
                         enableSuggestions: false,
                         maxLines: null,
                         keyboardType: TextInputType.multiline,
@@ -112,14 +112,14 @@ class _APIUtilParamViewState extends State<APIUtilParamView> {
                           border: InputBorder.none,
                         ),
                         controller: dataRow?.valueController,
-                        onChanged: (value) => currentRequest
+                        onChanged: (value) => selectedDatum
                             ?.buildUrlWithQueryParams(index, value: value),
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: TextFormField(
-                        style: const TextStyle(fontSize: 12),
+                        style: textTheme.labelSmall,
                         enableSuggestions: false,
                         maxLines: null,
                         keyboardType: TextInputType.multiline,
@@ -141,11 +141,8 @@ class _APIUtilParamViewState extends State<APIUtilParamView> {
                               Icons.delete,
                               color: Colors.red,
                             ),
-                            onPressed: () {
-                              setState(() {
-                                currentRequest?.removeParamAt(index);
-                              });
-                            },
+                            onPressed: () =>
+                                setState(() => currentRequest?.removeAt(index)),
                           )
                         : const SizedBox(),
                   ],

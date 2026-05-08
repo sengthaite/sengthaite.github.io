@@ -8,7 +8,7 @@ part of 'hivedir.dart';
 
 class TempDirAdapter extends TypeAdapter<TempDir> {
   @override
-  final int typeId = 1;
+  final typeId = 1;
 
   @override
   TempDir read(BinaryReader reader) {
@@ -17,10 +17,10 @@ class TempDirAdapter extends TypeAdapter<TempDir> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return TempDir(
-      id: fields[0] as String?,
-      createdDate: fields[2] as DateTime?,
-      dirname: fields[1] as String,
-    )
+        id: fields[0] as String?,
+        createdDate: fields[2] as DateTime?,
+        dirname: fields[1] as String,
+      )
       ..dirs = (fields[3] as Map).cast<String, TempDir>()
       ..files = (fields[4] as Map).cast<String, TempFile>();
   }
@@ -54,7 +54,7 @@ class TempDirAdapter extends TypeAdapter<TempDir> {
 
 class TempFileAdapter extends TypeAdapter<TempFile> {
   @override
-  final int typeId = 2;
+  final typeId = 2;
 
   @override
   TempFile read(BinaryReader reader) {

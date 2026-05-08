@@ -28,5 +28,8 @@
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+
+	<key>NSCameraUsageDescription</key>
+    <string>This app needs camera access to capture photos and videos</string>
 </dict>
 </plist>

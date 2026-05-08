@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sengthaite_blog/constants/theme.dart';
 import 'package:sengthaite_blog/features/tool/api/api_request_builder.dart';
 
 class APIUtilBodyView extends StatefulWidget {
@@ -20,7 +21,7 @@ class _APIUtilBodyViewState extends State<APIUtilBodyView> {
         maxLines: null,
         autofocus: true,
         keyboardType: TextInputType.multiline,
-        style: const TextStyle(fontSize: 12),
+        style: MaterialTheme.textTheme().bodyMedium!.copyWith(fontSize: 12),
         decoration: const InputDecoration(
           hintText: "",
           border: InputBorder.none,

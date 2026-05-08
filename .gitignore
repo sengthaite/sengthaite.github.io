@@ -3,6 +3,7 @@
 *.log
 *.pyc
 *.swp
+*.cxx/
 .DS_Store
 .atom/
 .build/
@@ -32,6 +33,10 @@ migrate_working_dir/
 .pub-cache/
 .pub/
 /build/
+dist/**
+
+# NodeJs related
+**/node_modules/
 
 # Symbolication related
 app.*.symbols
@@ -46,3 +51,8 @@ app.*.map.json
 
 # FVM Version Cache
 .fvm/
+**/API_DIR
+
+# Persistent data
+.hive_data
+**/.hive_data

@@ -1,9 +1,9 @@
 import "package:flutter/material.dart";
-import "package:sengthaite_blog/constants/util_theme.dart";
+import "package:google_fonts/google_fonts.dart";
 
 class MaterialTheme {
   static TextTheme textTheme() {
-    return createTextTheme("Fira Code", "Fira Code");
+    return GoogleFonts.notoSansKhmerTextTheme();
   }
 
   static bool isDark(BuildContext context) =>

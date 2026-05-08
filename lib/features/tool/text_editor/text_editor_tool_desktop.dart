@@ -1,25 +1,15 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart';
+import 'package:sengthaite_blog/features/tool/text_editor/text_editor_tool_base.dart';
 
-class TextEditorToolDesktop extends StatelessWidget {
-  const TextEditorToolDesktop({
-    super.key,
-    required this.controller,
-  });
-
-  final QuillController controller;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Expanded(
-          child: QuillEditor.basic(
-            controller: controller,
-            config: QuillEditorConfig(minHeight: 300),
-          ),
-        )
-      ],
-    );
-  }
+class TextEditorToolDesktop extends TextEditorTool {
+  TextEditorToolDesktop({super.key})
+    : super(
+        config: QuillEditorConfig(
+          minHeight: 300,
+          autoFocus: false,
+          // searchConfig: QuillSearchConfig(
+          //   searchEmbedMode: SearchEmbedMode.plainText,
+          // ),
+        ),
+      );
 }

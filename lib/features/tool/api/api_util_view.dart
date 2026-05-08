@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:sengthaite_blog/constants/theme.dart';
 import 'package:sengthaite_blog/features/tool/api/api_encryption/api_encryption_view.dart';
+import 'package:sengthaite_blog/features/tool/api/api_functions/api_func_view.dart';
+import 'package:sengthaite_blog/features/tool/api/api_log/api_log_view.dart';
 import 'package:sengthaite_blog/features/tool/api/api_utils/api_util_auth_view.dart';
 import 'package:sengthaite_blog/features/tool/api/api_utils/api_util_body_view.dart';
 import 'package:sengthaite_blog/features/tool/api/api_utils/api_util_header_view.dart';
 import 'package:sengthaite_blog/features/tool/api/api_utils/api_util_param_view.dart';
-import 'package:sengthaite_blog/features/tool/api/api_variables/api_static_variables_view.dart';
+import 'package:sengthaite_blog/features/tool/api/api_variables/api_live_variables_view.dart';
+import 'package:sengthaite_blog/features/tool/api/api_variables/api_variables_view.dart';
 
 class APISettingItem {
   APISettingItem({
@@ -19,16 +23,7 @@ class APISettingItem {
   Widget item;
 }
 
-enum SettingCode {
-  requestBuilder,
-  encryption,
-  staticVariable,
-  dynamicVariable,
-  buildInFunc,
-  customFunc,
-  log,
-  test
-}
+enum SettingCode { requestBuilder, encryption, variable, func, log, test }
 
 class APIUtilView extends StatefulWidget {
   const APIUtilView({
@@ -56,29 +51,19 @@ class _APIUtilViewState extends State<APIUtilView> {
       code: SettingCode.requestBuilder,
     ),
     APISettingItem(
+      title: "Variables",
+      item: Text("Variables"),
+      code: SettingCode.variable,
+    ),
+    APISettingItem(
+      title: "Functions",
+      item: Text("Functions"),
+      code: SettingCode.func,
+    ),
+    APISettingItem(
       title: "Encryption",
       item: Text("Encryption"),
       code: SettingCode.encryption,
-    ),
-    APISettingItem(
-      title: "Static Variables",
-      item: Text("Static Variables"),
-      code: SettingCode.staticVariable,
-    ),
-    APISettingItem(
-      title: "Dynamic Variables",
-      item: Text("Dynamic Variables"),
-      code: SettingCode.dynamicVariable,
-    ),
-    APISettingItem(
-      title: "Built-in Functions",
-      item: Text("Built-in functions"),
-      code: SettingCode.buildInFunc,
-    ),
-    APISettingItem(
-      title: "Custom Functions (Dart)",
-      item: Text("Custom functions"),
-      code: SettingCode.customFunc,
     ),
     APISettingItem(
       title: "Logs",
@@ -101,18 +86,24 @@ class _APIUtilViewState extends State<APIUtilView> {
           "Headers": APIUtilHeaderView(),
           "Body": APIUtilBodyView(),
         };
+      case SettingCode.variable:
+        return {
+          "Live Variables": APILiveVariablesView(),
+          "Variables": APIVariablesView(),
+        };
+      case SettingCode.func:
+        return {
+          "Functions": APIFuncView(),
+        };
       case SettingCode.encryption:
         return {
           "Encryption Function": APIEncryptionView(),
         };
-      case SettingCode.staticVariable:
-        return {
-          "Static Variables": APIStaticVariablesView(),
-        };
-      case SettingCode.dynamicVariable:
-      case SettingCode.buildInFunc:
-      case SettingCode.customFunc:
+
       case SettingCode.log:
+        return {
+          "API Logs": APILogView(),
+        };
       case SettingCode.test:
       default:
         return {
@@ -126,6 +117,8 @@ class _APIUtilViewState extends State<APIUtilView> {
 
   SettingCode? activeItemCode;
 
+  var textTheme = MaterialTheme.textTheme();
+
   @override
   Widget build(BuildContext context) {
     var drawerItems = getDrawerItems;
@@ -135,9 +128,9 @@ class _APIUtilViewState extends State<APIUtilView> {
       initialIndex: 0,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text(
+          title: Text(
             "HTTP Request",
-            style: TextStyle(
+            style: textTheme.bodyMedium!.copyWith(
               fontSize: 20,
               fontWeight: FontWeight.bold,
             ),
@@ -149,7 +142,7 @@ class _APIUtilViewState extends State<APIUtilView> {
                 .map((e) => Tab(
                         child: Text(
                       e,
-                      style: const TextStyle(fontSize: 11),
+                      style: textTheme.bodyMedium!.copyWith(fontSize: 11),
                     )))
                 .toList(),
           ),
@@ -160,10 +153,10 @@ class _APIUtilViewState extends State<APIUtilView> {
         drawer: Drawer(
           child: Column(
             children: [
-              const DrawerHeader(
+               DrawerHeader(
                 child: Text(
                   "Settings",
-                  style: TextStyle(
+                  style: textTheme.bodyMedium!.copyWith(
                     fontSize: 18,
                     fontWeight: FontWeight.w400,
                   ),
@@ -178,7 +171,7 @@ class _APIUtilViewState extends State<APIUtilView> {
                 return ListTile(
                   title: Text(
                     item.value.title,
-                    style: TextStyle(
+                    style: textTheme.bodyMedium!.copyWith(
                         color: item.value.isActive ? Colors.blue : null),
                   ),
                   onTap: () {
@@ -188,6 +181,7 @@ class _APIUtilViewState extends State<APIUtilView> {
                         drawerItems[activeItemCode]!.isActive = false;
                         activeItemCode = item.value.code;
                         item.value.isActive = true;
+                        Navigator.pop(context);
                       });
                     }
                   },

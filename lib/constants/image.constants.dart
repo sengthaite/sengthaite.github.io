@@ -21,9 +21,12 @@ enum AssetIcons {
   cli("cli.svg"),
   tools("tool.svg"),
   biography("biography.svg"),
+  github("github.svg", section: TabSection.tool),
   camera("camera.svg", section: TabSection.tool),
   textEditor("text_editor.svg", section: TabSection.tool),
-  http("http.svg", section: TabSection.tool);
+  http("http.svg", section: TabSection.tool),
+  cal("calculator.svg", section: TabSection.tool),
+  qrcode("qrcode.png", section: TabSection.tool);
 
   const AssetIcons(
     this.imageName, {
@@ -70,6 +73,8 @@ enum AssetIcons {
         return AssetIcons.biography;
       case "text_editor":
         return AssetIcons.textEditor;
+      case "github":
+        return AssetIcons.github;
       default:
         return AssetIcons.logo;
     }
@@ -88,17 +93,9 @@ enum AssetIcons {
         break;
     }
     if (path.extension(imageName) == '.svg') {
-      return SvgPicture.asset(
-        "$basePath/$imageName",
-        width: 60,
-        height: 60,
-      );
+      return SvgPicture.asset("$basePath/$imageName", width: 60, height: 60);
     }
-    return Image.asset(
-      "$basePath/$imageName",
-      width: 60,
-      height: 60,
-    );
+    return Image.asset("$basePath/$imageName", width: 60, height: 60);
   }
 
   final String imageName;

@@ -1,6 +1,6 @@
 {
     "author": "Te Sengthai",
-    "created_date": "2026-05-08T10:43:17.365688",
+    "created_date": "2026-05-08T21:05:41.859787",
     "data": [
         {
             "created_date": "2026-05-08T09:54:48.001011",
@@ -242,7 +242,7 @@
             "path": "assets/contents/Database"
         },
         {
-            "created_date": "2026-05-08T09:58:27.425011",
+            "created_date": "2026-05-08T20:43:31.460159",
             "files": [
                 {
                     "access_date": "2025-07-30T23:02:01.101980",
@@ -465,12 +465,23 @@
                     "title": "Restore a file's content in Mac OS"
                 },
                 {
+                    "access_date": "2026-05-08T20:43:31.460159",
+                    "change_date": "2026-05-08T20:43:31.460159",
+                    "exerpt": "Sleep Less and Wake Up Fresh",
+                    "full_path": "assets/contents/General/sleep-less-wake-fresh.txt",
+                    "hasToc": true,
+                    "index": 20,
+                    "modified_date": "2026-05-08T20:43:31.460159",
+                    "name": "sleep-less-wake-fresh.txt",
+                    "title": "Sleep Less and Wake Up Fresh"
+                },
+                {
                     "access_date": "2025-07-30T23:02:01.141980",
                     "change_date": "2025-07-30T23:02:01.141980",
                     "exerpt": "SOLID is a mnemonic acronym for 5 design principles intended to make OOP designs more understandable, flexible, and maintainable",
                     "full_path": "assets/contents/General/solid_principles.txt",
                     "hasToc": true,
-                    "index": 20,
+                    "index": 21,
                     "modified_date": "2025-07-30T23:02:01.141980",
                     "name": "solid_principles.txt",
                     "title": "SOLID Principle"
@@ -481,7 +492,7 @@
                     "exerpt": "ទឹកស៊ីអ៊ីវ ជាប្រភេទទឹកជ្រលក់ម៉្យាងធ្វើចេញមកពី ការផ្អាប់សណ្តែកសៀងកិន ការដុតរោលគ្រាប់សណ្តែក ទឹកអំប៊ិល និងមេ",
                     "full_path": "assets/contents/General/soy-source.txt",
                     "hasToc": false,
-                    "index": 21,
+                    "index": 22,
                     "modified_date": "2025-07-30T23:02:01.141980",
                     "name": "soy-source.txt",
                     "title": "ទឹកស៊ីអ៊ីវ"
@@ -492,7 +503,7 @@
                     "exerpt": "SDGs topics",
                     "full_path": "assets/contents/General/sustainable-development-goals.txt",
                     "hasToc": false,
-                    "index": 22,
+                    "index": 23,
                     "modified_date": "2025-07-30T23:02:01.145980",
                     "name": "sustainable-development-goals.txt",
                     "title": "UN Sustainable Development Goals (17)"
@@ -503,7 +514,7 @@
                     "exerpt": "តែជាភេសជ្ជៈមួយប្រភេទ ដែលមានដើមកំណើតមកពីភាគនិរតីនៃប្រទេសចិន",
                     "full_path": "assets/contents/General/tea.txt",
                     "hasToc": false,
-                    "index": 23,
+                    "index": 24,
                     "modified_date": "2025-07-30T23:02:01.145980",
                     "name": "tea.txt",
                     "title": "ការទទួលទានទឹកតែ"
@@ -514,7 +525,7 @@
                     "exerpt": "Getting to know terminal multiplexer and its usecases",
                     "full_path": "assets/contents/General/tmux.txt",
                     "hasToc": true,
-                    "index": 24,
+                    "index": 25,
                     "modified_date": "2025-07-30T23:02:01.145980",
                     "name": "tmux.txt",
                     "title": "tmux (terminal multiplexer)"
@@ -525,7 +536,7 @@
                     "exerpt": "អង្គភាព Wikimedia​ ជាអង្គភាពមិនរកកម្រៃមួយរបស់អាមេរិក ដែលមានស្នាក់ការកណ្តាលនៅ San Francisco, California ហើយចុះបញ្ជីជាអង្គភាពសប្បុរសធម៌​តាមច្បាប់ក្នុងប្រទេស",
                     "full_path": "assets/contents/General/wikimedia-foundation.txt",
                     "hasToc": false,
-                    "index": 25,
+                    "index": 26,
                     "modified_date": "2025-07-30T23:02:01.149980",
                     "name": "wikimedia-foundation.txt",
                     "title": "Wikimedia Foundation"
@@ -575,26 +586,6 @@
             "index": 9,
             "name": "OS",
             "path": "assets/contents/OS"
-        },
-        {
-            "created_date": "2025-07-30T23:02:01.053980",
-            "files": [
-                {
-                    "access_date": "2025-07-30T23:02:01.053980",
-                    "change_date": "2025-07-30T23:02:01.053980",
-                    "exerpt": "Topics for reverse engineering",
-                    "full_path": "assets/contents/Reverse_Engineer/reverse-engineer-roadmap.txt",
-                    "hasToc": false,
-                    "index": 0,
-                    "modified_date": "2025-07-30T23:02:01.053980",
-                    "name": "reverse-engineer-roadmap.txt",
-                    "title": "Reverse Engineering Roadmap"
-                }
-            ],
-            "icon": "Reverse_Engineer.svg",
-            "index": 10,
-            "name": "Reverse_Engineer",
-            "path": "assets/contents/Reverse_Engineer"
         },
         {
             "created_date": "2026-05-08T09:59:09.089011",
@@ -656,7 +647,7 @@
                 }
             ],
             "icon": "Swift.svg",
-            "index": 11,
+            "index": 10,
             "name": "Swift",
             "path": "assets/contents/Swift"
         },
@@ -676,9 +667,40 @@
                 }
             ],
             "icon": "Tool.svg",
-            "index": 12,
+            "index": 11,
             "name": "Tool",
             "path": "assets/contents/Tool"
+        },
+        {
+            "created_date": "2026-05-08T20:43:31.460159",
+            "files": [
+                {
+                    "access_date": "2026-05-08T20:43:31.460159",
+                    "change_date": "2026-05-08T20:43:31.460159",
+                    "exerpt": "Collections of keywords related to C# and .NET",
+                    "full_path": "assets/contents/csharp/csharp_keywords.txt",
+                    "hasToc": false,
+                    "index": 0,
+                    "modified_date": "2026-05-08T20:43:31.460159",
+                    "name": "csharp_keywords.txt",
+                    "title": "C# and .NET Key Terms"
+                },
+                {
+                    "access_date": "2026-05-08T20:43:31.460159",
+                    "change_date": "2026-05-08T20:43:31.460159",
+                    "exerpt": "Learn more C# and .NET",
+                    "full_path": "assets/contents/csharp/dotnet_learning_resources.txt",
+                    "hasToc": false,
+                    "index": 1,
+                    "modified_date": "2026-05-08T20:43:31.460159",
+                    "name": "dotnet_learning_resources.txt",
+                    "title": "C# and .NET Resources"
+                }
+            ],
+            "icon": "csharp.svg",
+            "index": 12,
+            "name": "csharp",
+            "path": "assets/contents/csharp"
         },
         {
             "created_date": "2026-05-08T09:58:33.985011",
@@ -732,6 +754,26 @@
             "index": 13,
             "name": "iOS",
             "path": "assets/contents/iOS"
+        },
+        {
+            "created_date": "2026-05-08T20:43:31.460159",
+            "files": [
+                {
+                    "access_date": "2026-05-08T20:43:31.460159",
+                    "change_date": "2026-05-08T20:43:31.460159",
+                    "exerpt": "Topics for reverse engineering",
+                    "full_path": "assets/contents/reverse_engineer/reverse-engineer-roadmap.txt",
+                    "hasToc": false,
+                    "index": 0,
+                    "modified_date": "2026-05-08T20:43:31.460159",
+                    "name": "reverse-engineer-roadmap.txt",
+                    "title": "Reverse Engineering Roadmap"
+                }
+            ],
+            "icon": "reverse_engineer.svg",
+            "index": 14,
+            "name": "reverse_engineer",
+            "path": "assets/contents/reverse_engineer"
         }
     ],
     "type": "dashboard",

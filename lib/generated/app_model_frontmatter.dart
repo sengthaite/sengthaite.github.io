@@ -4,13 +4,14 @@ part 'app_model_frontmatter.freezed.dart';
 part 'app_model_frontmatter.g.dart';
 
 @freezed
-class AppModelFrontmatter with _$AppModelFrontmatter {
+abstract class AppModelFrontmatter with _$AppModelFrontmatter {
   const factory AppModelFrontmatter({
     String? title,
     String? author,
     String? excerpt,
     String? category,
     String? date,
+    String? content,
   }) = _AppModelFrontmatter;
 
   const AppModelFrontmatter._();

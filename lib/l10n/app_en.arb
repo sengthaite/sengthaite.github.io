@@ -1,0 +1,11 @@
+{
+  "@@locale": "en",
+  "article": "Article",
+  "@article": {},
+  "tool": "Tool",
+  "@tool": {},
+  "project": "Project",
+  "@project": {},
+  "settings": "Settings",
+  "@settings": {}
+}

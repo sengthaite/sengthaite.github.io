@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:sengthaite_blog/constants/theme.dart';
 import 'package:sengthaite_blog/features/navigation/navigation.dart';
@@ -31,7 +33,7 @@ class APIUtil {
     );
   }
 
-  static void download(List<int> bytes) {
+  static void download(Uint8List bytes) {
     showDialog<void>(
       context: Navigation().context,
       barrierDismissible: false, // user must tap button!
@@ -41,6 +43,6 @@ class APIUtil {
 
   static void downloadStream(Stream<int> streamBytes) async {
     List<int> bytes = await streamBytes.toList();
-    download(bytes);
+    download(Uint8List.fromList(bytes));
   }
 }
