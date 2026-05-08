@@ -1,7 +1,10 @@
-.PHONY: all check autogen rebuild build_runner deploy pip_install
+.PHONY: all check autogen rebuild build_runner deploy pip_install run_web
+
+run_web:
+	flutter run -d web-server --web-hostname 0.0.0.0 --web-port 7777
 
 autogen:
-	python ./scripts/autogen.py
+	python3 ./scripts/autogen.py
 
 pip_install:
 	pip install -r ./scripts/requirements.txt
