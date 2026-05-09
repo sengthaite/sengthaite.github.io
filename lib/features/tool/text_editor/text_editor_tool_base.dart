@@ -8,11 +8,10 @@ import 'package:sengthaite_blog/constants/app.constants.dart';
 import 'package:sengthaite_blog/shared/file/hiveeditor.dart';
 
 class TextEditorTool extends StatefulWidget {
-  const TextEditorTool({super.key, required this.config});
+  const TextEditorTool({super.key, required this.config, this.onInit});
 
   final QuillEditorConfig config;
-
-  static QuillController? quillController;
+  final void Function(QuillController)? onInit;
 
   @override
   State<TextEditorTool> createState() => _TextEditorToolState();
@@ -20,6 +19,7 @@ class TextEditorTool extends StatefulWidget {
 
 class _TextEditorToolState extends State<TextEditorTool> {
   final _hiveSubject = PublishSubject<Document>();
+  final quillController = QuillController.basic();
   StreamSubscription? _subscription;
 
   Future<Box<HiveEditor>> get _box async =>
@@ -29,6 +29,7 @@ class _TextEditorToolState extends State<TextEditorTool> {
     final box = await _box;
     final hiveEditor = HiveEditor();
     box.put("content", hiveEditor);
+    debugPrint("Saved markdown: ${document.toPlainText()}");
     hiveEditor.saveData(document.toDelta());
   }
 
@@ -39,7 +40,7 @@ class _TextEditorToolState extends State<TextEditorTool> {
       if (hiveBox == null) return;
       final data = hiveBox.formatDelta(hiveBox.data);
       if (data != null) {
-        TextEditorTool.quillController?.document = Document.fromDelta(data);
+        quillController.document = Document.fromDelta(data);
       }
     } catch (error) {
       debugPrint(error.toString());
@@ -47,46 +48,25 @@ class _TextEditorToolState extends State<TextEditorTool> {
   }
 
   void _documentListener() {
-    _hiveSubject.add(TextEditorTool.quillController!.document);
+    _hiveSubject.add(quillController.document);
   }
 
   @override
   void initState() {
-    TextEditorTool.quillController = QuillController.basic(
-      config: QuillControllerConfig(
-        // clipboardConfig: QuillClipboardConfig(
-        //   enableExternalRichPaste: true,
-        //   onImagePaste: (imageBytes) async {
-        //     if (kIsWeb) {
-        //       return null;
-        //     }
-        //     final newFileName =
-        //         'image-file-${DateTime.now().toIso8601String()}.png';
-        //     final newPath = path.join(
-        //       io.Directory.systemTemp.path,
-        //       newFileName,
-        //     );
-        //     final file = await io.File(
-        //       newPath,
-        //     ).writeAsBytes(imageBytes, flush: true);
-        //     return file.path;
-        //   },
-        // ),
-      ),
-    );
+    widget.onInit?.call(quillController);
     loadMarkdown();
     _subscription = _hiveSubject
         .debounceTime(const Duration(milliseconds: 100))
         .listen((document) async => await saveAsMarkdown(document));
 
-    TextEditorTool.quillController!.addListener(_documentListener);
+    quillController.addListener(_documentListener);
     super.initState();
   }
 
   @override
   Future<void> dispose() async {
-    TextEditorTool.quillController?.removeListener(_documentListener);
-    TextEditorTool.quillController?.dispose();
+    quillController.removeListener(_documentListener);
+    quillController.dispose();
     _subscription?.cancel();
     _hiveSubject.close();
     super.dispose();
@@ -98,7 +78,7 @@ class _TextEditorToolState extends State<TextEditorTool> {
       children: [
         Expanded(
           child: QuillEditor.basic(
-            controller: TextEditorTool.quillController!,
+            controller: quillController,
             config: widget.config,
           ),
         ),

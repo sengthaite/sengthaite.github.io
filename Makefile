@@ -1,5 +1,8 @@
 
-.PHONY: all check autogen rebuild build_runner deploy pip_install build_web gen_l10n gen_icon run_web
+.PHONY: all check autogen rebuild build_runner deploy pip_install build_web gen_l10n gen_icon run_web claude
+
+claude:
+	ollama launch claude --model llama3.1:latest
 
 run_web:
 	flutter run -d web-server --web-hostname 0.0.0.0 --web-port 7777
@@ -8,7 +11,7 @@ gen_icon:
 	dart run icons_launcher:create
 
 gen_l10n:
-	flutter gen-l10n
+	flutter gen-l10ns
 
 dist_linux:
 	flutter_distributor release --name=dev --jobs=release-dev-linux-deb

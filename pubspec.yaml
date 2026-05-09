@@ -63,7 +63,6 @@ dev_dependencies:
     sdk: flutter
   flutter_lints: ^6.0.0
   build_runner: ^2.4.9
-  json_serializable: ^6.11.1
   freezed: ^3.2.3
   icons_launcher: ^3.0.3
 
@@ -91,6 +90,7 @@ flutter:
     - assets/contents/OS/
     - assets/autogen_meta/
     - assets/tool_icons/
+    - assets/content_icons/
 
 icons_launcher:
   image_path: 'assets/icon/icon.png'

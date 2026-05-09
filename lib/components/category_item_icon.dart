@@ -2,11 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sengthaite_blog/constants/theme.dart';
 
 class CategoryItemIcon extends StatelessWidget {
-  const CategoryItemIcon({
-    super.key,
-    required this.image,
-    required this.title,
-  });
+  const CategoryItemIcon({super.key, required this.image, required this.title});
 
   final Widget image;
   final String title;
@@ -31,9 +27,7 @@ class CategoryItemIcon extends StatelessWidget {
             child: image,
           ),
         ),
-        const SizedBox(
-          height: 4,
-        ),
+        const SizedBox(height: 4),
         Flexible(
           child: SizedBox(
             width: 64,
@@ -42,10 +36,12 @@ class CategoryItemIcon extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
               title,
               textAlign: TextAlign.center,
-              style: MaterialTheme.textTheme().labelSmall!.copyWith(fontSize: 12),
+              style: MaterialTheme.textTheme().labelSmall!.copyWith(
+                fontSize: 12,
+              ),
             ),
           ),
-        )
+        ),
       ],
     );
   }

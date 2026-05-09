@@ -20,12 +20,10 @@ import 'package:sengthaite_blog/features/tool/api/api_util_view.dart';
 import 'package:sengthaite_blog/features/tool/api/api_view_desktop.dart';
 import 'package:sengthaite_blog/features/tool/api/api_view_mobile.dart';
 import 'package:sengthaite_blog/features/tool/camera/camera_view.dart';
-import 'package:sengthaite_blog/features/tool/text_editor/text_editor_tool_base.dart';
 import 'package:sengthaite_blog/features/tool/text_editor/text_editor_tool_desktop.dart';
 import 'package:sengthaite_blog/features/tool/text_editor/text_editor_tool_mobile.dart';
 import 'package:sengthaite_blog/generated/models/tool_model.dart';
 import 'package:sengthaite_blog/shared/app.layout.dart';
-
 import 'tool/api/api_file_manager_view.dart';
 
 class TabBarLayoutToolView extends TabBarLayoutView {
@@ -35,6 +33,7 @@ class TabBarLayoutToolView extends TabBarLayoutView {
   final bool hideBottomAppBar;
 
   List<ToolItemModel> toolList() {
+    late QuillController quillController;
     return [
       ToolItemModel(
         title: "Camera",
@@ -57,8 +56,7 @@ class TabBarLayoutToolView extends TabBarLayoutView {
             icon: const Icon(Icons.extension),
             onPressed: () {
               var context = Navigation().tabBarDetailContext;
-              var quillController = TextEditorTool.quillController;
-              if (context == null || quillController == null) return;
+              if (context == null) return;
               showModalBottomSheet(
                 context: context,
                 showDragHandle: true,
@@ -85,8 +83,7 @@ class TabBarLayoutToolView extends TabBarLayoutView {
           IconButton(
             onPressed: () async {
               var context = Navigation().tabBarDetailContext;
-              var quillController = TextEditorTool.quillController;
-              if (context == null || quillController == null) return;
+              if (context == null) return;
               final delta = quillController.document.toDelta();
               final markdown = DeltaToMarkdown().convert(delta);
               final fileName = 'note_${DateTime.now().millisecondsSinceEpoch}';
@@ -113,8 +110,12 @@ class TabBarLayoutToolView extends TabBarLayoutView {
         ],
         widgetBuilder: (context) => AppLayout(
           context: context,
-          defaultWidget: TextEditorToolDesktop(),
-          mobileWidget: TextEditorToolMobile(),
+          defaultWidget: TextEditorToolDesktop(
+            onInit: (controller) => quillController = controller,
+          ),
+          mobileWidget: TextEditorToolMobile(
+            onInit: (controller) => quillController = controller,
+          ),
         ),
       ),
       ToolItemModel(
