@@ -1,11 +1,18 @@
 
-.PHONY: all check autogen rebuild build_runner deploy pip_install build_web gen_l10n gen_icon run_web claude
+.PHONY: all check autogen rebuild build_runner deploy pip_install build_web gen_l10n gen_icon run_web claude doc run_doc
 
 claude:
 	ollama launch claude --model llama3.1:latest
 
 run_web:
 	flutter run -d web-server --web-hostname 0.0.0.0 --web-port 7777 --no-hot --verbose
+
+doc:
+	dart doc .
+
+run_doc:
+	dart pub global activate dhttpd
+	dart pub global run dhttpd --path doc/api
 
 gen_icon:
 	dart run icons_launcher:create

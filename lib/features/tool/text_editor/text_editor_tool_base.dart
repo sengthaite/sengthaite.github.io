@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart';
 import 'package:hive_ce/hive.dart';
@@ -23,7 +22,7 @@ class _TextEditorToolState extends State<TextEditorTool> {
   Future<Box<HiveEditor>> get _box async =>
       await Hive.openBox<HiveEditor>(hiveEditor);
 
-  Future<void> saveAsMarkdown(Document document) async {
+  Future<void> saveOnChanged(Document document) async {
     final box = await _box;
     final hiveEditor = HiveEditor();
     box.put("content", hiveEditor);
@@ -51,7 +50,7 @@ class _TextEditorToolState extends State<TextEditorTool> {
       widget.initQuillController.value = controller!;
       controller!.changes
           .debounceTime(const Duration(milliseconds: 100))
-          .listen((document) async => await saveAsMarkdown(controller!.document));
+          .listen((document) async => await saveOnChanged(controller!.document));
     } catch (error) {
       debugPrint("load markdown: ${error.toString()}");
     }

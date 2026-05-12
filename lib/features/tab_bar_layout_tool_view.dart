@@ -1,13 +1,7 @@
-import 'dart:convert';
-import 'dart:io';
-
-import 'package:file_saver/file_saver.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart';
-import 'package:markdown_quill/markdown_quill.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:sengthaite_blog/components/category_item_icon.dart';
 import 'package:sengthaite_blog/components/tab_bar_layout_view.dart';
 import 'package:sengthaite_blog/components/tab_bar_navigation_title.dart';
@@ -20,20 +14,23 @@ import 'package:sengthaite_blog/features/tool/api/api_util_view.dart';
 import 'package:sengthaite_blog/features/tool/api/api_view_desktop.dart';
 import 'package:sengthaite_blog/features/tool/api/api_view_mobile.dart';
 import 'package:sengthaite_blog/features/tool/camera/camera_view.dart';
+import 'package:sengthaite_blog/features/tool/text_editor/text_editor_extension.dart';
 import 'package:sengthaite_blog/features/tool/text_editor/text_editor_tool_desktop.dart';
 import 'package:sengthaite_blog/features/tool/text_editor/text_editor_tool_mobile.dart';
 import 'package:sengthaite_blog/generated/models/tool_model.dart';
 import 'package:sengthaite_blog/shared/app.layout.dart';
 import 'tool/api/api_file_manager_view.dart';
 
+enum DocExportType { markdown, html, pdf }
+
 class TabBarLayoutToolView extends TabBarLayoutView {
-   TabBarLayoutToolView({super.key, required this.hideBottomAppBar})
+  TabBarLayoutToolView({super.key, required this.hideBottomAppBar})
     : super(section: TabSection.tool, hideBottomBar: hideBottomAppBar);
 
   final bool hideBottomAppBar;
 
   final ValueNotifier<QuillController> initQuillController = ValueNotifier(
-    QuillController.basic()
+    QuillController.basic(),
   );
 
   List<ToolItemModel> toolList() {
@@ -94,34 +91,49 @@ class TabBarLayoutToolView extends TabBarLayoutView {
                       );
                     },
                   ),
-                  IconButton(
-                    onPressed: () async {
-                      var context = Navigation().tabBarDetailContext;
-                      if (context == null) return;
-                      var doc = controller.document.toDelta();
-                      var markdown = DeltaToMarkdown().convert(doc);
-                      final fileName =
-                          'note_${DateTime.now().millisecondsSinceEpoch}';
-
+                  DropdownMenu<DocExportType>(
+                    leadingIcon: Icon(Icons.download),
+                    dropdownMenuEntries: [
+                      DropdownMenuEntry(
+                        value: DocExportType.markdown,
+                        label: 'Markdown',
+                        leadingIcon: Icon(MdiIcons.languageMarkdown),
+                      ),
+                      DropdownMenuEntry(
+                        value: DocExportType.pdf,
+                        label: 'PDF',
+                        leadingIcon: Icon(MdiIcons.filePdfBox),
+                      ),
+                      DropdownMenuEntry(
+                        value: DocExportType.html,
+                        label: 'html',
+                        leadingIcon: Icon(MdiIcons.languageHtml5),
+                      ),
+                    ],
+                    initialSelection: DocExportType.markdown,
+                    onSelected: (value) {
+                      if (value == null) {
+                        debugPrint("Required doc export type");
+                        return;
+                      }
                       try {
-                        await FileSaver.instance.saveFile(
-                          name: fileName,
-                          bytes: Utf8Encoder().convert(markdown),
-                          fileExtension: 'md',
-                          mimeType: MimeType.text,
-                        );
-                      } catch (e) {
-                        try {
-                          final directory =
-                              await getApplicationDocumentsDirectory();
-                          final file = File('${directory.path}/$fileName');
-                          await file.writeAsString(markdown);
-                        } catch (e) {
-                          debugPrint('Could not save file: $e');
+                        var context = Navigation().tabBarDetailContext;
+                        if (context == null) return;
+                        switch (value) {
+                          case DocExportType.markdown:
+                            controller.saveMarkdown();
+                            break;
+                          case DocExportType.pdf:
+                            controller.savePDF();
+                            break;
+                          case DocExportType.html:
+                            controller.saveHTML();
+                            break;
                         }
+                      } catch (error) {
+                        debugPrint("Download error: ${error.toString()}");
                       }
                     },
-                    icon: Icon(Icons.download),
                   ),
                 ],
               );
@@ -131,8 +143,12 @@ class TabBarLayoutToolView extends TabBarLayoutView {
         ],
         widgetBuilder: (context) => AppLayout(
           context: context,
-          defaultWidget: TextEditorToolDesktop(initQuillController: initQuillController),
-          mobileWidget: TextEditorToolMobile(initQuillController: initQuillController),
+          defaultWidget: TextEditorToolDesktop(
+            initQuillController: initQuillController,
+          ),
+          mobileWidget: TextEditorToolMobile(
+            initQuillController: initQuillController,
+          ),
         ),
       ),
       ToolItemModel(
