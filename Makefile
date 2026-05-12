@@ -5,7 +5,7 @@ claude:
 	ollama launch claude --model llama3.1:latest
 
 run_web:
-	flutter run -d web-server --web-hostname 0.0.0.0 --web-port 7777
+	flutter run -d web-server --web-hostname 0.0.0.0 --web-port 7777 --no-hot --verbose
 
 gen_icon:
 	dart run icons_launcher:create

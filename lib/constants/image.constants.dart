@@ -5,6 +5,7 @@ import 'package:sengthaite_blog/constants/enum.constants.dart';
 
 enum AssetIcons {
   logo("logo.svg"),
+  flutter("flutter.svg"),
   android("android.svg"),
   angular("angular.svg"),
   cambodia("cambodia.svg"),
@@ -37,6 +38,8 @@ enum AssetIcons {
   factory AssetIcons.fromImageName(String name) {
     String imageName = path.basenameWithoutExtension(name);
     switch (imageName.toLowerCase()) {
+      case "flutter":
+        return AssetIcons.flutter;
       case "logo":
         return AssetIcons.logo;
       case "android":

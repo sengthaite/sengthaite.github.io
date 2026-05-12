@@ -27,13 +27,16 @@ import 'package:sengthaite_blog/shared/app.layout.dart';
 import 'tool/api/api_file_manager_view.dart';
 
 class TabBarLayoutToolView extends TabBarLayoutView {
-  const TabBarLayoutToolView({super.key, required this.hideBottomAppBar})
+   TabBarLayoutToolView({super.key, required this.hideBottomAppBar})
     : super(section: TabSection.tool, hideBottomBar: hideBottomAppBar);
 
   final bool hideBottomAppBar;
 
+  final ValueNotifier<QuillController> initQuillController = ValueNotifier(
+    QuillController.basic()
+  );
+
   List<ToolItemModel> toolList() {
-    late QuillController quillController;
     return [
       ToolItemModel(
         title: "Camera",
@@ -52,70 +55,84 @@ class TabBarLayoutToolView extends TabBarLayoutView {
         title: "Text editor",
         image: AssetIcons.textEditor.image,
         actions: [
-          IconButton(
-            icon: const Icon(Icons.extension),
-            onPressed: () {
-              var context = Navigation().tabBarDetailContext;
-              if (context == null) return;
-              showModalBottomSheet(
-                context: context,
-                showDragHandle: true,
-                builder: (context) {
-                  return Padding(
-                    padding: const EdgeInsets.only(
-                      left: 4,
-                      right: 4,
-                      top: 4,
-                      bottom: 8,
-                    ),
-                    child: QuillSimpleToolbar(
-                      controller: quillController,
-                      config: QuillSimpleToolbarConfig(
-                        toolbarIconAlignment: WrapAlignment.start,
-                        toolbarIconCrossAlignment: WrapCrossAlignment.start,
-                      ),
-                    ),
-                  );
-                },
+          ValueListenableBuilder(
+            valueListenable: initQuillController,
+            builder: (context, controller, widget) {
+              return Row(
+                children: [
+                  IconButton(
+                    icon: const Icon(Icons.extension),
+                    onPressed: () {
+                      var context = Navigation().tabBarDetailContext;
+                      if (context == null) {
+                        debugPrint(
+                          "Error downloading md requried context not found",
+                        );
+                        return;
+                      }
+                      showModalBottomSheet(
+                        context: context,
+                        showDragHandle: true,
+                        builder: (context) {
+                          return Padding(
+                            padding: const EdgeInsets.only(
+                              left: 4,
+                              right: 4,
+                              top: 4,
+                              bottom: 8,
+                            ),
+                            child: QuillSimpleToolbar(
+                              controller: controller,
+                              config: QuillSimpleToolbarConfig(
+                                toolbarIconAlignment: WrapAlignment.start,
+                                toolbarIconCrossAlignment:
+                                    WrapCrossAlignment.start,
+                              ),
+                            ),
+                          );
+                        },
+                      );
+                    },
+                  ),
+                  IconButton(
+                    onPressed: () async {
+                      var context = Navigation().tabBarDetailContext;
+                      if (context == null) return;
+                      var doc = controller.document.toDelta();
+                      var markdown = DeltaToMarkdown().convert(doc);
+                      final fileName =
+                          'note_${DateTime.now().millisecondsSinceEpoch}';
+
+                      try {
+                        await FileSaver.instance.saveFile(
+                          name: fileName,
+                          bytes: Utf8Encoder().convert(markdown),
+                          fileExtension: 'md',
+                          mimeType: MimeType.text,
+                        );
+                      } catch (e) {
+                        try {
+                          final directory =
+                              await getApplicationDocumentsDirectory();
+                          final file = File('${directory.path}/$fileName');
+                          await file.writeAsString(markdown);
+                        } catch (e) {
+                          debugPrint('Could not save file: $e');
+                        }
+                      }
+                    },
+                    icon: Icon(Icons.download),
+                  ),
+                ],
               );
             },
-          ),
-          IconButton(
-            onPressed: () async {
-              var context = Navigation().tabBarDetailContext;
-              if (context == null) return;
-              final delta = quillController.document.toDelta();
-              final markdown = DeltaToMarkdown().convert(delta);
-              final fileName = 'note_${DateTime.now().millisecondsSinceEpoch}';
-
-              try {
-                await FileSaver.instance.saveFile(
-                  name: fileName,
-                  bytes: Utf8Encoder().convert(markdown),
-                  fileExtension: 'md',
-                  mimeType: MimeType.text,
-                );
-              } catch (e) {
-                try {
-                  final directory = await getApplicationDocumentsDirectory();
-                  final file = File('${directory.path}/$fileName');
-                  await file.writeAsString(markdown);
-                } catch (e) {
-                  debugPrint('Could not save file: $e');
-                }
-              }
-            },
-            icon: Icon(Icons.download),
+            child: Container(),
           ),
         ],
         widgetBuilder: (context) => AppLayout(
           context: context,
-          defaultWidget: TextEditorToolDesktop(
-            onInit: (controller) => quillController = controller,
-          ),
-          mobileWidget: TextEditorToolMobile(
-            onInit: (controller) => quillController = controller,
-          ),
+          defaultWidget: TextEditorToolDesktop(initQuillController: initQuillController),
+          mobileWidget: TextEditorToolMobile(initQuillController: initQuillController),
         ),
       ),
       ToolItemModel(

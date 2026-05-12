@@ -1,19 +1,7 @@
-# Ste Glob
+### TODO
 
-### Reading
-
-|#|Topic|Description|
-|---|---|---|
-|1|Health Content||
-|2|Computer Knowledge||
-|3|Useful Khmer Proverbs||
-
-### Useful Tools
-|#|Topic|Description|
-|---|---|---|
-|1|Text Editor|Taking note and view later|
-|2|Http Request|API request inspired by postman|
-
-### Projects
-
-NA
+- [] Fix flutter article logo image dimension
+- [] Allow download as pdf from the markdown widget
+- [] Enable firebase analytic
+- [] Enable file CRUD and upload to git repo with token
+- [] Support SSL Pinning and export collection API

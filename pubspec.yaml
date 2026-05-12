@@ -81,6 +81,7 @@ flutter:
     - assets/contents/Csharp/
     - assets/contents/LLVM/
     - assets/contents/Angular/
+    - assets/contents/Flutter/
     # - assets/contents/Kotlin/
     - assets/contents/Reverse_Engineer/
     - assets/contents/iOS/

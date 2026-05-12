@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_highlight/themes/github.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_highlight/themes/androidstudio.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:markdown_widget/config/all.dart';
 import 'package:markdown_widget/widget/all.dart';
 import 'package:sengthaite_blog/constants/theme.dart';
@@ -22,12 +24,40 @@ class MarkdownView extends StatelessWidget {
     final config = MaterialTheme.isDark(context)
         ? MarkdownConfig.darkConfig
         : MarkdownConfig.defaultConfig;
+
     return MarkdownWidget(
       data: markdown,
       tocController: tocController,
       config: config.copy(
         configs: [
-          PreConfig(theme: githubTheme),
+          PreConfig(
+            theme: androidstudioTheme,
+            textStyle: GoogleFonts.firaCode(),
+            wrapper: (Widget child, String code, String language) {
+              return Stack(
+                children: [
+                  Container(
+                    padding: EdgeInsets.all(8),
+                    color: Colors.grey[200],
+                    child: child,
+                  ),
+                  Positioned(
+                    right: 0,
+                    child: IconButton(
+                      iconSize: 12,
+                      icon: Icon(Icons.copy),
+                      onPressed: () {
+                        Clipboard.setData(ClipboardData(text: code));
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text("Copied to clipboard!")),
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              );
+            },
+          ),
           LinkConfig(
             onTap: (link) {
               final url = link;
