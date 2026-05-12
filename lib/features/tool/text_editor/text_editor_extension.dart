@@ -76,7 +76,7 @@ extension TextEditorExt on QuillController {
       return;
     }
     final String name =
-        'document_demo_flutter_quill_to_pdf${DateTime.now().millisecondsSinceEpoch.toString()}.pdf';
+        'document_${DateTime.now().millisecondsSinceEpoch.toString()}.pdf';
     final XFile textFile = XFile.fromData(
       await pdfDoc.save(),
       mimeType: isAndroid

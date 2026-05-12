@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "507932913683",
+    "project_id": "sengthaite-4d518",
+    "storage_bucket": "sengthaite-4d518.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:507932913683:android:a594712d26ce87c32bcfe6",
+        "android_client_info": {
+          "package_name": "com.example.sengthaite_blog"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5tuUGdZxqePKEWfQTZkkikRW4MDs69P4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

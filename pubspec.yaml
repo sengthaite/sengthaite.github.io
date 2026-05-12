@@ -59,6 +59,9 @@ dependencies:
   go_router: ^17.1.0
   vsc_quill_delta_to_html: ^1.0.5
   flutter_quill_to_pdf: ^2.3.9
+  firebase_core: ^4.8.0
+  firebase_performance: ^0.11.4
+  firebase_crashlytics: ^5.2.1
 
 dev_dependencies:
   flutter_test:
