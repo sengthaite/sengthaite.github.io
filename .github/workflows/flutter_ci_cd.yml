@@ -62,28 +62,3 @@ jobs:
         draft: false
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-  build-web:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup Flutter
-        uses: subosito/flutter-action@v2
-        with:
-          channel: 'stable'
-
-      - name: Install dependencies
-        run: flutter pub get
-
-      - name: Build Web
-        # Replace 'YOUR_REPO_NAME' with your actual repository name (e.g., /my-app/)
-        run: flutter build web --release --base-href "/"
-
-      - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          folder: ./build/web
-          branch: gh-pages
