@@ -1,64 +1,124 @@
-name: Flutter CI/CD - Build APK & Deploy Web
+name: Flutter Release
 
 on:
   push:
     tags:
-      - 'v*'  # Trigger on version tags (e.g., v1.0.0)
+      - 'v*.*.*'
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
 
 env:
-  FLUTTER_VERSION: '3.38.5'  # Specify your Flutter version
-  BUILD_NUMBER: ${{ github.run_number }}
-  BUILD_DATE: ${{ github.event.head_commit.timestamp }}
+  FLUTTER_VERSION: '3.41.8'
+  JAVA_VERSION: '17'
 
 jobs:
-  build-android:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write  # Required for creating releases
-    
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
 
-    - name: Set up Java
-      uses: actions/setup-java@v3
-      with:
-        distribution: 'temurin'
-        java-version: '21'
-    
-    - name: Set up Flutter
-      uses: subosito/flutter-action@v2
-      with:
-        flutter-version: ${{ env.FLUTTER_VERSION }}
-        channel: stable
-        cache: true
-    
-    - name: Install dependencies
-      run: flutter pub get
-    
-    - name: Verify Flutter installation
-      run: flutter doctor -v
-    
-    - name: Build APK (Release - Unsigned)
-      run: |
-        flutter build apk --release --target-platform android-arm64
-        echo "APK built successfully!"
-        ls -la build/app/outputs/flutter-apk/
-    
-    - name: Upload APK artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: app-release-unsigned
-        path: build/app/outputs/flutter-apk/app-release-arm64.apk
-        retention-days: 2
-    
-    - name: Create GitHub Release
-      if: startsWith(github.ref, 'refs/tags/v')
-      uses: softprops/action-gh-release@v1
-      with:
-        files: build/app/outputs/flutter-apk/app-release-arm64.apk
-        generate_release_notes: true
-        prerelease: false
-        draft: false
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  # ─────────────────────────────────────────────
+  # JOB 1 — Build & Deploy Flutter Web → gh-pages
+  # ─────────────────────────────────────────────
+  deploy-web:
+    name: Deploy Web to GitHub Pages
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: master
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Build Flutter Web
+        run: |
+          flutter build web \
+            --release \
+            --base-href "/${{ github.event.repository.name }}/"
+
+      - name: Deploy to GitHub Pages (gh-pages branch)
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: build/web
+          publish_branch: gh-pages
+          # Optional: keep old deployments or force-push
+          force_orphan: false
+          # Optional: add a .nojekyll file so assets load correctly
+          enable_jekyll: false
+          commit_message: "deploy: web build for ${{ github.ref_name }}"
+
+  # ─────────────────────────────────────────────
+  # JOB 2 — Build Android APK with ABI splits
+  # ─────────────────────────────────────────────
+  build-android:
+    name: Build & Release Android APK
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: ${{ env.JAVA_VERSION }}
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: stable
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      # ── Build split APKs (one per ABI) ──
+      - name: Build APKs (split per ABI)
+        run: |
+          flutter build apk \
+            --release \
+            --split-per-abi
+
+      # Output files:
+      #   build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk
+      #   build/app/outputs/flutter-apk/app-arm64-v8a-release.apk
+      #   build/app/outputs/flutter-apk/app-x86_64-release.apk
+
+      - name: Rename APKs with version tag
+        run: |
+          TAG="${{ github.ref_name }}"
+          cd build/app/outputs/flutter-apk
+          for apk in app-*-release.apk; do
+            abi="${apk#app-}"
+            abi="${abi%-release.apk}"
+            mv "$apk" "app-${abi}-${TAG}.apk"
+          done
+
+      - name: Upload APKs as artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: apks-${{ github.ref_name }}
+          path: build/app/outputs/flutter-apk/*.apk
+          retention-days: 7
+
+      # ── Create GitHub Release & attach APKs ──
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: Release ${{ github.ref_name }}
+          draft: false
+          prerelease: ${{ contains(github.ref_name, '-') }}   # e.g. v1.0.0-beta → pre-release
+          generate_release_notes: true
+          files: build/app/outputs/flutter-apk/*.apk
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

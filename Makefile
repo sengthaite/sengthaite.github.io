@@ -1,5 +1,5 @@
 
-.PHONY: all check autogen rebuild build_runner deploy pip_install build_web gen_l10n gen_icon run_web claude doc run_doc
+.PHONY: all check autogen rebuild build_runner deploy_web pip_install build_web gen_l10n gen_icon run_web claude doc run_doc
 
 claude:
 	ollama launch claude --model llama3.1:latest
@@ -18,7 +18,7 @@ gen_icon:
 	dart run icons_launcher:create
 
 gen_l10n:
-	flutter gen-l10ns
+	flutter gen-l10n
 
 dist_linux:
 	flutter_distributor release --name=dev --jobs=release-dev-linux-deb
@@ -49,9 +49,7 @@ add_assets:
 
 all: clean autogen build_runner
 
-deploy: clean all gen_l10n
+deploy_web: clean all gen_l10n
 	# flutter pub global run dependency_validator
 	flutter pub global run peanut --extra-args --base-href=/ --no-wasm --release
 	git push origin --set-upstream gh-pages
-
-# dart run rename_app:main all="My App Name"
