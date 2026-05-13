@@ -62,38 +62,3 @@ jobs:
         draft: false
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-  build-web:
-    environment:
-      name: github-pages
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write  # Required for gh-pages deployment
-      pages: write
-      id-token: write
-    
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-    
-    - name: Set up Flutter
-      uses: subosito/flutter-action@v2
-      with:
-        flutter-version: ${{ env.FLUTTER_VERSION }}
-        channel: stable
-        cache: true
-    
-    - name: Install dependencies
-      run: flutter pub get
-    
-    - name: Build Web App
-      run: |
-        flutter config --enable-web
-        flutter build web --release --base-href "/"
-        echo "Web build completed!"
-    
-    - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v4
-      with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build/web

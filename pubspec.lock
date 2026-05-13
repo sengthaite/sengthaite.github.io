@@ -654,6 +654,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.0.0"
+  flutter_localization:
+    dependency: "direct main"
+    description:
+      name: flutter_localization
+      sha256: a670baf52f4c99859c07293092b9fbc6508235fc88232f5cbb772f2687610a32
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.4.0"
   flutter_localizations:
     dependency: "direct main"
     description: flutter
