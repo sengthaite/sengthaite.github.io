@@ -28,8 +28,6 @@ class _StateMainView extends State<MainView> {
 
   bool isFullScreenModel = false;
 
-  Locale get locale => appSettings?.locale ?? Locale('en', 'US');
-
   bool isLoading = false;
 
   void onLoading() {
@@ -59,55 +57,61 @@ class _StateMainView extends State<MainView> {
   @override
   Widget build(BuildContext context) {
     MaterialTheme theme = MaterialTheme();
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      locale: locale,
-      builder: DevicePreview.appBuilder,
-      localizationsDelegates: const [
-        FlutterQuillLocalizations.delegate,
-        ...AppLocalizations.localizationsDelegates,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: AppLocalizations.supportedLocales,
-      theme: theme.light(),
-      darkTheme: theme.dark(),
-      highContrastTheme: theme.lightMediumContrast(),
-      highContrastDarkTheme: theme.darkMediumContrast(),
-      scrollBehavior: const MaterialScrollBehavior().copyWith(
-        scrollbars: false,
-      ),
-      navigatorKey: Navigation().navigatorKey,
-      home: Builder(
-        builder: (context) {
-          return Stack(
-            children: [
-              AppLayout(
-                defaultWidget: DefaultTabController(
-                  animationDuration: Duration.zero,
-                  initialIndex: 1,
-                  length: 3,
-                  child: Scaffold(
-                    drawer: DrawerView(),
-                    appBar: isFullScreenModel ? null : AppBarView(),
-                    body: SafeArea(
-                      child: ContentView(isFullScreenModel: isFullScreenModel),
-                    ),
-                    floatingActionButton: ToggleFullscreenView(
-                      onSreenStateChange: (bool isFullScreen) => setState(() {
-                        isFullScreenModel = isFullScreen;
-                      }),
+    return ValueListenableBuilder<Locale>(
+      valueListenable:
+          appSettings?.currentLocale ?? ValueNotifier(const Locale('en', 'US')),
+      builder: (context, locale, child) => MaterialApp(
+        debugShowCheckedModeBanner: false,
+        locale: locale,
+        builder: DevicePreview.appBuilder,
+        localizationsDelegates: const [
+          FlutterQuillLocalizations.delegate,
+          ...AppLocalizations.localizationsDelegates,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: AppLocalizations.supportedLocales,
+        theme: theme.light(),
+        darkTheme: theme.dark(),
+        highContrastTheme: theme.lightHighContrast(),
+        highContrastDarkTheme: theme.dark(),
+        scrollBehavior: const MaterialScrollBehavior().copyWith(
+          scrollbars: false,
+        ),
+        navigatorKey: Navigation().navigatorKey,
+        home: Builder(
+          builder: (context) {
+            return Stack(
+              children: [
+                AppLayout(
+                  defaultWidget: DefaultTabController(
+                    animationDuration: Duration.zero,
+                    initialIndex: 1,
+                    length: 3,
+                    child: Scaffold(
+                      drawer: DrawerView(),
+                      appBar: isFullScreenModel ? null : AppBarView(),
+                      body: SafeArea(
+                        child: ContentView(
+                          isFullScreenModel: isFullScreenModel,
+                        ),
+                      ),
+                      floatingActionButton: ToggleFullscreenView(
+                        onSreenStateChange: (bool isFullScreen) => setState(() {
+                          isFullScreenModel = isFullScreen;
+                        }),
+                      ),
                     ),
                   ),
+                  context: context,
                 ),
-                context: context,
-              ),
-              if (isLoading)
-                const Positioned.fill(child: Center(child: LoadingScreen())),
-            ],
-          );
-        },
+                if (isLoading)
+                  const Positioned.fill(child: Center(child: LoadingScreen())),
+              ],
+            );
+          },
+        ),
       ),
     );
   }

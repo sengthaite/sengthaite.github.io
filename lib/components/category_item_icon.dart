@@ -9,13 +9,14 @@ class CategoryItemIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var colorScheme = MaterialTheme.colorScheme(context);
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
         Container(
           width: 64,
           decoration: BoxDecoration(
-            color: MaterialTheme.colorScheme(context).surfaceContainer,
+            color: MaterialTheme.colorScheme(context).background,
             border: Border.all(
               color: MaterialTheme.colorScheme(context).outline,
               width: 0.5,
@@ -37,6 +38,7 @@ class CategoryItemIcon extends StatelessWidget {
               title,
               textAlign: TextAlign.center,
               style: MaterialTheme.textTheme().labelSmall!.copyWith(
+                color: colorScheme.primary,
                 fontSize: 12,
               ),
             ),

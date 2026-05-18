@@ -23,17 +23,17 @@ class AppSettings extends HiveObject {
   @HiveField(7)
   bool? rememberedMe;
 
+  final ValueNotifier<Locale> currentLocale = ValueNotifier(
+    const Locale('en', 'US'),
+  );
+
   set locale(Locale? value) {
     localeLanguageCode = value?.languageCode;
     localeCountryCode = value?.countryCode;
+    currentLocale.value = value ?? const Locale('en', 'US');
   }
 
   bool get isRememberedMe => rememberedMe ?? false;
-
-  Locale? get locale {
-    if (localeLanguageCode == null) return null;
-    return Locale(localeLanguageCode!, localeCountryCode);
-  }
 
   AppSettings({
     String? id,

@@ -43,6 +43,7 @@ class TabBarDetailView extends StatelessWidget {
               style: textStyle!.copyWith(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
+                color: colorScheme.onBackground,
               ),
             ),
             leading: IconButton(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_highlight/themes/androidstudio.dart';
+import 'package:flutter_highlight/themes/vs.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:markdown_widget/config/all.dart';
 import 'package:markdown_widget/widget/all.dart';
@@ -21,9 +21,11 @@ class MarkdownView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final config = MaterialTheme.isDark(context)
+    bool isDarkMode = MaterialTheme.isDark(context);
+    final config = isDarkMode
         ? MarkdownConfig.darkConfig
         : MarkdownConfig.defaultConfig;
+    var colorScheme = MaterialTheme.colorScheme(context);
 
     return MarkdownWidget(
       data: markdown,
@@ -31,14 +33,18 @@ class MarkdownView extends StatelessWidget {
       config: config.copy(
         configs: [
           PreConfig(
-            theme: androidstudioTheme,
             textStyle: GoogleFonts.firaCode(),
+            theme: vsTheme,
+            decoration: BoxDecoration(color: colorScheme.surfaceContainer),
             wrapper: (Widget child, String code, String language) {
               return Stack(
                 children: [
                   Container(
                     padding: EdgeInsets.all(8),
-                    color: Colors.grey[200],
+                    decoration: BoxDecoration(
+                      color: colorScheme.surfaceContainer,
+                      borderRadius: BorderRadius.circular(8),
+                    ),
                     child: child,
                   ),
                   Positioned(
@@ -66,6 +72,7 @@ class MarkdownView extends StatelessWidget {
               }
             },
           ),
+          CodeConfig(style: GoogleFonts.firaCode()),
         ],
       ),
     );

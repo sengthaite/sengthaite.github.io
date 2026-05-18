@@ -61,6 +61,8 @@ class TabBarLayoutContentView extends TabBarLayoutView {
   CategoryTabItemModel _mapTabItem(FileElement data) {
     String title = data.title ?? '';
     var textStyle = MaterialTheme.textTheme().titleMedium;
+    var colorScheme = MaterialTheme.colorScheme(Navigation().context);
+
     return CategoryTabItemModel(
       title: title,
       date: data.modifiedDate?.formatDateDisplay ?? '',
@@ -97,13 +99,16 @@ class TabBarLayoutContentView extends TabBarLayoutView {
                               style: textStyle!.copyWith(
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
+                                color: colorScheme.primary,
                               ),
                             ),
                           ),
                           const SizedBox(height: 4),
                           Expanded(
                             child: TocWidget(
-                              physics: BouncingScrollPhysics(),
+                              physics: BouncingScrollPhysics(
+                                decelerationRate: ScrollDecelerationRate.fast,
+                              ),
                               controller: tocController,
                             ),
                           ),

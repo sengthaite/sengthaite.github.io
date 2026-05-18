@@ -1,4 +1,4 @@
-const String appTitle = "SENGTHAI TE";
+const String appTitle = "Te Sengthai";
 
 final String hiveEditor = "hive_editor";
 final String hiveAPIDir = "api_dir";

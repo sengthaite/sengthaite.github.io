@@ -80,7 +80,12 @@ class _AppBarViewState extends State<AppBarView> {
             child: AssetIcons.logo.image,
           ),
           const SizedBox(width: 20),
-          Text(appTitle, style: MaterialTheme.textTheme().titleMedium),
+          Text(
+            appTitle,
+            style: MaterialTheme.textTheme().titleMedium!.copyWith(
+              color: MaterialTheme.colorScheme(context).onBackground,
+            ),
+          ),
         ],
       ),
       bottom: TabBar(
@@ -93,9 +98,9 @@ class _AppBarViewState extends State<AppBarView> {
         indicatorSize: TabBarIndicatorSize.tab,
         dividerColor: Colors.transparent,
         tabs: [
-          Tab(text: appLocalization.article.toUpperCase()),
-          Tab(text: appLocalization.tool.toUpperCase()),
-          Tab(text: appLocalization.project.toUpperCase()),
+          Tab(text: appLocalization.article),
+          Tab(text: appLocalization.tool),
+          Tab(text: appLocalization.project),
         ],
       ),
     );

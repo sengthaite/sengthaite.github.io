@@ -24,47 +24,56 @@ class _DrawerViewState extends State<DrawerView> {
         DropdownMenuEntry<Locale>(value: Locale('zh', 'CN'), label: '中文'),
       ];
 
-  Locale get locale => appSettings?.locale ?? Locale('en', 'US');
-
   @override
   Widget build(BuildContext context) {
     var appLocalization = AppLocalizations.of(context)!;
-    return Drawer(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          SizedBox(
-            height: 80,
-            child: DrawerHeader(
-              child: Text(
-                appLocalization.settings,
-                style: MaterialTheme.textTheme().titleMedium!.copyWith(
-                  fontWeight: FontWeight.bold,
+    var colorScheme = MaterialTheme.colorScheme(context);
+    return ValueListenableBuilder(
+      valueListenable:
+          appSettings?.currentLocale ?? ValueNotifier(const Locale('en', 'US')),
+      builder: (context, locale, child) => Drawer(
+        child: SafeArea(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              SizedBox(
+                height: 80,
+                child: DrawerHeader(
+                  child: Text(
+                    appLocalization.settings,
+                    style: MaterialTheme.textTheme().titleMedium!.copyWith(
+                      fontWeight: FontWeight.bold,
+                      color: colorScheme.primary,
+                    ),
+                  ),
                 ),
               ),
-            ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: DropdownMenu(
+                  dropdownMenuEntries: menuEntries,
+                  textStyle: MaterialTheme.textTheme().labelSmall?.copyWith(
+                    color: colorScheme.onSurface,
+                  ),
+                  initialSelection: locale,
+                  onSelected: (value) => setState(() {
+                    appSettings?.locale = value;
+                    AppData().saveAppSettings();
+                  }),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: IconButton(
+                  onPressed: () {
+                    AppData().appSettings?.delete();
+                  },
+                  icon: Text("Clear Cache"),
+                ),
+              ),
+            ],
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: DropdownMenu(
-              dropdownMenuEntries: menuEntries,
-              initialSelection: locale,
-              onSelected: (value) => setState(() {
-                appSettings?.locale = value;
-                AppData().saveAppSettings();
-              }),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: IconButton.outlined(
-              onPressed: () {
-                AppData().appSettings?.delete();
-              },
-              icon: Text("Clear Cache"),
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }

@@ -20,10 +20,9 @@ class TabBarLayoutNavigationView extends StatefulWidget {
 }
 
 class _TabBarLayoutNavigtionState extends State<TabBarLayoutNavigationView> {
-  
-  var titleStyle = MaterialTheme.textTheme().titleMedium;
+  var titleStyle = MaterialTheme.textTheme().titleSmall;
 
-  List<TextSpan>? getNavItemWidget() {
+  List<TextSpan>? getNavItemWidget(MaterialScheme colorScheme) {
     var items = widget.navigationTitleItems;
     if (items == null) {
       return null;
@@ -35,12 +34,18 @@ class _TabBarLayoutNavigtionState extends State<TabBarLayoutNavigationView> {
     for (final (index, item) in items.indexed) {
       if (index == lastIndex) {
         item.setTitleStyle(
-          titleStyle!.copyWith(color: Colors.blue),
+          titleStyle!.copyWith(
+            color: colorScheme.primary,
+            fontWeight: FontWeight.w500,
+          ),
         );
         break;
       }
       item.setTitleStyle(
-        titleStyle!.copyWith(color: Colors.grey),
+        titleStyle!.copyWith(
+          color: colorScheme.primary,
+          fontWeight: FontWeight.w500,
+        ),
       );
     }
     return items.map((e) => e.titleWidget).toList();
@@ -48,6 +53,7 @@ class _TabBarLayoutNavigtionState extends State<TabBarLayoutNavigationView> {
 
   @override
   Widget build(BuildContext context) {
+    var colorScheme = MaterialTheme.colorScheme(context);
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Row(
@@ -58,13 +64,17 @@ class _TabBarLayoutNavigtionState extends State<TabBarLayoutNavigationView> {
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               text: TextSpan(
-                  text: widget.defaultText,
-                  style: titleStyle!.copyWith(color: Colors.grey),
-                  recognizer: widget.defaultTextClick != null
-                      ? (TapGestureRecognizer()
+                text: widget.defaultText,
+                style: titleStyle!.copyWith(
+                  color: colorScheme.primary,
+                  fontWeight: FontWeight.w600,
+                ),
+                recognizer: widget.defaultTextClick != null
+                    ? (TapGestureRecognizer()
                         ..onTap = () => widget.defaultTextClick!())
-                      : null,
-                  children: getNavItemWidget()),
+                    : null,
+                children: getNavItemWidget(colorScheme),
+              ),
             ),
           ),
         ],
