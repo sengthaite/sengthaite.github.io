@@ -1,5 +1,5 @@
-const String appTitle = "Te Sengthai";
+const String appTitle = "SteGlob";
 
-final String hiveEditor = "hive_editor";
-final String hiveAPIDir = "api_dir";
-final String hiveAppSettings = "app_settings";
+final String hiveEditorBox = "hive_editor";
+final String hiveAPIDirBox = "api_dir";
+final String hiveAppSettingsBox = "app_settings";

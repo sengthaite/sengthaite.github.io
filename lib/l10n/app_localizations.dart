@@ -123,6 +123,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Settings'**
   String get settings;
+
+  /// No description provided for @save.
+  ///
+  /// In en, this message translates to:
+  /// **'Save {file}'**
+  String save(String file);
 }
 
 class _AppLocalizationsDelegate

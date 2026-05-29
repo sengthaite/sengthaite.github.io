@@ -1,5 +1,6 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_ce/hive.dart';
@@ -10,12 +11,6 @@ import 'package:sengthaite_blog/hive_registrar.g.dart';
 import 'package:sengthaite_blog/shared/app.data.dart';
 
 void main() async {
-  PlatformDispatcher.instance.onError = (error, stack) {
-    debugPrint("Uncaught error: $error");
-    debugPrint("Stack trace: $stack");
-    return true;
-  };
-
   WidgetsFlutterBinding.ensureInitialized();
   Hive.registerAdapters();
   var hivePath = '.hive_data';
@@ -24,10 +19,23 @@ void main() async {
     hivePath = "${directory.path}/.hive_data";
   }
   Hive.init(hivePath);
-  await AppData().initData();
+  await AppData().initAppData();
 
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  
+  if (kReleaseMode) {
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+
+    FlutterError.onError = (errorDetails) {
+      FirebaseCrashlytics.instance.recordFlutterError(errorDetails);
+    };
+
+    PlatformDispatcher.instance.onError = (error, stack) {
+      FirebaseCrashlytics.instance.recordError(error, stack);
+      return true;
+    };
+  }
+
   runApp(
     DevicePreview(
       enabled: !kReleaseMode,

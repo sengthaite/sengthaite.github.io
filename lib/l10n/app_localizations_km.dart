@@ -19,4 +19,9 @@ class AppLocalizationsKm extends AppLocalizations {
 
   @override
   String get settings => 'ការកំណត់';
+
+  @override
+  String save(String file) {
+    return 'រក្សាទុក $file';
+  }
 }

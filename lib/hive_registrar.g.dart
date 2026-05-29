@@ -4,8 +4,8 @@
 
 import 'package:hive_ce/hive.dart';
 import 'package:sengthaite_blog/shared/data/appsetting.dart';
-import 'package:sengthaite_blog/shared/file/hivedir.dart';
-import 'package:sengthaite_blog/shared/file/hiveeditor.dart';
+import 'package:sengthaite_blog/shared/data/file/hivedir.dart';
+import 'package:sengthaite_blog/shared/data/file/hiveeditor.dart';
 
 extension HiveRegistrar on HiveInterface {
   void registerAdapters() {

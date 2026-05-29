@@ -63,6 +63,7 @@ dependencies:
   flutter_localization: ^0.4.0
   flutter_localizations:
     sdk: flutter
+  firebase_analytics: ^12.4.1
 
 dev_dependencies:
   flutter_test:

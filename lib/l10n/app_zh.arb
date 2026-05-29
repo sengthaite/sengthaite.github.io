@@ -7,6 +7,15 @@
   "project": "项目",
   "@project": {},
   "settings": "环境",
-  "@settings": {}
+  "@settings": {},
+  "save": "保存{file}",
+  "@save": {
+    "placeholders": {
+      "file": {
+        "type": "String",
+        "example": "PDF"
+      }
+    }
+  }
 }
   

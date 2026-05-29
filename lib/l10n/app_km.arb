@@ -7,5 +7,14 @@
   "project": "គម្រោង",
   "@project": {},
   "settings": "ការកំណត់",
-  "@settings": {}
+  "@settings": {},
+  "save": "រក្សាទុក {file}",
+  "@save": {
+    "placeholders": {
+      "file": {
+        "type": "String",
+        "example": "PDF"
+      }
+    }
+  }
 }

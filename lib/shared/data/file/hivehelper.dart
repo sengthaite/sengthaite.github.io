@@ -1,10 +1,10 @@
 import 'package:hive_ce/hive.dart';
 import 'package:sengthaite_blog/constants/app.constants.dart';
-import 'package:sengthaite_blog/shared/file/hivedir.dart';
+import 'package:sengthaite_blog/shared/data/file/hivedir.dart';
 
 class HiveAPIDirService {
   Future<Box<TempDir>> get _box async =>
-      await Hive.openBox<TempDir>(hiveAPIDir);
+      await Hive.openBox<TempDir>(hiveAPIDirBox);
 
   Future<TempDir?> get defaultDir async => await findDir("Default");
 

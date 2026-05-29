@@ -19,4 +19,9 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get settings => '环境';
+
+  @override
+  String save(String file) {
+    return '保存$file';
+  }
 }

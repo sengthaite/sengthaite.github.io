@@ -62,15 +62,6 @@ class _DrawerViewState extends State<DrawerView> {
                   }),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: IconButton(
-                  onPressed: () {
-                    AppData().appSettings?.delete();
-                  },
-                  icon: Text("Clear Cache"),
-                ),
-              ),
             ],
           ),
         ),

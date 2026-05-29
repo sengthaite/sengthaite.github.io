@@ -7,5 +7,14 @@
   "project": "Project",
   "@project": {},
   "settings": "Settings",
-  "@settings": {}
+  "@settings": {},
+  "save": "Save {file}",
+  "@save": {
+    "placeholders": {
+      "file": {
+        "type": "String",
+        "example": "PDF"
+      }
+    }
+  }
 }

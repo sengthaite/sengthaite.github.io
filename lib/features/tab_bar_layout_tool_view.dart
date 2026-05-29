@@ -14,9 +14,9 @@ import 'package:sengthaite_blog/features/tool/api/api_util_view.dart';
 import 'package:sengthaite_blog/features/tool/api/api_view_desktop.dart';
 import 'package:sengthaite_blog/features/tool/api/api_view_mobile.dart';
 import 'package:sengthaite_blog/features/tool/camera/camera_view.dart';
-import 'package:sengthaite_blog/features/tool/text_editor/text_editor_extension.dart';
 import 'package:sengthaite_blog/features/tool/text_editor/text_editor_tool_desktop.dart';
 import 'package:sengthaite_blog/features/tool/text_editor/text_editor_tool_mobile.dart';
+import 'package:sengthaite_blog/features/tool/text_editor/text_editor_toolbar_view.dart';
 import 'package:sengthaite_blog/generated/models/tool_model.dart';
 import 'package:sengthaite_blog/shared/app.layout.dart';
 import 'tool/api/api_file_manager_view.dart';
@@ -57,88 +57,48 @@ class TabBarLayoutToolView extends TabBarLayoutView {
             builder: (context, controller, widget) {
               return Row(
                 children: [
-                  IconButton(
-                    icon: const Icon(Icons.extension),
-                    onPressed: () {
-                      var context = Navigation().tabBarDetailContext;
-                      if (context == null) {
-                        debugPrint(
-                          "Error downloading md requried context not found",
-                        );
-                        return;
+                  ValueListenableBuilder(
+                    valueListenable: AppLayout.layoutType,
+                    builder: (context, value, child) {
+                      // Hide the button show styling sheet if not mobile screen
+                      if (value != AppLayoutType.mobile) {
+                        return Container();
                       }
-                      showModalBottomSheet(
-                        context: context,
-                        showDragHandle: true,
-                        builder: (context) {
-                          return Padding(
-                            padding: const EdgeInsets.only(
-                              left: 4,
-                              right: 4,
-                              top: 4,
-                              bottom: 8,
-                            ),
-                            child: QuillSimpleToolbar(
-                              controller: controller,
-                              config: QuillSimpleToolbarConfig(
-                                toolbarIconAlignment: WrapAlignment.start,
-                                toolbarIconCrossAlignment:
-                                    WrapCrossAlignment.start,
-                              ),
-                            ),
+
+                      return IconButton(
+                        icon: const Icon(Icons.extension),
+                        onPressed: () {
+                          var context = Navigation().tabBarDetailContext;
+                          if (context == null) {
+                            debugPrint(
+                              "Error downloading md requried context not found",
+                            );
+                            return;
+                          }
+                          showModalBottomSheet(
+                            context: context,
+                            showDragHandle: true,
+                            builder: (context) {
+                              return Padding(
+                                padding: const EdgeInsets.only(
+                                  left: 4,
+                                  right: 4,
+                                  top: 4,
+                                  bottom: 8,
+                                ),
+                                child: TextEditorToolbarView(
+                                  controller: controller,
+                                ),
+                              );
+                            },
                           );
                         },
                       );
                     },
                   ),
-                  DropdownMenu<DocExportType>(
-                    leadingIcon: Icon(Icons.download),
-                    dropdownMenuEntries: [
-                      DropdownMenuEntry(
-                        value: DocExportType.markdown,
-                        label: 'Markdown',
-                        leadingIcon: Icon(MdiIcons.languageMarkdown),
-                      ),
-                      DropdownMenuEntry(
-                        value: DocExportType.pdf,
-                        label: 'PDF',
-                        leadingIcon: Icon(MdiIcons.filePdfBox),
-                      ),
-                      DropdownMenuEntry(
-                        value: DocExportType.html,
-                        label: 'html',
-                        leadingIcon: Icon(MdiIcons.languageHtml5),
-                      ),
-                    ],
-                    initialSelection: DocExportType.markdown,
-                    onSelected: (value) {
-                      if (value == null) {
-                        debugPrint("Required doc export type");
-                        return;
-                      }
-                      try {
-                        var context = Navigation().tabBarDetailContext;
-                        if (context == null) return;
-                        switch (value) {
-                          case DocExportType.markdown:
-                            controller.saveMarkdown();
-                            break;
-                          case DocExportType.pdf:
-                            controller.savePDF();
-                            break;
-                          case DocExportType.html:
-                            controller.saveHTML();
-                            break;
-                        }
-                      } catch (error) {
-                        debugPrint("Download error: ${error.toString()}");
-                      }
-                    },
-                  ),
                 ],
               );
             },
-            child: Container(),
           ),
         ],
         widgetBuilder: (context) => AppLayout(

@@ -11,19 +11,10 @@ class HiveEditor extends HiveObject {
   @HiveField(0)
   String? data;
 
-  Future<void> saveData(Delta obj) async {
+  Delta? formatDelta() {
+    if (data == null) return null;
     try {
-      data = jsonEncode(obj.toJson());
-      await save();
-    } catch (error) {
-      debugPrint(error.toString());
-    }
-  }
-
-  Delta? formatDelta(String? rawData) {
-    if (rawData == null) return null;
-    try {
-      return Delta.fromJson(jsonDecode(rawData));
+      return Delta.fromJson(jsonDecode(data!));
     } catch (error) {
       debugPrint(error.toString());
     }
