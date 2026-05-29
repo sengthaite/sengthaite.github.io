@@ -16,48 +16,6 @@ env:
 
 jobs:
 
-  # ─────────────────────────────────────────────
-  # JOB 1 — Build & Deploy Flutter Web → gh-pages
-  # ─────────────────────────────────────────────
-  deploy-web:
-    name: Deploy Web to GitHub Pages
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Setup Flutter
-        uses: subosito/flutter-action@v2
-        with:
-          flutter-version: ${{ env.FLUTTER_VERSION }}
-          channel: master
-          cache: true
-
-      - name: Install dependencies
-        run: flutter pub get
-
-      - name: Build Flutter Web
-        run: |
-          flutter build web \
-            --release \
-            --base-href "/${{ github.event.repository.name }}/"
-
-      - name: Deploy to GitHub Pages (gh-pages branch)
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: build/web
-          publish_branch: gh-pages
-          # Optional: keep old deployments or force-push
-          force_orphan: false
-          # Optional: add a .nojekyll file so assets load correctly
-          enable_jekyll: false
-          commit_message: "deploy: web build for ${{ github.ref_name }}"
-
-  # ─────────────────────────────────────────────
-  # JOB 2 — Build Android APK with ABI splits
-  # ─────────────────────────────────────────────
   build-android:
     name: Build & Release Android APK
     runs-on: ubuntu-latest
