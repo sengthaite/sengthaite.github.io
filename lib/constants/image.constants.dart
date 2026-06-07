@@ -101,6 +101,28 @@ enum AssetIcons {
     return Image.asset("$basePath/$imageName", width: 60, height: 60);
   }
 
+  Widget imageWithSize(double size) {
+    var basePath = "assets/content_icons";
+    switch (section) {
+      case TabSection.tool:
+        basePath = "assets/tool_icons";
+        break;
+      case TabSection.project:
+        basePath = "assets/project_icons";
+        break;
+      default:
+        break;
+    }
+    if (path.extension(imageName) == '.svg') {
+      return SvgPicture.asset(
+        "$basePath/$imageName",
+        width: size,
+        height: size,
+      );
+    }
+    return Image.asset("$basePath/$imageName", width: size, height: size);
+  }
+
   final String imageName;
   final TabSection section;
 }

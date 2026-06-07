@@ -1,5 +1,7 @@
 {
   "@@locale": "en",
+  "profile": "About Me",
+  "@profile": {},
   "article": "Article",
   "@article": {},
   "tool": "Tool",

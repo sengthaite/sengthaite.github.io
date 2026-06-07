@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sengthaite_blog/constants/theme.dart';
+import 'package:sengthaite_blog/extensions/build_context_ext.dart';
 
 class CategoryItemIcon extends StatelessWidget {
   const CategoryItemIcon({super.key, required this.image, required this.title});
@@ -9,24 +9,25 @@ class CategoryItemIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var colorScheme = MaterialTheme.colorScheme(context);
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
         Container(
           width: 64,
           decoration: BoxDecoration(
-            color: MaterialTheme.colorScheme(context).background,
-            border: Border.all(
-              color: MaterialTheme.colorScheme(context).outline,
-              width: 0.5,
-            ),
+            color: context.colorScheme.onSecondary,
+            border: Border.all(color: context.colorScheme.outline, width: 0.5),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withValues(alpha: .2),
+                blurRadius: 8.0,
+                spreadRadius: 2.0,
+                offset: const Offset(1, 5),
+              ),
+            ],
             borderRadius: const BorderRadius.all(Radius.circular(8)),
           ),
-          child: ClipRRect(
-            borderRadius: const BorderRadius.all(Radius.circular(8)),
-            child: image,
-          ),
+          child: image,
         ),
         const SizedBox(height: 4),
         Flexible(
@@ -37,8 +38,8 @@ class CategoryItemIcon extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
               title,
               textAlign: TextAlign.center,
-              style: MaterialTheme.textTheme().labelSmall!.copyWith(
-                color: colorScheme.primary,
+              style: context.textTheme.labelSmall!.copyWith(
+                color: context.colorScheme.primary,
                 fontSize: 12,
               ),
             ),

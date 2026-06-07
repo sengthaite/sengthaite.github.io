@@ -4,7 +4,7 @@ import 'package:flutter_highlight/themes/vs.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:markdown_widget/config/all.dart';
 import 'package:markdown_widget/widget/all.dart';
-import 'package:sengthaite_blog/constants/theme.dart';
+
 import 'package:url_launcher/url_launcher.dart';
 
 class MarkdownView extends StatelessWidget {
@@ -21,11 +21,12 @@ class MarkdownView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isDarkMode = MaterialTheme.isDark(context);
+    bool isDarkMode =
+        MediaQuery.of(context).platformBrightness == Brightness.dark;
     final config = isDarkMode
         ? MarkdownConfig.darkConfig
         : MarkdownConfig.defaultConfig;
-    var colorScheme = MaterialTheme.colorScheme(context);
+    var colorScheme = Theme.of(context).colorScheme;
 
     return MarkdownWidget(
       data: markdown,

@@ -100,6 +100,12 @@ abstract class AppLocalizations {
     Locale('zh'),
   ];
 
+  /// No description provided for @profile.
+  ///
+  /// In en, this message translates to:
+  /// **'About Me'**
+  String get profile;
+
   /// No description provided for @article.
   ///
   /// In en, this message translates to:

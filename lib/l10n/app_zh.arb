@@ -1,5 +1,7 @@
 {
   "@@locale": "zh",
+   "profile": "关于我",
+  "@profile": {},
   "article": "文章",
   "@article": {},
   "tool": "工具",

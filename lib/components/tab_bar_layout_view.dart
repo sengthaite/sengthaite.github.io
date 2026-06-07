@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sengthaite_blog/components/tab_bar_layout_navigation_view.dart';
 import 'package:sengthaite_blog/components/tab_bar_navigation_title.dart';
 import 'package:sengthaite_blog/constants/enum.constants.dart';
-import 'package:sengthaite_blog/constants/theme.dart';
+
 import 'package:sengthaite_blog/features/navigation/navigation.dart';
 
 class TabBarLayoutViewItem {
@@ -71,7 +71,11 @@ class TabBarLayoutViewState extends State<TabBarLayoutView>
     }).toList(),
   );
 
-  Widget layoutWidget({required Widget child, required EdgeInsets padding}) {
+  Widget layoutWidget({
+    required Widget child,
+    required EdgeInsets padding,
+    required Color borderColor,
+  }) {
     return Expanded(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -80,7 +84,7 @@ class TabBarLayoutViewState extends State<TabBarLayoutView>
           decoration: BoxDecoration(
             borderRadius: const BorderRadius.all(Radius.circular(12)),
             border: Border.all(
-              color: MaterialTheme.colorScheme(context).surfaceContainer,
+              color: borderColor,
               width: 1,
               style: BorderStyle.solid,
             ),
@@ -151,12 +155,8 @@ class TabBarLayoutViewState extends State<TabBarLayoutView>
             padding: orientation == Orientation.landscape
                 ? const EdgeInsets.symmetric(vertical: 16, horizontal: 20)
                 : const EdgeInsets.all(8),
+            borderColor: Theme.of(context).colorScheme.surfaceContainer,
           ),
-          if (!widget.hideBottomBar)
-            const Padding(
-              padding: EdgeInsets.symmetric(vertical: 12),
-              child: Text("Since 2024 (v2.0.0)", textAlign: TextAlign.center),
-            ),
         ],
       ),
     );

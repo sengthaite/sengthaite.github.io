@@ -73,12 +73,18 @@ enum CurrentPlatform {
     if (kIsWeb) return CurrentPlatform.web;
     final currentOS = Platform.operatingSystem;
     switch (currentOS) {
-      case "android": return CurrentPlatform.android;
-      case "fuchsia": return CurrentPlatform.fuchsia;
-      case "ios": return CurrentPlatform.ios;
-      case "linux": return CurrentPlatform.linux;
-      case "macos": return CurrentPlatform.macos;
-      case "windows": return CurrentPlatform.windows;
+      case "android":
+        return CurrentPlatform.android;
+      case "fuchsia":
+        return CurrentPlatform.fuchsia;
+      case "ios":
+        return CurrentPlatform.ios;
+      case "linux":
+        return CurrentPlatform.linux;
+      case "macos":
+        return CurrentPlatform.macos;
+      case "windows":
+        return CurrentPlatform.windows;
       default:
         return CurrentPlatform.unknown;
     }

@@ -38,8 +38,7 @@ class TabBarLayoutToolView extends TabBarLayoutView {
       ToolItemModel(
         title: "Camera",
         image: AssetIcons.camera.image,
-        widgetBuilder: (context) =>
-            AppLayout(context: context, defaultWidget: CameraView()),
+        widgetBuilder: (context) => AppLayout(defaultWidget: CameraView()),
         hiddenPlatform: [
           CurrentPlatform.fuchsia,
           CurrentPlatform.linux,
@@ -102,7 +101,6 @@ class TabBarLayoutToolView extends TabBarLayoutView {
           ),
         ],
         widgetBuilder: (context) => AppLayout(
-          context: context,
           defaultWidget: TextEditorToolDesktop(
             initQuillController: initQuillController,
           ),
@@ -159,7 +157,6 @@ class TabBarLayoutToolView extends TabBarLayoutView {
           ),
         ],
         widgetBuilder: (context) => AppLayout(
-          context: context,
           defaultWidget: Row(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [const APIViewDesktop(), ApiFileManagerView()],

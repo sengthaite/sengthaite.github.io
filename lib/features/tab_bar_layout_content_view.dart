@@ -9,7 +9,7 @@ import 'package:sengthaite_blog/components/tab_bar_layout_view.dart';
 import 'package:sengthaite_blog/components/tab_bar_navigation_title.dart';
 import 'package:sengthaite_blog/constants/enum.constants.dart';
 import 'package:sengthaite_blog/constants/image.constants.dart';
-import 'package:sengthaite_blog/constants/theme.dart';
+
 import 'package:sengthaite_blog/extensions/datetime_ext.dart';
 import 'package:sengthaite_blog/extensions/string_ext.dart';
 import 'package:sengthaite_blog/features/content/tab_bar_detail_view.dart';
@@ -60,8 +60,8 @@ class TabBarLayoutContentView extends TabBarLayoutView {
 
   CategoryTabItemModel _mapTabItem(FileElement data) {
     String title = data.title ?? '';
-    var textStyle = MaterialTheme.textTheme().titleMedium;
-    var colorScheme = MaterialTheme.colorScheme(Navigation().context);
+    var textStyle = Theme.of(Navigation().context).textTheme.titleMedium;
+    var colorScheme = Theme.of(Navigation().context).colorScheme;
 
     return CategoryTabItemModel(
       title: title,
@@ -120,7 +120,6 @@ class TabBarLayoutContentView extends TabBarLayoutView {
                 padding: const EdgeInsets.all(8.0),
                 child: Builder(
                   builder: (context) => AppLayout(
-                    context: context,
                     defaultWidget: MarkdownView(
                       markdown: document?.content ?? 'NA',
                       tocController: tocController,

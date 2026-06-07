@@ -6,6 +6,7 @@ class Navigation {
 
   factory Navigation() => _navigation;
 
+  TabBarLayoutViewState? profileTabState;
   TabBarLayoutViewState? contentTabState;
   TabBarLayoutViewState? projectTabState;
   TabBarLayoutViewState? toolTabState;

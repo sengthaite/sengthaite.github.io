@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:sengthaite_blog/constants/theme.dart';
 
 /// A dropdown
 class DropdownPreference<T> extends StatefulWidget {
@@ -97,7 +96,6 @@ class TextPreference extends StatefulWidget {
 
 class TextPreferenceState extends State<TextPreference> {
   final controller = TextEditingController();
-  var textTheme = MaterialTheme.textTheme();
 
   @override
   Widget build(BuildContext context) {
@@ -111,7 +109,7 @@ class TextPreferenceState extends State<TextPreference> {
         widget.title,
         style: widget.enabled
             ? null
-            : textTheme.bodyMedium!.copyWith(
+            : Theme.of(context).textTheme.bodyMedium!.copyWith(
                 color: Theme.of(context).disabledColor,
               ),
       ),

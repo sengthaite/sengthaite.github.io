@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:sengthaite_blog/constants/theme.dart';
+import 'package:sengthaite_blog/extensions/build_context_ext.dart';
+
 import 'package:sengthaite_blog/extensions/http_ext.dart';
 import 'package:sengthaite_blog/extensions/string_ext.dart';
 import 'package:sengthaite_blog/shared/data/file/hivedir.dart';
@@ -41,18 +42,15 @@ class _ApiFileManagerViewState extends State<ApiFileManagerView> {
   Widget build(BuildContext context) {
     var fileList = defaultDir?.fileList ?? [];
     bool isEmpty = fileList.isEmpty;
-    var textTheme = MaterialTheme.textTheme();
+
     return Material(
       child: Container(
         constraints: BoxConstraints(maxWidth: 350),
         padding: EdgeInsets.all(12),
         decoration: BoxDecoration(
-          color: MaterialTheme.colorScheme(context).surfaceBright,
+          color: context.colorScheme.surfaceBright,
           borderRadius: BorderRadius.all(Radius.circular(8)),
-          border: Border.all(
-            color: MaterialTheme.colorScheme(context).onBackground,
-            width: 0.4,
-          ),
+          border: Border.all(color: context.colorScheme.onSurface, width: 0.4),
         ),
         child: Column(
           children: [
@@ -67,7 +65,9 @@ class _ApiFileManagerViewState extends State<ApiFileManagerView> {
                   child: Center(
                     child: Text(
                       "Files",
-                      style: textTheme.displayMedium!.copyWith(fontSize: 18),
+                      style: context.textTheme.displayMedium!.copyWith(
+                        fontSize: 18,
+                      ),
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -99,10 +99,10 @@ class _ApiFileManagerViewState extends State<ApiFileManagerView> {
                             : null,
                         child: Text(
                           isEditing ? "Cancel" : "Edit",
-                          style: textTheme.labelSmall!.copyWith(
+                          style: context.textTheme.labelSmall!.copyWith(
                             color: isEditing
-                                ? MaterialTheme.colorScheme(context).error
-                                : MaterialTheme.colorScheme(context).secondary,
+                                ? context.colorScheme.error
+                                : context.colorScheme.secondary,
                           ),
                         ),
                       ),
@@ -142,10 +142,11 @@ class _ApiFileManagerViewState extends State<ApiFileManagerView> {
                               return AlertDialog(
                                 title: Text(
                                   "Are you sure, you want to clear all?",
-                                  style: textTheme.titleMedium!.copyWith(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w600,
-                                  ),
+                                  style: context.textTheme.titleMedium!
+                                      .copyWith(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w600,
+                                      ),
                                 ),
                                 actions: [
                                   TextButton(
@@ -153,11 +154,11 @@ class _ApiFileManagerViewState extends State<ApiFileManagerView> {
                                         Navigator.of(context).pop(),
                                     child: Text(
                                       "Cancel",
-                                      style: textTheme.labelSmall!.copyWith(
-                                        color: MaterialTheme.colorScheme(
-                                          context,
-                                        ).secondary,
-                                      ),
+                                      style: context.textTheme.labelSmall!
+                                          .copyWith(
+                                            color:
+                                                context.colorScheme.secondary,
+                                          ),
                                     ),
                                   ),
                                   TextButton(
@@ -173,11 +174,10 @@ class _ApiFileManagerViewState extends State<ApiFileManagerView> {
                                     },
                                     child: Text(
                                       "Confirm",
-                                      style: textTheme.labelSmall!.copyWith(
-                                        color: MaterialTheme.colorScheme(
-                                          context,
-                                        ).error,
-                                      ),
+                                      style: context.textTheme.labelSmall!
+                                          .copyWith(
+                                            color: context.colorScheme.error,
+                                          ),
                                     ),
                                   ),
                                 ],
@@ -204,10 +204,10 @@ class _ApiFileManagerViewState extends State<ApiFileManagerView> {
                           //     child: Container(
                           //       decoration: BoxDecoration(
                           //         border: Border.all(
-                          //           color: MaterialTheme.colorScheme(context)
+                          //           color: Appcontext.colorScheme(context)
                           //               .outline,
                           //         ),
-                          //         color: MaterialTheme.colorScheme(context)
+                          //         color: Appcontext.colorScheme(context)
                           //             .background,
                           //         borderRadius: BorderRadius.circular(4),
                           //       ),
@@ -299,7 +299,6 @@ class APIFileCreationWidget extends StatefulWidget {
 class _APIFileCreationWidgetState extends State<APIFileCreationWidget> {
   TextEditingController fileNameController = TextEditingController();
   TextEditingController urlInputController = TextEditingController();
-  var textTheme = MaterialTheme.textTheme();
   String requestMethod = HttpRequestMethodTypeExtension.defaultHttpMethod;
   Color? methodColor = HttpRequestMethodTypeExtension.methodByDisplay(
     HttpRequestMethodTypeExtension.defaultHttpMethod,
@@ -316,7 +315,7 @@ class _APIFileCreationWidgetState extends State<APIFileCreationWidget> {
     return AlertDialog(
       title: Text(
         "Create",
-        style: textTheme.bodyMedium!.copyWith(
+        style: context.textTheme.bodyMedium!.copyWith(
           fontSize: 20,
           fontWeight: FontWeight.w600,
         ),
@@ -335,7 +334,7 @@ class _APIFileCreationWidgetState extends State<APIFileCreationWidget> {
               child: TextFormField(
                 autofocus: true,
                 textInputAction: TextInputAction.done,
-                style: textTheme.bodyMedium!.copyWith(fontSize: 14),
+                style: context.textTheme.bodyMedium!.copyWith(fontSize: 14),
                 controller: fileNameController,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
@@ -349,7 +348,7 @@ class _APIFileCreationWidgetState extends State<APIFileCreationWidget> {
             Row(
               children: [
                 DropdownMenu(
-                  textStyle: textTheme.bodyMedium!.copyWith(
+                  textStyle: context.textTheme.bodyMedium!.copyWith(
                     fontSize: 14,
                     color: methodColor,
                     fontWeight: FontWeight.bold,
@@ -376,7 +375,7 @@ class _APIFileCreationWidgetState extends State<APIFileCreationWidget> {
                   width: 320,
                   child: TextFormField(
                     textInputAction: TextInputAction.done,
-                    style: textTheme.bodyMedium!.copyWith(fontSize: 14),
+                    style: context.textTheme.bodyMedium!.copyWith(fontSize: 14),
                     controller: urlInputController,
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(),
@@ -397,8 +396,8 @@ class _APIFileCreationWidgetState extends State<APIFileCreationWidget> {
                   onPressed: () => Navigator.of(context).pop(),
                   child: Text(
                     "Cancel",
-                    style: textTheme.bodyMedium!.copyWith(
-                      color: MaterialTheme.colorScheme(context).error,
+                    style: context.textTheme.bodyMedium!.copyWith(
+                      color: context.colorScheme.error,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
@@ -421,7 +420,7 @@ class _APIFileCreationWidgetState extends State<APIFileCreationWidget> {
                         },
                   child: Text(
                     "Save",
-                    style: textTheme.bodyMedium!.copyWith(
+                    style: context.textTheme.bodyMedium!.copyWith(
                       fontWeight: FontWeight.w500,
                     ),
                   ),
@@ -445,7 +444,6 @@ class APIFileWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var textTheme = MaterialTheme.textTheme();
     return InkWell(
       onTap: onTap != null ? () => onTap!(this) : null,
       child: ValueListenableBuilder(
@@ -456,19 +454,16 @@ class APIFileWidget extends StatelessWidget {
             border: Border.all(
               width: isSelected ? 2 : 1,
               color: isSelected
-                  ? MaterialTheme.colorScheme(context).primary
-                  : MaterialTheme.colorScheme(context).outline,
+                  ? context.colorScheme.primary
+                  : context.colorScheme.outline,
             ),
-            color: MaterialTheme.colorScheme(context).background,
+            color: context.colorScheme.surface,
           ),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
               children: [
-                Icon(
-                  MdiIcons.api,
-                  color: MaterialTheme.colorScheme(context).surfaceTint,
-                ),
+                Icon(MdiIcons.api, color: context.colorScheme.surfaceTint),
                 SizedBox(width: 12),
                 Expanded(
                   child: Column(
@@ -477,10 +472,8 @@ class APIFileWidget extends StatelessWidget {
                     children: [
                       Text(
                         file.filename,
-                        style: textTheme.bodyMedium!.copyWith(
-                          color: MaterialTheme.colorScheme(
-                            context,
-                          ).inverseSurface,
+                        style: context.textTheme.bodyMedium!.copyWith(
+                          color: context.colorScheme.inverseSurface,
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
                         ),
@@ -489,8 +482,8 @@ class APIFileWidget extends StatelessWidget {
                       ),
                       Text(
                         file.url,
-                        style: textTheme.bodyMedium!.copyWith(
-                          color: MaterialTheme.colorScheme(context).secondary,
+                        style: context.textTheme.bodyMedium!.copyWith(
+                          color: context.colorScheme.secondary,
                           fontSize: 14,
                           fontWeight: FontWeight.normal,
                         ),
@@ -504,7 +497,7 @@ class APIFileWidget extends StatelessWidget {
                   onPressed: null,
                   child: Text(
                     file.requestMethod.toUpperCase(),
-                    style: textTheme.bodyMedium!.copyWith(
+                    style: context.textTheme.bodyMedium!.copyWith(
                       fontWeight: FontWeight.bold,
                       color: HttpRequestMethodTypeExtension.methodByDisplay(
                         file.requestMethod,
@@ -534,10 +527,7 @@ class DirectoryWidget extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Row(
           children: [
-            Icon(
-              MdiIcons.folder,
-              color: MaterialTheme.colorScheme(context).tertiary,
-            ),
+            Icon(MdiIcons.folder, color: context.colorScheme.tertiary),
             SizedBox(width: 12),
             Text(dir.dirname),
           ],

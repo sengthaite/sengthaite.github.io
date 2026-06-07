@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:sengthaite_blog/constants/enum.constants.dart';
-import 'package:sengthaite_blog/constants/theme.dart';
+
 import 'package:sengthaite_blog/features/tool/api/api_request_builder.dart';
 import 'package:sengthaite_blog/features/tool/api/api_util_table_data.dart';
 
@@ -159,10 +159,10 @@ class APIEncryptionView extends StatefulWidget {
 class _APIEncryptionViewState extends State<APIEncryptionView> {
   var currentRequest =
       HttpRequestBuilder.getInstance().selectedDatum?.cryptoData;
-  var textTheme = MaterialTheme.textTheme();
 
   @override
   Widget build(BuildContext context) {
+    var textTheme = Theme.of(context).textTheme;
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
@@ -185,28 +185,34 @@ class _APIEncryptionViewState extends State<APIEncryptionView> {
                     setState(() => currentRequest?.selectedAll = value);
                   },
                 ),
-                 Padding(
+                Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Text(
                     "Key",
                     textAlign: TextAlign.center,
-                    style: textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.bold),
+                    style: textTheme.bodyMedium!.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
-                 Padding(
+                Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Text(
                     "Value",
                     textAlign: TextAlign.center,
-                    style: textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.bold),
+                    style: textTheme.bodyMedium!.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
-                 Padding(
+                Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Text(
                     "Description",
                     textAlign: TextAlign.center,
-                    style: textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.bold),
+                    style: textTheme.bodyMedium!.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
                 IconButton(

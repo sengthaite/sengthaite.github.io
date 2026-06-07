@@ -1,7 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:sengthaite_blog/components/tab_bar_navigation_title.dart';
-import 'package:sengthaite_blog/constants/theme.dart';
+import 'package:sengthaite_blog/extensions/build_context_ext.dart';
 
 class TabBarLayoutNavigationView extends StatefulWidget {
   const TabBarLayoutNavigationView({
@@ -20,9 +20,7 @@ class TabBarLayoutNavigationView extends StatefulWidget {
 }
 
 class _TabBarLayoutNavigtionState extends State<TabBarLayoutNavigationView> {
-  var titleStyle = MaterialTheme.textTheme().titleSmall;
-
-  List<TextSpan>? getNavItemWidget(MaterialScheme colorScheme) {
+  List<TextSpan>? getNavItemWidget(ThemeData theme) {
     var items = widget.navigationTitleItems;
     if (items == null) {
       return null;
@@ -34,16 +32,16 @@ class _TabBarLayoutNavigtionState extends State<TabBarLayoutNavigationView> {
     for (final (index, item) in items.indexed) {
       if (index == lastIndex) {
         item.setTitleStyle(
-          titleStyle!.copyWith(
-            color: colorScheme.primary,
+          context.textTheme.titleSmall!.copyWith(
+            color: context.colorScheme.primary,
             fontWeight: FontWeight.w500,
           ),
         );
         break;
       }
       item.setTitleStyle(
-        titleStyle!.copyWith(
-          color: colorScheme.primary,
+        context.textTheme.titleSmall!.copyWith(
+          color: context.colorScheme.primary,
           fontWeight: FontWeight.w500,
         ),
       );
@@ -53,7 +51,6 @@ class _TabBarLayoutNavigtionState extends State<TabBarLayoutNavigationView> {
 
   @override
   Widget build(BuildContext context) {
-    var colorScheme = MaterialTheme.colorScheme(context);
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Row(
@@ -65,15 +62,15 @@ class _TabBarLayoutNavigtionState extends State<TabBarLayoutNavigationView> {
               overflow: TextOverflow.ellipsis,
               text: TextSpan(
                 text: widget.defaultText,
-                style: titleStyle!.copyWith(
-                  color: colorScheme.primary,
+                style: context.textTheme.titleSmall!.copyWith(
+                  color: context.colorScheme.primary,
                   fontWeight: FontWeight.w600,
                 ),
                 recognizer: widget.defaultTextClick != null
                     ? (TapGestureRecognizer()
                         ..onTap = () => widget.defaultTextClick!())
                     : null,
-                children: getNavItemWidget(colorScheme),
+                children: getNavItemWidget(context.theme),
               ),
             ),
           ),

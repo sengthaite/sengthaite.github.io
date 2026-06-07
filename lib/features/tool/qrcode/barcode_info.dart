@@ -15,21 +15,17 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:sengthaite_blog/constants/theme.dart';
 
 import 'barcode_conf.dart';
 
 class BarcodeInfo extends StatelessWidget {
-  const BarcodeInfo({
-    super.key,
-    required this.conf,
-  });
+  const BarcodeInfo({super.key, required this.conf});
 
   final BarcodeConf conf;
 
   @override
   Widget build(BuildContext context) {
-    var textTheme = MaterialTheme.textTheme();
+    var textTheme = Theme.of(context).textTheme;
     final bc = conf.barcode;
 
     final charset = StringBuffer();
@@ -51,30 +47,38 @@ class BarcodeInfo extends StatelessWidget {
                 TextSpan(
                   text: '${bc.name}\n',
                   style: textTheme.bodyMedium!.copyWith(
-                      fontWeight: FontWeight.bold, fontSize: 30),
+                    fontWeight: FontWeight.bold,
+                    fontSize: 30,
+                  ),
                 ),
-                 TextSpan(
+                TextSpan(
                   text: '\nDescription:\n',
-                  style: textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.bold, fontSize: 20),
+                  style: textTheme.bodyMedium!.copyWith(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                  ),
                 ),
+                TextSpan(text: '${conf.desc}\n'),
                 TextSpan(
-                  text: '${conf.desc}\n',
-                ),
-                 TextSpan(
                   text: '\nAccepted data:\n',
-                  style: textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.bold, fontSize: 20),
+                  style: textTheme.bodyMedium!.copyWith(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                  ),
                 ),
-                TextSpan(
-                  text: '$charset\n\n',
-                ),
+                TextSpan(text: '$charset\n\n'),
                 TextSpan(
                   text: 'Minimum length: ${bc.minLength}\n',
-                  style: textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.bold),
+                  style: textTheme.bodyMedium!.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 // if (bc.maxLength < Barcode.infiniteMaxLength)
                 TextSpan(
                   text: 'Maximum length: ${bc.maxLength}\n',
-                  style: textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.bold),
+                  style: textTheme.bodyMedium!.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ],
             ),

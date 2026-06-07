@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:sengthaite_blog/constants/theme.dart';
 
 class LoadingScreen extends StatelessWidget {
   const LoadingScreen({super.key});
@@ -14,7 +13,7 @@ class LoadingScreen extends StatelessWidget {
       width: width,
       height: height,
       child: SpinKitFadingCircle(
-        color: MaterialTheme.colorScheme(context).onSurface,
+        color: Theme.of(context).colorScheme.onSurface,
         size: 30.0,
       ),
     );

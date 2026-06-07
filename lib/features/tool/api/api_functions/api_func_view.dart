@@ -4,7 +4,8 @@ import 'package:flutter_code_editor/flutter_code_editor.dart';
 import 'package:flutter_highlight/themes/github.dart';
 import 'package:highlight/languages/dart.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:sengthaite_blog/constants/theme.dart';
+import 'package:sengthaite_blog/extensions/build_context_ext.dart';
+
 import 'package:sengthaite_blog/features/tool/api/api_functions/config/code_snippets.dart';
 import 'package:sengthaite_blog/features/tool/api/api_request_builder.dart';
 import 'package:sengthaite_blog/features/tool/api/api_util_table_data.dart';
@@ -19,28 +20,27 @@ class APIFuncView extends StatefulWidget {
 
 class _APIFuncViewState extends State<APIFuncView> {
   final datum = HttpRequestBuilder.getInstance().selectedDatum;
-  var textTheme = MaterialTheme.textTheme();
 
   @override
   Widget build(BuildContext context) {
     var currentRequest = datum?.functionData;
+
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
         child: Table(
-            defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-            columnWidths: const {
-              0: FixedColumnWidth(40),
-              4: FixedColumnWidth(120),
-              5: FixedColumnWidth(40),
-            },
-            border: TableBorder.all(
-              borderRadius: const BorderRadius.all(
-                Radius.circular(4),
-              ),
-            ),
-            children: [
-              TableRow(children: [
+          defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+          columnWidths: const {
+            0: FixedColumnWidth(40),
+            4: FixedColumnWidth(120),
+            5: FixedColumnWidth(40),
+          },
+          border: TableBorder.all(
+            borderRadius: const BorderRadius.all(Radius.circular(4)),
+          ),
+          children: [
+            TableRow(
+              children: [
                 Checkbox(
                   value: currentRequest?.selectedAll,
                   onChanged: (value) {
@@ -50,29 +50,45 @@ class _APIFuncViewState extends State<APIFuncView> {
                     });
                   },
                 ),
-                 Padding(
+                Padding(
                   padding: EdgeInsets.all(8.0),
-                  child: Text("Function",
-                      textAlign: TextAlign.center,
-                      style: textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.bold)),
+                  child: Text(
+                    "Function",
+                    textAlign: TextAlign.center,
+                    style: context.textTheme.bodyMedium!.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ),
-                 Padding(
+                Padding(
                   padding: EdgeInsets.all(8.0),
-                  child: Text("Arguments",
-                      textAlign: TextAlign.center,
-                      style: textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.bold)),
+                  child: Text(
+                    "Arguments",
+                    textAlign: TextAlign.center,
+                    style: context.textTheme.bodyMedium!.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ),
-                 Padding(
+                Padding(
                   padding: EdgeInsets.all(8.0),
-                  child: Text("Description",
-                      textAlign: TextAlign.center,
-                      style: textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.bold)),
+                  child: Text(
+                    "Description",
+                    textAlign: TextAlign.center,
+                    style: context.textTheme.bodyMedium!.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ),
-                 Padding(
+                Padding(
                   padding: EdgeInsets.all(8.0),
-                  child: Text("Execute",
-                      textAlign: TextAlign.center,
-                      style: textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.bold)),
+                  child: Text(
+                    "Execute",
+                    textAlign: TextAlign.center,
+                    style: context.textTheme.bodyMedium!.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ),
                 IconButton(
                   splashColor: Colors.transparent,
@@ -85,101 +101,102 @@ class _APIFuncViewState extends State<APIFuncView> {
                       currentRequest?.add(APIRowData());
                     });
                   },
-                  icon: Icon(
-                    MdiIcons.plus,
-                    color: Colors.green,
-                  ),
+                  icon: Icon(MdiIcons.plus, color: Colors.green),
                 ),
-              ]),
-              ...List.generate(currentRequest?.controllers.length ?? 0,
-                  (index) {
-                var dataRow = currentRequest?.controllers[index];
-                return TableRow(
-                  children: [
-                    Checkbox(
-                      value: dataRow?.isSelected,
-                      onChanged: (value) => setState(
-                        () => currentRequest?.toggleRowSelectionAt(index),
-                      ),
+              ],
+            ),
+            ...List.generate(currentRequest?.controllers.length ?? 0, (index) {
+              var dataRow = currentRequest?.controllers[index];
+              return TableRow(
+                children: [
+                  Checkbox(
+                    value: dataRow?.isSelected,
+                    onChanged: (value) => setState(
+                      () => currentRequest?.toggleRowSelectionAt(index),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: TextFormField(
-                        style: textTheme.bodyMedium!.copyWith(
-                            fontSize: 12, fontWeight: FontWeight.bold),
-                        enableSuggestions: false,
-                        maxLines: null,
-                        keyboardType: TextInputType.multiline,
-                        decoration: const InputDecoration(
-                          hintText: "Function Name",
-                          border: InputBorder.none,
-                        ),
-                        controller: dataRow?.keyController,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextFormField(
+                      style: context.textTheme.bodyMedium!.copyWith(
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: TextButton(
-                        onPressed: () {
-                          showDialog(
-                              context: context,
-                              builder: (BuildContext context) {
-                                return APIFuncDefinitionView(dataRow: dataRow);
-                              });
-                        },
-                        child: Text("Edit Function"),
+                      enableSuggestions: false,
+                      maxLines: null,
+                      keyboardType: TextInputType.multiline,
+                      decoration: const InputDecoration(
+                        hintText: "Function Name",
+                        border: InputBorder.none,
                       ),
+                      controller: dataRow?.keyController,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: TextFormField(
-                        style: textTheme.bodyMedium!.copyWith(fontSize: 12),
-                        enableSuggestions: false,
-                        maxLines: null,
-                        keyboardType: TextInputType.multiline,
-                        decoration: const InputDecoration(
-                          hintText: "Description",
-                          border: InputBorder.none,
-                        ),
-                        controller: dataRow?.descriptionController,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextButton(
+                      onPressed: () {
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return APIFuncDefinitionView(dataRow: dataRow);
+                          },
+                        );
+                      },
+                      child: Text("Edit Function"),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextFormField(
+                      style: context.textTheme.bodyMedium!.copyWith(
+                        fontSize: 12,
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: IconButton(
-                        onPressed: () {
-                          showDialog(
-                              context: context,
-                              builder: (BuildContext context) {
-                                return APIFuncViewResult(dataRow: dataRow);
-                              });
-                        },
-                        icon: Icon(MdiIcons.play),
-                        color: Colors.green,
+                      enableSuggestions: false,
+                      maxLines: null,
+                      keyboardType: TextInputType.multiline,
+                      decoration: const InputDecoration(
+                        hintText: "Description",
+                        border: InputBorder.none,
                       ),
+                      controller: dataRow?.descriptionController,
                     ),
-                    (dataRow?.allowDeletion ?? false)
-                        ? IconButton(
-                            splashColor: Colors.transparent,
-                            color: Colors.transparent,
-                            highlightColor: Colors.transparent,
-                            focusColor: Colors.transparent,
-                            hoverColor: Colors.transparent,
-                            icon: const Icon(
-                              Icons.delete,
-                              color: Colors.red,
-                            ),
-                            onPressed: () {
-                              setState(() {
-                                currentRequest?.removeAt(index);
-                              });
-                            },
-                          )
-                        : const SizedBox(),
-                  ],
-                );
-              })
-            ]),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: IconButton(
+                      onPressed: () {
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return APIFuncViewResult(dataRow: dataRow);
+                          },
+                        );
+                      },
+                      icon: Icon(MdiIcons.play),
+                      color: Colors.green,
+                    ),
+                  ),
+                  (dataRow?.allowDeletion ?? false)
+                      ? IconButton(
+                          splashColor: Colors.transparent,
+                          color: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          icon: const Icon(Icons.delete, color: Colors.red),
+                          onPressed: () {
+                            setState(() {
+                              currentRequest?.removeAt(index);
+                            });
+                          },
+                        )
+                      : const SizedBox(),
+                ],
+              );
+            }),
+          ],
+        ),
       ),
     );
   }
@@ -207,30 +224,29 @@ class _APIFuncDefinitionViewState extends State<APIFuncDefinitionView> {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: AlertDialog(
-        title:
-            Text(widget.dataRow?.keyController.text ?? "Function Definition"),
+        title: Text(
+          widget.dataRow?.keyController.text ?? "Function Definition",
+        ),
         content: SizedBox(
           width: screenSize.width * 0.8,
           height: screenSize.height * 0.6,
           child: CodeTheme(
             data: CodeThemeData(styles: githubTheme),
-            child: CodeField(
-              controller: controller,
-              expands: true,
-              wrap: true,
-            ),
+            child: CodeField(controller: controller, expands: true, wrap: true),
           ),
         ),
         actions: [
           TextButton(
-              onPressed: () => Navigator.of(context).pop(),
-              child: Text("Close")),
+            onPressed: () => Navigator.of(context).pop(),
+            child: Text("Close"),
+          ),
           TextButton(
-              onPressed: () {
-                widget.dataRow?.function = controller.text;
-                Navigator.of(context).pop();
-              },
-              child: Text("Save"))
+            onPressed: () {
+              widget.dataRow?.function = controller.text;
+              Navigator.of(context).pop();
+            },
+            child: Text("Save"),
+          ),
         ],
       ),
     );
@@ -272,8 +288,9 @@ class _APIFuncViewResultState extends State<APIFuncViewResult> {
         ),
         actions: [
           TextButton(
-              onPressed: () => Navigator.of(context).pop(),
-              child: Text("Cancel"))
+            onPressed: () => Navigator.of(context).pop(),
+            child: Text("Cancel"),
+          ),
         ],
       ),
     );

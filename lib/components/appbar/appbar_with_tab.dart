@@ -1,24 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:sengthaite_blog/constants/app.constants.dart';
 import 'package:sengthaite_blog/constants/image.constants.dart';
-import 'package:sengthaite_blog/constants/theme.dart';
 import 'package:sengthaite_blog/features/personal/personal_git_view.dart';
 import 'package:sengthaite_blog/l10n/app_localizations.dart';
 import 'package:sengthaite_blog/shared/app.data.dart';
 import 'package:sengthaite_blog/shared/data/appsetting.dart';
 import 'package:sengthaite_blog/shared/dialog/github_login_dialog.dart';
 
-class AppBarView extends StatefulWidget implements PreferredSizeWidget {
-  const AppBarView({super.key});
+import '../../extensions/build_context_ext.dart';
+
+class AppBarViewTab extends StatefulWidget implements PreferredSizeWidget {
+  const AppBarViewTab({super.key});
 
   @override
-  State<AppBarView> createState() => _AppBarViewState();
+  State<AppBarViewTab> createState() => _AppBarViewTabState();
 
   @override
   Size get preferredSize => const Size.fromHeight(120);
 }
 
-class _AppBarViewState extends State<AppBarView> {
+class _AppBarViewTabState extends State<AppBarViewTab> {
   AppSettings? get appSettings => AppData().appSettings;
 
   void showGitContentDetail(BuildContext context) {
@@ -68,6 +69,7 @@ class _AppBarViewState extends State<AppBarView> {
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
     var appLocalization = AppLocalizations.of(context)!;
+
     return AppBar(
       centerTitle: true,
       title: Row(
@@ -82,8 +84,8 @@ class _AppBarViewState extends State<AppBarView> {
           const SizedBox(width: 20),
           Text(
             appTitle,
-            style: MaterialTheme.textTheme().titleMedium!.copyWith(
-              color: MaterialTheme.colorScheme(context).onBackground,
+            style: context.textTheme.titleLarge!.copyWith(
+              color: context.colorScheme.primary,
             ),
           ),
         ],

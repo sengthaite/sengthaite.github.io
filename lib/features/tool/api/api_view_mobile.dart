@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sengthaite_blog/components/http_response_view.dart';
-import 'package:sengthaite_blog/constants/theme.dart';
+import 'package:sengthaite_blog/extensions/build_context_ext.dart';
+
 import 'package:sengthaite_blog/extensions/http_ext.dart';
 import 'package:sengthaite_blog/extensions/string_ext.dart';
 import 'package:sengthaite_blog/features/tool/api/api_request_builder.dart';
@@ -14,7 +15,6 @@ class APIViewMobile extends StatefulWidget {
 
 class _APIViewDesktopState extends State<APIViewMobile> {
   bool allowSubmitRequest = false;
-  var textTheme = MaterialTheme.textTheme();
   Color? methodColor = HttpRequestMethodTypeExtension.methodByDisplay(
     HttpRequestMethodTypeExtension.defaultHttpMethod,
   )?.color;
@@ -28,6 +28,7 @@ class _APIViewDesktopState extends State<APIViewMobile> {
   @override
   Widget build(BuildContext context) {
     final selectedData = HttpRequestBuilder.getInstance().selectedDatum!;
+
     return Row(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -43,7 +44,7 @@ class _APIViewDesktopState extends State<APIViewMobile> {
                 children: [
                   DropdownMenu(
                     width: 118,
-                    textStyle: textTheme.bodyMedium!.copyWith(
+                    textStyle: context.textTheme.bodyMedium!.copyWith(
                       color: methodColor,
                       fontWeight: FontWeight.bold,
                       fontSize: 10,
@@ -71,7 +72,9 @@ class _APIViewDesktopState extends State<APIViewMobile> {
                   Expanded(
                     child: TextFormField(
                       textInputAction: TextInputAction.done,
-                      style: textTheme.bodyMedium!.copyWith(fontSize: 10,),
+                      style: context.textTheme.bodyMedium!.copyWith(
+                        fontSize: 10,
+                      ),
                       controller: selectedData.urlInputController,
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),

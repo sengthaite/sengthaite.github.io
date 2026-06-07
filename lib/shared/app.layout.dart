@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 enum AppLayoutType { mobile, tablet, desktop, unknown }
 
 class AppLayout extends StatefulWidget {
-  final BuildContext context;
   final Widget? defaultWidget;
   final Widget? desktopWidget;
   final Widget? desktopPortraitWidget;
@@ -21,7 +20,6 @@ class AppLayout extends StatefulWidget {
 
   const AppLayout({
     super.key,
-    required this.context,
     this.defaultWidget,
     this.desktopWidget,
     this.mobileWidget,

@@ -64,6 +64,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   firebase_analytics: ^12.4.1
+  flutter_smooth_markdown: ^0.7.2
 
 dev_dependencies:
   flutter_test:
@@ -99,6 +100,7 @@ flutter:
     - assets/autogen_meta/
     - assets/tool_icons/
     - assets/content_icons/
+    - assets/hand.jpg
 
 icons_launcher:
   image_path: 'assets/icon/icon.png'

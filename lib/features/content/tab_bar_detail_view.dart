@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:sengthaite_blog/components/category_tab_item_view.dart';
-import 'package:sengthaite_blog/constants/theme.dart';
+import 'package:sengthaite_blog/extensions/build_context_ext.dart';
+
 import 'package:sengthaite_blog/generated/models/category_tab_item_model.dart';
 
 class TabBarDetailView extends StatelessWidget {
@@ -30,8 +31,8 @@ class TabBarDetailView extends StatelessWidget {
   Widget build(BuildContext context) {
     return OrientationBuilder(
       builder: (context, orientation) {
-        var colorScheme = MaterialTheme.colorScheme(context);
-        var textStyle = MaterialTheme.textTheme().titleMedium;
+        var colorScheme = context.colorScheme;
+        var textStyle = context.textTheme.titleMedium;
         return Scaffold(
           endDrawer: endDrawer,
           appBar: AppBar(
@@ -43,11 +44,11 @@ class TabBarDetailView extends StatelessWidget {
               style: textStyle!.copyWith(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
-                color: colorScheme.onBackground,
+                color: colorScheme.onSurface,
               ),
             ),
             leading: IconButton(
-              color: colorScheme.onBackground,
+              color: colorScheme.onSurface,
               hoverColor: colorScheme.surfaceDim,
               onPressed: onBackPressed,
               icon: Icon(MdiIcons.arrowLeft, color: colorScheme.primary),

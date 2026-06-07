@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:sengthaite_blog/constants/theme.dart';
+import 'package:sengthaite_blog/extensions/build_context_ext.dart';
+
 import 'package:sengthaite_blog/features/tool/api/api_request_builder.dart';
 import 'package:sengthaite_blog/features/tool/api/api_util_table_data.dart';
 
@@ -14,7 +15,7 @@ class APIVariablesView extends StatefulWidget {
 class _APIVariablesViewState extends State<APIVariablesView> {
   var currentRequest =
       HttpRequestBuilder.getInstance().selectedDatum?.variableData;
-  var textTheme = MaterialTheme.textTheme();
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -46,7 +47,7 @@ class _APIVariablesViewState extends State<APIVariablesView> {
                   child: Text(
                     "Key",
                     textAlign: TextAlign.center,
-                    style: textTheme.bodyMedium,
+                    style: context.textTheme.bodyMedium,
                   ),
                 ),
                 Padding(
@@ -54,7 +55,7 @@ class _APIVariablesViewState extends State<APIVariablesView> {
                   child: Text(
                     "Value",
                     textAlign: TextAlign.center,
-                    style: textTheme.bodyMedium,
+                    style: context.textTheme.bodyMedium,
                   ),
                 ),
                 Padding(
@@ -62,7 +63,7 @@ class _APIVariablesViewState extends State<APIVariablesView> {
                   child: Text(
                     "Description",
                     textAlign: TextAlign.center,
-                    style: textTheme.bodyMedium,
+                    style: context.textTheme.bodyMedium,
                   ),
                 ),
                 IconButton(
@@ -93,7 +94,7 @@ class _APIVariablesViewState extends State<APIVariablesView> {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: TextFormField(
-                      style: textTheme.labelSmall,
+                      style: context.textTheme.labelSmall,
                       enableSuggestions: false,
                       maxLines: null,
                       keyboardType: TextInputType.multiline,
@@ -107,7 +108,7 @@ class _APIVariablesViewState extends State<APIVariablesView> {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: TextFormField(
-                      style: textTheme.labelSmall,
+                      style: context.textTheme.labelSmall,
                       enableSuggestions: false,
                       maxLines: null,
                       keyboardType: TextInputType.multiline,
@@ -121,7 +122,7 @@ class _APIVariablesViewState extends State<APIVariablesView> {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: TextFormField(
-                      style: textTheme.labelSmall,
+                      style: context.textTheme.labelSmall,
                       enableSuggestions: false,
                       maxLines: null,
                       keyboardType: TextInputType.multiline,

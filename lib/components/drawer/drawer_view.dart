@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sengthaite_blog/constants/theme.dart';
+import 'package:sengthaite_blog/extensions/build_context_ext.dart';
+
 import 'package:sengthaite_blog/l10n/app_localizations.dart';
 import 'package:sengthaite_blog/shared/app.data.dart';
 import 'package:sengthaite_blog/shared/data/appsetting.dart';
@@ -27,7 +28,7 @@ class _DrawerViewState extends State<DrawerView> {
   @override
   Widget build(BuildContext context) {
     var appLocalization = AppLocalizations.of(context)!;
-    var colorScheme = MaterialTheme.colorScheme(context);
+
     return ValueListenableBuilder(
       valueListenable:
           appSettings?.currentLocale ?? ValueNotifier(const Locale('en', 'US')),
@@ -35,15 +36,17 @@ class _DrawerViewState extends State<DrawerView> {
         child: SafeArea(
           child: Column(
             mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(
                 height: 80,
                 child: DrawerHeader(
                   child: Text(
                     appLocalization.settings,
-                    style: MaterialTheme.textTheme().titleMedium!.copyWith(
+                    style: context.textTheme.titleMedium!.copyWith(
                       fontWeight: FontWeight.bold,
-                      color: colorScheme.primary,
+                      color: context.colorScheme.primary,
                     ),
                   ),
                 ),
@@ -52,8 +55,8 @@ class _DrawerViewState extends State<DrawerView> {
                 padding: const EdgeInsets.all(8.0),
                 child: DropdownMenu(
                   dropdownMenuEntries: menuEntries,
-                  textStyle: MaterialTheme.textTheme().labelSmall?.copyWith(
-                    color: colorScheme.onSurface,
+                  textStyle: context.textTheme.labelSmall?.copyWith(
+                    color: context.colorScheme.onSurface,
                   ),
                   initialSelection: locale,
                   onSelected: (value) => setState(() {
@@ -61,6 +64,11 @@ class _DrawerViewState extends State<DrawerView> {
                     AppData().saveAppSettings();
                   }),
                 ),
+              ),
+              Spacer(),
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 12),
+                child: Text("Since 2024 (v2.0.0)", textAlign: TextAlign.center),
               ),
             ],
           ),

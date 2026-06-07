@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:sengthaite_blog/constants/theme.dart';
+import 'package:sengthaite_blog/extensions/build_context_ext.dart';
+
 import 'package:sengthaite_blog/features/tool/api/api_request_builder.dart';
 import 'package:sengthaite_blog/features/tool/api/api_util_table_data.dart';
 
@@ -14,7 +15,6 @@ class APIUtilHeaderView extends StatefulWidget {
 class _APIUtilHeaderViewState extends State<APIUtilHeaderView> {
   var currentRequest =
       HttpRequestBuilder.getInstance().selectedDatum?.headerData;
-  var textTheme = MaterialTheme.textTheme();
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +47,7 @@ class _APIUtilHeaderViewState extends State<APIUtilHeaderView> {
                   child: Text(
                     "Key",
                     textAlign: TextAlign.center,
-                    style: textTheme.bodyMedium!.copyWith(
+                    style: context.textTheme.bodyMedium!.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -57,7 +57,7 @@ class _APIUtilHeaderViewState extends State<APIUtilHeaderView> {
                   child: Text(
                     "Value",
                     textAlign: TextAlign.center,
-                    style: textTheme.bodyMedium!.copyWith(
+                    style: context.textTheme.bodyMedium!.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -67,7 +67,7 @@ class _APIUtilHeaderViewState extends State<APIUtilHeaderView> {
                   child: Text(
                     "Description",
                     textAlign: TextAlign.center,
-                    style: textTheme.bodyMedium!.copyWith(
+                    style: context.textTheme.bodyMedium!.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -102,7 +102,9 @@ class _APIUtilHeaderViewState extends State<APIUtilHeaderView> {
                     child: TextFormField(
                       enableSuggestions: false,
                       maxLines: null,
-                      style: textTheme.bodyMedium!.copyWith(fontSize: 12),
+                      style: context.textTheme.bodyMedium!.copyWith(
+                        fontSize: 12,
+                      ),
                       keyboardType: TextInputType.multiline,
                       decoration: const InputDecoration(
                         hintText: "Key",
@@ -115,7 +117,9 @@ class _APIUtilHeaderViewState extends State<APIUtilHeaderView> {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: TextFormField(
-                      style: textTheme.bodyMedium!.copyWith(fontSize: 12),
+                      style: context.textTheme.bodyMedium!.copyWith(
+                        fontSize: 12,
+                      ),
                       enableSuggestions: false,
                       maxLines: null,
                       keyboardType: TextInputType.multiline,
@@ -130,7 +134,9 @@ class _APIUtilHeaderViewState extends State<APIUtilHeaderView> {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: TextFormField(
-                      style: textTheme.bodyMedium!.copyWith(fontSize: 12),
+                      style: context.textTheme.bodyMedium!.copyWith(
+                        fontSize: 12,
+                      ),
                       enableSuggestions: false,
                       maxLines: null,
                       keyboardType: TextInputType.multiline,

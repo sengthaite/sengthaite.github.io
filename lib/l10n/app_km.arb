@@ -1,5 +1,7 @@
 {
   "@@locale": "km",
+  "profile": "អំពីខ្ញុំ",
+  "@profile": {},
   "article": "អត្ថបទ",
   "@article": {},
   "tool": "ឧបករណ៍",
