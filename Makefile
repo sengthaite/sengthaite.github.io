@@ -1,8 +1,8 @@
 
-.PHONY: all check autogen rebuild build_runner deploy_web pip_install build_web gen_l10n gen_icon run_web claude doc run_doc
+.PHONY: all check autogen rebuild build_runner deploy_web pip_install build_web gen_l10n gen_icon run_web doc run_doc run_llm
 
-claude:
-	ollama launch claude --model llama3.1:latest
+run_llm:
+	llama-server -hf google/gemma-4-E4B-it-qat-q4_0-gguf:Q4_0 -ngl 99 --tools all
 
 run_web:
 	flutter run -d web-server --web-hostname 0.0.0.0 --web-port 7777 --no-hot --verbose
@@ -42,6 +42,7 @@ build_runner:
 	dart run build_runner build --delete-conflicting-outputs
 
 check:
+	flutter_prunekit unused_code
 	dependency_validator
 
 add_assets:

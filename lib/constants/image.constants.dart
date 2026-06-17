@@ -29,11 +29,7 @@ enum AssetIcons {
   cal("calculator.svg", section: TabSection.tool),
   qrcode("qrcode.png", section: TabSection.tool);
 
-  const AssetIcons(
-    this.imageName, {
-    // ignore: unused_element
-    this.section = TabSection.content,
-  });
+  const AssetIcons(this.imageName, {this.section = TabSection.content});
 
   factory AssetIcons.fromImageName(String name) {
     String imageName = path.basenameWithoutExtension(name);

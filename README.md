@@ -8,3 +8,7 @@
 - [] Add pdf viewer and editor
 - [] Enable render flutter application from text editor
 - [] Enable multiple tabs with title for the text editor
+- [] Enable dynamic link to app
+- [] Auto generate documentation and review
+- [] Integrate the AI in the project with openclaude
+- [] Enable test widget and functionalities with auto generated test cases and appium custom
