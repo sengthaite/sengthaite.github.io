@@ -100,6 +100,7 @@ flutter:
     - assets/autogen_meta/
     - assets/tool_icons/
     - assets/content_icons/
+    - assets/portfolio/
 
 icons_launcher:
   image_path: 'assets/icon/icon.png'

@@ -112,6 +112,8 @@ class TabBarLayoutViewState extends State<TabBarLayoutView>
         _defaultContentTitle = "Project";
         _defaultEmptyContentTitle = "Not available";
         break;
+      case TabSection.portfolio:
+        break;
     }
   }
 

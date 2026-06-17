@@ -36,10 +36,11 @@ void main() async {
     };
   }
 
+  debugPrintRebuildDirtyWidgets = true;
+
   runApp(
     DevicePreview(
       enabled: !kReleaseMode,
-      // builder: (context) => const DashboardMobileView(),
       builder: (context) => const MainView(),
     ),
   );

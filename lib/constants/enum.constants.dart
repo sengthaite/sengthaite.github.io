@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 
-enum TabSection { content, tool, project }
+enum TabSection { portfolio, content, tool, project }
 
 enum CryptoType {
   aesCBC,
