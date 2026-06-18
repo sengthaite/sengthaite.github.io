@@ -5,11 +5,27 @@ PreviewThemeData designSystemPreviewTheme() => PreviewThemeData(
   materialLight: ThemeData(
     brightness: Brightness.light,
     useMaterial3: true,
-    colorSchemeSeed: Colors.blue,
+    scaffoldBackgroundColor: Colors.white,
+    colorScheme: const ColorScheme(
+      brightness: Brightness.light,
+      primary: Color(0xFF3F3F3F),
+      onPrimary: Colors.white,
+      secondary: Color(0xFF3F3F3F),
+      onSecondary: Colors.white,
+      error: Color(0xFF3F3F3F),
+      onError: Colors.white,
+      surface: Colors.white,
+      onSurface: Colors.white,
+    ),
   ),
   materialDark: ThemeData(
     brightness: Brightness.dark,
     useMaterial3: true,
-    colorSchemeSeed: Colors.deepPurple,
+    scaffoldBackgroundColor: Colors.grey[900],
+    colorScheme: ColorScheme.fromSeed(
+      seedColor: Colors.white,
+      primary: Color(0xFF3F3F3F),
+      brightness: Brightness.dark,
+    ),
   ),
 );

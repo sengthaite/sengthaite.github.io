@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:path/path.dart' as path;
@@ -172,7 +173,7 @@ enum AssetIcons {
     }
   }
 
-  Widget get image {
+  Widget imageWithStyle({Size size = const Size(60, 60), Color? color}) {
     var basePath = "assets/content_icons";
     switch (section) {
       case TabSection.tool:
@@ -188,9 +189,26 @@ enum AssetIcons {
         break;
     }
     if (path.extension(imageName) == '.svg') {
-      return SvgPicture.asset("$basePath/$imageName", width: 60, height: 60);
+      return SvgPicture.asset(
+        "$basePath/$imageName",
+        width: size.width,
+        height: size.height,
+        colorFilter: color != null
+            ? ColorFilter.mode(color, BlendMode.srcIn)
+            : null,
+      );
     }
-    return Image.asset("$basePath/$imageName", width: 60, height: 60);
+    return Image.asset(
+      "$basePath/$imageName",
+      width: size.width,
+      height: size.height,
+      colorBlendMode: BlendMode.srcIn,
+      color: color,
+    );
+  }
+
+  Widget get image {
+    return imageWithStyle();
   }
 
   Widget imageWithSize(double size) {
