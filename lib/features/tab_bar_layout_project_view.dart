@@ -3,7 +3,7 @@ import 'package:sengthaite_blog/constants/enum.constants.dart';
 
 class TabBarLayoutProjectView extends TabBarLayoutView {
   const TabBarLayoutProjectView({super.key, required this.hideBottomAppBar})
-      : super(section: TabSection.project, hideBottomBar: hideBottomAppBar);
+    : super(section: SectionType.project, hideBottomBar: hideBottomAppBar);
 
   final bool hideBottomAppBar;
 

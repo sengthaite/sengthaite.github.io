@@ -23,49 +23,84 @@ enum AssetIcons {
   cli("cli.svg"),
   tools("tool.svg"),
   biography("biography.svg"),
-  github("github.svg", section: TabSection.tool),
-  camera("camera.svg", section: TabSection.tool),
-  textEditor("text_editor.svg", section: TabSection.tool),
-  http("http.svg", section: TabSection.tool),
-  cal("calculator.svg", section: TabSection.tool),
-  qrcode("qrcode.png", section: TabSection.tool),
-  apk("apk.svg", section: TabSection.portfolio),
-  appstore("app-store.svg", section: TabSection.portfolio),
-  appsflyer("appsflyer.png", section: TabSection.portfolio),
-  blog("blog.svg", section: TabSection.portfolio),
-  camdx("camdx.png", section: TabSection.portfolio),
-  createml("createml.png", section: TabSection.portfolio),
-  download("download.svg", section: TabSection.portfolio),
-  githubpf("github.svg", section: TabSection.portfolio),
-  gmail("gmail.svg", section: TabSection.portfolio),
-  goal("goal.svg", section: TabSection.portfolio),
-  home("home.svg", section: TabSection.portfolio),
-  ipa("ipa.svg", section: TabSection.portfolio),
-  khqr("khqr.png", section: TabSection.portfolio),
-  linkedin("linkedin.svg", section: TabSection.portfolio),
-  manager("manager.svg", section: TabSection.portfolio),
-  mlkit("mlkit.png", section: TabSection.portfolio),
-  mobile("mobile.svg", section: TabSection.portfolio),
-  phone("phone.svg", section: TabSection.portfolio),
-  planning("planning.svg", section: TabSection.portfolio),
-  playstore("playstore.svg", section: TabSection.portfolio),
-  process("process.svg", section: TabSection.portfolio),
-  qa("qa.svg", section: TabSection.portfolio),
-  security("security.svg", section: TabSection.portfolio),
-  setting("setting.svg", section: TabSection.portfolio),
-  share("share.svg", section: TabSection.portfolio),
-  team("team.svg", section: TabSection.portfolio),
-  telegram("telegram.svg", section: TabSection.portfolio),
-  tensorflow("tensorflow.svg", section: TabSection.portfolio),
-  testcase("testcase.svg", section: TabSection.portfolio),
-  toolspf("tools.svg", section: TabSection.portfolio),
-  trello("trello.svg", section: TabSection.portfolio);
+  github("github.svg", section: SectionType.tool),
+  camera("camera.svg", section: SectionType.tool),
+  textEditor("text_editor.svg", section: SectionType.tool),
+  http("http.svg", section: SectionType.tool),
+  cal("calculator.svg", section: SectionType.tool),
+  qrcode("qrcode.png", section: SectionType.tool),
 
-  const AssetIcons(this.imageName, {this.section = TabSection.content});
+  apk("apk.svg", section: SectionType.portfolio),
+  appstore("app-store.svg", section: SectionType.portfolio),
+  appsflyer("appsflyer.png", section: SectionType.portfolio),
+  blog("blog.svg", section: SectionType.portfolio),
+  camdx("camdx.png", section: SectionType.portfolio),
+  createml("createml.png", section: SectionType.portfolio),
+  download("download.svg", section: SectionType.portfolio),
+  githubpf("githubpf.svg", section: SectionType.portfolio),
+  gmail("gmail.svg", section: SectionType.portfolio),
+  goal("goal.svg", section: SectionType.portfolio),
+  home("home.svg", section: SectionType.portfolio),
+  ipa("ipa.svg", section: SectionType.portfolio),
+  khqr("khqr.png", section: SectionType.portfolio),
+  linkedin("linkedin.svg", section: SectionType.portfolio),
+  manager("manager.svg", section: SectionType.portfolio),
+  mlkit("mlkit.png", section: SectionType.portfolio),
+  mobile("mobile.svg", section: SectionType.portfolio),
+  phone("phone.svg", section: SectionType.portfolio),
+  planning("planning.svg", section: SectionType.portfolio),
+  playstore("playstore.svg", section: SectionType.portfolio),
+  process("process.svg", section: SectionType.portfolio),
+  qa("qa.svg", section: SectionType.portfolio),
+  securitypf("securitypf.svg", section: SectionType.portfolio),
+  setting("setting.svg", section: SectionType.portfolio),
+  share("share.svg", section: SectionType.portfolio),
+  team("team.svg", section: SectionType.portfolio),
+  telegram("telegram.svg", section: SectionType.portfolio),
+  tensorflow("tensorflow.svg", section: SectionType.portfolio),
+  testcase("testcase.svg", section: SectionType.portfolio),
+  toolspf("tools.svg", section: SectionType.portfolio),
+  trello("trello.svg", section: SectionType.portfolio),
+
+  automatedtesting("automated_testing.svg", section: SectionType.certs),
+  billpayments("bill_payment.svg", section: SectionType.certs),
+  candidateselection("candidate_selection.svg", section: SectionType.certs),
+  khqrexperience("khqr.svg", section: SectionType.certs),
+  liveness("liveness.svg", section: SectionType.certs),
+  otherloanenhancements(
+    "other_loan_enhancements.svg",
+    section: SectionType.certs,
+  ),
+  securitysupport("securityexperience.svg", section: SectionType.certs),
+  smeloan("sme_loan.svg", section: SectionType.certs),
+  universallink("universal_link.svg", section: SectionType.certs),
+  z1("z1_zpoint.svg", section: SectionType.certs);
+
+  const AssetIcons(this.imageName, {this.section = SectionType.content});
 
   factory AssetIcons.fromImageName(String name) {
     String imageName = path.basenameWithoutExtension(name);
     switch (imageName.toLowerCase()) {
+      case "automated_testing":
+        return AssetIcons.automatedtesting;
+      case "bill_payment":
+        return AssetIcons.billpayments;
+      case "candidate_selection":
+        return AssetIcons.candidateselection;
+      case "khqrpf":
+        return AssetIcons.khqrexperience;
+      case "liveness":
+        return AssetIcons.liveness;
+      case "other_loan_enhancements":
+        return AssetIcons.otherloanenhancements;
+      case "securityexperience":
+        return AssetIcons.securitysupport;
+      case "sme_loan":
+        return AssetIcons.smeloan;
+      case "universal_link":
+        return AssetIcons.universallink;
+      case "z1_zpoint":
+        return AssetIcons.z1;
       case "flutter":
         return AssetIcons.flutter;
       case "logo":
@@ -121,7 +156,7 @@ enum AssetIcons {
       case "download":
         return AssetIcons.download;
       case "github_pf":
-        return AssetIcons.github;
+        return AssetIcons.githubpf;
       case "gmail":
         return AssetIcons.gmail;
       case "goal":
@@ -150,8 +185,8 @@ enum AssetIcons {
         return AssetIcons.process;
       case "qa":
         return AssetIcons.qa;
-      case "security":
-        return AssetIcons.security;
+      case "securitypf":
+        return AssetIcons.securitypf;
       case "setting":
         return AssetIcons.setting;
       case "share":
@@ -176,13 +211,13 @@ enum AssetIcons {
   Widget imageWithStyle({Size size = const Size(60, 60), Color? color}) {
     var basePath = "assets/content_icons";
     switch (section) {
-      case TabSection.tool:
+      case SectionType.tool:
         basePath = "assets/tool_icons";
         break;
-      case TabSection.project:
+      case SectionType.project:
         basePath = "assets/project_icons";
         break;
-      case TabSection.portfolio:
+      case SectionType.portfolio:
         basePath = "assets/portfolio";
         break;
       default:
@@ -214,14 +249,16 @@ enum AssetIcons {
   Widget imageWithSize(double size) {
     var basePath = "assets/content_icons";
     switch (section) {
-      case TabSection.tool:
+      case SectionType.tool:
         basePath = "assets/tool_icons";
         break;
-      case TabSection.project:
+      case SectionType.project:
         basePath = "assets/project_icons";
         break;
-      case TabSection.portfolio:
+      case SectionType.portfolio:
         basePath = "assets/portfolio";
+      case SectionType.certs:
+        basePath = "assets/certs_archivements";
       default:
         break;
     }
@@ -236,5 +273,5 @@ enum AssetIcons {
   }
 
   final String imageName;
-  final TabSection section;
+  final SectionType section;
 }

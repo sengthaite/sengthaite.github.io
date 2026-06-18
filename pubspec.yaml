@@ -101,6 +101,7 @@ flutter:
     - assets/tool_icons/
     - assets/content_icons/
     - assets/portfolio/
+    - assets/certs_archivements/
 
 icons_launcher:
   image_path: 'assets/icon/icon.png'

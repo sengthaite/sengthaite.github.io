@@ -24,7 +24,7 @@ import 'package:yaml/yaml.dart';
 
 class TabBarLayoutContentView extends TabBarLayoutView {
   const TabBarLayoutContentView({super.key, required this.hideBottomAppBar})
-    : super(section: TabSection.content, hideBottomBar: hideBottomAppBar);
+    : super(section: SectionType.content, hideBottomBar: hideBottomAppBar);
 
   final bool hideBottomAppBar;
 

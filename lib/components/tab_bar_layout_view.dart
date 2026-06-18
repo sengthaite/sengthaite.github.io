@@ -19,7 +19,7 @@ class TabBarLayoutView extends StatefulWidget {
     required this.hideBottomBar,
   });
 
-  final TabSection section;
+  final SectionType section;
   final bool hideBottomBar;
 
   void onDispose() {}
@@ -97,22 +97,22 @@ class TabBarLayoutViewState extends State<TabBarLayoutView>
 
   void _updateNavigationState() {
     switch (widget.section) {
-      case TabSection.content:
+      case SectionType.content:
         Navigation().contentTabState = this;
         _defaultContentTitle = "Content";
         _defaultEmptyContentTitle = "Empty Content";
         break;
-      case TabSection.tool:
+      case SectionType.tool:
         Navigation().toolTabState = this;
         _defaultContentTitle = "Tool";
         _defaultEmptyContentTitle = "Not available";
         break;
-      case TabSection.project:
+      case SectionType.project:
         Navigation().projectTabState = this;
         _defaultContentTitle = "Project";
         _defaultEmptyContentTitle = "Not available";
         break;
-      case TabSection.portfolio:
+      default:
         break;
     }
   }

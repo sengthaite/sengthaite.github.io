@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:sengthaite_blog/constants/portfolio.constants.dart';
 
+class SwitchableIcon {}
+
 class MenuButton extends StatefulWidget {
   final Widget? icon;
+  final Widget? selectedIcon;
   final Widget? trailIcon;
+  final Widget? selectedTrailingIcon;
   final String text;
   final bool isSelected;
   final VoidCallback onPressed;
@@ -13,7 +17,9 @@ class MenuButton extends StatefulWidget {
     required this.text,
     required this.onPressed,
     this.icon,
+    this.selectedIcon,
     this.trailIcon,
+    this.selectedTrailingIcon,
     this.isSelected = false,
   });
 
@@ -40,12 +46,17 @@ class _MenuButtonState extends State<MenuButton> {
         ? menuButtonSelectedStyle
         : menuButtonStyle;
 
-    EdgeInsetsGeometry padding = widget.icon != null && widget.trailIcon == null
+    EdgeInsetsGeometry padding =
+        widget.icon != null &&
+            (widget.trailIcon == null || widget.selectedTrailingIcon == null)
         ? const EdgeInsets.fromLTRB(20, 10, 35, 10)
         : const EdgeInsets.symmetric(horizontal: 16, vertical: 8);
 
     return IconButton.filled(
-      onPressed: widget.onPressed,
+      onPressed: () {
+        widget.onPressed.call();
+        setState(() => isSelected = !isSelected);
+      },
       padding: padding,
       style: buttonStyle,
       isSelected: isSelected,
@@ -53,9 +64,15 @@ class _MenuButtonState extends State<MenuButton> {
         mainAxisSize: MainAxisSize.min,
         spacing: 8,
         children: [
-          ?widget.icon,
+          if (isSelected && widget.selectedIcon != null)
+            ?widget.selectedIcon
+          else
+            ?widget.icon,
           Text(widget.text, style: style),
-          ?widget.trailIcon,
+          if (isSelected && widget.selectedTrailingIcon != null)
+            ?widget.selectedTrailingIcon
+          else
+            ?widget.trailIcon,
         ],
       ),
     );

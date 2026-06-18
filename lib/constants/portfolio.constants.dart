@@ -54,9 +54,47 @@ TextStyle textMenuButtonTitleStyle = TextStyle(
 TextStyle textMenuButtonTitleSelectedStyle = TextStyle(
   color: textButtonSelectedColor,
   fontSize: FontSizeExt.textMenuButtonTitle.value,
-  fontWeight: FontWeight.w600,
+  fontWeight: FontWeight.w700,
 );
 
 // Profile
 
 Color primaryTextColor = const Color(0xFF3F3F3F);
+
+// Side Key Insight
+Color sideKeyBackgroundColor = const Color(0xFFE8E8E8);
+
+ButtonStyle sideKeyStyle = IconButton.styleFrom(
+  backgroundColor: sideKeyBackgroundColor,
+  side: BorderSide(color: buttonBorderColor, width: 2),
+);
+
+TextStyle sideKeyTitleStyle = TextStyle(
+  color: buttonTextColor,
+  fontSize: FontSizeExt.sideKeyTitle.value,
+  fontWeight: FontWeight.w700,
+);
+
+// Radio button
+
+Color radioButtonIconColor = Color(0xFFE8E8E8);
+
+Color radioButtonIconSelectedColor = buttonBackgroundSelectedColor;
+
+TextStyle radioButtonTitleStyle = textMenuButtonTitleStyle.copyWith(
+  fontWeight: FontWeight.w600,
+);
+
+// Pop up
+
+Color popUpBackgroundColor = sideKeyBackgroundColor;
+
+Color popUpBorderColor = buttonBorderColor;
+
+Color popUpDividerColor = Colors.white;
+
+TextStyle popUpTitleStyle = TextStyle(
+  fontSize: 18,
+  fontWeight: FontWeight.w800,
+  color: textButtonColor,
+);

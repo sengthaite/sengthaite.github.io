@@ -25,7 +25,7 @@ enum DocExportType { markdown, html, pdf }
 
 class TabBarLayoutToolView extends TabBarLayoutView {
   TabBarLayoutToolView({super.key, required this.hideBottomAppBar})
-    : super(section: TabSection.tool, hideBottomBar: hideBottomAppBar);
+    : super(section: SectionType.tool, hideBottomBar: hideBottomAppBar);
 
   final bool hideBottomAppBar;
 

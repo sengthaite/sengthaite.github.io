@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widget_previews.dart';
 import 'package:sengthaite_blog/components/portfolio/previews/design_system_preview_theme.dart';
-import 'package:sengthaite_blog/components/portfolio/widgets/menu_button.dart';
+import 'package:sengthaite_blog/components/portfolio/widgets/side_key.dart';
 import 'package:sengthaite_blog/constants/image.constants.dart';
 import 'package:sengthaite_blog/constants/portfolio.constants.dart';
 
-final class DesignSystemButtonsPreview extends MultiPreview {
-  const DesignSystemButtonsPreview();
+final class DesignSystemSideKeyPreview extends MultiPreview {
+  const DesignSystemSideKeyPreview();
 
   @override
   List<Preview> get previews => [
@@ -61,37 +61,27 @@ final class DesignSystemButtonsPreview extends MultiPreview {
     ),
   ];
 
-  Widget _textButtonWrapper(Widget child) => Scaffold(
-    body: MenuButton(text: 'Click Me', onPressed: () {}),
-  );
+  Widget _textButtonWrapper(Widget child) =>
+      Scaffold(body: SideKeyView(text: 'Click Me'));
   Widget _textSelectedButtonWrapper(Widget child) => Scaffold(
-    body: MenuButton(
+    body: SideKeyView(
       text: 'Click Me Now',
-      onPressed: () {},
-      isSelected: true,
-      icon: AssetIcons.cli.imageWithStyle(size: Size(25, 25)),
+      icon: AssetIcons.cli.imageWithStyle(size: Size(20, 20)),
     ),
   );
   Widget _textIconButtonWrapper(Widget child) => Scaffold(
-    body: MenuButton(
+    body: SideKeyView(
       text: 'SETTINGS',
-      onPressed: () {},
-      isSelected: false,
       icon: AssetIcons.home.imageWithStyle(
-        size: Size(40, 40),
+        size: Size(20, 20),
         color: buttonIconColor,
       ),
       trailIcon: Icon(Icons.keyboard_arrow_down, color: buttonIconColor),
-      selectedTrailingIcon: Icon(
-        Icons.keyboard_arrow_up,
-        color: buttonIconSelectedColor,
-      ),
     ),
   );
   Widget _textIconSelectedButtonWrapper(Widget child) => Scaffold(
-    body: MenuButton(
+    body: SideKeyView(
       text: 'Click Me',
-      onPressed: () {},
       icon: Icon(Icons.check, color: buttonIconSelectedColor),
     ),
   );
@@ -128,7 +118,7 @@ final class DesignSystemButtonsPreview extends MultiPreview {
   }
 }
 
-@DesignSystemButtonsPreview()
-Widget designSystemButtonsPreview() {
-  return MenuButton(text: 'Click Me Now', onPressed: () {});
+@DesignSystemSideKeyPreview()
+Widget designSystemSideKeyPreview() {
+  return SideKeyView(text: 'Click Me Now');
 }
