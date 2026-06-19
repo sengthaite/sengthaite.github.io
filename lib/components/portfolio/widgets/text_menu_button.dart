@@ -6,12 +6,12 @@ class TextMenuButton extends StatefulWidget {
   final Widget? trailIcon;
   final String text;
   final bool isSelected;
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
 
   const TextMenuButton({
     super.key,
     required this.text,
-    required this.onPressed,
+    this.onPressed,
     this.icon,
     this.trailIcon,
     this.isSelected = false,

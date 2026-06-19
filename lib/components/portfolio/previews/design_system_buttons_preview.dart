@@ -68,7 +68,7 @@ final class DesignSystemButtonsPreview extends MultiPreview {
     body: MenuButton(
       text: 'Click Me Now',
       onPressed: () {},
-      isSelected: true,
+      isSelected: ValueNotifier(true),
       icon: AssetIcons.cli.imageWithStyle(size: Size(25, 25)),
     ),
   );
@@ -76,7 +76,7 @@ final class DesignSystemButtonsPreview extends MultiPreview {
     body: MenuButton(
       text: 'SETTINGS',
       onPressed: () {},
-      isSelected: false,
+      isSelected: ValueNotifier(false),
       icon: AssetIcons.home.imageWithStyle(
         size: Size(40, 40),
         color: buttonIconColor,

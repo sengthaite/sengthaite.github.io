@@ -9,7 +9,7 @@ class MenuButton extends StatefulWidget {
   final Widget? trailIcon;
   final Widget? selectedTrailingIcon;
   final String text;
-  final bool isSelected;
+  final ValueNotifier<bool>? isSelected;
   final VoidCallback onPressed;
 
   const MenuButton({
@@ -20,7 +20,7 @@ class MenuButton extends StatefulWidget {
     this.selectedIcon,
     this.trailIcon,
     this.selectedTrailingIcon,
-    this.isSelected = false,
+    this.isSelected,
   });
 
   @override
@@ -28,53 +28,61 @@ class MenuButton extends StatefulWidget {
 }
 
 class _MenuButtonState extends State<MenuButton> {
-  bool isSelected = false;
+  ValueNotifier<bool> isSelected = ValueNotifier(false);
 
   @override
   initState() {
+    isSelected = widget.isSelected ?? ValueNotifier(false);
     super.initState();
-    isSelected = widget.isSelected;
   }
 
   @override
   Widget build(BuildContext context) {
-    TextStyle? style = Theme.of(context).textTheme.bodyMedium?.merge(
-      isSelected ? menuButtonTitleSelectedStyle : menuButtonTitleStyle,
-    );
+    return ListenableBuilder(
+      listenable: isSelected,
+      builder: (c, w) {
+        TextStyle? style = Theme.of(context).textTheme.bodyMedium?.merge(
+          isSelected.value
+              ? menuButtonTitleSelectedStyle
+              : menuButtonTitleStyle,
+        );
 
-    ButtonStyle buttonStyle = isSelected
-        ? menuButtonSelectedStyle
-        : menuButtonStyle;
+        ButtonStyle buttonStyle = isSelected.value
+            ? menuButtonSelectedStyle
+            : menuButtonStyle;
 
-    EdgeInsetsGeometry padding =
-        widget.icon != null &&
-            (widget.trailIcon == null || widget.selectedTrailingIcon == null)
-        ? const EdgeInsets.fromLTRB(20, 10, 35, 10)
-        : const EdgeInsets.symmetric(horizontal: 16, vertical: 8);
+        EdgeInsetsGeometry padding =
+            widget.icon != null &&
+                (widget.trailIcon == null ||
+                    widget.selectedTrailingIcon == null)
+            ? const EdgeInsets.fromLTRB(20, 10, 35, 10)
+            : const EdgeInsets.symmetric(horizontal: 16, vertical: 8);
 
-    return IconButton.filled(
-      onPressed: () {
-        widget.onPressed.call();
-        setState(() => isSelected = !isSelected);
+        return IconButton.filled(
+          onPressed: () {
+            isSelected.value = !(widget.isSelected?.value ?? isSelected.value);
+            widget.onPressed();
+          },
+          padding: padding,
+          style: buttonStyle,
+          isSelected: isSelected.value,
+          icon: Row(
+            mainAxisSize: MainAxisSize.min,
+            spacing: 8,
+            children: [
+              if (isSelected.value && widget.selectedIcon != null)
+                ?widget.selectedIcon
+              else
+                ?widget.icon,
+              Text(widget.text, style: style),
+              if (isSelected.value && widget.selectedTrailingIcon != null)
+                ?widget.selectedTrailingIcon
+              else
+                ?widget.trailIcon,
+            ],
+          ),
+        );
       },
-      padding: padding,
-      style: buttonStyle,
-      isSelected: isSelected,
-      icon: Row(
-        mainAxisSize: MainAxisSize.min,
-        spacing: 8,
-        children: [
-          if (isSelected && widget.selectedIcon != null)
-            ?widget.selectedIcon
-          else
-            ?widget.icon,
-          Text(widget.text, style: style),
-          if (isSelected && widget.selectedTrailingIcon != null)
-            ?widget.selectedTrailingIcon
-          else
-            ?widget.trailIcon,
-        ],
-      ),
     );
   }
 }

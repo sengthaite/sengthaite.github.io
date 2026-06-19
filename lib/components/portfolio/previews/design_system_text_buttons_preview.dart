@@ -78,7 +78,7 @@ final class DesignSystemTextButtonsPreview extends MultiPreview {
   Widget _textIconSelectedButtonWrapper(Widget child) => Scaffold(
     body: TextMenuButton(
       text: 'Click Me',
-      onPressed: () {},
+      onPressed: null,
       icon: Icon(Icons.check, color: buttonIconSelectedColor),
     ),
   );
@@ -117,5 +117,5 @@ final class DesignSystemTextButtonsPreview extends MultiPreview {
 
 @DesignSystemTextButtonsPreview()
 Widget designSystemButtonsPreview() {
-  return TextMenuButton(text: 'Click Me Now', onPressed: () {});
+  return TextMenuButton(text: 'Click Me Now');
 }

@@ -1,0 +1,149 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/widget_previews.dart';
+
+@Preview(name: "portfolio")
+Widget preview() {
+  return PortfolioView();
+}
+
+ThemeData lightTheme = ThemeData(
+  useMaterial3: true,
+  primaryColor: Color(0xFFD40004),
+);
+
+ThemeData darkTheme = ThemeData();
+
+ThemeData highContrastLightTheme = lightTheme;
+
+ThemeData highContrastDarkTheme = darkTheme;
+
+class PortfolioView extends StatelessWidget {
+  final navKey = GlobalKey<NavigatorState>();
+  final messengerKey = GlobalKey<ScaffoldMessengerState>();
+  final Map<String, Widget Function(BuildContext)> routes = {
+    '/': (context) => DashboardView(),
+  };
+  final String initRoutePath = "/";
+  final String title = "Portfolio";
+  final String restoredScopeId = "restoration_scope_id";
+
+  PortfolioView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      key: super.key,
+      navigatorKey: navKey,
+      scaffoldMessengerKey: messengerKey,
+      // home: DashboardView(),
+      routes: routes,
+      initialRoute: initRoutePath,
+      onGenerateRoute: (settings) {
+        // Dynamic routing, passing arguments to a screen (via settings.arguments), and handling unknown routes.
+        return null;
+      },
+      onGenerateInitialRoutes: (route) {
+        // Deep linking or creating a specific back-stack. For example, if a user deep links to /settings/profile, this property allows you to build a stack where the Profile screen is on top of the Settings screen, providing a working "Back" button.
+        return [MaterialPageRoute(builder: (context) => DashboardView())];
+      },
+      onUnknownRoute: (settings) {
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (context) => Container(),
+        );
+      },
+      onNavigationNotification: (navNotification) {
+        return true;
+      },
+      navigatorObservers: const <NavigatorObserver>[],
+      builder: (context, widget) {
+        return widget ?? Container();
+      },
+      title: title,
+      onGenerateTitle: (context) {
+        return title.toUpperCase();
+      },
+      color: Colors.red,
+      theme: ThemeData.light(),
+      darkTheme: ThemeData.dark(),
+      highContrastTheme: ThemeData.light(),
+      highContrastDarkTheme: ThemeData.dark(),
+      themeMode: ThemeMode.system,
+      themeAnimationDuration: Duration(seconds: 5),
+      themeAnimationCurve: Curves.linear,
+      locale: Locale("en", "US"),
+      localizationsDelegates: [],
+      localeListResolutionCallback: (locale, itLocale) {
+        return null;
+      },
+      localeResolutionCallback: (locale, itLocale) {
+        return Locale("en", "US");
+      },
+      supportedLocales: const <Locale>[Locale('en', 'US')],
+      debugShowMaterialGrid: false,
+      showPerformanceOverlay: false,
+      checkerboardRasterCacheImages: false,
+      checkerboardOffscreenLayers: false,
+      showSemanticsDebugger: false,
+      debugShowCheckedModeBanner: true,
+      shortcuts: {},
+      actions: {},
+      restorationScopeId: restoredScopeId,
+      scrollBehavior: ScrollBehavior(),
+      themeAnimationStyle: AnimationStyle(),
+    );
+  }
+}
+
+class DashboardView extends StatelessWidget {
+  const DashboardView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Row(spacing: 18, children: [ContentSideView(), ProfileSideView()]),
+            FooterView(),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class ContentSideView extends StatefulWidget {
+  const ContentSideView({super.key});
+
+  @override
+  State<ContentSideView> createState() => _ContentSideViewState();
+}
+
+class _ContentSideViewState extends State<ContentSideView> {
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(flex: 5, child: Text("Content"));
+  }
+}
+
+class ProfileSideView extends StatelessWidget {
+  const ProfileSideView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(flex: 4, child: Text("Pofile"));
+  }
+}
+
+class FooterView extends StatelessWidget {
+  const FooterView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(color: Colors.grey, child: Text("Published in 2026"));
+  }
+}
