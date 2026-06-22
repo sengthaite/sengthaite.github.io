@@ -68,12 +68,11 @@ final class DesignSystemTextButtonsPreview extends MultiPreview {
     body: TextMenuButton(
       text: 'Click Me Now',
       onPressed: () {},
-      isSelected: true,
       icon: AssetIcons.cli.imageWithStyle(size: Size(25, 25)),
     ),
   );
   Widget _textIconButtonWrapper(Widget child) => Scaffold(
-    body: TextMenuButton(text: 'SETTINGS', onPressed: () {}, isSelected: true),
+    body: TextMenuButton(text: 'SETTINGS', onPressed: () {}),
   );
   Widget _textIconSelectedButtonWrapper(Widget child) => Scaffold(
     body: TextMenuButton(

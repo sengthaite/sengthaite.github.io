@@ -1,5 +1,10 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widget_previews.dart';
+import 'package:sengthaite_blog/components/main_view.dart';
+import 'package:sengthaite_blog/features/portfolio/content_side_view.dart';
+import 'package:sengthaite_blog/features/portfolio/footer_view.dart';
+import 'package:sengthaite_blog/features/portfolio/profile_side_view.dart';
 
 @Preview(name: "portfolio")
 Widget preview() {
@@ -22,6 +27,7 @@ class PortfolioView extends StatelessWidget {
   final messengerKey = GlobalKey<ScaffoldMessengerState>();
   final Map<String, Widget Function(BuildContext)> routes = {
     '/': (context) => DashboardView(),
+    '/blog': (context) => MainView(),
   };
   final String initRoutePath = "/";
   final String title = "Portfolio";
@@ -89,7 +95,15 @@ class PortfolioView extends StatelessWidget {
       shortcuts: {},
       actions: {},
       restorationScopeId: restoredScopeId,
-      scrollBehavior: ScrollBehavior(),
+      scrollBehavior: const MaterialScrollBehavior().copyWith(
+        dragDevices: {
+          PointerDeviceKind.touch,
+          PointerDeviceKind.mouse,
+          PointerDeviceKind.stylus,
+          PointerDeviceKind.trackpad,
+          PointerDeviceKind.unknown,
+        },
+      ),
       themeAnimationStyle: AnimationStyle(),
     );
   }
@@ -101,49 +115,41 @@ class DashboardView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Row(spacing: 18, children: [ContentSideView(), ProfileSideView()]),
-            FooterView(),
-          ],
+      backgroundColor: Colors.white,
+      body: Align(
+        alignment: Alignment.topCenter,
+        child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Container(
+              constraints: BoxConstraints(
+                minWidth: 1512,
+                minHeight: 982,
+                maxWidth: 2056,
+                maxHeight: 1329,
+              ),
+              width: 1512,
+              height: 982,
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Expanded(
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      spacing: 18,
+                      children: [ContentSideView(), ProfileSideView()],
+                    ),
+                  ),
+                  SizedBox(height: 24),
+                  FooterView(),
+                ],
+              ),
+            ),
+          ),
         ),
       ),
     );
-  }
-}
-
-class ContentSideView extends StatefulWidget {
-  const ContentSideView({super.key});
-
-  @override
-  State<ContentSideView> createState() => _ContentSideViewState();
-}
-
-class _ContentSideViewState extends State<ContentSideView> {
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(flex: 5, child: Text("Content"));
-  }
-}
-
-class ProfileSideView extends StatelessWidget {
-  const ProfileSideView({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(flex: 4, child: Text("Pofile"));
-  }
-}
-
-class FooterView extends StatelessWidget {
-  const FooterView({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(color: Colors.grey, child: Text("Published in 2026"));
   }
 }

@@ -49,7 +49,7 @@ class _StateMainView extends State<MainView> {
   void dispose() {
     super.dispose();
     AppData().isLoading.removeListener(onLoading);
-    AppData().isLoading.dispose();
+    // AppData().isLoading.dispose();
   }
 
   @override

@@ -10,12 +10,12 @@ class MenuButton extends StatefulWidget {
   final Widget? selectedTrailingIcon;
   final String text;
   final ValueNotifier<bool>? isSelected;
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
 
   const MenuButton({
     super.key,
     required this.text,
-    required this.onPressed,
+    this.onPressed,
     this.icon,
     this.selectedIcon,
     this.trailIcon,
@@ -59,10 +59,11 @@ class _MenuButtonState extends State<MenuButton> {
             : const EdgeInsets.symmetric(horizontal: 16, vertical: 8);
 
         return IconButton.filled(
-          onPressed: () {
-            isSelected.value = !(widget.isSelected?.value ?? isSelected.value);
-            widget.onPressed();
-          },
+          onPressed: widget.onPressed == null
+              ? null
+              : () {
+                  widget.onPressed?.call();
+                },
           padding: padding,
           style: buttonStyle,
           isSelected: isSelected.value,

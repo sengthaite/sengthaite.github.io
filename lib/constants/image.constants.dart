@@ -61,6 +61,7 @@ enum AssetIcons {
   testcase("testcase.svg", section: SectionType.portfolio),
   toolspf("tools.svg", section: SectionType.portfolio),
   trello("trello.svg", section: SectionType.portfolio),
+  imageprof("image_prof.png", section: SectionType.portfolio),
 
   automatedtesting("automated_testing.svg", section: SectionType.certs),
   billpayments("bill_payment.svg", section: SectionType.certs),
@@ -195,6 +196,8 @@ enum AssetIcons {
         return AssetIcons.team;
       case "telegram":
         return AssetIcons.telegram;
+      case "image_prof":
+        return AssetIcons.imageprof;
       case "tensorflow":
         return AssetIcons.tensorflow;
       case "testcase":
@@ -208,7 +211,7 @@ enum AssetIcons {
     }
   }
 
-  Widget imageWithStyle({Size size = const Size(60, 60), Color? color}) {
+  Widget imageWithStyle({Size? size, Color? color}) {
     var basePath = "assets/content_icons";
     switch (section) {
       case SectionType.tool:
@@ -226,8 +229,8 @@ enum AssetIcons {
     if (path.extension(imageName) == '.svg') {
       return SvgPicture.asset(
         "$basePath/$imageName",
-        width: size.width,
-        height: size.height,
+        width: size?.width,
+        height: size?.height,
         colorFilter: color != null
             ? ColorFilter.mode(color, BlendMode.srcIn)
             : null,
@@ -235,8 +238,8 @@ enum AssetIcons {
     }
     return Image.asset(
       "$basePath/$imageName",
-      width: size.width,
-      height: size.height,
+      width: size?.width,
+      height: size?.height,
       colorBlendMode: BlendMode.srcIn,
       color: color,
     );
@@ -263,11 +266,7 @@ enum AssetIcons {
         break;
     }
     if (path.extension(imageName) == '.svg') {
-      return SvgPicture.asset(
-        "$basePath/$imageName",
-        width: size,
-        height: size,
-      );
+      return SvgPicture.asset("$basePath/$imageName", width: size);
     }
     return Image.asset("$basePath/$imageName", width: size, height: size);
   }
