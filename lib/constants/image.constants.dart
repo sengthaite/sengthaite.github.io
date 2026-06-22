@@ -66,7 +66,7 @@ enum AssetIcons {
   automatedtesting("automated_testing.svg", section: SectionType.certs),
   billpayments("bill_payment.svg", section: SectionType.certs),
   candidateselection("candidate_selection.svg", section: SectionType.certs),
-  khqrexperience("khqr.svg", section: SectionType.certs),
+  khqrexperience("khqrpf.svg", section: SectionType.certs),
   liveness("liveness.svg", section: SectionType.certs),
   otherloanenhancements(
     "other_loan_enhancements.svg",

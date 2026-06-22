@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:sengthaite_blog/constants/portfolio.constants.dart';
 
-extension on List<Map<String, Widget>> {
+extension on List<TitleWidget> {
   Column getSkillListColumn() {
     return Column(
       spacing: 5,
       children: map((e) {
         return Container(
-          width: 110,
+          width: 130,
           decoration: BoxDecoration(
             border: Border.all(color: borderColor, width: 1),
             color: Color(0xFFE8E8E8),
@@ -17,7 +17,19 @@ extension on List<Map<String, Widget>> {
           child: Row(
             mainAxisSize: MainAxisSize.min,
             spacing: 6,
-            children: [e["widget"]!, e["title"]!],
+            children: [
+              Icon(e.widget, size: 24, color: buttonIconColor),
+              Expanded(
+                child: Text(
+                  e.title,
+                  maxLines: 2,
+                  style: textStyle.copyWith(
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ],
           ),
         );
       }).toList(),
@@ -46,13 +58,20 @@ extension on List<String> {
   }
 }
 
+class TitleWidget {
+  final String title;
+  final IconData widget;
+
+  TitleWidget({required this.title, required this.widget});
+}
+
 class ContentPageData {
   final String roleTitle;
   final String description;
-  final List<Map<String, Widget>> skillLists;
+  final List<TitleWidget> skillLists;
 
   final String experienceTitle;
-  final String trailingMetricTitle;
+  final String? trailingMetricTitle;
   final String skills;
 
   final Widget content;
@@ -64,7 +83,7 @@ class ContentPageData {
     required this.description,
     required this.skillLists,
     required this.experienceTitle,
-    required this.trailingMetricTitle,
+    this.trailingMetricTitle,
     required this.skills,
     required this.content,
     required this.platforms,
@@ -216,13 +235,14 @@ class PageContentView extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-                                Text(
-                                  data.trailingMetricTitle,
-                                  style: textStyle.copyWith(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w500,
+                                if (data.trailingMetricTitle != null)
+                                  Text(
+                                    data.trailingMetricTitle!,
+                                    style: textStyle.copyWith(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w500,
+                                    ),
                                   ),
-                                ),
                               ],
                             ),
                             Row(

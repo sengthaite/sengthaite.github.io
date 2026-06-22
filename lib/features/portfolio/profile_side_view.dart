@@ -22,6 +22,7 @@ class ProfileSideView extends StatelessWidget {
     final double maxWidth = 600;
 
     return Expanded(
+      flex: 2,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
