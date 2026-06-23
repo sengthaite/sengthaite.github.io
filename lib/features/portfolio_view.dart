@@ -123,8 +123,8 @@ class DashboardView extends StatelessWidget {
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Container(
-              width: 1612,
-              height: 982,
+              width: 1920,
+              height: 1080,
               padding: const EdgeInsets.only(top: 16.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,

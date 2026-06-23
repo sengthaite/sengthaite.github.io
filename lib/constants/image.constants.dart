@@ -66,8 +66,8 @@ enum AssetIcons {
   automatedtesting("automated_testing.svg", section: SectionType.certs),
   billpayments("bill_payment.svg", section: SectionType.certs),
   candidateselection("candidate_selection.svg", section: SectionType.certs),
-  khqrexperience("khqrpf.svg", section: SectionType.certs),
-  liveness("liveness.svg", section: SectionType.certs),
+  khqrexperience("khqrpf.png", section: SectionType.certs),
+  liveness("liveness.png", section: SectionType.certs),
   otherloanenhancements(
     "other_loan_enhancements.svg",
     section: SectionType.certs,
@@ -75,13 +75,26 @@ enum AssetIcons {
   securitysupport("securityexperience.svg", section: SectionType.certs),
   smeloan("sme_loan.svg", section: SectionType.certs),
   universallink("universal_link.svg", section: SectionType.certs),
-  z1("z1_zpoint.svg", section: SectionType.certs);
+  z1("z1_zpoint.svg", section: SectionType.certs),
+
+  peermentor("peer_mentor.jpg", section: SectionType.certs),
+  bachelor("bachelor_paragon.jpg", section: SectionType.certs),
+  itday("it_day.jpg", section: SectionType.certs),
+  volunteeryvsd("volunteer_yvsd.jpg", section: SectionType.certs);
 
   const AssetIcons(this.imageName, {this.section = SectionType.content});
 
   factory AssetIcons.fromImageName(String name) {
     String imageName = path.basenameWithoutExtension(name);
     switch (imageName.toLowerCase()) {
+      case "peer_mentor":
+        return AssetIcons.peermentor;
+      case "bachelor_paragon":
+        return AssetIcons.bachelor;
+      case "it_day":
+        return AssetIcons.itday;
+      case "volunteer_yvsd":
+        return volunteeryvsd;
       case "automated_testing":
         return AssetIcons.automatedtesting;
       case "bill_payment":
@@ -222,6 +235,8 @@ enum AssetIcons {
         break;
       case SectionType.portfolio:
         basePath = "assets/portfolio";
+      case SectionType.certs:
+        basePath = "assets/certs_archivements";
         break;
       default:
         break;
@@ -249,7 +264,7 @@ enum AssetIcons {
     return imageWithStyle();
   }
 
-  Widget imageWithSize(double size) {
+  Widget imageWithSize({double? width, double? height}) {
     var basePath = "assets/content_icons";
     switch (section) {
       case SectionType.tool:
@@ -266,9 +281,18 @@ enum AssetIcons {
         break;
     }
     if (path.extension(imageName) == '.svg') {
-      return SvgPicture.asset("$basePath/$imageName", width: size);
+      return SvgPicture.asset(
+        "$basePath/$imageName",
+        width: width,
+        height: height,
+      );
     }
-    return Image.asset("$basePath/$imageName", width: size, height: size);
+    return Image.asset(
+      "$basePath/$imageName",
+      width: width,
+      height: height,
+      fit: BoxFit.fitHeight,
+    );
   }
 
   final String imageName;

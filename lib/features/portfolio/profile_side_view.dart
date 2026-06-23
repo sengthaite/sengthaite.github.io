@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sengthaite_blog/constants/image.constants.dart';
 import 'package:sengthaite_blog/constants/portfolio.constants.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ProfileSideView extends StatelessWidget {
   const ProfileSideView({super.key});
@@ -21,12 +22,36 @@ class ProfileSideView extends StatelessWidget {
     );
     final double maxWidth = 600;
 
+    void openLink(String link) async {
+      final Uri url = Uri.parse(link);
+
+      if (await canLaunchUrl(url)) {
+        await launchUrl(url, mode: LaunchMode.externalApplication);
+      } else {
+        throw 'Could not launch $url';
+      }
+    }
+
+    void sendEmail() async {
+      final String recipient = 'sengthaite@gmail.com';
+      final String subject = Uri.encodeComponent('Hello Friend');
+      final String body = Uri.encodeComponent('Nice to meet you!');
+
+      final Uri emailUri = Uri.parse(
+        'mailto:$recipient?subject=$subject&body=$body',
+      );
+
+      if (await canLaunchUrl(emailUri)) {
+        await launchUrl(emailUri);
+      }
+    }
+
     return Expanded(
       flex: 2,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          ClipOval(child: AssetIcons.imageprof.imageWithSize(400)),
+          ClipOval(child: AssetIcons.imageprof.imageWithSize(width: 350)),
           SizedBox(height: 27),
           Text("TE SENGTHAI", style: textStyleBold.copyWith(fontSize: 40)),
           SizedBox(height: 8),
@@ -86,36 +111,46 @@ class ProfileSideView extends StatelessWidget {
                 onPressed: () {},
                 padding: iconTextPadding,
                 style: menuButtonStyle,
-                icon: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  spacing: 8,
-                  children: [
-                    AssetIcons.phone.imageWithStyle(
-                      size: Size(30, 30),
-                      color: Color(0xFF00830F),
-                    ),
-                    Text(
-                      "+855 88 397 9644",
-                      style: menuButtonTitleStyle.copyWith(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
+                icon: InkWell(
+                  onTap: () {
+                    final snackBar = SnackBar(
+                      content: const Text('Copied Phone number!'),
+                    );
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  },
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    spacing: 8,
+                    children: [
+                      AssetIcons.phone.imageWithStyle(
+                        size: Size(30, 30),
+                        color: Color(0xFF00830F),
                       ),
-                    ),
-                  ],
+                      Text(
+                        "+855 88 397 9644",
+                        style: menuButtonTitleStyle.copyWith(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               IconButton.filled(
-                onPressed: () {},
+                onPressed: () => openLink(
+                  "https://www.linkedin.com/in/te-sengthai-29b661191/",
+                ),
                 style: iconButtonStyle,
-                icon: AssetIcons.linkedin.imageWithSize(30),
+                icon: AssetIcons.linkedin.imageWithSize(width: 30),
               ),
               IconButton.filled(
-                onPressed: () {},
+                onPressed: () => openLink("https://github.com/sengthaite"),
                 style: iconButtonStyle,
-                icon: AssetIcons.githubpf.imageWithSize(30),
+                icon: AssetIcons.githubpf.imageWithSize(width: 30),
               ),
               IconButton.filled(
-                onPressed: () {},
+                onPressed: () => openLink("https://t.me/sengthaite"),
                 style: iconButtonStyle,
                 icon: AssetIcons.telegram.imageWithStyle(
                   size: Size(30, 30),
@@ -123,7 +158,7 @@ class ProfileSideView extends StatelessWidget {
                 ),
               ),
               IconButton.filled(
-                onPressed: () {},
+                onPressed: sendEmail,
                 padding: iconTextPadding,
                 style: menuButtonStyle,
                 icon: Row(

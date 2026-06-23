@@ -50,7 +50,10 @@ extension on List<String> {
           ),
           child: Text(
             e,
-            style: textStyle.copyWith(fontSize: 8, fontWeight: FontWeight.w400),
+            style: textStyle.copyWith(
+              fontSize: 12,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         );
       }).toList(),
@@ -113,32 +116,40 @@ class ContentPageData {
 }
 
 class ContentPage extends StatefulWidget {
-  const ContentPage({super.key, required this.data});
+  const ContentPage({
+    super.key,
+    required this.defaultSelection,
+    required this.data,
+    required this.controller,
+    this.onPageChanged,
+  });
 
-  final List<ContentPageData> data;
+  final int defaultSelection;
+  final List<Widget> data;
+  final PageController controller;
+  final Function(int)? onPageChanged;
 
   @override
   State<ContentPage> createState() => _ContentPageState();
 }
 
 class _ContentPageState extends State<ContentPage> {
-  final PageController pageController = PageController(
-    initialPage: 0,
-    viewportFraction: 1,
-  );
-
   int currentPage = 0;
+
+  @override
+  void initState() {
+    currentPage = widget.defaultSelection;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     if (widget.data.isEmpty) {
       return Center(child: Text("Empty Content", style: textStyle));
     }
-    List<Widget> pageView = widget.data
-        .map((content) => content.pageContentView())
-        .toList();
+
     return PageView(
-      controller: pageController,
+      controller: widget.controller,
       allowImplicitScrolling: false,
       physics: PageScrollPhysics(),
       padEnds: false,
@@ -146,8 +157,9 @@ class _ContentPageState extends State<ContentPage> {
         setState(() {
           currentPage = page;
         });
+        widget.onPageChanged?.call(page);
       },
-      children: pageView,
+      children: widget.data,
     );
   }
 }
@@ -159,155 +171,167 @@ class PageContentView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double sideSkillWidth = 140;
+    return Expanded(child: ExperienceWidget(data: data));
+  }
+}
 
-    return Expanded(
-      child: Column(
-        children: [
-          SizedBox(height: 20),
-          Row(
-            children: [
-              SizedBox(width: sideSkillWidth),
-              Expanded(
-                child: Container(
-                  padding: EdgeInsets.all(24),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        data.roleTitle,
-                        style: textStyle.copyWith(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                        ),
+class ExperienceWidget extends StatelessWidget {
+  const ExperienceWidget({super.key, required this.data});
+  final double sideSkillWidth = 140;
+
+  final ContentPageData data;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        SizedBox(height: 20),
+        Row(
+          children: [
+            SizedBox(width: sideSkillWidth),
+            Expanded(
+              child: Container(
+                padding: EdgeInsets.all(24),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      data.roleTitle,
+                      style: textStyle.copyWith(
+                        fontSize: 26,
+                        fontWeight: FontWeight.bold,
                       ),
-                      Text(
-                        data.description,
-                        style: textStyle.copyWith(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600,
-                        ),
+                    ),
+                    Text(
+                      data.description,
+                      style: textStyle.copyWith(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
-            ],
-          ),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                width: sideSkillWidth,
-                child: Container(
-                  padding: EdgeInsets.only(top: 12),
-                  child: data.skillLists.getSkillListColumn(),
-                ),
+            ),
+          ],
+        ),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              width: sideSkillWidth,
+              child: Container(
+                padding: EdgeInsets.only(top: 12),
+                child: data.skillLists.getSkillListColumn(),
               ),
-              Expanded(
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(16),
-                    border: Border.all(color: borderColor, width: 1),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 24,
-                          vertical: 14,
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Expanded(
-                                  child: Text(
-                                    data.experienceTitle,
-                                    maxLines: 3,
-                                    style: textStyle.copyWith(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                if (data.trailingMetricTitle != null)
-                                  Text(
-                                    data.trailingMetricTitle!,
-                                    style: textStyle.copyWith(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ),
-                              ],
-                            ),
-                            Row(
-                              spacing: 8,
-                              children: [
-                                Icon(Icons.vpn_key, color: Color(0xFFD40004)),
-                                Text(
-                                  data.skills,
+            ),
+            Expanded(
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(16),
+                  border: Border.all(color: borderColor, width: 1),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 24,
+                        vertical: 14,
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  data.experienceTitle,
+                                  maxLines: 3,
                                   style: textStyle.copyWith(
-                                    fontSize: 10,
+                                    fontSize: 20,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                              ],
-                            ),
-                          ],
-                        ),
+                              ),
+                              if (data.trailingMetricTitle != null)
+                                Text(
+                                  data.trailingMetricTitle!,
+                                  style: textStyle.copyWith(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                            ],
+                          ),
+                          Row(
+                            spacing: 8,
+                            children: [
+                              Icon(Icons.vpn_key, color: Color(0xFFD40004)),
+                              Text(
+                                data.skills,
+                                style: textStyle.copyWith(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
-                      Divider(),
-                      Padding(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 24,
-                          vertical: 12,
-                        ),
+                    ),
+                    Divider(),
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 24,
+                        vertical: 12,
+                      ),
+                      child: Container(
+                        alignment: Alignment.center,
+                        height: 350,
                         child: data.content,
                       ),
+                    ),
 
-                      Divider(),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 24,
-                          vertical: 12,
-                        ),
-                        child: Column(
-                          spacing: 12,
-                          children: [
-                            Row(
-                              spacing: 5,
-                              children: [
-                                Icon(
-                                  size: 14,
-                                  Icons.developer_board,
-                                  color: buttonIconColor,
-                                ),
-                                Text(
-                                  "Platform & Tools",
-                                  style: textStyle.copyWith(
-                                    fontSize: 10,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            data.platforms.getPlatformRow(),
-                          ],
-                        ),
+                    Divider(),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 24,
+                        vertical: 12,
                       ),
-                    ],
-                  ),
+                      child: Column(
+                        spacing: 12,
+                        children: [
+                          Row(
+                            spacing: 5,
+                            children: [
+                              Icon(
+                                size: 16,
+                                Icons.developer_board,
+                                color: buttonIconColor,
+                              ),
+                              Text(
+                                "Platform & Tools",
+                                style: textStyle.copyWith(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
+                          ),
+                          data.platforms.getPlatformRow(),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
               ),
-            ],
-          ),
-        ],
-      ),
+            ),
+          ],
+        ),
+      ],
     );
   }
 }

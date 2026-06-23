@@ -18,7 +18,7 @@ class _ContentSideViewState extends State<ContentSideView> {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      flex: 3,
+      flex: 4,
       child: Column(
         children: [
           MenuNavigation(),
