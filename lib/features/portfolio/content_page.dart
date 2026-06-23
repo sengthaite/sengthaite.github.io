@@ -95,24 +95,6 @@ class ContentPageData {
   Widget pageContentView() {
     return PageContentView(data: this);
   }
-
-  factory ContentPageData.fromJson(Map<String, dynamic> json) {
-    return ContentPageData(
-      roleTitle: json['roleTitle'],
-      description: json['description'],
-      skillLists: [],
-      experienceTitle: '',
-      trailingMetricTitle: '',
-      skills: '',
-      content: Text(""),
-      platforms: [],
-    );
-  }
-
-  // 2. Convert User Object to Map
-  Map<String, dynamic> toJson() {
-    return {};
-  }
 }
 
 class ContentPage extends StatefulWidget {

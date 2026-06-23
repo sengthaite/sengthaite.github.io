@@ -35,6 +35,74 @@ class MenuNavigation extends StatelessWidget {
     isHome.value = true;
   }
 
+  void showFeedback(BuildContext context) {
+    togglePopUp();
+    resetMenuButtonSelection();
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          alignment: Alignment.center,
+          title: Text(
+            "FEEDBACK",
+            textAlign: TextAlign.center,
+            style: textStyle.copyWith(fontSize: 36),
+          ),
+          content: SizedBox(
+            width: 400,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              spacing: 8,
+              children: [
+                Text(
+                  "I'm actively improving this portfolio and would value your perspective - feel free to share any thoughts, no matter how small.",
+                  style: textStyle,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.star, color: starColor, size: 56),
+                    Icon(Icons.star, color: starColor, size: 56),
+                    Icon(Icons.star, color: starColor, size: 56),
+                    Icon(Icons.star, color: starColor, size: 56),
+                    Icon(Icons.star, size: 56),
+                  ],
+                ),
+                TextField(
+                  obscureText: true,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Username / Email',
+                  ),
+                ),
+                TextField(
+                  maxLines: 4,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Comment',
+                  ),
+                ),
+              ],
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: Text("Cancel", style: textStyle),
+            ),
+            TextButton(
+              onPressed: () {},
+              child: Text(
+                "Submit",
+                style: textStyle.copyWith(fontWeight: FontWeight.bold),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     isHome.value = true;
@@ -95,9 +163,12 @@ class MenuNavigation extends StatelessWidget {
                   ],
                 ),
               ),
-              TableRowData(title: "DEMOS"),
-              TableRowData(title: "FEEDBACK"),
-              TableRowData(title: "REGISTER / LOGIN"),
+              // TableRowData(title: "DEMOS"),
+              TableRowData(
+                title: "FEEDBACK",
+                onPress: () => showFeedback(context),
+              ),
+              // TableRowData(title: "REGISTER / LOGIN"),
             ],
           ),
         ),

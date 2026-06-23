@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sengthaite_blog/components/portfolio/widgets/text_menu_button.dart';
 import 'package:sengthaite_blog/constants/portfolio.constants.dart';
+import 'package:share_plus/share_plus.dart';
 
 enum ContentSideSection { education, experience }
 
@@ -66,7 +67,11 @@ class _ContentSideNavState extends State<ContentSideNav> {
               ),
             ),
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                SharePlus.instance.share(
+                  ShareParams(uri: Uri.parse("https://sengthaite.github.io/")),
+                );
+              },
               color: buttonBackgroundColor,
               icon: Icon(Icons.share_outlined, color: textButtonColor),
             ),

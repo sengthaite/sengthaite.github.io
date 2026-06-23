@@ -7,6 +7,7 @@ Color textColor = const Color(0xFF3F3F3F);
 Color backgroundColor = const Color(0xFFF1F1F1);
 Color onBackgroundColor = const Color(0xFFFFFFFF);
 Color borderColor = const Color(0xFFC9C8C8);
+Color starColor = const Color(0xFFF1B100);
 TextStyle textStyle = GoogleFonts.inter().copyWith(
   color: textColor,
   fontSize: FontSize.medium.value,
