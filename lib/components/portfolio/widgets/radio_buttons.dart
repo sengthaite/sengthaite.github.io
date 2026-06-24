@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sengthaite_blog/constants/portfolio.constants.dart';
+import 'package:sengthaite_blog/extensions/build_context_ext.dart';
 
 class RadioButtonData {
   final String text;
@@ -60,7 +60,7 @@ class _RadioButtonsState extends State<RadioButtons> {
           child: Center(
             child: Text(
               e.text,
-              style: radioButtonTitleStyle,
+              style: context.pfTheme.dialogRadioTitleTextStyle,
               textAlign: TextAlign.center,
             ),
           ),

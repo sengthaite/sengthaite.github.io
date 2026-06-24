@@ -6,7 +6,6 @@ import 'package:sengthaite_blog/components/portfolio/widgets/overlay_dropdown.da
 import 'package:sengthaite_blog/components/portfolio/widgets/radio_buttons.dart';
 import 'package:sengthaite_blog/components/portfolio/widgets/table_popup.dart';
 import 'package:sengthaite_blog/constants/image.constants.dart';
-import 'package:sengthaite_blog/constants/portfolio.constants.dart';
 
 class SettingDropdown extends StatefulWidget {
   const SettingDropdown({super.key});
@@ -31,17 +30,14 @@ class _SettingDropdownState extends State<SettingDropdown> {
         isSelected: isShowing,
         icon: AssetIcons.home.imageWithStyle(
           size: Size(40, 40),
-          color: buttonIconColor,
+          color: Colors.grey,
         ),
         selectedIcon: AssetIcons.home.imageWithStyle(
           size: Size(40, 40),
-          color: buttonIconSelectedColor,
+          color: Colors.red,
         ),
-        trailIcon: Icon(Icons.keyboard_arrow_down, color: buttonIconColor),
-        selectedTrailingIcon: Icon(
-          Icons.keyboard_arrow_up,
-          color: buttonIconSelectedColor,
-        ),
+        trailIcon: Icon(Icons.keyboard_arrow_down, color: Colors.grey),
+        selectedTrailingIcon: Icon(Icons.keyboard_arrow_up, color: Colors.red),
       ),
       listDropdownWidget: TablePopup(
         rows: [

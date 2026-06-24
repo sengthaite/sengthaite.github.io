@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:sengthaite_blog/extensions/build_context_ext.dart';
-
-import 'package:sengthaite_blog/l10n/app_localizations.dart';
 import 'package:sengthaite_blog/shared/app.data.dart';
 import 'package:sengthaite_blog/shared/data/appsetting.dart';
 
@@ -27,8 +25,6 @@ class _DrawerViewState extends State<DrawerView> {
 
   @override
   Widget build(BuildContext context) {
-    var appLocalization = AppLocalizations.of(context)!;
-
     return ValueListenableBuilder(
       valueListenable:
           appSettings?.currentLocale ?? ValueNotifier(const Locale('en', 'US')),
@@ -43,7 +39,7 @@ class _DrawerViewState extends State<DrawerView> {
                 height: 80,
                 child: DrawerHeader(
                   child: Text(
-                    appLocalization.settings,
+                    context.l10n.settings,
                     style: context.textTheme.titleMedium!.copyWith(
                       fontWeight: FontWeight.bold,
                       color: context.colorScheme.primary,

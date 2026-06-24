@@ -3,7 +3,6 @@ import 'package:flutter/widget_previews.dart';
 import 'package:sengthaite_blog/components/portfolio/previews/design_system_preview_theme.dart';
 import 'package:sengthaite_blog/components/portfolio/widgets/side_key.dart';
 import 'package:sengthaite_blog/constants/image.constants.dart';
-import 'package:sengthaite_blog/constants/portfolio.constants.dart';
 
 final class DesignSystemSideKeyPreview extends MultiPreview {
   const DesignSystemSideKeyPreview();
@@ -74,15 +73,15 @@ final class DesignSystemSideKeyPreview extends MultiPreview {
       text: 'SETTINGS',
       icon: AssetIcons.home.imageWithStyle(
         size: Size(20, 20),
-        color: buttonIconColor,
+        color: Colors.grey,
       ),
-      trailIcon: Icon(Icons.keyboard_arrow_down, color: buttonIconColor),
+      trailIcon: Icon(Icons.keyboard_arrow_down, color: Colors.grey),
     ),
   );
   Widget _textIconSelectedButtonWrapper(Widget child) => Scaffold(
     body: SideKeyView(
       text: 'Click Me',
-      icon: Icon(Icons.check, color: buttonIconSelectedColor),
+      icon: Icon(Icons.check, color: Colors.red),
     ),
   );
 

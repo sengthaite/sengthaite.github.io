@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:sengthaite_blog/constants/app.constants.dart';
 import 'package:sengthaite_blog/constants/image.constants.dart';
 import 'package:sengthaite_blog/features/personal/personal_git_view.dart';
-import 'package:sengthaite_blog/l10n/app_localizations.dart';
 import 'package:sengthaite_blog/shared/app.data.dart';
 import 'package:sengthaite_blog/shared/data/appsetting.dart';
 import 'package:sengthaite_blog/shared/dialog/github_login_dialog.dart';
@@ -68,7 +67,6 @@ class _AppBarViewTabState extends State<AppBarViewTab> {
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
-    var appLocalization = AppLocalizations.of(context)!;
 
     return AppBar(
       centerTitle: true,
@@ -100,9 +98,9 @@ class _AppBarViewTabState extends State<AppBarViewTab> {
         indicatorSize: TabBarIndicatorSize.tab,
         dividerColor: Colors.transparent,
         tabs: [
-          Tab(text: appLocalization.article),
-          Tab(text: appLocalization.tool),
-          Tab(text: appLocalization.project),
+          Tab(text: context.l10n.article),
+          Tab(text: context.l10n.tool),
+          Tab(text: context.l10n.project),
         ],
       ),
     );

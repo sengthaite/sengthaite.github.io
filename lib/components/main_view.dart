@@ -1,6 +1,5 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_quill/flutter_quill.dart';
 import 'package:sengthaite_blog/components/appbar/appbar_with_tab.dart';
 import 'package:sengthaite_blog/components/drawer/drawer_view.dart';
@@ -64,9 +63,6 @@ class _StateMainView extends State<MainView> {
         localizationsDelegates: const [
           FlutterQuillLocalizations.delegate,
           ...AppLocalizations.localizationsDelegates,
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
         ],
         supportedLocales: AppLocalizations.supportedLocales,
         theme: ThemeData(
@@ -122,11 +118,6 @@ class OldLayoutView extends StatelessWidget {
               body: SafeArea(
                 child: ContentView(isFullScreenModel: isFullScreenModel),
               ),
-              // floatingActionButton: ToggleFullscreenView(
-              //   onSreenStateChange: (bool isFullScreen) => setState(() {
-              //     isFullScreenModel = isFullScreen;
-              //   }),
-              // ),
             ),
           ),
         ),

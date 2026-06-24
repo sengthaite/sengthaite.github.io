@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sengthaite_blog/constants/portfolio.constants.dart';
+import 'package:sengthaite_blog/extensions/build_context_ext.dart';
 
 class SideKeyView extends StatelessWidget {
   final Widget? icon;
@@ -23,13 +23,13 @@ class SideKeyView extends StatelessWidget {
       hoverColor: Colors.transparent,
       focusColor: Colors.transparent,
       highlightColor: Colors.transparent,
-      style: sideKeyStyle,
+      style: context.pfTheme.buttonStyle,
       icon: Row(
         mainAxisSize: MainAxisSize.min,
         spacing: 8,
         children: [
           ?icon,
-          Text(text, style: sideKeyTitleStyle),
+          Text(text, style: context.pfTheme.sideMenuTitleStyle),
           ?trailIcon,
         ],
       ),

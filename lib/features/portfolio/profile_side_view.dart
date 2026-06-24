@@ -1,50 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:sengthaite_blog/constants/image.constants.dart';
-import 'package:sengthaite_blog/constants/portfolio.constants.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:sengthaite_blog/extensions/build_context_ext.dart';
+import 'package:sengthaite_blog/extensions/style_ext.dart';
+import 'package:sengthaite_blog/helper/common.dart';
 
-class ProfileSideView extends StatelessWidget {
-  const ProfileSideView({super.key});
+sealed class ProfileSideViewConstants extends StatelessWidget {
+  final double professionalSummaryMaxWidth = 600;
+  const ProfileSideViewConstants({super.key});
+}
+
+class ProfileSideView extends ProfileSideViewConstants {
+  ProfileSideView({super.key});
+
+  final iconTextPadding = EdgeInsets.fromLTRB(20, 13, 35, 13);
 
   @override
   Widget build(BuildContext context) {
-    final iconButtonStyle = menuButtonStyle.copyWith(
-      padding: WidgetStatePropertyAll(EdgeInsets.all(13)),
-    );
-    final iconTextPadding = EdgeInsets.fromLTRB(20, 13, 35, 13);
-    final textStyleBold = textStyle.copyWith(
-      fontWeight: FontWeight.bold,
-      fontSize: 16,
-    );
-    final textStyleDefault = textStyle.copyWith(
-      fontWeight: FontWeight.w500,
-      fontSize: 16,
-    );
-    final double maxWidth = 600;
-
-    void openLink(String link) async {
-      final Uri url = Uri.parse(link);
-
-      if (await canLaunchUrl(url)) {
-        await launchUrl(url, mode: LaunchMode.externalApplication);
-      } else {
-        throw 'Could not launch $url';
-      }
-    }
-
-    void sendEmail() async {
-      final String recipient = 'sengthaite@gmail.com';
-      final String subject = Uri.encodeComponent('Hello Friend');
-      final String body = Uri.encodeComponent('Nice to meet you!');
-
-      final Uri emailUri = Uri.parse(
-        'mailto:$recipient?subject=$subject&body=$body',
-      );
-
-      if (await canLaunchUrl(emailUri)) {
-        await launchUrl(emailUri);
-      }
-    }
+    final textStyle = context.pfTheme.textStyle;
 
     return Expanded(
       flex: 2,
@@ -53,50 +25,50 @@ class ProfileSideView extends StatelessWidget {
         children: [
           ClipOval(child: AssetIcons.imageprof.imageWithSize(width: 350)),
           SizedBox(height: 27),
-          Text("TE SENGTHAI", style: textStyleBold.copyWith(fontSize: 40)),
+          Text("TE SENGTHAI", style: context.pfTheme.roleTitleTextStyle),
           SizedBox(height: 8),
           Text(
             "Transformational, Visionary, Laissez-Faire, Servant, Pacesetting",
-            style: textStyle.copyWith(fontSize: 18),
+            style: context.pfTheme.roleDetailTextStyle,
           ),
           SizedBox(height: 30),
           Container(
-            constraints: BoxConstraints(maxWidth: maxWidth),
+            constraints: BoxConstraints(maxWidth: professionalSummaryMaxWidth),
             padding: EdgeInsets.symmetric(horizontal: 27, vertical: 16),
             decoration: BoxDecoration(
-              border: Border.all(width: 2, color: borderColor),
+              border: Border.all(width: 2, color: context.colorScheme.outline),
               borderRadius: BorderRadius.circular(16),
             ),
             child: Text.rich(
               TextSpan(
                 children: [
-                  TextSpan(text: "With nearly", style: textStyleDefault),
+                  TextSpan(text: "With nearly", style: textStyle),
                   TextSpan(
                     text: " 6 years of experience",
-                    style: textStyleBold,
+                    style: textStyle.bold,
                   ),
                   TextSpan(
                     text:
                         " in a dynamic Fintech company, I bring 3 core values:",
-                    style: textStyleDefault,
+                    style: textStyle,
                   ),
-                  TextSpan(text: " adaptability", style: textStyleBold),
+                  TextSpan(text: " adaptability", style: textStyle.bold),
                   TextSpan(
                     text:
                         " in agile environments through cross-functional communication, proactive",
-                    style: textStyleDefault,
+                    style: textStyle,
                   ),
-                  TextSpan(text: " collaboration", style: textStyleBold),
+                  TextSpan(text: " collaboration", style: textStyle.bold),
                   TextSpan(
                     text:
                         " driving team success via initiative and innovative problem-solving, and",
-                    style: textStyleDefault,
+                    style: textStyle,
                   ),
-                  TextSpan(text: " continuous growth", style: textStyleBold),
+                  TextSpan(text: " continuous growth", style: textStyle.bold),
                   TextSpan(
                     text:
                         " aligned with organizational vision for sustained impact.",
-                    style: textStyleDefault,
+                    style: textStyle,
                   ),
                 ],
               ),
@@ -110,13 +82,16 @@ class ProfileSideView extends StatelessWidget {
               IconButton.filled(
                 onPressed: () {},
                 padding: iconTextPadding,
-                style: menuButtonStyle,
+                style: context.pfTheme.buttonStyle,
                 icon: InkWell(
                   onTap: () {
                     final snackBar = SnackBar(
-                      content: const Text('Copied Phone number!'),
+                      content: Text(
+                        'Copied Phone number!',
+                        style: context.pfTheme.textStyle,
+                      ),
                     );
-                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    context.messenger.showSnackBar(snackBar);
                   },
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
@@ -128,10 +103,7 @@ class ProfileSideView extends StatelessWidget {
                       ),
                       Text(
                         "+855 88 397 9644",
-                        style: menuButtonTitleStyle.copyWith(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: context.pfTheme.textStyle,
                       ),
                     ],
                   ),
@@ -141,17 +113,17 @@ class ProfileSideView extends StatelessWidget {
                 onPressed: () => openLink(
                   "https://www.linkedin.com/in/te-sengthai-29b661191/",
                 ),
-                style: iconButtonStyle,
+                style: context.pfTheme.buttonStyle,
                 icon: AssetIcons.linkedin.imageWithSize(width: 30),
               ),
               IconButton.filled(
                 onPressed: () => openLink("https://github.com/sengthaite"),
-                style: iconButtonStyle,
+                style: context.pfTheme.buttonStyle,
                 icon: AssetIcons.githubpf.imageWithSize(width: 30),
               ),
               IconButton.filled(
                 onPressed: () => openLink("https://t.me/sengthaite"),
-                style: iconButtonStyle,
+                style: context.pfTheme.buttonStyle,
                 icon: AssetIcons.telegram.imageWithStyle(
                   size: Size(30, 30),
                   color: Color(0xFF1B92D1),
@@ -160,7 +132,7 @@ class ProfileSideView extends StatelessWidget {
               IconButton.filled(
                 onPressed: sendEmail,
                 padding: iconTextPadding,
-                style: menuButtonStyle,
+                style: context.pfTheme.buttonStyle,
                 icon: Row(
                   mainAxisSize: MainAxisSize.min,
                   spacing: 8,
@@ -168,10 +140,7 @@ class ProfileSideView extends StatelessWidget {
                     AssetIcons.gmail.imageWithStyle(size: Size(30, 30)),
                     Text(
                       "sengthaite@gmail.com",
-                      style: menuButtonTitleStyle.copyWith(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      style: context.pfTheme.textStyle,
                     ),
                   ],
                 ),

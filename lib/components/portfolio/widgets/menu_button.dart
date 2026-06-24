@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sengthaite_blog/constants/portfolio.constants.dart';
-
-class SwitchableIcon {}
+import 'package:sengthaite_blog/extensions/build_context_ext.dart';
+import 'package:sengthaite_blog/extensions/style_ext.dart';
 
 class MenuButton extends StatefulWidget {
   final Widget? icon;
@@ -38,18 +37,12 @@ class _MenuButtonState extends State<MenuButton> {
 
   @override
   Widget build(BuildContext context) {
-    return ListenableBuilder(
-      listenable: isSelected,
-      builder: (c, w) {
-        TextStyle? style = Theme.of(context).textTheme.bodyMedium?.merge(
-          isSelected.value
-              ? menuButtonTitleSelectedStyle
-              : menuButtonTitleStyle,
-        );
-
-        ButtonStyle buttonStyle = isSelected.value
-            ? menuButtonSelectedStyle
-            : menuButtonStyle;
+    return ValueListenableBuilder(
+      valueListenable: isSelected,
+      builder: (c, selected, w) {
+        TextStyle? titleStyle = selected
+            ? context.pfTheme.menuSelectedTextStyle
+            : context.pfTheme.menuTextStyle;
 
         EdgeInsetsGeometry padding =
             widget.icon != null &&
@@ -65,18 +58,20 @@ class _MenuButtonState extends State<MenuButton> {
                   widget.onPressed?.call();
                 },
           padding: padding,
-          style: buttonStyle,
-          isSelected: isSelected.value,
+          style: selected
+              ? context.pfTheme.buttonSelectedStyle
+              : context.pfTheme.buttonStyle,
+          isSelected: selected,
           icon: Row(
             mainAxisSize: MainAxisSize.min,
             spacing: 8,
             children: [
-              if (isSelected.value && widget.selectedIcon != null)
+              if (selected && widget.selectedIcon != null)
                 ?widget.selectedIcon
               else
                 ?widget.icon,
-              Text(widget.text, style: style),
-              if (isSelected.value && widget.selectedTrailingIcon != null)
+              Text(widget.text, style: selected ? titleStyle.bold : titleStyle),
+              if (selected && widget.selectedTrailingIcon != null)
                 ?widget.selectedTrailingIcon
               else
                 ?widget.trailIcon,

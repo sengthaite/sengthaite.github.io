@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sengthaite_blog/components/portfolio/widgets/text_menu_button.dart';
-import 'package:sengthaite_blog/constants/portfolio.constants.dart';
+import 'package:sengthaite_blog/extensions/build_context_ext.dart';
 import 'package:share_plus/share_plus.dart';
 
 enum ContentSideSection { education, experience }
@@ -43,9 +43,12 @@ class _ContentSideNavState extends State<ContentSideNav> {
           children: [
             Container(
               decoration: BoxDecoration(
-                color: onBackgroundColor,
+                color: context.pfTheme.containerBgColor,
                 borderRadius: BorderRadius.circular(25),
-                border: Border.all(color: borderColor, width: 1),
+                border: Border.all(
+                  color: context.pfTheme.borderColor,
+                  width: 1,
+                ),
               ),
               padding: EdgeInsets.all(10),
               child: Row(
@@ -72,8 +75,11 @@ class _ContentSideNavState extends State<ContentSideNav> {
                   ShareParams(uri: Uri.parse("https://sengthaite.github.io/")),
                 );
               },
-              color: buttonBackgroundColor,
-              icon: Icon(Icons.share_outlined, color: textButtonColor),
+              color: context.pfTheme.buttonBgColor,
+              icon: Icon(
+                Icons.share_outlined,
+                color: context.pfTheme.buttonFgColor,
+              ),
             ),
           ],
         ),

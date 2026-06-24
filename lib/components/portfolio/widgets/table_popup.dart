@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sengthaite_blog/constants/portfolio.constants.dart';
+import 'package:sengthaite_blog/extensions/build_context_ext.dart';
 
 class TableRowData {
   final String title;
@@ -23,41 +23,48 @@ class TablePopup extends StatelessWidget {
     return Container(
       padding: horizontalPadding,
       decoration: BoxDecoration(
-        color: popUpBackgroundColor,
-        border: Border.all(color: popUpBorderColor, width: 2),
+        color: context.pfTheme.dialogBgColor,
+        border: Border.all(color: context.pfTheme.borderColor, width: 2),
         borderRadius: BorderRadius.circular(16),
       ),
       child: Table(
         defaultColumnWidth: IntrinsicColumnWidth(),
         defaultVerticalAlignment: TableCellVerticalAlignment.middle,
         border: TableBorder(
-          horizontalInside: BorderSide(color: popUpDividerColor, width: 0.8),
+          horizontalInside: BorderSide(
+            color: context.pfTheme.dividerColor,
+            width: 0.8,
+          ),
         ),
         children: rows.asMap().entries.map((entry) {
           int index = entry.key;
           TableRowData e = entry.value;
           return TableRow(
             children: [
-              InkWell(
-                onTap: () {
-                  onPress?.call(index, e);
-                  e.onPress?.call();
-                },
-                child: TableCell(
-                  verticalAlignment: TableCellVerticalAlignment.middle,
+              TableCell(
+                verticalAlignment: TableCellVerticalAlignment.middle,
+                child: InkWell(
+                  onTap: () {
+                    onPress?.call(index, e);
+                    e.onPress?.call();
+                  },
                   child: Container(
                     padding: verticalPadding,
                     width: 180,
-                    child: Text(e.title, style: popUpTitleStyle),
+                    child: Text(
+                      e.title,
+                      style: context.pfTheme.dialogTitleTextStyle,
+                    ),
                   ),
                 ),
               ),
-              InkWell(
-                onTap: () {
-                  onPress?.call(index, e);
-                  e.onPress?.call();
-                },
-                child: TableCell(
+
+              TableCell(
+                child: InkWell(
+                  onTap: () {
+                    onPress?.call(index, e);
+                    e.onPress?.call();
+                  },
                   child: Padding(padding: verticalPadding, child: e.widget),
                 ),
               ),

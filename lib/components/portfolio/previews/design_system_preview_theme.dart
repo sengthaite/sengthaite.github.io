@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widget_previews.dart';
-import 'package:sengthaite_blog/constants/portfolio.constants.dart';
 
 PreviewThemeData designSystemPreviewTheme() => PreviewThemeData(
   materialLight: ThemeData(
@@ -22,9 +21,9 @@ PreviewThemeData designSystemPreviewTheme() => PreviewThemeData(
       innerRadius: WidgetStatePropertyAll(4.5),
       fillColor: WidgetStateProperty.resolveWith<Color>((states) {
         if (states.contains(WidgetState.selected)) {
-          return radioButtonIconSelectedColor; // Selected fill color
+          return const Color(0xCCD40004); // Selected fill color
         }
-        return radioButtonIconColor; // Unselected fill color
+        return Color(0xFFE8E8E8); // Unselected fill color
       }),
     ),
   ),
@@ -42,9 +41,9 @@ PreviewThemeData designSystemPreviewTheme() => PreviewThemeData(
       innerRadius: WidgetStatePropertyAll(4.5),
       fillColor: WidgetStateProperty.resolveWith<Color>((states) {
         if (states.contains(WidgetState.selected)) {
-          return radioButtonIconSelectedColor; // Selected fill color
+          return const Color(0xCCD40004); // Selected fill color
         }
-        return radioButtonIconColor; // Unselected fill color
+        return Color(0xFFE8E8E8); // Unselected fill color
       }),
     ),
   ),

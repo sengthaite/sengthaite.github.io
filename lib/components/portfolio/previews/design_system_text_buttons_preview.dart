@@ -3,7 +3,6 @@ import 'package:flutter/widget_previews.dart';
 import 'package:sengthaite_blog/components/portfolio/previews/design_system_preview_theme.dart';
 import 'package:sengthaite_blog/components/portfolio/widgets/text_menu_button.dart';
 import 'package:sengthaite_blog/constants/image.constants.dart';
-import 'package:sengthaite_blog/constants/portfolio.constants.dart';
 
 final class DesignSystemTextButtonsPreview extends MultiPreview {
   const DesignSystemTextButtonsPreview();
@@ -78,7 +77,7 @@ final class DesignSystemTextButtonsPreview extends MultiPreview {
     body: TextMenuButton(
       text: 'Click Me',
       onPressed: null,
-      icon: Icon(Icons.check, color: buttonIconSelectedColor),
+      icon: Icon(Icons.check, color: Colors.red),
     ),
   );
 

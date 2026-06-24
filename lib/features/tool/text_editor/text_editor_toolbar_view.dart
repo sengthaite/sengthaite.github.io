@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:sengthaite_blog/extensions/build_context_ext.dart';
 import 'package:sengthaite_blog/features/tool/text_editor/text_editor_extension.dart';
-import 'package:sengthaite_blog/l10n/app_localizations.dart';
 
 class TextEditorToolbarView extends StatelessWidget {
   const TextEditorToolbarView({super.key, required this.controller});
@@ -11,7 +11,6 @@ class TextEditorToolbarView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var localization = AppLocalizations.of(context);
     return QuillSimpleToolbar(
       controller: controller,
       config: QuillSimpleToolbarConfig(
@@ -20,17 +19,17 @@ class TextEditorToolbarView extends StatelessWidget {
         customButtons: [
           QuillToolbarCustomButtonOptions(
             icon: Icon(MdiIcons.languageMarkdown),
-            tooltip: localization?.save("MD"),
+            tooltip: context.l10n.save("MD"),
             onPressed: () => controller.saveMarkdown(),
           ),
           QuillToolbarCustomButtonOptions(
             icon: Icon(MdiIcons.languageHtml5),
-            tooltip: localization?.save("HTML"),
+            tooltip: context.l10n.save("HTML"),
             onPressed: () => controller.saveHTML(),
           ),
           QuillToolbarCustomButtonOptions(
             icon: Icon(MdiIcons.filePdfBox),
-            tooltip: localization?.save("PDF"),
+            tooltip: context.l10n.save("PDF"),
             onPressed: () => controller.savePDF(),
           ),
         ],

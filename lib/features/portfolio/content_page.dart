@@ -1,65 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sengthaite_blog/constants/portfolio.constants.dart';
-
-extension on List<TitleWidget> {
-  Column getSkillListColumn() {
-    return Column(
-      spacing: 5,
-      children: map((e) {
-        return Container(
-          width: 130,
-          decoration: BoxDecoration(
-            border: Border.all(color: borderColor, width: 1),
-            color: Color(0xFFE8E8E8),
-            borderRadius: BorderRadius.circular(24),
-          ),
-          padding: EdgeInsets.fromLTRB(5, 5, 10, 5),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            spacing: 6,
-            children: [
-              Icon(e.widget, size: 24, color: buttonIconColor),
-              Expanded(
-                child: Text(
-                  e.title,
-                  maxLines: 2,
-                  style: textStyle.copyWith(
-                    fontSize: 12,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        );
-      }).toList(),
-    );
-  }
-}
-
-extension on List<String> {
-  Row getPlatformRow() {
-    return Row(
-      spacing: 6,
-      children: map((e) {
-        return Container(
-          padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-          decoration: BoxDecoration(
-            border: Border.all(width: 1, color: borderColor),
-            borderRadius: BorderRadius.circular(12),
-          ),
-          child: Text(
-            e,
-            style: textStyle.copyWith(
-              fontSize: 12,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        );
-      }).toList(),
-    );
-  }
-}
+import 'package:sengthaite_blog/extensions/build_context_ext.dart';
 
 class TitleWidget {
   final String title;
@@ -126,6 +66,7 @@ class _ContentPageState extends State<ContentPage> {
 
   @override
   Widget build(BuildContext context) {
+    final textStyle = context.textTheme.labelLarge;
     if (widget.data.isEmpty) {
       return Center(child: Text("Empty Content", style: textStyle));
     }
@@ -153,7 +94,7 @@ class PageContentView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(child: ExperienceWidget(data: data));
+    return ExperienceWidget(data: data);
   }
 }
 
@@ -179,17 +120,11 @@ class ExperienceWidget extends StatelessWidget {
                   children: [
                     Text(
                       data.roleTitle,
-                      style: textStyle.copyWith(
-                        fontSize: 26,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      style: context.pfTheme.roleTitleTextStyle,
                     ),
                     Text(
                       data.description,
-                      style: textStyle.copyWith(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                      ),
+                      style: context.pfTheme.roleDetailTextStyle,
                     ),
                   ],
                 ),
@@ -204,7 +139,38 @@ class ExperienceWidget extends StatelessWidget {
               width: sideSkillWidth,
               child: Container(
                 padding: EdgeInsets.only(top: 12),
-                child: data.skillLists.getSkillListColumn(),
+                child: Column(
+                  spacing: 5,
+                  children: data.skillLists.map((e) {
+                    return Container(
+                      width: 130,
+                      decoration: BoxDecoration(
+                        border: context.pfTheme.border,
+                        color: Color(0xFFE8E8E8),
+                        borderRadius: BorderRadius.circular(24),
+                      ),
+                      padding: EdgeInsets.fromLTRB(5, 5, 10, 5),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        spacing: 6,
+                        children: [
+                          Icon(
+                            e.widget,
+                            size: 24,
+                            color: context.pfTheme.buttonFgColor,
+                          ),
+                          Expanded(
+                            child: Text(
+                              e.title,
+                              maxLines: 2,
+                              style: context.pfTheme.textStyle,
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  }).toList(),
+                ),
               ),
             ),
             Expanded(
@@ -212,7 +178,10 @@ class ExperienceWidget extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(16),
-                  border: Border.all(color: borderColor, width: 1),
+                  border: Border.all(
+                    color: context.pfTheme.borderColor,
+                    width: 1,
+                  ),
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -232,19 +201,15 @@ class ExperienceWidget extends StatelessWidget {
                                 child: Text(
                                   data.experienceTitle,
                                   maxLines: 3,
-                                  style: textStyle.copyWith(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                                  style:
+                                      context.pfTheme.experienceTitleTextStyle,
                                 ),
                               ),
                               if (data.trailingMetricTitle != null)
                                 Text(
                                   data.trailingMetricTitle!,
-                                  style: textStyle.copyWith(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w500,
-                                  ),
+                                  style:
+                                      context.pfTheme.experienceTitleTextStyle,
                                 ),
                             ],
                           ),
@@ -254,10 +219,7 @@ class ExperienceWidget extends StatelessWidget {
                               Icon(Icons.vpn_key, color: Color(0xFFD40004)),
                               Text(
                                 data.skills,
-                                style: textStyle.copyWith(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                                style: context.pfTheme.skillsTextStyle,
                               ),
                             ],
                           ),
@@ -292,18 +254,33 @@ class ExperienceWidget extends StatelessWidget {
                               Icon(
                                 size: 16,
                                 Icons.developer_board,
-                                color: buttonIconColor,
+                                color: context.pfTheme.buttonBgColor,
                               ),
                               Text(
                                 "Platform & Tools",
-                                style: textStyle.copyWith(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                                style: context.pfTheme.sectionTitleStyle,
                               ),
                             ],
                           ),
-                          data.platforms.getPlatformRow(),
+                          Row(
+                            spacing: 6,
+                            children: data.platforms.map((e) {
+                              return Container(
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: 12,
+                                  vertical: 6,
+                                ),
+                                decoration: BoxDecoration(
+                                  border: context.pfTheme.border,
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                child: Text(
+                                  e,
+                                  style: context.pfTheme.textStyle,
+                                ),
+                              );
+                            }).toList(),
+                          ),
                         ],
                       ),
                     ),

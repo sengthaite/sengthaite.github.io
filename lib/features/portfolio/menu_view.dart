@@ -4,40 +4,36 @@ import 'package:sengthaite_blog/components/portfolio/widgets/overlay_dropdown.da
 import 'package:sengthaite_blog/components/portfolio/widgets/radio_buttons.dart';
 import 'package:sengthaite_blog/components/portfolio/widgets/table_popup.dart';
 import 'package:sengthaite_blog/constants/image.constants.dart';
-import 'package:sengthaite_blog/constants/portfolio.constants.dart';
+import 'package:sengthaite_blog/extensions/build_context_ext.dart';
+import 'package:sengthaite_blog/extensions/style_ext.dart';
 
-extension on AssetIcons {
-  Widget withDefaultStyle() {
-    return imageWithStyle(size: Size(40, 40), color: buttonIconColor);
-  }
+sealed class MenuNavigationConstants extends StatelessWidget {
+  final iconSize = Size(40, 40);
+  final Color starColor = Color(0xFFF1B100);
 
-  Widget withSelectedStyle() {
-    return imageWithStyle(size: Size(40, 40), color: buttonIconSelectedColor);
-  }
+  MenuNavigationConstants({super.key});
 }
 
-class MenuNavigation extends StatelessWidget {
-  MenuNavigation({super.key});
-
-  final OverlayPortalController controller = OverlayPortalController();
-  final ValueNotifier<bool> isShowingOverlay = ValueNotifier(false);
-  final ValueNotifier<bool> isHome = ValueNotifier(true);
-
-  void togglePopUp() {
+extension on MenuNavigation {
+  // Toggle state show and hide of the dropdown Setting menu button
+  void _togglePopUp() {
     controller.toggle();
     isShowingOverlay.value = !isShowingOverlay.value;
     isHome.value = !isShowingOverlay.value;
   }
 
-  void resetMenuButtonSelection() {
+  // Hide the pop up and reset the style (default selected home)
+  void _resetMenuButtonSelection() {
     controller.hide();
     isShowingOverlay.value = false;
     isHome.value = true;
   }
 
+  /// Show feedback dialog
+  /// TODO: Integrate with API
   void showFeedback(BuildContext context) {
-    togglePopUp();
-    resetMenuButtonSelection();
+    _togglePopUp();
+    _resetMenuButtonSelection();
     showDialog(
       context: context,
       builder: (context) {
@@ -46,7 +42,7 @@ class MenuNavigation extends StatelessWidget {
           title: Text(
             "FEEDBACK",
             textAlign: TextAlign.center,
-            style: textStyle.copyWith(fontSize: 36),
+            style: context.pfTheme.menuTextStyle,
           ),
           content: SizedBox(
             width: 400,
@@ -56,7 +52,7 @@ class MenuNavigation extends StatelessWidget {
               children: [
                 Text(
                   "I'm actively improving this portfolio and would value your perspective - feel free to share any thoughts, no matter how small.",
-                  style: textStyle,
+                  style: context.textTheme.bodyLarge,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -88,20 +84,25 @@ class MenuNavigation extends StatelessWidget {
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
-              child: Text("Cancel", style: textStyle),
+              child: Text("Cancel", style: context.textTheme.labelMedium),
             ),
             TextButton(
               onPressed: () {},
-              child: Text(
-                "Submit",
-                style: textStyle.copyWith(fontWeight: FontWeight.bold),
-              ),
+              child: Text("Submit", style: context.textTheme.labelMedium.bold),
             ),
           ],
         );
       },
     );
   }
+}
+
+class MenuNavigation extends MenuNavigationConstants {
+  MenuNavigation({super.key});
+
+  final OverlayPortalController controller = OverlayPortalController();
+  final ValueNotifier<bool> isShowingOverlay = ValueNotifier(false);
+  final ValueNotifier<bool> isHome = ValueNotifier(true);
 
   @override
   Widget build(BuildContext context) {
@@ -112,33 +113,54 @@ class MenuNavigation extends StatelessWidget {
       children: [
         MenuButton(
           text: "HOME",
-          icon: AssetIcons.home.withDefaultStyle(),
-          selectedIcon: AssetIcons.home.withSelectedStyle(),
+          icon: AssetIcons.home.imageWithStyle(
+            size: iconSize,
+            color: context.pfTheme.buttonFgColor,
+          ),
+          selectedIcon: AssetIcons.home.imageWithStyle(
+            size: iconSize,
+            color: context.pfTheme.buttonSelectedFgColor,
+          ),
           isSelected: isHome,
           onPressed: () {},
         ),
         MenuButton(
           text: "MY BLOG",
-          icon: AssetIcons.blog.withDefaultStyle(),
-          selectedIcon: AssetIcons.blog.withSelectedStyle(),
+          icon: AssetIcons.blog.imageWithStyle(
+            size: iconSize,
+            color: context.pfTheme.buttonFgColor,
+          ),
+          selectedIcon: AssetIcons.blog.imageWithStyle(
+            size: iconSize,
+            color: context.pfTheme.buttonSelectedFgColor,
+          ),
           onPressed: () {
             Navigator.pushNamed(context, "/blog");
-            resetMenuButtonSelection();
+            _resetMenuButtonSelection();
           },
         ),
         OverlayPopUpDropdown(
           controller: controller,
-          onTapOutside: resetMenuButtonSelection,
+          onTapOutside: _resetMenuButtonSelection,
           menuButton: MenuButton(
             text: 'SETTINGS',
-            onPressed: togglePopUp,
+            onPressed: _togglePopUp,
             isSelected: isShowingOverlay,
-            icon: AssetIcons.home.withDefaultStyle(),
-            selectedIcon: AssetIcons.home.withSelectedStyle(),
-            trailIcon: Icon(Icons.keyboard_arrow_down, color: buttonIconColor),
+            icon: AssetIcons.home.imageWithStyle(
+              size: iconSize,
+              color: context.pfTheme.buttonFgColor,
+            ),
+            selectedIcon: AssetIcons.home.imageWithStyle(
+              size: iconSize,
+              color: context.pfTheme.buttonSelectedFgColor,
+            ),
+            trailIcon: Icon(
+              Icons.keyboard_arrow_down,
+              color: context.pfTheme.buttonFgColor,
+            ),
             selectedTrailingIcon: Icon(
               Icons.keyboard_arrow_up,
-              color: buttonIconSelectedColor,
+              color: context.pfTheme.buttonSelectedFgColor,
             ),
           ),
           listDropdownWidget: TablePopup(
@@ -146,7 +168,7 @@ class MenuNavigation extends StatelessWidget {
               TableRowData(
                 title: "LANGUAGE",
                 widget: RadioButtons(
-                  defaultSelectedValue: "KHM",
+                  defaultSelectedValue: "ENG",
                   list: [
                     RadioButtonData(text: "ភាសាខ្មែរ", value: "KHM"),
                     RadioButtonData(text: "English", value: "ENG"),

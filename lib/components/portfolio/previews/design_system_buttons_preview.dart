@@ -3,7 +3,6 @@ import 'package:flutter/widget_previews.dart';
 import 'package:sengthaite_blog/components/portfolio/previews/design_system_preview_theme.dart';
 import 'package:sengthaite_blog/components/portfolio/widgets/menu_button.dart';
 import 'package:sengthaite_blog/constants/image.constants.dart';
-import 'package:sengthaite_blog/constants/portfolio.constants.dart';
 
 final class DesignSystemButtonsPreview extends MultiPreview {
   const DesignSystemButtonsPreview();
@@ -60,6 +59,9 @@ final class DesignSystemButtonsPreview extends MultiPreview {
       theme: designSystemPreviewTheme,
     ),
   ];
+
+  Color get buttonIconColor => Color(0xFFF1F1F1);
+  Color get buttonIconSelectedColor => Color(0xFFD40004);
 
   Widget _textButtonWrapper(Widget child) => Scaffold(
     body: MenuButton(text: 'Click Me', onPressed: () {}),

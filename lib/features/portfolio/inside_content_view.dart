@@ -1,24 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:sengthaite_blog/constants/image.constants.dart';
-import 'package:sengthaite_blog/constants/portfolio.constants.dart';
+import 'package:sengthaite_blog/extensions/build_context_ext.dart';
 import 'package:sengthaite_blog/features/portfolio/content_page.dart';
 import 'package:sengthaite_blog/features/portfolio/content_side_nav_view.dart';
 
 class InsideContentWidget extends StatelessWidget {
   InsideContentWidget({super.key});
-
-  final bodyContentSideDecoration = BoxDecoration(
-    borderRadius: BorderRadius.circular(16),
-    boxShadow: [
-      BoxShadow(color: Colors.black26),
-      BoxShadow(
-        offset: Offset(0, 4),
-        spreadRadius: -1.0,
-        blurRadius: 5.0,
-        color: backgroundColor,
-      ),
-    ],
-  );
 
   final double svgSize = 900;
 
@@ -205,35 +192,44 @@ class InsideContentWidget extends StatelessWidget {
       flex: 2,
       child: Container(
         padding: EdgeInsets.all(12),
-        decoration: bodyContentSideDecoration,
-        child: Expanded(
-          child: Column(
-            children: [
-              ContentSideNav(
-                onSelected: (newSelectionType) => type.value = newSelectionType,
-              ),
-              ValueListenableBuilder(
-                valueListenable: type,
-                builder: (context, value, child) {
-                  switch (value) {
-                    case ContentSideSection.experience:
-                      return ExperiencePageView(
-                        currentPageExperience: currentPageExperience,
-                        experienceData: experienceData,
-                        pageController: experiencePageController,
-                        totalExperience: experienceData.length,
-                      );
-                    case ContentSideSection.education:
-                      return EducationView(
-                        currentEducation: currentEducation,
-                        educations: educations,
-                        educationPageController: educationPageController,
-                      );
-                  }
-                },
-              ),
-            ],
-          ),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(16),
+          boxShadow: [
+            BoxShadow(color: Colors.black26),
+            BoxShadow(
+              offset: Offset(0, 4),
+              spreadRadius: -1.0,
+              blurRadius: 5.0,
+              color: context.pfTheme.containerBgColor,
+            ),
+          ],
+        ),
+        child: Column(
+          children: [
+            ContentSideNav(
+              onSelected: (newSelectionType) => type.value = newSelectionType,
+            ),
+            ValueListenableBuilder(
+              valueListenable: type,
+              builder: (context, value, child) {
+                switch (value) {
+                  case ContentSideSection.experience:
+                    return ExperiencePageView(
+                      currentPageExperience: currentPageExperience,
+                      experienceData: experienceData,
+                      pageController: experiencePageController,
+                      totalExperience: experienceData.length,
+                    );
+                  case ContentSideSection.education:
+                    return EducationView(
+                      currentEducation: currentEducation,
+                      educations: educations,
+                      educationPageController: educationPageController,
+                    );
+                }
+              },
+            ),
+          ],
         ),
       ),
     );
@@ -307,7 +303,7 @@ class ExperiencePageView extends StatelessWidget {
                 alignment: Alignment.centerRight,
                 child: Text(
                   "${index + 1} / $totalExperience",
-                  style: textStyle.copyWith(fontWeight: FontWeight.bold),
+                  style: context.pfTheme.textStyle,
                 ),
               );
             },

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sengthaite_blog/constants/portfolio.constants.dart';
+import 'package:sengthaite_blog/extensions/build_context_ext.dart';
 
 class FooterView extends StatelessWidget {
   const FooterView({super.key});
@@ -9,13 +9,10 @@ class FooterView extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8.0),
-        color: backgroundColor,
+        color: context.pfTheme.containerBgColor,
       ),
       padding: EdgeInsets.all(16.0),
-      child: Text(
-        "Published in 2026",
-        style: textStyle.copyWith(color: textColor.withAlpha(200)),
-      ),
+      child: Text("Published in 2026", style: context.pfTheme.textStyle),
     );
   }
 }

@@ -36,7 +36,8 @@ void main() async {
     };
   }
 
-  debugPrintRebuildDirtyWidgets = true;
+  // debugPrintRebuildDirtyWidgets = true;
+  // debugPaintSizeEnabled = true;
 
   runApp(
     DevicePreview(

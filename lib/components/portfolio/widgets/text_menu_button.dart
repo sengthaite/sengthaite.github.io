@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sengthaite_blog/constants/portfolio.constants.dart';
+import 'package:sengthaite_blog/extensions/build_context_ext.dart';
 
 class TextMenuButton extends StatefulWidget {
   final Widget? icon;
@@ -41,9 +41,10 @@ class _TextMenuButtonState extends State<TextMenuButton> {
     return ValueListenableBuilder(
       valueListenable: isSelected,
       builder: (context, value, child) {
-        TextStyle? style = Theme.of(context).textTheme.bodyMedium?.merge(
-          value ? textMenuButtonTitleSelectedStyle : textMenuButtonTitleStyle,
-        );
+        TextStyle? textStyle = isSelected.value
+            ? context.pfTheme.experienceTitleSelectedTextStyle
+            : context.pfTheme.experienceTitleTextStyle;
+
         return TextButton(
           onPressed: widget.onPressed,
           child: Row(
@@ -51,7 +52,7 @@ class _TextMenuButtonState extends State<TextMenuButton> {
             spacing: 8,
             children: [
               ?widget.icon,
-              Text(widget.text, style: style),
+              Text(widget.text, style: textStyle),
               ?widget.trailIcon,
             ],
           ),
