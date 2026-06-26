@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_code_editor/flutter_code_editor.dart';
 import 'package:flutter_highlight/themes/github.dart';
 import 'package:highlight/languages/dart.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:material_symbols_icons/symbols.dart';
 import 'package:sengthaite_blog/extensions/build_context_ext.dart';
-
 import 'package:sengthaite_blog/features/tool/api/api_functions/config/code_snippets.dart';
 import 'package:sengthaite_blog/features/tool/api/api_request_builder.dart';
 import 'package:sengthaite_blog/features/tool/api/api_util_table_data.dart';
@@ -101,7 +100,7 @@ class _APIFuncViewState extends State<APIFuncView> {
                       currentRequest?.add(APIRowData());
                     });
                   },
-                  icon: Icon(MdiIcons.plus, color: Colors.green),
+                  icon: Icon(Symbols.add, color: Colors.green),
                 ),
               ],
             ),
@@ -136,7 +135,7 @@ class _APIFuncViewState extends State<APIFuncView> {
                     padding: const EdgeInsets.all(8.0),
                     child: TextButton(
                       onPressed: () {
-                        showDialog(
+                        showDialog<dynamic>(
                           context: context,
                           builder: (BuildContext context) {
                             return APIFuncDefinitionView(dataRow: dataRow);
@@ -166,14 +165,14 @@ class _APIFuncViewState extends State<APIFuncView> {
                     padding: const EdgeInsets.all(8.0),
                     child: IconButton(
                       onPressed: () {
-                        showDialog(
+                        showDialog<dynamic>(
                           context: context,
                           builder: (BuildContext context) {
                             return APIFuncViewResult(dataRow: dataRow);
                           },
                         );
                       },
-                      icon: Icon(MdiIcons.play),
+                      icon: Icon(Symbols.play_arrow),
                       color: Colors.green,
                     ),
                   ),
@@ -263,18 +262,19 @@ class APIFuncViewResult extends StatefulWidget {
 }
 
 class _APIFuncViewResultState extends State<APIFuncViewResult> {
-  dynamic evalResult() {
+  String? evalResult() {
     final data = widget.dataRow;
     if (data == null || data.function == null || data.function!.isEmpty) {
-      return;
+      return null;
     }
     try {
       final funcFinal = APIVarialbeHelper.replaceAllVariables(data.function!);
       var result = eval(funcFinal, function: data.keyController.text);
-      return result;
+      return result.toString();
     } catch (e) {
-      return "Error in executing function: ${e.toString()}";
+      debugPrint("Error in executing function: ${e.toString()}");
     }
+    return null;
   }
 
   @override

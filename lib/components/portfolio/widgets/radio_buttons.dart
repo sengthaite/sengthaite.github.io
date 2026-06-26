@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:sengthaite_blog/extensions/build_context_ext.dart';
 
-class RadioButtonData {
+class RadioButtonData<T> {
   final String text;
-  final String value;
+  final T value;
 
   const RadioButtonData({required this.text, required this.value});
 }
 
-class RadioButtons extends StatefulWidget {
+class RadioButtons<T> extends StatefulWidget {
   const RadioButtons({
     super.key,
     required this.list,
@@ -16,16 +16,16 @@ class RadioButtons extends StatefulWidget {
     this.onSelectedValueChange,
   });
 
-  final String? defaultSelectedValue;
-  final List<RadioButtonData> list;
-  final Function(String?)? onSelectedValueChange;
+  final T? defaultSelectedValue;
+  final List<RadioButtonData<T>> list;
+  final void Function(T?)? onSelectedValueChange;
 
   @override
-  State<RadioButtons> createState() => _RadioButtonsState();
+  State<RadioButtons<T>> createState() => _RadioButtonsState();
 }
 
-class _RadioButtonsState extends State<RadioButtons> {
-  String? _selectedValue;
+class _RadioButtonsState<T> extends State<RadioButtons<T>> {
+  T? _selectedValue;
   @override
   void initState() {
     _selectedValue = widget.defaultSelectedValue;
@@ -39,7 +39,7 @@ class _RadioButtonsState extends State<RadioButtons> {
       mainAxisSize: MainAxisSize.min,
       spacing: 16,
       children: widget.list.map((e) {
-        return RadioMenuButton<String>(
+        return RadioMenuButton<T>(
           value: e.value,
           groupValue: _selectedValue,
           onChanged: (newValue) {
@@ -48,7 +48,9 @@ class _RadioButtonsState extends State<RadioButtons> {
           },
           style: ButtonStyle(
             padding: WidgetStatePropertyAll(EdgeInsets.fromLTRB(6, 2, 12, 2)),
-            backgroundColor: WidgetStatePropertyAll(Colors.white),
+            backgroundColor: WidgetStatePropertyAll(
+              context.pfTheme.containerBgColor,
+            ),
             shape: WidgetStatePropertyAll<OutlinedBorder>(
               RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(

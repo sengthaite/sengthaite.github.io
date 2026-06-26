@@ -18,5 +18,55 @@
         "example": "PDF"
       }
     }
+  },
+  "empty_content": "មាតិកាទទេ",
+  "@empty_content": {},
+  "platform_tools": "វេទិកា និងឧបករណ៍",
+  "@platform_tools": {},
+  "experience": "បទពិសោធន៍",
+  "@experience": {},
+  "education": "ការអប់រំ",
+  "@education": {},
+  "feedback_title": "ខ្ញុំកំពុងកែលម្អផលប័ត្រនេះយ៉ាងសកម្ម ហើយនឹងផ្តល់តម្លៃដល់ទស្សនៈរបស់អ្នក - មានអារម្មណ៍សេរីក្នុងការចែករំលែកគំនិតណាមួយ មិនថាតូចប៉ុណ្ណាក៏ដោយ។",
+  "@feedback_title": {},
+  "username_email": "ឈ្មោះអ្នកប្រើ / អ៊ីមែល",
+  "@username_email": {},
+  "comment": "មតិយោបល់",
+  "@comment": {},
+  "cancel": "បោះបង់",
+  "@cancel": {},
+  "submit": "ដាក់ស្នើ",
+  "@submit": {},
+  "setting": "ការកំណត់",
+  "@setting": {},
+  "language": "ភាសា",
+  "@language": {},
+  "khmer_lang": "ភាសាខ្មែរ",
+  "@khmer_lang": {},
+  "english_lang": "ភាសាអង់គ្លេស",
+  "@english_lang": {},
+  "display": "ពន្លឺ",
+  "@display": {},
+  "light_mode": "ភ្លឺ",
+  "@light_mode": {},
+  "dark_mode": "ងងឹត",
+  "@dark_mode": {},
+  "system_mode": "តាមប្រព័ន្ធ",
+  "@system_mode": {},
+  "feedback": "មតិកែលម្អ",
+  "@feedback": {},
+  "home": "ទំព័រដើម",
+  "@home": {},
+  "my_blog": "ប្លុករបស់ខ្ញុំ",
+  "@my_blog": {},
+  "publish_footer": "បានចេញផ្សាយនៅឆ្នាំ {year}",
+  "@publish_footer": {
+    "placeholders": {
+      "year": {
+        "type": "int",
+        "example": "2026"
+      }
+
+    }
   }
 }

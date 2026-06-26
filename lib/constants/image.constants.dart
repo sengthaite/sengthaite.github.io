@@ -257,6 +257,7 @@ enum AssetIcons {
       height: size?.height,
       colorBlendMode: BlendMode.srcIn,
       color: color,
+      fit: BoxFit.contain,
     );
   }
 
@@ -291,7 +292,7 @@ enum AssetIcons {
       "$basePath/$imageName",
       width: width,
       height: height,
-      fit: BoxFit.fitHeight,
+      fit: BoxFit.contain,
     );
   }
 

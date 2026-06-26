@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:material_symbols_icons/symbols.dart';
 import 'package:sengthaite_blog/extensions/build_context_ext.dart';
-
 import 'package:sengthaite_blog/extensions/http_ext.dart';
 import 'package:sengthaite_blog/extensions/string_ext.dart';
 import 'package:sengthaite_blog/shared/data/file/hivedir.dart';
@@ -56,10 +55,7 @@ class _ApiFileManagerViewState extends State<ApiFileManagerView> {
           children: [
             Stack(
               children: [
-                IconButton(
-                  onPressed: null,
-                  icon: Icon(MdiIcons.listBoxOutline),
-                ),
+                IconButton(onPressed: null, icon: Icon(Symbols.list)),
                 Padding(
                   padding: const EdgeInsets.only(top: 10),
                   child: Center(
@@ -79,13 +75,13 @@ class _ApiFileManagerViewState extends State<ApiFileManagerView> {
                     children: [
                       IconButton(
                         onPressed: () {
-                          showDialog(
+                          showDialog<dynamic>(
                             context: context,
                             builder: (context) =>
                                 APIFileCreationWidget(defaultDir: defaultDir),
                           );
                         },
-                        icon: Icon(MdiIcons.plus),
+                        icon: Icon(Symbols.add),
                       ),
                       TextButton(
                         onPressed: fileList.isNotEmpty
@@ -130,13 +126,13 @@ class _ApiFileManagerViewState extends State<ApiFileManagerView> {
                         }
                       : null,
                   label: Text("Select all"),
-                  icon: Icon(MdiIcons.checkAll),
+                  icon: Icon(Symbols.playlist_add_check),
                 ),
                 TextButton.icon(
                   onPressed: isEmpty
                       ? null
                       : () {
-                          showDialog(
+                          showDialog<dynamic>(
                             context: context,
                             builder: (context) {
                               return AlertDialog(
@@ -186,7 +182,7 @@ class _ApiFileManagerViewState extends State<ApiFileManagerView> {
                           );
                         },
                   label: Text("Clear"),
-                  icon: Icon(MdiIcons.deleteEmpty),
+                  icon: Icon(Symbols.clear_all),
                 ),
               ],
             ),
@@ -197,24 +193,6 @@ class _ApiFileManagerViewState extends State<ApiFileManagerView> {
                     ? EmptyDirWidget()
                     : Column(
                         children: [
-                          // ...List.generate(dirList.length, (index) {
-                          //   var eachDir = dirList[index];
-                          //   return Padding(
-                          //     padding: const EdgeInsets.only(top: 8),
-                          //     child: Container(
-                          //       decoration: BoxDecoration(
-                          //         border: Border.all(
-                          //           color: Appcontext.colorScheme(context)
-                          //               .outline,
-                          //         ),
-                          //         color: Appcontext.colorScheme(context)
-                          //             .background,
-                          //         borderRadius: BorderRadius.circular(4),
-                          //       ),
-                          //       child: DirectoryWidget(dir: eachDir),
-                          //     ),
-                          //   );
-                          // }),
                           ...List.generate(fileList.length, (index) {
                             var eachFile = fileList[index];
                             return Padding(
@@ -463,7 +441,7 @@ class APIFileWidget extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Row(
               children: [
-                Icon(MdiIcons.api, color: context.colorScheme.surfaceTint),
+                Icon(Symbols.api, color: context.colorScheme.surfaceTint),
                 SizedBox(width: 12),
                 Expanded(
                   child: Column(
@@ -527,7 +505,7 @@ class DirectoryWidget extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Row(
           children: [
-            Icon(MdiIcons.folder, color: context.colorScheme.tertiary),
+            Icon(Symbols.folder, color: context.colorScheme.tertiary),
             SizedBox(width: 12),
             Text(dir.dirname),
           ],

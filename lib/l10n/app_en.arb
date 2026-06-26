@@ -18,5 +18,55 @@
         "example": "PDF"
       }
     }
+  },
+  "empty_content": "Empty Content",
+  "@empty_content": {},
+  "platform_tools": "Platform & Tools",
+  "@platform_tools": {},
+  "experience": "Experience",
+  "@experience": {},
+  "education": "Education",
+  "@education": {},
+  "feedback_title": "I'm actively improving this portfolio and would value your perspective - feel free to share any thoughts, no matter how small.",
+  "@feedback_title": {},
+  "username_email": "Username / Email",
+  "@username_email": {},
+  "comment": "Comment",
+  "@comment": {},
+  "cancel": "Cancel",
+  "@cancel": {},
+  "submit": "Submit",
+  "@submit": {},
+  "setting": "Setting",
+  "@setting": {},
+  "language": "Language",
+  "@language": {},
+  "khmer_lang": "Khmer",
+  "@khmer_lang": {},
+  "english_lang": "English",
+  "@english_lang": {},
+  "display": "Display",
+  "@display": {},
+  "light_mode": "Light",
+  "@light_mode": {},
+  "dark_mode": "Dark",
+  "@dark_mode": {},
+  "system_mode": "System",
+  "@system_mode": {},
+  "feedback": "Feedback",
+  "@feedback": {},
+  "home": "Home",
+  "@home": {},
+  "my_blog": "My Blog",
+  "@my_blog": {},
+  "publish_footer": "Published in {year}",
+  "@publish_footer": {
+    "placeholders": {
+      "year": {
+        "type": "int",
+        "example": "2026"
+      }
+
+    }
   }
 }

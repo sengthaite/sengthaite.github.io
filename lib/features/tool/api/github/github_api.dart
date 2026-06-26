@@ -8,10 +8,10 @@ class GithubAPI {
 
   GithubAPI({required this.personalAccessToken});
 
-  Future<Map<String, dynamic>> listRepos({required String url}) async {
+  Future<dynamic> listRepos({required String url}) async {
     debugPrint(personalAccessToken);
     try {
-      var result = await dio.get(
+      var result = await dio.get<dynamic>(
         url,
         options: Options(
           headers: {

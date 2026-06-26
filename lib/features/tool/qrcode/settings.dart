@@ -24,14 +24,14 @@ class Settings extends StatelessWidget {
         DropdownPreference<BarcodeType>(
           title: 'Barcode Type',
           onRead: (context) => conf.type,
-          onWrite: (context, dynamic value) => conf.type = value,
+          onWrite: (context, dynamic value) => conf.type = value as BarcodeType,
           values: types,
         ),
         TextPreference(
           title: 'Data',
           onRead: (context) => conf.data,
           onWrite: (context, value) => conf.data = value,
-        )
+        ),
       ],
     );
   }

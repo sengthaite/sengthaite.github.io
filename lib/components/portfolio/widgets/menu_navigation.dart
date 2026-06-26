@@ -1,20 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:sengthaite_blog/components/portfolio/widgets/feedback_dialog.dart';
 import 'package:sengthaite_blog/components/portfolio/widgets/menu_button.dart';
 import 'package:sengthaite_blog/components/portfolio/widgets/overlay_dropdown.dart';
 import 'package:sengthaite_blog/components/portfolio/widgets/radio_buttons.dart';
 import 'package:sengthaite_blog/components/portfolio/widgets/table_popup.dart';
 import 'package:sengthaite_blog/constants/image.constants.dart';
 import 'package:sengthaite_blog/extensions/build_context_ext.dart';
-import 'package:sengthaite_blog/extensions/style_ext.dart';
+import 'package:sengthaite_blog/shared/app.data.dart';
 
-sealed class MenuNavigationConstants extends StatelessWidget {
-  final iconSize = Size(40, 40);
-  final Color starColor = Color(0xFFF1B100);
+class MenuNavigation extends StatefulWidget {
+  const MenuNavigation({super.key});
 
-  MenuNavigationConstants({super.key});
+  @override
+  State<MenuNavigation> createState() => _MenuNavigationState();
 }
 
-extension on MenuNavigation {
+class _MenuNavigationState extends State<MenuNavigation> {
+  final iconSize = Size(40, 40);
+
+  final OverlayPortalController controller = OverlayPortalController();
+
+  final ValueNotifier<bool> isShowingOverlay = ValueNotifier(false);
+
+  final ValueNotifier<bool> isHome = ValueNotifier(true);
+
   // Toggle state show and hide of the dropdown Setting menu button
   void _togglePopUp() {
     controller.toggle();
@@ -34,85 +43,22 @@ extension on MenuNavigation {
   void showFeedback(BuildContext context) {
     _togglePopUp();
     _resetMenuButtonSelection();
-    showDialog(
+    showDialog<FeedbackDialog>(
       context: context,
       builder: (context) {
-        return AlertDialog(
-          alignment: Alignment.center,
-          title: Text(
-            "FEEDBACK",
-            textAlign: TextAlign.center,
-            style: context.pfTheme.menuTextStyle,
-          ),
-          content: SizedBox(
-            width: 400,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              spacing: 8,
-              children: [
-                Text(
-                  "I'm actively improving this portfolio and would value your perspective - feel free to share any thoughts, no matter how small.",
-                  style: context.textTheme.bodyLarge,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(Icons.star, color: starColor, size: 56),
-                    Icon(Icons.star, color: starColor, size: 56),
-                    Icon(Icons.star, color: starColor, size: 56),
-                    Icon(Icons.star, color: starColor, size: 56),
-                    Icon(Icons.star, size: 56),
-                  ],
-                ),
-                TextField(
-                  obscureText: true,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Username / Email',
-                  ),
-                ),
-                TextField(
-                  maxLines: 4,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Comment',
-                  ),
-                ),
-              ],
-            ),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(),
-              child: Text("Cancel", style: context.textTheme.labelMedium),
-            ),
-            TextButton(
-              onPressed: () {},
-              child: Text("Submit", style: context.textTheme.labelMedium.bold),
-            ),
-          ],
-        );
+        return FeedbackDialog();
       },
     );
   }
-}
-
-class MenuNavigation extends MenuNavigationConstants {
-  MenuNavigation({super.key});
-
-  final OverlayPortalController controller = OverlayPortalController();
-  final ValueNotifier<bool> isShowingOverlay = ValueNotifier(false);
-  final ValueNotifier<bool> isHome = ValueNotifier(true);
 
   @override
   Widget build(BuildContext context) {
-    isHome.value = true;
     return Row(
       mainAxisSize: MainAxisSize.min,
       spacing: 10,
       children: [
         MenuButton(
-          text: "HOME",
+          text: context.l10n.home.toUpperCase(),
           icon: AssetIcons.home.imageWithStyle(
             size: iconSize,
             color: context.pfTheme.buttonFgColor,
@@ -125,7 +71,7 @@ class MenuNavigation extends MenuNavigationConstants {
           onPressed: () {},
         ),
         MenuButton(
-          text: "MY BLOG",
+          text: context.l10n.my_blog.toUpperCase(),
           icon: AssetIcons.blog.imageWithStyle(
             size: iconSize,
             color: context.pfTheme.buttonFgColor,
@@ -143,7 +89,7 @@ class MenuNavigation extends MenuNavigationConstants {
           controller: controller,
           onTapOutside: _resetMenuButtonSelection,
           menuButton: MenuButton(
-            text: 'SETTINGS',
+            text: context.l10n.settings.toUpperCase(),
             onPressed: _togglePopUp,
             isSelected: isShowingOverlay,
             icon: AssetIcons.home.imageWithStyle(
@@ -166,28 +112,53 @@ class MenuNavigation extends MenuNavigationConstants {
           listDropdownWidget: TablePopup(
             rows: [
               TableRowData(
-                title: "LANGUAGE",
+                title: context.l10n.language.toUpperCase(),
                 widget: RadioButtons(
-                  defaultSelectedValue: "ENG",
+                  defaultSelectedValue: context.appSettings.currentLocale.value,
+                  onSelectedValueChange: (newLocale) {
+                    context.appSettings.locale = newLocale as Locale;
+                    AppData().saveAppSettings();
+                  },
                   list: [
-                    RadioButtonData(text: "ភាសាខ្មែរ", value: "KHM"),
-                    RadioButtonData(text: "English", value: "ENG"),
+                    RadioButtonData(
+                      text: context.l10n.khmer_lang,
+                      value: Locale('km'),
+                    ),
+                    RadioButtonData(
+                      text: context.l10n.english_lang,
+                      value: Locale('en'),
+                    ),
                   ],
                 ),
               ),
               TableRowData(
-                title: "DISPLAY",
-                widget: RadioButtons(
-                  defaultSelectedValue: "L",
+                title: context.l10n.display,
+                widget: RadioButtons<ThemeMode>(
+                  defaultSelectedValue:
+                      context.appSettings.currentThemeMode.value,
+                  onSelectedValueChange: (themeMode) {
+                    context.appSettings.newThemeMode = themeMode;
+                    AppData().saveAppSettings();
+                  },
                   list: [
-                    RadioButtonData(text: "Light", value: "L"),
-                    RadioButtonData(text: "Dark", value: "D"),
+                    RadioButtonData(
+                      text: context.l10n.light_mode,
+                      value: ThemeMode.light,
+                    ),
+                    RadioButtonData(
+                      text: context.l10n.dark_mode,
+                      value: ThemeMode.dark,
+                    ),
+                    RadioButtonData(
+                      text: context.l10n.system_mode,
+                      value: ThemeMode.system,
+                    ),
                   ],
                 ),
               ),
               // TableRowData(title: "DEMOS"),
               TableRowData(
-                title: "FEEDBACK",
+                title: context.l10n.feedback,
                 onPress: () => showFeedback(context),
               ),
               // TableRowData(title: "REGISTER / LOGIN"),

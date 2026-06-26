@@ -6,9 +6,9 @@ import 'package:sengthaite_blog/extensions/file_picker.dart';
 import 'package:sengthaite_blog/features/navigation/navigation.dart';
 import 'package:sengthaite_blog/shared/app.data.dart';
 
-void showGithubLoginDialog({Function(dynamic value)? onSuccess}) {
+void showGithubLoginDialog({void Function(dynamic value)? onSuccess}) {
   final formKey = GlobalKey<FormState>();
-  showDialog(
+  showDialog<dynamic>(
     context: Navigation().context,
     builder: (context) {
       return GithubLoginWidget(formKey: formKey, onSuccess: onSuccess);
@@ -19,7 +19,7 @@ void showGithubLoginDialog({Function(dynamic value)? onSuccess}) {
 class GithubLoginWidget extends StatefulWidget {
   const GithubLoginWidget({super.key, required this.formKey, this.onSuccess});
 
-  final Function(dynamic value)? onSuccess;
+  final void Function(dynamic value)? onSuccess;
   final GlobalKey<FormState> formKey;
 
   @override
@@ -67,8 +67,8 @@ class _GithubLoginWidgetState extends State<GithubLoginWidget> {
                   var token = jsonData['token'];
                   var url = jsonData['url'];
                   if (rememberedMe && token != null && url != null) {
-                    AppData().appSettings?.githubToken = token;
-                    AppData().appSettings?.githubUrl = url;
+                    AppData().appSettings?.githubToken = token as String?;
+                    AppData().appSettings?.githubUrl = url as String?;
                     AppData().appSettings?.rememberedMe = true;
                     AppData().saveAppSettings();
                   }
@@ -81,12 +81,13 @@ class _GithubLoginWidgetState extends State<GithubLoginWidget> {
               icon: Text("Auth File"),
             ),
             SizedBox(height: 8),
-            if(canLogin) IconButton.filled(
-              onPressed: () {
-                widget.onSuccess!({'token': token, 'url': url});
-              },
-              icon: Text("Login"),
-            ),
+            if (canLogin)
+              IconButton.filled(
+                onPressed: () {
+                  widget.onSuccess!({'token': token, 'url': url});
+                },
+                icon: Text("Login"),
+              ),
             SizedBox(height: 8),
             Row(
               mainAxisSize: MainAxisSize.min,

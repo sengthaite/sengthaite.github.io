@@ -14,7 +14,7 @@ class HiveEditor extends HiveObject {
   Delta? formatDelta() {
     if (data == null) return null;
     try {
-      return Delta.fromJson(jsonDecode(data!));
+      return Delta.fromJson(jsonDecode(data!) as List);
     } catch (error) {
       debugPrint(error.toString());
     }

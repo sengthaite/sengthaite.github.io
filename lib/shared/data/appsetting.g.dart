@@ -22,10 +22,10 @@ class AppSettingsAdapter extends TypeAdapter<AppSettings> {
         isFullScreenMode: fields[2] as bool?,
       )
       ..localeLanguageCode = fields[3] as String?
-      ..localeCountryCode = fields[4] as String?
-      ..githubToken = fields[5] as String?
-      ..githubUrl = fields[6] as String?
-      ..rememberedMe = fields[7] as bool?;
+      ..githubToken = fields[4] as String?
+      ..githubUrl = fields[5] as String?
+      ..rememberedMe = fields[6] as bool?
+      ..themeMode = fields[7] as String?;
   }
 
   @override
@@ -41,13 +41,13 @@ class AppSettingsAdapter extends TypeAdapter<AppSettings> {
       ..writeByte(3)
       ..write(obj.localeLanguageCode)
       ..writeByte(4)
-      ..write(obj.localeCountryCode)
-      ..writeByte(5)
       ..write(obj.githubToken)
-      ..writeByte(6)
+      ..writeByte(5)
       ..write(obj.githubUrl)
+      ..writeByte(6)
+      ..write(obj.rememberedMe)
       ..writeByte(7)
-      ..write(obj.rememberedMe);
+      ..write(obj.themeMode);
   }
 
   @override

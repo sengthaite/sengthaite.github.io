@@ -4,11 +4,16 @@ class APIVarialbeHelper {
   static String replaceAllVariables(String template) {
     final datum = HttpRequestBuilder.getInstance().selectedDatum;
     final allVariables = datum?.allVariables;
-    final response = {"ResponseData": datum?.response?.data ?? {}};
+    final response = {
+      "ResponseData": datum?.response?.data ?? <String, dynamic>{},
+    };
     if (allVariables == null || allVariables.isEmpty) return template;
     if (response.isNotEmpty) {
       for (final entry in allVariables.entries) {
-        allVariables[entry.key] = getNestedValue(response, entry.value);
+        allVariables[entry.key] = getNestedValue(
+          response,
+          entry.value.toString(),
+        );
       }
     }
     return template.replaceAllMapped(
@@ -52,7 +57,11 @@ class APIVarialbeHelper {
 
   /// Handle array access like "users[0]"
   static dynamic _handleArrayAccess(
-      dynamic current, String part, bool safeAccess, dynamic defaultValue) {
+    dynamic current,
+    String part,
+    bool safeAccess,
+    dynamic defaultValue,
+  ) {
     final match = RegExp(r'^(.+)\[(\d+)\]$').firstMatch(part);
     if (match == null) {
       return safeAccess
@@ -81,7 +90,11 @@ class APIVarialbeHelper {
 
   /// Handle regular map access
   static dynamic _handleMapAccess(
-      dynamic current, String part, bool safeAccess, dynamic defaultValue) {
+    dynamic current,
+    String part,
+    bool safeAccess,
+    dynamic defaultValue,
+  ) {
     if (current is Map<String, dynamic>) {
       if (current.containsKey(part)) {
         return current[part];
@@ -114,7 +127,8 @@ class APIVarialbeHelper {
 
       if (current is! Map<String, dynamic>) {
         throw StateError(
-            'Cannot set value at "$path" - intermediate value is not a map');
+          'Cannot set value at "$path" - intermediate value is not a map',
+        );
       }
 
       if (!current.containsKey(part)) {
@@ -133,7 +147,8 @@ class APIVarialbeHelper {
       current[lastPart] = value;
     } else {
       throw StateError(
-          'Cannot set value at "$path" - final destination is not a map');
+        'Cannot set value at "$path" - final destination is not a map',
+      );
     }
   }
 
@@ -150,8 +165,12 @@ class APIVarialbeHelper {
     T? defaultValue,
     bool safeAccess = true,
   }) {
-    final value = getNestedValue(map, path,
-        defaultValue: defaultValue, safeAccess: safeAccess);
+    final value = getNestedValue(
+      map,
+      path,
+      defaultValue: defaultValue,
+      safeAccess: safeAccess,
+    );
     if (value is T) {
       return value;
     }

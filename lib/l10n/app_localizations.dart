@@ -7,7 +7,6 @@ import 'package:intl/intl.dart' as intl;
 
 import 'app_localizations_en.dart';
 import 'app_localizations_km.dart';
-import 'app_localizations_zh.dart';
 
 // ignore_for_file: type=lint
 
@@ -97,7 +96,6 @@ abstract class AppLocalizations {
   static const List<Locale> supportedLocales = <Locale>[
     Locale('en'),
     Locale('km'),
-    Locale('zh'),
   ];
 
   /// No description provided for @profile.
@@ -135,6 +133,132 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Save {file}'**
   String save(String file);
+
+  /// No description provided for @empty_content.
+  ///
+  /// In en, this message translates to:
+  /// **'Empty Content'**
+  String get empty_content;
+
+  /// No description provided for @platform_tools.
+  ///
+  /// In en, this message translates to:
+  /// **'Platform & Tools'**
+  String get platform_tools;
+
+  /// No description provided for @experience.
+  ///
+  /// In en, this message translates to:
+  /// **'Experience'**
+  String get experience;
+
+  /// No description provided for @education.
+  ///
+  /// In en, this message translates to:
+  /// **'Education'**
+  String get education;
+
+  /// No description provided for @feedback_title.
+  ///
+  /// In en, this message translates to:
+  /// **'I\'m actively improving this portfolio and would value your perspective - feel free to share any thoughts, no matter how small.'**
+  String get feedback_title;
+
+  /// No description provided for @username_email.
+  ///
+  /// In en, this message translates to:
+  /// **'Username / Email'**
+  String get username_email;
+
+  /// No description provided for @comment.
+  ///
+  /// In en, this message translates to:
+  /// **'Comment'**
+  String get comment;
+
+  /// No description provided for @cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancel;
+
+  /// No description provided for @submit.
+  ///
+  /// In en, this message translates to:
+  /// **'Submit'**
+  String get submit;
+
+  /// No description provided for @setting.
+  ///
+  /// In en, this message translates to:
+  /// **'Setting'**
+  String get setting;
+
+  /// No description provided for @language.
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get language;
+
+  /// No description provided for @khmer_lang.
+  ///
+  /// In en, this message translates to:
+  /// **'Khmer'**
+  String get khmer_lang;
+
+  /// No description provided for @english_lang.
+  ///
+  /// In en, this message translates to:
+  /// **'English'**
+  String get english_lang;
+
+  /// No description provided for @display.
+  ///
+  /// In en, this message translates to:
+  /// **'Display'**
+  String get display;
+
+  /// No description provided for @light_mode.
+  ///
+  /// In en, this message translates to:
+  /// **'Light'**
+  String get light_mode;
+
+  /// No description provided for @dark_mode.
+  ///
+  /// In en, this message translates to:
+  /// **'Dark'**
+  String get dark_mode;
+
+  /// No description provided for @system_mode.
+  ///
+  /// In en, this message translates to:
+  /// **'System'**
+  String get system_mode;
+
+  /// No description provided for @feedback.
+  ///
+  /// In en, this message translates to:
+  /// **'Feedback'**
+  String get feedback;
+
+  /// No description provided for @home.
+  ///
+  /// In en, this message translates to:
+  /// **'Home'**
+  String get home;
+
+  /// No description provided for @my_blog.
+  ///
+  /// In en, this message translates to:
+  /// **'My Blog'**
+  String get my_blog;
+
+  /// No description provided for @publish_footer.
+  ///
+  /// In en, this message translates to:
+  /// **'Published in {year}'**
+  String publish_footer(int year);
 }
 
 class _AppLocalizationsDelegate
@@ -148,7 +272,7 @@ class _AppLocalizationsDelegate
 
   @override
   bool isSupported(Locale locale) =>
-      <String>['en', 'km', 'zh'].contains(locale.languageCode);
+      <String>['en', 'km'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
@@ -161,8 +285,6 @@ AppLocalizations lookupAppLocalizations(Locale locale) {
       return AppLocalizationsEn();
     case 'km':
       return AppLocalizationsKm();
-    case 'zh':
-      return AppLocalizationsZh();
   }
 
   throw FlutterError(

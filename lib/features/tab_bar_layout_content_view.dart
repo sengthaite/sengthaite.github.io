@@ -4,12 +4,11 @@ import 'package:front_matter_ml/front_matter_ml.dart' as fm;
 import 'package:markdown_widget/config/all.dart';
 import 'package:markdown_widget/widget/blocks/leaf/heading.dart';
 import 'package:markdown_widget/widget/widget_visitor.dart';
-import 'package:sengthaite_blog/components/category_item_icon.dart';
-import 'package:sengthaite_blog/components/tab_bar_layout_view.dart';
-import 'package:sengthaite_blog/components/tab_bar_navigation_title.dart';
+import 'package:sengthaite_blog/components/blog/category_item_icon.dart';
+import 'package:sengthaite_blog/components/blog/tab_bar_layout_view.dart';
+import 'package:sengthaite_blog/components/blog/tab_bar_navigation_title.dart';
 import 'package:sengthaite_blog/constants/enum.constants.dart';
 import 'package:sengthaite_blog/constants/image.constants.dart';
-
 import 'package:sengthaite_blog/extensions/datetime_ext.dart';
 import 'package:sengthaite_blog/extensions/string_ext.dart';
 import 'package:sengthaite_blog/features/content/tab_bar_detail_view.dart';
@@ -33,7 +32,7 @@ class TabBarLayoutContentView extends TabBarLayoutView {
 
     for (final entry in yamlMap.entries) {
       if (entry.value is YamlMap || entry.value is Map) {
-        map[entry.key.toString()] = convertYamlMapToMap(entry.value);
+        map[entry.key.toString()] = convertYamlMapToMap(entry.value as YamlMap);
       } else {
         map[entry.key.toString()] = entry.value.toString();
       }

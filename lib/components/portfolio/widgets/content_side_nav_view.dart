@@ -5,10 +5,16 @@ import 'package:share_plus/share_plus.dart';
 
 enum ContentSideSection { education, experience }
 
-class ContentSideNav extends StatefulWidget {
+sealed class ContentSideNavConstant extends StatefulWidget {
+  final String site = "https://sengthaite.github.io/";
+
+  const ContentSideNavConstant({super.key});
+}
+
+class ContentSideNav extends ContentSideNavConstant {
   const ContentSideNav({super.key, this.onSelected});
 
-  final Function(ContentSideSection)? onSelected;
+  final void Function(ContentSideSection)? onSelected;
 
   @override
   State<ContentSideNav> createState() => _ContentSideNavState();
@@ -43,7 +49,7 @@ class _ContentSideNavState extends State<ContentSideNav> {
           children: [
             Container(
               decoration: BoxDecoration(
-                color: context.pfTheme.containerBgColor,
+                color: context.colorScheme.onPrimary,
                 borderRadius: BorderRadius.circular(25),
                 border: Border.all(
                   color: context.pfTheme.borderColor,
@@ -57,12 +63,12 @@ class _ContentSideNavState extends State<ContentSideNav> {
                 spacing: 10,
                 children: [
                   TextMenuButton(
-                    text: "EXPERIENCE",
+                    text: context.l10n.experience.toUpperCase(),
                     isSelected: experienceSelected,
                     onPressed: () => select(ContentSideSection.experience),
                   ),
                   TextMenuButton(
-                    text: "EDUCATION",
+                    text: context.l10n.education.toUpperCase(),
                     isSelected: educationSelected,
                     onPressed: () => select(ContentSideSection.education),
                   ),
@@ -72,7 +78,7 @@ class _ContentSideNavState extends State<ContentSideNav> {
             IconButton(
               onPressed: () {
                 SharePlus.instance.share(
-                  ShareParams(uri: Uri.parse("https://sengthaite.github.io/")),
+                  ShareParams(uri: Uri.parse(widget.site)),
                 );
               },
               color: context.pfTheme.buttonBgColor,

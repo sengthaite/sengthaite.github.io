@@ -5,7 +5,7 @@ class Debouncer {
 
   void debounce({
     required Duration duration,
-    required Function() onDebounce,
+    required void Function() onDebounce,
     @Deprecated("Please use the 'type' parameter instead.")
     bool isLeadingEdge = false,
   }) {

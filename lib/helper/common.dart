@@ -1,6 +1,7 @@
 import 'package:url_launcher/url_launcher.dart';
 
-void openLink(String link) async {
+void openLink(String? link) async {
+  if (link == null) return;
   final Uri url = Uri.parse(link);
 
   if (await canLaunchUrl(url)) {

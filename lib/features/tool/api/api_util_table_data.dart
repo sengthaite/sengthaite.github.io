@@ -8,7 +8,7 @@ class APIRowData {
   bool descriptionReadOnly = false;
   String? function;
   final String? key;
-  final dynamic value;
+  final String? value;
   final String? description;
 
   TextEditingController keyController = TextEditingController();
@@ -32,12 +32,12 @@ class APIRowData {
   }
 
   APIRowData.fromJson(Map<String, dynamic> json)
-    : allowDeletion = json['allowDeletion'] ?? true,
-      isSelected = json['isSelected'] ?? true,
-      key = json['key'],
-      value = json['value'],
-      description = json['description'],
-      function = json['function'];
+    : allowDeletion = (json['allowDeletion'] as bool?) ?? true,
+      isSelected = (json['isSelected'] as bool?) ?? true,
+      key = json['key'] as String?,
+      value = json['value'] as String?,
+      description = json['description'] as String?,
+      function = json['function'] as String?;
 
   Map<String, dynamic> toJson() => {
     'allowDeletion': allowDeletion,
@@ -132,10 +132,10 @@ class RequestData {
   }
 
   void fromJson(Map<String, dynamic> json) {
-    headers = Map<String, String>.from(json["headers"]);
-    params = Map<String, String>.from(json["params"]);
-    body = Map<String, String>.from(json["body"]);
-    auth = Map<String, String>.from(json["auth"]);
+    headers = Map<String, String>.from(json["headers"] as Map);
+    params = Map<String, String>.from(json["params"] as Map);
+    body = Map<String, String>.from(json["body"] as Map);
+    auth = Map<String, String>.from(json["auth"] as Map);
   }
 }
 

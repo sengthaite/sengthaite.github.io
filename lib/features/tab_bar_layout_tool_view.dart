@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:material_symbols_icons/symbols.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
-import 'package:sengthaite_blog/components/category_item_icon.dart';
-import 'package:sengthaite_blog/components/tab_bar_layout_view.dart';
-import 'package:sengthaite_blog/components/tab_bar_navigation_title.dart';
+import 'package:sengthaite_blog/components/blog/category_item_icon.dart';
+import 'package:sengthaite_blog/components/blog/tab_bar_layout_view.dart';
+import 'package:sengthaite_blog/components/blog/tab_bar_navigation_title.dart';
 import 'package:sengthaite_blog/constants/enum.constants.dart';
 import 'package:sengthaite_blog/constants/image.constants.dart';
 import 'package:sengthaite_blog/extensions/string_ext.dart';
@@ -19,6 +19,7 @@ import 'package:sengthaite_blog/features/tool/text_editor/text_editor_tool_mobil
 import 'package:sengthaite_blog/features/tool/text_editor/text_editor_toolbar_view.dart';
 import 'package:sengthaite_blog/generated/models/tool_model.dart';
 import 'package:sengthaite_blog/shared/app.layout.dart';
+
 import 'tool/api/api_file_manager_view.dart';
 
 enum DocExportType { markdown, html, pdf }
@@ -74,7 +75,7 @@ class TabBarLayoutToolView extends TabBarLayoutView {
                             );
                             return;
                           }
-                          showModalBottomSheet(
+                          showModalBottomSheet<Padding>(
                             context: context,
                             showDragHandle: true,
                             builder: (context) {
@@ -114,12 +115,12 @@ class TabBarLayoutToolView extends TabBarLayoutView {
         image: AssetIcons.http.image,
         actions: [
           IconButton(
-            icon: Icon(MdiIcons.vectorCombine),
+            icon: Icon(Symbols.http),
             tooltip: "HTTP Config",
             onPressed: () {
               var context = Navigation().tabBarDetailContext;
               if (context == null) return;
-              showBarModalBottomSheet(
+              showBarModalBottomSheet<dynamic>(
                 context: context,
                 useRootNavigator: true,
                 builder: (context) => APIUtilView(),
@@ -127,12 +128,12 @@ class TabBarLayoutToolView extends TabBarLayoutView {
             },
           ),
           IconButton(
-            icon: Icon(MdiIcons.export),
+            icon: Icon(Symbols.file_export),
             tooltip: "Export Collection",
             onPressed: () {
               var context = Navigation().tabBarDetailContext;
               if (context == null) return;
-              showDialog(
+              showDialog<dynamic>(
                 context: context,
                 builder: (context) => AlertDialog(
                   title: Text("Export"),

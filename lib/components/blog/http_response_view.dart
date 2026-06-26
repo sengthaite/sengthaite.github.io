@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:typed_data';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -8,12 +9,9 @@ import 'package:sengthaite_blog/features/tool/api/api_request_builder.dart';
 import 'package:sengthaite_blog/features/tool/api/api_utils/api_util.dart';
 
 class HttpResponseView extends StatelessWidget {
-  const HttpResponseView({
-    super.key,
-    required this.response,
-  });
+  const HttpResponseView({super.key, required this.response});
 
-  final Response? response;
+  final Response<dynamic>? response;
 
   String beautifyJson(Map<String, dynamic> json, {bool withSeparator = false}) {
     try {
@@ -42,7 +40,8 @@ class HttpResponseView extends StatelessWidget {
       return Padding(
         padding: EdgeInsets.all(8),
         child: Image.network(
-            HttpRequestBuilder.getInstance().urlInputController?.text ?? ""),
+          HttpRequestBuilder.getInstance().urlInputController?.text ?? "",
+        ),
       );
     }
     if (isJson) {
@@ -50,8 +49,10 @@ class HttpResponseView extends StatelessWidget {
         var formattedJson = JsonEncoder.withIndent('  ').convert(data);
 
         return SingleChildScrollView(
-            child: Text(
-                formattedJson is List ? (formattedJson[0]) : formattedJson));
+          child: Text(
+            formattedJson is List ? (formattedJson[0]) : formattedJson,
+          ),
+        );
       } catch (error) {
         debugPrint(error.toString());
         return Text("Invalid json");
@@ -68,12 +69,12 @@ class HttpResponseView extends StatelessWidget {
       case ResponseType.bytes:
         return TextButton(
           onPressed: () {
-            APIUtil.download(response!.data);
+            APIUtil.download(response!.data as Uint8List);
           },
           child: const Text("Download"),
         );
       case ResponseType.stream:
-        Stream<int> fileStream = response!.data;
+        Stream<int> fileStream = response!.data as Stream<int>;
         return TextButton(
           onPressed: () {
             APIUtil.downloadStream(fileStream);

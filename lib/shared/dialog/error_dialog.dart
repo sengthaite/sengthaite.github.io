@@ -4,9 +4,9 @@ import 'package:sengthaite_blog/features/navigation/navigation.dart';
 void showErrorDialog({
   required Widget title,
   required Widget content,
-  Function()? onDismiss,
+  void Function()? onDismiss,
 }) {
-  showDialog(
+  showDialog<dynamic>(
     context: Navigation().context,
     builder: (context) {
       return AlertDialog(

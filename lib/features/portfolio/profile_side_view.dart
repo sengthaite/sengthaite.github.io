@@ -3,16 +3,31 @@ import 'package:sengthaite_blog/constants/image.constants.dart';
 import 'package:sengthaite_blog/extensions/build_context_ext.dart';
 import 'package:sengthaite_blog/extensions/style_ext.dart';
 import 'package:sengthaite_blog/helper/common.dart';
+import 'package:styled_text/styled_text.dart';
+
+var _profile = (
+  name: "Te Sengthai",
+  leadershipStyle:
+      "Transformational, Visionary, Laissez-Faire, Servant, Pacesetting",
+  whoami:
+      "With nearly <b>6 years of experience</b> in a dynamic Fintech company, I bring 3 core values: <b>adaptability</b> in agile environments through cross-functional communication, proactive <b>collaboration</b> driving team success via initiative and innovative problem-solving, and <b>continuous growth</b> aligned with organizational vision for sustained impact.",
+  phone: "+855 88 397 9644",
+  contacts: {
+    "linkedIn": "https://www.linkedin.com/in/te-sengthai-29b661191/",
+    "github": "https://github.com/sengthaite",
+    "telegram": "https://t.me/sengthaite",
+    "email": "sengthaite@gmail.com",
+  },
+);
 
 sealed class ProfileSideViewConstants extends StatelessWidget {
   final double professionalSummaryMaxWidth = 600;
-  const ProfileSideViewConstants({super.key});
+  final iconTextPadding = EdgeInsets.fromLTRB(20, 13, 35, 13);
+  ProfileSideViewConstants({super.key});
 }
 
 class ProfileSideView extends ProfileSideViewConstants {
   ProfileSideView({super.key});
-
-  final iconTextPadding = EdgeInsets.fromLTRB(20, 13, 35, 13);
 
   @override
   Widget build(BuildContext context) {
@@ -25,10 +40,10 @@ class ProfileSideView extends ProfileSideViewConstants {
         children: [
           ClipOval(child: AssetIcons.imageprof.imageWithSize(width: 350)),
           SizedBox(height: 27),
-          Text("TE SENGTHAI", style: context.pfTheme.roleTitleTextStyle),
+          Text(_profile.name, style: context.pfTheme.roleTitleTextStyle),
           SizedBox(height: 8),
           Text(
-            "Transformational, Visionary, Laissez-Faire, Servant, Pacesetting",
+            _profile.leadershipStyle,
             style: context.pfTheme.roleDetailTextStyle,
           ),
           SizedBox(height: 30),
@@ -39,39 +54,10 @@ class ProfileSideView extends ProfileSideViewConstants {
               border: Border.all(width: 2, color: context.colorScheme.outline),
               borderRadius: BorderRadius.circular(16),
             ),
-            child: Text.rich(
-              TextSpan(
-                children: [
-                  TextSpan(text: "With nearly", style: textStyle),
-                  TextSpan(
-                    text: " 6 years of experience",
-                    style: textStyle.bold,
-                  ),
-                  TextSpan(
-                    text:
-                        " in a dynamic Fintech company, I bring 3 core values:",
-                    style: textStyle,
-                  ),
-                  TextSpan(text: " adaptability", style: textStyle.bold),
-                  TextSpan(
-                    text:
-                        " in agile environments through cross-functional communication, proactive",
-                    style: textStyle,
-                  ),
-                  TextSpan(text: " collaboration", style: textStyle.bold),
-                  TextSpan(
-                    text:
-                        " driving team success via initiative and innovative problem-solving, and",
-                    style: textStyle,
-                  ),
-                  TextSpan(text: " continuous growth", style: textStyle.bold),
-                  TextSpan(
-                    text:
-                        " aligned with organizational vision for sustained impact.",
-                    style: textStyle,
-                  ),
-                ],
-              ),
+            child: StyledText(
+              style: textStyle,
+              text: _profile.whoami,
+              tags: {'b': StyledTextTag(style: textStyle.bold)},
             ),
           ),
           SizedBox(height: 20),
@@ -101,28 +87,26 @@ class ProfileSideView extends ProfileSideViewConstants {
                         size: Size(30, 30),
                         color: Color(0xFF00830F),
                       ),
-                      Text(
-                        "+855 88 397 9644",
-                        style: context.pfTheme.textStyle,
-                      ),
+                      Text(_profile.phone, style: context.pfTheme.textStyle),
                     ],
                   ),
                 ),
               ),
               IconButton.filled(
-                onPressed: () => openLink(
-                  "https://www.linkedin.com/in/te-sengthai-29b661191/",
-                ),
+                padding: EdgeInsets.all(4),
+                onPressed: () => openLink(_profile.contacts["linkedIn"]),
                 style: context.pfTheme.buttonStyle,
                 icon: AssetIcons.linkedin.imageWithSize(width: 30),
               ),
               IconButton.filled(
-                onPressed: () => openLink("https://github.com/sengthaite"),
+                padding: EdgeInsets.all(4),
+                onPressed: () => openLink(_profile.contacts["github"]),
                 style: context.pfTheme.buttonStyle,
                 icon: AssetIcons.githubpf.imageWithSize(width: 30),
               ),
               IconButton.filled(
-                onPressed: () => openLink("https://t.me/sengthaite"),
+                padding: EdgeInsets.all(4),
+                onPressed: () => openLink(_profile.contacts["telegram"]),
                 style: context.pfTheme.buttonStyle,
                 icon: AssetIcons.telegram.imageWithStyle(
                   size: Size(30, 30),
@@ -139,7 +123,7 @@ class ProfileSideView extends ProfileSideViewConstants {
                   children: [
                     AssetIcons.gmail.imageWithStyle(size: Size(30, 30)),
                     Text(
-                      "sengthaite@gmail.com",
+                      _profile.contacts["email"] ?? '-',
                       style: context.pfTheme.textStyle,
                     ),
                   ],

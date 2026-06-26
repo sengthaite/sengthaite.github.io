@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:material_symbols_icons/symbols.dart';
 import 'package:sengthaite_blog/extensions/build_context_ext.dart';
-
 import 'package:sengthaite_blog/features/tool/api/api_request_builder.dart';
 import 'package:sengthaite_blog/features/tool/api/api_util_table_data.dart';
 
@@ -79,7 +78,7 @@ class _APIUtilParamViewState extends State<APIUtilParamView> {
                   hoverColor: Colors.transparent,
                   onPressed: () =>
                       setState(() => currentRequest?.add(APIRowData())),
-                  icon: Icon(MdiIcons.plus, color: Colors.green),
+                  icon: Icon(Symbols.add, color: Colors.green),
                 ),
               ],
             ),

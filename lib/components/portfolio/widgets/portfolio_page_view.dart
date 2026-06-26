@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:sengthaite_blog/components/portfolio/widgets/content_page.dart';
+import 'package:sengthaite_blog/components/portfolio/widgets/content_side_nav_view.dart';
 import 'package:sengthaite_blog/constants/image.constants.dart';
 import 'package:sengthaite_blog/extensions/build_context_ext.dart';
-import 'package:sengthaite_blog/features/portfolio/content_page.dart';
-import 'package:sengthaite_blog/features/portfolio/content_side_nav_view.dart';
 
-class InsideContentWidget extends StatelessWidget {
-  InsideContentWidget({super.key});
+class PortfolioPageView extends StatelessWidget {
+  PortfolioPageView({super.key});
 
   final double svgSize = 900;
 

@@ -30,7 +30,7 @@ class TakePictureScreenState extends State<CameraView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: FutureBuilder<List>(
+      body: FutureBuilder<dynamic>(
         future: futureData,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
@@ -60,7 +60,7 @@ class TakePictureScreenState extends State<CameraView> {
                                 final image = await _controller.takePicture();
                                 if (!context.mounted) return;
                                 await Navigator.of(context).push(
-                                  MaterialPageRoute(
+                                  MaterialPageRoute<DisplayPictureScreen>(
                                     builder: (context) =>
                                         DisplayPictureScreen(image: image),
                                   ),

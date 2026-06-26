@@ -35,19 +35,19 @@ final class DesignSystemRadioButtonsPreview extends MultiPreview {
   ];
 
   Widget _defaultSelectionRadioButton(Widget child) => Scaffold(
-    body: RadioButtons(
-      defaultSelectedValue: "KHM",
+    body: RadioButtons<Locale>(
+      defaultSelectedValue: Locale('en'),
       list: [
-        RadioButtonData(text: "ភាសាខ្មែរ ", value: "KHM"),
-        RadioButtonData(text: "English", value: "ENG"),
+        RadioButtonData<Locale>(text: "ភាសាខ្មែរ ", value: Locale('km')),
+        RadioButtonData<Locale>(text: "English", value: Locale('en')),
       ],
     ),
   );
   Widget _noDefaultSelectionRadioButton(Widget child) => Scaffold(
-    body: RadioButtons(
+    body: RadioButtons<Locale>(
       list: [
-        RadioButtonData(text: "ភាសាខ្មែរ ", value: "KHM"),
-        RadioButtonData(text: "English", value: "ENG"),
+        RadioButtonData(text: "ភាសាខ្មែរ ", value: Locale('km')),
+        RadioButtonData(text: "English", value: Locale('en')),
       ],
     ),
   );

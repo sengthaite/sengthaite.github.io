@@ -12,7 +12,10 @@ class FooterView extends StatelessWidget {
         color: context.pfTheme.containerBgColor,
       ),
       padding: EdgeInsets.all(16.0),
-      child: Text("Published in 2026", style: context.pfTheme.textStyle),
+      child: Text(
+        context.l10n.publish_footer(2026),
+        style: context.pfTheme.textStyle,
+      ),
     );
   }
 }

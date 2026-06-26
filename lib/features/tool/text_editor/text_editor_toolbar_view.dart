@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:material_symbols_icons/material_symbols_icons.dart';
 import 'package:sengthaite_blog/extensions/build_context_ext.dart';
 import 'package:sengthaite_blog/features/tool/text_editor/text_editor_extension.dart';
 
@@ -18,17 +18,17 @@ class TextEditorToolbarView extends StatelessWidget {
         toolbarIconCrossAlignment: WrapCrossAlignment.start,
         customButtons: [
           QuillToolbarCustomButtonOptions(
-            icon: Icon(MdiIcons.languageMarkdown),
+            icon: Icon(Symbols.markdown),
             tooltip: context.l10n.save("MD"),
             onPressed: () => controller.saveMarkdown(),
           ),
           QuillToolbarCustomButtonOptions(
-            icon: Icon(MdiIcons.languageHtml5),
+            icon: Icon(Symbols.html),
             tooltip: context.l10n.save("HTML"),
             onPressed: () => controller.saveHTML(),
           ),
           QuillToolbarCustomButtonOptions(
-            icon: Icon(MdiIcons.filePdfBox),
+            icon: Icon(Symbols.picture_as_pdf),
             tooltip: context.l10n.save("PDF"),
             onPressed: () => controller.savePDF(),
           ),

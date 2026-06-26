@@ -1,6 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:sengthaite_blog/components/tab_bar_navigation_title.dart';
+import 'package:sengthaite_blog/components/blog/tab_bar_navigation_title.dart';
 import 'package:sengthaite_blog/extensions/build_context_ext.dart';
 
 class TabBarLayoutNavigationView extends StatefulWidget {

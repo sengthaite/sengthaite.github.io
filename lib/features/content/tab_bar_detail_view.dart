@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:sengthaite_blog/components/category_tab_item_view.dart';
+import 'package:sengthaite_blog/components/blog/category_tab_item_view.dart';
 import 'package:sengthaite_blog/extensions/build_context_ext.dart';
-
 import 'package:sengthaite_blog/generated/models/category_tab_item_model.dart';
 
 class TabBarDetailView extends StatelessWidget {
@@ -22,7 +20,7 @@ class TabBarDetailView extends StatelessWidget {
   final List<CategoryTabItemModel>? items;
   final Widget? widget;
   final WidgetBuilder? widgetBuilder;
-  final FutureBuilder? futureBuilder;
+  final FutureBuilder<dynamic>? futureBuilder;
   final void Function()? onBackPressed;
   final Widget? endDrawer;
   final List<Widget>? actions;
@@ -51,7 +49,7 @@ class TabBarDetailView extends StatelessWidget {
               color: colorScheme.onSurface,
               hoverColor: colorScheme.surfaceDim,
               onPressed: onBackPressed,
-              icon: Icon(MdiIcons.arrowLeft, color: colorScheme.primary),
+              icon: Icon(Icons.arrow_back, color: colorScheme.primary),
             ),
           ),
           body: Column(

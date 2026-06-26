@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:sengthaite_blog/extensions/http_ext.dart';
 import 'package:sengthaite_blog/features/tool/api/api_util_table_data.dart';
 import 'package:sengthaite_blog/features/tool/api/api_utils/api_util.dart';
-import 'package:sengthaite_blog/shared/dialog/error_dialog.dart';
 import 'package:sengthaite_blog/shared/data/file/hivedir.dart';
+import 'package:sengthaite_blog/shared/dialog/error_dialog.dart';
 import 'package:uuid/v4.dart';
 
 class HttpRestRequestDatum extends ChangeNotifier {
@@ -163,7 +163,7 @@ class HttpRestRequestDatum extends ChangeNotifier {
 
   void buildUrlWithQueryParams(int rowIndex, {String? key, String? value}) {
     final uri = Uri.parse(urlInputController.text);
-    var updatedParams = {};
+    var updatedParams = <String, dynamic>{};
     var updatedKey = key ?? paramData.controllers[rowIndex].key;
     var updatedValue = value ?? paramData.controllers[rowIndex].value;
     if (updatedKey != null) {
@@ -256,7 +256,7 @@ class HttpRestRequestDatum extends ChangeNotifier {
 
   String? _requestMethod;
 
-  Response? response;
+  Response<dynamic>? response;
 
   String? get getRequestMethod => _requestMethod;
 

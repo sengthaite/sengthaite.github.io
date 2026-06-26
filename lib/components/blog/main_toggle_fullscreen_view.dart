@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:sengthaite_blog/shared/app.data.dart';
 
-import '../shared/data/appsetting.dart';
+import '../../shared/data/appsetting.dart';
 
 class ToggleFullscreenView extends StatelessWidget {
   const ToggleFullscreenView({super.key, required this.onSreenStateChange});
 
-  final Function(bool) onSreenStateChange;
+  final void Function(bool) onSreenStateChange;
 
   @override
   Widget build(BuildContext context) {
@@ -20,9 +19,7 @@ class ToggleFullscreenView extends StatelessWidget {
         appSettings?.isFullScreenMode = newScreenState;
         AppData().saveAppSettings();
       },
-      child: Icon(
-        newScreenState ? MdiIcons.arrowExpand : MdiIcons.arrowExpandAll,
-      ),
+      child: Icon(newScreenState ? Icons.zoom_out : Icons.zoom_in),
     );
   }
 }

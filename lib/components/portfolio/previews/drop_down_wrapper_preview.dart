@@ -6,6 +6,7 @@ import 'package:sengthaite_blog/components/portfolio/widgets/overlay_dropdown.da
 import 'package:sengthaite_blog/components/portfolio/widgets/radio_buttons.dart';
 import 'package:sengthaite_blog/components/portfolio/widgets/table_popup.dart';
 import 'package:sengthaite_blog/constants/image.constants.dart';
+import 'package:sengthaite_blog/extensions/build_context_ext.dart';
 
 class SettingDropdown extends StatefulWidget {
   const SettingDropdown({super.key});
@@ -23,18 +24,18 @@ class _SettingDropdownState extends State<SettingDropdown> {
     return OverlayPopUpDropdown(
       controller: controller,
       menuButton: MenuButton(
-        text: 'SETTINGS',
+        text: context.l10n.setting.toUpperCase(),
         onPressed: () {
           controller.toggle();
         },
         isSelected: isShowing,
         icon: AssetIcons.home.imageWithStyle(
           size: Size(40, 40),
-          color: Colors.grey,
+          color: context.pfTheme.buttonBgColor,
         ),
         selectedIcon: AssetIcons.home.imageWithStyle(
           size: Size(40, 40),
-          color: Colors.red,
+          color: context.pfTheme.buttonSelectedBgColor,
         ),
         trailIcon: Icon(Icons.keyboard_arrow_down, color: Colors.grey),
         selectedTrailingIcon: Icon(Icons.keyboard_arrow_up, color: Colors.red),
@@ -42,17 +43,17 @@ class _SettingDropdownState extends State<SettingDropdown> {
       listDropdownWidget: TablePopup(
         rows: [
           TableRowData(
-            title: "LANGUAGE",
+            title: context.l10n.language.toUpperCase(),
             widget: RadioButtons(
               defaultSelectedValue: "KHM",
               list: [
-                RadioButtonData(text: "ភាសាខ្មែរ", value: "KHM"),
-                RadioButtonData(text: "English", value: "ENG"),
+                RadioButtonData(text: context.l10n.khmer_lang, value: "KHM"),
+                RadioButtonData(text: context.l10n.english_lang, value: "ENG"),
               ],
             ),
           ),
           TableRowData(
-            title: "DISPLAY",
+            title: context.l10n.display,
             widget: RadioButtons(
               defaultSelectedValue: "L",
               list: [

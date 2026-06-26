@@ -28,7 +28,7 @@ class _AppBarViewTabState extends State<AppBarViewTab> {
     if (isRememberedMe && githubToken.isNotEmpty && githubUrl.isNotEmpty) {
       Navigator.push(
         context,
-        MaterialPageRoute(
+        MaterialPageRoute<PersonalGitView>(
           builder: (context) =>
               PersonalGitView(url: githubUrl, path: "", token: githubToken),
           fullscreenDialog: true,
@@ -43,19 +43,19 @@ class _AppBarViewTabState extends State<AppBarViewTab> {
           return;
         }
         Map<String, dynamic> result = response as Map<String, dynamic>;
-        String? url = response['url'];
-        String? token = response['token'];
+        String? url = response['url'] as String?;
+        String? token = response['token'] as String?;
         if (result.isEmpty || url == null || token == null) {
           debugPrint("Empty repos");
           return;
         }
         Navigator.push(
           context,
-          MaterialPageRoute(
+          MaterialPageRoute<PersonalGitView>(
             builder: (context) => PersonalGitView(
-              url: response['url'],
+              url: response['url'] as String,
               path: "",
-              token: response['token'],
+              token: response['token'] as String,
             ),
             fullscreenDialog: true,
           ),

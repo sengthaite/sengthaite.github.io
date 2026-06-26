@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:sengthaite_blog/features/personal/personal_git.data.dart';
 import 'package:sengthaite_blog/features/tool/api/github/github_api.dart';
 import 'package:sengthaite_blog/shared/app.data.dart';
@@ -34,7 +33,7 @@ class _PersonalGitViewState extends State<PersonalGitView> {
     var data = await githubApi.listRepos(url: "${widget.url}/${widget.path}");
     if (!mounted) return;
     setState(() {
-      list = GitListRepoData.fromJson(data);
+      list = GitListRepoData.fromJson(data as Map<String, dynamic>);
     });
   }
 
@@ -44,7 +43,7 @@ class _PersonalGitViewState extends State<PersonalGitView> {
     String path,
   ) => Navigator.push(
     context,
-    MaterialPageRoute(
+    MaterialPageRoute<PersonalGitView>(
       builder: (context) =>
           PersonalGitView(url: baseUrl, path: path, token: widget.token),
       fullscreenDialog: true,
@@ -93,7 +92,7 @@ class _PersonalGitViewState extends State<PersonalGitView> {
                       children: [
                         Text("${item.name}"),
                         Icon(
-                          item.isDirectory ? MdiIcons.folder : MdiIcons.file,
+                          item.isDirectory ? Icons.folder : Icons.file_upload,
                         ),
                       ],
                     ),

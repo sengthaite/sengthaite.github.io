@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:sengthaite_blog/components/portfolio/portfolio_theme.dart';
+import 'package:sengthaite_blog/constants/portfolio_theme.dart';
 import 'package:sengthaite_blog/l10n/app_localizations.dart';
+import 'package:sengthaite_blog/shared/app.data.dart';
+import 'package:sengthaite_blog/shared/data/appsetting.dart';
 
 extension BuildContextExt on BuildContext {
   ThemeData get theme => Theme.of(this);
@@ -16,4 +18,6 @@ extension BuildContextExt on BuildContext {
   Size get screenSize => MediaQuery.sizeOf(this);
 
   ScaffoldMessengerState get messenger => ScaffoldMessenger.of(this);
+
+  AppSettings get appSettings => AppData().appSettings!;
 }

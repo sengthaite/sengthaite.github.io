@@ -22,19 +22,20 @@ class DropdownPreference<T> extends StatefulWidget {
   final Map<T, String> values;
 
   /// Called when the value changes
-  final Function(BuildContext context, dynamic value) onWrite;
+  final void Function(BuildContext context, dynamic value) onWrite;
 
   /// Called to get the current value
   final T Function(BuildContext context) onRead;
 
   @override
-  DropdownPreferenceState createState() => DropdownPreferenceState<T>();
+  DropdownPreferenceState<dynamic> createState() =>
+      DropdownPreferenceState<T>();
 }
 
-class DropdownPreferenceState<T> extends State<DropdownPreference> {
+class DropdownPreferenceState<T> extends State<DropdownPreference<dynamic>> {
   @override
   Widget build(BuildContext context) {
-    final T value = widget.onRead(context);
+    final T value = widget.onRead(context) as T;
 
     return ListTile(
       title: Text(widget.title),
@@ -43,7 +44,7 @@ class DropdownPreferenceState<T> extends State<DropdownPreference> {
         items:
             widget.values.keys.map<DropdownMenuItem<T>>((dynamic val) {
               return DropdownMenuItem<T>(
-                value: val,
+                value: val as T?,
                 child: Text(widget.values[val]!, textAlign: TextAlign.end),
               );
             }).toList()..sort(
@@ -85,7 +86,7 @@ class TextPreference extends StatefulWidget {
   final bool enabled;
 
   /// Called when the value changes
-  final Function(BuildContext context, String value) onWrite;
+  final void Function(BuildContext context, String value) onWrite;
 
   /// Called to get the current value
   final String Function(BuildContext context) onRead;

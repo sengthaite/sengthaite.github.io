@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sengthaite_blog/features/portfolio/inside_content_view.dart';
-import 'package:sengthaite_blog/features/portfolio/menu_view.dart';
+import 'package:sengthaite_blog/components/portfolio/widgets/menu_navigation.dart';
+import 'package:sengthaite_blog/components/portfolio/widgets/portfolio_page_view.dart';
 
 // @Preview(name: "ContentSideView")
 // Widget contentSidePreview() {
@@ -20,11 +20,7 @@ class _ContentSideViewState extends State<ContentSideView> {
     return Expanded(
       flex: 4,
       child: Column(
-        children: [
-          MenuNavigation(),
-          SizedBox(height: 40),
-          InsideContentWidget(),
-        ],
+        children: [MenuNavigation(), SizedBox(height: 20), PortfolioPageView()],
       ),
     );
   }

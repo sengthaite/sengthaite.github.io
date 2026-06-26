@@ -13,7 +13,7 @@ class TablePopup extends StatelessWidget {
   const TablePopup({super.key, required this.rows, this.onPress});
 
   final List<TableRowData> rows;
-  final Function(int, TableRowData)? onPress;
+  final void Function(int, TableRowData)? onPress;
 
   @override
   Widget build(BuildContext context) {

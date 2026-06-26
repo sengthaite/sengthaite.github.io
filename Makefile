@@ -1,4 +1,3 @@
-
 .PHONY: all check autogen rebuild build_runner deploy_web pip_install build_web gen_l10n gen_icon run_web doc run_doc run_llm
 
 run_llm:

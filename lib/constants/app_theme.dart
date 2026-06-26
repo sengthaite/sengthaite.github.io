@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sengthaite_blog/components/portfolio/portfolio_theme.dart';
+import 'package:sengthaite_blog/constants/portfolio_theme.dart';
 import 'package:sengthaite_blog/extensions/style_ext.dart';
 
 class AppTheme {
@@ -25,7 +25,7 @@ class AppTheme {
       // Button default background color
       secondary: Color(0xFFF1F1F1),
       onSecondary: Colors.white,
-      surface: Colors.white,
+      surface: Color(0xFFF1F1F1),
       onSurface: _lightTextDark,
       surfaceContainer: _lightSurfaceContainer,
       // Border color
@@ -33,10 +33,10 @@ class AppTheme {
     ),
     extensions: [
       PortfolioTheme(
-        textStyle: GoogleFonts.inter()
+        textStyle: GoogleFonts.notoSansKhmer()
             .copyWith(fontSize: 16, color: Color(0xFF3F3F3F))
             .medium!,
-        selectedTextStyle: GoogleFonts.inter()
+        selectedTextStyle: GoogleFonts.notoSansKhmer()
             .copyWith(fontSize: 16, color: Colors.white)
             .bold!,
         buttonBgColor: Color(0xFFF1F1F1),
@@ -46,7 +46,7 @@ class AppTheme {
         dialogBgColor: Color(0xFFE8E8E8),
         borderColor: Color(0xFFC9C8C8),
         containerBgColor: Color(0xFFF1F1F1),
-        dividerColor: Colors.white,
+        dividerColor: Color(0xFFC9C8C8),
         scaffoldBgColor: Colors.white,
       ),
     ],
@@ -59,30 +59,30 @@ class AppTheme {
       primary: Color(
         0xFFFF5252,
       ), // Slightly brighter red for dark mode readability
-      onPrimary: Colors.black,
+      onPrimary: Color.fromARGB(255, 44, 44, 44),
       secondary: Color(0xB3FFFFFF),
       onSecondary: Colors.black,
-      surface: Color(0xFF121212), // Dark deep gray scaffold
+      surface: Color(0xFFF1F1F1), // Dark deep gray scaffold
       onSurface: Color(0xFFE0E0E0), // Clean light text
       surfaceContainer: Color(0xFF1E1E1E), // Subtle dark card background
       outline: Color(0xFF444444),
     ),
     extensions: [
       PortfolioTheme(
-        textStyle: GoogleFonts.inter()
-            .copyWith(fontSize: 16, color: Color(0xFF3F3F3F))
+        textStyle: GoogleFonts.notoSansKhmer()
+            .copyWith(fontSize: 16, color: Color.fromARGB(255, 255, 255, 255))
             .medium!,
-        selectedTextStyle: GoogleFonts.inter()
+        selectedTextStyle: GoogleFonts.notoSansKhmer()
             .copyWith(fontSize: 16, color: Colors.white)
             .bold!,
-        buttonBgColor: Color(0xFFF1F1F1),
+        buttonBgColor: Color.fromARGB(255, 72, 72, 72),
         buttonSelectedBgColor: _lightPrimaryRed,
-        buttonFgColor: Color(0xFF3F3F3F),
+        buttonFgColor: Color.fromARGB(255, 255, 255, 255),
         buttonSelectedFgColor: Colors.white,
-        dialogBgColor: Color(0xFFE8E8E8),
+        dialogBgColor: Color.fromARGB(255, 68, 68, 68),
         borderColor: Color(0xFFC9C8C8),
-        containerBgColor: Color(0xFFF1F1F1),
-        dividerColor: Colors.white,
+        containerBgColor: Color.fromARGB(255, 66, 66, 66),
+        dividerColor: Color(0xFFC9C8C8),
         scaffoldBgColor: Colors.white,
       ),
     ],
@@ -185,24 +185,26 @@ class AppTheme {
 
       // Text configurations mapped out from the layout hierarchy
       textTheme: TextTheme(
-        headlineLarge: GoogleFonts.inter().copyWith(
+        headlineLarge: GoogleFonts.notoSansKhmer().copyWith(
           fontSize: 28,
           fontWeight: isHighContrast ? FontWeight.w500 : FontWeight.bold,
           color: scheme.onSurface,
           letterSpacing: 0.5,
         ),
-        titleMedium: GoogleFonts.inter().copyWith(
+        titleMedium: GoogleFonts.notoSansKhmer().copyWith(
           fontSize: 16,
           fontWeight: FontWeight.bold,
           color: scheme.onSurface,
         ),
-        bodyLarge: GoogleFonts.inter().copyWith(
+        bodyLarge: GoogleFonts.notoSansKhmer().copyWith(
           fontSize: 14,
           height: 1.5,
           color: scheme.onSurface,
           fontWeight: isHighContrast ? FontWeight.w600 : FontWeight.normal,
         ),
       ),
+
+      dividerTheme: DividerThemeData(color: scheme.outline),
     );
   }
 }

@@ -4,7 +4,8 @@
 
 import 'dart:convert';
 
-AppModel appModelFromJson(String str) => AppModel.fromJson(json.decode(str));
+AppModel appModelFromJson(String str) =>
+    AppModel.fromJson(json.decode(str) as Map<String, dynamic>);
 
 String appModelToJson(AppModel data) => json.encode(data.toJson());
 
@@ -15,35 +16,33 @@ class AppModel {
   final String? type;
   final String? version;
 
-  AppModel({
-    this.author,
-    this.createdDate,
-    this.data,
-    this.type,
-    this.version,
-  });
+  AppModel({this.author, this.createdDate, this.data, this.type, this.version});
 
   factory AppModel.fromJson(Map<String, dynamic> json) => AppModel(
-        author: json["author"],
-        createdDate: json["created_date"] == null
-            ? null
-            : DateTime.parse(json["created_date"]),
-        data: json["data"] == null
-            ? []
-            : List<Datum>.from(json["data"]!.map((x) => Datum.fromJson(x))),
-        type: json["type"],
-        version: json["version"],
-      );
+    author: json["author"] as String?,
+    createdDate: json["created_date"] == null
+        ? null
+        : DateTime.parse(json["created_date"] as String),
+    data: json["data"] == null
+        ? []
+        : List<Datum>.from(
+            (json["data"]! as List<dynamic>).map(
+              (x) => Datum.fromJson(x as Map<String, dynamic>),
+            ),
+          ),
+    type: json["type"] as String?,
+    version: json["version"] as String?,
+  );
 
   Map<String, dynamic> toJson() => {
-        "author": author,
-        "created_date": createdDate?.toIso8601String(),
-        "data": data == null
-            ? []
-            : List<dynamic>.from(data!.map((x) => x.toJson())),
-        "type": type,
-        "version": version,
-      };
+    "author": author,
+    "created_date": createdDate?.toIso8601String(),
+    "data": data == null
+        ? List<Map<String, dynamic>>.empty()
+        : List<Map<String, dynamic>>.from(data!.map((x) => x.toJson())),
+    "type": type,
+    "version": version,
+  };
 }
 
 class Datum {
@@ -64,29 +63,32 @@ class Datum {
   });
 
   factory Datum.fromJson(Map<String, dynamic> json) => Datum(
-        createdDate: json["created_date"] == null
-            ? null
-            : DateTime.parse(json["created_date"]),
-        files: json["files"] == null
-            ? []
-            : List<FileElement>.from(
-                json["files"]!.map((x) => FileElement.fromJson(x))),
-        icon: json["icon"],
-        index: json["index"],
-        name: json["name"],
-        path: json["path"],
-      );
+    createdDate: json["created_date"] == null
+        ? null
+        : DateTime.parse(json["created_date"] as String),
+    files: json["files"] == null
+        ? []
+        : List<FileElement>.from(
+            (json["files"]! as List<dynamic>).map(
+              (x) => FileElement.fromJson(x as Map<String, dynamic>),
+            ),
+          ),
+    icon: json["icon"] as String?,
+    index: json["index"] as int?,
+    name: json["name"] as String?,
+    path: json["path"] as String?,
+  );
 
   Map<String, dynamic> toJson() => {
-        "created_date": createdDate?.toIso8601String(),
-        "files": files == null
-            ? []
-            : List<dynamic>.from(files!.map((x) => x.toJson())),
-        "icon": icon,
-        "index": index,
-        "name": name,
-        "path": path,
-      };
+    "created_date": createdDate?.toIso8601String(),
+    "files": files == null
+        ? List<Map<String, dynamic>>.empty()
+        : List<Map<String, dynamic>>.from(files!.map((x) => x.toJson())),
+    "icon": icon,
+    "index": index,
+    "name": name,
+    "path": path,
+  };
 }
 
 class FileElement {
@@ -113,32 +115,32 @@ class FileElement {
   });
 
   factory FileElement.fromJson(Map<String, dynamic> json) => FileElement(
-        accessDate: json["access_date"] == null
-            ? null
-            : DateTime.parse(json["access_date"]),
-        changeDate: json["change_date"] == null
-            ? null
-            : DateTime.parse(json["change_date"]),
-        exerpt: json["exerpt"],
-        fullPath: json["full_path"],
-        index: json["index"],
-        hasToc: json["hasToc"],
-        modifiedDate: json["modified_date"] == null
-            ? null
-            : DateTime.parse(json["modified_date"]),
-        name: json["name"],
-        title: json["title"],
-      );
+    accessDate: json["access_date"] == null
+        ? null
+        : DateTime.parse(json["access_date"] as String),
+    changeDate: json["change_date"] == null
+        ? null
+        : DateTime.parse(json["change_date"] as String),
+    exerpt: json["exerpt"] as String?,
+    fullPath: json["full_path"] as String?,
+    index: json["index"] as int?,
+    hasToc: json["hasToc"] as bool?,
+    modifiedDate: json["modified_date"] == null
+        ? null
+        : DateTime.parse(json["modified_date"] as String),
+    name: json["name"] as String?,
+    title: json["title"] as String?,
+  );
 
   Map<String, dynamic> toJson() => {
-        "access_date": accessDate?.toIso8601String(),
-        "change_date": changeDate?.toIso8601String(),
-        "exerpt": exerpt,
-        "full_path": fullPath,
-        "index": index,
-        "hasToc": hasToc,
-        "modified_date": modifiedDate?.toIso8601String(),
-        "name": name,
-        "title": title,
-      };
+    "access_date": accessDate?.toIso8601String(),
+    "change_date": changeDate?.toIso8601String(),
+    "exerpt": exerpt,
+    "full_path": fullPath,
+    "index": index,
+    "hasToc": hasToc,
+    "modified_date": modifiedDate?.toIso8601String(),
+    "name": name,
+    "title": title,
+  };
 }

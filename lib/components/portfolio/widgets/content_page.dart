@@ -49,7 +49,7 @@ class ContentPage extends StatefulWidget {
   final int defaultSelection;
   final List<Widget> data;
   final PageController controller;
-  final Function(int)? onPageChanged;
+  final void Function(int)? onPageChanged;
 
   @override
   State<ContentPage> createState() => _ContentPageState();
@@ -68,7 +68,7 @@ class _ContentPageState extends State<ContentPage> {
   Widget build(BuildContext context) {
     final textStyle = context.textTheme.labelLarge;
     if (widget.data.isEmpty) {
-      return Center(child: Text("Empty Content", style: textStyle));
+      return Center(child: Text(context.l10n.empty_content, style: textStyle));
     }
 
     return PageView(
@@ -108,7 +108,6 @@ class ExperienceWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(height: 20),
         Row(
           children: [
             SizedBox(width: sideSkillWidth),
@@ -146,7 +145,7 @@ class ExperienceWidget extends StatelessWidget {
                       width: 130,
                       decoration: BoxDecoration(
                         border: context.pfTheme.border,
-                        color: Color(0xFFE8E8E8),
+                        color: context.pfTheme.buttonBgColor,
                         borderRadius: BorderRadius.circular(24),
                       ),
                       padding: EdgeInsets.fromLTRB(5, 5, 10, 5),
@@ -176,7 +175,7 @@ class ExperienceWidget extends StatelessWidget {
             Expanded(
               child: Container(
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: context.pfTheme.containerBgColor,
                   borderRadius: BorderRadius.circular(16),
                   border: Border.all(
                     color: context.pfTheme.borderColor,
@@ -226,20 +225,13 @@ class ExperienceWidget extends StatelessWidget {
                         ],
                       ),
                     ),
-                    Divider(),
-                    Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 24,
-                        vertical: 12,
-                      ),
-                      child: Container(
-                        alignment: Alignment.center,
-                        height: 350,
-                        child: data.content,
-                      ),
+                    Divider(color: context.pfTheme.dividerColor),
+                    Container(
+                      color: context.colorScheme.surface,
+                      alignment: Alignment.center,
+                      child: data.content,
                     ),
-
-                    Divider(),
+                    Divider(color: context.pfTheme.dividerColor),
                     Padding(
                       padding: const EdgeInsets.symmetric(
                         horizontal: 24,
@@ -254,7 +246,7 @@ class ExperienceWidget extends StatelessWidget {
                               Icon(
                                 size: 16,
                                 Icons.developer_board,
-                                color: context.pfTheme.buttonBgColor,
+                                color: context.pfTheme.buttonFgColor,
                               ),
                               Text(
                                 "Platform & Tools",

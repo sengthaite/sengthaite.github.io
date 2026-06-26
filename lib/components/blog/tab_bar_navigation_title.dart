@@ -15,7 +15,7 @@ class TabBarNavigationTitle {
   final UuidV8 id = const UuidV8();
   final String title;
   final Widget widget;
-  Function(TabBarNavigationTitle)? onTap;
+  final void Function(TabBarNavigationTitle)? onTap;
 
   void setTitleStyle(TextStyle titleStyle) {
     this.titleStyle = titleStyle;

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:sengthaite_blog/components/tab_bar_layout_navigation_view.dart';
-import 'package:sengthaite_blog/components/tab_bar_navigation_title.dart';
+import 'package:sengthaite_blog/components/blog/tab_bar_layout_navigation_view.dart';
+import 'package:sengthaite_blog/components/blog/tab_bar_navigation_title.dart';
 import 'package:sengthaite_blog/constants/enum.constants.dart';
-
 import 'package:sengthaite_blog/features/navigation/navigation.dart';
 
 class TabBarLayoutViewItem {
@@ -42,7 +41,7 @@ class TabBarLayoutViewState extends State<TabBarLayoutView>
 
   String _defaultEmptyContentTitle = "Empty Content";
 
-  dynamic removeUntil(TabBarNavigationTitle item) => setState(
+  void removeUntil(TabBarNavigationTitle item) => setState(
     () => navigationTitleItems.length = navigationTitleItems.indexOf(item) + 1,
   );
 
@@ -60,7 +59,7 @@ class TabBarLayoutViewState extends State<TabBarLayoutView>
     return GestureDetector(onTap: () => addItem(item), child: itemIcon);
   }
 
-  Function backOnClick(TabBarNavigationTitle item) => removeUntil(item);
+  void backOnClick(TabBarNavigationTitle item) => removeUntil(item);
 
   Widget get categoriesWidget => Wrap(
     spacing: 10,

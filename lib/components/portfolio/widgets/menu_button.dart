@@ -52,11 +52,9 @@ class _MenuButtonState extends State<MenuButton> {
             : const EdgeInsets.symmetric(horizontal: 16, vertical: 8);
 
         return IconButton.filled(
-          onPressed: widget.onPressed == null
-              ? null
-              : () {
-                  widget.onPressed?.call();
-                },
+          onPressed: () {
+            widget.onPressed?.call();
+          },
           padding: padding,
           style: selected
               ? context.pfTheme.buttonSelectedStyle

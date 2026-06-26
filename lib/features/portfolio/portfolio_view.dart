@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:sengthaite_blog/extensions/build_context_ext.dart';
-import 'package:sengthaite_blog/features/portfolio/components/align_scroll_container.dart';
+import 'package:sengthaite_blog/components/portfolio/widgets/align_scroll_container.dart';
 import 'package:sengthaite_blog/features/portfolio/content_side_view.dart';
 import 'package:sengthaite_blog/features/portfolio/footer_view.dart';
 import 'package:sengthaite_blog/features/portfolio/profile_side_view.dart';
 
-class PortfolioContentView extends StatelessWidget {
-  const PortfolioContentView({super.key});
+class PortfolioView extends StatelessWidget {
+  const PortfolioView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class PortfolioContentView extends StatelessWidget {
                 children: [ContentSideView(), ProfileSideView()],
               ),
             ),
-            SizedBox(height: 24),
+            SizedBox(height: 12),
             FooterView(),
           ],
         ),

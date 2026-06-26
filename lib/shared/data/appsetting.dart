@@ -15,22 +15,37 @@ class AppSettings extends HiveObject {
   @HiveField(3)
   String? localeLanguageCode;
   @HiveField(4)
-  String? localeCountryCode;
-  @HiveField(5)
   String? githubToken;
-  @HiveField(6)
+  @HiveField(5)
   String? githubUrl;
-  @HiveField(7)
+  @HiveField(6)
   bool? rememberedMe;
+  @HiveField(7)
+  String? themeMode;
 
-  final ValueNotifier<Locale> currentLocale = ValueNotifier(
-    const Locale('en', 'US'),
-  );
+  ValueNotifier<Locale> currentLocale = ValueNotifier(const Locale('en'));
+  ValueNotifier<ThemeMode> currentThemeMode = ValueNotifier(ThemeMode.system);
 
   set locale(Locale? value) {
     localeLanguageCode = value?.languageCode;
-    localeCountryCode = value?.countryCode;
-    currentLocale.value = value ?? const Locale('en', 'US');
+    currentLocale.value = value ?? const Locale('en');
+  }
+
+  set newThemeMode(ThemeMode? mode) {
+    debugPrint("New ThemeMode: ${mode?.name}");
+    themeMode = mode?.name;
+    if (mode == null) return;
+    currentThemeMode.value = mode;
+  }
+
+  ThemeMode get _themeModeFromCache {
+    switch (themeMode) {
+      case 'light':
+        return ThemeMode.light;
+      case 'dark':
+        return ThemeMode.dark;
+    }
+    return ThemeMode.system;
   }
 
   bool get isRememberedMe => rememberedMe ?? false;
@@ -40,9 +55,12 @@ class AppSettings extends HiveObject {
     DateTime? createdDate,
     bool? isFullScreenMode,
     Locale? locale,
+    ThemeMode? theme,
   }) : id = id ?? const Uuid().v4(),
        createdDate = createdDate ?? DateTime.now(),
        isFullScreenMode = isFullScreenMode ?? false,
-       localeLanguageCode = locale?.languageCode,
-       localeCountryCode = locale?.countryCode;
+       localeLanguageCode = locale?.languageCode {
+    currentLocale.value = locale ?? Locale(localeLanguageCode ?? 'en');
+    currentThemeMode.value = theme ?? _themeModeFromCache;
+  }
 }
