@@ -259,6 +259,312 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Published in {year}'**
   String publish_footer(int year);
+
+  /// No description provided for @title_mngr_mb.
+  ///
+  /// In en, this message translates to:
+  /// **'Mngr. Mobile Banking Development'**
+  String get title_mngr_mb;
+
+  /// No description provided for @mngr_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Oct 2024 - May 2026 | Amret MFI'**
+  String get mngr_desc;
+
+  /// No description provided for @title_sup_frontend.
+  ///
+  /// In en, this message translates to:
+  /// **'Supervisor Frontend Development'**
+  String get title_sup_frontend;
+
+  /// No description provided for @sup_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'May 2024 - Oct 2026 | Amret MFI'**
+  String get sup_desc;
+
+  /// No description provided for @title_senior_frontend.
+  ///
+  /// In en, this message translates to:
+  /// **'Senior Frontend Development'**
+  String get title_senior_frontend;
+
+  /// No description provided for @senior_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Oct 2022 - May 2024 | Amret MFI'**
+  String get senior_desc;
+
+  /// No description provided for @title_ios_dev.
+  ///
+  /// In en, this message translates to:
+  /// **'iOS Developer'**
+  String get title_ios_dev;
+
+  /// No description provided for @ios_dev_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Jan 2020 - Oct 2022 | Z1 Flexible Solution'**
+  String get ios_dev_desc;
+
+  /// No description provided for @role_delivery_lead.
+  ///
+  /// In en, this message translates to:
+  /// **'Delivery Lead'**
+  String get role_delivery_lead;
+
+  /// No description provided for @role_team_builder.
+  ///
+  /// In en, this message translates to:
+  /// **'Team Builder'**
+  String get role_team_builder;
+
+  /// No description provided for @role_coordinator_support.
+  ///
+  /// In en, this message translates to:
+  /// **'Coordinator & Support'**
+  String get role_coordinator_support;
+
+  /// No description provided for @role_developer.
+  ///
+  /// In en, this message translates to:
+  /// **'Developer'**
+  String get role_developer;
+
+  /// No description provided for @role_developer_techlead.
+  ///
+  /// In en, this message translates to:
+  /// **'Developer & Tech Lead'**
+  String get role_developer_techlead;
+
+  /// No description provided for @duration_months.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{N/A} =1{1 Month} other{{count} Months}}{text}'**
+  String duration_months(int count, String text);
+
+  /// No description provided for @duration_weeks.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{N/A} =1{1 Week} other{count Weeks}}{text}'**
+  String duration_weeks(int count, String text);
+
+  /// No description provided for @duration_quarter.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{N/A} =1{1 Quarter} other{{count} Quarters}}{text}'**
+  String duration_quarter(int count, String text);
+
+  /// No description provided for @work_dynamic_setup.
+  ///
+  /// In en, this message translates to:
+  /// **'Dynamic Setup'**
+  String get work_dynamic_setup;
+
+  /// No description provided for @work_hr_process.
+  ///
+  /// In en, this message translates to:
+  /// **'HR Process'**
+  String get work_hr_process;
+
+  /// No description provided for @work_nbc.
+  ///
+  /// In en, this message translates to:
+  /// **'NBC'**
+  String get work_nbc;
+
+  /// No description provided for @work_automated_testing.
+  ///
+  /// In en, this message translates to:
+  /// **'Automated Testing'**
+  String get work_automated_testing;
+
+  /// No description provided for @work_customer_campaign.
+  ///
+  /// In en, this message translates to:
+  /// **'Customers Campaign'**
+  String get work_customer_campaign;
+
+  /// No description provided for @work_security_hardening.
+  ///
+  /// In en, this message translates to:
+  /// **'Security Hardening'**
+  String get work_security_hardening;
+
+  /// No description provided for @work_ai_object_detection.
+  ///
+  /// In en, this message translates to:
+  /// **'Object Detection'**
+  String get work_ai_object_detection;
+
+  /// No description provided for @work_loan_implementation.
+  ///
+  /// In en, this message translates to:
+  /// **'Loan Implementation'**
+  String get work_loan_implementation;
+
+  /// No description provided for @work_development_support.
+  ///
+  /// In en, this message translates to:
+  /// **'Development & Support'**
+  String get work_development_support;
+
+  /// No description provided for @work_development.
+  ///
+  /// In en, this message translates to:
+  /// **'Development'**
+  String get work_development;
+
+  /// No description provided for @team_size.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{N/A} =1{1 Team} other{{count} Teams}}'**
+  String team_size(int count);
+
+  /// No description provided for @committee_size.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{N/A} =1{1 Committee} other{{count} Comittees}}'**
+  String committee_size(int count);
+
+  /// No description provided for @exp_bill.
+  ///
+  /// In en, this message translates to:
+  /// **'Multiple Bill Payments Integration and Configuration'**
+  String get exp_bill;
+
+  /// No description provided for @skill_bill.
+  ///
+  /// In en, this message translates to:
+  /// **'SDLC'**
+  String get skill_bill;
+
+  /// No description provided for @exp_build_team.
+  ///
+  /// In en, this message translates to:
+  /// **'Build an Autonomous High-Performing Team'**
+  String get exp_build_team;
+
+  /// No description provided for @skill_build_team.
+  ///
+  /// In en, this message translates to:
+  /// **'Candidate Selection and Interviewing Process'**
+  String get skill_build_team;
+
+  /// No description provided for @exp_khqr.
+  ///
+  /// In en, this message translates to:
+  /// **'KHQR Dual Currency and Open Banking'**
+  String get exp_khqr;
+
+  /// No description provided for @skill_khqr.
+  ///
+  /// In en, this message translates to:
+  /// **'Stress Testing, Vendor Management, NBC Requirements'**
+  String get skill_khqr;
+
+  /// No description provided for @exp_automate_testing.
+  ///
+  /// In en, this message translates to:
+  /// **'Build and Guide Katalon Automated Testing and Appium'**
+  String get exp_automate_testing;
+
+  /// No description provided for @skill_automate_testing.
+  ///
+  /// In en, this message translates to:
+  /// **'Test Cases Templates, Customized Input and Output, Test Data, Configuration'**
+  String get skill_automate_testing;
+
+  /// No description provided for @exp_universal_link.
+  ///
+  /// In en, this message translates to:
+  /// **'Universal Link AppsFlyer (Product Referral, Invite Friend, KHQR Payment)'**
+  String get exp_universal_link;
+
+  /// No description provided for @skill_universal_link.
+  ///
+  /// In en, this message translates to:
+  /// **'Keys and Configuration, SIT/UAT/STG'**
+  String get skill_universal_link;
+
+  /// No description provided for @exp_hardening.
+  ///
+  /// In en, this message translates to:
+  /// **'App Security Hardening (SSL Pinning, App Shield)'**
+  String get exp_hardening;
+
+  /// No description provided for @skill_hardening.
+  ///
+  /// In en, this message translates to:
+  /// **'TrustKit, Transporter, Firebase App Tester'**
+  String get skill_hardening;
+
+  /// No description provided for @exp_liveness.
+  ///
+  /// In en, this message translates to:
+  /// **'Liveness Quick Account (E-KYC)'**
+  String get exp_liveness;
+
+  /// No description provided for @skill_liveness.
+  ///
+  /// In en, this message translates to:
+  /// **'Google MLKit, FaceDetection, CreateML, Object Detection with CreateML, Tensorflow, CamDX'**
+  String get skill_liveness;
+
+  /// No description provided for @exp_loan_implementation.
+  ///
+  /// In en, this message translates to:
+  /// **'SME Loan Implementation (Angular, Flutter)'**
+  String get exp_loan_implementation;
+
+  /// No description provided for @skill_loan_implementation.
+  ///
+  /// In en, this message translates to:
+  /// **'Parallel and Async Computation, Data Compression, Loan Process'**
+  String get skill_loan_implementation;
+
+  /// No description provided for @exp_loan_releated.
+  ///
+  /// In en, this message translates to:
+  /// **'Loan and Related System Enhancements'**
+  String get exp_loan_releated;
+
+  /// No description provided for @skill_loan_related.
+  ///
+  /// In en, this message translates to:
+  /// **'UI/UX, BRD, Documentations'**
+  String get skill_loan_related;
+
+  /// No description provided for @exp_z1_zpoint.
+  ///
+  /// In en, this message translates to:
+  /// **'Z1 App and ZPoint (Real Estate iOS App)'**
+  String get exp_z1_zpoint;
+
+  /// No description provided for @skill_z1_zpoint.
+  ///
+  /// In en, this message translates to:
+  /// **'Real Estate Features, Frameworks and Libraries, Debugging, Project Structure, Source Code Control with Git, Teamwork'**
+  String get skill_z1_zpoint;
+
+  /// No description provided for @direct_report_size.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{N/A} =1{1 Direct Report} other{{count} Direct Reports}}'**
+  String direct_report_size(int count);
+
+  /// No description provided for @biller_size.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{N/A} =1{1 Biller} other{{count} Billers}}'**
+  String biller_size(int count);
+
+  /// No description provided for @page.
+  ///
+  /// In en, this message translates to:
+  /// **'Page'**
+  String get page;
 }
 
 class _AppLocalizationsDelegate

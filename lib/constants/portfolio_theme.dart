@@ -30,6 +30,9 @@ class PortfolioTheme extends ThemeExtension<PortfolioTheme> {
   TextStyle? get sideMenuTitleStyle => textStyle.copyWith(fontSize: 14);
   TextStyle? get sectionTitleStyle =>
       textStyle.copyWith(fontSize: 16).bold; // Skills and footer title style
+  TextStyle? get feedbackTitleStyle => textStyle.copyWith(fontSize: 36).bold;
+  TextStyle? get feedbackSubTitleStyle => textStyle.copyWith(fontSize: 16);
+  TextStyle? get feedbackInputStyle => feedbackSubTitleStyle;
 
   ButtonStyle get buttonStyle => IconButton.styleFrom(
     backgroundColor: buttonBgColor,
@@ -61,6 +64,7 @@ class PortfolioTheme extends ThemeExtension<PortfolioTheme> {
   final Color containerBgColor; // Professional summary color
   final Color dividerColor;
   final Color scaffoldBgColor;
+  final Color starColor = Color(0xFFF1B100);
 
   PortfolioTheme({
     required this.textStyle,

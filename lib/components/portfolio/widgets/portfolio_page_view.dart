@@ -4,178 +4,206 @@ import 'package:sengthaite_blog/components/portfolio/widgets/content_side_nav_vi
 import 'package:sengthaite_blog/constants/image.constants.dart';
 import 'package:sengthaite_blog/extensions/build_context_ext.dart';
 
-class PortfolioPageView extends StatelessWidget {
-  PortfolioPageView({super.key});
+extension on BuildContext {
+  double get svgSize => 900;
+  List<ContentPageData> get experienceData => [
+    ContentPageData(
+      roleTitle: l10n.title_mngr_mb,
+      description: l10n.mngr_desc,
+      skillLists: [
+        TitleWidget(title: l10n.role_delivery_lead, widget: Icons.groups),
+        TitleWidget(title: l10n.duration_weeks(3, ''), widget: Icons.timer),
+        TitleWidget(title: l10n.work_dynamic_setup, widget: Icons.web),
+        TitleWidget(
+          title: l10n.team_size(4),
+          widget: Icons.connect_without_contact,
+        ),
+      ],
+      experienceTitle: l10n.exp_bill,
+      trailingMetricTitle: "(${l10n.biller_size(20)})",
+      skills: l10n.skill_bill,
+      content: AssetIcons.billpayments.imageWithSize(width: svgSize),
+      platforms: ["Web Angular", "Excel Progress Tracking", "OneDrive"],
+    ),
+    ContentPageData(
+      roleTitle: l10n.title_mngr_mb,
+      description: l10n.mngr_desc,
+      skillLists: [
+        TitleWidget(title: l10n.role_team_builder, widget: Icons.groups),
+        TitleWidget(title: l10n.duration_quarter(2, ''), widget: Icons.timer),
+        TitleWidget(title: l10n.work_hr_process, widget: Icons.web),
+        TitleWidget(
+          title: l10n.committee_size(3),
+          widget: Icons.connect_without_contact,
+        ),
+      ],
+      experienceTitle: l10n.exp_build_team,
+      trailingMetricTitle: "(${l10n.direct_report_size(8)})",
+      skills: l10n.skill_build_team,
+      content: AssetIcons.candidateselection.imageWithSize(width: svgSize),
+      platforms: ["Web Angular", "Excel Progress Tracking", "OneDrive"],
+    ),
+    ContentPageData(
+      roleTitle: l10n.title_mngr_mb,
+      description: l10n.mngr_desc,
+      skillLists: [
+        TitleWidget(title: l10n.role_coordinator_support, widget: Icons.groups),
+        TitleWidget(title: l10n.duration_weeks(4, ''), widget: Icons.timer),
+        TitleWidget(title: l10n.work_nbc, widget: Icons.web),
+        TitleWidget(
+          title: l10n.team_size(3),
+          widget: Icons.connect_without_contact,
+        ),
+      ],
+      experienceTitle: l10n.exp_khqr,
+      skills: l10n.skill_khqr,
+      content: AssetIcons.khqrexperience.imageWithSize(width: svgSize),
+      platforms: ["Figma Design", "Bakong PG", "TestFlight", "Firebase"],
+    ),
+    ContentPageData(
+      roleTitle: l10n.title_mngr_mb,
+      description: l10n.mngr_desc,
+      skillLists: [
+        TitleWidget(title: l10n.role_developer_techlead, widget: Icons.groups),
+        TitleWidget(title: l10n.duration_months(2, ''), widget: Icons.timer),
+        TitleWidget(title: l10n.work_automated_testing, widget: Icons.web),
+        TitleWidget(
+          title: l10n.team_size(3),
+          widget: Icons.connect_without_contact,
+        ),
+      ],
+      experienceTitle: l10n.exp_automate_testing,
+      skills: l10n.skill_automate_testing,
+      content: AssetIcons.automatedtesting.imageWithSize(width: svgSize),
+      platforms: ["Katalon", "Java Groovy", "Excel Plugin"],
+    ),
+    ContentPageData(
+      roleTitle: l10n.title_mngr_mb,
+      description: l10n.mngr_desc,
+      skillLists: [
+        TitleWidget(title: l10n.role_coordinator_support, widget: Icons.groups),
+        TitleWidget(title: l10n.duration_weeks(1, ''), widget: Icons.timer),
+        TitleWidget(title: l10n.work_customer_campaign, widget: Icons.web),
+        TitleWidget(
+          title: l10n.team_size(3),
+          widget: Icons.connect_without_contact,
+        ),
+      ],
+      experienceTitle: l10n.exp_universal_link,
+      skills: l10n.skill_universal_link,
+      content: AssetIcons.universallink.imageWithSize(width: svgSize),
+      platforms: ["AppsFlyer Onelink", "Web Angular"],
+    ),
+    ContentPageData(
+      roleTitle: l10n.title_mngr_mb,
+      description: l10n.mngr_desc,
+      skillLists: [
+        TitleWidget(title: l10n.role_coordinator_support, widget: Icons.groups),
+        TitleWidget(title: l10n.duration_weeks(1, ''), widget: Icons.timer),
+        TitleWidget(title: l10n.work_security_hardening, widget: Icons.web),
+        TitleWidget(
+          title: l10n.team_size(3),
+          widget: Icons.connect_without_contact,
+        ),
+      ],
+      experienceTitle: l10n.exp_hardening,
+      skills: l10n.skill_hardening,
+      content: AssetIcons.securitysupport.imageWithSize(width: svgSize),
+      platforms: ["apksigning", "fastlane", "ironsec shield API"],
+    ),
+    ContentPageData(
+      roleTitle: l10n.title_mngr_mb,
+      description: l10n.mngr_desc,
+      skillLists: [
+        TitleWidget(title: l10n.role_developer, widget: Icons.groups),
+        TitleWidget(title: l10n.duration_months(1, ''), widget: Icons.timer),
+        TitleWidget(title: l10n.work_ai_object_detection, widget: Icons.web),
+        TitleWidget(
+          title: l10n.team_size(4),
+          widget: Icons.connect_without_contact,
+        ),
+      ],
+      experienceTitle: l10n.exp_liveness,
+      skills: l10n.skill_liveness,
+      content: AssetIcons.liveness.imageWithSize(width: svgSize),
+      platforms: ["GoogleMLKit", "CreateML", "Tensorflow"],
+    ),
+    ContentPageData(
+      roleTitle: l10n.title_sup_frontend,
+      description: l10n.sup_desc,
+      skillLists: [
+        TitleWidget(title: l10n.role_developer_techlead, widget: Icons.groups),
+        TitleWidget(title: l10n.duration_months(2, ''), widget: Icons.timer),
+        TitleWidget(title: l10n.work_loan_implementation, widget: Icons.web),
+        TitleWidget(
+          title: l10n.team_size(2),
+          widget: Icons.connect_without_contact,
+        ),
+      ],
+      experienceTitle: l10n.exp_loan_implementation,
+      skills: l10n.skill_loan_implementation,
+      content: AssetIcons.smeloan.imageWithSize(width: svgSize),
+      platforms: ["Figma", "Angular Web", "Flutter"],
+    ),
+    ContentPageData(
+      roleTitle: l10n.title_senior_frontend,
+      description: l10n.senior_desc,
+      skillLists: [
+        TitleWidget(title: l10n.role_developer, widget: Icons.groups),
+        TitleWidget(title: "N/A", widget: Icons.timer),
+        TitleWidget(title: l10n.work_development_support, widget: Icons.web),
+        TitleWidget(
+          title: l10n.team_size(2),
+          widget: Icons.connect_without_contact,
+        ),
+      ],
+      experienceTitle: l10n.exp_loan_releated,
+      skills: l10n.skill_loan_related,
+      content: AssetIcons.otherloanenhancements.imageWithSize(width: svgSize),
+      platforms: ["Figma", "Angular Web", "Flutter"],
+    ),
+    ContentPageData(
+      roleTitle: l10n.title_ios_dev,
+      description: l10n.ios_dev_desc,
+      skillLists: [
+        TitleWidget(title: l10n.role_developer, widget: Icons.groups),
+        TitleWidget(title: "N/A", widget: Icons.timer),
+        TitleWidget(title: l10n.work_development, widget: Icons.web),
+        TitleWidget(
+          title: l10n.team_size(2),
+          widget: Icons.connect_without_contact,
+        ),
+      ],
+      experienceTitle: l10n.exp_z1_zpoint,
+      skills: l10n.skill_z1_zpoint,
+      content: AssetIcons.z1.imageWithSize(width: svgSize),
+      platforms: ["iOS Swift UIKit", "XCode"],
+    ),
+  ];
+}
 
-  final double svgSize = 900;
+class PortfolioPageView extends StatefulWidget {
+  const PortfolioPageView({super.key});
 
+  @override
+  State<PortfolioPageView> createState() => _PortfolioPageViewState();
+}
+
+class _PortfolioPageViewState extends State<PortfolioPageView> {
   final PageController experiencePageController = PageController(
     initialPage: 0,
-    viewportFraction: 1,
+    viewportFraction: 0.95,
   );
 
   final PageController educationPageController = PageController(
     initialPage: 0,
-    viewportFraction: 1,
+    viewportFraction: 0.95,
   );
 
   final ValueNotifier<ContentSideSection> type = ValueNotifier(
     ContentSideSection.experience,
   );
 
-  List<ContentPageData> get experienceData => [
-    ContentPageData(
-      roleTitle: "Mngr. Mobile Banking Development",
-      description: "Oct 2024 - May 2026 | Amret MFI",
-      skillLists: [
-        TitleWidget(title: "Delivery Lead", widget: Icons.groups),
-        TitleWidget(title: "3 Weeks per Cycle", widget: Icons.timer),
-        TitleWidget(title: "Dynamic Setup", widget: Icons.web),
-        TitleWidget(title: "4 Teams", widget: Icons.connect_without_contact),
-      ],
-      experienceTitle: "Multiple Bill Payments Integration and Configuration",
-      trailingMetricTitle: "(20 Billers)",
-      skills: "SDLC",
-      content: AssetIcons.billpayments.imageWithSize(width: svgSize),
-      platforms: ["Web Angular", "Excel Progress Tracking", "OneDrive"],
-    ),
-    ContentPageData(
-      roleTitle: "Mngr. Mobile Banking Development",
-      description: "Oct 2024 - May 2026 | Amret MFI",
-      skillLists: [
-        TitleWidget(title: "Team Builder", widget: Icons.groups),
-        TitleWidget(title: "2 Quarters", widget: Icons.timer),
-        TitleWidget(title: "HR Process", widget: Icons.web),
-        TitleWidget(
-          title: "3 Committees",
-          widget: Icons.connect_without_contact,
-        ),
-      ],
-      experienceTitle: "Build an Autonomous High-Performing Team",
-      trailingMetricTitle: "(8 Direct Reports)",
-      skills: "Candidate Selection and Interviewing Process",
-      content: AssetIcons.candidateselection.imageWithSize(width: svgSize),
-      platforms: ["Web Angular", "Excel Progress Tracking", "OneDrive"],
-    ),
-    ContentPageData(
-      roleTitle: "Mngr. Mobile Banking Development",
-      description: "Oct 2024 - May 2026 | Amret MFI",
-      skillLists: [
-        TitleWidget(title: "Coordinator & Support", widget: Icons.groups),
-        TitleWidget(title: "4 Weeks", widget: Icons.timer),
-        TitleWidget(title: "NBC", widget: Icons.web),
-        TitleWidget(title: "3 Teams", widget: Icons.connect_without_contact),
-      ],
-      experienceTitle: "KHQR Dual Currency and Open Banking",
-      skills:
-          "SDLC, Tech Explanation, Stress Testing, Vendor Management, NBC Requirements",
-      content: AssetIcons.khqrexperience.imageWithSize(width: svgSize),
-      platforms: ["Figma Design", "Bakong PG", "TestFlight", "Firebase"],
-    ),
-    ContentPageData(
-      roleTitle: "Mngr. Mobile Banking Development",
-      description: "Oct 2024 - May 2026 | Amret MFI",
-      skillLists: [
-        TitleWidget(title: "Tech Lead & Support", widget: Icons.groups),
-        TitleWidget(title: "2 Months", widget: Icons.timer),
-        TitleWidget(title: "Automated Testing", widget: Icons.web),
-        TitleWidget(title: "3 Teams", widget: Icons.connect_without_contact),
-      ],
-      experienceTitle: "Build and Guide Katalon Automated Testing and Appium",
-      skills:
-          "Test Cases Templates, Customized Input and Output, Test Data, Configuration",
-      content: AssetIcons.automatedtesting.imageWithSize(width: svgSize),
-      platforms: ["Katalon", "Java Groovy", "Excel Plugin"],
-    ),
-    ContentPageData(
-      roleTitle: "Mngr. Mobile Banking Development",
-      description: "Oct 2024 - May 2026 | Amret MFI",
-      skillLists: [
-        TitleWidget(title: "Coordinator & Support", widget: Icons.groups),
-        TitleWidget(title: "1 Week", widget: Icons.timer),
-        TitleWidget(title: "Customers Campaign", widget: Icons.web),
-        TitleWidget(title: "3 Teams", widget: Icons.connect_without_contact),
-      ],
-      experienceTitle:
-          "Universal Link AppsFlyer (Product Referral, Invite Friend, KHQR Payment)",
-      skills: "Keys and Configuration, SIT/UAT/STG",
-      content: AssetIcons.universallink.imageWithSize(width: svgSize),
-      platforms: ["AppsFlyer Onelink", "Web Angular"],
-    ),
-    ContentPageData(
-      roleTitle: "Mngr. Mobile Banking Development",
-      description: "Oct 2024 - May 2026 | Amret MFI",
-      skillLists: [
-        TitleWidget(title: "Coordinator & Support", widget: Icons.groups),
-        TitleWidget(title: "1 Week", widget: Icons.timer),
-        TitleWidget(title: "Security Hardening", widget: Icons.web),
-        TitleWidget(title: "3 Teams", widget: Icons.connect_without_contact),
-      ],
-      experienceTitle: "App Security Hardening (SSL Pinning, App Shield)",
-      skills: "TrustKit, Transporter, Firebase App Tester",
-      content: AssetIcons.securitysupport.imageWithSize(width: svgSize),
-      platforms: ["apksigning", "fastlane", "ironsec shield API"],
-    ),
-    ContentPageData(
-      roleTitle: "Mngr. Mobile Banking Development",
-      description: "Oct 2024 - May 2026 | Amret MFI",
-      skillLists: [
-        TitleWidget(title: "Developer", widget: Icons.groups),
-        TitleWidget(title: "1 Month", widget: Icons.timer),
-        TitleWidget(title: "Object Detection", widget: Icons.web),
-        TitleWidget(title: "4 Teams", widget: Icons.connect_without_contact),
-      ],
-      experienceTitle: "Liveness Quick Account (E-KYC)",
-      skills:
-          "Google MLKit, FaceDetection, CreateML, Object Detection with CreateML, Tensorflow, CamDX",
-      content: AssetIcons.liveness.imageWithSize(width: svgSize),
-      platforms: ["GoogleMLKit", "CreateML", "Tensorflow"],
-    ),
-    ContentPageData(
-      roleTitle: "Supervisor Frontend Development",
-      description: "May 2024 - Oct 2026 | Amret MFI",
-      skillLists: [
-        TitleWidget(title: "Developer & Tech Lead", widget: Icons.groups),
-        TitleWidget(title: "2 Month", widget: Icons.timer),
-        TitleWidget(title: "Loan", widget: Icons.web),
-        TitleWidget(title: "2 Teams", widget: Icons.connect_without_contact),
-      ],
-      experienceTitle: "SME Loan Implementation (Angular, Flutter)",
-      skills:
-          "Flutter, Parallel and Async Computation, Data Compression, Loan Process",
-      content: AssetIcons.smeloan.imageWithSize(width: svgSize),
-      platforms: ["Figma", "Angular Web", "Flutter"],
-    ),
-    ContentPageData(
-      roleTitle: "Senior Frontend Development",
-      description: "Oct 2022 - May 2024 | Amret MFI",
-      skillLists: [
-        TitleWidget(title: "Developer", widget: Icons.groups),
-        TitleWidget(title: "N/A", widget: Icons.timer),
-        TitleWidget(title: "Development & Support", widget: Icons.web),
-        TitleWidget(title: "2 Teams", widget: Icons.connect_without_contact),
-      ],
-      experienceTitle: "Loan and Related System Enhancements",
-      skills: "UI/UX, BRD, Documentations",
-      content: AssetIcons.otherloanenhancements.imageWithSize(width: svgSize),
-      platforms: ["Figma", "Angular Web", "Flutter"],
-    ),
-    ContentPageData(
-      roleTitle: "iOS Developer",
-      description: "Jan 2020 - Oct 2022 | Z1 Flexible Solution",
-      skillLists: [
-        TitleWidget(title: "Developer", widget: Icons.groups),
-        TitleWidget(title: "N/A", widget: Icons.timer),
-        TitleWidget(title: "Development", widget: Icons.web),
-        TitleWidget(title: "2 Teams", widget: Icons.connect_without_contact),
-      ],
-      experienceTitle: "Z1 App and ZPoint",
-      skills:
-          "Real Estate Features, Frameworks and Libraries, Debugging, Project Structure, Source Code Control with Git, Teamwork",
-      content: AssetIcons.z1.imageWithSize(width: svgSize),
-      platforms: ["iOS Swift UIKit", "XCode"],
-    ),
-  ];
   final ValueNotifier<int> currentPageExperience = ValueNotifier(0);
 
   final List<Widget> educations = [
@@ -184,6 +212,7 @@ class PortfolioPageView extends StatelessWidget {
     AssetIcons.peermentor.image,
     AssetIcons.volunteeryvsd.image,
   ];
+
   final ValueNotifier<int> currentEducation = ValueNotifier(0);
 
   @override
@@ -191,7 +220,6 @@ class PortfolioPageView extends StatelessWidget {
     return Expanded(
       flex: 2,
       child: Container(
-        padding: EdgeInsets.all(12),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
           boxShadow: [
@@ -216,9 +244,9 @@ class PortfolioPageView extends StatelessWidget {
                   case ContentSideSection.experience:
                     return ExperiencePageView(
                       currentPageExperience: currentPageExperience,
-                      experienceData: experienceData,
+                      experienceData: context.experienceData,
                       pageController: experiencePageController,
-                      totalExperience: experienceData.length,
+                      totalExperience: context.experienceData.length,
                     );
                   case ContentSideSection.education:
                     return EducationView(
@@ -299,11 +327,25 @@ class ExperiencePageView extends StatelessWidget {
           ValueListenableBuilder(
             valueListenable: currentPageExperience,
             builder: (context, index, widget) {
-              return Align(
-                alignment: Alignment.centerRight,
-                child: Text(
-                  "${index + 1} / $totalExperience",
-                  style: context.pfTheme.textStyle,
+              return Padding(
+                padding: const EdgeInsets.only(bottom: 24, right: 24),
+                child: Align(
+                  alignment: Alignment.centerRight,
+                  child: Text.rich(
+                    TextSpan(
+                      children: [
+                        TextSpan(text: context.l10n.page),
+                        TextSpan(
+                          text: " ${index + 1}",
+                          style: context.pfTheme.textStyle.copyWith(
+                            color: context.colorScheme.primary,
+                          ),
+                        ),
+                        TextSpan(text: " / $totalExperience"),
+                      ],
+                    ),
+                    style: context.pfTheme.textStyle,
+                  ),
                 ),
               );
             },

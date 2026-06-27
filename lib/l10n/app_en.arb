@@ -68,5 +68,158 @@
       }
 
     }
-  }
+  },
+  "title_mngr_mb": "Mngr. Mobile Banking Development",
+  "@title_mngr_mb": {},
+  "mngr_desc":"Oct 2024 - May 2026 | Amret MFI",
+  "@mngr_desc": {},
+  "title_sup_frontend": "Supervisor Frontend Development",
+  "@title_sup_frontend": {},
+  "sup_desc": "May 2024 - Oct 2026 | Amret MFI",
+  "@sup_desc": {},
+  "title_senior_frontend": "Senior Frontend Development",
+  "@title_senior_frontend": {},
+  "senior_desc": "Oct 2022 - May 2024 | Amret MFI",
+  "@senior_desc": {},
+  "title_ios_dev": "iOS Developer",
+  "@title_ios_dev": {},
+  "ios_dev_desc": "Jan 2020 - Oct 2022 | Z1 Flexible Solution",
+  "@ios_dev_desc": {},
+  "role_delivery_lead": "Delivery Lead",
+  "@role_delivery_lead": {},
+  "role_team_builder": "Team Builder",
+  "@role_team_builder": {},
+  "role_coordinator_support": "Coordinator & Support",
+  "@role_coordinator_support": {},
+  "role_developer": "Developer",
+  "@role_developer": {},
+  "role_developer_techlead": "Developer & Tech Lead",
+  "@role_developer_techlead": {},
+  "duration_months": "{count, plural, =0{N/A} =1{1 Month} other{{count} Months}}{text}",
+  "@duration_months": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "text": {
+        "type": "String"
+      }
+    }
+  },
+  "duration_weeks": "{count, plural, =0{N/A} =1{1 Week} other{count Weeks}}{text}",
+  "@duration_weeks": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "text": {
+        "type": "String"
+      }
+    }
+  },
+  "duration_quarter": "{count, plural, =0{N/A} =1{1 Quarter} other{{count} Quarters}}{text}",
+  "@duration_quarter": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "text": {
+        "type": "String"
+      }
+    }
+  },
+  "work_dynamic_setup": "Dynamic Setup",
+  "@work_dynamic_setup": {},
+  "work_hr_process": "HR Process",
+  "@work_hr_process": {},
+  "work_nbc": "NBC",
+  "@work_nbc": {},
+  "work_automated_testing": "Automated Testing",
+  "@work_automated_testing": {},
+  "work_customer_campaign": "Customers Campaign",
+  "@work_customer_campaign": {},
+  "work_security_hardening": "Security Hardening",
+  "@work_security_hardening": {},
+  "work_ai_object_detection": "Object Detection",
+  "@work_ai_object_detection": {},
+  "work_loan_implementation": "Loan Implementation",
+  "@work_loan_implementation": {},
+  "work_development_support": "Development & Support",
+  "@work_development_support": {},
+  "work_development": "Development",
+  "@work_development": {},
+  "team_size": "{count, plural, =0{N/A} =1{1 Team} other{{count} Teams}}",
+  "@team_size": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "committee_size": "{count, plural, =0{N/A} =1{1 Committee} other{{count} Comittees}}",
+  "@committee_size": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "exp_bill": "Multiple Bill Payments Integration and Configuration",
+  "@exp_bill": {},
+  "skill_bill": "SDLC",
+  "@skill_bill": {},
+  "exp_build_team": "Build an Autonomous High-Performing Team",
+  "@exp_build_team": {},
+  "skill_build_team": "Candidate Selection and Interviewing Process",
+  "@skill_build_team": {},
+  "exp_khqr": "KHQR Dual Currency and Open Banking",
+  "@exp_khqr": {},
+  "skill_khqr": "Stress Testing, Vendor Management, NBC Requirements",
+  "@skill_khqr": {},
+  "exp_automate_testing": "Build and Guide Katalon Automated Testing and Appium",
+  "@exp_automate_testing": {},
+  "skill_automate_testing": "Test Cases Templates, Customized Input and Output, Test Data, Configuration",
+  "@skill_automate_testing": {},
+  "exp_universal_link": "Universal Link AppsFlyer (Product Referral, Invite Friend, KHQR Payment)",
+  "@exp_universal_link": {},
+  "skill_universal_link": "Keys and Configuration, SIT/UAT/STG",
+  "@skill_universal_link": {},
+  "exp_hardening": "App Security Hardening (SSL Pinning, App Shield)",
+  "@exp_hardening": {},
+  "skill_hardening": "TrustKit, Transporter, Firebase App Tester",
+  "@skill_hardening": {},
+  "exp_liveness": "Liveness Quick Account (E-KYC)",
+  "@exp_liveness": {},
+  "skill_liveness": "Google MLKit, FaceDetection, CreateML, Object Detection with CreateML, Tensorflow, CamDX",
+  "@skill_liveness": {},
+  "exp_loan_implementation": "SME Loan Implementation (Angular, Flutter)",
+  "@exp_loan_implementation": {},
+  "skill_loan_implementation": "Parallel and Async Computation, Data Compression, Loan Process",
+  "@skill_loan_implementation": {},
+  "exp_loan_releated": "Loan and Related System Enhancements",
+  "@exp_loan_releated": {},
+  "skill_loan_related": "UI/UX, BRD, Documentations",
+  "@skill_loan_related": {},
+  "exp_z1_zpoint": "Z1 App and ZPoint (Real Estate iOS App)",
+  "@exp_z1_zpoint": {},
+  "skill_z1_zpoint": "Real Estate Features, Frameworks and Libraries, Debugging, Project Structure, Source Code Control with Git, Teamwork",
+  "@skill_z1_zpoint": {},
+  "direct_report_size": "{count, plural, =0{N/A} =1{1 Direct Report} other{{count} Direct Reports}}",
+  "@direct_report_size": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "biller_size": "{count, plural, =0{N/A} =1{1 Biller} other{{count} Billers}}",
+  "@biller_size": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "page": "Page",
+  "@page": {}
 }

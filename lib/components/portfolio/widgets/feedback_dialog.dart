@@ -3,18 +3,16 @@ import 'package:sengthaite_blog/extensions/build_context_ext.dart';
 import 'package:sengthaite_blog/extensions/style_ext.dart';
 
 class FeedbackDialog extends StatelessWidget {
-  FeedbackDialog({super.key});
-
-  final Color starColor = Color(0xFFF1B100);
+  const FeedbackDialog({super.key});
 
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
       alignment: Alignment.center,
       title: Text(
-        "FEEDBACK",
+        context.l10n.feedback.toUpperCase(),
         textAlign: TextAlign.center,
-        style: context.pfTheme.menuTextStyle,
+        style: context.pfTheme.feedbackTitleStyle,
       ),
       content: SizedBox(
         width: 400,
@@ -24,20 +22,21 @@ class FeedbackDialog extends StatelessWidget {
           children: [
             Text(
               context.l10n.feedback_title,
-              style: context.textTheme.bodyLarge,
+              style: context.pfTheme.feedbackSubTitleStyle,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(Icons.star, color: starColor, size: 56),
-                Icon(Icons.star, color: starColor, size: 56),
-                Icon(Icons.star, color: starColor, size: 56),
-                Icon(Icons.star, color: starColor, size: 56),
+                Icon(Icons.star, color: context.pfTheme.starColor, size: 56),
+                Icon(Icons.star, color: context.pfTheme.starColor, size: 56),
+                Icon(Icons.star, color: context.pfTheme.starColor, size: 56),
+                Icon(Icons.star, color: context.pfTheme.starColor, size: 56),
                 Icon(Icons.star, size: 56),
               ],
             ),
             TextField(
               obscureText: true,
+              style: context.pfTheme.feedbackInputStyle,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
                 labelText: context.l10n.username_email,
@@ -45,6 +44,7 @@ class FeedbackDialog extends StatelessWidget {
             ),
             TextField(
               maxLines: 4,
+              style: context.pfTheme.feedbackInputStyle,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
                 labelText: context.l10n.comment,

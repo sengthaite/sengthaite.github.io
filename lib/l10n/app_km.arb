@@ -21,7 +21,7 @@
   },
   "empty_content": "មាតិកាទទេ",
   "@empty_content": {},
-  "platform_tools": "វេទិកា និងឧបករណ៍",
+  "platform_tools": "ប្រព័ន្ធបច្ចេកវិទ្យានិងឧបករណ៍",
   "@platform_tools": {},
   "experience": "បទពិសោធន៍",
   "@experience": {},
@@ -68,5 +68,158 @@
       }
 
     }
-  }
+  },
+  "title_mngr_mb": "អ្នកគ្រប់គ្រងការអភិវឌ្ឍន៍កម្មវិធីទូរស័ព្ទធនាគារ",
+  "@title_mngr_mb": {},
+  "mngr_desc":"តុលា 2024 - ឧសភា 2026 | អម្រឹត",
+  "@mngr_desc": {},
+  "title_sup_frontend": "អ្នកគ្រប់គ្រងកម្រិតទាបការអភិវឌ្ឍផ្នែកខាងមុខ",
+  "@title_sup_frontend": {},
+  "sup_desc": "ឧសភា 2024 - តុលា 2026 | អម្រឹត",
+  "@sup_desc": {},
+  "title_senior_frontend": "មន្ត្រីជាន់ខ្ពស់ការអភិវឌ្ឍផ្នែកខាងមុខ",
+  "@title_senior_frontend": {},
+  "senior_desc": "តុលា 2022 - ឧសភា 2024 | អម្រឹត",
+  "@senior_desc": {},
+  "title_ios_dev": "អ្នកអភិវឌ្ឍន៍ iOS",
+  "@title_ios_dev": {},
+  "ios_dev_desc": "មករា 2020 - តុលា 2022 | Z1 Flexible Solution",
+  "@ios_dev_desc": {},
+  "role_delivery_lead": "អ្នកដឹកនាំលទ្ធផលការងារ",
+  "@role_delivery_lead": {},
+  "role_team_builder": "អ្នកកសាងក្រុម",
+  "@role_team_builder": {},
+  "role_coordinator_support": "អ្នកសម្របសម្រួលនិងជំនួយ",
+  "@role_coordinator_support": {},
+  "role_developer": "អ្នកអភិវឌ្ឍន៍",
+  "@role_developer": {},
+  "role_developer_techlead": "អ្នកអភិវឌ្ឍន៍និងអ្នកដឹកនាំបច្ចេកវិទ្យា",
+  "@role_developer_techlead": {},
+  "duration_months": "{count, plural, =0{N/A} =1{1 ខែ} other{{count} ខែ}}{text}",
+  "@duration_months": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "text": {
+        "type": "String"
+      }
+    }
+  },
+  "duration_weeks": "{count, plural, =0{N/A} =1{1 សប្តាហ៍} other{{count} សប្តាហ៍}}{text}",
+  "@duration_weeks": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "text": {
+        "type": "String"
+      }
+    }
+  },
+  "duration_quarter": "{count, plural, =0{N/A} =1{1 ត្រីមាស} other{{count} ត្រីមាស}}{text}",
+  "@duration_quarter": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "text": {
+        "type": "String"
+      }
+    }
+  },
+  "work_dynamic_setup": "បង្កើតលក្ខណៈថាមវន្ត",
+  "@work_dynamic_setup": {},
+  "work_hr_process": "ដំណើរការធនធានមនុស្ស",
+  "@work_hr_process": {},
+  "work_nbc": "ធនាគារជាតិនៃកម្ពុជា",
+  "@work_nbc": {},
+  "work_automated_testing": "ការធ្វើតេស្តស្វ័យប្រវត្តិ",
+  "@work_automated_testing": {},
+  "work_customer_campaign": "យុទ្ធនាការរកអតិថិជន",
+  "@work_customer_campaign": {},
+  "work_security_hardening": "ការពង្រឹងសុវត្ថិភាព",
+  "@work_security_hardening": {},
+  "work_ai_object_detection": "រកវត្ថុតាមបច្ចេកវិទ្យា",
+  "@work_ai_object_detection": {},
+  "work_loan_implementation": "ការអភិវឌ្ឍន៍កម្មវិធីកម្ចី",
+  "@work_loan_implementation": {},
+  "work_development_support": "ការអភិវឌ្ឍន៍និងការគាំទ្រ",
+  "@work_development_support": {},
+  "work_development": "ការអភិវឌ្ឍន៍",
+  "@work_development": {},
+  "team_size": "{count, plural, =0{N/A} =1{1 ក្រុម} other{{count} ក្រុម}}",
+  "@team_size": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "committee_size": "{count, plural, =0{N/A} =1{1 គណៈកម្មាធិការ} other{{count} គណៈកម្មាធិការ}}",
+  "@committee_size": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+   "exp_bill": "ការរួមបញ្ចូលនិងការកំណត់រចនាសម្ព័ន្ធការទូទាត់វិក្កយបត្រច្រើន",
+  "@exp_bill": {},
+  "skill_bill": "វដ្តនៃការអភិវឌ្ឍន៍កម្មវិធី",
+  "@skill_bill": {},
+  "exp_build_team": "បង្កើត​ក្រុម​ដែល​មាន​សមត្ថភាព​ខ្ពស់​ស្វយ័ត",
+  "@exp_build_team": {},
+  "skill_build_team": "ដំណើរការជ្រើសរើសបេក្ខជននិងសម្ភាសន៍",
+  "@skill_build_team": {},
+  "exp_khqr": "រូបិយប័ណ្ណពីរ KHQR និងOpen Banking",
+  "@exp_khqr": {},
+  "skill_khqr": "ការធ្វើតេស្តស៊ីជម្រៅ, vendor, NBC",
+  "@skill_khqr": {},
+  "exp_automate_testing": "បង្កើតនិងណែនាំការធ្វើតេស្តស្វ័យប្រវត្តិប្រើ Katalon និង Appium",
+  "@exp_automate_testing": {},
+  "skill_automate_testing": "ទំរង់ឯកសារតេស្ត៍, ការបញ្ចូលទិន្នន័យតេស្ត៍ និងលទ្ធផល, ការបញ្ចូលទិន្នន័យគន្លឹះ",
+  "@skill_automate_testing": {},
+  "exp_universal_link": "Universal Link AppsFlyer (ការណែនាំផលិតផល, អញ្ជើញមិត្ត, ការទូទាត់តាម KHQR)",
+  "@exp_universal_link": {},
+  "skill_universal_link": "ការរៀបចំគន្លឹះនិងទិន្នន័យសំខាន់ៗក្នុងប្រព័ន្ធ, SIT/UAT/STG",
+  "@skill_universal_link": {},
+  "exp_hardening": "ការពង្រឹងសុវត្ថិភាពកម្មវិធី (SSL Pinning, App Shield)",
+  "@exp_hardening": {},
+  "skill_hardening": "TrustKit, Transporter, Firebase App Tester",
+  "@skill_hardening": {},
+  "exp_liveness": "Liveness Quick Account (E-KYC)",
+  "@exp_liveness": {},
+  "skill_liveness": "Google MLKit, FaceDetection, CreateML, Object Detection with CreateML, Tensorflow, CamDX",
+  "@skill_liveness": {},
+  "exp_loan_implementation": "អភិវឌ្ឈការអនុវត្តប្រាក់កម្ចី SME",
+  "@exp_loan_implementation": {},
+  "skill_loan_implementation": "ការគណនាប៉ារ៉ាឡែលនិងអសមកាល, ការបង្ហាប់ទិន្នន័យ, ដំណើរការកម្ចី",
+  "@skill_loan_implementation": {},
+  "exp_loan_releated": "ការផ្តល់ប្រាក់កម្ចី និងការលើកកម្ពស់ប្រព័ន្ធពាក់ព័ន្ធ",
+  "@exp_loan_releated": {},
+  "skill_loan_related": "UI/UX, តម្រូវការអាជីវកម្ម, ឯកសារ",
+  "@skill_loan_related": {},
+  "exp_z1_zpoint": "Z1 App and ZPoint (iOS App សម្រាប់អចលនទ្រព្យ)",
+  "@exp_z1_zpoint": {},
+  "skill_z1_zpoint": "លក្ខណៈពិសេសអចលនទ្រព្យ, Framework and Libraries, ស្វែងរកកំហុសបច្ចេកទេស, រចនាសម្ព័ន្ធគម្រោង, ការគ្រប់គ្រងកូដប្រភពជាមួយ Git, ការងារជាក្រុម",
+  "@skill_z1_zpoint": {},
+  "direct_report_size": "{count, plural, =0{N/A} =1{កូនក្រុម 1} other{កូនក្រុម {count}}}",
+  "@direct_report_size": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "biller_size": "{count, plural, =0{N/A} =1{1 ក្រុមហ៊ុន (Biller)} other{{count} ក្រុមហ៊ុន (Billers)}}",
+  "@biller_size": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "page": "ទំព័រ",
+  "@page": {}
 }

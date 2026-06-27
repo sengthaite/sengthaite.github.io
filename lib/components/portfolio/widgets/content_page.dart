@@ -33,7 +33,10 @@ class ContentPageData {
   });
 
   Widget pageContentView() {
-    return PageContentView(data: this);
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: PageContentView(data: this),
+    );
   }
 }
 
@@ -70,7 +73,6 @@ class _ContentPageState extends State<ContentPage> {
     if (widget.data.isEmpty) {
       return Center(child: Text(context.l10n.empty_content, style: textStyle));
     }
-
     return PageView(
       controller: widget.controller,
       allowImplicitScrolling: false,
@@ -142,13 +144,13 @@ class ExperienceWidget extends StatelessWidget {
                   spacing: 5,
                   children: data.skillLists.map((e) {
                     return Container(
-                      width: 130,
+                      width: 170,
                       decoration: BoxDecoration(
                         border: context.pfTheme.border,
                         color: context.pfTheme.buttonBgColor,
-                        borderRadius: BorderRadius.circular(24),
+                        borderRadius: BorderRadius.circular(64),
                       ),
-                      padding: EdgeInsets.fromLTRB(5, 5, 10, 5),
+                      padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         spacing: 6,
@@ -215,7 +217,10 @@ class ExperienceWidget extends StatelessWidget {
                           Row(
                             spacing: 8,
                             children: [
-                              Icon(Icons.vpn_key, color: Color(0xFFD40004)),
+                              Icon(
+                                Icons.vpn_key,
+                                color: context.pfTheme.buttonSelectedBgColor,
+                              ),
                               Text(
                                 data.skills,
                                 style: context.pfTheme.skillsTextStyle,
@@ -249,7 +254,7 @@ class ExperienceWidget extends StatelessWidget {
                                 color: context.pfTheme.buttonFgColor,
                               ),
                               Text(
-                                "Platform & Tools",
+                                context.l10n.platform_tools,
                                 style: context.pfTheme.sectionTitleStyle,
                               ),
                             ],
@@ -264,7 +269,7 @@ class ExperienceWidget extends StatelessWidget {
                                 ),
                                 decoration: BoxDecoration(
                                   border: context.pfTheme.border,
-                                  borderRadius: BorderRadius.circular(12),
+                                  borderRadius: BorderRadius.circular(24),
                                 ),
                                 child: Text(
                                   e,

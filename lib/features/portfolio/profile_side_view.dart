@@ -93,19 +93,19 @@ class ProfileSideView extends ProfileSideViewConstants {
                 ),
               ),
               IconButton.filled(
-                padding: EdgeInsets.all(4),
+                padding: EdgeInsets.all(12),
                 onPressed: () => openLink(_profile.contacts["linkedIn"]),
                 style: context.pfTheme.buttonStyle,
                 icon: AssetIcons.linkedin.imageWithSize(width: 30),
               ),
               IconButton.filled(
-                padding: EdgeInsets.all(4),
+                padding: EdgeInsets.all(12),
                 onPressed: () => openLink(_profile.contacts["github"]),
                 style: context.pfTheme.buttonStyle,
                 icon: AssetIcons.githubpf.imageWithSize(width: 30),
               ),
               IconButton.filled(
-                padding: EdgeInsets.all(4),
+                padding: EdgeInsets.all(12),
                 onPressed: () => openLink(_profile.contacts["telegram"]),
                 style: context.pfTheme.buttonStyle,
                 icon: AssetIcons.telegram.imageWithStyle(
