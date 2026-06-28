@@ -20,4 +20,6 @@ extension BuildContextExt on BuildContext {
   ScaffoldMessengerState get messenger => ScaffoldMessenger.of(this);
 
   AppSettings get appSettings => AppData().appSettings!;
+
+  Locale get currentLocale => Localizations.localeOf(this);
 }

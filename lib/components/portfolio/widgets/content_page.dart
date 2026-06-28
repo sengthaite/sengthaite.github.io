@@ -139,7 +139,7 @@ class ExperienceWidget extends StatelessWidget {
             SizedBox(
               width: sideSkillWidth,
               child: Container(
-                padding: EdgeInsets.only(top: 12),
+                padding: EdgeInsets.only(top: 12, right: 8),
                 child: Column(
                   spacing: 5,
                   children: data.skillLists.map((e) {

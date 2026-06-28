@@ -150,7 +150,7 @@ class AppLocalizationsEn extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'count Weeks',
+      other: '$count Weeks',
       one: '1 Week',
       zero: 'N/A',
     );

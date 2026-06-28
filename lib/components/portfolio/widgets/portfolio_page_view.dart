@@ -4,6 +4,36 @@ import 'package:sengthaite_blog/components/portfolio/widgets/content_side_nav_vi
 import 'package:sengthaite_blog/constants/image.constants.dart';
 import 'package:sengthaite_blog/extensions/build_context_ext.dart';
 
+extension on Locale {
+  AssetIcons get billPayments => languageCode == 'en'
+      ? AssetIcons.billpayments
+      : AssetIcons.billpaymentskh;
+  AssetIcons get candidateSelection => languageCode == 'en'
+      ? AssetIcons.candidateselection
+      : AssetIcons.candidateselectionkh;
+  AssetIcons get khqrExperience => languageCode == 'en'
+      ? AssetIcons.khqrexperience
+      : AssetIcons.khqrexperiencekh;
+  AssetIcons get automatedTesting => languageCode == 'en'
+      ? AssetIcons.automatedtesting
+      : AssetIcons.automatedtestingkh;
+  AssetIcons get universalLink => languageCode == 'en'
+      ? AssetIcons.universallink
+      : AssetIcons.universallinkkh;
+  AssetIcons get securitySupport => languageCode == 'en'
+      ? AssetIcons.securitysupport
+      : AssetIcons.securitysupportkh;
+  AssetIcons get liveness =>
+      languageCode == 'en' ? AssetIcons.liveness : AssetIcons.livenesskh;
+  AssetIcons get loanImplementation =>
+      languageCode == 'en' ? AssetIcons.smeloan : AssetIcons.smeloankh;
+  AssetIcons get loanRelated => languageCode == 'en'
+      ? AssetIcons.otherloanenhancements
+      : AssetIcons.otherloanenhancementskh;
+  AssetIcons get iosDevZ1 =>
+      languageCode == 'en' ? AssetIcons.z1 : AssetIcons.z1kh;
+}
+
 extension on BuildContext {
   double get svgSize => 900;
   List<ContentPageData> get experienceData => [
@@ -22,7 +52,7 @@ extension on BuildContext {
       experienceTitle: l10n.exp_bill,
       trailingMetricTitle: "(${l10n.biller_size(20)})",
       skills: l10n.skill_bill,
-      content: AssetIcons.billpayments.imageWithSize(width: svgSize),
+      content: currentLocale.billPayments.imageWithSize(width: svgSize),
       platforms: ["Web Angular", "Excel Progress Tracking", "OneDrive"],
     ),
     ContentPageData(
@@ -40,7 +70,7 @@ extension on BuildContext {
       experienceTitle: l10n.exp_build_team,
       trailingMetricTitle: "(${l10n.direct_report_size(8)})",
       skills: l10n.skill_build_team,
-      content: AssetIcons.candidateselection.imageWithSize(width: svgSize),
+      content: currentLocale.candidateSelection.imageWithSize(width: svgSize),
       platforms: ["Web Angular", "Excel Progress Tracking", "OneDrive"],
     ),
     ContentPageData(
@@ -57,7 +87,7 @@ extension on BuildContext {
       ],
       experienceTitle: l10n.exp_khqr,
       skills: l10n.skill_khqr,
-      content: AssetIcons.khqrexperience.imageWithSize(width: svgSize),
+      content: currentLocale.khqrExperience.imageWithSize(width: svgSize),
       platforms: ["Figma Design", "Bakong PG", "TestFlight", "Firebase"],
     ),
     ContentPageData(
@@ -74,7 +104,7 @@ extension on BuildContext {
       ],
       experienceTitle: l10n.exp_automate_testing,
       skills: l10n.skill_automate_testing,
-      content: AssetIcons.automatedtesting.imageWithSize(width: svgSize),
+      content: currentLocale.automatedTesting.imageWithSize(width: svgSize),
       platforms: ["Katalon", "Java Groovy", "Excel Plugin"],
     ),
     ContentPageData(
@@ -91,7 +121,7 @@ extension on BuildContext {
       ],
       experienceTitle: l10n.exp_universal_link,
       skills: l10n.skill_universal_link,
-      content: AssetIcons.universallink.imageWithSize(width: svgSize),
+      content: currentLocale.universalLink.imageWithSize(width: svgSize),
       platforms: ["AppsFlyer Onelink", "Web Angular"],
     ),
     ContentPageData(
@@ -108,7 +138,7 @@ extension on BuildContext {
       ],
       experienceTitle: l10n.exp_hardening,
       skills: l10n.skill_hardening,
-      content: AssetIcons.securitysupport.imageWithSize(width: svgSize),
+      content: currentLocale.securitySupport.imageWithSize(width: svgSize),
       platforms: ["apksigning", "fastlane", "ironsec shield API"],
     ),
     ContentPageData(
@@ -125,7 +155,7 @@ extension on BuildContext {
       ],
       experienceTitle: l10n.exp_liveness,
       skills: l10n.skill_liveness,
-      content: AssetIcons.liveness.imageWithSize(width: svgSize),
+      content: currentLocale.liveness.imageWithSize(width: svgSize),
       platforms: ["GoogleMLKit", "CreateML", "Tensorflow"],
     ),
     ContentPageData(
@@ -142,7 +172,7 @@ extension on BuildContext {
       ],
       experienceTitle: l10n.exp_loan_implementation,
       skills: l10n.skill_loan_implementation,
-      content: AssetIcons.smeloan.imageWithSize(width: svgSize),
+      content: currentLocale.loanImplementation.imageWithSize(width: svgSize),
       platforms: ["Figma", "Angular Web", "Flutter"],
     ),
     ContentPageData(
@@ -159,7 +189,7 @@ extension on BuildContext {
       ],
       experienceTitle: l10n.exp_loan_releated,
       skills: l10n.skill_loan_related,
-      content: AssetIcons.otherloanenhancements.imageWithSize(width: svgSize),
+      content: currentLocale.loanRelated.imageWithSize(width: svgSize),
       platforms: ["Figma", "Angular Web", "Flutter"],
     ),
     ContentPageData(
@@ -176,7 +206,7 @@ extension on BuildContext {
       ],
       experienceTitle: l10n.exp_z1_zpoint,
       skills: l10n.skill_z1_zpoint,
-      content: AssetIcons.z1.imageWithSize(width: svgSize),
+      content: currentLocale.iosDevZ1.imageWithSize(width: svgSize),
       platforms: ["iOS Swift UIKit", "XCode"],
     ),
   ];

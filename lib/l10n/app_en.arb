@@ -106,7 +106,7 @@
       }
     }
   },
-  "duration_weeks": "{count, plural, =0{N/A} =1{1 Week} other{count Weeks}}{text}",
+  "duration_weeks": "{count, plural, =0{N/A} =1{1 Week} other{{count} Weeks}}{text}",
   "@duration_weeks": {
     "placeholders": {
       "count": {

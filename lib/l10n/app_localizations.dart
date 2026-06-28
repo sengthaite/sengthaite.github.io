@@ -347,7 +347,7 @@ abstract class AppLocalizations {
   /// No description provided for @duration_weeks.
   ///
   /// In en, this message translates to:
-  /// **'{count, plural, =0{N/A} =1{1 Week} other{count Weeks}}{text}'**
+  /// **'{count, plural, =0{N/A} =1{1 Week} other{{count} Weeks}}{text}'**
   String duration_weeks(int count, String text);
 
   /// No description provided for @duration_quarter.
