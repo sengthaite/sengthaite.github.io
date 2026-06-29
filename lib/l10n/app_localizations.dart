@@ -565,6 +565,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Page'**
   String get page;
+
+  /// No description provided for @author.
+  ///
+  /// In en, this message translates to:
+  /// **'Te Sengthai'**
+  String get author;
+
+  /// No description provided for @leadership_style.
+  ///
+  /// In en, this message translates to:
+  /// **'Transformational, Visionary, Laissez-Faire, Servant, Pacesetting'**
+  String get leadership_style;
+
+  /// No description provided for @prof_summary.
+  ///
+  /// In en, this message translates to:
+  /// **'With nearly <b>6 years of experience</b> in a dynamic Fintech company, I bring 3 core values: <b>adaptability</b> in agile environments through cross-functional communication, proactive <b>collaboration</b> driving team success via initiative and innovative problem-solving, and <b>continuous growth</b> aligned with organizational vision for sustained impact.'**
+  String get prof_summary;
 }
 
 class _AppLocalizationsDelegate

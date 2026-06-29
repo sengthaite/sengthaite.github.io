@@ -263,6 +263,7 @@ class _PortfolioPageViewState extends State<PortfolioPageView> {
           ],
         ),
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             ContentSideNav(
               onSelected: (newSelectionType) => type.value = newSelectionType,

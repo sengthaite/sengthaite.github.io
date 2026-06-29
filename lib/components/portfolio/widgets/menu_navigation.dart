@@ -54,7 +54,6 @@ class _MenuNavigationState extends State<MenuNavigation> {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisSize: MainAxisSize.min,
       spacing: 10,
       children: [
         MenuButton(

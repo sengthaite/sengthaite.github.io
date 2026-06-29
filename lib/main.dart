@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:device_preview/device_preview.dart';
 // import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
@@ -14,7 +16,12 @@ void main() async {
   var hivePath = '.hive_data';
   if (!kIsWeb) {
     var directory = await getApplicationCacheDirectory();
-    hivePath = "${directory.path}/.hive_data";
+    var hiveDir = Directory("${directory.path}/.hive_data");
+    if (!await hiveDir.exists()) {
+      await hiveDir.create(recursive: true);
+    }
+
+    hivePath = hiveDir.path;
   }
   Hive.init(hivePath);
   await AppData().initAppData();

@@ -5,24 +5,14 @@ import 'package:sengthaite_blog/extensions/style_ext.dart';
 import 'package:sengthaite_blog/helper/common.dart';
 import 'package:styled_text/styled_text.dart';
 
-var _profile = (
-  name: "Te Sengthai",
-  leadershipStyle:
-      "Transformational, Visionary, Laissez-Faire, Servant, Pacesetting",
-  whoami:
-      "With nearly <b>6 years of experience</b> in a dynamic Fintech company, I bring 3 core values: <b>adaptability</b> in agile environments through cross-functional communication, proactive <b>collaboration</b> driving team success via initiative and innovative problem-solving, and <b>continuous growth</b> aligned with organizational vision for sustained impact.",
-  phone: "+855 88 397 9644",
-  contacts: {
-    "linkedIn": "https://www.linkedin.com/in/te-sengthai-29b661191/",
-    "github": "https://github.com/sengthaite",
-    "telegram": "https://t.me/sengthaite",
-    "email": "sengthaite@gmail.com",
-  },
-);
-
 sealed class ProfileSideViewConstants extends StatelessWidget {
   final double professionalSummaryMaxWidth = 600;
   final iconTextPadding = EdgeInsets.fromLTRB(20, 13, 35, 13);
+  final String linkedIn = "https://www.linkedin.com/in/te-sengthai-29b661191/";
+  final String github = "https://github.com/sengthaite";
+  final String telegram = "https://t.me/sengthaite";
+  final String email = "sengthaite@gmail.com";
+  final String phone = "+855 88 397 9644";
   ProfileSideViewConstants({super.key});
 }
 
@@ -40,10 +30,10 @@ class ProfileSideView extends ProfileSideViewConstants {
         children: [
           ClipOval(child: AssetIcons.imageprof.imageWithSize(width: 350)),
           SizedBox(height: 27),
-          Text(_profile.name, style: context.pfTheme.roleTitleTextStyle),
+          Text(context.l10n.author, style: context.pfTheme.roleTitleTextStyle),
           SizedBox(height: 8),
           Text(
-            _profile.leadershipStyle,
+            context.l10n.leadership_style,
             style: context.pfTheme.roleDetailTextStyle,
           ),
           SizedBox(height: 30),
@@ -56,7 +46,7 @@ class ProfileSideView extends ProfileSideViewConstants {
             ),
             child: StyledText(
               style: textStyle,
-              text: _profile.whoami,
+              text: context.l10n.prof_summary,
               tags: {'b': StyledTextTag(style: textStyle.bold)},
             ),
           ),
@@ -87,26 +77,26 @@ class ProfileSideView extends ProfileSideViewConstants {
                         size: Size(30, 30),
                         color: Color(0xFF00830F),
                       ),
-                      Text(_profile.phone, style: context.pfTheme.textStyle),
+                      Text(phone, style: context.pfTheme.textStyle),
                     ],
                   ),
                 ),
               ),
               IconButton.filled(
                 padding: EdgeInsets.all(12),
-                onPressed: () => openLink(_profile.contacts["linkedIn"]),
+                onPressed: () => openLink(linkedIn),
                 style: context.pfTheme.buttonStyle,
                 icon: AssetIcons.linkedin.imageWithSize(width: 30),
               ),
               IconButton.filled(
                 padding: EdgeInsets.all(12),
-                onPressed: () => openLink(_profile.contacts["github"]),
+                onPressed: () => openLink(github),
                 style: context.pfTheme.buttonStyle,
                 icon: AssetIcons.githubpf.imageWithSize(width: 30),
               ),
               IconButton.filled(
                 padding: EdgeInsets.all(12),
-                onPressed: () => openLink(_profile.contacts["telegram"]),
+                onPressed: () => openLink(telegram),
                 style: context.pfTheme.buttonStyle,
                 icon: AssetIcons.telegram.imageWithStyle(
                   size: Size(30, 30),
@@ -122,10 +112,7 @@ class ProfileSideView extends ProfileSideViewConstants {
                   spacing: 8,
                   children: [
                     AssetIcons.gmail.imageWithStyle(size: Size(30, 30)),
-                    Text(
-                      _profile.contacts["email"] ?? '-',
-                      style: context.pfTheme.textStyle,
-                    ),
+                    Text(email, style: context.pfTheme.textStyle),
                   ],
                 ),
               ),

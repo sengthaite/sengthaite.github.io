@@ -221,5 +221,11 @@
     }
   },
   "page": "Page",
-  "@page": {}
+  "@page": {},
+  "author": "Te Sengthai",
+  "@author": {},
+  "leadership_style": "Transformational, Visionary, Laissez-Faire, Servant, Pacesetting",
+  "@leadership_style": {},
+  "prof_summary": "With nearly <b>6 years of experience</b> in a dynamic Fintech company, I bring 3 core values: <b>adaptability</b> in agile environments through cross-functional communication, proactive <b>collaboration</b> driving team success via initiative and innovative problem-solving, and <b>continuous growth</b> aligned with organizational vision for sustained impact.",
+  "@prof_summary": {}
 }

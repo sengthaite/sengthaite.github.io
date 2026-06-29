@@ -318,4 +318,15 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get page => 'Page';
+
+  @override
+  String get author => 'Te Sengthai';
+
+  @override
+  String get leadership_style =>
+      'Transformational, Visionary, Laissez-Faire, Servant, Pacesetting';
+
+  @override
+  String get prof_summary =>
+      'With nearly <b>6 years of experience</b> in a dynamic Fintech company, I bring 3 core values: <b>adaptability</b> in agile environments through cross-functional communication, proactive <b>collaboration</b> driving team success via initiative and innovative problem-solving, and <b>continuous growth</b> aligned with organizational vision for sustained impact.';
 }
