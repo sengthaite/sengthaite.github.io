@@ -65,24 +65,6 @@ class StickyHeaderDelegate extends SliverPersistentHeaderDelegate {
   }
 }
 
-class _StickyHeaderDelegate extends SliverPersistentHeaderDelegate {
-  final Widget child;
-  _StickyHeaderDelegate({required this.child});
-
-  @override
-  double get minExtent => 60.0; // Pinned height
-  @override
-  double get maxExtent => 60.0; // Expanded height
-
-  @override
-  Widget build(BuildContext context, double shrinkOffset, bool overlaps) {
-    return SizedBox.expand(child: child);
-  }
-
-  @override
-  bool shouldRebuild(covariant _StickyHeaderDelegate old) => false;
-}
-
 class PortraitPortfolioView extends StatelessWidget {
   PortraitPortfolioView({super.key});
 
@@ -99,45 +81,6 @@ class PortraitPortfolioView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // return Scaffold(
-    //   body: CustomScrollView(
-    //     slivers: <Widget>[
-    //       // 1. Content above the sticky widget (optional)
-    //       SliverToBoxAdapter(
-    //         child: Container(
-    //           color: Colors.blueAccent,
-    //           height: 200,
-    //           child: const Center(
-    //             child: Text(
-    //               'Scroll Down to See the Sticky Widget',
-    //               style: TextStyle(color: Colors.white, fontSize: 18),
-    //             ),
-    //           ),
-    //         ),
-    //       ),
-
-    //       // 2. The Sticky Widget
-    //       const SliverAppBar(
-    //         pinned: true, // This forces the widget to stick to the top
-    //         floating: false,
-    //         backgroundColor: Colors.teal,
-    //         automaticallyImplyLeading: false,
-    //         title: Text('I am Sticky!'),
-    //         elevation: 4,
-    //       ),
-    //       SliverToBoxAdapter(child: Container(color: Colors.red, height: 900)),
-    //       // 3. Content below the sticky widget
-    //       // SliverList(
-    //       //   delegate: SliverChildBuilderDelegate(
-    //       //     (BuildContext context, int index) {
-    //       //       return ListTile(title: Text('List Item #$index'));
-    //       //     },
-    //       //     childCount: 30, // Large list to allow long scrolling
-    //       //   ),
-    //       // ),
-    //     ],
-    //   ),
-    // );
     return SafeArea(
       child: Stack(
         fit: StackFit.expand,
