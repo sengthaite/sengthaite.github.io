@@ -9,7 +9,9 @@ import 'package:sengthaite_blog/extensions/build_context_ext.dart';
 import 'package:sengthaite_blog/shared/app.data.dart';
 
 class MenuNavigation extends StatefulWidget {
-  const MenuNavigation({super.key});
+  const MenuNavigation({super.key, this.overlayDirection});
+
+  final OverlayDirection? overlayDirection;
 
   @override
   State<MenuNavigation> createState() => _MenuNavigationState();
@@ -55,6 +57,7 @@ class _MenuNavigationState extends State<MenuNavigation> {
   Widget build(BuildContext context) {
     return Row(
       spacing: 10,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         MenuButton(
           text: context.l10n.home.toUpperCase(),
@@ -87,6 +90,7 @@ class _MenuNavigationState extends State<MenuNavigation> {
         OverlayPopUpDropdown(
           controller: controller,
           onTapOutside: _resetMenuButtonSelection,
+          direction: widget.overlayDirection,
           menuButton: MenuButton(
             text: context.l10n.settings.toUpperCase(),
             onPressed: _togglePopUp,

@@ -105,7 +105,7 @@ class TabBarLayoutToolView extends TabBarLayoutView {
           defaultWidget: TextEditorToolDesktop(
             initQuillController: initQuillController,
           ),
-          mobileWidget: TextEditorToolMobile(
+          portraitWidget: TextEditorToolMobile(
             initQuillController: initQuillController,
           ),
         ),
@@ -162,7 +162,7 @@ class TabBarLayoutToolView extends TabBarLayoutView {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [const APIViewDesktop(), ApiFileManagerView()],
           ),
-          mobileWidget: const APIViewMobile(),
+          portraitWidget: const APIViewMobile(),
         ),
       ),
     ];

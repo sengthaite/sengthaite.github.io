@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sengthaite_blog/components/portfolio/widgets/menu_button.dart';
 
+enum OverlayDirection { down, up }
+
 class OverlayPopUpDropdown extends StatelessWidget {
   OverlayPopUpDropdown({
     super.key,
@@ -8,6 +10,7 @@ class OverlayPopUpDropdown extends StatelessWidget {
     required this.menuButton,
     required this.listDropdownWidget,
     this.onTapOutside,
+    this.direction = OverlayDirection.down,
   });
 
   final OverlayPortalController controller;
@@ -17,9 +20,21 @@ class OverlayPopUpDropdown extends StatelessWidget {
   final MenuButton menuButton;
   final Widget listDropdownWidget;
   final VoidCallback? onTapOutside;
+  final OverlayDirection? direction;
 
   @override
   Widget build(BuildContext context) {
+    Offset offset = Offset(-100, -270);
+    switch (direction) {
+      case OverlayDirection.up:
+        offset = Offset(-100, -270);
+        break;
+      case OverlayDirection.down:
+        offset = Offset(0, 12);
+        break;
+      case null:
+        break;
+    }
     return OverlayPortal(
       controller: controller,
       overlayChildBuilder: (context) => TapRegion(
@@ -28,7 +43,7 @@ class OverlayPopUpDropdown extends StatelessWidget {
           child: CompositedTransformFollower(
             link: link,
             showWhenUnlinked: false,
-            offset: const Offset(0, 12),
+            offset: offset,
             targetAnchor: Alignment.bottomCenter,
             followerAnchor: Alignment.topCenter,
             child: listDropdownWidget,

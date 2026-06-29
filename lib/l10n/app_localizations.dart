@@ -167,7 +167,7 @@ abstract class AppLocalizations {
   /// No description provided for @username_email.
   ///
   /// In en, this message translates to:
-  /// **'Username / Email'**
+  /// **'Email'**
   String get username_email;
 
   /// No description provided for @comment.

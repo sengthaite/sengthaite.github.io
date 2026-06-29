@@ -45,7 +45,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'I\'m actively improving this portfolio and would value your perspective - feel free to share any thoughts, no matter how small.';
 
   @override
-  String get username_email => 'Username / Email';
+  String get username_email => 'Email';
 
   @override
   String get comment => 'Comment';

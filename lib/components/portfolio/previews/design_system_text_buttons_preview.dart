@@ -61,22 +61,32 @@ final class DesignSystemTextButtonsPreview extends MultiPreview {
   ];
 
   Widget _textButtonWrapper(Widget child) => Scaffold(
-    body: TextMenuButton(text: 'Click Me', onPressed: () {}),
+    body: TextMenuButton(
+      text: 'Click Me',
+      isSelected: ValueNotifier(true),
+      onPressed: () {},
+    ),
   );
   Widget _textSelectedButtonWrapper(Widget child) => Scaffold(
     body: TextMenuButton(
       text: 'Click Me Now',
+      isSelected: ValueNotifier(true),
       onPressed: () {},
       icon: AssetIcons.cli.imageWithStyle(size: Size(25, 25)),
     ),
   );
   Widget _textIconButtonWrapper(Widget child) => Scaffold(
-    body: TextMenuButton(text: 'SETTINGS', onPressed: () {}),
+    body: TextMenuButton(
+      text: 'SETTINGS',
+      isSelected: ValueNotifier(true),
+      onPressed: () {},
+    ),
   );
   Widget _textIconSelectedButtonWrapper(Widget child) => Scaffold(
     body: TextMenuButton(
       text: 'Click Me',
       onPressed: null,
+      isSelected: ValueNotifier(true),
       icon: Icon(Icons.check, color: Colors.red),
     ),
   );
@@ -115,5 +125,5 @@ final class DesignSystemTextButtonsPreview extends MultiPreview {
 
 @DesignSystemTextButtonsPreview()
 Widget designSystemButtonsPreview() {
-  return TextMenuButton(text: 'Click Me Now');
+  return TextMenuButton(text: 'Click Me Now', isSelected: ValueNotifier(true));
 }

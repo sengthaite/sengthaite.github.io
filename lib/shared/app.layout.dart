@@ -4,15 +4,8 @@ enum AppLayoutType { mobile, tablet, desktop, unknown }
 
 class AppLayout extends StatefulWidget {
   final Widget? defaultWidget;
-  final Widget? desktopWidget;
-  final Widget? desktopPortraitWidget;
-  final Widget? desktopLandscapeWidget;
-  final Widget? tabletWidget;
-  final Widget? tabletPortraitWidget;
-  final Widget? tabletLandscapeWidget;
-  final Widget? mobileWidget;
-  final Widget? mobilePortraitWidget;
-  final Widget? mobileLandscapeWidget;
+  final Widget? portraitWidget;
+  final Widget? landscapeWidget;
 
   static ValueNotifier<AppLayoutType> layoutType = ValueNotifier(
     AppLayoutType.unknown,
@@ -21,15 +14,8 @@ class AppLayout extends StatefulWidget {
   const AppLayout({
     super.key,
     this.defaultWidget,
-    this.desktopWidget,
-    this.mobileWidget,
-    this.desktopPortraitWidget,
-    this.desktopLandscapeWidget,
-    this.mobilePortraitWidget,
-    this.mobileLandscapeWidget,
-    this.tabletWidget,
-    this.tabletPortraitWidget,
-    this.tabletLandscapeWidget,
+    this.portraitWidget,
+    this.landscapeWidget,
   });
 
   @override
@@ -41,46 +27,17 @@ class AppLayoutState extends State<AppLayout> {
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
     final screenWidth = screenSize.width;
+    final screenHeight = screenSize.height;
     final defaultWidget = widget.defaultWidget ?? const SizedBox();
-    return OrientationBuilder(
-      builder: (context, orientation) {
-        switch (orientation) {
-          case Orientation.portrait:
-            if (screenWidth < 800) {
-              AppLayout.layoutType.value = AppLayoutType.mobile;
-              return widget.mobilePortraitWidget ??
-                  widget.mobileWidget ??
-                  defaultWidget;
-            } else if (screenWidth < 1280) {
-              AppLayout.layoutType.value = AppLayoutType.tablet;
-              return widget.tabletPortraitWidget ??
-                  widget.tabletWidget ??
-                  defaultWidget;
-            } else {
-              AppLayout.layoutType.value = AppLayoutType.desktop;
-              return widget.desktopPortraitWidget ??
-                  widget.desktopWidget ??
-                  defaultWidget;
-            }
-          case Orientation.landscape:
-            if (screenWidth < 1024) {
-              AppLayout.layoutType.value = AppLayoutType.mobile;
-              return widget.mobileLandscapeWidget ??
-                  widget.mobileWidget ??
-                  defaultWidget;
-            } else if (screenWidth < 1920) {
-              AppLayout.layoutType.value = AppLayoutType.tablet;
-              return widget.tabletLandscapeWidget ??
-                  widget.tabletWidget ??
-                  defaultWidget;
-            } else {
-              AppLayout.layoutType.value = AppLayoutType.desktop;
-              return widget.desktopLandscapeWidget ??
-                  widget.desktopWidget ??
-                  defaultWidget;
-            }
-        }
-      },
-    );
+    var orientation = Orientation.portrait;
+    if (screenWidth > screenHeight) {
+      orientation = Orientation.landscape;
+    }
+    switch (orientation) {
+      case Orientation.portrait:
+        return widget.portraitWidget ?? defaultWidget;
+      case Orientation.landscape:
+        return widget.landscapeWidget ?? defaultWidget;
+    }
   }
 }

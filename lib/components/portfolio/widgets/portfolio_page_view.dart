@@ -1,216 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:markdown_widget/markdown_widget.dart';
 import 'package:sengthaite_blog/components/portfolio/widgets/content_page.dart';
-import 'package:sengthaite_blog/components/portfolio/widgets/content_side_nav_view.dart';
-import 'package:sengthaite_blog/constants/image.constants.dart';
+import 'package:sengthaite_blog/components/portfolio/widgets/portfolio_detail_tab_view.dart';
+import 'package:sengthaite_blog/components/portfolio/widgets/share_button_site.dart';
 import 'package:sengthaite_blog/extensions/build_context_ext.dart';
 
-extension on Locale {
-  AssetIcons get billPayments => languageCode == 'en'
-      ? AssetIcons.billpayments
-      : AssetIcons.billpaymentskh;
-  AssetIcons get candidateSelection => languageCode == 'en'
-      ? AssetIcons.candidateselection
-      : AssetIcons.candidateselectionkh;
-  AssetIcons get khqrExperience => languageCode == 'en'
-      ? AssetIcons.khqrexperience
-      : AssetIcons.khqrexperiencekh;
-  AssetIcons get automatedTesting => languageCode == 'en'
-      ? AssetIcons.automatedtesting
-      : AssetIcons.automatedtestingkh;
-  AssetIcons get universalLink => languageCode == 'en'
-      ? AssetIcons.universallink
-      : AssetIcons.universallinkkh;
-  AssetIcons get securitySupport => languageCode == 'en'
-      ? AssetIcons.securitysupport
-      : AssetIcons.securitysupportkh;
-  AssetIcons get liveness =>
-      languageCode == 'en' ? AssetIcons.liveness : AssetIcons.livenesskh;
-  AssetIcons get loanImplementation =>
-      languageCode == 'en' ? AssetIcons.smeloan : AssetIcons.smeloankh;
-  AssetIcons get loanRelated => languageCode == 'en'
-      ? AssetIcons.otherloanenhancements
-      : AssetIcons.otherloanenhancementskh;
-  AssetIcons get iosDevZ1 =>
-      languageCode == 'en' ? AssetIcons.z1 : AssetIcons.z1kh;
-}
-
-extension on BuildContext {
-  double get svgSize => 900;
-  List<ContentPageData> get experienceData => [
-    ContentPageData(
-      roleTitle: l10n.title_mngr_mb,
-      description: l10n.mngr_desc,
-      skillLists: [
-        TitleWidget(title: l10n.role_delivery_lead, widget: Icons.groups),
-        TitleWidget(title: l10n.duration_weeks(3, ''), widget: Icons.timer),
-        TitleWidget(title: l10n.work_dynamic_setup, widget: Icons.web),
-        TitleWidget(
-          title: l10n.team_size(4),
-          widget: Icons.connect_without_contact,
-        ),
-      ],
-      experienceTitle: l10n.exp_bill,
-      trailingMetricTitle: "(${l10n.biller_size(20)})",
-      skills: l10n.skill_bill,
-      content: currentLocale.billPayments.imageWithSize(width: svgSize),
-      platforms: ["Web Angular", "Excel Progress Tracking", "OneDrive"],
-    ),
-    ContentPageData(
-      roleTitle: l10n.title_mngr_mb,
-      description: l10n.mngr_desc,
-      skillLists: [
-        TitleWidget(title: l10n.role_team_builder, widget: Icons.groups),
-        TitleWidget(title: l10n.duration_quarter(2, ''), widget: Icons.timer),
-        TitleWidget(title: l10n.work_hr_process, widget: Icons.web),
-        TitleWidget(
-          title: l10n.committee_size(3),
-          widget: Icons.connect_without_contact,
-        ),
-      ],
-      experienceTitle: l10n.exp_build_team,
-      trailingMetricTitle: "(${l10n.direct_report_size(8)})",
-      skills: l10n.skill_build_team,
-      content: currentLocale.candidateSelection.imageWithSize(width: svgSize),
-      platforms: ["Web Angular", "Excel Progress Tracking", "OneDrive"],
-    ),
-    ContentPageData(
-      roleTitle: l10n.title_mngr_mb,
-      description: l10n.mngr_desc,
-      skillLists: [
-        TitleWidget(title: l10n.role_coordinator_support, widget: Icons.groups),
-        TitleWidget(title: l10n.duration_weeks(4, ''), widget: Icons.timer),
-        TitleWidget(title: l10n.work_nbc, widget: Icons.web),
-        TitleWidget(
-          title: l10n.team_size(3),
-          widget: Icons.connect_without_contact,
-        ),
-      ],
-      experienceTitle: l10n.exp_khqr,
-      skills: l10n.skill_khqr,
-      content: currentLocale.khqrExperience.imageWithSize(width: svgSize),
-      platforms: ["Figma Design", "Bakong PG", "TestFlight", "Firebase"],
-    ),
-    ContentPageData(
-      roleTitle: l10n.title_mngr_mb,
-      description: l10n.mngr_desc,
-      skillLists: [
-        TitleWidget(title: l10n.role_developer_techlead, widget: Icons.groups),
-        TitleWidget(title: l10n.duration_months(2, ''), widget: Icons.timer),
-        TitleWidget(title: l10n.work_automated_testing, widget: Icons.web),
-        TitleWidget(
-          title: l10n.team_size(3),
-          widget: Icons.connect_without_contact,
-        ),
-      ],
-      experienceTitle: l10n.exp_automate_testing,
-      skills: l10n.skill_automate_testing,
-      content: currentLocale.automatedTesting.imageWithSize(width: svgSize),
-      platforms: ["Katalon", "Java Groovy", "Excel Plugin"],
-    ),
-    ContentPageData(
-      roleTitle: l10n.title_mngr_mb,
-      description: l10n.mngr_desc,
-      skillLists: [
-        TitleWidget(title: l10n.role_coordinator_support, widget: Icons.groups),
-        TitleWidget(title: l10n.duration_weeks(1, ''), widget: Icons.timer),
-        TitleWidget(title: l10n.work_customer_campaign, widget: Icons.web),
-        TitleWidget(
-          title: l10n.team_size(3),
-          widget: Icons.connect_without_contact,
-        ),
-      ],
-      experienceTitle: l10n.exp_universal_link,
-      skills: l10n.skill_universal_link,
-      content: currentLocale.universalLink.imageWithSize(width: svgSize),
-      platforms: ["AppsFlyer Onelink", "Web Angular"],
-    ),
-    ContentPageData(
-      roleTitle: l10n.title_mngr_mb,
-      description: l10n.mngr_desc,
-      skillLists: [
-        TitleWidget(title: l10n.role_coordinator_support, widget: Icons.groups),
-        TitleWidget(title: l10n.duration_weeks(1, ''), widget: Icons.timer),
-        TitleWidget(title: l10n.work_security_hardening, widget: Icons.web),
-        TitleWidget(
-          title: l10n.team_size(3),
-          widget: Icons.connect_without_contact,
-        ),
-      ],
-      experienceTitle: l10n.exp_hardening,
-      skills: l10n.skill_hardening,
-      content: currentLocale.securitySupport.imageWithSize(width: svgSize),
-      platforms: ["apksigning", "fastlane", "ironsec shield API"],
-    ),
-    ContentPageData(
-      roleTitle: l10n.title_mngr_mb,
-      description: l10n.mngr_desc,
-      skillLists: [
-        TitleWidget(title: l10n.role_developer, widget: Icons.groups),
-        TitleWidget(title: l10n.duration_months(1, ''), widget: Icons.timer),
-        TitleWidget(title: l10n.work_ai_object_detection, widget: Icons.web),
-        TitleWidget(
-          title: l10n.team_size(4),
-          widget: Icons.connect_without_contact,
-        ),
-      ],
-      experienceTitle: l10n.exp_liveness,
-      skills: l10n.skill_liveness,
-      content: currentLocale.liveness.imageWithSize(width: svgSize),
-      platforms: ["GoogleMLKit", "CreateML", "Tensorflow"],
-    ),
-    ContentPageData(
-      roleTitle: l10n.title_sup_frontend,
-      description: l10n.sup_desc,
-      skillLists: [
-        TitleWidget(title: l10n.role_developer_techlead, widget: Icons.groups),
-        TitleWidget(title: l10n.duration_months(2, ''), widget: Icons.timer),
-        TitleWidget(title: l10n.work_loan_implementation, widget: Icons.web),
-        TitleWidget(
-          title: l10n.team_size(2),
-          widget: Icons.connect_without_contact,
-        ),
-      ],
-      experienceTitle: l10n.exp_loan_implementation,
-      skills: l10n.skill_loan_implementation,
-      content: currentLocale.loanImplementation.imageWithSize(width: svgSize),
-      platforms: ["Figma", "Angular Web", "Flutter"],
-    ),
-    ContentPageData(
-      roleTitle: l10n.title_senior_frontend,
-      description: l10n.senior_desc,
-      skillLists: [
-        TitleWidget(title: l10n.role_developer, widget: Icons.groups),
-        TitleWidget(title: "N/A", widget: Icons.timer),
-        TitleWidget(title: l10n.work_development_support, widget: Icons.web),
-        TitleWidget(
-          title: l10n.team_size(2),
-          widget: Icons.connect_without_contact,
-        ),
-      ],
-      experienceTitle: l10n.exp_loan_releated,
-      skills: l10n.skill_loan_related,
-      content: currentLocale.loanRelated.imageWithSize(width: svgSize),
-      platforms: ["Figma", "Angular Web", "Flutter"],
-    ),
-    ContentPageData(
-      roleTitle: l10n.title_ios_dev,
-      description: l10n.ios_dev_desc,
-      skillLists: [
-        TitleWidget(title: l10n.role_developer, widget: Icons.groups),
-        TitleWidget(title: "N/A", widget: Icons.timer),
-        TitleWidget(title: l10n.work_development, widget: Icons.web),
-        TitleWidget(
-          title: l10n.team_size(2),
-          widget: Icons.connect_without_contact,
-        ),
-      ],
-      experienceTitle: l10n.exp_z1_zpoint,
-      skills: l10n.skill_z1_zpoint,
-      content: currentLocale.iosDevZ1.imageWithSize(width: svgSize),
-      platforms: ["iOS Swift UIKit", "XCode"],
-    ),
-  ];
-}
+enum ContentSideSection { experience, education }
 
 class PortfolioPageView extends StatefulWidget {
   const PortfolioPageView({super.key});
@@ -220,30 +15,9 @@ class PortfolioPageView extends StatefulWidget {
 }
 
 class _PortfolioPageViewState extends State<PortfolioPageView> {
-  final PageController experiencePageController = PageController(
-    initialPage: 0,
-    viewportFraction: 0.95,
-  );
-
-  final PageController educationPageController = PageController(
-    initialPage: 0,
-    viewportFraction: 0.95,
-  );
-
-  final ValueNotifier<ContentSideSection> type = ValueNotifier(
-    ContentSideSection.experience,
-  );
-
-  final ValueNotifier<int> currentPageExperience = ValueNotifier(0);
-
-  final List<Widget> educations = [
-    AssetIcons.bachelor.image,
-    AssetIcons.itday.image,
-    AssetIcons.peermentor.image,
-    AssetIcons.volunteeryvsd.image,
-  ];
-
-  final ValueNotifier<int> currentEducation = ValueNotifier(0);
+  ContentSideSection type = ContentSideSection.experience;
+  int currentExperiencePage = 0;
+  int currentEducationPage = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -265,29 +39,31 @@ class _PortfolioPageViewState extends State<PortfolioPageView> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            ContentSideNav(
-              onSelected: (newSelectionType) => type.value = newSelectionType,
+            Padding(
+              padding: const EdgeInsets.all(18.0),
+              child: Align(
+                alignment: Alignment.topLeft,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    PortfolioDetailTabView(
+                      onSelected: (selected) => setState(() => type = selected),
+                    ),
+                    ShareButtonWidget(),
+                  ],
+                ),
+              ),
             ),
-            ValueListenableBuilder(
-              valueListenable: type,
-              builder: (context, value, child) {
-                switch (value) {
-                  case ContentSideSection.experience:
-                    return ExperiencePageView(
-                      currentPageExperience: currentPageExperience,
-                      experienceData: context.experienceData,
-                      pageController: experiencePageController,
-                      totalExperience: context.experienceData.length,
-                    );
-                  case ContentSideSection.education:
-                    return EducationView(
-                      currentEducation: currentEducation,
-                      educations: educations,
-                      educationPageController: educationPageController,
-                    );
-                }
-              },
-            ),
+            if (type == ContentSideSection.experience)
+              ExperiencePageView(
+                currentPageExperience: currentExperiencePage,
+                onPageChanged: (page) => currentExperiencePage = page,
+              ),
+            if (type == ContentSideSection.education)
+              EducationView(
+                currentPage: currentEducationPage,
+                onPageChanged: (page) => currentEducationPage = page,
+              ),
           ],
         ),
       ),
@@ -295,17 +71,33 @@ class _PortfolioPageViewState extends State<PortfolioPageView> {
   }
 }
 
-class EducationView extends StatelessWidget {
+class EducationView extends StatefulWidget {
   const EducationView({
     super.key,
-    required this.currentEducation,
-    required this.educations,
-    required this.educationPageController,
+    required this.currentPage,
+    required this.onPageChanged,
   });
 
-  final ValueNotifier<int> currentEducation;
-  final List<Widget> educations;
-  final PageController educationPageController;
+  final int currentPage;
+  final ValueCallback<int> onPageChanged;
+
+  @override
+  State<EducationView> createState() => _EducationViewState();
+}
+
+class _EducationViewState extends State<EducationView> {
+  int currentPage = 0;
+  late PageController controller;
+
+  @override
+  void initState() {
+    currentPage = widget.currentPage;
+    controller = PageController(
+      initialPage: currentPage,
+      viewportFraction: 0.95,
+    );
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -314,10 +106,14 @@ class EducationView extends StatelessWidget {
         children: [
           Expanded(
             child: ContentPage(
-              defaultSelection: currentEducation.value,
-              data: educations,
-              controller: educationPageController,
-              onPageChanged: (index) => currentEducation.value = index,
+              data: context.educationData,
+              controller: controller,
+              onPageChanged: (index) {
+                widget.onPageChanged.call(index);
+                setState(() {
+                  currentPage = index;
+                });
+              },
             ),
           ),
         ],
@@ -326,60 +122,74 @@ class EducationView extends StatelessWidget {
   }
 }
 
-class ExperiencePageView extends StatelessWidget {
+class ExperiencePageView extends StatefulWidget {
   const ExperiencePageView({
     super.key,
     required this.currentPageExperience,
-    required this.experienceData,
-    required this.pageController,
-    required this.totalExperience,
+    required this.onPageChanged,
   });
 
-  final ValueNotifier<int> currentPageExperience;
-  final List<ContentPageData> experienceData;
-  final PageController pageController;
-  final int totalExperience;
+  final int currentPageExperience;
+  final ValueCallback<int> onPageChanged;
+
+  @override
+  State<ExperiencePageView> createState() => _ExperiencePageViewState();
+}
+
+class _ExperiencePageViewState extends State<ExperiencePageView> {
+  late PageController pageController;
+
+  int currentPage = 0;
+
+  @override
+  void initState() {
+    currentPage = widget.currentPageExperience;
+    pageController = PageController(
+      initialPage: currentPage,
+      viewportFraction: 0.95,
+    );
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
+    var data = context.experienceData;
+    var totalExperience = data.length;
     return Expanded(
       child: Column(
         children: [
           Expanded(
             child: ContentPage(
-              defaultSelection: currentPageExperience.value,
-              data: experienceData
-                  .map((content) => content.pageContentView())
-                  .toList(),
+              data: data.map((content) => content.pageContentView()).toList(),
               controller: pageController,
-              onPageChanged: (index) => currentPageExperience.value = index,
+              onPageChanged: (index) {
+                widget.onPageChanged.call(index);
+                setState(() {
+                  currentPage = index;
+                });
+              },
             ),
           ),
-          ValueListenableBuilder(
-            valueListenable: currentPageExperience,
-            builder: (context, index, widget) {
-              return Padding(
-                padding: const EdgeInsets.only(bottom: 24, right: 24),
-                child: Align(
-                  alignment: Alignment.centerRight,
-                  child: Text.rich(
+          Padding(
+            padding: const EdgeInsets.only(bottom: 24, right: 24),
+            child: Align(
+              alignment: Alignment.centerRight,
+              child: Text.rich(
+                TextSpan(
+                  children: [
+                    TextSpan(text: context.l10n.page),
                     TextSpan(
-                      children: [
-                        TextSpan(text: context.l10n.page),
-                        TextSpan(
-                          text: " ${index + 1}",
-                          style: context.pfTheme.textStyle.copyWith(
-                            color: context.colorScheme.primary,
-                          ),
-                        ),
-                        TextSpan(text: " / $totalExperience"),
-                      ],
+                      text: " ${currentPage + 1}",
+                      style: context.pfTheme.textStyle.copyWith(
+                        color: context.colorScheme.primary,
+                      ),
                     ),
-                    style: context.pfTheme.textStyle,
-                  ),
+                    TextSpan(text: " / $totalExperience"),
+                  ],
                 ),
-              );
-            },
+                style: context.pfTheme.textStyle,
+              ),
+            ),
           ),
         ],
       ),

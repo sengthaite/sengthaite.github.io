@@ -20,24 +20,3 @@ class AlignScrollContainer extends StatelessWidget {
     );
   }
 }
-
-class AlignScrollPortraitContainer extends StatelessWidget {
-  const AlignScrollPortraitContainer({super.key, required this.child});
-
-  final Widget child;
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox.expand(
-      child: FittedBox(
-        fit: BoxFit.scaleDown,
-        child: Container(
-          width: 1100,
-          height: 1900,
-          padding: const EdgeInsets.only(top: 16.0),
-          child: child,
-        ),
-      ),
-    );
-  }
-}
