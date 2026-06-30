@@ -33,7 +33,7 @@ extension BuildContextExt on BuildContext {
     AssetIcons.volunteeryvsd.image,
   ];
 
-  double get svgSize => 900;
+  double get svgSize => 1000;
   List<ContentPageData> get experienceData => [
     ContentPageData(
       roleTitle: l10n.title_mngr_mb,

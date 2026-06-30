@@ -97,69 +97,76 @@ class ExperienceWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(
-          children: [
-            SizedBox(width: sideSkillWidth),
-            RoleTitleDescriptionVew(data: data),
-          ],
-        ),
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(
-              width: sideSkillWidth,
-              child: Padding(
-                padding: EdgeInsets.only(top: 12, right: 8),
-                child: SkillListView(
-                  sideSkillWidth: sideSkillWidth,
-                  data: data,
+    return FittedBox(
+      fit: BoxFit.scaleDown,
+      child: Column(
+        children: [
+          Row(
+            children: [
+              SizedBox(width: sideSkillWidth),
+              RoleTitleDescriptionVew(data: data),
+            ],
+          ),
+          IntrinsicHeight(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  width: sideSkillWidth,
+                  child: Padding(
+                    padding: EdgeInsets.only(top: 12, right: 8),
+                    child: SkillListView(
+                      sideSkillWidth: sideSkillWidth,
+                      data: data,
+                    ),
+                  ),
                 ),
-              ),
-            ),
-            Container(
-              decoration: BoxDecoration(
-                color: context.pfTheme.containerBgColor,
-                borderRadius: BorderRadius.circular(16),
-                border: Border.all(
-                  color: context.pfTheme.borderColor,
-                  width: 1,
+                Container(
+                  decoration: BoxDecoration(
+                    color: context.pfTheme.containerBgColor,
+                    borderRadius: BorderRadius.circular(16),
+                    border: Border.all(
+                      color: context.pfTheme.borderColor,
+                      width: 1,
+                    ),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 24,
+                          vertical: 14,
+                        ),
+                        child: ExperienceWrapperView(data: data),
+                      ),
+
+                      Padding(
+                        padding: const EdgeInsets.all(24.0),
+                        child: Container(
+                          color: context.colorScheme.surface,
+                          alignment: Alignment.center,
+                          child: data.content,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 24,
+                          vertical: 12,
+                        ),
+                        child: FittedBox(
+                          fit: BoxFit.scaleDown,
+                          child: PlatformToolsView(data: data),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 24,
-                      vertical: 14,
-                    ),
-                    child: ExperienceWrapperView(data: data),
-                  ),
-                  Divider(color: context.pfTheme.dividerColor),
-                  Container(
-                    color: context.colorScheme.surface,
-                    alignment: Alignment.center,
-                    child: data.content,
-                  ),
-                  Divider(color: context.pfTheme.dividerColor),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 24,
-                      vertical: 12,
-                    ),
-                    child: FittedBox(
-                      fit: BoxFit.scaleDown,
-                      child: PlatformToolsView(data: data),
-                    ),
-                  ),
-                ],
-              ),
+              ],
             ),
-          ],
-        ),
-      ],
+          ),
+        ],
+      ),
     );
   }
 }
@@ -172,7 +179,7 @@ class PlatformToolsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      spacing: 12,
+      spacing: 16,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
