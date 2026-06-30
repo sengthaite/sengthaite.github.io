@@ -10,6 +10,8 @@ class TableRowData {
 }
 
 class TablePopup extends StatelessWidget {
+  /// Widget TablePopup : display a table of settings navigation menu
+  ///
   const TablePopup({super.key, required this.rows, this.onPress});
 
   final List<TableRowData> rows;

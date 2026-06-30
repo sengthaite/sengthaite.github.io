@@ -21,11 +21,11 @@ class PortfolioTheme extends ThemeExtension<PortfolioTheme> {
   TextStyle? get roleTitleTextStyle => textStyle.copyWith(fontSize: 24).bold;
   TextStyle? get roleDetailTextStyle =>
       roleTitleTextStyle?.copyWith(fontSize: 18);
-  TextStyle? get experienceTitleTextStyle =>
+  TextStyle? get ActivityMainInformationTextStyle =>
       textStyle.copyWith(fontSize: 20, color: buttonFgColor).bold;
-  TextStyle? get experienceTitleSelectedTextStyle =>
+  TextStyle? get ActivityMainInformationSelectedTextStyle =>
       selectedTextStyle.copyWith(fontSize: 20, color: buttonSelectedBgColor);
-  TextStyle? get dialogTitleTextStyle => experienceTitleTextStyle;
+  TextStyle? get dialogTitleTextStyle => ActivityMainInformationTextStyle;
   TextStyle? get skillsTextStyle => textStyle.copyWith(fontSize: 16);
   TextStyle? get sideMenuTitleStyle => textStyle.copyWith(fontSize: 14);
   TextStyle? get sectionTitleStyle =>

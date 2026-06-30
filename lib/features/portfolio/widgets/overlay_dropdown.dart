@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:sengthaite_blog/components/portfolio/widgets/menu_button.dart';
+import 'package:sengthaite_blog/features/portfolio/widgets/menu_button.dart';
 
 enum OverlayDirection { down, up }
 
 class OverlayPopUpDropdown extends StatelessWidget {
+  /// Widget OverlayPopUpDropdown : display dropdown content overlay which can tap outside to dismiss
+  ///
+  /// Direction display can be : down and up
   OverlayPopUpDropdown({
     super.key,
     required this.controller,

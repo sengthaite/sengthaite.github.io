@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
-class AlignScrollContainer extends StatelessWidget {
-  const AlignScrollContainer({super.key, required this.child});
+class LandscapeScrollContainer extends StatelessWidget {
+  /// Widget: LandscapeScrollContainer to auto resize on web which can have dynamic size
+  ///
+  /// Scaledown width: 1920, 1080
+  /// Boxfit.scaleDown
+  const LandscapeScrollContainer({super.key, required this.child});
 
   final Widget child;
 

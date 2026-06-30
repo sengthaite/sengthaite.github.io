@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:sengthaite_blog/components/portfolio/widgets/align_scroll_container.dart';
-import 'package:sengthaite_blog/components/portfolio/widgets/content_page.dart';
-import 'package:sengthaite_blog/components/portfolio/widgets/menu_navigation.dart';
-import 'package:sengthaite_blog/components/portfolio/widgets/overlay_dropdown.dart';
-import 'package:sengthaite_blog/components/portfolio/widgets/portfolio_detail_tab_view.dart';
-import 'package:sengthaite_blog/components/portfolio/widgets/portfolio_page_view.dart';
 import 'package:sengthaite_blog/constants/image.constants.dart';
 import 'package:sengthaite_blog/extensions/build_context_ext.dart';
 import 'package:sengthaite_blog/features/portfolio/content_side_view.dart';
-import 'package:sengthaite_blog/features/portfolio/footer_view.dart';
+import 'package:sengthaite_blog/features/portfolio/footer_note.dart';
 import 'package:sengthaite_blog/features/portfolio/profile_side_view.dart';
+import 'package:sengthaite_blog/features/portfolio/widgets/experience_content_page.dart';
+import 'package:sengthaite_blog/features/portfolio/widgets/landscape_scroll_container.dart';
+import 'package:sengthaite_blog/features/portfolio/widgets/menu_navigation.dart';
+import 'package:sengthaite_blog/features/portfolio/widgets/overlay_dropdown.dart';
+import 'package:sengthaite_blog/features/portfolio/widgets/portfolio_page_view.dart';
+import 'package:sengthaite_blog/features/portfolio/widgets/portfolio_tab_bar.dart';
 import 'package:sengthaite_blog/shared/app.layout.dart';
 
 class PortfolioView extends StatelessWidget {
@@ -28,43 +28,7 @@ class PortfolioView extends StatelessWidget {
   }
 }
 
-class StickyHeaderDelegate extends SliverPersistentHeaderDelegate {
-  final Widget child;
-  final double height;
-
-  StickyHeaderDelegate({
-    required this.child,
-    this.height = 60.0, // Set your preferred header height
-  });
-
-  @override
-  double get minExtent => height; // The size of the header when pinned
-
-  @override
-  double get maxExtent => height; // The size of the header when expanded
-
-  @override
-  Widget build(
-    BuildContext context,
-    double shrinkOffset,
-    bool overlapsContent,
-  ) {
-    // Wrap in a Material or Container with a background color
-    // so underlying content doesn't bleed through while scrolling.
-    return Material(
-      elevation: overlapsContent
-          ? 4.0
-          : 0.0, // Adds shadow when content scrolls under
-      child: SizedBox.expand(child: child),
-    );
-  }
-
-  @override
-  bool shouldRebuild(covariant StickyHeaderDelegate oldDelegate) {
-    return oldDelegate.height != height || oldDelegate.child != child;
-  }
-}
-
+/// Todo: rewrite the mobile version to display properly
 class PortraitPortfolioView extends StatelessWidget {
   PortraitPortfolioView({super.key});
 
@@ -111,7 +75,7 @@ class PortraitPortfolioView extends StatelessWidget {
                         foregroundColor: Colors.transparent,
                         title: FittedBox(
                           fit: BoxFit.scaleDown,
-                          child: PortfolioDetailTabView(
+                          child: PortfolioTabBar(
                             onSelected: (newSelectionType) =>
                                 type.value = newSelectionType,
                           ),
@@ -131,7 +95,7 @@ class PortraitPortfolioView extends StatelessWidget {
                                 .map(
                                   (content) => FittedBox(
                                     fit: BoxFit.fitWidth,
-                                    child: PageContentView(data: content),
+                                    child: ExperienceWidget(data: content),
                                   ),
                                 )
                                 .toList(),
@@ -169,7 +133,7 @@ class LandscapePortfolioView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AlignScrollContainer(
+    return LandscapeScrollContainer(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -181,7 +145,7 @@ class LandscapePortfolioView extends StatelessWidget {
             ),
           ),
           SizedBox(height: 12),
-          FooterView(),
+          Footnote(),
         ],
       ),
     );

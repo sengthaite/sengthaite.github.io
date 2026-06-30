@@ -18,6 +18,7 @@ sealed class ProfileColumnViewConstants extends StatelessWidget {
 }
 
 class ProfileSideView extends StatelessWidget {
+  /// Widget ProfileSideView : wrapper of the whole profile side including image, leadership, summary, and contact
   const ProfileSideView({super.key});
 
   @override

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:sengthaite_blog/extensions/build_context_ext.dart';
 
-class FooterView extends StatelessWidget {
-  const FooterView({super.key});
+class Footnote extends StatelessWidget {
+  /// Widget Footnote : show publication date and copyright content
+  const Footnote({super.key});
 
   @override
   Widget build(BuildContext context) {

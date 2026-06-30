@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:sengthaite_blog/components/portfolio/widgets/feedback_dialog.dart';
-import 'package:sengthaite_blog/components/portfolio/widgets/menu_button.dart';
-import 'package:sengthaite_blog/components/portfolio/widgets/overlay_dropdown.dart';
-import 'package:sengthaite_blog/components/portfolio/widgets/radio_buttons.dart';
-import 'package:sengthaite_blog/components/portfolio/widgets/table_popup.dart';
 import 'package:sengthaite_blog/constants/image.constants.dart';
 import 'package:sengthaite_blog/extensions/build_context_ext.dart';
+import 'package:sengthaite_blog/features/portfolio/widgets/feedback_dialog.dart';
+import 'package:sengthaite_blog/features/portfolio/widgets/menu_button.dart';
+import 'package:sengthaite_blog/features/portfolio/widgets/overlay_dropdown.dart';
+import 'package:sengthaite_blog/features/portfolio/widgets/radio_buttons.dart';
+import 'package:sengthaite_blog/features/portfolio/widgets/table_popup.dart';
 import 'package:sengthaite_blog/shared/app.data.dart';
 
 class MenuNavigation extends StatefulWidget {
+  /// Widget MenuNavigation : show the three navigation button HOME, BLOG, and SETTINGS
+  ///
+  /// HOME : double click scroll to top
+  /// Blog : redirect to blog website
+  /// SETTINGS : enable switch font, change display mode (light, dark), and provide feedback
   const MenuNavigation({super.key, this.overlayDirection});
 
   final OverlayDirection? overlayDirection;

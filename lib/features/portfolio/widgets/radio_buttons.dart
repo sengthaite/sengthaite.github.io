@@ -9,6 +9,8 @@ class RadioButtonData<T> {
 }
 
 class RadioButtons<T> extends StatefulWidget {
+  /// Widget RadioButton : enable selection of language and display mode (light, dark, and system)
+  ///
   const RadioButtons({
     super.key,
     required this.list,

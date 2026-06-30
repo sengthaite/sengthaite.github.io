@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widget_previews.dart';
-import 'package:sengthaite_blog/components/portfolio/previews/design_system_preview_theme.dart';
-import 'package:sengthaite_blog/components/portfolio/widgets/radio_buttons.dart';
-import 'package:sengthaite_blog/components/portfolio/widgets/table_popup.dart';
+import 'package:sengthaite_blog/features/portfolio/previews/design_system_preview_theme.dart';
+import 'package:sengthaite_blog/features/portfolio/widgets/radio_buttons.dart';
+import 'package:sengthaite_blog/features/portfolio/widgets/table_popup.dart';
 
 @Preview(name: "Table Popup View", theme: designSystemPreviewTheme)
 Widget popUpView() {

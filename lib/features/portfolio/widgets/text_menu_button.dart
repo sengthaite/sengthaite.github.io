@@ -8,6 +8,8 @@ class TextMenuButton extends StatelessWidget {
   final ValueNotifier<bool> isSelected;
   final VoidCallback? onPressed;
 
+  /// Widget TextMenuButton : button used in portfolio tab bar
+  ///
   const TextMenuButton({
     super.key,
     required this.text,
@@ -23,8 +25,8 @@ class TextMenuButton extends StatelessWidget {
       valueListenable: isSelected,
       builder: (context, value, child) {
         TextStyle? textStyle = isSelected.value
-            ? context.pfTheme.experienceTitleSelectedTextStyle
-            : context.pfTheme.experienceTitleTextStyle;
+            ? context.pfTheme.ActivityMainInformationSelectedTextStyle
+            : context.pfTheme.ActivityMainInformationTextStyle;
 
         return TextButton(
           onPressed: onPressed,

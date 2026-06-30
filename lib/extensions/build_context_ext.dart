@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:sengthaite_blog/components/portfolio/widgets/content_page.dart';
 import 'package:sengthaite_blog/constants/image.constants.dart';
 import 'package:sengthaite_blog/constants/portfolio_theme.dart';
 import 'package:sengthaite_blog/extensions/locale_ext.dart';
+import 'package:sengthaite_blog/features/portfolio/widgets/content_page.dart';
 import 'package:sengthaite_blog/l10n/app_localizations.dart';
 import 'package:sengthaite_blog/shared/app.data.dart';
 import 'package:sengthaite_blog/shared/data/appsetting.dart';
@@ -47,7 +47,7 @@ extension BuildContextExt on BuildContext {
           widget: Icons.connect_without_contact,
         ),
       ],
-      experienceTitle: l10n.exp_bill,
+      ActivityMainInformation: l10n.exp_bill,
       trailingMetricTitle: "(${l10n.biller_size(20)})",
       skills: l10n.skill_bill,
       content: currentLocale.billPayments.imageWithSize(width: svgSize),
@@ -65,7 +65,7 @@ extension BuildContextExt on BuildContext {
           widget: Icons.connect_without_contact,
         ),
       ],
-      experienceTitle: l10n.exp_build_team,
+      ActivityMainInformation: l10n.exp_build_team,
       trailingMetricTitle: "(${l10n.direct_report_size(8)})",
       skills: l10n.skill_build_team,
       content: currentLocale.candidateSelection.imageWithSize(width: svgSize),
@@ -83,7 +83,7 @@ extension BuildContextExt on BuildContext {
           widget: Icons.connect_without_contact,
         ),
       ],
-      experienceTitle: l10n.exp_khqr,
+      ActivityMainInformation: l10n.exp_khqr,
       skills: l10n.skill_khqr,
       content: currentLocale.khqrExperience.imageWithSize(width: svgSize),
       platforms: ["Figma Design", "Bakong PG", "TestFlight", "Firebase"],
@@ -100,7 +100,7 @@ extension BuildContextExt on BuildContext {
           widget: Icons.connect_without_contact,
         ),
       ],
-      experienceTitle: l10n.exp_automate_testing,
+      ActivityMainInformation: l10n.exp_automate_testing,
       skills: l10n.skill_automate_testing,
       content: currentLocale.automatedTesting.imageWithSize(width: svgSize),
       platforms: ["Katalon", "Java Groovy", "Excel Plugin"],
@@ -117,7 +117,7 @@ extension BuildContextExt on BuildContext {
           widget: Icons.connect_without_contact,
         ),
       ],
-      experienceTitle: l10n.exp_universal_link,
+      ActivityMainInformation: l10n.exp_universal_link,
       skills: l10n.skill_universal_link,
       content: currentLocale.universalLink.imageWithSize(width: svgSize),
       platforms: ["AppsFlyer Onelink", "Web Angular"],
@@ -134,7 +134,7 @@ extension BuildContextExt on BuildContext {
           widget: Icons.connect_without_contact,
         ),
       ],
-      experienceTitle: l10n.exp_hardening,
+      ActivityMainInformation: l10n.exp_hardening,
       skills: l10n.skill_hardening,
       content: currentLocale.securitySupport.imageWithSize(width: svgSize),
       platforms: ["apksigning", "fastlane", "ironsec shield API"],
@@ -151,7 +151,7 @@ extension BuildContextExt on BuildContext {
           widget: Icons.connect_without_contact,
         ),
       ],
-      experienceTitle: l10n.exp_liveness,
+      ActivityMainInformation: l10n.exp_liveness,
       skills: l10n.skill_liveness,
       content: currentLocale.liveness.imageWithSize(width: svgSize),
       platforms: ["GoogleMLKit", "CreateML", "Tensorflow"],
@@ -168,7 +168,7 @@ extension BuildContextExt on BuildContext {
           widget: Icons.connect_without_contact,
         ),
       ],
-      experienceTitle: l10n.exp_loan_implementation,
+      ActivityMainInformation: l10n.exp_loan_implementation,
       skills: l10n.skill_loan_implementation,
       content: currentLocale.loanImplementation.imageWithSize(width: svgSize),
       platforms: ["Figma", "Angular Web", "Flutter"],
@@ -185,7 +185,7 @@ extension BuildContextExt on BuildContext {
           widget: Icons.connect_without_contact,
         ),
       ],
-      experienceTitle: l10n.exp_loan_releated,
+      ActivityMainInformation: l10n.exp_loan_releated,
       skills: l10n.skill_loan_related,
       content: currentLocale.loanRelated.imageWithSize(width: svgSize),
       platforms: ["Figma", "Angular Web", "Flutter"],
@@ -202,7 +202,7 @@ extension BuildContextExt on BuildContext {
           widget: Icons.connect_without_contact,
         ),
       ],
-      experienceTitle: l10n.exp_z1_zpoint,
+      ActivityMainInformation: l10n.exp_z1_zpoint,
       skills: l10n.skill_z1_zpoint,
       content: currentLocale.iosDevZ1.imageWithSize(width: svgSize),
       platforms: ["iOS Swift UIKit", "XCode"],

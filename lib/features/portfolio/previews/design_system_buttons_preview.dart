@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widget_previews.dart';
-import 'package:sengthaite_blog/components/portfolio/previews/design_system_preview_theme.dart';
-import 'package:sengthaite_blog/components/portfolio/widgets/text_menu_button.dart';
 import 'package:sengthaite_blog/constants/image.constants.dart';
+import 'package:sengthaite_blog/features/portfolio/previews/design_system_preview_theme.dart';
+import 'package:sengthaite_blog/features/portfolio/widgets/menu_button.dart';
 
-final class DesignSystemTextButtonsPreview extends MultiPreview {
-  const DesignSystemTextButtonsPreview();
+final class DesignSystemButtonsPreview extends MultiPreview {
+  const DesignSystemButtonsPreview();
 
   @override
   List<Preview> get previews => [
@@ -60,34 +60,41 @@ final class DesignSystemTextButtonsPreview extends MultiPreview {
     ),
   ];
 
+  Color get buttonIconColor => Color(0xFFF1F1F1);
+  Color get buttonIconSelectedColor => Color(0xFFD40004);
+
   Widget _textButtonWrapper(Widget child) => Scaffold(
-    body: TextMenuButton(
-      text: 'Click Me',
-      isSelected: ValueNotifier(true),
-      onPressed: () {},
-    ),
+    body: MenuButton(text: 'Click Me', onPressed: () {}),
   );
   Widget _textSelectedButtonWrapper(Widget child) => Scaffold(
-    body: TextMenuButton(
+    body: MenuButton(
       text: 'Click Me Now',
-      isSelected: ValueNotifier(true),
       onPressed: () {},
+      isSelected: ValueNotifier(true),
       icon: AssetIcons.cli.imageWithStyle(size: Size(25, 25)),
     ),
   );
   Widget _textIconButtonWrapper(Widget child) => Scaffold(
-    body: TextMenuButton(
+    body: MenuButton(
       text: 'SETTINGS',
-      isSelected: ValueNotifier(true),
       onPressed: () {},
+      isSelected: ValueNotifier(false),
+      icon: AssetIcons.home.imageWithStyle(
+        size: Size(40, 40),
+        color: buttonIconColor,
+      ),
+      trailIcon: Icon(Icons.keyboard_arrow_down, color: buttonIconColor),
+      selectedTrailingIcon: Icon(
+        Icons.keyboard_arrow_up,
+        color: buttonIconSelectedColor,
+      ),
     ),
   );
   Widget _textIconSelectedButtonWrapper(Widget child) => Scaffold(
-    body: TextMenuButton(
+    body: MenuButton(
       text: 'Click Me',
-      onPressed: null,
-      isSelected: ValueNotifier(true),
-      icon: Icon(Icons.check, color: Colors.red),
+      onPressed: () {},
+      icon: Icon(Icons.check, color: buttonIconSelectedColor),
     ),
   );
 
@@ -123,7 +130,7 @@ final class DesignSystemTextButtonsPreview extends MultiPreview {
   }
 }
 
-@DesignSystemTextButtonsPreview()
+@DesignSystemButtonsPreview()
 Widget designSystemButtonsPreview() {
-  return TextMenuButton(text: 'Click Me Now', isSelected: ValueNotifier(true));
+  return MenuButton(text: 'Click Me Now', onPressed: () {});
 }

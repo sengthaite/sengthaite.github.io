@@ -11,6 +11,9 @@ class MenuButton extends StatefulWidget {
   final ValueNotifier<bool>? isSelected;
   final VoidCallback? onPressed;
 
+  /// Widget : MenuButton for custom navigation menu
+  ///
+  /// Properties: Leading, Text, Trailing Widget
   const MenuButton({
     super.key,
     required this.text,

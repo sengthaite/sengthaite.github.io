@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:sengthaite_blog/components/portfolio/widgets/portfolio_page_view.dart';
-import 'package:sengthaite_blog/components/portfolio/widgets/text_menu_button.dart';
 import 'package:sengthaite_blog/extensions/build_context_ext.dart';
+import 'package:sengthaite_blog/features/portfolio/widgets/portfolio_page_view.dart';
+import 'package:sengthaite_blog/features/portfolio/widgets/text_menu_button.dart';
 
-class PortfolioDetailTabView extends StatefulWidget {
+class PortfolioTabBar extends StatefulWidget {
   final void Function(ContentSideSection)? onSelected;
 
-  const PortfolioDetailTabView({super.key, this.onSelected});
+  /// Widget PortfolioTabBar : show the tab bar contains experience and education
+  ///
+  const PortfolioTabBar({super.key, this.onSelected});
 
   @override
-  State<PortfolioDetailTabView> createState() => _PortfolioDetailTabViewState();
+  State<PortfolioTabBar> createState() => _PortfolioTabBarState();
 }
 
-class _PortfolioDetailTabViewState extends State<PortfolioDetailTabView> {
+class _PortfolioTabBarState extends State<PortfolioTabBar> {
   final ValueNotifier<bool> experienceSelected = ValueNotifier(true);
 
   final ValueNotifier<bool> educationSelected = ValueNotifier(false);
