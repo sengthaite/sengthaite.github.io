@@ -26,13 +26,13 @@ void main() async {
   Hive.init(hivePath);
   await AppData().initAppData();
 
-  final bool enablePreveiw = true;
+  final bool enablePreveiw = false;
   // debugPrintRebuildDirtyWidgets = true;
   // debugPaintSizeEnabled = true;
 
   runApp(
     DevicePreview(
-      enabled: enablePreveiw,
+      enabled: kDebugMode && enablePreveiw,
       builder: (context) => MainPortfolioView(),
       // builder: (context) => const MainView(),
     ),
