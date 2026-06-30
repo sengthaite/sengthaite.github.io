@@ -81,12 +81,18 @@ class PortraitPortfolioView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double bottomPadding = MediaQuery.paddingOf(context).bottom;
+
     return SafeArea(
       child: Stack(
         fit: StackFit.expand,
         children: [
           Padding(
-            padding: const EdgeInsets.all(24.0),
+            padding: EdgeInsets.only(
+              left: 24.0,
+              right: 24.0,
+              bottom: 50.0 + bottomPadding,
+            ),
             child: CustomScrollView(
               slivers: [
                 SliverToBoxAdapter(child: ProfileColumnView()),
@@ -103,9 +109,12 @@ class PortraitPortfolioView extends StatelessWidget {
                         surfaceTintColor: Colors.transparent,
                         shadowColor: Colors.transparent,
                         foregroundColor: Colors.transparent,
-                        title: PortfolioDetailTabView(
-                          onSelected: (newSelectionType) =>
-                              type.value = newSelectionType,
+                        title: FittedBox(
+                          fit: BoxFit.scaleDown,
+                          child: PortfolioDetailTabView(
+                            onSelected: (newSelectionType) =>
+                                type.value = newSelectionType,
+                          ),
                         ),
                       );
                     },
@@ -120,7 +129,10 @@ class PortraitPortfolioView extends StatelessWidget {
                           return Column(
                             children: context.experienceData
                                 .map(
-                                  (content) => PageContentView(data: content),
+                                  (content) => FittedBox(
+                                    fit: BoxFit.fitWidth,
+                                    child: PageContentView(data: content),
+                                  ),
                                 )
                                 .toList(),
                           );

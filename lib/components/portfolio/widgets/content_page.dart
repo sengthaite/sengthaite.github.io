@@ -102,7 +102,7 @@ class ExperienceWidget extends StatelessWidget {
         Row(
           children: [
             SizedBox(width: sideSkillWidth),
-            Expanded(child: RoleTitleDescriptionVew(data: data)),
+            RoleTitleDescriptionVew(data: data),
           ],
         ),
         Row(
@@ -118,45 +118,43 @@ class ExperienceWidget extends StatelessWidget {
                 ),
               ),
             ),
-            Expanded(
-              child: Container(
-                decoration: BoxDecoration(
-                  color: context.pfTheme.containerBgColor,
-                  borderRadius: BorderRadius.circular(16),
-                  border: Border.all(
-                    color: context.pfTheme.borderColor,
-                    width: 1,
+            Container(
+              decoration: BoxDecoration(
+                color: context.pfTheme.containerBgColor,
+                borderRadius: BorderRadius.circular(16),
+                border: Border.all(
+                  color: context.pfTheme.borderColor,
+                  width: 1,
+                ),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 24,
+                      vertical: 14,
+                    ),
+                    child: ExperienceWrapperView(data: data),
                   ),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 24,
-                        vertical: 14,
-                      ),
-                      child: ExperienceWrapperView(data: data),
+                  Divider(color: context.pfTheme.dividerColor),
+                  Container(
+                    color: context.colorScheme.surface,
+                    alignment: Alignment.center,
+                    child: data.content,
+                  ),
+                  Divider(color: context.pfTheme.dividerColor),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 24,
+                      vertical: 12,
                     ),
-                    Divider(color: context.pfTheme.dividerColor),
-                    Container(
-                      color: context.colorScheme.surface,
-                      alignment: Alignment.center,
-                      child: data.content,
+                    child: FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: PlatformToolsView(data: data),
                     ),
-                    Divider(color: context.pfTheme.dividerColor),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 24,
-                        vertical: 12,
-                      ),
-                      child: FittedBox(
-                        fit: BoxFit.scaleDown,
-                        child: PlatformToolsView(data: data),
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ],
@@ -222,22 +220,18 @@ class ExperienceWrapperView extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Expanded(
-              child: Text(
-                data.experienceTitle,
-                maxLines: 3,
-                style: context.pfTheme.experienceTitleTextStyle,
-                overflow: TextOverflow.ellipsis,
-              ),
+            Text(
+              data.experienceTitle,
+              maxLines: 3,
+              style: context.pfTheme.experienceTitleTextStyle,
+              overflow: TextOverflow.ellipsis,
             ),
             if (data.trailingMetricTitle != null)
-              Expanded(
-                child: FittedBox(
-                  fit: BoxFit.scaleDown,
-                  child: Text(
-                    data.trailingMetricTitle!,
-                    style: context.pfTheme.experienceTitleTextStyle,
-                  ),
+              FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Text(
+                  data.trailingMetricTitle!,
+                  style: context.pfTheme.experienceTitleTextStyle,
                 ),
               ),
           ],
@@ -246,13 +240,11 @@ class ExperienceWrapperView extends StatelessWidget {
           spacing: 8,
           children: [
             Icon(Icons.vpn_key, color: context.pfTheme.buttonSelectedBgColor),
-            Expanded(
-              child: Text(
-                data.skills,
-                style: context.pfTheme.skillsTextStyle,
-                maxLines: 3,
-                overflow: TextOverflow.ellipsis,
-              ),
+            Text(
+              data.skills,
+              style: context.pfTheme.skillsTextStyle,
+              maxLines: 3,
+              overflow: TextOverflow.ellipsis,
             ),
           ],
         ),

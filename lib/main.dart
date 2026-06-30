@@ -26,7 +26,7 @@ void main() async {
   Hive.init(hivePath);
   await AppData().initAppData();
 
-  final bool enablePreveiw = false;
+  final bool enablePreveiw = true;
   // debugPrintRebuildDirtyWidgets = true;
   // debugPaintSizeEnabled = true;
 
