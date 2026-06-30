@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sengthaite_blog/components/portfolio/widgets/menu_navigation.dart';
+import 'package:sengthaite_blog/components/portfolio/widgets/overlay_dropdown.dart';
 import 'package:sengthaite_blog/components/portfolio/widgets/portfolio_page_view.dart';
 
 // @Preview(name: "ContentSideView")
@@ -20,7 +21,11 @@ class _ContentSideViewState extends State<ContentSideView> {
     return Expanded(
       flex: 4,
       child: Column(
-        children: [MenuNavigation(), SizedBox(height: 20), PortfolioPageView()],
+        children: [
+          MenuNavigation(overlayDirection: OverlayDirection.down),
+          SizedBox(height: 20),
+          PortfolioPageView(),
+        ],
       ),
     );
   }
