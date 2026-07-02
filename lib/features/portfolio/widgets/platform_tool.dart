@@ -5,7 +5,7 @@ import 'package:sengthaite_blog/features/portfolio/widgets/content_page.dart';
 class PlatformToolsView extends StatelessWidget {
   /// Widget PlatformToolsView : display the platforms and tools used to complete the acitivity or the project
   ///
-  /// Todo: add i icon which click to show tooltips explaining what is it about
+  /// TODO: add i icon which click to show tooltips explaining what is it about
   const PlatformToolsView({super.key, required this.data});
 
   final ContentPageData data;

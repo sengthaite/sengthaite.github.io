@@ -55,7 +55,7 @@ class ContentPageData {
   final String description;
   final List<TitleWidget> skillLists;
 
-  final String ActivityMainInformation;
+  final String activityMainInformation;
   final String? trailingMetricTitle;
   final String skills;
 
@@ -67,7 +67,7 @@ class ContentPageData {
     required this.roleTitle,
     required this.description,
     required this.skillLists,
-    required this.ActivityMainInformation,
+    required this.activityMainInformation,
     this.trailingMetricTitle,
     required this.skills,
     required this.content,

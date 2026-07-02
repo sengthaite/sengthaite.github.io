@@ -28,7 +28,7 @@ class PortfolioView extends StatelessWidget {
   }
 }
 
-/// Todo: rewrite the mobile version to display properly
+/// TODO: rewrite the mobile version to display properly
 class PortraitPortfolioView extends StatelessWidget {
   PortraitPortfolioView({super.key});
 

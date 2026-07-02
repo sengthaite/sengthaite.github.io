@@ -56,7 +56,7 @@ class ExperienceWidget extends StatelessWidget {
                         horizontal: 24,
                         vertical: 14,
                       ),
-                      child: ActivityMainInformation(data: data),
+                      child: ActivityMainInformationView(data: data),
                     ),
 
                     Padding(
@@ -88,9 +88,9 @@ class ExperienceWidget extends StatelessWidget {
   }
 }
 
-/// Widget ActivityMainInformation : show the activity title, archivements, and strategies and keyword to success
-class ActivityMainInformation extends StatelessWidget {
-  const ActivityMainInformation({super.key, required this.data});
+/// Widget ActivityMainInformationView : show the activity title, archivements, and strategies and keyword to success
+class ActivityMainInformationView extends StatelessWidget {
+  const ActivityMainInformationView({super.key, required this.data});
 
   final ContentPageData data;
 
@@ -103,9 +103,9 @@ class ActivityMainInformation extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              data.ActivityMainInformation,
+              data.activityMainInformation,
               maxLines: 3,
-              style: context.pfTheme.ActivityMainInformationTextStyle,
+              style: context.pfTheme.activityMainInformationTextStyle,
               overflow: TextOverflow.ellipsis,
             ),
             if (data.trailingMetricTitle != null)
@@ -113,7 +113,7 @@ class ActivityMainInformation extends StatelessWidget {
                 fit: BoxFit.scaleDown,
                 child: Text(
                   data.trailingMetricTitle!,
-                  style: context.pfTheme.ActivityMainInformationTextStyle,
+                  style: context.pfTheme.activityMainInformationTextStyle,
                 ),
               ),
           ],

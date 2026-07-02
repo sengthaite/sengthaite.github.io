@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class ZoomableContent extends StatelessWidget {
   /// Widget ZoomableContent : allow zoom to view bigger content
   ///
-  /// Todo: implement in mobile view
+  /// TODO: implement in mobile view
   const ZoomableContent({super.key, required this.widget});
 
   final Widget widget;
