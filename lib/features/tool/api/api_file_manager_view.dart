@@ -166,7 +166,7 @@ class _ApiFileManagerViewState extends State<ApiFileManagerView> {
                                         isEditing = false;
                                       });
                                       HttpRequestBuilder.getInstance().reset();
-                                      Navigator.of(context).pop();
+                                      context.navState.pop();
                                     },
                                     child: Text(
                                       "Confirm",
@@ -394,7 +394,7 @@ class _APIFileCreationWidgetState extends State<APIFileCreationWidget> {
                               ),
                             );
                           });
-                          Navigator.of(context).pop();
+                          context.navState.pop();
                         },
                   child: Text(
                     "Save",

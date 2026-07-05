@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:sengthaite_blog/constants/enum.constants.dart';
+import 'package:sengthaite_blog/extensions/build_context_ext.dart';
 import 'package:sengthaite_blog/features/tool/api/api_request_builder.dart';
 import 'package:sengthaite_blog/features/tool/api/api_util_table_data.dart';
 
@@ -138,7 +139,7 @@ class _APICryptoSelectionViewState extends State<APICryptoSelectionView> {
           ),
           TextButton(
             onPressed: () {
-              Navigator.of(context).pop();
+              context.navState.pop();
             },
             child: Text("Save"),
           ),

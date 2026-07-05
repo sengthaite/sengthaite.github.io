@@ -24,7 +24,7 @@ class TextMenuButton extends StatelessWidget {
     return ValueListenableBuilder<bool>(
       valueListenable: isSelected,
       builder: (context, value, child) {
-        TextStyle? textStyle = isSelected.value
+        TextStyle? textStyle = isSelected.value == true
             ? context.pfTheme.activityMainInformationSelectedTextStyle
             : context.pfTheme.activityMainInformationTextStyle;
 

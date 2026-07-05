@@ -30,7 +30,7 @@ class PlatformToolsView extends StatelessWidget {
             ),
           ],
         ),
-        Row(
+        Wrap(
           spacing: 6,
           children: data.platforms.map((e) {
             return Container(

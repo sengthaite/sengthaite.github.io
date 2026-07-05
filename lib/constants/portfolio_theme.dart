@@ -23,8 +23,9 @@ class PortfolioTheme extends ThemeExtension<PortfolioTheme> {
       roleTitleTextStyle?.copyWith(fontSize: 18);
   TextStyle? get activityMainInformationTextStyle =>
       textStyle.copyWith(fontSize: 20, color: buttonFgColor).bold;
-  TextStyle? get activityMainInformationSelectedTextStyle =>
-      selectedTextStyle.copyWith(fontSize: 20, color: buttonSelectedBgColor);
+  TextStyle? get activityMainInformationSelectedTextStyle => selectedTextStyle
+      .copyWith(fontSize: 20, color: buttonSelectedBgColor)
+      .bold;
   TextStyle? get dialogTitleTextStyle => activityMainInformationTextStyle;
   TextStyle? get skillsTextStyle => textStyle.copyWith(fontSize: 16);
   TextStyle? get sideMenuTitleStyle => textStyle.copyWith(fontSize: 14);

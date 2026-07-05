@@ -28,7 +28,6 @@ class PortfolioView extends StatelessWidget {
   }
 }
 
-/// TODO: rewrite the mobile version to display properly
 class PortraitPortfolioView extends StatelessWidget {
   PortraitPortfolioView({super.key});
 
@@ -45,23 +44,16 @@ class PortraitPortfolioView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double bottomPadding = MediaQuery.paddingOf(context).bottom;
-
-    return SafeArea(
-      child: Stack(
-        fit: StackFit.expand,
-        children: [
-          Padding(
-            padding: EdgeInsets.only(
-              left: 24.0,
-              right: 24.0,
-              bottom: 50.0 + bottomPadding,
-            ),
+    return Column(
+      children: [
+        Expanded(
+          child: Container(
+            padding: EdgeInsets.symmetric(horizontal: 24, vertical: 0),
             child: CustomScrollView(
               slivers: [
                 SliverToBoxAdapter(child: ProfileColumnView()),
                 SliverPadding(
-                  padding: EdgeInsets.only(top: 64),
+                  padding: EdgeInsets.symmetric(vertical: 24, horizontal: 0),
                   sliver: SliverLayoutBuilder(
                     builder: (context, constraints) {
                       final isPinned = constraints.scrollOffset > 0;
@@ -74,10 +66,13 @@ class PortraitPortfolioView extends StatelessWidget {
                         shadowColor: Colors.transparent,
                         foregroundColor: Colors.transparent,
                         title: FittedBox(
-                          fit: BoxFit.scaleDown,
-                          child: PortfolioTabBar(
-                            onSelected: (newSelectionType) =>
-                                type.value = newSelectionType,
+                          fit: BoxFit.fitHeight,
+                          child: Padding(
+                            padding: const EdgeInsets.all(12.0),
+                            child: PortfolioTabBar(
+                              onSelected: (newSelectionType) =>
+                                  type.value = newSelectionType,
+                            ),
                           ),
                         ),
                       );
@@ -93,10 +88,7 @@ class PortraitPortfolioView extends StatelessWidget {
                           return Column(
                             children: context.experienceData
                                 .map(
-                                  (content) => FittedBox(
-                                    fit: BoxFit.fitWidth,
-                                    child: ExperienceWidget(data: content),
-                                  ),
+                                  (content) => ExperienceWidget(data: content),
                                 )
                                 .toList(),
                           );
@@ -109,21 +101,27 @@ class PortraitPortfolioView extends StatelessWidget {
               ],
             ),
           ),
-          Positioned(
-            bottom: 0,
-            left: 0,
-            right: 0,
-            child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-              color: context.pfTheme.containerBgColor,
-              child: FittedBox(
-                fit: BoxFit.scaleDown,
-                child: MenuNavigation(overlayDirection: OverlayDirection.up),
+        ),
+        Container(
+          padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+          decoration: BoxDecoration(
+            color: context.pfTheme.containerBgColor,
+            borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+            boxShadow: [
+              BoxShadow(
+                color: context.colorScheme.shadow.withValues(alpha: 0.2),
+                blurRadius: 8,
+                offset: Offset(0, -4),
               ),
-            ),
+            ],
           ),
-        ],
-      ),
+
+          child: FittedBox(
+            fit: BoxFit.scaleDown,
+            child: MenuNavigation(overlayDirection: OverlayDirection.up),
+          ),
+        ),
+      ],
     );
   }
 }

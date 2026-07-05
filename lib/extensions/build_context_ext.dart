@@ -14,7 +14,17 @@ extension BuildContextExt on BuildContext {
 
   PortfolioTheme get pfTheme => theme.extension<PortfolioTheme>()!;
 
-  Orientation get orientation => MediaQuery.orientationOf(this);
+  NavigatorState get navState => Navigator.of(this);
+
+  Orientation get orientation {
+    var orientation = Orientation.portrait;
+    final screenWidth = screenSize.width;
+    final screenHeight = screenSize.height;
+    if (screenWidth > screenHeight) {
+      orientation = Orientation.landscape;
+    }
+    return orientation;
+  }
 
   AppLocalizations get l10n => AppLocalizations.of(this)!;
 

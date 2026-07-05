@@ -242,7 +242,7 @@ class _APIFuncDefinitionViewState extends State<APIFuncDefinitionView> {
           TextButton(
             onPressed: () {
               widget.dataRow?.function = controller.text;
-              Navigator.of(context).pop();
+              context.navState.pop();
             },
             child: Text("Save"),
           ),

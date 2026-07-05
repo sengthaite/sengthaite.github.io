@@ -31,15 +31,17 @@ class FeedbackDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AlertDialog(
-      alignment: Alignment.center,
-      title: Text(
-        context.l10n.feedback.toUpperCase(),
-        textAlign: TextAlign.center,
-        style: context.pfTheme.feedbackTitleStyle,
-      ),
-      content: SingleChildScrollView(
-        child: SizedBox(
+    return FittedBox(
+      fit: BoxFit.scaleDown,
+      child: AlertDialog(
+        alignment: Alignment.center,
+        backgroundColor: context.pfTheme.containerBgColor,
+        title: Text(
+          context.l10n.feedback.toUpperCase(),
+          textAlign: TextAlign.center,
+          style: context.pfTheme.feedbackTitleStyle,
+        ),
+        content: SizedBox(
           width: 400,
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -100,7 +102,7 @@ class FeedbackDialog extends StatelessWidget {
                       onFieldSubmitted: (value) {
                         if (onSubmit()) {
                           debugPrint("submited");
-                          Navigator.of(context).pop();
+                          context.navState.pop();
                         }
                       },
                     ),
@@ -110,23 +112,26 @@ class FeedbackDialog extends StatelessWidget {
             ],
           ),
         ),
+        actions: [
+          TextButton(
+            onPressed: () => context.navState.pop(),
+            child: Text(
+              context.l10n.cancel,
+              style: context.textTheme.labelMedium,
+            ),
+          ),
+          TextButton(
+            onPressed: () {
+              onSubmit();
+              context.navState.pop();
+            },
+            child: Text(
+              context.l10n.submit,
+              style: context.textTheme.labelMedium.bold,
+            ),
+          ),
+        ],
       ),
-      actions: [
-        TextButton(
-          onPressed: () => Navigator.of(context).pop(),
-          child: Text(
-            context.l10n.cancel,
-            style: context.textTheme.labelMedium,
-          ),
-        ),
-        TextButton(
-          onPressed: onSubmit,
-          child: Text(
-            context.l10n.submit,
-            style: context.textTheme.labelMedium.bold,
-          ),
-        ),
-      ],
     );
   }
 }

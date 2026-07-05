@@ -38,10 +38,10 @@ class _PortfolioTabBarState extends State<PortfolioTabBar> {
     return Container(
       decoration: BoxDecoration(
         color: context.colorScheme.onPrimary,
-        borderRadius: BorderRadius.circular(25),
+        borderRadius: BorderRadius.circular(60),
         border: Border.all(color: context.pfTheme.borderColor, width: 1),
       ),
-      padding: EdgeInsets.all(10),
+      // padding: EdgeInsets.all(10),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,

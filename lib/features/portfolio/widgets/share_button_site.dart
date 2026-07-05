@@ -14,7 +14,9 @@ class ShareButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return IconButton(
       onPressed: () {
-        SharePlus.instance.share(ShareParams(uri: Uri.parse(site)));
+        SharePlus.instance.share(
+          ShareParams(title: context.l10n.article, uri: Uri.parse(site)),
+        );
       },
       color: context.pfTheme.buttonBgColor,
       icon: Icon(Icons.share_outlined, color: context.pfTheme.buttonFgColor),

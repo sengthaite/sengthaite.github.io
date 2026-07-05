@@ -16,8 +16,18 @@ class RoleTitleDescriptionVew extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(data.roleTitle, style: context.pfTheme.roleTitleTextStyle),
-          Text(data.description, style: context.pfTheme.roleDetailTextStyle),
+          Text(
+            data.roleTitle,
+            style: context.pfTheme.roleTitleTextStyle,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+          ),
+          Text(
+            data.description,
+            style: context.pfTheme.roleDetailTextStyle,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+          ),
         ],
       ),
     );

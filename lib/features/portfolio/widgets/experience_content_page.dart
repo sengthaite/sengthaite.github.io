@@ -19,22 +19,24 @@ class ExperienceWidget extends StatelessWidget {
       children: [
         Row(
           children: [
-            SizedBox(width: sideSkillWidth),
-            RoleTitleDescriptionVew(data: data),
+            if (context.orientation == Orientation.landscape)
+              SizedBox(width: sideSkillWidth),
+            Expanded(child: RoleTitleDescriptionVew(data: data)),
           ],
         ),
         Row(
           children: [
-            SizedBox(
-              width: sideSkillWidth,
-              child: Padding(
-                padding: EdgeInsets.only(top: 12, right: 8),
-                child: ActivitiesKeyPointsView(
-                  sideSkillWidth: sideSkillWidth,
-                  data: data,
+            if (context.orientation == Orientation.landscape)
+              SizedBox(
+                width: sideSkillWidth,
+                child: Padding(
+                  padding: EdgeInsets.only(top: 12, right: 8),
+                  child: ActivitiesKeyPointsView(
+                    sideSkillWidth: sideSkillWidth,
+                    data: data,
+                  ),
                 ),
               ),
-            ),
             Expanded(
               child: Container(
                 decoration: BoxDecoration(
@@ -58,10 +60,12 @@ class ExperienceWidget extends StatelessWidget {
                     Divider(color: context.pfTheme.borderColor, thickness: 0.5),
                     Container(
                       color: context.colorScheme.surface,
-                      // height: 425,
                       padding: const EdgeInsets.all(0),
                       alignment: Alignment.center,
-                      child: SingleChildScrollView(child: data.content),
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: data.content,
+                      ),
                     ),
                     Divider(color: context.pfTheme.borderColor, thickness: 0.5),
                     Padding(
@@ -96,19 +100,18 @@ class ActivityMainInformationView extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              data.activityMainInformation,
-              maxLines: 3,
-              style: context.pfTheme.activityMainInformationTextStyle,
-              overflow: TextOverflow.ellipsis,
+            Expanded(
+              child: Text(
+                data.activityMainInformation,
+                maxLines: 3,
+                style: context.pfTheme.activityMainInformationTextStyle,
+                overflow: TextOverflow.ellipsis,
+              ),
             ),
             if (data.trailingMetricTitle != null)
-              FittedBox(
-                fit: BoxFit.scaleDown,
-                child: Text(
-                  data.trailingMetricTitle!,
-                  style: context.pfTheme.activityMainInformationTextStyle,
-                ),
+              Text(
+                data.trailingMetricTitle!,
+                style: context.pfTheme.activityMainInformationTextStyle,
               ),
           ],
         ),
@@ -116,11 +119,13 @@ class ActivityMainInformationView extends StatelessWidget {
           spacing: 8,
           children: [
             Icon(Icons.vpn_key, color: context.pfTheme.buttonSelectedBgColor),
-            Text(
-              data.skills,
-              style: context.pfTheme.skillsTextStyle,
-              maxLines: 3,
-              overflow: TextOverflow.ellipsis,
+            Expanded(
+              child: Text(
+                data.skills,
+                style: context.pfTheme.skillsTextStyle,
+                maxLines: 3,
+                overflow: TextOverflow.ellipsis,
+              ),
             ),
           ],
         ),

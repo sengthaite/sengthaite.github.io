@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sengthaite_blog/extensions/build_context_ext.dart';
 
 enum AppLayoutType { mobile, tablet, desktop, unknown }
 
@@ -25,15 +26,9 @@ class AppLayout extends StatefulWidget {
 class AppLayoutState extends State<AppLayout> {
   @override
   Widget build(BuildContext context) {
-    final screenSize = MediaQuery.of(context).size;
-    final screenWidth = screenSize.width;
-    final screenHeight = screenSize.height;
     final defaultWidget = widget.defaultWidget ?? const SizedBox();
-    var orientation = Orientation.portrait;
-    if (screenWidth > screenHeight) {
-      orientation = Orientation.landscape;
-    }
-    switch (orientation) {
+
+    switch (context.orientation) {
       case Orientation.portrait:
         return widget.portraitWidget ?? defaultWidget;
       case Orientation.landscape:

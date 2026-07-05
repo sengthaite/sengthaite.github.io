@@ -92,13 +92,28 @@ class _MenuNavigationState extends State<MenuNavigation> {
             _resetMenuButtonSelection();
           },
         ),
-        OverlayPopUpDropdown(
-          controller: controller,
-          onTapOutside: _resetMenuButtonSelection,
-          direction: widget.overlayDirection,
-          menuButton: MenuButton(
+        if (context.orientation == Orientation.landscape)
+          getSettingDropdownButton(context),
+        if (context.orientation == Orientation.portrait)
+          MenuButton(
             text: context.l10n.settings.toUpperCase(),
-            onPressed: _togglePopUp,
+            onPressed: () {
+              showModalBottomSheet<Widget>(
+                context: context,
+                useSafeArea: true,
+                showDragHandle: true,
+                backgroundColor: context.pfTheme.containerBgColor,
+                builder: (context) {
+                  return Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: getSettingRowData(context, dismissOnChange: true),
+                    ),
+                  );
+                },
+              );
+            },
             isSelected: isShowingOverlay,
             icon: AssetIcons.home.imageWithStyle(
               size: iconSize,
@@ -108,71 +123,108 @@ class _MenuNavigationState extends State<MenuNavigation> {
               size: iconSize,
               color: context.pfTheme.buttonSelectedFgColor,
             ),
-            trailIcon: Icon(
-              Icons.keyboard_arrow_down,
-              color: context.pfTheme.buttonFgColor,
-            ),
-            selectedTrailingIcon: Icon(
-              Icons.keyboard_arrow_up,
-              color: context.pfTheme.buttonSelectedFgColor,
-            ),
           ),
-          listDropdownWidget: TablePopup(
-            rows: [
-              TableRowData(
-                title: context.l10n.language.toUpperCase(),
-                widget: RadioButtons(
-                  defaultSelectedValue: context.appSettings.currentLocale.value,
-                  onSelectedValueChange: (newLocale) {
-                    context.appSettings.locale = newLocale as Locale;
-                    AppData().saveAppSettings();
-                  },
-                  list: [
-                    RadioButtonData(
-                      text: context.l10n.khmer_lang,
-                      value: Locale('km'),
-                    ),
-                    RadioButtonData(
-                      text: context.l10n.english_lang,
-                      value: Locale('en'),
-                    ),
-                  ],
-                ),
+      ],
+    );
+  }
+
+  OverlayPopUpDropdown getSettingDropdownButton(BuildContext context) {
+    return OverlayPopUpDropdown(
+      controller: controller,
+      onTapOutside: _resetMenuButtonSelection,
+      direction: widget.overlayDirection,
+      menuButton: MenuButton(
+        text: context.l10n.settings.toUpperCase(),
+        onPressed: _togglePopUp,
+        isSelected: isShowingOverlay,
+        icon: AssetIcons.home.imageWithStyle(
+          size: iconSize,
+          color: context.pfTheme.buttonFgColor,
+        ),
+        selectedIcon: AssetIcons.home.imageWithStyle(
+          size: iconSize,
+          color: context.pfTheme.buttonSelectedFgColor,
+        ),
+        trailIcon: Icon(
+          Icons.keyboard_arrow_down,
+          color: context.pfTheme.buttonFgColor,
+        ),
+        selectedTrailingIcon: Icon(
+          Icons.keyboard_arrow_up,
+          color: context.pfTheme.buttonSelectedFgColor,
+        ),
+      ),
+      listDropdownWidget: getSettingRowData(context),
+    );
+  }
+
+  TablePopup getSettingRowData(
+    BuildContext context, {
+    bool dismissOnChange = false,
+  }) {
+    return TablePopup(
+      rows: [
+        TableRowData(
+          title: context.l10n.language.toUpperCase(),
+          widget: RadioButtons(
+            defaultSelectedValue: context.appSettings.currentLocale.value,
+            onSelectedValueChange: (newLocale) {
+              if (dismissOnChange) {
+                context.navState.pop();
+              }
+              context.appSettings.locale = newLocale as Locale;
+              AppData().saveAppSettings();
+            },
+            list: [
+              RadioButtonData(
+                text: context.l10n.khmer_lang,
+                value: Locale('km'),
               ),
-              TableRowData(
-                title: context.l10n.display,
-                widget: RadioButtons<ThemeMode>(
-                  defaultSelectedValue:
-                      context.appSettings.currentThemeMode.value,
-                  onSelectedValueChange: (themeMode) {
-                    context.appSettings.newThemeMode = themeMode;
-                    AppData().saveAppSettings();
-                  },
-                  list: [
-                    RadioButtonData(
-                      text: context.l10n.light_mode,
-                      value: ThemeMode.light,
-                    ),
-                    RadioButtonData(
-                      text: context.l10n.dark_mode,
-                      value: ThemeMode.dark,
-                    ),
-                    RadioButtonData(
-                      text: context.l10n.system_mode,
-                      value: ThemeMode.system,
-                    ),
-                  ],
-                ),
+              RadioButtonData(
+                text: context.l10n.english_lang,
+                value: Locale('en'),
               ),
-              // TableRowData(title: "DEMOS"),
-              TableRowData(
-                title: context.l10n.feedback,
-                onPress: () => showFeedback(context),
-              ),
-              // TableRowData(title: "REGISTER / LOGIN"),
             ],
           ),
         ),
+        TableRowData(
+          title: context.l10n.display,
+          widget: RadioButtons<ThemeMode>(
+            defaultSelectedValue: context.appSettings.currentThemeMode.value,
+            onSelectedValueChange: (themeMode) {
+              if (dismissOnChange) {
+                context.navState.pop();
+              }
+              context.appSettings.newThemeMode = themeMode;
+              AppData().saveAppSettings();
+            },
+            list: [
+              RadioButtonData(
+                text: context.l10n.light_mode,
+                value: ThemeMode.light,
+              ),
+              RadioButtonData(
+                text: context.l10n.dark_mode,
+                value: ThemeMode.dark,
+              ),
+              RadioButtonData(
+                text: context.l10n.system_mode,
+                value: ThemeMode.system,
+              ),
+            ],
+          ),
+        ),
+        // TableRowData(title: "DEMOS"),
+        TableRowData(
+          title: context.l10n.feedback,
+          onPress: () {
+            if (dismissOnChange) {
+              context.navState.pop();
+            }
+            showFeedback(context);
+          },
+        ),
+        // TableRowData(title: "REGISTER / LOGIN"),
       ],
     );
   }
