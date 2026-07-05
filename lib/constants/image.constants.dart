@@ -30,62 +30,50 @@ enum AssetIcons {
   cal("calculator.svg", section: SectionType.tool),
   qrcode("qrcode.png", section: SectionType.tool),
 
-  apk("apk.svg", section: SectionType.portfolio),
-  appstore("app-store.svg", section: SectionType.portfolio),
-  appsflyer("appsflyer.png", section: SectionType.portfolio),
   blog("blog.svg", section: SectionType.portfolio),
-  camdx("camdx.png", section: SectionType.portfolio),
-  createml("createml.png", section: SectionType.portfolio),
-  download("download.svg", section: SectionType.portfolio),
   githubpf("githubpf.svg", section: SectionType.portfolio),
   gmail("gmail.svg", section: SectionType.portfolio),
-  goal("goal.svg", section: SectionType.portfolio),
   home("home.svg", section: SectionType.portfolio),
-  ipa("ipa.svg", section: SectionType.portfolio),
-  khqr("khqr.png", section: SectionType.portfolio),
   linkedin("linkedin.svg", section: SectionType.portfolio),
-  manager("manager.svg", section: SectionType.portfolio),
-  mlkit("mlkit.png", section: SectionType.portfolio),
-  mobile("mobile.svg", section: SectionType.portfolio),
   phone("phone.svg", section: SectionType.portfolio),
-  planning("planning.svg", section: SectionType.portfolio),
-  playstore("playstore.svg", section: SectionType.portfolio),
-  process("process.svg", section: SectionType.portfolio),
-  qa("qa.svg", section: SectionType.portfolio),
-  securitypf("securitypf.svg", section: SectionType.portfolio),
-  setting("setting.svg", section: SectionType.portfolio),
-  share("share.svg", section: SectionType.portfolio),
-  team("team.svg", section: SectionType.portfolio),
   telegram("telegram.svg", section: SectionType.portfolio),
-  tensorflow("tensorflow.svg", section: SectionType.portfolio),
-  testcase("testcase.svg", section: SectionType.portfolio),
-  toolspf("tools.svg", section: SectionType.portfolio),
-  trello("trello.svg", section: SectionType.portfolio),
   imageprof("image_prof.png", section: SectionType.portfolio),
 
-  automatedtesting("automated_testing.svg", section: SectionType.certs),
-  billpayments("bill_payment.svg", section: SectionType.certs),
-  candidateselection("candidate_selection.svg", section: SectionType.certs),
-  khqrexperience("khqrpf.png", section: SectionType.certs),
-  liveness("liveness.png", section: SectionType.certs),
-  otherloanenhancements("loan_related.png", section: SectionType.certs),
-  securitysupport("securityexperience.svg", section: SectionType.certs),
-  smeloan("sme_loan.png", section: SectionType.certs),
-  universallink("universal_link.svg", section: SectionType.certs),
-  z1("ios_dev.png", section: SectionType.certs),
-  automatedtestingkh("automated_testing_kh.svg", section: SectionType.certs),
-  billpaymentskh("biller_kh.svg", section: SectionType.certs),
-  candidateselectionkh(
-    "candidate_selection_kh.svg",
-    section: SectionType.certs,
+  billpayments("bill_payment.png", section: SectionType.portfolio),
+  billpaymentsKH("bill_payment_kh.png", section: SectionType.portfolio),
+
+  candidateselection("team_building.png", section: SectionType.portfolio),
+  candidateselectionKH("team_building_kh.png", section: SectionType.portfolio),
+
+  khqrexperience("khqr.png", section: SectionType.portfolio),
+  khqrexperienceKH("khqr_kh.png", section: SectionType.portfolio),
+
+  automatedtesting("automated_testing.png", section: SectionType.portfolio),
+  automatedtestingKH(
+    "automated_testing_kh.png",
+    section: SectionType.portfolio,
   ),
-  khqrexperiencekh("khqr_kh.png", section: SectionType.certs),
-  livenesskh("liveness_kh.png", section: SectionType.certs),
-  otherloanenhancementskh("loan_related_kh.png", section: SectionType.certs),
-  securitysupportkh("sec_hardening_kh.svg", section: SectionType.certs),
-  smeloankh("sme_loan_kh.png", section: SectionType.certs),
-  universallinkkh("universal_link_kh.svg", section: SectionType.certs),
-  z1kh("ios_dev_kh.png", section: SectionType.certs),
+
+  liveness("liveness.png", section: SectionType.portfolio),
+  livenessKH("liveness_kh.png", section: SectionType.portfolio),
+
+  securitysupport("security_hardening.png", section: SectionType.portfolio),
+  securitysupportKH(
+    "security_hardening_kh.png",
+    section: SectionType.portfolio,
+  ),
+
+  universallink("universal_link.png", section: SectionType.portfolio),
+  universallinkKH("universal_link_kh.png", section: SectionType.portfolio),
+
+  smeloan("sme.png", section: SectionType.portfolio),
+  smeloanKH("sme_kh.png", section: SectionType.portfolio),
+
+  loanRelated("loan_related.png", section: SectionType.portfolio),
+  loanRelatedKH("loan_related_kh.png", section: SectionType.portfolio),
+
+  iosDeveloper("ios_developer.png", section: SectionType.portfolio),
+  iosDeveloperKH("ios_developer_kh.png", section: SectionType.portfolio),
 
   peermentor("peer_mentor.jpg", section: SectionType.certs),
   bachelor("bachelor_paragon.jpg", section: SectionType.certs),
@@ -104,27 +92,49 @@ enum AssetIcons {
       case "it_day":
         return AssetIcons.itday;
       case "volunteer_yvsd":
-        return volunteeryvsd;
-      case "automated_testing":
-        return AssetIcons.automatedtesting;
+        return AssetIcons.volunteeryvsd;
+
       case "bill_payment":
         return AssetIcons.billpayments;
-      case "candidate_selection":
+      case "bill_payment_kh":
+        return AssetIcons.billpaymentsKH;
+      case "team_building":
         return AssetIcons.candidateselection;
-      case "khqrpf":
+      case "team_building_kh":
+        return AssetIcons.candidateselectionKH;
+      case "khqr":
         return AssetIcons.khqrexperience;
+      case "khqr_kh":
+        return AssetIcons.khqrexperienceKH;
+      case "automated_testing":
+        return AssetIcons.automatedtesting;
+      case "automated_testing_kh":
+        return AssetIcons.automatedtestingKH;
       case "liveness":
         return AssetIcons.liveness;
-      case "other_loan_enhancements":
-        return AssetIcons.otherloanenhancements;
-      case "securityexperience":
+      case "liveness_kh":
+        return AssetIcons.livenessKH;
+      case "security_hardening":
         return AssetIcons.securitysupport;
-      case "sme_loan":
-        return AssetIcons.smeloan;
+      case "security_hardening_kh":
+        return AssetIcons.securitysupportKH;
       case "universal_link":
         return AssetIcons.universallink;
-      case "z1_zpoint":
-        return AssetIcons.z1;
+      case "universal_link_kh":
+        return AssetIcons.universallinkKH;
+      case "sme":
+        return AssetIcons.smeloan;
+      case "sme_kh":
+        return AssetIcons.smeloanKH;
+      case "loan_related":
+        return AssetIcons.loanRelated;
+      case "loan_related_kh":
+        return AssetIcons.loanRelatedKH;
+      case "ios_developer":
+        return AssetIcons.iosDeveloper;
+      case "ios_developer_kh":
+        return AssetIcons.iosDeveloperKH;
+
       case "flutter":
         return AssetIcons.flutter;
       case "logo":
@@ -165,70 +175,22 @@ enum AssetIcons {
         return AssetIcons.textEditor;
       case "github":
         return AssetIcons.github;
-      case "apk":
-        return AssetIcons.apk;
-      case "app-store":
-        return AssetIcons.appstore;
-      case "appsflyer.png":
-        return AssetIcons.appsflyer;
-      case "blog":
-        return AssetIcons.blog;
-      case "camdx.png":
-        return AssetIcons.camdx;
-      case "createml.png":
-        return AssetIcons.createml;
-      case "download":
-        return AssetIcons.download;
       case "github_pf":
         return AssetIcons.githubpf;
       case "gmail":
         return AssetIcons.gmail;
-      case "goal":
-        return AssetIcons.goal;
       case "home":
         return AssetIcons.home;
-      case "ipa":
-        return AssetIcons.ipa;
-      case "khqr":
-        return AssetIcons.khqr;
       case "linkedin":
         return AssetIcons.linkedin;
-      case "manager":
-        return AssetIcons.manager;
-      case "mlkit":
-        return AssetIcons.mlkit;
-      case "mobile":
-        return AssetIcons.mobile;
       case "phone":
         return AssetIcons.phone;
-      case "planning":
-        return AssetIcons.planning;
-      case "playstore":
-        return AssetIcons.playstore;
-      case "process":
-        return AssetIcons.process;
-      case "qa":
-        return AssetIcons.qa;
-      case "securitypf":
-        return AssetIcons.securitypf;
-      case "setting":
-        return AssetIcons.setting;
-      case "share":
-        return AssetIcons.share;
-      case "team":
-        return AssetIcons.team;
       case "telegram":
         return AssetIcons.telegram;
       case "image_prof":
         return AssetIcons.imageprof;
-      case "tensorflow":
-        return AssetIcons.tensorflow;
-      case "testcase":
-        return AssetIcons.testcase;
       case "tools":
         return AssetIcons.tools;
-      case "trello":
-        return AssetIcons.trello;
       default:
         return AssetIcons.logo;
     }
@@ -298,12 +260,7 @@ enum AssetIcons {
         height: height,
       );
     }
-    return Image.asset(
-      "$basePath/$imageName",
-      width: width,
-      height: height,
-      fit: BoxFit.contain,
-    );
+    return Image.asset("$basePath/$imageName", width: width, height: height);
   }
 
   final String imageName;

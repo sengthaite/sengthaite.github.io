@@ -33,7 +33,8 @@ extension BuildContextExt on BuildContext {
     AssetIcons.volunteeryvsd.image,
   ];
 
-  double get svgSize => 1000;
+  double get svgWidth => 970;
+
   List<ContentPageData> get experienceData => [
     ContentPageData(
       roleTitle: l10n.title_mngr_mb,
@@ -50,7 +51,7 @@ extension BuildContextExt on BuildContext {
       activityMainInformation: l10n.exp_bill,
       trailingMetricTitle: "(${l10n.biller_size(20)})",
       skills: l10n.skill_bill,
-      content: currentLocale.billPayments.imageWithSize(width: svgSize),
+      content: currentLocale.billPayments.imageWithSize(width: svgWidth),
       platforms: ["Web Angular", "Excel Progress Tracking", "OneDrive"],
     ),
     ContentPageData(
@@ -68,7 +69,7 @@ extension BuildContextExt on BuildContext {
       activityMainInformation: l10n.exp_build_team,
       trailingMetricTitle: "(${l10n.direct_report_size(8)})",
       skills: l10n.skill_build_team,
-      content: currentLocale.candidateSelection.imageWithSize(width: svgSize),
+      content: currentLocale.candidateSelection.imageWithSize(width: svgWidth),
       platforms: ["Web Angular", "Excel Progress Tracking", "OneDrive"],
     ),
     ContentPageData(
@@ -85,7 +86,7 @@ extension BuildContextExt on BuildContext {
       ],
       activityMainInformation: l10n.exp_khqr,
       skills: l10n.skill_khqr,
-      content: currentLocale.khqrExperience.imageWithSize(width: svgSize),
+      content: currentLocale.khqrExperience.imageWithSize(width: svgWidth),
       platforms: ["Figma Design", "Bakong PG", "TestFlight", "Firebase"],
     ),
     ContentPageData(
@@ -102,7 +103,7 @@ extension BuildContextExt on BuildContext {
       ],
       activityMainInformation: l10n.exp_automate_testing,
       skills: l10n.skill_automate_testing,
-      content: currentLocale.automatedTesting.imageWithSize(width: svgSize),
+      content: currentLocale.automatedTesting.imageWithSize(width: svgWidth),
       platforms: ["Katalon", "Java Groovy", "Excel Plugin"],
     ),
     ContentPageData(
@@ -119,7 +120,7 @@ extension BuildContextExt on BuildContext {
       ],
       activityMainInformation: l10n.exp_universal_link,
       skills: l10n.skill_universal_link,
-      content: currentLocale.universalLink.imageWithSize(width: svgSize),
+      content: currentLocale.universalLink.imageWithSize(width: svgWidth),
       platforms: ["AppsFlyer Onelink", "Web Angular"],
     ),
     ContentPageData(
@@ -136,7 +137,7 @@ extension BuildContextExt on BuildContext {
       ],
       activityMainInformation: l10n.exp_hardening,
       skills: l10n.skill_hardening,
-      content: currentLocale.securitySupport.imageWithSize(width: svgSize),
+      content: currentLocale.securitySupport.imageWithSize(width: svgWidth),
       platforms: ["apksigning", "fastlane", "ironsec shield API"],
     ),
     ContentPageData(
@@ -153,7 +154,7 @@ extension BuildContextExt on BuildContext {
       ],
       activityMainInformation: l10n.exp_liveness,
       skills: l10n.skill_liveness,
-      content: currentLocale.liveness.imageWithSize(width: svgSize),
+      content: currentLocale.liveness.imageWithSize(width: svgWidth),
       platforms: ["GoogleMLKit", "CreateML", "Tensorflow"],
     ),
     ContentPageData(
@@ -170,7 +171,7 @@ extension BuildContextExt on BuildContext {
       ],
       activityMainInformation: l10n.exp_loan_implementation,
       skills: l10n.skill_loan_implementation,
-      content: currentLocale.loanImplementation.imageWithSize(width: svgSize),
+      content: currentLocale.loanImplementation.imageWithSize(width: svgWidth),
       platforms: ["Figma", "Angular Web", "Flutter"],
     ),
     ContentPageData(
@@ -187,7 +188,7 @@ extension BuildContextExt on BuildContext {
       ],
       activityMainInformation: l10n.exp_loan_releated,
       skills: l10n.skill_loan_related,
-      content: currentLocale.loanRelated.imageWithSize(width: svgSize),
+      content: currentLocale.loanRelated.imageWithSize(width: svgWidth),
       platforms: ["Figma", "Angular Web", "Flutter"],
     ),
     ContentPageData(
@@ -204,7 +205,7 @@ extension BuildContextExt on BuildContext {
       ],
       activityMainInformation: l10n.exp_z1_zpoint,
       skills: l10n.skill_z1_zpoint,
-      content: currentLocale.iosDevZ1.imageWithSize(width: svgSize),
+      content: currentLocale.iosDevZ1.imageWithSize(width: svgWidth),
       platforms: ["iOS Swift UIKit", "XCode"],
     ),
   ];

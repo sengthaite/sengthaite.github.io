@@ -15,31 +15,28 @@ class ExperienceWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FittedBox(
-      fit: BoxFit.scaleDown,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              SizedBox(width: sideSkillWidth),
-              RoleTitleDescriptionVew(data: data),
-            ],
-          ),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                width: sideSkillWidth,
-                child: Padding(
-                  padding: EdgeInsets.only(top: 12, right: 8),
-                  child: ActivitiesKeyPointsView(
-                    sideSkillWidth: sideSkillWidth,
-                    data: data,
-                  ),
+    return Column(
+      children: [
+        Row(
+          children: [
+            SizedBox(width: sideSkillWidth),
+            RoleTitleDescriptionVew(data: data),
+          ],
+        ),
+        Row(
+          children: [
+            SizedBox(
+              width: sideSkillWidth,
+              child: Padding(
+                padding: EdgeInsets.only(top: 12, right: 8),
+                child: ActivitiesKeyPointsView(
+                  sideSkillWidth: sideSkillWidth,
+                  data: data,
                 ),
               ),
-              Container(
+            ),
+            Expanded(
+              child: Container(
                 decoration: BoxDecoration(
                   color: context.pfTheme.containerBgColor,
                   borderRadius: BorderRadius.circular(16),
@@ -49,7 +46,7 @@ class ExperienceWidget extends StatelessWidget {
                   ),
                 ),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
                   children: [
                     Padding(
                       padding: const EdgeInsets.symmetric(
@@ -58,32 +55,29 @@ class ExperienceWidget extends StatelessWidget {
                       ),
                       child: ActivityMainInformationView(data: data),
                     ),
-
-                    Padding(
-                      padding: const EdgeInsets.all(24.0),
-                      child: Container(
-                        color: context.colorScheme.surface,
-                        alignment: Alignment.center,
-                        child: data.content,
-                      ),
+                    Divider(color: context.pfTheme.borderColor, thickness: 0.5),
+                    Container(
+                      color: context.colorScheme.surface,
+                      // height: 425,
+                      padding: const EdgeInsets.all(0),
+                      alignment: Alignment.center,
+                      child: SingleChildScrollView(child: data.content),
                     ),
+                    Divider(color: context.pfTheme.borderColor, thickness: 0.5),
                     Padding(
                       padding: const EdgeInsets.symmetric(
                         horizontal: 24,
                         vertical: 12,
                       ),
-                      child: FittedBox(
-                        fit: BoxFit.scaleDown,
-                        child: PlatformToolsView(data: data),
-                      ),
+                      child: PlatformToolsView(data: data),
                     ),
                   ],
                 ),
               ),
-            ],
-          ),
-        ],
-      ),
+            ),
+          ],
+        ),
+      ],
     );
   }
 }
