@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:device_preview/device_preview.dart';
-// import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_ce/hive.dart';
@@ -15,7 +14,9 @@ void main() async {
   Hive.registerAdapters();
   var hivePath = '.hive_data';
   if (!kIsWeb) {
-    var directory = await getApplicationCacheDirectory();
+    // TODO: Debug and fix exception when running on mobile device, currently only works on web and desktop
+    // TODO: reimplement firebase
+    var directory = await getApplicationDocumentsDirectory();
     var hiveDir = Directory("${directory.path}/.hive_data");
     if (!await hiveDir.exists()) {
       await hiveDir.create(recursive: true);

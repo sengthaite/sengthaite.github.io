@@ -11,19 +11,19 @@
 ## Portfolio Profile
 
 - [] Share as Link, PDF
-- [] Display Portrait and Landscape
-- [] L10n: English, Khmer
-- [] Mode: Light, Dark, System
+- [x] Display Portrait and Landscape
+- [x] L10n: English, Khmer
+- [x] Mode: Light, Dark, System
 
 #### 1. Profile
 
-- [] Whoami and Existence
-- [] Contacts
-- [] Prefessional Summary
+- [x] Whoami and Existence
+- [x] Contacts
+- [x] Prefessional Summary
 
 #### 2. Experiences
 
-- [] Group by Title >> Roles >> Resources, Times, Tools, and People Support >> Results
+- [x] Group by Title >> Roles >> Resources, Times, Tools, and People Support >> Results
 
 #### 3. Skills
 
@@ -33,7 +33,7 @@
 ## The Blog
 
 - [] User Authentication (Register, Login, Sign Up with Google/Linkedin)
-- [] This Blog as Telegram Mini App
+- [x] This Blog as Telegram Mini App
 - [] This Blog's Tools as vscode's extension
 - [] Role: Public, Registered, Subscribed, Admin
 
