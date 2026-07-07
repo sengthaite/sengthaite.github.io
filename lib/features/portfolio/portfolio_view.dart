@@ -10,7 +10,6 @@ import 'package:sengthaite_blog/features/portfolio/widgets/menu_navigation.dart'
 import 'package:sengthaite_blog/features/portfolio/widgets/overlay_dropdown.dart';
 import 'package:sengthaite_blog/features/portfolio/widgets/portfolio_page_view.dart';
 import 'package:sengthaite_blog/features/portfolio/widgets/portfolio_tab_bar.dart';
-import 'package:sengthaite_blog/features/portfolio/widgets/zoomable_content.dart';
 import 'package:sengthaite_blog/shared/app.layout.dart';
 
 class PortfolioView extends StatelessWidget {
@@ -81,25 +80,22 @@ class PortraitPortfolioView extends StatelessWidget {
                   ),
                 ),
                 SliverToBoxAdapter(
-                  child: ZoomableContent(
-                    child: ValueListenableBuilder(
-                      valueListenable: type,
-                      builder: (context, section, child) {
-                        switch (section) {
-                          case ContentSideSection.experience:
-                            return Column(
-                              children: context.experienceData
-                                  .map(
-                                    (content) =>
-                                        ExperienceWidget(data: content),
-                                  )
-                                  .toList(),
-                            );
-                          case ContentSideSection.education:
-                            return Column(children: context.educationData);
-                        }
-                      },
-                    ),
+                  child: ValueListenableBuilder(
+                    valueListenable: type,
+                    builder: (context, section, child) {
+                      switch (section) {
+                        case ContentSideSection.experience:
+                          return Column(
+                            children: context.experienceData
+                                .map(
+                                  (content) => ExperienceWidget(data: content),
+                                )
+                                .toList(),
+                          );
+                        case ContentSideSection.education:
+                          return Column(children: context.educationData);
+                      }
+                    },
                   ),
                 ),
               ],
