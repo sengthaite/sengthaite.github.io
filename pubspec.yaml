@@ -10,7 +10,6 @@ dependencies:
     sdk: flutter
 
   intl: any
-  # cupertino_icons: ^1.0.8
   json_annotation: ^4.9.0
   json_serializable: ^6.8.0
   freezed_annotation: ^3.0.0
