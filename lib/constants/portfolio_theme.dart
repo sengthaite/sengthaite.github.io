@@ -28,7 +28,7 @@ class PortfolioTheme extends ThemeExtension<PortfolioTheme> {
       .bold;
   TextStyle? get dialogTitleTextStyle => activityMainInformationTextStyle;
   TextStyle? get skillsTextStyle => textStyle.copyWith(fontSize: 16);
-  TextStyle? get sideMenuTitleStyle => textStyle.copyWith(fontSize: 14);
+  TextStyle? get sideMenuTitleStyle => textStyle.copyWith(fontSize: 12);
   TextStyle? get sectionTitleStyle =>
       textStyle.copyWith(fontSize: 16).bold; // Skills and footer title style
   TextStyle? get feedbackTitleStyle => textStyle.copyWith(fontSize: 36).bold;

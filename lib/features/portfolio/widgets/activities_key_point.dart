@@ -36,7 +36,7 @@ class ActivitiesKeyPointsView extends StatelessWidget {
                 child: Text(
                   e.title,
                   maxLines: 2,
-                  style: context.pfTheme.textStyle,
+                  style: context.pfTheme.sideMenuTitleStyle,
                 ),
               ),
             ],
