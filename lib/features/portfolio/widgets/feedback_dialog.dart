@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:sengthaite_blog/extensions/build_context_ext.dart';
 import 'package:sengthaite_blog/extensions/style_ext.dart';
@@ -14,6 +15,8 @@ class FeedbackDialog extends StatelessWidget {
     TextEditingController(),
   ];
 
+  int starRating = 2;
+
   final List<FocusNode> _focusNodes = [FocusNode(), FocusNode()];
 
   bool onSubmit() {
@@ -26,6 +29,22 @@ class FeedbackDialog extends StatelessWidget {
         return false;
       }
     }
+    String email = _controllers[0].text;
+    String comment = _controllers[1].text;
+    try {
+      var dio = Dio();
+      dio
+          .post<dynamic>(
+            'api.sengthaite.dpdns.org/api/v1/feedback/submit',
+            data: {"rating": starRating, "email": email, "comment": comment},
+          )
+          .then((value) {
+            debugPrint(value.toString());
+          });
+    } catch (err) {
+      debugPrint(err.toString());
+    }
+
     return true;
   }
 
@@ -51,7 +70,10 @@ class FeedbackDialog extends StatelessWidget {
                 context.l10n.feedback_title,
                 style: context.pfTheme.feedbackSubTitleStyle,
               ),
-              StarRating(),
+              StarRating(
+                defaultStarRating: starRating,
+                onRatingChange: (int value) => starRating = value,
+              ),
               Form(
                 key: formState,
                 child: Column(

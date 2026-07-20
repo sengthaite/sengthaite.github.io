@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:markdown_widget/markdown_widget.dart';
 import 'package:sengthaite_blog/extensions/build_context_ext.dart';
 
 class StarRating extends StatefulWidget {
   /// Widget StarRating : enable drag and click to rate the star
   ///
-  const StarRating({super.key});
+  const StarRating({
+    super.key,
+    required this.defaultStarRating,
+    required this.onRatingChange,
+  });
+
+  final int defaultStarRating;
+  final ValueCallback<int> onRatingChange;
 
   @override
   State<StarRating> createState() => _StarRatingState();
@@ -13,6 +21,12 @@ class StarRating extends StatefulWidget {
 class _StarRatingState extends State<StarRating> {
   final _starKey = GlobalKey();
   int star = 2;
+
+  @override
+  void initState() {
+    star = widget.defaultStarRating;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +38,7 @@ class _StarRatingState extends State<StarRating> {
         var offset = starRenderBox.localToGlobal(Offset.zero);
         var currentStartX = details.globalPosition.dx - offset.dx;
         var currentStar = ((currentStartX - 56) / 56).toInt();
+        widget.onRatingChange(currentStar);
         setState(() {
           star = currentStar;
         });
@@ -35,6 +50,7 @@ class _StarRatingState extends State<StarRating> {
         var offset = starRenderBox.localToGlobal(Offset.zero);
         var currentStartX = details.globalPosition.dx - offset.dx;
         var currentStar = (currentStartX / 56).toInt();
+        widget.onRatingChange(currentStar);
         setState(() {
           star = currentStar;
         });
