@@ -32,10 +32,12 @@ class FeedbackDialog extends StatelessWidget {
     String email = _controllers[0].text;
     String comment = _controllers[1].text;
     try {
-      var dio = Dio();
+      var dio = Dio(
+        BaseOptions(baseUrl: "https://api.sengthaite.dpdns.org/api/v1"),
+      );
       dio
           .post<dynamic>(
-            'api.sengthaite.dpdns.org/api/v1/feedback/submit',
+            '/feedback/submit',
             data: {"rating": starRating, "email": email, "comment": comment},
           )
           .then((value) {
