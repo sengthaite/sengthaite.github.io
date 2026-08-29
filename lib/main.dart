@@ -14,8 +14,6 @@ void main() async {
   Hive.registerAdapters();
   var hivePath = '.hive_data';
   if (!kIsWeb) {
-    // TODO: Debug and fix exception when running on mobile device, currently only works on web and desktop
-    // TODO: reimplement firebase
     var directory = await getApplicationDocumentsDirectory();
     var hiveDir = Directory("${directory.path}/.hive_data");
     if (!await hiveDir.exists()) {

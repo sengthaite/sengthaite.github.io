@@ -1,4 +1,4 @@
-package com.example.sengthaite_blog
+package com.ste.me
 
 import io.flutter.embedding.android.FlutterActivity
 

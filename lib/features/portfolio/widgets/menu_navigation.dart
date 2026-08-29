@@ -45,8 +45,6 @@ class _MenuNavigationState extends State<MenuNavigation> {
     isHome.value = true;
   }
 
-  /// Show feedback dialog
-  /// TODO: Integrate with API
   void showFeedback(BuildContext context) {
     _togglePopUp();
     _resetMenuButtonSelection();

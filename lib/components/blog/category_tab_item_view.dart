@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_html/flutter_html.dart';
 import 'package:sengthaite_blog/extensions/build_context_ext.dart';
-
 import 'package:sengthaite_blog/generated/models/category_tab_item_model.dart';
 
 class CategoryTabItemView extends StatelessWidget {
@@ -32,7 +30,7 @@ class CategoryTabItemView extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                   style: context.textTheme.bodyMedium!.copyWith(
                     fontWeight: FontWeight.bold,
-                    fontSize: FontSize.large.value,
+                    fontSize: 20,
                     color: context.colorScheme.onPrimaryContainer,
                   ),
                 ),

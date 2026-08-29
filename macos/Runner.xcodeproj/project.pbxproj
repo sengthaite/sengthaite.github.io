@@ -21,6 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		3159BAB07097A0D34EB27132 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2C2C27E494770CEB62484C9 /* GoogleService-Info.plist */; };
 		331C80D8294CF71000263BE5 /* RunnerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331C80D7294CF71000263BE5 /* RunnerTests.swift */; };
 		335BBD1B22A9A15E00E9071D /* GeneratedPluginRegistrant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335BBD1A22A9A15E00E9071D /* GeneratedPluginRegistrant.swift */; };
 		33CC10F12044A3C60003C045 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CC10F02044A3C60003C045 /* AppDelegate.swift */; };
@@ -89,6 +90,7 @@
 		9ED9A3959D42DB7012734FEA /* Pods-RunnerTests.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.profile.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.profile.xcconfig"; sourceTree = "<group>"; };
 		B76C78A92F081F0C007AD921 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/MainMenu.strings"; sourceTree = "<group>"; };
 		B76C78AA2F081F1B007AD921 /* km */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = km; path = km.lproj/MainMenu.strings; sourceTree = "<group>"; };
+		D2C2C27E494770CEB62484C9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Runner/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E5BE6985EDF9A0CA47AD60CC /* Pods-Runner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.debug.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.debug.xcconfig"; sourceTree = "<group>"; };
 		F14162C1D6C2EB8B11082739 /* Pods-RunnerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.release.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.release.xcconfig"; sourceTree = "<group>"; };
 		F7FE852948817FD36E9567A6 /* Pods-RunnerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.debug.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 				33CC10EE2044A3C60003C045 /* Products */,
 				D73912EC22F37F3D000D13A0 /* Frameworks */,
 				930750DE15EBB797D69484AD /* Pods */,
+				D2C2C27E494770CEB62484C9 /* GoogleService-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -245,6 +248,7 @@
 				33CC10EB2044A3C60003C045 /* Resources */,
 				33CC110E2044A8840003C045 /* Bundle Framework */,
 				3399D490228B24CF009A79C7 /* ShellScript */,
+				BF3E5ABEF502970FB68735F0 /* FlutterFire: "flutterfire upload-crashlytics-symbols" */,
 			);
 			buildRules = (
 			);
@@ -329,6 +333,7 @@
 			files = (
 				33CC10F32044A3C60003C045 /* Assets.xcassets in Resources */,
 				33CC10F62044A3C60003C045 /* MainMenu.xib in Resources */,
+				3159BAB07097A0D34EB27132 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -394,6 +399,24 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		BF3E5ABEF502970FB68735F0 /* FlutterFire: "flutterfire upload-crashlytics-symbols" */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "FlutterFire: \"flutterfire upload-crashlytics-symbols\"";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\n#!/bin/bash\nPATH=\"${PATH}:$FLUTTER_ROOT/bin:${PUB_CACHE}/bin:$HOME/.pub-cache/bin\"\n\nif [ -n \"$PODS_ROOT\" ] && [ -f \"$PODS_ROOT/FirebaseCrashlytics/run\" ]; then\n  # CocoaPods installation.\n  PATH_TO_CRASHLYTICS_UPLOAD_SCRIPT=\"$PODS_ROOT/FirebaseCrashlytics/run\"\nelif [ -n \"$BUILD_DIR\" ] && [ -f \"$BUILD_DIR/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\" ]; then\n  # Swift Package Manager installation. Flutter resolves Swift Package Manager\n  # checkouts into \"$BUILD_DIR/SourcePackages\" (i.e. \"<project>/[ios|macos]/build/SourcePackages\"),\n  # rather than the Xcode DerivedData directory used for a plain Xcode project.\n  PATH_TO_CRASHLYTICS_UPLOAD_SCRIPT=\"$BUILD_DIR/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\"\nelse\n  # Fall back to the Xcode DerivedData directory in case Swift Package Manager\n  # checkouts are not resolved relative to \"$BUILD_DIR\" (older/alternative setups).\n  # Cannot use \"BUILD_DIR%/Build/*\" as per Firebase documentation, it points to \"flutter-project/build/ios/*\" path which doesn't have run script\n  DERIVED_DATA_PATH=$(echo \"$BUILD_ROOT\" | sed -E 's|(.*DerivedData/[^/]+).*|\\1|')\n  PATH_TO_CRASHLYTICS_UPLOAD_SCRIPT=\"${DERIVED_DATA_PATH}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\"\n\n  if [ ! -f \"$PATH_TO_CRASHLYTICS_UPLOAD_SCRIPT\" ]; then\n    # Last resort: search both known Swift Package Manager checkout roots in case\n    # the exact expected layout above does not match this Xcode/Flutter version.\n    FOUND_UPLOAD_SCRIPT=$(find \"$BUILD_DIR\" \"${DERIVED_DATA_PATH}\" -type f -path '*firebase-ios-sdk/Crashlytics/run' -print -quit 2>/dev/null)\n    if [ -n \"$FOUND_UPLOAD_SCRIPT\" ]; then\n      PATH_TO_CRASHLYTICS_UPLOAD_SCRIPT=\"$FOUND_UPLOAD_SCRIPT\"\n    fi\n  fi\nfi\n\n# Command to upload symbols script used to upload symbols to Firebase server\nflutterfire upload-crashlytics-symbols --upload-symbols-script-path=\"$PATH_TO_CRASHLYTICS_UPLOAD_SCRIPT\" --platform=macos --apple-project-path=\"${SRCROOT}\" --env-platform-name=\"${PLATFORM_NAME}\" --env-configuration=\"${CONFIGURATION}\" --env-project-dir=\"${PROJECT_DIR}\" --env-built-products-dir=\"${BUILT_PRODUCTS_DIR}\" --env-dwarf-dsym-folder-path=\"${DWARF_DSYM_FOLDER_PATH}\" --env-dwarf-dsym-file-name=\"${DWARF_DSYM_FILE_NAME}\" --env-infoplist-path=\"${INFOPLIST_PATH}\" --default-config=default\n";
 		};
 		DDA79F4F80C4714E271BC4F0 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -476,7 +499,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.sengthaiteBlog.RunnerTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ste.me.sengthaiteBlog.RunnerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/sengthaite_blog.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/sengthaite_blog";
@@ -491,7 +514,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.sengthaiteBlog.RunnerTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ste.me.sengthaiteBlog.RunnerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/sengthaite_blog.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/sengthaite_blog";
@@ -506,7 +529,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.sengthaiteBlog.RunnerTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ste.me.sengthaiteBlog.RunnerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/sengthaite_blog.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/sengthaite_blog";

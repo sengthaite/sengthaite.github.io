@@ -1,5 +1,10 @@
 plugins {
     id "com.android.application"
+    // START: FlutterFire Configuration
+    id 'com.google.gms.google-services'
+    id 'com.google.firebase.firebase-perf'
+    id 'com.google.firebase.crashlytics'
+    // END: FlutterFire Configuration
     id "dev.flutter.flutter-gradle-plugin"
 }
 
@@ -22,7 +27,7 @@ if (flutterVersionName == null) {
 }
 
 android {
-    namespace "com.example.sengthaite_blog"
+    namespace "com.ste.me"
     compileSdk flutter.compileSdkVersion
     ndkVersion flutter.ndkVersion
 
@@ -36,7 +41,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.example.sengthaite_blog"
+        applicationId "com.ste.me"
         minSdkVersion flutter.minSdkVersion
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
