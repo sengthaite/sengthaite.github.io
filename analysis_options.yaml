@@ -14,6 +14,14 @@ analyzer:
       strict-raw-types: true
   errors:
     implementation_imports: ignore
+  exclude:
+    - build/**
+    - android/**
+    - ios/**
+    - web/**
+    - windows/**
+    - macos/**
+    - linux/**
 include: package:flutter_lints/flutter.yaml
 
 linter:
